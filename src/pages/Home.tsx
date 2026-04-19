@@ -5,6 +5,7 @@ import { Method } from "@/components/sections/Method";
 import { WhoThisIsFor } from "@/components/sections/WhoThisIsFor";
 import { ClientVoice } from "@/components/sections/ClientVoice";
 import { LogoCarousel } from "@/components/sections/LogoCarousel";
+import { IntelligenceTeaser } from "@/components/sections/IntelligenceTeaser";
 import { Invitation } from "@/components/sections/Invitation";
 
 const Home = () => (
@@ -16,6 +17,7 @@ const Home = () => (
     <Method />
     <WhoThisIsFor />
     <ClientVoice />
+    <IntelligenceTeaser />
     <Invitation />
   </>
 );

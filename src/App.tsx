@@ -10,6 +10,9 @@ import MethodPage from "./pages/MethodPage";
 import Work from "./pages/Work";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Intelligence from "./pages/Intelligence";
+import IntelligenceArticle from "./pages/IntelligenceArticle";
+import IntelligenceCategory from "./pages/IntelligenceCategory";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +31,9 @@ const App = () => (
             <Route path="/work" element={<Work />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/intelligence" element={<Intelligence />} />
+            <Route path="/intelligence/category/:name" element={<IntelligenceCategory />} />
+            <Route path="/intelligence/:slug" element={<IntelligenceArticle />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </SiteShell>
