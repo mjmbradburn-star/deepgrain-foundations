@@ -34,7 +34,7 @@ export const IntelligenceTeaser = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((a, i) => (
-            <ScrollReveal key={a.frontmatter.slug} delay={i * 0.08}>
+            <ScrollReveal key={a.frontmatter.slug} delay={i * 80}>
               <ArticleCard article={a} variant={i === 0 ? "green" : "linen"} />
             </ScrollReveal>
           ))}
