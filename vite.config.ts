@@ -4,6 +4,7 @@ import path from "path";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import { componentTagger } from "lovable-tagger";
+import { deepgrainSeoPlugin } from "./vite-plugins/deepgrain-seo";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -17,6 +18,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     { enforce: "pre" as const, ...mdx({ remarkPlugins: [remarkGfm], providerImportSource: "@mdx-js/react" }) },
     react(),
+    deepgrainSeoPlugin(),
     mode === "development" && componentTagger(),
   ].filter(Boolean),
   resolve: {
