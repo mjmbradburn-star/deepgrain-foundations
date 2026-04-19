@@ -11,7 +11,7 @@ export const clients: Client[] = [
   { name: "Bloom & Wild", domain: "bloomandwild.com" },
   { name: "Veed", domain: "veed.io" },
   { name: "Accurx", domain: "accurx.com" },
-  { name: "Finom", domain: "finom.com" },
+  { name: "Finom", domain: "finom.co" },
   { name: "Upvest", domain: "upvest.co" },
   { name: "TestGorilla", domain: "testgorilla.com" },
   { name: "Flock", domain: "flockcover.com" },
