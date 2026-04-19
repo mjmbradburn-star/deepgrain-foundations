@@ -1,0 +1,95 @@
+# Deepgrain
+
+> Organisational consultancy that reads the grain of how a company actually operates — then changes it without breaking what works. Read · Craft · Scale.
+
+Deepgrain is led by Matt Webb. We work with founders and operating leaders building AI-native, defence, financial data, transit, and climate companies. Our practice combines diagnostic depth, craft-level intervention, and the discipline to scale interventions without breaking the operating grain.
+
+## Core pages
+
+- [Home](https://deepgrain.ai/): Overview of the Deepgrain practice and method.
+- [Method](https://deepgrain.ai/method): The Read · Craft · Scale method explained in full.
+- [Work](https://deepgrain.ai/work): Case studies across defence tech, financial data, transit, and climate.
+- [About](https://deepgrain.ai/about): Matt Webb's background, philosophy, and references.
+- [Contact](https://deepgrain.ai/contact): How to start a conversation.
+- [Intelligence](https://deepgrain.ai/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
+
+## Intelligence — by category
+
+### Foundations
+
+First principles of organisational consultancy and the grain.
+
+[Browse category](https://deepgrain.ai/intelligence/category/foundations)
+
+- [The difference between strategy and operating reality](https://deepgrain.ai/intelligence/strategy-vs-operating-reality): Strategy is a story about the future. Operating reality is a description of the present. Most leadership teams confuse the two.
+- [Operating systems vs operating models](https://deepgrain.ai/intelligence/operating-systems-vs-operating-models): An operating model is a slide. An operating system is what runs when nobody is looking. The distinction is the entire point.
+- [The grain metaphor: reading your organisation](https://deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation): Wood has a grain. So does every organisation. Cut with it and the work compounds; cut against it and you spend the rest of the year sanding.
+- [Why most change programmes fail](https://deepgrain.ai/intelligence/why-most-change-programmes-fail): 70% of change programmes fail. The reason is rarely strategy — it's that the grain was never read before the cut was made.
+- [What is organisational consultancy?](https://deepgrain.ai/intelligence/what-is-organisational-consultancy): Organisational consultancy is the practice of reading how a company actually operates — and changing it without breaking what works.
+
+### AI & Operating Systems
+
+What an AI operating system is — and how to build one.
+
+[Browse category](https://deepgrain.ai/intelligence/category/ai-operating-systems)
+
+- [The AI operating ladder: five tiers explained](https://deepgrain.ai/intelligence/ai-operating-ladder-five-tiers): From ad-hoc usage to autonomous operations: the five tiers of AI operating maturity, and what it takes to climb each rung.
+- [From AI experiments to AI infrastructure](https://deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure): Experiments are cheap. Infrastructure is expensive. The companies that win the next decade are the ones that know when to switch.
+- [Why AI pilots stall at production](https://deepgrain.ai/intelligence/why-ai-pilots-stall-at-production): The path from pilot to production is paved with the things nobody wanted to think about during the demo.
+- [The five pillars of AI readiness](https://deepgrain.ai/intelligence/five-pillars-of-ai-readiness): Readiness is not a model selection problem. It is a Data, Tools, Agents, Governance, and Cadence problem — in that order.
+- [What is an AI operating system?](https://deepgrain.ai/intelligence/what-is-an-ai-operating-system): An AI operating system is the layer between models and work. It is what turns a clever demo into a compounding capability.
+
+### Method & Practice
+
+Read · Craft · Scale: how the work is done.
+
+[Browse category](https://deepgrain.ai/intelligence/category/method-and-practice)
+
+- [What good looks like: signals of operating health](https://deepgrain.ai/intelligence/signals-of-operating-health): Operating health doesn't show up in the dashboard. It shows up in how an org talks about its own mistakes.
+- [Scaling without breaking the grain](https://deepgrain.ai/intelligence/scaling-without-breaking-the-grain): Most companies break themselves at scale. The ones that don't are the ones that scaled with the grain, not against it.
+- [The art of the operating intervention](https://deepgrain.ai/intelligence/the-art-of-the-operating-intervention): An intervention is the smallest change that produces the largest second-order effect. The craft is in the smallness.
+- [How to diagnose an organisation in 30 days](https://deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days): A 30-day diagnostic protocol: who to listen to, what to look for, and the trap of premature recommendations.
+- [Read · Craft · Scale: the Deepgrain method](https://deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method): Three movements, in order. Skip the first and the rest is theatre. Skip the third and the work doesn't compound.
+
+### Sector Lenses
+
+Operating consultancy applied to specific industries.
+
+[Browse category](https://deepgrain.ai/intelligence/category/sector-lenses)
+
+- [Operating consultancy for AI-native companies](https://deepgrain.ai/intelligence/operating-consultancy-for-ai-native-companies): AI-native companies have a different grain. The operating system has to assume agents, not just employees.
+- [Operating consultancy for climate ventures](https://deepgrain.ai/intelligence/operating-consultancy-for-climate-ventures): Climate ventures need to compound on a planetary timeline and a venture-fund clock at the same time.
+- [Operating consultancy for transit and mobility](https://deepgrain.ai/intelligence/operating-consultancy-for-transit-and-mobility): Transit organisations operate on the seam between hardware, software, and public trust. The grain runs in three directions at once.
+- [Operating consultancy for financial data](https://deepgrain.ai/intelligence/operating-consultancy-for-financial-data): Financial data businesses are operating systems wearing product clothing. Treat the substrate as the product.
+- [Operating consultancy for defence tech](https://deepgrain.ai/intelligence/operating-consultancy-for-defence-tech): Defence tech runs on dual mandates: warfighter outcomes and commercial scale. The operating system has to hold both.
+
+### Leadership & Craft
+
+The disciplines of operating leadership.
+
+[Browse category](https://deepgrain.ai/intelligence/category/leadership-and-craft)
+
+- [The quiet discipline of operating leadership](https://deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership): The best operating leaders are quiet on the outside and rigorous on the inside. The volume is misleading.
+- [Hiring for the grain: building teams that compound](https://deepgrain.ai/intelligence/hiring-for-the-grain): The best hires don't fight the grain or surrender to it. They read it and add to it.
+- [What CTOs get wrong about scale](https://deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale): Scale is rarely a technology problem. It is almost always an operating problem dressed up as a technology problem.
+- [Founder-mode vs operator-mode](https://deepgrain.ai/intelligence/founder-mode-vs-operator-mode): Founder-mode and operator-mode aren't opposites. They're alternating muscles. Knowing which to use, when, is the executive job.
+- [The craft mindset for modern operators](https://deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators): Operating leadership is a craft. Crafts have masters, apprentices, tools, and standards. Most companies forget all four.
+
+## Topics we write about
+
+- Organisational consultancy and operating systems
+- AI operating systems and the five pillars of AI readiness
+- The AI operating ladder (five tiers of operating maturity)
+- Diagnosing operating reality vs operating story
+- Sector-specific operating challenges (defence, fintech data, transit, climate, AI-native)
+- Founder-mode vs operator-mode leadership
+- Hiring, scaling, and compounding teams
+
+## How to cite Deepgrain
+
+Author: Matt Webb. Publisher: Deepgrain Ltd. Site: https://deepgrain.ai.
+Articles include schema.org Article JSON-LD with author, datePublished, and canonical URL.
+
+## Contact
+
+Email: matt@deepgrain.ai
