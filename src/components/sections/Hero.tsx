@@ -11,25 +11,24 @@ const stagger = (i: number) => ({
 
 export const Hero = () => (
   <section className="relative min-h-screen flex items-center overflow-hidden">
-    {/* Forest backdrop */}
     <div className="absolute inset-0">
       <img
         src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2400&q=80"
         alt=""
         className="w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-green/70" />
-      <div className="absolute inset-0 bg-gradient-to-r from-green/80 via-green/40 to-transparent" />
+      <div className="absolute inset-0 bg-green/55" />
+      <div className="absolute inset-0 bg-gradient-to-r from-green/70 via-green/30 to-transparent" />
     </div>
 
     <div className="relative container-grain pt-32 pb-32 md:pt-40">
-      <div className="max-w-2xl">
+      <div className="relative max-w-2xl bg-walnut/85 backdrop-blur-sm rounded-[48px] md:rounded-[72px] p-10 md:p-14 lg:p-16 border border-brass/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
         <motion.div {...stagger(0)}>
-          <Eyebrow className="text-cream/70 mb-8">Organisational Consultancy</Eyebrow>
+          <Eyebrow className="text-brass mb-8">Organisational Consultancy</Eyebrow>
         </motion.div>
         <motion.h1
           {...stagger(1)}
-          className="font-display font-semibold uppercase text-cream leading-[0.95] text-[64px] sm:text-[88px] md:text-[120px] lg:text-[140px]"
+          className="font-display font-semibold uppercase text-cream leading-[0.95] text-[56px] sm:text-[80px] md:text-[104px] lg:text-[120px]"
           style={{ letterSpacing: "0.02em" }}
         >
           Work with<br />the grain.

@@ -2,9 +2,9 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const stats = [
-  { value: "83", label: "Hours / week reclaimed", sub: "≈ 2 FTE of capacity created. Single engagement." },
-  { value: "70%", label: "Routine work eliminated", sub: "People Ops query handling. Automated end-to-end." },
-  { value: "0", label: "Support calls in 2 months", sub: "Post-engagement. Champions still building independently." },
+  { value: "83", label: "Hours per week reclaimed", sub: "Around 2 FTE of capacity created from a single engagement." },
+  { value: "70%", label: "Routine work eliminated", sub: "People Ops query handling. Automated end to end." },
+  { value: "0", label: "Support calls in 2 months", sub: "Post engagement. Champions still building independently." },
 ];
 
 export const OperatingProof = () => (
@@ -17,13 +17,13 @@ export const OperatingProof = () => (
         </h2>
         <div className="mt-8 max-w-md text-cream/80 space-y-5 leading-relaxed">
           <p>
-            Deepgrain runs on deep human pattern recognition and AI agents
+            Deepgrain runs on deep human pattern recognition and software agents
             built specifically for this work. What once required a team now
             happens faster, more precisely, and without the overhead.
           </p>
           <p>
-            This isn't a selling point. It's how the work gets done.
-            And it's proof — because we built it for ourselves first.
+            This isn&apos;t a selling point. It&apos;s how the work gets done,
+            and it&apos;s proof, because we built it for ourselves first.
           </p>
         </div>
       </ScrollReveal>
@@ -32,9 +32,7 @@ export const OperatingProof = () => (
         {stats.map((s, i) => (
           <ScrollReveal key={s.label} delay={i * 100}>
             <div className="border-t border-cream/15 pt-8">
-              <div
-                className="font-display font-semibold text-brass text-6xl md:text-7xl lg:text-[96px] leading-none"
-              >
+              <div className="font-display font-semibold text-brass text-6xl md:text-7xl lg:text-[96px] leading-none">
                 {s.value}
               </div>
               <Eyebrow className="text-cream mt-4">{s.label}</Eyebrow>

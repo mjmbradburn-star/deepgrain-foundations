@@ -13,15 +13,17 @@ const MethodPage = () => (
           alt=""
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-green/80" />
+        <div className="absolute inset-0 bg-green/60" />
       </div>
       <div className="relative container-grain pb-20 md:pb-32 pt-40">
-        <ScrollReveal>
-          <Eyebrow className="text-cream/70 mb-6">The Method</Eyebrow>
-          <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[96px] leading-[1.02] max-w-4xl text-balance">
-            Read the grain. Build with it. Leave something that lasts.
-          </h1>
-        </ScrollReveal>
+        <div className="relative max-w-4xl bg-walnut/88 backdrop-blur-sm rounded-[48px] md:rounded-[72px] p-10 md:p-16 border border-brass/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
+          <ScrollReveal>
+            <Eyebrow className="text-brass mb-6">The Method</Eyebrow>
+            <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[96px] leading-[1.02] text-balance">
+              Read the grain. Build with it. Leave something that lasts.
+            </h1>
+          </ScrollReveal>
+        </div>
       </div>
     </section>
 
@@ -29,18 +31,18 @@ const MethodPage = () => (
     <section className="bg-linen text-body section-pad">
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
-          <Eyebrow className="text-brass mb-4">01 — Read</Eyebrow>
+          <Eyebrow className="text-brass mb-4">01 Read</Eyebrow>
           <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
             Before we touch a thing, we understand.
           </h2>
           <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
             <p>
               Most consulting starts with the org chart. We start somewhere else.
-              The org chart isn't how decisions get made. The process documentation
-              isn't how work flows. The strategy deck isn't what drives outcomes.
+              The org chart isn&apos;t how decisions get made. The process documentation
+              isn&apos;t how work flows. The strategy deck isn&apos;t what drives outcomes.
             </p>
             <p>
-              Underneath all of it is a grain — the real pattern of how this
+              Underneath all of it is a grain. The real pattern of how this
               organisation thinks, moves, decides, and delivers. We read it first.
               We talk to the people doing the work. We watch where energy flows
               and where it stalls. We find the fractures forming before anyone
@@ -55,7 +57,7 @@ const MethodPage = () => (
     <section className="bg-walnut text-cream section-pad">
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
-          <Eyebrow className="text-brass mb-4">02 — Craft</Eyebrow>
+          <Eyebrow className="text-brass mb-4">02 Craft</Eyebrow>
           <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight">
             We build with the grain, not against it.
           </h2>
@@ -63,7 +65,7 @@ const MethodPage = () => (
             <p>
               Human judgment and machine precision, working together from day one.
               Agents that remove friction without removing thought. Systems
-              designed around how this specific place actually works — not
+              designed around how this specific place actually works, not
               borrowed from a playbook that worked somewhere else.
             </p>
             <p>
@@ -80,7 +82,7 @@ const MethodPage = () => (
     <section className="bg-linen text-body section-pad">
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
-          <Eyebrow className="text-brass mb-4">03 — Scale</Eyebrow>
+          <Eyebrow className="text-brass mb-4">03 Scale</Eyebrow>
           <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
             We leave something that compounds.
           </h2>
@@ -92,9 +94,9 @@ const MethodPage = () => (
             </p>
             <p>
               Two months after the engagement ends, our champions are still
-              building. They've extended the work into places we never touched.
-              That's the test. Not what you have on day one — what you still
-              have, and what you've added, six months on.
+              building. They have extended the work into places we never touched.
+              That&apos;s the test. Not what you have on day one, but what you still
+              have, and what you have added, six months on.
             </p>
           </div>
         </ScrollReveal>
