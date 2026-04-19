@@ -23,12 +23,9 @@ export const Hero = () => (
 
     <div className="relative container-grain pt-32 pb-32 md:pt-40">
       <div className="relative max-w-2xl">
-        <motion.div {...stagger(0)}>
-          <Eyebrow className="text-brass mb-8">Organisational Consultancy</Eyebrow>
-        </motion.div>
         <motion.h1
           {...stagger(1)}
-          className="font-display font-semibold uppercase text-cream leading-[0.95] text-[56px] sm:text-[80px] md:text-[104px] lg:text-[120px]"
+          className="font-display font-semibold uppercase text-cream leading-[0.95] text-[56px] sm:text-[80px] md:text-[104px] lg:text-[120px] -mt-8 md:-mt-12"
           style={{ letterSpacing: "0.02em" }}
         >
           Work with<br />the grain.
