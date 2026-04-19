@@ -54,10 +54,10 @@ export const CaseStudyCard = ({ study, variant }: Props) => {
             <div className="mt-16 max-w-3xl">
               <BrassRule className="mb-8" />
               <blockquote className={cn("font-display italic text-2xl md:text-3xl leading-snug", v.heading)}>
-                “{study.testimonial.quote}”
+                &ldquo;{study.testimonial.quote}&rdquo;
               </blockquote>
               <p className="mt-6 text-brass text-xs uppercase tracking-[0.15em]">
-                — {study.testimonial.attribution}
+                {study.testimonial.attribution}
               </p>
             </div>
           </ScrollReveal>

@@ -6,7 +6,7 @@ const steps = [
     n: "01",
     title: "Read",
     body:
-      "Before anything is built, we understand. Not the org chart — the grain. Where decisions really get made. Where energy flows and where it stalls. Where fractures are forming before anyone's named them.",
+      "Before anything is built, we understand. Not the org chart. The grain. Where decisions really get made. Where energy flows and where it stalls. Where fractures are forming before anyone has named them.",
   },
   {
     n: "02",

@@ -13,7 +13,7 @@ export const BeliefStatement = () => (
     <div className="relative container-grain text-center">
       <ScrollReveal>
         <p className="font-display italic font-light text-cream text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-tight max-w-4xl mx-auto text-balance">
-          “Every organisation has a grain.<br />Most have never read it.”
+          &ldquo;Every organisation has a grain.<br />Most have never read it.&rdquo;
         </p>
       </ScrollReveal>
     </div>

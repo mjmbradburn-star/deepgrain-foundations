@@ -12,7 +12,7 @@ const Contact = () => (
           Let's talk.
         </h1>
         <p className="mt-8 text-cream/75 max-w-md mx-auto leading-relaxed">
-          If you think your organisation is ready to understand itself —
+          If you think your organisation is ready to understand itself,
           reach out directly.
         </p>
         <BrassRule className="mx-auto my-12" />
