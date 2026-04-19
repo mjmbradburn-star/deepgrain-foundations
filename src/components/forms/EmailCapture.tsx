@@ -52,10 +52,13 @@ export const EmailCapture = ({
       source,
       article_slug: articleSlug ?? null,
     });
-    setSubmitting(false);
 
-    // Treat duplicate (unique violation) as success — quiet idempotent UX
-    if (error && error.code !== "23505") {
+    // Treat duplicate (unique violation) as success — quiet idempotent UX,
+    // but skip sending the welcome email so existing subscribers aren't re-emailed.
+    const isDuplicate = error?.code === "23505";
+
+    if (error && !isDuplicate) {
+      setSubmitting(false);
       toast({
         title: "Something went wrong",
         description: "Please try again in a moment.",
@@ -64,6 +67,24 @@ export const EmailCapture = ({
       return;
     }
 
+    if (!isDuplicate) {
+      // Fire-and-forget welcome email. Failure here must not block the UX.
+      const idempotencyKey = `subscriber-welcome-${source}-${parsed.data.email.toLowerCase()}`;
+      supabase.functions
+        .invoke("send-transactional-email", {
+          body: {
+            templateName: "subscriber-welcome",
+            recipientEmail: parsed.data.email,
+            idempotencyKey,
+            templateData: { source, articleSlug: articleSlug ?? null },
+          },
+        })
+        .catch(() => {
+          // swallow — subscription is already saved
+        });
+    }
+
+    setSubmitting(false);
     setDone(true);
     setEmail("");
   };
