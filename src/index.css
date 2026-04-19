@@ -40,7 +40,7 @@
     /* Named brand tokens (HSL triplets) */
     --green: 153 51% 14%;
     --walnut: 19 48% 8%;
-    --brass: 30 43% 44%;
+    --brass: 36 65% 58%;
     --cream: 44 53% 90%;
     --linen: 39 32% 90%;
     --linen-dark: 39 21% 81%;
@@ -74,10 +74,10 @@
 
 @layer utilities {
   .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.15em;
+    font-size: 12px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 600;
   }
   .text-balance {
     text-wrap: balance;
