@@ -14,6 +14,7 @@ import Intelligence from "./pages/Intelligence";
 import IntelligenceArticle from "./pages/IntelligenceArticle";
 import IntelligenceCategory from "./pages/IntelligenceCategory";
 import NotFound from "./pages/NotFound";
+import Unsubscribe from "./pages/Unsubscribe";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/intelligence" element={<Intelligence />} />
             <Route path="/intelligence/category/:name" element={<IntelligenceCategory />} />
             <Route path="/intelligence/:slug" element={<IntelligenceArticle />} />
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </SiteShell>
