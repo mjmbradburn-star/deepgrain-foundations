@@ -12,8 +12,8 @@ export const Footer = () => (
     <div className="container-grain grid gap-12 md:grid-cols-3">
       <div>
         <div
-          className="font-display uppercase font-semibold text-lg text-cream mb-4"
-          style={{ letterSpacing: "0.1em" }}
+          className="font-display uppercase font-semibold text-2xl md:text-3xl text-cream mb-4"
+          style={{ letterSpacing: "0.14em" }}
         >
           Deepgrain
         </div>

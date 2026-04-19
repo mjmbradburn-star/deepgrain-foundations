@@ -44,11 +44,11 @@ export const Navigation = () => {
             : "bg-transparent",
         )}
       >
-        <div className="container-grain flex items-center justify-between h-20">
+        <div className="container-grain flex items-center justify-between h-24 md:h-28">
           <Link
             to="/"
-            className="font-display text-cream uppercase font-semibold text-lg"
-            style={{ letterSpacing: "0.1em" }}
+            className="font-display text-cream uppercase font-semibold text-2xl md:text-3xl"
+            style={{ letterSpacing: "0.14em" }}
           >
             Deepgrain
           </Link>
