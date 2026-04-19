@@ -18,7 +18,9 @@ export const WhoThisIsFor = () => (
         <ScrollReveal>
           <Eyebrow className="text-brass mb-8">Who this is for</Eyebrow>
           <h2 className="font-display text-cream text-4xl sm:text-5xl md:text-6xl lg:text-[80px] leading-[1.05] max-w-3xl text-balance">
-            Leaders who know something isn&apos;t working. And can&apos;t yet name why.
+            Leaders who know something isn&apos;t working.
+            <br />
+            And can&apos;t yet name why.
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={150}>
