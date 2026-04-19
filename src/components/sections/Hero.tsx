@@ -22,7 +22,7 @@ export const Hero = () => (
     </div>
 
     <div className="relative container-grain pt-32 pb-32 md:pt-40">
-      <div className="relative max-w-2xl bg-walnut/85 backdrop-blur-sm rounded-[48px] md:rounded-[72px] p-10 md:p-14 lg:p-16 border border-brass/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
+      <div className="relative max-w-2xl">
         <motion.div {...stagger(0)}>
           <Eyebrow className="text-brass mb-8">Organisational Consultancy</Eyebrow>
         </motion.div>
