@@ -74,15 +74,20 @@ export const LogoCarousel = ({
             <div
               key={`${c.domain}-${i}`}
               className={cn(
-                "group flex items-center justify-center",
-                "h-24 w-44 md:h-28 md:w-52 shrink-0",
+                "group flex flex-col items-center justify-center gap-3",
+                "h-32 w-44 md:h-36 md:w-52 shrink-0",
                 "rounded-2xl border border-cream/10 bg-cream/[0.04] backdrop-blur-sm",
-                "px-6 transition-all duration-500",
+                "px-6 py-4 transition-all duration-500",
                 "hover:bg-cream/[0.08] hover:border-brass/30 hover:-translate-y-0.5",
               )}
               title={c.name}
             >
-              <LogoItem name={c.name} domain={c.domain} />
+              <div className="flex-1 flex items-center justify-center w-full">
+                <LogoItem name={c.name} domain={c.domain} />
+              </div>
+              <span className="font-sans text-[11px] tracking-[0.18em] uppercase text-brass/90 whitespace-nowrap">
+                {c.name}
+              </span>
             </div>
           ))}
         </div>
