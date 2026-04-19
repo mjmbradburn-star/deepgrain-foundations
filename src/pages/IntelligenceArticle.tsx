@@ -10,6 +10,7 @@ import { mdxComponents } from "@/components/intelligence/mdxComponents";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PillButton } from "@/components/ui/PillButton";
+import { EmailCapture } from "@/components/forms/EmailCapture";
 
 const IntelligenceArticle = () => {
   const { slug = "" } = useParams();
@@ -98,6 +99,16 @@ const IntelligenceArticle = () => {
           <MDXProvider components={mdxComponents}>
             <Component />
           </MDXProvider>
+
+          <div className="mt-20 pt-12 border-t border-walnut/15">
+            <EmailCapture
+              source="article"
+              articleSlug={f.slug}
+              variant="light"
+              heading="If this resonated, there's more."
+              description="Subscribe to receive new Intelligence pieces as they're published. No noise — just the work."
+            />
+          </div>
         </div>
       </article>
 

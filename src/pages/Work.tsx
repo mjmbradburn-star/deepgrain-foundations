@@ -3,6 +3,7 @@ import { CaseStudyCard } from "@/components/sections/CaseStudyCard";
 import { LogoCarousel } from "@/components/sections/LogoCarousel";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { EmailCapture } from "@/components/forms/EmailCapture";
 
 const variants: Array<"linen" | "walnut" | "green"> = ["linen", "walnut", "linen", "green"];
 
@@ -28,6 +29,20 @@ const Work = () => (
     {caseStudies.map((study, i) => (
       <CaseStudyCard key={study.id} study={study} variant={variants[i]} />
     ))}
+
+    <section className="bg-linen py-20 md:py-28">
+      <div className="container-grain max-w-3xl">
+        <ScrollReveal>
+          <Eyebrow className="text-walnut/60 mb-6">Stay close</Eyebrow>
+          <EmailCapture
+            source="work"
+            variant="light"
+            heading="Field notes from the work."
+            description="A small dispatch, a few times a quarter. Patterns we keep seeing across operating systems, leadership, and the long arc of building organisations that hold."
+          />
+        </ScrollReveal>
+      </div>
+    </section>
   </>
 );
 
