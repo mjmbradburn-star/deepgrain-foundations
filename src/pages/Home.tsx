@@ -11,11 +11,11 @@ const Home = () => (
   <>
     <Hero />
     <BeliefStatement />
+    <LogoCarousel background="green" />
     <OperatingProof />
     <Method />
     <WhoThisIsFor />
     <ClientVoice />
-    <LogoCarousel background="green" />
     <Invitation />
   </>
 );
