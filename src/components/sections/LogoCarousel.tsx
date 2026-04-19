@@ -11,17 +11,37 @@ interface LogoCarouselProps {
   eyebrow?: string;
 }
 
+const LOGO_SOURCES = [
+  (domain: string) => `https://icons.duckduckgo.com/ip3/${domain}.ico`,
+  (domain: string) => `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
+  (domain: string) => `https://logo.clearbit.com/${domain}`,
+];
+
 const LogoItem = ({ name, domain }: { name: string; domain: string }) => {
+  const [sourceIndex, setSourceIndex] = useState(0);
   const [failed, setFailed] = useState(false);
-  if (failed) return <LogoFallback name={name} />;
+
+  if (failed) {
+    return (
+      <div className="flex items-center justify-center h-full w-full">
+        <LogoFallback name={name} />
+      </div>
+    );
+  }
+
   return (
     <img
-      src={`https://logo.clearbit.com/${domain}`}
-      alt={name}
-      onError={() => setFailed(true)}
+      src={LOGO_SOURCES[sourceIndex](domain)}
+      alt={`${name} logo`}
+      onError={() => {
+        if (sourceIndex < LOGO_SOURCES.length - 1) {
+          setSourceIndex(sourceIndex + 1);
+        } else {
+          setFailed(true);
+        }
+      }}
       loading="lazy"
-      className="h-7 w-auto opacity-40 hover:opacity-75 transition-opacity duration-300"
-      style={{ filter: "brightness(0) invert(1)" }}
+      className="max-h-12 max-w-[120px] w-auto h-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500"
     />
   );
 };
@@ -37,23 +57,30 @@ export const LogoCarousel = ({
 
   return (
     <section
-      className={cn("py-20 md:py-24 overflow-hidden", bgClass)}
+      className={cn("py-24 md:py-32 overflow-hidden", bgClass)}
       aria-label="Client logos"
     >
       {showHeadline && (
-        <div className="container-grain text-center mb-14">
-          <Eyebrow className="text-cream/60 mb-6">{eyebrow}</Eyebrow>
+        <div className="container-grain text-center mb-16">
+          <Eyebrow className="text-brass mb-6">{eyebrow}</Eyebrow>
           <p className="font-display italic text-2xl md:text-[32px] leading-snug text-cream/90 max-w-3xl mx-auto">
             {headline}
           </p>
         </div>
       )}
       <div className="relative w-full">
-        <div className="flex w-max logo-track" role="marquee">
+        <div className="flex w-max logo-track gap-6 md:gap-8" role="marquee">
           {doubled.map((c, i) => (
             <div
               key={`${c.domain}-${i}`}
-              className="flex items-center justify-center px-8 md:px-12 min-w-[160px]"
+              className={cn(
+                "group flex items-center justify-center",
+                "h-24 w-44 md:h-28 md:w-52 shrink-0",
+                "rounded-2xl border border-cream/10 bg-cream/[0.04] backdrop-blur-sm",
+                "px-6 transition-all duration-500",
+                "hover:bg-cream/[0.08] hover:border-brass/30 hover:-translate-y-0.5",
+              )}
+              title={c.name}
             >
               <LogoItem name={c.name} domain={c.domain} />
             </div>
@@ -62,13 +89,13 @@ export const LogoCarousel = ({
         {/* Fade edges */}
         <div
           className={cn(
-            "pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r",
+            "pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r z-10",
             background === "green" ? "from-green to-transparent" : "from-walnut to-transparent",
           )}
         />
         <div
           className={cn(
-            "pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l",
+            "pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l z-10",
             background === "green" ? "from-green to-transparent" : "from-walnut to-transparent",
           )}
         />
