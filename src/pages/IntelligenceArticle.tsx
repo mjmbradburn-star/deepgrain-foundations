@@ -1,0 +1,144 @@
+import { Helmet } from "react-helmet-async";
+import { Link, useParams, Navigate } from "react-router-dom";
+import { MDXProvider } from "@mdx-js/react";
+import {
+  getArticleBySlug,
+  getCategory,
+  getRelatedArticles,
+} from "@/lib/intelligence";
+import { mdxComponents } from "@/components/intelligence/mdxComponents";
+import { ArticleCard } from "@/components/intelligence/ArticleCard";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { PillButton } from "@/components/ui/PillButton";
+
+const IntelligenceArticle = () => {
+  const { slug = "" } = useParams();
+  const article = getArticleBySlug(slug);
+
+  if (!article) return <Navigate to="/intelligence" replace />;
+
+  const { frontmatter: f, Component } = article;
+  const cat = getCategory(f.category);
+  const related = getRelatedArticles(slug, 3);
+  const url = `https://deepgrain.ai/intelligence/${f.slug}`;
+
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: f.title,
+    description: f.description,
+    keywords: f.keywords?.join(", "),
+    author: { "@type": "Person", name: f.author },
+    datePublished: f.publishedAt,
+    publisher: {
+      "@type": "Organization",
+      name: "Deepgrain",
+      url: "https://deepgrain.ai",
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>{f.title} — Deepgrain Intelligence</title>
+        <meta name="description" content={f.description} />
+        <meta name="keywords" content={f.keywords?.join(", ")} />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={f.title} />
+        <meta property="og:description" content={f.description} />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="article:published_time" content={f.publishedAt} />
+        <meta property="article:author" content={f.author} />
+        <meta property="article:section" content={cat?.name} />
+        <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
+      </Helmet>
+
+      {/* Header band */}
+      <header className="bg-green text-cream pt-40 md:pt-48 pb-20 md:pb-28">
+        <div className="container-grain max-w-3xl">
+          <div className="flex items-center gap-3 mb-8">
+            <Link
+              to={`/intelligence/category/${f.category}`}
+              className="font-sans uppercase text-[11px] text-brass hover:text-cream transition-colors"
+              style={{ letterSpacing: "0.16em" }}
+            >
+              {cat?.name}
+            </Link>
+            <span className="text-cream/40">·</span>
+            <span className="text-[11px] text-cream/60">{f.readTime}</span>
+          </div>
+          <h1
+            className="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.0] mb-8"
+            style={{ letterSpacing: "-0.015em" }}
+          >
+            {f.title}
+          </h1>
+          <p className="text-lg md:text-xl text-cream/75 leading-relaxed">
+            {f.description}
+          </p>
+          <div className="mt-10 pt-6 border-t border-cream/15 flex items-center gap-4 text-sm text-cream/60">
+            <span>{f.author}</span>
+            <span className="text-cream/30">·</span>
+            <time dateTime={f.publishedAt}>
+              {new Date(f.publishedAt).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </time>
+          </div>
+        </div>
+      </header>
+
+      {/* Body */}
+      <article className="bg-linen py-20 md:py-28">
+        <div className="container-grain max-w-2xl">
+          <MDXProvider components={mdxComponents}>
+            <Component />
+          </MDXProvider>
+        </div>
+      </article>
+
+      {/* AIOI CTA */}
+      <section className="bg-green text-cream py-20 md:py-28">
+        <div className="container-grain max-w-3xl text-center">
+          <Eyebrow className="text-brass">AI Operating Index</Eyebrow>
+          <h2
+            className="font-display text-3xl md:text-5xl mt-4 mb-6 leading-tight"
+            style={{ letterSpacing: "-0.01em" }}
+          >
+            Find out where your operating system actually stands.
+          </h2>
+          <p className="text-cream/75 max-w-xl mx-auto mb-10 leading-relaxed">
+            Twenty minutes. Five pillars. A diagnosis your leadership team can
+            act on this quarter.
+          </p>
+          <PillButton href="/contact" variant="filled">
+            Take the assessment
+          </PillButton>
+        </div>
+      </section>
+
+      {/* Related */}
+      {related.length > 0 && (
+        <section className="bg-walnut text-cream py-20 md:py-28">
+          <div className="container-grain">
+            <Eyebrow className="text-brass">Keep reading</Eyebrow>
+            <h2 className="font-display text-3xl md:text-4xl text-cream mt-3 mb-12">
+              More from {cat?.name}
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {related.map((a) => (
+                <ArticleCard key={a.frontmatter.slug} article={a} variant="green" />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
+  );
+};
+
+export default IntelligenceArticle;
