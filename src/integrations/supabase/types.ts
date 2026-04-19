@@ -131,6 +131,30 @@ export type Database = {
         }
         Relationships: []
       }
+      subscribers: {
+        Row: {
+          article_slug: string | null
+          created_at: string
+          email: string
+          id: string
+          source: string
+        }
+        Insert: {
+          article_slug?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          source?: string
+        }
+        Update: {
+          article_slug?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          source?: string
+        }
+        Relationships: []
+      }
       suppressed_emails: {
         Row: {
           created_at: string
