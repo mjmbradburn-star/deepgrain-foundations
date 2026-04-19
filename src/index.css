@@ -74,10 +74,10 @@
 
 @layer utilities {
   .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.15em;
+    font-size: 12px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 600;
   }
   .text-balance {
     text-wrap: balance;
