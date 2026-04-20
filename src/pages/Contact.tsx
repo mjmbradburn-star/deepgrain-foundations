@@ -8,7 +8,7 @@ const Contact = () => (
   <section className="bg-green text-cream min-h-screen pt-40 pb-32">
     <PageMeta
       title="Contact — Deepgrain"
-      description="Start a conversation with Deepgrain. If your organisation is ready to understand itself, reach out directly to Matt Webb."
+      description="Start a conversation with Deepgrain. If you have an organisation worth getting right, write to Matt Webb directly."
       path="/contact"
     />
     <div className="container-grain max-w-3xl text-center">
@@ -18,8 +18,8 @@ const Contact = () => (
           Let's talk.
         </h1>
         <p className="mt-8 text-cream/75 max-w-md mx-auto leading-relaxed">
-          If you think your organisation is ready to understand itself,
-          reach out directly.
+          Tell me what you are trying to fix. A paragraph is enough to
+          start.
         </p>
         <BrassRule className="mx-auto my-12" />
         <a

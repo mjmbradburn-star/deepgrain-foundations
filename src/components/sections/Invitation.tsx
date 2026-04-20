@@ -9,8 +9,8 @@ export const Invitation = () => (
           Ready to read the grain?
         </h2>
         <p className="mt-8 text-cream/75 max-w-md mx-auto leading-relaxed">
-          If you think your organisation is ready to understand itself,
-          let&apos;s talk.
+          Tell me what you are trying to fix. A paragraph is enough to
+          start.
         </p>
         <div className="mt-12">
           <PillButton href="/contact" variant="filled">
