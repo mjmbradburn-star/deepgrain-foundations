@@ -67,7 +67,7 @@ export const CaseStudyCard = ({ study, variant }: Props) => {
 
         {study.outcomes && (
           <ScrollReveal delay={300}>
-            <div className={cn("mt-12 border-t pt-8 max-w-2xl space-y-2 text-sm", v.rule, v.subtle)}>
+            <div className={cn("hidden md:block mt-12 border-t pt-8 max-w-2xl space-y-2 text-sm", v.rule, v.subtle)}>
               {study.outcomes.map((o) => (
                 <p key={o} className="text-brass/90">{o}</p>
               ))}
