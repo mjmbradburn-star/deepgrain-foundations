@@ -106,7 +106,7 @@ const About = () => (
               What once required a team of consultants now happens faster, with
               more precision, and with less overhead.
             </p>
-            <p>
+            <p className="hidden md:block">
               This isn&apos;t a claim about what&apos;s possible. It&apos;s the model built,
               tested, and run on our own operations before recommending it to
               anyone else.
