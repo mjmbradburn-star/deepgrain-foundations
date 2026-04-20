@@ -1,10 +1,11 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 
 const stats = [
-  { value: "83", label: "Hours per week reclaimed", sub: "Around 2 FTE of capacity created from a single engagement." },
-  { value: "70%", label: "Routine work eliminated", sub: "People Ops query handling. Automated end to end." },
-  { value: "0", label: "Support calls in 2 months", sub: "Post engagement. Champions still building independently." },
+  { value: 83, suffix: "", label: "Hours per week reclaimed", sub: "Around 2 FTE of capacity created from a single engagement." },
+  { value: 70, suffix: "%", label: "Routine work eliminated", sub: "People Ops query handling. Automated end to end." },
+  { value: 0, suffix: "", label: "Support calls in 2 months", sub: "Post engagement. Champions still building independently." },
 ];
 
 export const OperatingProof = () => (
@@ -31,9 +32,14 @@ export const OperatingProof = () => (
       <div className="space-y-8">
         {stats.map((s, i) => (
           <ScrollReveal key={s.label} delay={i * 100}>
-            <div className="border-t border-cream/15 pt-8">
-              <div className="font-display font-semibold text-brass text-6xl md:text-7xl lg:text-[96px] leading-none">
-                {s.value}
+            <div className="group relative border-t border-cream/15 pt-8">
+              <span
+                aria-hidden
+                className="absolute left-0 top-0 h-px w-full origin-left scale-x-0 bg-brass transition-transform duration-[1400ms] ease-out group-data-[reveal=in]:scale-x-100"
+                style={{ transitionDelay: `${i * 100 + 200}ms` }}
+              />
+              <div className="font-display font-semibold text-brass text-6xl md:text-7xl lg:text-[96px] leading-none tabular-nums">
+                <AnimatedNumber value={s.value} suffix={s.suffix} duration={1600} />
               </div>
               <Eyebrow className="text-cream mt-4">{s.label}</Eyebrow>
               <p className="mt-3 text-cream/70 max-w-sm">{s.sub}</p>

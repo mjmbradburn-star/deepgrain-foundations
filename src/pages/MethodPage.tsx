@@ -3,6 +3,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { ValueVisualiser } from "@/components/sections/ValueVisualiser";
 
 const MethodPage = () => (
   <>
@@ -115,6 +116,9 @@ const MethodPage = () => (
         </ScrollReveal>
       </div>
     </section>
+
+    {/* Value visualiser */}
+    <ValueVisualiser />
 
     {/* CTA */}
     <section className="bg-green text-cream section-pad">
