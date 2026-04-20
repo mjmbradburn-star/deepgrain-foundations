@@ -53,7 +53,7 @@ export const BuildVsHire = () => {
             One mid-level hire. Or one well-built agent.
           </h2>
           <p className="mt-6 max-w-2xl text-body/75 leading-relaxed text-lg">
-            Same shape of work. Same expected output. Costed honestly — loaded
+            Same shape of work. Same expected output. Costed honestly: loaded
             salary on one side, build plus run on the other. The gap widens
             every year you keep the agent running.
           </p>
