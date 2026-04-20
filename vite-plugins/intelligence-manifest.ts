@@ -25,11 +25,8 @@ async function buildManifest(): Promise<string> {
     const src = await fs.readFile(file, "utf8");
     const m = src.match(/export\s+const\s+frontmatter\s*=\s*(\{[\s\S]*?\n\});/);
     if (!m) continue;
-    const rel = path
-      .relative(path.resolve(__dirname, "../src/lib"), file)
-      .split(path.sep)
-      .join("/");
-    entries.push({ rel, raw: m[1] });
+    // Use absolute paths so dynamic imports resolve from the virtual module.
+    entries.push({ rel: file, raw: m[1] });
   }
 
   // Emit JS module with eager frontmatter + lazy loaders keyed by relative path.
