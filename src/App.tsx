@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import Intelligence from "./pages/Intelligence";
 import IntelligenceArticle from "./pages/IntelligenceArticle";
 import IntelligenceCategory from "./pages/IntelligenceCategory";
+import PeopleOps from "./pages/PeopleOps";
 import NotFound from "./pages/NotFound";
 import Unsubscribe from "./pages/Unsubscribe";
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/intelligence" element={<Intelligence />} />
+            <Route path="/intelligence/people-ops" element={<PeopleOps />} />
             <Route path="/intelligence/category/:name" element={<IntelligenceCategory />} />
             <Route path="/intelligence/:slug" element={<IntelligenceArticle />} />
             <Route path="/unsubscribe" element={<Unsubscribe />} />
