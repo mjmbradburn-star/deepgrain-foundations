@@ -1,38 +1,64 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
 interface ScrollRevealProps {
-  children: React.ReactNode;
+  children: ReactNode;
   delay?: number;
-  distance?: number;
   duration?: number;
   threshold?: number;
   className?: string;
   as?: "div" | "section" | "article";
 }
 
+/**
+ * CSS-only scroll reveal. Uses IntersectionObserver + a `data-reveal` attribute
+ * driven by index.css. Replaces the previous framer-motion implementation so the
+ * critical path no longer needs motion-vendor.
+ */
 export const ScrollReveal = ({
   children,
   delay = 0,
-  distance = 24,
   duration = 0.7,
   threshold = 0.15,
   className,
-  as = "div",
+  as: Tag = "div",
 }: ScrollRevealProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: threshold });
-  const MotionTag = motion[as] as typeof motion.div;
+  const ref = useRef<HTMLElement>(null);
 
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+    ) {
+      node.setAttribute("data-reveal", "in");
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).setAttribute("data-reveal", "in");
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold, rootMargin: "0px 0px -10% 0px" },
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, [threshold]);
+
+  const style: CSSProperties = {
+    transitionDelay: delay ? `${delay}ms` : undefined,
+    transitionDuration: duration !== 0.7 ? `${duration}s` : undefined,
+  };
+
+  // Cast to any — Tag union is erased at runtime; React handles the element fine.
+  const Element = Tag as unknown as "div";
   return (
-    <MotionTag
-      ref={ref}
-      initial={{ opacity: 0, y: distance }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: distance }}
-      transition={{ duration, delay: delay / 1000, ease: [0.25, 0.1, 0.25, 1] }}
-      className={className}
-    >
+    <Element ref={ref as never} data-reveal="" className={className} style={style}>
       {children}
-    </MotionTag>
+    </Element>
   );
 };
