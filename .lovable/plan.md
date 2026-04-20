@@ -1,57 +1,62 @@
 
 ## Goal
 
-Transform the recessive ICP strip into a confident, three-line audience+problem statement that:
-1. Names the people (roles, broad funding mix) without em dashes.
-2. Hints at sector breadth without listing every industry.
-3. States the core problem Deepgrain solves — messy workflows, human + agentic AI, three levels of change.
+Replace the dense "Read · Craft · Scale" + "three levels of change" content on the homepage `Method` section with a tighter teaser that:
+1. Keeps a short hook ("Read · Craft · Scale" as a one-line promise, not three paragraphs).
+2. Showcases a **visual preview of the Value Visualiser sliders** from `/method` — the interactive ROI calculator — as the magnet.
+3. Drives a single clear CTA: *See what this is worth in your function →*.
 
-## Proposed copy
+The full Read/Craft/Scale + three-levels content already lives on `/method`, so removing it from home is safe.
 
-**Line 1 — Who (warm, prominent, mixed-case serif):**
-> For CEOs, COOs, CFOs, Chief People Officers, and VPs of Operations. VC, PE-backed, and bootstrapped.
+## New homepage Method section structure
 
-**Line 2 — Where (small caps, supporting):**
-> AI-native, defence, financial services, healthcare, climate, mobility, and the long tail of real businesses in between.
+Walnut background, same vertical rhythm. Two-column on desktop, stacked on mobile.
 
-**Line 3 — Problem + partnership (the engaging bit, two short sentences):**
-> Your workflows are messy, your team is stretched, and the AI conversation has outpaced your operating reality. Deepgrain partners with you across three levels — organisation, function, and individual capability — to build the strategy, the agentic systems, and the people who can keep evolving them.
+**Left column (copy, ~40%)**
+- Eyebrow: "The Method"
+- Headline (font-display, large): *"Read the grain. Build with it. Leave something that compounds."*
+- One short paragraph (2 sentences max): positions Read · Craft · Scale as the how, and teases the value model.
+- Brass-bold inline: **"three levels of change"** kept as the anchor phrase.
+- PillButton (filled, brass-prominent): *"See what it's worth in your function →"* → `/method`
 
-(Note: user said no em dashes in line 1. The single en/em in line 3 lives in the problem statement — I'll use a comma or period instead to honour the spirit. Revised line 3 below.)
+**Right column (visual teaser, ~60%)**
+A static, non-interactive **mock of the Value Visualiser** styled like a browser/app card:
+- Linen card with rounded corners, subtle shadow, brass border accent
+- Three slider rows (Team size, Hours/week lost, Loaded hourly cost) rendered as static visuals — track + brass range fill + thumb dot, no interactivity, no Radix
+- One headline output below: e.g. "Annual value · £1,209,600" in large brass display type
+- Small label "Directional model · live on /method"
+- Subtle hover lift + cursor-pointer wrapping the whole card as a link to `/method`
+- A faint "click to explore" affordance (small arrow chip top-right)
 
-**Revised line 3 (no dashes):**
-> Your workflows are messy. Your team is stretched. The AI conversation has outpaced your operating reality. Deepgrain partners with you across three levels of change, organisation, function, and individual capability, to build the strategy, the agentic systems, and the people who can keep evolving them.
+This makes the teaser feel like a real screenshot of the tool without requiring the user to interact on the homepage — fewer decisions, clearer pull-through.
 
-That's long. Tightened version:
+## Implementation
 
-> Your workflows are messy and the AI conversation has outpaced your operating reality. Deepgrain partners with you across three levels of change: organisation, function, and individual capability. The strategy, the agentic systems, and the people who can keep evolving them.
+**File rewritten:**
+- `src/components/sections/Method.tsx` — full replacement. Drop the `levels`, `movements`, BrassRule layout. Build the new two-column teaser + static slider mock inline (no new component file needed; ~120 lines).
 
-Three sentences. Builds: problem → partnership shape → what gets built.
+**No other files touched.** `ValueVisualiser` stays as-is on `/method`. `MethodPage.tsx` unchanged.
 
-## Visual treatment
+## Static slider mock approach
 
-The strip becomes a proper section, not a chip:
+Pure divs + tailwind, no Radix:
+```
+<div class="track">
+  <div class="range" style="width: 32%" />
+  <div class="thumb" style="left: 32%" />
+</div>
+```
+Three rows with realistic preset values (e.g. 25 people / 8 hrs / £70) so the headline output number reads as a believable £1.2M figure — same maths as the real visualiser. This subtly previews the result the user will compute themselves on /method.
 
-- **Background**: keep walnut, keep cream text. Add subtle brass top + bottom hairlines (already there) — bump opacity slightly.
-- **Padding**: `py-10 md:py-14` (was py-5/py-6).
-- **Line 1 (who)**:
-  - `font-display` (Cormorant Garamond serif), mixed case
-  - `text-2xl md:text-[32px] lg:text-[38px]`, `font-medium`, `leading-tight`
-  - cream, with brass accent on "For" and on the funding clause
-  - centred, `max-w-3xl` mx-auto, `text-balance`
-- **Line 2 (sectors)**:
-  - small caps, `text-[12px] md:text-[13px]`, tracking 0.18em, cream/65
-  - `mt-5`, centred, `max-w-2xl` mx-auto
-  - thin brass hairline (1px, brass/25, w-12) above it as a separator
-- **Line 3 (problem)**:
-  - sans, `text-base md:text-lg`, `leading-relaxed`, cream/85
-  - `mt-8 md:mt-10`, centred, `max-w-2xl` mx-auto, `text-balance`
-  - Bold the phrase **"three levels of change"** in brass to anchor the idea visually.
+## Mobile
 
-Result: the strip reads top-down as a clear "this is who, where, and what we do together" — bigger, warmer, and confident enough that the right person says "yes, this is me".
+- Stack: copy first, visual card second
+- Slider mock scales down; output number stays large and brass to anchor the eye
+- CTA full-width-ish, thumb-friendly
 
-## File to change
+## Why this works
 
-- `src/components/sections/ICPStrip.tsx` — copy, typography, spacing, hairline divider, brass emphasis on "three levels of change".
-
-No new components, no new dependencies.
+- Removes ~2 screens of repeated content from home (Read/Craft/Scale story already on /method)
+- Replaces it with a *thing to click* — a visual that promises a personalised number
+- Single CTA, single destination, no analysis paralysis
+- Keeps the brand language ("grain", "three levels of change") in one tight paragraph rather than three sections
