@@ -83,7 +83,7 @@ const MethodPage = () => (
               designed around how this specific place actually works, not
               borrowed from a playbook that worked somewhere else.
             </p>
-            <p>
+            <p className="hidden md:block">
               The carpenter knows the wood will split if you cut against the
               grain. So do we. We build alongside your people, in your tools,
               with your context. Then we hand it over.
