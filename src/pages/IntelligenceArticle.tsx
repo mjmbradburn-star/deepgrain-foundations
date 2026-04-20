@@ -11,6 +11,7 @@ import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PillButton } from "@/components/ui/PillButton";
 import { EmailCapture } from "@/components/forms/EmailCapture";
+import { AIOI_URL } from "@/lib/aioi";
 
 const IntelligenceArticle = () => {
   const { slug = "" } = useParams();
