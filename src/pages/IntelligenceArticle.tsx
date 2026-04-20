@@ -58,9 +58,11 @@ const IntelligenceArticle = () => {
         <meta property="og:description" content={f.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        {ogImage && <meta property="og:image" content={ogImage} />}
-        {ogImage && <meta name="twitter:card" content="summary_large_image" />}
-        {ogImage && <meta name="twitter:image" content={ogImage} />}
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={ogImage} />
         <meta property="article:published_time" content={f.publishedAt} />
         <meta property="article:author" content={f.author} />
         <meta property="article:section" content={cat?.name} />
