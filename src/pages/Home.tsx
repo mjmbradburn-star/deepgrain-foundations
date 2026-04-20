@@ -4,9 +4,6 @@ import { ICPStrip } from "@/components/sections/ICPStrip";
 import { PageMeta } from "@/components/seo/PageMeta";
 
 // Below-the-fold sections — lazy-loaded to shrink the initial JS bundle.
-const BeliefStatement = lazy(() =>
-  import("@/components/sections/BeliefStatement").then((m) => ({ default: m.BeliefStatement }))
-);
 const LogoCarousel = lazy(() =>
   import("@/components/sections/LogoCarousel").then((m) => ({ default: m.LogoCarousel }))
 );
@@ -47,7 +44,6 @@ const Home = () => (
     <Suspense fallback={<SectionFallback />}>
       <LogoCarousel background="green" />
       <WhatWeDo />
-      <BeliefStatement />
       <OperatingProof />
       <Method />
       <WhoThisIsFor />
