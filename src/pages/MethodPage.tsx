@@ -56,7 +56,7 @@ const MethodPage = () => (
               The org chart isn&apos;t how decisions get made. The process documentation
               isn&apos;t how work flows. The strategy deck isn&apos;t what drives outcomes.
             </p>
-            <p>
+            <p className="hidden md:block">
               Underneath all of it is a grain. The real pattern of how this
               organisation thinks, moves, decides, and delivers. We read it first.
               We talk to the people doing the work. We watch where energy flows
