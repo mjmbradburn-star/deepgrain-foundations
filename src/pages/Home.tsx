@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Hero } from "@/components/sections/Hero";
+import { ICPStrip } from "@/components/sections/ICPStrip";
 import { PageMeta } from "@/components/seo/PageMeta";
 
 // Below-the-fold sections — lazy-loaded to shrink the initial JS bundle.
