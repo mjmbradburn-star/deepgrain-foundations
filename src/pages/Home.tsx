@@ -40,6 +40,7 @@ const Home = () => (
       path="/"
     />
     <Hero />
+    <ICPStrip />
     <Suspense fallback={<SectionFallback />}>
       <LogoCarousel background="green" />
       <BeliefStatement />
