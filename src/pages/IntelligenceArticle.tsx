@@ -26,7 +26,7 @@ const IntelligenceArticle = () => {
   const related = getRelatedArticles(slug, 3);
   const url = `https://deepgrain.ai/intelligence/${f.slug}`;
   const heroImage = getHeroImage(f.slug);
-  const ogImage = heroImage ? `https://deepgrain.ai${heroImage}` : undefined;
+  const ogImage = heroImage ? `https://deepgrain.ai${heroImage.src}` : undefined;
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -69,13 +69,18 @@ const IntelligenceArticle = () => {
         <div className="bg-green pt-24 md:pt-28">
           <div className="container-grain max-w-5xl">
             <div className="aspect-[16/9] w-full overflow-hidden rounded-sm shadow-2xl">
-              <img
-                src={heroImage}
-                alt=""
-                width={1600}
-                height={900}
-                className="w-full h-full object-cover"
-              />
+              <picture>
+                {heroImage.avif && <source srcSet={heroImage.avif} type="image/avif" />}
+                {heroImage.webp && <source srcSet={heroImage.webp} type="image/webp" />}
+                <img
+                  src={heroImage.src}
+                  alt=""
+                  width={1600}
+                  height={900}
+                  fetchPriority="high"
+                  className="w-full h-full object-cover"
+                />
+              </picture>
             </div>
           </div>
         </div>
