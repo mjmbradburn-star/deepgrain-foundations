@@ -81,7 +81,7 @@ export const BuildVsHire = () => {
           </div>
 
           {/* Comparison */}
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div key={`cards-${year}`} className="mt-12 grid gap-6 md:grid-cols-2 animate-fade-in">
             <CostCard
               label="New hire"
               sub="Loaded annual cost"
