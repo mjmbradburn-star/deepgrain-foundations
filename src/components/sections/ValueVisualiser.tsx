@@ -119,11 +119,11 @@ export const ValueVisualiser = () => {
 
         <ScrollReveal delay={200}>
           <p className="mt-12 max-w-2xl text-sm text-body/60 italic leading-relaxed">
-            Reclaimed hours go back to your people for higher-judgment work —
-            this is a partnership model, not a replacement one. Assumes ~60% of
-            identified low-judgment hours are genuinely recoverable across a
-            48-week year. A directional model, not a quote; the actual number
-            comes out of the diagnostic, usually within ten percent of this.
+            Reclaimed hours go back to your people for higher-judgment work.
+            This is a partnership model. Assumes ~60% of identified
+            low-judgment hours are genuinely recoverable across a 48-week
+            year. A directional model, not a quote. The actual number comes
+            out of the diagnostic, usually within ten percent of this.
           </p>
         </ScrollReveal>
       </div>

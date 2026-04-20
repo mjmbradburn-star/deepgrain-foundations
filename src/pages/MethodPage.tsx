@@ -11,8 +11,8 @@ import { BuildVsHire } from "@/components/sections/BuildVsHire";
 const MethodPage = () => (
   <>
     <PageMeta
-      title="Method — Read · Craft · Scale | Deepgrain"
-      description="The Deepgrain method, explained in full. Read the operating reality, craft the smallest interventions that compound, then scale without breaking the grain."
+      title="Method · Read · Craft · Scale | Deepgrain"
+      description="The Deepgrain method in full. Read the operating reality, craft the smallest interventions that compound, then scale without breaking the grain."
       path="/method"
     />
     {/* Intro */}
@@ -54,16 +54,16 @@ const MethodPage = () => (
           </h2>
           <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
             <p>
-              Most consulting starts with the org chart. We start somewhere else.
-              The org chart isn&apos;t how decisions get made. The process documentation
-              isn&apos;t how work flows. The strategy deck isn&apos;t what drives outcomes.
+              Most consulting starts with the org chart. We start somewhere
+              else. The org chart is rarely how decisions actually get made,
+              and the strategy deck is rarely what drives the outcome.
             </p>
             <p className="hidden md:block">
               Underneath all of it is a grain. The real pattern of how this
-              organisation thinks, moves, decides, and delivers. We read it first.
-              We talk to the people doing the work. We watch where energy flows
-              and where it stalls. We find the fractures forming before anyone
-              has named them. And only then do we build.
+              organisation moves and decides. We read it first. We talk to
+              the people doing the work. We watch where energy flows and
+              where it stalls. We find the fractures forming before anyone
+              has named them. Only then do we build.
             </p>
           </div>
         </ScrollReveal>
@@ -80,10 +80,10 @@ const MethodPage = () => (
           </h2>
           <div className="mt-10 space-y-6 text-cream/80 leading-relaxed text-lg">
             <p>
-              Human judgment and machine precision, working together from day one.
-              Agents that remove friction without removing thought. Systems
-              designed around how this specific place actually works, not
-              borrowed from a playbook that worked somewhere else.
+              Human judgment and machine precision, working together from day
+              one. Agents that remove friction without removing thought.
+              Systems designed around how this specific place actually works,
+              rather than borrowed from a playbook that worked somewhere else.
             </p>
             <p className="hidden md:block">
               The carpenter knows the wood will split if you cut against the
@@ -105,17 +105,17 @@ const MethodPage = () => (
           </h2>
           <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
             <p>
-              Agents take the repeatable, low-judgment work. People are coached
-              to design, run, and extend those agents — your champions. The
-              capability stays in the team, not in a vendor.{" "}
+              Agents take the repeatable, low-judgment work. Your champions
+              learn to design, run, and extend them. The capability stays in
+              the team, not in a vendor.{" "}
               <Link to="/enablement" className="text-brass underline-offset-4 hover:underline">
                 See how enablement works →
               </Link>
             </p>
             <p className="hidden md:block">
-              This is not a replacement programme. It is a training programme
-              that happens to ship working systems alongside it. The hours we
-              reclaim go back to your people for the work only they can do.
+              This is a training programme that happens to ship working
+              systems alongside it. The hours we reclaim go back to your
+              people for the work only they can do.
             </p>
           </div>
         </ScrollReveal>
@@ -135,15 +135,14 @@ const MethodPage = () => (
           </h2>
           <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
             <p>
-              Not a deck. Not a framework. A genuine capability. Teams who think
-              well with AI. Structures that hold as you grow. The clarity to
-              make hard decisions without losing what makes the place good.
+              Not a deck. A genuine capability. Teams who think well with AI,
+              and structures that hold as you grow.
             </p>
             <p className="hidden md:block">
               Two months after the engagement ends, our champions are still
-              building. They have extended the work into places we never touched.
-              That&apos;s the test. Not what you have on day one, but what you still
-              have, and what you have added, six months on.
+              building. They have extended the work into places we never
+              touched. That is the test. What you still have, and what you
+              have added, six months on.
             </p>
           </div>
 

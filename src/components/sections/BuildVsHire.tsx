@@ -53,7 +53,7 @@ export const BuildVsHire = () => {
             One mid-level hire. Or one well-built agent.
           </h2>
           <p className="mt-6 max-w-2xl text-body/75 leading-relaxed text-lg">
-            Same shape of work. Same expected output. Costed honestly — loaded
+            Same shape of work. Same expected output. Costed honestly: loaded
             salary on one side, build plus run on the other. The gap widens
             every year you keep the agent running.
           </p>
@@ -129,8 +129,8 @@ export const BuildVsHire = () => {
             (~£80k base) loaded with NI, pension, tooling and amortised
             onboarding. Agent assumes an £18k build amortised across three
             years, plus £12k/year for tokens, monitoring and periodic
-            improvement. The agent does not replace a human — it removes a
-            hire that would otherwise have been needed for the same workload.
+            improvement. The agent removes a hire that would otherwise have
+            been needed for the same workload.
           </p>
         </ScrollReveal>
       </div>
