@@ -1,0 +1,31 @@
+{
+  "name": "Deepgrain",
+  "short_name": "Deepgrain",
+  "description": "Organisational consultancy. Deepgrain reads how your organisation actually works, then builds what lasts.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1F3A2E",
+  "theme_color": "#1F3A2E",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
