@@ -44,7 +44,6 @@ const Home = () => (
     <Suspense fallback={<SectionFallback />}>
       <LogoCarousel background="green" />
       <WhatWeDo />
-      <BeliefStatement />
       <OperatingProof />
       <Method />
       <WhoThisIsFor />
