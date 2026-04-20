@@ -58,9 +58,11 @@ export interface Article {
 
 import { FRONTMATTERS, LOADERS } from "virtual:intelligence-manifest";
 
-// Eager-load all People Ops hero images and key them by slug
+// Eager-load all Intelligence hero images (both tracks) and key them by slug.
+// Vite resolves these to hashed asset URLs at build time — only the URL string
+// ships in the bundle, not the image bytes themselves.
 const heroImageModules = import.meta.glob<{ default: string }>(
-  "../assets/intelligence/people-ops/*.{jpg,png,webp}",
+  "../assets/intelligence/**/*.{jpg,png,webp}",
   { eager: true }
 );
 const HERO_IMAGES: Record<string, string> = Object.fromEntries(
