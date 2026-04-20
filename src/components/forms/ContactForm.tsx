@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { PillButton } from "@/components/ui/PillButton";
@@ -108,7 +109,14 @@ export const ContactForm = () => {
           className={inputClass + " resize-none"}
         />
       </div>
-      <div className="pt-4">
+      <div className="pt-4 space-y-4">
+        <p className="text-xs text-cream/50 leading-relaxed">
+          By sending this you agree to our{" "}
+          <Link to="/privacy" className="underline underline-offset-2 hover:text-cream transition-colors">
+            Privacy Policy
+          </Link>
+          . We will only use your details to reply.
+        </p>
         <PillButton type="submit" variant="filled" disabled={submitting}>
           {submitting ? "Sending…" : "Send →"}
         </PillButton>

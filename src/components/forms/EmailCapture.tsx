@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -143,6 +144,27 @@ export const EmailCapture = ({
             {submitting ? "Sending…" : "Subscribe"}
           </button>
         </form>
+      )}
+
+      {!done && (
+        <p
+          className={cn(
+            "mt-4 text-xs leading-relaxed max-w-xl",
+            isDark ? "text-cream/50" : "text-walnut/50",
+          )}
+        >
+          By subscribing you agree to our{" "}
+          <Link
+            to="/privacy"
+            className={cn(
+              "underline underline-offset-2 transition-colors",
+              isDark ? "hover:text-cream" : "hover:text-walnut",
+            )}
+          >
+            Privacy Policy
+          </Link>
+          . Unsubscribe any time.
+        </p>
       )}
     </div>
   );
