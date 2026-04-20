@@ -77,7 +77,8 @@ export const CookieBanner = () => {
       role="dialog"
       aria-live="polite"
       aria-label="Cookie preferences"
-      className="fixed bottom-4 left-4 right-4 sm:right-auto sm:max-w-md z-50 bg-walnut text-cream border border-cream/10 shadow-2xl rounded-lg p-5 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4"
+      className="fixed bottom-4 left-4 right-4 sm:right-auto sm:max-w-md z-50 bg-walnut text-cream border border-cream/10 shadow-2xl p-5 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4"
+      style={{ borderRadius: "8px" }}
     >
       <p
         className="font-display text-cream text-lg mb-2"
