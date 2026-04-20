@@ -26,7 +26,10 @@ const IntelligenceArticle = () => {
   const related = getRelatedArticles(slug, 3);
   const url = `https://deepgrain.ai/intelligence/${f.slug}`;
   const heroImage = getHeroImage(f.slug);
-  const ogImage = heroImage ? `https://deepgrain.ai${heroImage.src}` : undefined;
+  // Bespoke 1200x630 OG card per article (hero art + title overlay) lives in
+  // /public/og/intelligence/. Falls back to the hero JPEG only if the OG file
+  // isn't generated yet for some reason.
+  const ogImage = `https://deepgrain.ai/og/intelligence/${f.slug}.jpg`;
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -55,9 +58,11 @@ const IntelligenceArticle = () => {
         <meta property="og:description" content={f.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        {ogImage && <meta property="og:image" content={ogImage} />}
-        {ogImage && <meta name="twitter:card" content="summary_large_image" />}
-        {ogImage && <meta name="twitter:image" content={ogImage} />}
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={ogImage} />
         <meta property="article:published_time" content={f.publishedAt} />
         <meta property="article:author" content={f.author} />
         <meta property="article:section" content={cat?.name} />
