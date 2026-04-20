@@ -107,3 +107,40 @@
   50%      { transform: translateY(8px); }
 }
 .animate-bob { animation: bob 2s ease-in-out infinite; }
+
+/* CSS-only fade-in-up for above-the-fold content (replaces framer-motion on critical path) */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.fade-in-up {
+  opacity: 0;
+  animation: fade-in-up 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+.fade-in-up-1 { animation-delay: 0.15s; }
+.fade-in-up-2 { animation-delay: 0.30s; }
+.fade-in-up-3 { animation-delay: 0.45s; }
+
+/* IntersectionObserver-driven reveal — set [data-reveal] then toggle data-reveal="in" */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+    transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: opacity, transform;
+}
+[data-reveal="in"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up,
+  [data-reveal] {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
