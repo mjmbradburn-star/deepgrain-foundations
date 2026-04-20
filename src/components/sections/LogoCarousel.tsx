@@ -12,9 +12,9 @@ interface LogoCarouselProps {
 }
 
 const LOGO_SOURCES = [
+  (domain: string) => `https://www.google.com/s2/favicons?domain=${domain}&sz=64`,
   (domain: string) => `https://icons.duckduckgo.com/ip3/${domain}.ico`,
-  (domain: string) => `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
-  (domain: string) => `https://logo.clearbit.com/${domain}`,
+  (domain: string) => `https://logo.clearbit.com/${domain}?size=64`,
 ];
 
 const LogoItem = ({ name, domain }: { name: string; domain: string }) => {
