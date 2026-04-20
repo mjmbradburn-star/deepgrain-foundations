@@ -22,7 +22,7 @@ const prefersReducedMotion = () =>
  * Counts up to `value` with an ease-out curve. Triggers on scroll into view by default,
  * or re-animates on every value change when `live` is true.
  */
-export const AnimatedNumber = forwardRef<HTMLSpanElement, AnimatedNumberProps>(({
+const AnimatedNumberInner = forwardRef<HTMLSpanElement, AnimatedNumberProps>(({
   value,
   duration = 1400,
   decimals = 0,
@@ -116,4 +116,6 @@ export const AnimatedNumber = forwardRef<HTMLSpanElement, AnimatedNumberProps>((
   );
 });
 
-AnimatedNumber.displayName = "AnimatedNumber";
+AnimatedNumberInner.displayName = "AnimatedNumber";
+
+export const AnimatedNumber = AnimatedNumberInner;
