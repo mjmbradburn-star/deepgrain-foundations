@@ -38,8 +38,8 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "Financial Data and Analytics · ~600 employees · Multi cohort programme",
     headline: "15 people. 5 squads.\n5 deployed solutions.",
     body: [
-      "A sophisticated financial data business needed its People function to operate differently. Not just to use AI, but to build with it. The challenge wasn't capability. It was moving an entire team up the maturity curve together, building real operational tools rather than running generic training.",
-      "Five cross functional workstreams. Each squad responsible for solving a specific problem and shipping a live solution. Discovery to delivery in seven weeks.",
+      "A sophisticated financial data business needed its People function to operate differently. Not just to use AI, but to build with it. The capability was there. The work was to move the whole team up the maturity curve together, building real tools rather than running generic training.",
+      "Five cross functional workstreams. Each squad owned a specific problem and shipped a live solution. Discovery to delivery in seven weeks.",
     ],
     metrics: [
       { value: "15", label: "Participants across 2 timezones" },
