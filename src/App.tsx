@@ -18,6 +18,7 @@ const IntelligenceCategory = lazy(() => import("./pages/IntelligenceCategory"));
 const PeopleOps = lazy(() => import("./pages/PeopleOps"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
+const Enablement = lazy(() => import("./pages/Enablement"));
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
               <Route path="/intelligence/people-ops" element={<PeopleOps />} />
               <Route path="/intelligence/category/:name" element={<IntelligenceCategory />} />
               <Route path="/intelligence/:slug" element={<IntelligenceArticle />} />
+              <Route path="/enablement" element={<Enablement />} />
               <Route path="/unsubscribe" element={<Unsubscribe />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
