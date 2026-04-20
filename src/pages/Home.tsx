@@ -40,8 +40,8 @@ const Home = () => (
     />
     <Hero />
     <Suspense fallback={<SectionFallback />}>
-      <BeliefStatement />
       <LogoCarousel background="green" />
+      <BeliefStatement />
       <OperatingProof />
       <Method />
       <WhoThisIsFor />

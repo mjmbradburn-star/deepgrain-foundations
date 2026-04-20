@@ -1,4 +1,5 @@
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PillButton } from "@/components/ui/PillButton";
 import { AIOI_URL } from "@/lib/aioi";
 
@@ -31,18 +32,24 @@ export const Hero = () => (
         >
           Work with<br />the grain.
         </h1>
-        <p className="text-cream/85 mt-10 max-w-[480px] text-lg leading-relaxed">
-          Every organisation has a grain. The real pattern of how work flows,
-          where decisions actually get made, where friction forms before it
-          shows on a dashboard. Most have never read it.
+        <p className="text-cream mt-10 max-w-[560px] text-xl md:text-2xl leading-snug font-medium">
+          Operating consultancy for founders and People leaders building AI-native organisations.
         </p>
-        <div className="fade-in-up fade-in-up-3 mt-12 flex flex-wrap gap-4">
-          <PillButton href="/method" variant="outline">
-            How we work →
-          </PillButton>
-          <PillButton href={AIOI_URL} variant="outline" external>
+        <p className="text-cream/75 mt-5 max-w-[520px] text-base md:text-lg leading-relaxed">
+          Strategy at the top. Enablement and training across the team. Agents and
+          automations in the workflow. Built function by function, top to bottom.
+        </p>
+        <div className="fade-in-up fade-in-up-3 mt-10 flex flex-wrap items-center gap-6">
+          <PillButton href={AIOI_URL} variant="filled" external>
             Take the AI Operating Index →
           </PillButton>
+          <Link
+            to="/method"
+            className="font-sans text-sm uppercase text-cream/80 hover:text-cream transition-colors border-b border-cream/30 hover:border-cream pb-1"
+            style={{ letterSpacing: "0.16em" }}
+          >
+            How we work
+          </Link>
         </div>
       </div>
     </div>
