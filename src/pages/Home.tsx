@@ -36,7 +36,7 @@ const Home = () => (
   <>
     <PageMeta
       title="Deepgrain — Work with the grain."
-      description="Organisational consultancy that reads how your company actually operates — then builds the agents, automations, and team capabilities that hold. Function by function, top to bottom."
+      description="Every organisation has a grain. We read yours, then build the strategy, agentic systems, and people who can keep evolving them. For CEOs, COOs, CFOs, Chief People Officers, and VPs of Operations."
       path="/"
     />
     <Hero />
