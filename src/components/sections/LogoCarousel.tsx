@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { clients } from "@/data/clients";
+import { clients, type Client } from "@/data/clients";
 import { LogoFallback } from "@/components/ui/LogoFallback";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { cn } from "@/lib/utils";
@@ -17,9 +17,40 @@ const LOGO_SOURCES = [
   (domain: string) => `https://logo.clearbit.com/${domain}?size=64`,
 ];
 
-const LogoItem = ({ name, domain }: { name: string; domain: string }) => {
+const Wordmark = ({ name }: { name: string }) => (
+  <span
+    className="font-display text-cream/90 group-hover:text-cream transition-colors duration-500 text-2xl md:text-[26px] leading-none whitespace-nowrap"
+    style={{ letterSpacing: "0.02em" }}
+  >
+    {name}
+  </span>
+);
+
+const LogoItem = ({ client }: { client: Client }) => {
+  const { name, domain, override } = client;
   const [sourceIndex, setSourceIndex] = useState(0);
   const [failed, setFailed] = useState(false);
+
+  // Curated override: refined wordmark in the site's display face.
+  if (override?.kind === "wordmark") {
+    return <Wordmark name={name} />;
+  }
+
+  // Curated override: hand-picked asset, tinted to cream so it sits with the palette.
+  if (override?.kind === "image") {
+    return (
+      <img
+        src={override.src}
+        alt={`${name} logo`}
+        width={48}
+        height={48}
+        loading="lazy"
+        decoding="async"
+        className="max-h-12 max-w-[120px] w-auto h-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+        style={{ filter: "brightness(0) saturate(100%) invert(94%) sepia(8%) saturate(420%) hue-rotate(2deg) brightness(102%)" }}
+      />
+    );
+  }
 
   if (failed) {
     return (
@@ -86,7 +117,7 @@ export const LogoCarousel = ({
               title={c.name}
             >
               <div className="flex-1 flex items-center justify-center w-full">
-                <LogoItem name={c.name} domain={c.domain} />
+                <LogoItem client={c} />
               </div>
               <span className="font-sans text-[11px] tracking-[0.18em] uppercase text-brass/90 whitespace-nowrap">
                 {c.name}
