@@ -33,7 +33,7 @@ export const Hero = () => (
           Work with<br />the grain.
         </h1>
         <p className="text-cream mt-10 max-w-[560px] text-xl md:text-2xl leading-snug font-medium">
-          Every organisation has a grain. Read it, and the work flows. Cut against it, and nothing holds.
+          Every organisation has a grain. Most leaders are working against theirs without knowing it.
         </p>
         <p className="hidden md:block text-cream/75 mt-5 max-w-[520px] text-base md:text-lg leading-relaxed">
           We read yours, then build the strategy, the agentic systems, and the people who can keep evolving them.

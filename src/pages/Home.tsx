@@ -36,7 +36,7 @@ const Home = () => (
   <>
     <PageMeta
       title="Deepgrain — Work with the grain."
-      description="Every organisation has a grain. We read yours, then build the strategy, agentic systems, and people who can keep evolving them. For CEOs, COOs, CFOs, Chief People Officers, and VPs of Operations."
+      description="Every organisation has a grain. Most leaders are working against theirs without knowing it. Deepgrain reads yours, then builds the strategy, agentic systems, and people to evolve it."
       path="/"
     />
     <Hero />
