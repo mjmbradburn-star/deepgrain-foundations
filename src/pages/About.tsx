@@ -20,7 +20,7 @@ const About = () => (
   <>
     <PageMeta
       title="About Matt Webb — Deepgrain"
-      description="Matt Webb leads Deepgrain. Background, philosophy, and references from founders and operating leaders he has worked with across AI-native, defence, financial data, transit, and climate companies."
+      description="Matt Webb leads Deepgrain. Background, philosophy, and references from founders and operators across AI-native, defence, fintech, transit, and climate companies."
       path="/about"
       jsonLd={{
         "@context": "https://schema.org",
@@ -57,19 +57,17 @@ const About = () => (
               <p>
                 I&apos;ve spent two decades inside organisations. Building them,
                 fixing them, watching what makes them hold and what makes them
-                split at the seams.
+                come apart.
               </p>
               <p>
-                At a certain point you have read enough grain to know what an
-                organisation is doing before most people have finished the
-                introductory call. That&apos;s not a methodology. It&apos;s pattern
-                recognition built from real exposure.
+                After enough of that, you read an organisation before the
+                introductory call is over. It is pattern recognition built from
+                real exposure, nothing more.
               </p>
               <p className="hidden md:block">
-                Deepgrain exists because most consulting work is designed to be
-                seen, not to last. The carpenter builds furniture that fits the
-                room and survives decades of use. Everyone else is building
-                flat pack.
+                Deepgrain exists because most consulting work is built to be
+                seen. The carpenter builds furniture that fits the room and
+                survives decades of use. Everyone else is building flat pack.
               </p>
             </div>
           </ScrollReveal>
@@ -98,18 +96,18 @@ const About = () => (
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
           <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-[72px] leading-tight">
-            We built the proof of concept on ourselves.
+            We built the proof on ourselves.
           </h2>
           <div className="mt-10 space-y-5 text-body/85 leading-relaxed text-lg">
             <p>
-              Deepgrain runs on agents designed specifically for this work.
-              What once required a team of consultants now happens faster, with
-              more precision, and with less overhead.
+              Deepgrain runs on agents we built for this work. Things that used
+              to need a team of consultants now happen faster, with less
+              overhead, and with the kind of precision people rarely get from a
+              deck.
             </p>
             <p className="hidden md:block">
-              This isn&apos;t a claim about what&apos;s possible. It&apos;s the model built,
-              tested, and run on our own operations before recommending it to
-              anyone else.
+              We ran the model on our own operations first. Everything we
+              recommend has been used in anger here before it reaches a client.
             </p>
           </div>
           <div className="mt-12 grid gap-10 md:grid-cols-3 border-t border-walnut/15 pt-10">
