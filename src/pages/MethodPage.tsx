@@ -135,15 +135,14 @@ const MethodPage = () => (
           </h2>
           <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
             <p>
-              Not a deck. Not a framework. A genuine capability. Teams who think
-              well with AI. Structures that hold as you grow. The clarity to
-              make hard decisions without losing what makes the place good.
+              Not a deck. A genuine capability. Teams who think well with AI,
+              and structures that hold as you grow.
             </p>
             <p className="hidden md:block">
               Two months after the engagement ends, our champions are still
-              building. They have extended the work into places we never touched.
-              That&apos;s the test. Not what you have on day one, but what you still
-              have, and what you have added, six months on.
+              building. They have extended the work into places we never
+              touched. That is the test. What you still have, and what you
+              have added, six months on.
             </p>
           </div>
 
