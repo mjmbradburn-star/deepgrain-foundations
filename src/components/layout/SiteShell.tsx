@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { MethodSubnav } from "./MethodSubnav";
+import { CookieBanner } from "@/components/compliance/CookieBanner";
 import { cn } from "@/lib/utils";
 
 export const SiteShell = ({ children }: { children: React.ReactNode }) => {
@@ -27,6 +28,7 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
         {children}
       </main>
       <Footer />
+      <CookieBanner />
     </div>
   );
 };

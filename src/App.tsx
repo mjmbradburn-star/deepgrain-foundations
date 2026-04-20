@@ -19,6 +19,9 @@ const PeopleOps = lazy(() => import("./pages/PeopleOps"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 const Enablement = lazy(() => import("./pages/Enablement"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const CookiesPage = lazy(() => import("./pages/Cookies"));
+const Terms = lazy(() => import("./pages/Terms"));
 
 const queryClient = new QueryClient();
 
@@ -44,6 +47,9 @@ const App = () => (
               <Route path="/intelligence/:slug" element={<IntelligenceArticle />} />
               <Route path="/enablement" element={<Enablement />} />
               <Route path="/unsubscribe" element={<Unsubscribe />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/cookies" element={<CookiesPage />} />
+              <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

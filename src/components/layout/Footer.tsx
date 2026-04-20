@@ -75,6 +75,11 @@ export const Footer = () => (
     </div>
     <div className="container-grain mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row gap-2 justify-between text-xs text-cream/40">
       <p>© 2026 Deepgrain Ltd</p>
+      <nav aria-label="Legal" className="flex gap-4">
+        <Link to="/privacy" className="hover:text-cream/70 transition-colors">Privacy</Link>
+        <Link to="/cookies" className="hover:text-cream/70 transition-colors">Cookies</Link>
+        <Link to="/terms" className="hover:text-cream/70 transition-colors">Terms</Link>
+      </nav>
       <p>Work with the grain.</p>
     </div>
   </footer>
