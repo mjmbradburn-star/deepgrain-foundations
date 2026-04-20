@@ -6,6 +6,21 @@ import { BrassRule } from "@/components/ui/BrassRule";
 // Read · Craft · Scale — the deeper method behind Diagnose · Build · Scale.
 // Lives on walnut so it visually separates from the linen WhatWeDo section,
 // and leans into the craft/reading language rather than restating services.
+const levels = [
+  {
+    label: "Organisation",
+    body: "Strategy, operating model, and the systems thinking that holds it all together.",
+  },
+  {
+    label: "Function",
+    body: "The agentic systems and workflows that let each team operate at a different order of magnitude.",
+  },
+  {
+    label: "Individual capability",
+    body: "Coaching the people who will keep evolving this long after we’re gone.",
+  },
+];
+
 const movements = [
   {
     title: "Read",
@@ -45,7 +60,37 @@ export const Method = () => (
         </div>
       </ScrollReveal>
 
-      <div className="mt-16 md:mt-20 grid gap-12 md:grid-cols-3 md:gap-0 max-w-5xl mx-auto">
+      {/* Three levels of change — echoes the ICP strip framing */}
+      <ScrollReveal>
+        <div className="mt-16 md:mt-20 max-w-5xl mx-auto">
+          <p className="text-center font-display italic text-cream/70 text-xl md:text-2xl leading-snug">
+            We work across{" "}
+            <span className="text-brass not-italic font-medium">
+              three levels of change.
+            </span>
+          </p>
+          <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
+            {levels.map((l, i) => (
+              <div
+                key={l.label}
+                className={`md:px-6 ${i > 0 ? "md:border-l md:border-cream/10" : ""}`}
+              >
+                <div
+                  className="font-sans uppercase text-brass text-[11px] md:text-[12px] font-semibold"
+                  style={{ letterSpacing: "0.18em" }}
+                >
+                  {l.label}
+                </div>
+                <p className="mt-3 text-cream/75 leading-relaxed text-sm md:text-base">
+                  {l.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <div className="mt-20 md:mt-24 grid gap-12 md:grid-cols-3 md:gap-0 max-w-5xl mx-auto">
         {movements.map((m, i) => (
           <ScrollReveal
             key={m.title}
