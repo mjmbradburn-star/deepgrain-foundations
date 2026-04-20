@@ -17,7 +17,15 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
           hero copy and section eyebrows clear the fixed sub-nav on every
           viewport. The primary nav is forced opaque on these routes (see
           Navigation.tsx) which prevents the linen body from showing through. */}
-      <main className={cn("flex-1", hasSubnav && "pt-10")}>{children}</main>
+      <main
+        className={cn(
+          "flex-1",
+          hasSubnav &&
+            "pt-10 [&_section]:scroll-mt-36 md:[&_section]:scroll-mt-[152px]"
+        )}
+      >
+        {children}
+      </main>
       <Footer />
     </div>
   );
