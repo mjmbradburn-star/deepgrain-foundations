@@ -30,17 +30,8 @@ export default defineConfig(({ mode }) => ({
     dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
   },
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          if (id.includes("node_modules")) {
-            if (/react-router|react-dom|\/react\//.test(id)) return "react-vendor";
-            if (id.includes("@tanstack")) return "query-vendor";
-            if (id.includes("@supabase")) return "supabase-vendor";
-            if (id.includes("react-helmet-async")) return "helmet-vendor";
-          }
-        },
-      },
-    },
+    // Let Rollup handle chunking automatically. Hand-rolled manualChunks
+    // produced a circular import between helmet-vendor and react-vendor that
+    // caused a TDZ ReferenceError on the published site.
   },
 }));
