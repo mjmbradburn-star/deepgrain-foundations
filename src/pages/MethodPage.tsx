@@ -2,9 +2,15 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
 import { BrassRule } from "@/components/ui/BrassRule";
+import { PageMeta } from "@/components/seo/PageMeta";
 
 const MethodPage = () => (
   <>
+    <PageMeta
+      title="Method — Read · Craft · Scale | Deepgrain"
+      description="The Deepgrain method, explained in full. Read the operating reality, craft the smallest interventions that compound, then scale without breaking the grain."
+      path="/method"
+    />
     {/* Intro */}
     <section className="relative min-h-[80vh] flex items-end overflow-hidden">
       <div className="absolute inset-0">
