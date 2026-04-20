@@ -129,8 +129,8 @@ export const BuildVsHire = () => {
             (~£80k base) loaded with NI, pension, tooling and amortised
             onboarding. Agent assumes an £18k build amortised across three
             years, plus £12k/year for tokens, monitoring and periodic
-            improvement. The agent does not replace a human — it removes a
-            hire that would otherwise have been needed for the same workload.
+            improvement. The agent removes a hire that would otherwise have
+            been needed for the same workload.
           </p>
         </ScrollReveal>
       </div>
