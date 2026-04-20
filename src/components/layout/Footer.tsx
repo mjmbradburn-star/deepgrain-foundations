@@ -1,5 +1,10 @@
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
-import { EmailCapture } from "@/components/forms/EmailCapture";
+
+// Lazy: pulls in supabase + zod, ~250KB. Footer is below the fold on every page.
+const EmailCapture = lazy(() =>
+  import("@/components/forms/EmailCapture").then((m) => ({ default: m.EmailCapture }))
+);
 
 const links = [
   { to: "/method", label: "Method" },
@@ -57,12 +62,14 @@ export const Footer = () => (
       </div>
 
       <div className="pt-12 border-t border-cream/10">
-        <EmailCapture
-          source="footer"
-          variant="dark"
-          heading="Intelligence in your inbox."
-          description="Occasional dispatches on operating systems, leadership craft, and the discipline of building organisations that hold their shape."
-        />
+        <Suspense fallback={<div aria-hidden className="min-h-[120px]" />}>
+          <EmailCapture
+            source="footer"
+            variant="dark"
+            heading="Intelligence in your inbox."
+            description="Occasional dispatches on operating systems, leadership craft, and the discipline of building organisations that hold their shape."
+          />
+        </Suspense>
       </div>
     </div>
     <div className="container-grain mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row gap-2 justify-between text-xs text-cream/40">
