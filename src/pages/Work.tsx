@@ -25,8 +25,8 @@ const Work = () => (
             Engagements that left something behind.
           </h1>
           <p className="mt-8 text-cream/80 max-w-2xl leading-relaxed text-lg">
-            A small set of organisations who chose to understand themselves
-            first. Each engagement built to compound long after we'd left.
+            A small set of organisations who chose to read themselves first.
+            Each engagement built to compound long after we'd left.
           </p>
         </ScrollReveal>
       </div>
