@@ -43,7 +43,9 @@ export const Navigation = () => {
       <nav
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-          scrolled || open ? "bg-green/95 backdrop-blur-md" : "bg-transparent",
+          scrolled || open || pathname.startsWith("/method") || pathname.startsWith("/enablement")
+            ? "bg-green/95 backdrop-blur-md"
+            : "bg-transparent",
         )}
       >
         <div className="container-grain flex items-center justify-between h-24 md:h-28">

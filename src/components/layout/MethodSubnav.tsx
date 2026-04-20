@@ -8,7 +8,10 @@ const items = [
 
 /**
  * Section sub-nav for the Method ↔ Enablement pair. Renders only on those
- * routes. Sits flush under the primary nav, same green palette, low height.
+ * routes. Fixed under the primary nav, same green palette, low height.
+ *
+ * Note: pages on these routes use pt-40 (160px) which clears the 96/112px
+ * primary nav + 40px sub-nav on every viewport.
  */
 export const MethodSubnav = () => {
   const { pathname } = useLocation();
