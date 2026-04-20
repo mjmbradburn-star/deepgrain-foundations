@@ -31,24 +31,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://deepgrain.ai/privacy</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/cookies</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/terms</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://deepgrain.ai/intelligence</loc>
     <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>

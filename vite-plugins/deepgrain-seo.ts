@@ -32,7 +32,14 @@ interface Frontmatter {
   category: string;
   description: string;
   publishedAt: string;
+  author?: string;
+  readTime?: string;
   track?: string;
+}
+
+interface Article {
+  frontmatter: Frontmatter;
+  body: string;
 }
 
 const PEOPLE_OPS_CATEGORIES = new Set([
