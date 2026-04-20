@@ -11,14 +11,14 @@ import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
  * Agent: one-off build + annual run (LLM tokens, monitoring, periodic improvement).
  */
 const HIRE = {
-  yr1: 92_000, // £75k base + ~17k loaded + ~5k onboarding amortised in yr 1
-  yr2: 89_000,
-  yr3: 92_000, // small uplift
+  yr1: 110_000, // £80k base + ~25k loaded (NI, pension, tooling) + ~5k onboarding amortised in yr 1
+  yr2: 105_000, // £80k base + ~25k loaded
+  yr3: 108_000, // small uplift
 };
 
 const AGENT = {
   build: 18_000, // one-off, amortised over 3 years
-  run: 6_000, // tokens + monitoring + periodic improvement
+  run: 12_000, // tokens + monitoring + periodic improvement
 };
 
 const agentCost = (year: 1 | 2 | 3) => {
