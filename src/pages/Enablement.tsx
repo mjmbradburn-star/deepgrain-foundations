@@ -10,26 +10,26 @@ import { Invitation } from "@/components/sections/Invitation";
 const upskilled = [
   {
     title: "Fluency",
-    body: "Everyone in the function can brief, run, and judge an agent. The day-to-day stops feeling foreign.",
+    body: "Everyone in the function can brief an agent and judge its output. The work stops feeling foreign.",
   },
   {
     title: "Craft",
-    body: "Three to four champions can design, ship, and maintain workflows. They become the team's internal builders.",
+    body: "Three or four champions design and ship workflows themselves. They are your internal builders.",
   },
   {
     title: "Practice",
-    body: "The team holds the capability after we leave. New joiners learn the craft from colleagues, not a deck.",
+    body: "The capability stays after we leave. New joiners pick it up from colleagues, not from a deck.",
   },
 ];
 
 const championNeeds = [
   {
     label: "Air cover",
-    body: "A named exec sponsor and a defined slice of the week — twenty per cent floor — protected from the next crisis.",
+    body: "A named exec sponsor, and a protected fifth of the week that does not get pulled into the next crisis.",
   },
   {
-    label: "Tools & budget",
-    body: "One workflow tool, an LLM provider with the right terms, a small monthly budget with no procurement friction.",
+    label: "Tools and budget",
+    body: "One workflow tool, an LLM provider on the right terms, a small monthly budget with no procurement friction.",
   },
   {
     label: "A small starting brief",
@@ -41,46 +41,46 @@ const curriculum = [
   {
     n: "01",
     title: "Reading the grain",
-    body: "Diagnosing where agents belong — and where human judgment must stay.",
+    body: "Where agents fit, and where human judgment has to stay.",
     duration: "Half day",
   },
   {
     n: "02",
     title: "Briefing agents",
-    body: "Prompts as specifications. Writing for a system that has to act, not just answer.",
+    body: "Prompts as specifications. Writing for a system that has to act.",
     duration: "1 week",
   },
   {
     n: "03",
     title: "Wiring workflows",
-    body: "Tools, triggers, handoffs. Building the plumbing that makes an agent useful in the team's actual day.",
+    body: "Tools, triggers, and handoffs. The plumbing that makes an agent useful in a real working day.",
     duration: "2 weeks",
   },
   {
     n: "04",
-    title: "Governance & trust",
-    body: "What stays human, what gets reviewed, what gets logged. The patterns that keep the work safe.",
+    title: "Governance and trust",
+    body: "What stays human, what gets reviewed, what gets logged.",
     duration: "1 week",
   },
   {
     n: "05",
     title: "Measuring value",
-    body: "Hours reclaimed, judgment freed, capability gained. Telling a real story about what changed.",
+    body: "Hours saved, judgment freed, capability gained. A real story about what changed.",
     duration: "Half day",
   },
   {
     n: "06",
     title: "Sustaining the practice",
-    body: "Running the champion circle after we leave. Reviewing each other's work. Training the next champion.",
+    body: "Running the champion circle after we leave. Reviewing each other's work. Training the next one.",
     duration: "Ongoing",
   },
 ];
 
 const outcomes = [
-  "A trained champion circle of three to four people inside the function.",
+  "Three or four trained champions inside the function.",
   "Eight to twelve production workflows, owned by the teams that use them.",
-  "A governance pattern your team understands, applies, and can defend.",
-  "A capability that compounds — extended into corners we never touched.",
+  "A governance pattern your team understands and can defend.",
+  "Capability that keeps growing into corners we never touched.",
 ];
 
 const Enablement = () => (
