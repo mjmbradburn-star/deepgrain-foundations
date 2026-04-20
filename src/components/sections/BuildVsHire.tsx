@@ -81,7 +81,7 @@ export const BuildVsHire = () => {
           </div>
 
           {/* Comparison */}
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div key={`cards-${year}`} className="mt-12 grid gap-6 md:grid-cols-2 animate-fade-in">
             <CostCard
               label="New hire"
               sub="Loaded annual cost"
@@ -99,7 +99,7 @@ export const BuildVsHire = () => {
           </div>
 
           {/* Verdict */}
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 border-t border-walnut/15 pt-10">
+          <div key={`verdict-${year}`} className="mt-10 grid gap-8 sm:grid-cols-2 border-t border-walnut/15 pt-10 animate-fade-in">
             <div>
               <Eyebrow className="text-brass mb-3">Saving</Eyebrow>
               <div className="font-display font-semibold text-walnut text-5xl md:text-6xl leading-none tabular-nums">
