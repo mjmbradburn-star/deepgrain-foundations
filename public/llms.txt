@@ -12,8 +12,9 @@ Deepgrain is led by Matt Webb. We work with founders and operating leaders build
 - [About](https://deepgrain.ai/about): Matt Webb's background, philosophy, and references.
 - [Contact](https://deepgrain.ai/contact): How to start a conversation.
 - [Intelligence](https://deepgrain.ai/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
+- [Intelligence · People Ops AI Brain](https://deepgrain.ai/intelligence/people-ops): A dedicated track for People leaders building AI capability — from prompts to systems.
 
-## Intelligence — by category
+## Intelligence — Deepgrain Foundations
 
 ### Foundations
 
@@ -75,6 +76,49 @@ The disciplines of operating leadership.
 - [Founder-mode vs operator-mode](https://deepgrain.ai/intelligence/founder-mode-vs-operator-mode): Founder-mode and operator-mode aren't opposites. They're alternating muscles. Knowing which to use, when, is the executive job.
 - [The craft mindset for modern operators](https://deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators): Operating leadership is a craft. Crafts have masters, apprentices, tools, and standards. Most companies forget all four.
 
+## Intelligence — The People Ops AI Brain
+
+A track for Heads of People, CPOs, HRBPs and TA leaders moving from individual AI experiments to systematic operating capability.
+
+### People Ops · Foundations
+
+From AI dabbling to systematic People Ops capability.
+
+[Browse category](https://deepgrain.ai/intelligence/category/people-ops-foundations)
+
+- [From prompts to systems](https://deepgrain.ai/intelligence/from-prompts-to-systems): Most People teams are stuck between dabbling and tool-shopping. Neither produces capability. The third path is building — and it has a grain.
+- [Setting up your AI workspace](https://deepgrain.ai/intelligence/setting-up-your-ai-workspace): Most People teams treat AI like a search bar. The ones getting real leverage treat it like a workspace — projects, context, instructions, shared memory. Here is how to set yours up.
+- [Diagnosing AI readiness in People Ops](https://deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops): Before you build anything, read where the team actually is. A six-axis diagnostic for People functions that wastes none of the early momentum.
+
+### People Ops · Systems & Automation
+
+Connected systems, agents, and the mechanics of leverage.
+
+[Browse category](https://deepgrain.ai/intelligence/category/people-ops-systems)
+
+- [Automation patterns that pay off](https://deepgrain.ai/intelligence/automation-patterns-that-pay-off): Six concrete workflow patterns we keep seeing work inside People functions. Built with n8n, an LLM, and a champion. Live in weeks, not quarters.
+- [A workflow assessment framework for People Ops](https://deepgrain.ai/intelligence/workflow-assessment-framework): Most People teams pick AI workflows by instinct or by what is loudest. A simple scoring framework — value, frequency, fit, risk — turns a wishlist into a 90-day plan you can actually defend.
+- [The People Ops AI domain map](https://deepgrain.ai/intelligence/the-people-ops-ai-domain-map): A map of where AI fits across the People function — from sourcing to offboarding — so you can see the whole estate before you build any one piece of it.
+
+### People Ops · Builders & Champions
+
+Growing internal capability instead of buying tools.
+
+[Browse category](https://deepgrain.ai/intelligence/category/people-ops-builders)
+
+- [Designing the AI-native People team](https://deepgrain.ai/intelligence/designing-the-ai-native-people-team): Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it — different roles, different ratios, different leverage. Here is what an AI-native People team actually looks like.
+- [The champion model](https://deepgrain.ai/intelligence/the-champion-model): You don't need engineers to build AI capability inside the People function. You need three or four champions, given air cover and time. Here is how the model actually works.
+- [Leading the AI transformation in People](https://deepgrain.ai/intelligence/leading-the-ai-transformation): AI in People Ops fails as a change programme more often than as a technology problem. Here is the operating playbook for leading the transformation without losing the team.
+
+### People Ops · Governance & Trust
+
+Working with AI without trading away judgment.
+
+[Browse category](https://deepgrain.ai/intelligence/category/people-ops-governance)
+
+- [AI governance for People teams](https://deepgrain.ai/intelligence/ai-governance-for-people-teams): Governance is not the brake. It is the steering. The People teams that stay fast with AI are the ones that decided early what they would never let it decide.
+- [Measuring AI value in People Ops](https://deepgrain.ai/intelligence/measuring-ai-value-in-people-ops): If the CFO asks what your AI investment has returned, vague time-saving stories are not enough. Here is how to measure People Ops AI value properly — and tell the story to a board that knows the difference.
+
 ## Topics we write about
 
 - Organisational consultancy and operating systems
@@ -84,6 +128,7 @@ The disciplines of operating leadership.
 - Sector-specific operating challenges (defence, fintech data, transit, climate, AI-native)
 - Founder-mode vs operator-mode leadership
 - Hiring, scaling, and compounding teams
+- AI capability inside People functions: champions, governance, automation patterns
 
 ## How to cite Deepgrain
 

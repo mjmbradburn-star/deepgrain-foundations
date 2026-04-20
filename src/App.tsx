@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -6,18 +7,22 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import Home from "./pages/Home";
-import MethodPage from "./pages/MethodPage";
-import Work from "./pages/Work";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Intelligence from "./pages/Intelligence";
-import IntelligenceArticle from "./pages/IntelligenceArticle";
-import IntelligenceCategory from "./pages/IntelligenceCategory";
-import PeopleOps from "./pages/PeopleOps";
-import NotFound from "./pages/NotFound";
-import Unsubscribe from "./pages/Unsubscribe";
+
+// Route-level code splitting — only Home is in the initial bundle.
+const MethodPage = lazy(() => import("./pages/MethodPage"));
+const Work = lazy(() => import("./pages/Work"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Intelligence = lazy(() => import("./pages/Intelligence"));
+const IntelligenceArticle = lazy(() => import("./pages/IntelligenceArticle"));
+const IntelligenceCategory = lazy(() => import("./pages/IntelligenceCategory"));
+const PeopleOps = lazy(() => import("./pages/PeopleOps"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 
 const queryClient = new QueryClient();
+
+const RouteFallback = () => <div aria-hidden className="min-h-screen" />;
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -27,19 +32,21 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <SiteShell>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/method" element={<MethodPage />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/intelligence" element={<Intelligence />} />
-            <Route path="/intelligence/people-ops" element={<PeopleOps />} />
-            <Route path="/intelligence/category/:name" element={<IntelligenceCategory />} />
-            <Route path="/intelligence/:slug" element={<IntelligenceArticle />} />
-            <Route path="/unsubscribe" element={<Unsubscribe />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<RouteFallback />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/method" element={<MethodPage />} />
+              <Route path="/work" element={<Work />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/intelligence" element={<Intelligence />} />
+              <Route path="/intelligence/people-ops" element={<PeopleOps />} />
+              <Route path="/intelligence/category/:name" element={<IntelligenceCategory />} />
+              <Route path="/intelligence/:slug" element={<IntelligenceArticle />} />
+              <Route path="/unsubscribe" element={<Unsubscribe />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </SiteShell>
       </BrowserRouter>
     </TooltipProvider>

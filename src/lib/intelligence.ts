@@ -1,3 +1,5 @@
+import { lazy, type ComponentType, type LazyExoticComponent } from "react";
+
 export type Track = "deepgrain" | "people-ops";
 
 export type CategorySlug =
@@ -50,13 +52,11 @@ export interface ArticleFrontmatter {
 
 export interface Article {
   frontmatter: ArticleFrontmatter;
-  Component: React.ComponentType;
+  /** Lazy-loaded MDX component — only fetched when an article page renders. */
+  Component: LazyExoticComponent<ComponentType>;
 }
 
-const modules = import.meta.glob<{
-  default: React.ComponentType;
-  frontmatter: ArticleFrontmatter;
-}>("../content/intelligence/**/*.mdx", { eager: true });
+import { FRONTMATTERS, LOADERS } from "virtual:intelligence-manifest";
 
 // Eager-load all People Ops hero images and key them by slug
 const heroImageModules = import.meta.glob<{ default: string }>(
@@ -82,11 +82,15 @@ const PEOPLE_OPS_CATEGORIES: CategorySlug[] = [
 const inferTrack = (f: ArticleFrontmatter): Track =>
   f.track ?? (PEOPLE_OPS_CATEGORIES.includes(f.category) ? "people-ops" : "deepgrain");
 
-export const ARTICLES: Article[] = Object.values(modules)
-  .map((m) => ({
-    frontmatter: { ...m.frontmatter, track: inferTrack(m.frontmatter) },
-    Component: m.default,
-  }))
+export const ARTICLES: Article[] = FRONTMATTERS
+  .map((entry) => {
+    const { __path, ...fm } = entry;
+    const loader = LOADERS[__path];
+    return {
+      frontmatter: { ...fm, track: inferTrack(fm) } as ArticleFrontmatter,
+      Component: lazy(loader),
+    };
+  })
   .sort(
     (a, b) =>
       new Date(b.frontmatter.publishedAt).getTime() -

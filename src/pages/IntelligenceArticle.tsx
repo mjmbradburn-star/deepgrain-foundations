@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { MDXProvider } from "@mdx-js/react";
@@ -125,7 +126,9 @@ const IntelligenceArticle = () => {
       <article className="bg-linen py-20 md:py-28">
         <div className="container-grain max-w-2xl">
           <MDXProvider components={mdxComponents}>
-            <Component />
+            <Suspense fallback={<div aria-hidden className="min-h-[60vh]" />}>
+              <Component />
+            </Suspense>
           </MDXProvider>
 
           <div className="mt-20 pt-12 border-t border-walnut/15">
