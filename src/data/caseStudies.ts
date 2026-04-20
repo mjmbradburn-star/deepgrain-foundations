@@ -55,9 +55,9 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "transit-tech",
     eyebrow: "Transit Technology · PE backed · 260 employees",
-    headline: "A doing problem,\nnot a training problem.",
+    headline: "A doing problem.\nNot a training problem.",
     body: [
-      "Engineering had strong AI adoption. Mandated, tracked, effective. The rest of the business had licences and a champions programme that produced no outputs. The gap wasn't awareness. It was time, focus, and someone to build alongside until the tools were live and the skills were in house.",
+      "Engineering had strong AI adoption. Mandated, tracked, effective. The rest of the business had licences and a champions programme that produced no outputs. The gap was time, focus, and someone to build alongside until the tools were live and the skills sat in house.",
       "40 people across two timezone windows. One named production tool. Two internal builders who can now maintain and extend everything without external support.",
     ],
     metrics: [
