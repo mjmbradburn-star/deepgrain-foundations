@@ -1,10 +1,16 @@
+import { forwardRef, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 interface EyebrowProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
-export const Eyebrow = ({ children, className }: EyebrowProps) => (
-  <p className={cn("eyebrow", className)}>{children}</p>
+export const Eyebrow = forwardRef<HTMLParagraphElement, EyebrowProps>(
+  ({ children, className }, ref) => (
+    <p ref={ref} className={cn("eyebrow", className)}>
+      {children}
+    </p>
+  ),
 );
+Eyebrow.displayName = "Eyebrow";

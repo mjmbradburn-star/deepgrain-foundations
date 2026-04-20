@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import type { Article } from "@/lib/intelligence";
 import { CATEGORIES, getHeroImage } from "@/lib/intelligence";
@@ -7,16 +8,18 @@ interface ArticleCardProps {
   variant?: "linen" | "green";
 }
 
-export const ArticleCard = ({ article, variant = "linen" }: ArticleCardProps) => {
-  const { frontmatter: f } = article;
-  const cat = CATEGORIES.find((c) => c.slug === f.category);
-  const hero = getHeroImage(f.slug);
+export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
+  ({ article, variant = "linen" }, ref) => {
+    const { frontmatter: f } = article;
+    const cat = CATEGORIES.find((c) => c.slug === f.category);
+    const hero = getHeroImage(f.slug);
 
-  const isGreen = variant === "green";
+    const isGreen = variant === "green";
 
-  return (
-    <Link
-      to={`/intelligence/${f.slug}`}
+    return (
+      <Link
+        ref={ref}
+        to={`/intelligence/${f.slug}`}
       className={`group block rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
         isGreen
           ? "bg-green text-cream hover:bg-green/90"
