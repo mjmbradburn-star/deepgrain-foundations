@@ -47,6 +47,11 @@ const PeopleOps = () => {
         />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://deepgrain.ai/og-people-ops.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://deepgrain.ai/og-people-ops.png" />
         <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
       </Helmet>
 
