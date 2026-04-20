@@ -1,0 +1,80 @@
+export const frontmatter = {
+  title: "Automation patterns that pay off",
+  slug: "automation-patterns-that-pay-off",
+  category: "people-ops-systems",
+  track: "people-ops",
+  description: "Six concrete workflow patterns we keep seeing work inside People functions. Built with n8n, an LLM, and a champion. Live in weeks, not quarters.",
+  keywords: ["n8n automation HR", "People Ops workflows", "AI automation patterns", "HR process automation"],
+  readTime: "11 min",
+  publishedAt: "2026-04-15",
+  author: "Matt Webb",
+  featured: true,
+};
+
+# Automation patterns that pay off
+
+Theory only goes so far. At some point a team needs to see what an AI-augmented People workflow actually looks like — what gets built, in what order, with what tools — before the abstract advice lands. So this piece is concrete. Six patterns we keep seeing work, in roughly the order most teams should approach them.
+
+The stack we usually recommend, for what it's worth: a workflow tool (n8n if you want self-hosted, Make if you want managed, Zapier if you want zero learning curve), an LLM provider with enterprise terms, the company's HRIS as source of truth, and Slack or email as the surface where humans interact. That is enough.
+
+## Pattern 1 — Inbound triage
+
+The painful version: 200 applications come in for a role. A recruiter spends a day skim-reading. The bottom 60 per cent are obvious passes. The top 10 per cent are obvious progresses. The middle 30 per cent are the actual work.
+
+The augmented version: every application runs through a workflow that pulls the JD requirements, summarises the candidate against them, flags the obvious passes (with rationale), surfaces the obvious progresses (with rationale), and routes the genuinely ambiguous middle to a recruiter with a one-paragraph précis. The recruiter spends their day on the 30 per cent that needed a human. The other 70 per cent is dispatched in an hour with a logged rationale.
+
+Critical detail: the workflow never *decides*. It surfaces and prepares. The recruiter clicks. The audit log captures everything.
+
+## Pattern 2 — Interview scorecard summarisation
+
+The painful version: four interviewers run four panels. Four scorecards arrive in four formats. The hiring manager spends an hour synthesising before the debrief. By the debrief, half the nuance has been smoothed out.
+
+The augmented version: scorecards land in a structured form. The workflow assembles them, identifies points of disagreement, surfaces direct quotes that matter, and produces a synthesised brief with the contradictions made explicit. The hiring manager arrives at the debrief with the disagreements visible, not buried. The conversation is sharper.
+
+This is where AI earns its keep — not by producing the answer, but by making the disagreement legible.
+
+## Pattern 3 — First-week onboarding sequencing
+
+The painful version: a new joiner's first week is run by a coordinator who is also running four other first weeks. Things drop. Slack invites are missed. The 1:1 with the manager is scheduled late. Day three feels chaotic.
+
+The augmented version: the workflow watches the new joiner's calendar, checks against a defined first-week template, sends nudges when something is missing, drafts the welcome Slack post for the manager to review and send, and produces a day-five check-in note for the People Partner with what to ask about. The coordinator becomes a reviewer rather than a doer.
+
+Onboarding NPS climbs. The coordinator stops working evenings. The pattern compounds across hires.
+
+## Pattern 4 — Manager check-in cycle
+
+The painful version: every manager is supposed to do monthly 1:1 retrospectives with their reports. About 40 per cent actually do them. The HRBP has no visibility into who has and who hasn't, and finds out only when something has already gone wrong.
+
+The augmented version: the workflow tracks who has had a check-in in the last 30 days, drafts a personalised reminder for the manager (with last cycle's themes pulled in if the manager opted into memory), and gives the HRBP a weekly one-page heatmap. The manager spends 30 seconds turning the draft into a sent message. The HRBP can see the function rather than guessing at it.
+
+This is the workflow that, in our experience, most directly changes the culture. Visibility is its own intervention.
+
+## Pattern 5 — Policy and handbook Q&A
+
+The painful version: the People team gets the same fifteen questions every week. *Can I take parental leave from a fixed-term contract?* *What's our policy on returning to office?* *Do I accrue holiday during sick leave?* Each one takes 5–15 minutes to answer properly. Across a team of 200, that is half a person's week.
+
+The augmented version: a Slack-integrated assistant grounded on the actual handbook (and only the handbook) answers the standard questions with citations. Anything outside scope gets routed to a human. The answers improve as edge cases get added. The People team gets back to the work that needs them.
+
+The hard part here is not the model. It is keeping the handbook actually current. AI surfaces the documentation hygiene problem you already had.
+
+## Pattern 6 — Performance cycle preparation
+
+The painful version: performance review week. Managers stare at a blank page trying to remember the last six months for each report. The result is a review weighted heavily toward the last three weeks of work.
+
+The augmented version: the workflow assembles a personalised pre-read for each manager — significant project moments pulled from where work actually happens (Linear, GitHub, sales records, project tools), the report's own self-reflection, peer feedback if collected, last cycle's commitments. The manager arrives at the blank page with material. The review is grounded in the year, not the week.
+
+The model never writes the review. It prepares the table.
+
+## What these patterns have in common
+
+Every one of these patterns shares the same shape:
+
+- One workflow, well-bounded
+- A clear human-in-the-loop step
+- Logged, reviewable, retirable
+- Built by a champion in days or weeks, not quarters
+- Visible value to the team that uses it within the first month
+
+The temptation, always, is to build something more impressive. Don't. The compound effect of six well-built small workflows is greater than one ambitious half-finished platform, every time. We have watched both. The small ones win.
+
+Pick the one that hurts most this quarter. Build it. Learn the craft. Then take the next one.
