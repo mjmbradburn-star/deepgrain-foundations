@@ -116,19 +116,18 @@ const IntelligenceArticle = () => {
       {/* AIOI CTA */}
       <section className="bg-green text-cream py-20 md:py-28">
         <div className="container-grain max-w-3xl text-center">
-          <Eyebrow className="text-brass">AI Operating Index</Eyebrow>
+          <Eyebrow className="text-brass">Diagnostic</Eyebrow>
           <h2
             className="font-display text-3xl md:text-5xl mt-4 mb-6 leading-tight"
             style={{ letterSpacing: "-0.01em" }}
           >
-            Find out where your operating system actually stands.
+            Where does your operating system stand?
           </h2>
           <p className="text-cream/75 max-w-xl mx-auto mb-10 leading-relaxed">
-            Twenty minutes. Five pillars. A diagnosis your leadership team can
-            act on this quarter.
+            Take the AI Operating Index — a free 8-pillar diagnostic.
           </p>
-          <PillButton href="/contact" variant="filled">
-            Take the assessment
+          <PillButton href={AIOI_URL} variant="filled" external>
+            Begin the index →
           </PillButton>
         </div>
       </section>
