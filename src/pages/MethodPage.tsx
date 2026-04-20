@@ -4,6 +4,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { ValueVisualiser } from "@/components/sections/ValueVisualiser";
+import { BuildVsHire } from "@/components/sections/BuildVsHire";
 
 const MethodPage = () => (
   <>
@@ -91,6 +92,9 @@ const MethodPage = () => (
         </ScrollReveal>
       </div>
     </section>
+
+    {/* Build vs Hire — sits between Craft and Scale */}
+    <BuildVsHire />
 
     {/* Scale */}
     <section className="bg-linen text-body section-pad">
