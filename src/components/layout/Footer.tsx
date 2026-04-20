@@ -27,7 +27,7 @@ export const Footer = () => (
             Deepgrain
           </div>
           <p className="text-sm text-cream/60 max-w-xs leading-relaxed">
-            Organisational consultancy. Work with the grain.
+            Organisational consultancy for companies that want to last.
           </p>
         </div>
         <nav aria-label="Footer">
@@ -68,7 +68,7 @@ export const Footer = () => (
             source="footer"
             variant="dark"
             heading="Intelligence in your inbox."
-            description="Occasional dispatches on operating systems, leadership craft, and the discipline of building organisations that hold their shape."
+            description="Occasional notes on running real organisations. No newsletter rhythm. Nothing to scroll past."
           />
         </Suspense>
       </div>
