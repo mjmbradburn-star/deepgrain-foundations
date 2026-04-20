@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PillButton } from "@/components/ui/PillButton";
+import { AIOI_URL } from "@/lib/aioi";
 
 const stagger = (i: number) => ({
   initial: { opacity: 0, y: 24 },
@@ -38,9 +39,12 @@ export const Hero = () => (
           where decisions actually get made, where friction forms before it
           shows on a dashboard. Most have never read it.
         </motion.p>
-        <motion.div {...stagger(3)} className="mt-12">
+        <motion.div {...stagger(3)} className="mt-12 flex flex-wrap gap-4">
           <PillButton href="/method" variant="outline">
             How we work →
+          </PillButton>
+          <PillButton href={AIOI_URL} variant="outline" external>
+            Take the AI Operating Index →
           </PillButton>
         </motion.div>
       </div>
