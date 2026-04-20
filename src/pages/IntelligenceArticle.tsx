@@ -5,6 +5,7 @@ import {
   getArticleBySlug,
   getCategory,
   getRelatedArticles,
+  getHeroImage,
 } from "@/lib/intelligence";
 import { mdxComponents } from "@/components/intelligence/mdxComponents";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
@@ -23,6 +24,8 @@ const IntelligenceArticle = () => {
   const cat = getCategory(f.category);
   const related = getRelatedArticles(slug, 3);
   const url = `https://deepgrain.ai/intelligence/${f.slug}`;
+  const heroImage = getHeroImage(f.slug);
+  const ogImage = heroImage ? `https://deepgrain.ai${heroImage}` : undefined;
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -51,14 +54,38 @@ const IntelligenceArticle = () => {
         <meta property="og:description" content={f.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
+        {ogImage && <meta property="og:image" content={ogImage} />}
+        {ogImage && <meta name="twitter:card" content="summary_large_image" />}
+        {ogImage && <meta name="twitter:image" content={ogImage} />}
         <meta property="article:published_time" content={f.publishedAt} />
         <meta property="article:author" content={f.author} />
         <meta property="article:section" content={cat?.name} />
         <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
       </Helmet>
 
+      {/* Hero image band (16:9, full-width) */}
+      {heroImage && (
+        <div className="bg-green pt-24 md:pt-28">
+          <div className="container-grain max-w-5xl">
+            <div className="aspect-[16/9] w-full overflow-hidden rounded-sm shadow-2xl">
+              <img
+                src={heroImage}
+                alt=""
+                width={1600}
+                height={900}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header band */}
-      <header className="bg-green text-cream pt-40 md:pt-48 pb-20 md:pb-28">
+      <header
+        className={`bg-green text-cream pb-20 md:pb-28 ${
+          heroImage ? "pt-12 md:pt-16" : "pt-40 md:pt-48"
+        }`}
+      >
         <div className="container-grain max-w-3xl">
           <div className="flex items-center gap-3 mb-8">
             <Link

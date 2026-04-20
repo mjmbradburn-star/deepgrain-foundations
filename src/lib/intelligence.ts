@@ -45,6 +45,7 @@ export interface ArticleFrontmatter {
   author: string;
   featured?: boolean;
   track?: Track;
+  heroImage?: string;
 }
 
 export interface Article {
@@ -56,6 +57,20 @@ const modules = import.meta.glob<{
   default: React.ComponentType;
   frontmatter: ArticleFrontmatter;
 }>("../content/intelligence/**/*.mdx", { eager: true });
+
+// Eager-load all People Ops hero images and key them by slug
+const heroImageModules = import.meta.glob<{ default: string }>(
+  "../assets/intelligence/people-ops/*.{jpg,png,webp}",
+  { eager: true }
+);
+const HERO_IMAGES: Record<string, string> = Object.fromEntries(
+  Object.entries(heroImageModules).map(([path, mod]) => {
+    const slug = path.split("/").pop()!.replace(/\.(jpg|png|webp)$/, "");
+    return [slug, mod.default];
+  })
+);
+
+export const getHeroImage = (slug: string): string | undefined => HERO_IMAGES[slug];
 
 const PEOPLE_OPS_CATEGORIES: CategorySlug[] = [
   "people-ops-foundations",
