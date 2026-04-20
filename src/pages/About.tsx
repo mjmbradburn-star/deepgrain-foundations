@@ -1,6 +1,7 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
+import { PageMeta } from "@/components/seo/PageMeta";
 
 const testimonials = [
   {
@@ -17,6 +18,20 @@ const testimonials = [
 
 const About = () => (
   <>
+    <PageMeta
+      title="About Matt Webb — Deepgrain"
+      description="Matt Webb leads Deepgrain. Background, philosophy, and references from founders and operating leaders he has worked with across AI-native, defence, financial data, transit, and climate companies."
+      path="/about"
+      jsonLd={{
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Matt Webb",
+        jobTitle: "Founder",
+        worksFor: { "@type": "Organization", name: "Deepgrain" },
+        url: "https://deepgrain.ai/about",
+        email: "matt@deepgrain.ai",
+      }}
+    />
     <section className="relative min-h-[90vh] flex items-end overflow-hidden">
       <div className="absolute inset-0">
         <img

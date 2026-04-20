@@ -2,9 +2,15 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { PageMeta } from "@/components/seo/PageMeta";
 
 const Contact = () => (
   <section className="bg-green text-cream min-h-screen pt-40 pb-32">
+    <PageMeta
+      title="Contact — Deepgrain"
+      description="Start a conversation with Deepgrain. If your organisation is ready to understand itself, reach out directly to Matt Webb."
+      path="/contact"
+    />
     <div className="container-grain max-w-3xl text-center">
       <ScrollReveal>
         <Eyebrow className="text-cream/70 mb-6">Contact</Eyebrow>
