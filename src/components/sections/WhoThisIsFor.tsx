@@ -6,7 +6,9 @@ export const WhoThisIsFor = () => (
   <section className="relative section-pad overflow-hidden">
     <div className="absolute inset-0">
       <img
-        src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=68&fm=webp"
+        src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=50&fm=webp"
+        srcSet="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=50&fm=webp 800w, https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=50&fm=webp 1200w, https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=50&fm=webp 1600w"
+        sizes="100vw"
         alt=""
         width={1600}
         height={1067}
