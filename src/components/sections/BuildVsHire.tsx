@@ -146,9 +146,8 @@ interface CostCardProps {
   tone: "muted" | "brass";
 }
 
-const CostCard = ({ label, sub, amount, barPct, tone }: CostCardProps) => {
+const CostCard = forwardRef<HTMLDivElement, CostCardProps>(({ label, sub, amount, barPct, tone }, forwardedRef) => {
   // Bar animates width on amount change.
-  const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(0);
   useEffect(() => {
     const t = window.setTimeout(() => setShown(barPct), 30);
@@ -157,7 +156,7 @@ const CostCard = ({ label, sub, amount, barPct, tone }: CostCardProps) => {
 
   return (
     <div
-      ref={ref}
+      ref={forwardedRef}
       className={
         "rounded-2xl border p-8 " +
         (tone === "brass"
@@ -185,4 +184,5 @@ const CostCard = ({ label, sub, amount, barPct, tone }: CostCardProps) => {
       </div>
     </div>
   );
-};
+});
+CostCard.displayName = "CostCard";
