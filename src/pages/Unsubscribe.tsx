@@ -62,7 +62,7 @@ const Unsubscribe = () => {
   return (
     <>
       <Helmet>
-        <title>Unsubscribe — Deepgrain</title>
+        <title>Unsubscribe | Deepgrain</title>
         <meta name="robots" content="noindex,nofollow" />
       </Helmet>
       <section className="bg-linen min-h-screen pt-40 pb-32">

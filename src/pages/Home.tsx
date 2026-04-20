@@ -35,7 +35,7 @@ const SectionFallback = () => <div aria-hidden className="min-h-[60vh]" />;
 const Home = () => (
   <>
     <PageMeta
-      title="Deepgrain — Work with the grain."
+      title="Deepgrain | Work with the grain."
       description="Every organisation has a grain. Most leaders are working against theirs without knowing it. Deepgrain reads yours, then builds the strategy, agentic systems, and people to evolve it."
       path="/"
     />

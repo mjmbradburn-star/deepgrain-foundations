@@ -31,13 +31,13 @@ const Intelligence = () => {
   return (
     <>
       <Helmet>
-        <title>Intelligence — Deepgrain</title>
+        <title>Intelligence | Deepgrain</title>
         <meta
           name="description"
           content="Essays on organisational consultancy, AI operating systems, and the craft of operating leadership."
         />
         <link rel="canonical" href={url} />
-        <meta property="og:title" content="Intelligence — Deepgrain" />
+        <meta property="og:title" content="Intelligence | Deepgrain" />
         <meta
           property="og:description"
           content="Essays on organisational consultancy, AI operating systems, and the craft of operating leadership."

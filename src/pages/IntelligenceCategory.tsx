@@ -15,10 +15,10 @@ const IntelligenceCategory = () => {
   return (
     <>
       <Helmet>
-        <title>{cat.name} — Deepgrain Intelligence</title>
+        <title>{cat.name} | Deepgrain Intelligence</title>
         <meta name="description" content={cat.description} />
         <link rel="canonical" href={url} />
-        <meta property="og:title" content={`${cat.name} — Deepgrain Intelligence`} />
+        <meta property="og:title" content={`${cat.name} | Deepgrain Intelligence`} />
         <meta property="og:description" content={cat.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
