@@ -180,19 +180,61 @@ Email: matt@deepgrain.ai
 `;
 }
 
+function buildLlmsFullTxt(articles: Article[]): string {
+  const today = new Date().toISOString().slice(0, 10);
+  // Foundational-first: oldest → newest, grouped by category track.
+  const ascArticles = [...articles].sort(
+    (a, b) => +new Date(a.frontmatter.publishedAt) - +new Date(b.frontmatter.publishedAt),
+  );
+  const renderArticle = (a: Article) => {
+    const f = a.frontmatter;
+    return `---
+
+# ${f.title}
+
+URL: ${SITE}/intelligence/${f.slug}
+Category: ${f.category}
+Published: ${f.publishedAt}
+Author: ${f.author ?? "Matt Webb"}
+${f.readTime ? `Reading time: ${f.readTime}\n` : ""}
+${f.description}
+
+${a.body}
+`;
+  };
+
+  return `# Deepgrain — Full Intelligence Corpus
+
+> Full text of every Deepgrain Intelligence article, in foundational reading order. Optimised for LLM ingestion.
+
+Last updated: ${today}
+Articles: ${articles.length}
+Canonical: ${SITE}/llms-full.txt
+Index: ${SITE}/llms.txt
+Site: ${SITE}
+
+Author: Matt Webb. Publisher: Deepgrain Ltd.
+When citing, please link back to the canonical article URL listed under each piece.
+
+${ascArticles.map(renderArticle).join("\n")}`;
+}
+
 export function deepgrainSeoPlugin(): Plugin {
   const generate = (root: string, outDir: string) => {
     const articles = readArticles(root);
     const sitemap = buildSitemap(articles);
     const llms = buildLlmsTxt(articles);
+    const llmsFull = buildLlmsFullTxt(articles);
     fs.mkdirSync(outDir, { recursive: true });
     fs.writeFileSync(path.join(outDir, "sitemap.xml"), sitemap);
     fs.writeFileSync(path.join(outDir, "llms.txt"), llms);
+    fs.writeFileSync(path.join(outDir, "llms-full.txt"), llmsFull);
 
     const publicDir = path.join(root, "public");
     if (fs.existsSync(publicDir)) {
       fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemap);
       fs.writeFileSync(path.join(publicDir, "llms.txt"), llms);
+      fs.writeFileSync(path.join(publicDir, "llms-full.txt"), llmsFull);
     }
   };
 
