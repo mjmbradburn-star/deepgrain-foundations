@@ -10,26 +10,26 @@ import { Invitation } from "@/components/sections/Invitation";
 const upskilled = [
   {
     title: "Fluency",
-    body: "Everyone in the function can brief, run, and judge an agent. The day-to-day stops feeling foreign.",
+    body: "Everyone in the function can brief an agent and judge its output. The work stops feeling foreign.",
   },
   {
     title: "Craft",
-    body: "Three to four champions can design, ship, and maintain workflows. They become the team's internal builders.",
+    body: "Three or four champions design and ship workflows themselves. They are your internal builders.",
   },
   {
     title: "Practice",
-    body: "The team holds the capability after we leave. New joiners learn the craft from colleagues, not a deck.",
+    body: "The capability stays after we leave. New joiners pick it up from colleagues, not from a deck.",
   },
 ];
 
 const championNeeds = [
   {
     label: "Air cover",
-    body: "A named exec sponsor and a defined slice of the week — twenty per cent floor — protected from the next crisis.",
+    body: "A named exec sponsor, and a protected fifth of the week that does not get pulled into the next crisis.",
   },
   {
-    label: "Tools & budget",
-    body: "One workflow tool, an LLM provider with the right terms, a small monthly budget with no procurement friction.",
+    label: "Tools and budget",
+    body: "One workflow tool, an LLM provider on the right terms, a small monthly budget with no procurement friction.",
   },
   {
     label: "A small starting brief",
@@ -41,53 +41,53 @@ const curriculum = [
   {
     n: "01",
     title: "Reading the grain",
-    body: "Diagnosing where agents belong — and where human judgment must stay.",
+    body: "Where agents fit, and where human judgment has to stay.",
     duration: "Half day",
   },
   {
     n: "02",
     title: "Briefing agents",
-    body: "Prompts as specifications. Writing for a system that has to act, not just answer.",
+    body: "Prompts as specifications. Writing for a system that has to act.",
     duration: "1 week",
   },
   {
     n: "03",
     title: "Wiring workflows",
-    body: "Tools, triggers, handoffs. Building the plumbing that makes an agent useful in the team's actual day.",
+    body: "Tools, triggers, and handoffs. The plumbing that makes an agent useful in a real working day.",
     duration: "2 weeks",
   },
   {
     n: "04",
-    title: "Governance & trust",
-    body: "What stays human, what gets reviewed, what gets logged. The patterns that keep the work safe.",
+    title: "Governance and trust",
+    body: "What stays human, what gets reviewed, what gets logged.",
     duration: "1 week",
   },
   {
     n: "05",
     title: "Measuring value",
-    body: "Hours reclaimed, judgment freed, capability gained. Telling a real story about what changed.",
+    body: "Hours saved, judgment freed, capability gained. A real story about what changed.",
     duration: "Half day",
   },
   {
     n: "06",
     title: "Sustaining the practice",
-    body: "Running the champion circle after we leave. Reviewing each other's work. Training the next champion.",
+    body: "Running the champion circle after we leave. Reviewing each other's work. Training the next one.",
     duration: "Ongoing",
   },
 ];
 
 const outcomes = [
-  "A trained champion circle of three to four people inside the function.",
+  "Three or four trained champions inside the function.",
   "Eight to twelve production workflows, owned by the teams that use them.",
-  "A governance pattern your team understands, applies, and can defend.",
-  "A capability that compounds — extended into corners we never touched.",
+  "A governance pattern your team understands and can defend.",
+  "Capability that keeps growing into corners we never touched.",
 ];
 
 const Enablement = () => (
   <>
     <PageMeta
       title="Enablement — Coaching, champions, lasting capability | Deepgrain"
-      description="What 'people upskilled' actually means inside a Deepgrain engagement. The coaching curriculum, the champion model, and the capability your team holds after we leave."
+      description="What 'people upskilled' means inside a Deepgrain engagement. The coaching curriculum, the champion model, and the capability your team keeps after we leave."
       path="/enablement"
     />
 
@@ -97,13 +97,12 @@ const Enablement = () => (
         <ScrollReveal>
           <Eyebrow className="text-brass mb-6">Enablement</Eyebrow>
           <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[96px] leading-[1.02] text-balance">
-            We don&apos;t replace your team. We grow it.
+            The capability stays with your team.
           </h1>
           <p className="mt-10 max-w-2xl text-cream/80 text-lg leading-relaxed">
-            Deepgrain engagements pair agents with people from day one. The agents
-            take the repeatable, low-judgment work. The people are coached to design,
-            run, and extend those agents — your champions. The capability stays in
-            the team, not in a vendor.
+            Every Deepgrain engagement pairs agents with people from day one. Agents take
+            the repeatable work. People learn to design, run, and extend those agents. When
+            we leave, the capability stays in the team, not in a vendor.
           </p>
         </ScrollReveal>
       </div>
@@ -116,12 +115,12 @@ const Enablement = () => (
           <div className="max-w-3xl">
             <Eyebrow className="text-brass mb-4">People upskilled</Eyebrow>
             <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
-              What the metric actually means.
+              What the metric means.
             </h2>
             <p className="mt-8 text-body/85 text-lg leading-relaxed">
-              When we report &ldquo;people upskilled&rdquo; at the end of an engagement,
-              we mean three things at once. Not certificates. Not seat licences.
-              A change in what the team can do without us in the room.
+              When we report &ldquo;people upskilled&rdquo; at the end of an engagement, we
+              mean three things. Not certificates. Not seat licences. A change in what the
+              team can do without us in the room.
             </p>
           </div>
 
@@ -147,26 +146,25 @@ const Enablement = () => (
             <div>
               <Eyebrow className="text-brass mb-4">The champion model</Eyebrow>
               <h2 className="font-display text-walnut text-4xl md:text-5xl leading-tight">
-                You don&apos;t need engineers. You need three or four champions.
+                You need three or four champions, not engineers.
               </h2>
               <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
                 <p>
-                  A champion is someone already inside the team — a senior coordinator,
-                  a People Partner, an Ops lead — who has deep tacit knowledge of how
-                  the work flows and genuine curiosity about wiring things together.
-                  Not engineers. Not new hires. People you already pay, given a
-                  different mandate.
+                  A champion is someone already inside the team. A senior coordinator, a
+                  People Partner, an Ops lead. Someone with deep tacit knowledge of how the
+                  work flows, and curiosity about wiring things together. People you already
+                  pay, given a different mandate.
                 </p>
                 <p>
-                  This works because of grain. The champion already knows where the
-                  friction is — they live in it. They know which approvals are theatre
-                  and which handoffs drop information. An engineer would have to
-                  discover all of that. The champion starts with it.
+                  This works because of grain. Champions know where the friction is, because
+                  they live in it. They know which approvals are theatre and which handoffs
+                  drop information. An engineer would have to discover all of that. The
+                  champion starts with it.
                 </p>
                 <p>
-                  Three or four champions, distributed across the function, give you
-                  something a single builder can&apos;t: review, shared patterns,
-                  cover when one is buried, and the nucleus of a real practice.
+                  Three or four champions, spread across the function, give you something a
+                  single builder cannot. Review. Shared patterns. Cover when one is buried.
+                  The nucleus of a real practice.
                 </p>
               </div>
               <Link
@@ -203,12 +201,12 @@ const Enablement = () => (
           <div className="max-w-3xl">
             <Eyebrow className="text-brass mb-4">The coaching curriculum</Eyebrow>
             <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
-              Six modules. Delivered alongside the build.
+              Six modules, run alongside the build.
             </h2>
             <p className="mt-8 text-body/85 text-lg leading-relaxed">
-              The curriculum runs in parallel with shipping real workflows. No
-              classroom phase. People learn the craft on their own systems, with
-              their own data, on problems they already wanted to solve.
+              The curriculum runs in parallel with shipping real workflows. No classroom
+              phase. People learn the craft on their own systems, with their own data, on
+              problems they already wanted to solve.
             </p>
           </div>
 
@@ -257,10 +255,9 @@ const Enablement = () => (
           </ul>
           <BrassRule className="mt-16" />
           <p className="mt-10 max-w-2xl text-cream/70 leading-relaxed">
-            Two months after the engagement ends, the champions are still building.
-            They have extended the work into places we never touched. That is the
-            test. Not what you have on day one — what you still have, and what you
-            have added, six months on.
+            Six months on, the champions are still building. They have extended the work
+            into places nobody asked them to touch, and they are training the next champion.
+            That is what capability looks like.
           </p>
           <div className="mt-12">
             <PillButton href="/intelligence/the-champion-model" variant="outline">
