@@ -22,7 +22,7 @@ export const OperatingProof = () => (
             built specifically for this work. What once required a team now
             happens faster, more precisely, and without the overhead.
           </p>
-          <p>
+          <p className="hidden md:block">
             This isn&apos;t a selling point. It&apos;s how the work gets done,
             and it&apos;s proof, because we built it for ourselves first.
           </p>
