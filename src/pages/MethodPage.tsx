@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
@@ -141,6 +143,29 @@ const MethodPage = () => (
               have, and what you have added, six months on.
             </p>
           </div>
+
+          {/* Champions trained — pull-quote callout linking to the deep dive */}
+          <Link
+            to="/intelligence/the-champion-model"
+            className="group mt-12 block rounded-2xl border-l-4 border-brass bg-walnut/[0.04] p-7 md:p-9 transition-colors hover:bg-walnut/[0.07]"
+          >
+            <div className="flex items-start justify-between gap-6">
+              <div>
+                <div className="text-[11px] uppercase tracking-[0.2em] text-brass font-semibold">
+                  Champions trained
+                </div>
+                <p className="mt-3 font-display text-walnut text-2xl md:text-3xl leading-snug text-balance">
+                  &ldquo;You don&apos;t need engineers to build AI capability inside
+                  the function. You need three or four champions, given air cover
+                  and time.&rdquo;
+                </p>
+                <div className="mt-4 inline-flex items-center gap-1 text-sm text-brass font-medium transition-colors group-hover:text-walnut">
+                  Read the champion model
+                  <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
+                </div>
+              </div>
+            </div>
+          </Link>
         </ScrollReveal>
       </div>
     </section>
