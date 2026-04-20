@@ -13,8 +13,8 @@ const variants: Array<"linen" | "walnut" | "green"> = ["linen", "walnut", "linen
 const Work = () => (
   <>
     <PageMeta
-      title="Work — Case studies | Deepgrain"
-      description="Operating consultancy in practice: case studies across defence tech, financial data, transit and mobility, climate, and AI-native companies."
+      title="Work · Case studies | Deepgrain"
+      description="Case studies from our consulting work across defence tech, financial data, transit and mobility, climate, and AI-native companies."
       path="/work"
     />
     <section className="bg-green text-cream pt-40 pb-20">
