@@ -13,6 +13,7 @@ const MethodPage = () => (
     <PageMeta
       title="Method · Read · Craft · Scale | Deepgrain"
       description="The Deepgrain method in full. Read the operating reality, craft the smallest interventions that compound, then scale without breaking the grain."
+      image="https://deepgrain.ai/og-method.png"
       path="/method"
     />
     {/* Intro */}
