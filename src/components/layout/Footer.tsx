@@ -8,6 +8,7 @@ const EmailCapture = lazy(() =>
 
 const links = [
   { to: "/method", label: "Method" },
+  { to: "/enablement", label: "Enablement" },
   { to: "/work", label: "Work" },
   { to: "/intelligence", label: "Intelligence" },
   { to: "/about", label: "About" },

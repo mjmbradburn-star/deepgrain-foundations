@@ -107,7 +107,10 @@ const MethodPage = () => (
             <p>
               Agents take the repeatable, low-judgment work. People are coached
               to design, run, and extend those agents — your champions. The
-              capability stays in the team, not in a vendor.
+              capability stays in the team, not in a vendor.{" "}
+              <Link to="/enablement" className="text-brass underline-offset-4 hover:underline">
+                See how enablement works →
+              </Link>
             </p>
             <p className="hidden md:block">
               This is not a replacement programme. It is a training programme
@@ -146,7 +149,7 @@ const MethodPage = () => (
 
           {/* Champions trained — pull-quote callout linking to the deep dive */}
           <Link
-            to="/intelligence/the-champion-model"
+            to="/enablement"
             className="group mt-12 block rounded-2xl border-l-4 border-brass bg-walnut/[0.04] p-7 md:p-9 transition-colors hover:bg-walnut/[0.07]"
           >
             <div className="flex items-start justify-between gap-6">
@@ -160,7 +163,7 @@ const MethodPage = () => (
                   and time.&rdquo;
                 </p>
                 <div className="mt-4 inline-flex items-center gap-1 text-sm text-brass font-medium transition-colors group-hover:text-walnut">
-                  Read the champion model
+                  See how enablement works
                   <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
                 </div>
               </div>
