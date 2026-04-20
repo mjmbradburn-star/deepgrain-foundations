@@ -33,11 +33,10 @@ export const Hero = () => (
           Work with<br />the grain.
         </h1>
         <p className="text-cream mt-10 max-w-[560px] text-xl md:text-2xl leading-snug font-medium">
-          Operating consultancy for founders and People leaders building AI-native organisations.
+          Every organisation has a grain. Read it, and the work flows. Cut against it, and nothing holds.
         </p>
         <p className="hidden md:block text-cream/75 mt-5 max-w-[520px] text-base md:text-lg leading-relaxed">
-          Strategy at the top. Enablement and training across the team. Agents and
-          automations in the workflow. Built function by function, top to bottom.
+          We read yours, then build the strategy, the agentic systems, and the people who can keep evolving them.
         </p>
         <div className="fade-in-up fade-in-up-3 mt-10 flex flex-wrap items-center gap-6">
           <PillButton href={AIOI_URL} variant="filled" external>
