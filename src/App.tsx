@@ -18,6 +18,7 @@ const IntelligenceCategory = lazy(() => import("./pages/IntelligenceCategory"));
 const PeopleOps = lazy(() => import("./pages/PeopleOps"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
+const Enablement = lazy(() => import("./pages/Enablement"));
 
 const queryClient = new QueryClient();
 
