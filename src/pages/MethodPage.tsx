@@ -56,7 +56,7 @@ const MethodPage = () => (
               The org chart isn&apos;t how decisions get made. The process documentation
               isn&apos;t how work flows. The strategy deck isn&apos;t what drives outcomes.
             </p>
-            <p>
+            <p className="hidden md:block">
               Underneath all of it is a grain. The real pattern of how this
               organisation thinks, moves, decides, and delivers. We read it first.
               We talk to the people doing the work. We watch where energy flows
@@ -83,7 +83,7 @@ const MethodPage = () => (
               designed around how this specific place actually works, not
               borrowed from a playbook that worked somewhere else.
             </p>
-            <p>
+            <p className="hidden md:block">
               The carpenter knows the wood will split if you cut against the
               grain. So do we. We build alongside your people, in your tools,
               with your context. Then we hand it over.
@@ -110,7 +110,7 @@ const MethodPage = () => (
               well with AI. Structures that hold as you grow. The clarity to
               make hard decisions without losing what makes the place good.
             </p>
-            <p>
+            <p className="hidden md:block">
               Two months after the engagement ends, our champions are still
               building. They have extended the work into places we never touched.
               That&apos;s the test. Not what you have on day one, but what you still

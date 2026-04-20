@@ -65,7 +65,7 @@ const About = () => (
                 introductory call. That&apos;s not a methodology. It&apos;s pattern
                 recognition built from real exposure.
               </p>
-              <p>
+              <p className="hidden md:block">
                 Deepgrain exists because most consulting work is designed to be
                 seen, not to last. The carpenter builds furniture that fits the
                 room and survives decades of use. Everyone else is building
@@ -106,7 +106,7 @@ const About = () => (
               What once required a team of consultants now happens faster, with
               more precision, and with less overhead.
             </p>
-            <p>
+            <p className="hidden md:block">
               This isn&apos;t a claim about what&apos;s possible. It&apos;s the model built,
               tested, and run on our own operations before recommending it to
               anyone else.
@@ -141,8 +141,11 @@ const About = () => (
           </div>
           <BrassRule className="my-16" />
           <div className="grid md:grid-cols-2 gap-12">
-            {testimonials.map((t) => (
-              <blockquote key={t.attribution}>
+            {testimonials.map((t, i) => (
+              <blockquote
+                key={t.attribution}
+                className={i >= 1 ? "hidden md:block" : undefined}
+              >
                 <p className="font-display italic text-2xl text-cream leading-snug">&ldquo;{t.quote}&rdquo;</p>
                 <footer className="mt-4 text-brass text-xs uppercase tracking-[0.15em]">
                   {t.attribution}

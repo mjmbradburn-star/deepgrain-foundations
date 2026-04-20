@@ -22,7 +22,7 @@ export const OperatingProof = () => (
             built specifically for this work. What once required a team now
             happens faster, more precisely, and without the overhead.
           </p>
-          <p>
+          <p className="hidden md:block">
             This isn&apos;t a selling point. It&apos;s how the work gets done,
             and it&apos;s proof, because we built it for ourselves first.
           </p>
@@ -42,7 +42,7 @@ export const OperatingProof = () => (
                 <AnimatedNumber value={s.value} suffix={s.suffix} duration={1600} />
               </div>
               <Eyebrow className="text-cream mt-4">{s.label}</Eyebrow>
-              <p className="mt-3 text-cream/70 max-w-sm">{s.sub}</p>
+              <p className="hidden md:block mt-3 text-cream/70 max-w-sm">{s.sub}</p>
             </div>
           </ScrollReveal>
         ))}

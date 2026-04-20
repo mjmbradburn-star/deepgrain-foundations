@@ -29,7 +29,9 @@ export const CaseStudyCard = ({ study, variant }: Props) => {
 
         <ScrollReveal delay={120}>
           <div className={cn("mt-10 space-y-5 max-w-2xl leading-relaxed text-lg", v.subtle)}>
-            {study.body.map((p, i) => <p key={i}>{p}</p>)}
+            {study.body.map((p, i) => (
+              <p key={i} className={i >= 1 ? "hidden md:block" : undefined}>{p}</p>
+            ))}
           </div>
         </ScrollReveal>
 
@@ -65,7 +67,7 @@ export const CaseStudyCard = ({ study, variant }: Props) => {
 
         {study.outcomes && (
           <ScrollReveal delay={300}>
-            <div className={cn("mt-12 border-t pt-8 max-w-2xl space-y-2 text-sm", v.rule, v.subtle)}>
+            <div className={cn("hidden md:block mt-12 border-t pt-8 max-w-2xl space-y-2 text-sm", v.rule, v.subtle)}>
               {study.outcomes.map((o) => (
                 <p key={o} className="text-brass/90">{o}</p>
               ))}

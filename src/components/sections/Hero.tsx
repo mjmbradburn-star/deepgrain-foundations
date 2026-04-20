@@ -35,7 +35,7 @@ export const Hero = () => (
         <p className="text-cream mt-10 max-w-[560px] text-xl md:text-2xl leading-snug font-medium">
           Operating consultancy for founders and People leaders building AI-native organisations.
         </p>
-        <p className="text-cream/75 mt-5 max-w-[520px] text-base md:text-lg leading-relaxed">
+        <p className="hidden md:block text-cream/75 mt-5 max-w-[520px] text-base md:text-lg leading-relaxed">
           Strategy at the top. Enablement and training across the team. Agents and
           automations in the workflow. Built function by function, top to bottom.
         </p>
