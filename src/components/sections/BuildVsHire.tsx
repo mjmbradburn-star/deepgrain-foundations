@@ -125,12 +125,12 @@ export const BuildVsHire = () => {
 
         <ScrollReveal delay={200}>
           <p className="mt-12 max-w-2xl text-sm text-body/60 italic leading-relaxed">
-            Indicative only. Hire assumes a mid-level London Ops salary loaded
-            with NI, pension, tooling and amortised onboarding. Agent assumes
-            an £18k build amortised across three years, plus £6k/year for
-            tokens, monitoring and periodic improvement. The agent does not
-            replace a human — it removes a hire that would otherwise have been
-            needed for the same workload.
+            Indicative only. Hire assumes a mid-level London Ops salary
+            (~£80k base) loaded with NI, pension, tooling and amortised
+            onboarding. Agent assumes an £18k build amortised across three
+            years, plus £12k/year for tokens, monitoring and periodic
+            improvement. The agent does not replace a human — it removes a
+            hire that would otherwise have been needed for the same workload.
           </p>
         </ScrollReveal>
       </div>
