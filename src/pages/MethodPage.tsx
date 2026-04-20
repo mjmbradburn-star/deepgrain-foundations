@@ -54,16 +54,16 @@ const MethodPage = () => (
           </h2>
           <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
             <p>
-              Most consulting starts with the org chart. We start somewhere else.
-              The org chart isn&apos;t how decisions get made. The process documentation
-              isn&apos;t how work flows. The strategy deck isn&apos;t what drives outcomes.
+              Most consulting starts with the org chart. We start somewhere
+              else. The org chart is rarely how decisions actually get made,
+              and the strategy deck is rarely what drives the outcome.
             </p>
             <p className="hidden md:block">
               Underneath all of it is a grain. The real pattern of how this
-              organisation thinks, moves, decides, and delivers. We read it first.
-              We talk to the people doing the work. We watch where energy flows
-              and where it stalls. We find the fractures forming before anyone
-              has named them. And only then do we build.
+              organisation moves and decides. We read it first. We talk to
+              the people doing the work. We watch where energy flows and
+              where it stalls. We find the fractures forming before anyone
+              has named them. Only then do we build.
             </p>
           </div>
         </ScrollReveal>
