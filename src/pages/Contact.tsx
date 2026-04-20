@@ -7,7 +7,7 @@ import { PageMeta } from "@/components/seo/PageMeta";
 const Contact = () => (
   <section className="bg-green text-cream min-h-screen pt-40 pb-32">
     <PageMeta
-      title="Contact — Deepgrain"
+      title="Contact | Deepgrain"
       description="Start a conversation with Deepgrain. If you have an organisation worth getting right, write to Matt Webb directly."
       path="/contact"
     />

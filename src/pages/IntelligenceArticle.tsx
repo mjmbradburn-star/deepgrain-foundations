@@ -50,7 +50,7 @@ const IntelligenceArticle = () => {
   return (
     <>
       <Helmet>
-        <title>{f.title} — Deepgrain Intelligence</title>
+        <title>{f.title} | Deepgrain Intelligence</title>
         <meta name="description" content={f.description} />
         <meta name="keywords" content={f.keywords?.join(", ")} />
         <link rel="canonical" href={url} />

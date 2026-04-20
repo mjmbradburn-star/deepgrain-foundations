@@ -19,7 +19,7 @@ const testimonials = [
 const About = () => (
   <>
     <PageMeta
-      title="About Matt Webb — Deepgrain"
+      title="About Matt Webb | Deepgrain"
       description="Matt Webb leads Deepgrain. Background, philosophy, and references from founders and operators across AI-native, defence, fintech, transit, and climate companies."
       path="/about"
       jsonLd={{

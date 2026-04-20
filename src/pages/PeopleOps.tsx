@@ -18,7 +18,7 @@ const PeopleOps = () => {
   const collectionLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "The People Ops AI Brain — Deepgrain Intelligence",
+    name: "The People Ops AI Brain | Deepgrain Intelligence",
     description:
       "From prompts to systems: building AI-powered People Operations. Frameworks, governance, and the craft of working with AI inside People teams.",
     url,
@@ -34,13 +34,13 @@ const PeopleOps = () => {
   return (
     <>
       <Helmet>
-        <title>People Ops AI Brain — Deepgrain Intelligence</title>
+        <title>People Ops AI Brain | Deepgrain Intelligence</title>
         <meta
           name="description"
           content="From prompts to systems: building AI-powered People Operations. A track for People leaders moving from individual experiments to operating leverage."
         />
         <link rel="canonical" href={url} />
-        <meta property="og:title" content="People Ops AI Brain — Deepgrain Intelligence" />
+        <meta property="og:title" content="People Ops AI Brain | Deepgrain Intelligence" />
         <meta
           property="og:description"
           content="From prompts to systems: building AI-powered People Operations."
