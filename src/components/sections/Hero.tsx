@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PillButton } from "@/components/ui/PillButton";
+import { AIOI_URL } from "@/lib/aioi";
 
 const stagger = (i: number) => ({
   initial: { opacity: 0, y: 24 },
