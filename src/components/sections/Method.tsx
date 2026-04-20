@@ -34,10 +34,9 @@ export const Method = () => (
           <p className="mt-6 text-cream/75 leading-relaxed text-lg">
             Read · Craft · Scale is how we work across{" "}
             <span className="text-brass font-medium">three levels of change</span>
-            . Agents partner with your people on the repeatable work, and we
-            coach the champions who keep building after we leave. The full
-            method — and a live model of what it could be worth in your
-            function — sits one click away.
+            . Agents take the repeatable work. Your champions learn to build
+            and extend them after we leave. The full method, and a live model
+            of what it could be worth in your function, sits one click away.
           </p>
           <div className="mt-10 flex flex-col items-start gap-5">
             <PillButton href="/method" variant="filled">

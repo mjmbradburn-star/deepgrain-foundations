@@ -13,8 +13,8 @@ const variants: Array<"linen" | "walnut" | "green"> = ["linen", "walnut", "linen
 const Work = () => (
   <>
     <PageMeta
-      title="Work — Case studies | Deepgrain"
-      description="Operating consultancy in practice: case studies across defence tech, financial data, transit and mobility, climate, and AI-native companies."
+      title="Work · Case studies | Deepgrain"
+      description="Case studies from our consulting work across defence tech, financial data, transit and mobility, climate, and AI-native companies."
       path="/work"
     />
     <section className="bg-green text-cream pt-40 pb-20">
@@ -25,8 +25,8 @@ const Work = () => (
             Engagements that left something behind.
           </h1>
           <p className="mt-8 text-cream/80 max-w-2xl leading-relaxed text-lg">
-            A small set of organisations who chose to understand themselves
-            first. Each engagement built to compound long after we'd left.
+            A small set of organisations who chose to read themselves first.
+            Each engagement built to compound long after we'd left.
           </p>
         </ScrollReveal>
       </div>
@@ -68,7 +68,7 @@ const Work = () => (
             source="work"
             variant="light"
             heading="Field notes from the work."
-            description="A small dispatch, a few times a quarter. Patterns we keep seeing across operating systems, leadership, and the long arc of building organisations that hold."
+            description="A short dispatch, a few times a quarter. Patterns we keep seeing in how organisations actually run."
           />
         </ScrollReveal>
       </div>
