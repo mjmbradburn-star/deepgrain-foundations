@@ -42,7 +42,7 @@ export const OperatingProof = () => (
                 <AnimatedNumber value={s.value} suffix={s.suffix} duration={1600} />
               </div>
               <Eyebrow className="text-cream mt-4">{s.label}</Eyebrow>
-              <p className="mt-3 text-cream/70 max-w-sm">{s.sub}</p>
+              <p className="hidden md:block mt-3 text-cream/70 max-w-sm">{s.sub}</p>
             </div>
           </ScrollReveal>
         ))}
