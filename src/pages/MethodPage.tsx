@@ -105,17 +105,17 @@ const MethodPage = () => (
           </h2>
           <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
             <p>
-              Agents take the repeatable, low-judgment work. People are coached
-              to design, run, and extend those agents — your champions. The
-              capability stays in the team, not in a vendor.{" "}
+              Agents take the repeatable, low-judgment work. Your champions
+              learn to design, run, and extend them. The capability stays in
+              the team, not in a vendor.{" "}
               <Link to="/enablement" className="text-brass underline-offset-4 hover:underline">
                 See how enablement works →
               </Link>
             </p>
             <p className="hidden md:block">
-              This is not a replacement programme. It is a training programme
-              that happens to ship working systems alongside it. The hours we
-              reclaim go back to your people for the work only they can do.
+              This is a training programme that happens to ship working
+              systems alongside it. The hours we reclaim go back to your
+              people for the work only they can do.
             </p>
           </div>
         </ScrollReveal>
