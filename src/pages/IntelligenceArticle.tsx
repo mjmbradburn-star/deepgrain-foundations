@@ -26,7 +26,10 @@ const IntelligenceArticle = () => {
   const related = getRelatedArticles(slug, 3);
   const url = `https://deepgrain.ai/intelligence/${f.slug}`;
   const heroImage = getHeroImage(f.slug);
-  const ogImage = heroImage ? `https://deepgrain.ai${heroImage.src}` : undefined;
+  // Bespoke 1200x630 OG card per article (hero art + title overlay) lives in
+  // /public/og/intelligence/. Falls back to the hero JPEG only if the OG file
+  // isn't generated yet for some reason.
+  const ogImage = `https://deepgrain.ai/og/intelligence/${f.slug}.jpg`;
 
   const articleLd = {
     "@context": "https://schema.org",
