@@ -1,14 +1,38 @@
 
 ## Goal
-Visually verify that the recent Navigation and SiteShell changes (forced opaque nav on /method and /enablement, conditional `pt-10` under sub-nav) didn't regress the homepage Method teaser link, the Work outcome band, or the /method and /enablement pages themselves.
+Ensure any anchor link or programmatic scroll to a `<section>` on `/method` or `/enablement` lands below the fixed primary nav + sub-nav, not underneath them.
 
-## Steps
-1. Desktop (1366×768): visit `/`, scroll to Method section, screenshot. Confirm both CTAs render (filled pill + "Or see how we train your team" link).
-2. Same viewport: visit `/work`, scroll to the walnut outcome band above the email capture, screenshot. Confirm layout and link.
-3. Visit `/method` and `/enablement`, screenshot top of each. Confirm sub-nav sits flush, hero clears it, no background bleed.
-4. Mobile (390×844): repeat the same four routes, screenshot each relevant area.
-5. Click the homepage "Or see how we train your team" link and the Work outcome band link to confirm both land on `/enablement`.
+## Fixed-bar heights
+- Primary nav: `h-24` (96px) mobile, `h-28` (112px) `md+`
+- Sub-nav: `h-10` (40px), positioned at `top-24` / `md:top-28`
+- Combined clearance needed: **136px** mobile, **152px** desktop
 
-## Notes
-- Pure verification. No code changes expected.
-- If anything renders incorrectly (overflow, clipped hero, broken link, sub-nav misalignment), I'll stop and report before fixing.
+## Approach
+Add a small CSS rule scoped to the two routes that applies `scroll-margin-top` to every `<section>` inside `<main>`. Cleaner than touching every section in both pages.
+
+Two viable spots:
+1. **`src/index.css`** — add a route-agnostic utility class, then apply via a wrapper.
+2. **`SiteShell.tsx`** — add a className to `<main>` when `hasSubnav`, with a Tailwind arbitrary variant targeting child sections.
+
+Going with option 2, one-line change:
+
+```tsx
+<main
+  className={cn(
+    "flex-1",
+    hasSubnav && "pt-10 [&_section]:scroll-mt-36 md:[&_section]:scroll-mt-[152px]"
+  )}
+>
+```
+
+- `scroll-mt-36` = 144px (covers 136px mobile with 8px breathing room)
+- `md:scroll-mt-[152px]` = exact desktop clearance
+
+## Files
+- Edited: `src/components/layout/SiteShell.tsx` (one className addition)
+
+## Why this is enough
+- CSS-only, no JS.
+- Scoped to routes that have the sub-nav (won't affect other pages).
+- Applies to every current and future `<section>` on both pages automatically.
+- No regression risk to layout — `scroll-margin-top` only affects scroll landing position, not rendering.
