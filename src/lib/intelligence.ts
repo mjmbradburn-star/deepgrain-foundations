@@ -1,3 +1,5 @@
+import { lazy, type ComponentType, type LazyExoticComponent } from "react";
+
 export type Track = "deepgrain" | "people-ops";
 
 export type CategorySlug =
@@ -50,13 +52,21 @@ export interface ArticleFrontmatter {
 
 export interface Article {
   frontmatter: ArticleFrontmatter;
-  Component: React.ComponentType;
+  /** Lazy-loaded MDX component — only fetched when an article page renders. */
+  Component: LazyExoticComponent<ComponentType>;
 }
 
-const modules = import.meta.glob<{
-  default: React.ComponentType;
-  frontmatter: ArticleFrontmatter;
-}>("../content/intelligence/**/*.mdx", { eager: true });
+// Eager-load ONLY frontmatter from each MDX file. The compiled JSX body is
+// pulled in lazily via `lazyModules` below, keeping article HTML out of the
+// initial bundle (and out of any page that just lists titles).
+const frontmatterModules = import.meta.glob<{ frontmatter: ArticleFrontmatter }>(
+  "../content/intelligence/**/*.mdx",
+  { eager: true, import: "frontmatter" }
+);
+
+const lazyModules = import.meta.glob<{ default: ComponentType }>(
+  "../content/intelligence/**/*.mdx"
+);
 
 // Eager-load all People Ops hero images and key them by slug
 const heroImageModules = import.meta.glob<{ default: string }>(
@@ -82,11 +92,19 @@ const PEOPLE_OPS_CATEGORIES: CategorySlug[] = [
 const inferTrack = (f: ArticleFrontmatter): Track =>
   f.track ?? (PEOPLE_OPS_CATEGORIES.includes(f.category) ? "people-ops" : "deepgrain");
 
-export const ARTICLES: Article[] = Object.values(modules)
-  .map((m) => ({
-    frontmatter: { ...m.frontmatter, track: inferTrack(m.frontmatter) },
-    Component: m.default,
-  }))
+export const ARTICLES: Article[] = Object.entries(frontmatterModules)
+  .map(([path, mod]) => {
+    // The frontmatter glob returns the frontmatter export directly when
+    // `import: "frontmatter"` is used. Vite types it as { frontmatter } but
+    // the runtime value is the frontmatter object itself.
+    const fm = (mod as unknown as ArticleFrontmatter & { frontmatter?: ArticleFrontmatter }).frontmatter
+      ?? (mod as unknown as ArticleFrontmatter);
+    const loader = lazyModules[path];
+    return {
+      frontmatter: { ...fm, track: inferTrack(fm) },
+      Component: lazy(loader),
+    };
+  })
   .sort(
     (a, b) =>
       new Date(b.frontmatter.publishedAt).getTime() -
