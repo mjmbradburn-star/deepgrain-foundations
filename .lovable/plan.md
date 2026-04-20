@@ -1,13 +1,17 @@
 
-The warning likely comes from `AnimatedNumber` being passed a `ref` somewhere (or used in a context expecting one). Either way, wrapping it in `React.forwardRef` is cheap and silences it.
+The user wants to publish. This is a one-click action they perform themselves via the Publish button — I can't trigger a deploy from here.
 
-## Change
+## What to tell them
 
-Update `src/components/ui/AnimatedNumber.tsx`:
+Point them at the Publish button on both desktop and mobile, and remind them frontend changes require clicking "Update" in the dialog (backend changes already deploy automatically, but this batch is purely frontend).
 
-- Convert the named export from a plain function component to `React.forwardRef<HTMLSpanElement, AnimatedNumberProps>`.
-- Merge the forwarded ref with the existing internal `ref` (used for IntersectionObserver) via a small `setRefs` helper, so both the consumer's ref and the internal observer ref point to the same `<span>`.
-- Add a `displayName = "AnimatedNumber"` for clean React DevTools output.
-- No prop or behaviour changes. No other files touched.
+## Steps
 
-That's it — small, surgical, no regressions expected.
+1. **Desktop**: Click **Publish** in the top-right of the editor → click **Update** in the dialog.
+2. **Mobile**: In Preview mode, tap the **…** button in the bottom-right → **Publish** → **Update**.
+
+Once updated, the animated counters on the homepage and the Value Visualiser + Build vs Hire blocks on `/method` will be live at:
+- https://deepgrain-foundations.lovable.app
+- https://deepgrain.ai
+
+No code changes from me — this is yours to click.
