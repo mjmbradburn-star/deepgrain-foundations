@@ -68,7 +68,7 @@ const Work = () => (
             source="work"
             variant="light"
             heading="Field notes from the work."
-            description="A small dispatch, a few times a quarter. Patterns we keep seeing across operating systems, leadership, and the long arc of building organisations that hold."
+            description="A short dispatch, a few times a quarter. Patterns we keep seeing in how organisations actually run."
           />
         </ScrollReveal>
       </div>
