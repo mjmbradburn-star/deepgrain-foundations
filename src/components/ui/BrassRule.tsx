@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface BrassRuleProps {
@@ -5,10 +6,14 @@ interface BrassRuleProps {
   width?: string;
 }
 
-export const BrassRule = ({ className, width = "60px" }: BrassRuleProps) => (
-  <div
-    className={cn("h-px bg-brass", className)}
-    style={{ width }}
-    aria-hidden="true"
-  />
+export const BrassRule = forwardRef<HTMLDivElement, BrassRuleProps>(
+  ({ className, width = "60px" }, ref) => (
+    <div
+      ref={ref}
+      className={cn("h-px bg-brass", className)}
+      style={{ width }}
+      aria-hidden="true"
+    />
+  ),
 );
+BrassRule.displayName = "BrassRule";
