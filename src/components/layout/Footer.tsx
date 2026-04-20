@@ -36,6 +36,14 @@ export const Footer = () => (
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                href="https://aioi.deepgrain.ai"
+                className="text-sm text-cream/70 hover:text-cream transition-colors"
+              >
+                AI Operating Index ↗
+              </a>
+            </li>
           </ul>
         </nav>
         <div>
