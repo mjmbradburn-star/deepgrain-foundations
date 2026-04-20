@@ -15,6 +15,7 @@ const Work = () => (
     <PageMeta
       title="Work · Case studies | Deepgrain"
       description="Case studies from our consulting work across defence tech, financial data, transit and mobility, climate, and AI-native companies."
+      image="https://deepgrain.ai/og-work.png"
       path="/work"
     />
     <section className="bg-green text-cream pt-40 pb-20">

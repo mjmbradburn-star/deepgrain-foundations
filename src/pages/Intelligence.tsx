@@ -40,6 +40,14 @@ const Intelligence = () => {
         <meta property="og:title" content="Intelligence | Deepgrain" />
         <meta
           property="og:description"
+          content="Field notes from running real organisations. Essays, case detail, and operating intelligence from Deepgrain."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://deepgrain.ai/og-intelligence.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://deepgrain.ai/og-intelligence.png" />
           content="Essays on organisational consultancy, AI operating systems, and the craft of operating leadership."
         />
         <meta property="og:url" content={url} />
