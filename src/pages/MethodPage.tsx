@@ -110,7 +110,7 @@ const MethodPage = () => (
               well with AI. Structures that hold as you grow. The clarity to
               make hard decisions without losing what makes the place good.
             </p>
-            <p>
+            <p className="hidden md:block">
               Two months after the engagement ends, our champions are still
               building. They have extended the work into places we never touched.
               That&apos;s the test. Not what you have on day one, but what you still
