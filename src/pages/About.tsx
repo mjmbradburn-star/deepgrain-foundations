@@ -141,8 +141,11 @@ const About = () => (
           </div>
           <BrassRule className="my-16" />
           <div className="grid md:grid-cols-2 gap-12">
-            {testimonials.map((t) => (
-              <blockquote key={t.attribution}>
+            {testimonials.map((t, i) => (
+              <blockquote
+                key={t.attribution}
+                className={i >= 1 ? "hidden md:block" : undefined}
+              >
                 <p className="font-display italic text-2xl text-cream leading-snug">&ldquo;{t.quote}&rdquo;</p>
                 <footer className="mt-4 text-brass text-xs uppercase tracking-[0.15em]">
                   {t.attribution}
