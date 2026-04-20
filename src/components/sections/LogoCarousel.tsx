@@ -36,7 +36,7 @@ const LogoItem = ({ client }: { client: Client }) => {
     return <Wordmark name={name} />;
   }
 
-  // Curated override: hand-picked asset, tinted to cream so it sits with the palette.
+  // Curated override: hand-picked asset. Optionally tinted to cream.
   if (override?.kind === "image") {
     return (
       <img
@@ -46,8 +46,12 @@ const LogoItem = ({ client }: { client: Client }) => {
         height={48}
         loading="lazy"
         decoding="async"
-        className="max-h-12 max-w-[120px] w-auto h-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ filter: "brightness(0) saturate(100%) invert(94%) sepia(8%) saturate(420%) hue-rotate(2deg) brightness(102%)" }}
+        className="max-h-12 max-w-[120px] w-auto h-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-500 rounded-md"
+        style={
+          override.tint
+            ? { filter: "brightness(0) saturate(100%) invert(94%) sepia(8%) saturate(420%) hue-rotate(2deg) brightness(102%)" }
+            : undefined
+        }
       />
     );
   }
