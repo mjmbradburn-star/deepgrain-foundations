@@ -32,10 +32,14 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          "react-vendor": ["react", "react-dom", "react/jsx-runtime", "react-router-dom"],
-          "query-vendor": ["@tanstack/react-query", "@tanstack/query-core"],
-          "motion-vendor": ["framer-motion"],
+        manualChunks: (id) => {
+          if (id.includes("node_modules")) {
+            if (/react-router|react-dom|\/react\//.test(id)) return "react-vendor";
+            if (id.includes("@tanstack")) return "query-vendor";
+            if (id.includes("framer-motion")) return "motion-vendor";
+            if (id.includes("@supabase")) return "supabase-vendor";
+            if (id.includes("react-helmet-async")) return "helmet-vendor";
+          }
         },
       },
     },
