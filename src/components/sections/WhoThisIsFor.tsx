@@ -1,21 +1,35 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
+import bg800Avif from "@/assets/sections/who-this-is-for-800.avif";
+import bg1200Avif from "@/assets/sections/who-this-is-for-1200.avif";
+import bg800Webp from "@/assets/sections/who-this-is-for-800.webp";
+import bg1200Webp from "@/assets/sections/who-this-is-for-1200.webp";
 
 export const WhoThisIsFor = () => (
   <section className="relative section-pad overflow-hidden">
     <div className="absolute inset-0">
-      <img
-        src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=35&fm=webp"
-        srcSet="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=640&q=35&fm=webp 640w, https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=35&fm=webp 1200w, https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=40&fm=webp 1600w"
-        sizes="(max-width: 768px) 100vw, 100vw"
-        alt=""
-        width={1600}
-        height={1067}
-        loading="lazy"
-        decoding="async"
-        className="w-full h-full object-cover"
-      />
+      <picture>
+        <source
+          type="image/avif"
+          srcSet={`${bg800Avif} 800w, ${bg1200Avif} 1200w`}
+          sizes="100vw"
+        />
+        <source
+          type="image/webp"
+          srcSet={`${bg800Webp} 800w, ${bg1200Webp} 1200w`}
+          sizes="100vw"
+        />
+        <img
+          src={bg1200Webp}
+          alt=""
+          width={1200}
+          height={800}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover"
+        />
+      </picture>
       <div className="absolute inset-0 bg-green/60" />
     </div>
     <div className="relative container-grain max-w-5xl">
