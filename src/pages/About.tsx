@@ -20,8 +20,13 @@ const About = () => (
     <section className="relative min-h-[90vh] flex items-end overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=2400&q=80"
+          src="https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=1600&q=70&fm=webp"
           alt=""
+          width={1600}
+          height={1067}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-green/60" />
