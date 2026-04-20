@@ -93,6 +93,30 @@ const MethodPage = () => (
       </div>
     </section>
 
+    {/* Empowerment beat */}
+    <section className="bg-linen text-body section-pad">
+      <div className="container-grain max-w-3xl">
+        <ScrollReveal>
+          <Eyebrow className="text-brass mb-4">The partnership</Eyebrow>
+          <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
+            Agents that partner. People who grow.
+          </h2>
+          <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
+            <p>
+              Agents take the repeatable, low-judgment work. People are coached
+              to design, run, and extend those agents — your champions. The
+              capability stays in the team, not in a vendor.
+            </p>
+            <p className="hidden md:block">
+              This is not a replacement programme. It is a training programme
+              that happens to ship working systems alongside it. The hours we
+              reclaim go back to your people for the work only they can do.
+            </p>
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
+
     {/* Build vs Hire — sits between Craft and Scale */}
     <BuildVsHire />
 
