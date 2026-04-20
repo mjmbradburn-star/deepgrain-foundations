@@ -51,7 +51,7 @@ export const WhoThisIsFor = () => (
               and won&apos;t get them to Series D. The operator running five systems
               that don&apos;t speak to each other and three more they don&apos;t need.
             </p>
-            <p>
+            <p className="hidden md:block">
               The problem is never the sector. It&apos;s never the size. It&apos;s that
               the way work actually happens has never been properly understood,
               so nothing built on top of it ever quite fits.
