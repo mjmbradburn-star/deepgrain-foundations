@@ -93,7 +93,12 @@ function buildSitemap(articles: Frontmatter[]): string {
 }
 
 function buildLlmsTxt(articles: Frontmatter[]): string {
-  const byCat = (slug: string) => articles.filter((a) => a.category === slug);
+  const today = new Date().toISOString().slice(0, 10);
+  // For llms.txt we want foundational-first reading order: oldest → newest within each category.
+  const ascArticles = [...articles].sort(
+    (a, b) => +new Date(a.publishedAt) - +new Date(b.publishedAt)
+  );
+  const byCat = (slug: string) => ascArticles.filter((a) => a.category === slug);
   const deepgrainCats = CATEGORIES.filter((c) => c.track === "deepgrain");
   const peopleOpsCats = CATEGORIES.filter((c) => c.track === "people-ops");
   const renderCat = (c: typeof CATEGORIES[number]) => `### ${c.name}
@@ -111,7 +116,14 @@ ${byCat(c.slug)
 
 > Organisational consultancy that reads the grain of how a company actually operates — then changes it without breaking what works. Read · Craft · Scale.
 
+Last updated: ${today}
+Articles: ${articles.length}
+Canonical: ${SITE}/llms.txt
+Sitemap: ${SITE}/sitemap.xml
+
 Deepgrain is led by Matt Webb. We work with founders and operating leaders building AI-native, defence, financial data, transit, and climate companies. Our practice combines diagnostic depth, craft-level intervention, and the discipline to scale interventions without breaking the operating grain.
+
+Articles within each category below are listed in foundational reading order (oldest first), so concepts build on each other.
 
 ## Core pages
 
