@@ -1,62 +1,68 @@
 
 ## Goal
 
-Replace the dense "Read · Craft · Scale" + "three levels of change" content on the homepage `Method` section with a tighter teaser that:
-1. Keeps a short hook ("Read · Craft · Scale" as a one-line promise, not three paragraphs).
-2. Showcases a **visual preview of the Value Visualiser sliders** from `/method` — the interactive ROI calculator — as the magnet.
-3. Drives a single clear CTA: *See what this is worth in your function →*.
+Weave a clear, repeated **"empowerment, not replacement"** thread through the site — specifically into the homepage Method teaser, the `/method` page narrative, and the Value Visualiser outputs — so a reader instantly understands the offering is about *partnering agents with people, training the team, and building lasting capability*, not headcount reduction.
 
-The full Read/Craft/Scale + three-levels content already lives on `/method`, so removing it from home is safe.
+## What's missing today
 
-## New homepage Method section structure
+Reviewing the current copy:
+- **`MethodPage.tsx`** — Read/Craft/Scale prose mentions "agents that remove friction without removing thought" and "teams who think well with AI", but it's a quiet line. The empowerment + training angle is implicit, not foregrounded.
+- **`ValueVisualiser.tsx`** — Outputs are *Hours reclaimed, FTE freed, Annual value, **Hires avoided***. "Hires avoided" reads as headcount-replacement language. There's no output that captures *capability built* or *people upskilled*.
+- **`Method.tsx` (homepage teaser)** — One-line promise, no mention of partnership/training.
+- **No section anywhere** explicitly names the training/coaching/champion model as a deliverable, even though `the-champion-model.mdx` is a core Intelligence piece.
 
-Walnut background, same vertical rhythm. Two-column on desktop, stacked on mobile.
+## Plan
 
-**Left column (copy, ~40%)**
-- Eyebrow: "The Method"
-- Headline (font-display, large): *"Read the grain. Build with it. Leave something that compounds."*
-- One short paragraph (2 sentences max): positions Read · Craft · Scale as the how, and teases the value model.
-- Brass-bold inline: **"three levels of change"** kept as the anchor phrase.
-- PillButton (filled, brass-prominent): *"See what it's worth in your function →"* → `/method`
+### 1. Reframe Value Visualiser outputs (`ValueVisualiser.tsx`)
 
-**Right column (visual teaser, ~60%)**
-A static, non-interactive **mock of the Value Visualiser** styled like a browser/app card:
-- Linen card with rounded corners, subtle shadow, brass border accent
-- Three slider rows (Team size, Hours/week lost, Loaded hourly cost) rendered as static visuals — track + brass range fill + thumb dot, no interactivity, no Radix
-- One headline output below: e.g. "Annual value · £1,209,600" in large brass display type
-- Small label "Directional model · live on /method"
-- Subtle hover lift + cursor-pointer wrapping the whole card as a link to `/method`
-- A faint "click to explore" affordance (small arrow chip top-right)
+Replace **"Hires avoided"** with **"People upskilled"** — calculated as `team` (everyone in the function gets coached/enabled). Reframes the model from *cost saved* to *capability built*.
 
-This makes the teaser feel like a real screenshot of the tool without requiring the user to interact on the homepage — fewer decisions, clearer pull-through.
+Rework the outputs grid to lead with capability:
+- *Hours/week reclaimed* (kept) — what agents handle
+- *FTE freed for higher-judgment work* (renamed from "FTE freed") — what people do instead
+- *People upskilled* (new, replaces "Hires avoided") — = team size
+- *Annual value created* (renamed from "Annual value")
 
-## Implementation
+Update the closing italic caveat to explicitly say: *"Reclaimed hours go back to your people for higher-judgment work — this is a partnership model, not a replacement one."*
 
-**File rewritten:**
-- `src/components/sections/Method.tsx` — full replacement. Drop the `levels`, `movements`, BrassRule layout. Build the new two-column teaser + static slider mock inline (no new component file needed; ~120 lines).
+Also tweak the section sub-paragraph to lead with the partnership framing before the numbers.
 
-**No other files touched.** `ValueVisualiser` stays as-is on `/method`. `MethodPage.tsx` unchanged.
+### 2. Add an "Empowerment" beat to `MethodPage.tsx`
 
-## Static slider mock approach
+Insert a short, punchy section between **Craft** and **Build vs Hire** titled something like *"Agents that partner. People who grow."* — three-sentence statement on a linen/walnut alternating band that names:
+- Agents take the repeatable, low-judgment work.
+- People are coached to design, run, and extend those agents — your champions.
+- The capability stays in the team, not in a vendor.
 
-Pure divs + tailwind, no Radix:
-```
-<div class="track">
-  <div class="range" style="width: 32%" />
-  <div class="thumb" style="left: 32%" />
-</div>
-```
-Three rows with realistic preset values (e.g. 25 people / 8 hrs / £70) so the headline output number reads as a believable £1.2M figure — same maths as the real visualiser. This subtly previews the result the user will compute themselves on /method.
+This becomes the explicit empowerment anchor on the dedicated page.
 
-## Mobile
+Also subtly tighten the **Scale** section copy to mention the training/coaching outcome more directly ("the champions are still building" — already there, but lift it visually with a brass pull-quote or callout).
 
-- Stack: copy first, visual card second
-- Slider mock scales down; output number stays large and brass to anchor the eye
-- CTA full-width-ish, thumb-friendly
+### 3. Add one line to homepage `Method.tsx` teaser
+
+Inside the left-column paragraph, append a second sentence that names partnership + training in one breath, e.g.:
+
+> *"Agents partner with your people on the repeatable work. We coach the champions who keep building after we leave."*
+
+Keeps the teaser tight (still 2 sentences total in that paragraph) but plants the empowerment flag before the click-through.
+
+### 4. Update the Visualiser teaser card on homepage
+
+Change the static "Annual value · £1,209,600" headline output on the teaser card to a **two-stat** layout:
+- *People upskilled · 25*
+- *Annual value · £1.2M*
+
+So the empowerment number sits **first**, anchoring the click-through on capability rather than cost.
+
+## Files to change
+
+- `src/components/sections/ValueVisualiser.tsx` — rename/replace outputs, update copy.
+- `src/pages/MethodPage.tsx` — insert "Agents that partner. People who grow." section between Craft and BuildVsHire.
+- `src/components/sections/Method.tsx` — extend left-column paragraph; replace single-stat footer with two-stat (People upskilled + Annual value).
+
+No new components, no new dependencies, no schema changes.
 
 ## Why this works
 
-- Removes ~2 screens of repeated content from home (Read/Craft/Scale story already on /method)
-- Replaces it with a *thing to click* — a visual that promises a personalised number
-- Single CTA, single destination, no analysis paralysis
-- Keeps the brand language ("grain", "three levels of change") in one tight paragraph rather than three sections
+- The **language shift** (upskilled vs hires avoided, partnership vs replacement) does the heavy lifting in seconds — anyone scanning the visualiser sees capability, not redundancy.
+- The dedicated **empowerment band on `/method`** gives the philosophy a home so prospects can quote
