@@ -8,8 +8,10 @@ const items = [
 
 /**
  * Section sub-nav for the Method ↔ Enablement pair. Renders only on those
- * routes. Sits inside the hero (which is bg-green and pt-40), so it visually
- * attaches to the primary nav at rest without needing to be fixed.
+ * routes. Fixed under the primary nav, same green palette, low height.
+ *
+ * Note: pages on these routes use pt-40 (160px) which clears the 96/112px
+ * primary nav + 40px sub-nav on every viewport.
  */
 export const MethodSubnav = () => {
   const { pathname } = useLocation();
@@ -17,7 +19,7 @@ export const MethodSubnav = () => {
   if (!show) return null;
 
   return (
-    <div className="absolute top-24 md:top-28 inset-x-0 z-30 border-t border-cream/10">
+    <div className="fixed top-24 md:top-28 inset-x-0 z-40 bg-green/95 backdrop-blur-md border-t border-cream/10">
       <div className="container-grain flex items-center gap-8 h-10">
         <span
           className="hidden sm:inline font-sans uppercase text-[10px] text-cream/50"
