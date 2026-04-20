@@ -77,6 +77,23 @@ const About = () => (
       </div>
     </section>
 
+    {/* The belief — moved here from the homepage so the line still lives somewhere */}
+    <section className="bg-cream text-walnut py-24 md:py-32 border-y border-walnut/10">
+      <div className="container-grain max-w-4xl text-center">
+        <ScrollReveal>
+          <Eyebrow className="text-walnut/60 mb-8">The belief</Eyebrow>
+          <p
+            className="font-display italic font-light text-walnut text-3xl sm:text-4xl md:text-5xl lg:text-[52px] leading-tight text-balance"
+            style={{ letterSpacing: "-0.01em" }}
+          >
+            &ldquo;Strategy at the top. Enablement and training across the team.
+            Agents and automations in the workflow. Built function by function,
+            top to bottom.&rdquo;
+          </p>
+        </ScrollReveal>
+      </div>
+    </section>
+
     <section className="bg-linen text-body section-pad">
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
