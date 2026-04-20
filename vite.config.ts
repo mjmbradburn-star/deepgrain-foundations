@@ -36,7 +36,6 @@ export default defineConfig(({ mode }) => ({
           if (id.includes("node_modules")) {
             if (/react-router|react-dom|\/react\//.test(id)) return "react-vendor";
             if (id.includes("@tanstack")) return "query-vendor";
-            if (id.includes("framer-motion")) return "motion-vendor";
             if (id.includes("@supabase")) return "supabase-vendor";
             if (id.includes("react-helmet-async")) return "helmet-vendor";
           }
