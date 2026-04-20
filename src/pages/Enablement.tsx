@@ -6,6 +6,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { Invitation } from "@/components/sections/Invitation";
+import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 
 const upskilled = [
   {
@@ -104,6 +105,33 @@ const Enablement = () => (
             the repeatable work. People learn to design, run, and extend those agents. When
             we leave, the capability stays in the team, not in a vendor.
           </p>
+
+          <dl className="mt-14 grid gap-10 sm:grid-cols-3 border-t border-cream/15 pt-10 max-w-2xl">
+            <div>
+              <dt className="font-display font-semibold text-brass text-5xl md:text-6xl leading-none tabular-nums">
+                <AnimatedNumber value={37} />
+              </dt>
+              <dd className="mt-3 text-[11px] uppercase tracking-[0.2em] text-cream/70 font-semibold">
+                Champions trained
+              </dd>
+            </div>
+            <div>
+              <dt className="font-display font-semibold text-brass text-5xl md:text-6xl leading-none tabular-nums">
+                <AnimatedNumber value={11} />
+              </dt>
+              <dd className="mt-3 text-[11px] uppercase tracking-[0.2em] text-cream/70 font-semibold">
+                Functions reshaped
+              </dd>
+            </div>
+            <div>
+              <dt className="font-display font-semibold text-brass text-5xl md:text-6xl leading-none tabular-nums">
+                <AnimatedNumber value={0} />
+              </dt>
+              <dd className="mt-3 text-[11px] uppercase tracking-[0.2em] text-cream/70 font-semibold">
+                Vendor lock-in
+              </dd>
+            </div>
+          </dl>
         </ScrollReveal>
       </div>
     </section>
