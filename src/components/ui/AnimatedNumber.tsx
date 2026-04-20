@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
 interface AnimatedNumberProps {
   value: number;
@@ -22,7 +22,7 @@ const prefersReducedMotion = () =>
  * Counts up to `value` with an ease-out curve. Triggers on scroll into view by default,
  * or re-animates on every value change when `live` is true.
  */
-export const AnimatedNumber = ({
+export const AnimatedNumber = forwardRef<HTMLSpanElement, AnimatedNumberProps>(({
   value,
   duration = 1400,
   decimals = 0,
@@ -31,7 +31,7 @@ export const AnimatedNumber = ({
   live = false,
   className,
   formatter,
-}: AnimatedNumberProps) => {
+}, forwardedRef) => {
   const [display, setDisplay] = useState(live ? value : 0);
   const ref = useRef<HTMLSpanElement>(null);
   const startedRef = useRef(false);
@@ -98,11 +98,22 @@ export const AnimatedNumber = ({
         maximumFractionDigits: decimals,
       });
 
+  const setRefs = (node: HTMLSpanElement | null) => {
+    ref.current = node;
+    if (typeof forwardedRef === "function") {
+      forwardedRef(node);
+    } else if (forwardedRef) {
+      (forwardedRef as React.MutableRefObject<HTMLSpanElement | null>).current = node;
+    }
+  };
+
   return (
-    <span ref={ref} className={className}>
+    <span ref={setRefs} className={className}>
       {prefix}
       {formatted}
       {suffix}
     </span>
   );
-};
+});
+
+AnimatedNumber.displayName = "AnimatedNumber";
