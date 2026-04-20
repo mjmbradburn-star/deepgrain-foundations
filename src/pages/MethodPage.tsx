@@ -80,10 +80,10 @@ const MethodPage = () => (
           </h2>
           <div className="mt-10 space-y-6 text-cream/80 leading-relaxed text-lg">
             <p>
-              Human judgment and machine precision, working together from day one.
-              Agents that remove friction without removing thought. Systems
-              designed around how this specific place actually works, not
-              borrowed from a playbook that worked somewhere else.
+              Human judgment and machine precision, working together from day
+              one. Agents that remove friction without removing thought.
+              Systems designed around how this specific place actually works,
+              rather than borrowed from a playbook that worked somewhere else.
             </p>
             <p className="hidden md:block">
               The carpenter knows the wood will split if you cut against the
