@@ -14,8 +14,8 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "Defence Technology · Series B · ~200 employees · 12 week engagement",
     headline: "83 hours reclaimed.\nEvery week.",
     body: [
-      "A rapidly scaling defence technology company was experiencing the classic post Series B bottleneck. Manual processes couldn't keep pace with growth. Finance buried in AP and AR admin. People Ops fielding the same policy questions daily. Legal tracking contracts in spreadsheets.",
-      "The problem wasn't effort. It was that the way work actually happened had never been properly read, so nothing built on top of it ever quite fit.",
+      "A rapidly scaling defence technology company had hit the classic post Series B bottleneck. Manual processes couldn't keep pace with growth. Finance was buried in AP and AR admin. People Ops was fielding the same policy questions every day.",
+      "The effort was there. What had never been done was a proper read of how the work actually happened, so nothing built on top of it ever quite fit.",
     ],
     metrics: [
       { value: "60%", label: "Finance time reduction" },
