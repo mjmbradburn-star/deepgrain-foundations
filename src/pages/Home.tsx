@@ -10,6 +10,9 @@ const BeliefStatement = lazy(() =>
 const LogoCarousel = lazy(() =>
   import("@/components/sections/LogoCarousel").then((m) => ({ default: m.LogoCarousel }))
 );
+const WhatWeDo = lazy(() =>
+  import("@/components/sections/WhatWeDo").then((m) => ({ default: m.WhatWeDo }))
+);
 const OperatingProof = lazy(() =>
   import("@/components/sections/OperatingProof").then((m) => ({ default: m.OperatingProof }))
 );
@@ -43,6 +46,7 @@ const Home = () => (
     <ICPStrip />
     <Suspense fallback={<SectionFallback />}>
       <LogoCarousel background="green" />
+      <WhatWeDo />
       <BeliefStatement />
       <OperatingProof />
       <Method />
