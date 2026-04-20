@@ -48,10 +48,7 @@ const Intelligence = () => {
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://deepgrain.ai/og-intelligence.png" />
-          content="Essays on organisational consultancy, AI operating systems, and the craft of operating leadership."
-        />
         <meta property="og:url" content={url} />
-        <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
       </Helmet>
 
