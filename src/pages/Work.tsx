@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import { caseStudies } from "@/data/caseStudies";
 import { CaseStudyCard } from "@/components/sections/CaseStudyCard";
 import { LogoCarousel } from "@/components/sections/LogoCarousel";
