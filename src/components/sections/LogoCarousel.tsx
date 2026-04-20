@@ -33,6 +33,8 @@ const LogoItem = ({ name, domain }: { name: string; domain: string }) => {
     <img
       src={LOGO_SOURCES[sourceIndex](domain)}
       alt={`${name} logo`}
+      width={48}
+      height={48}
       onError={() => {
         if (sourceIndex < LOGO_SOURCES.length - 1) {
           setSourceIndex(sourceIndex + 1);
@@ -41,6 +43,7 @@ const LogoItem = ({ name, domain }: { name: string; domain: string }) => {
         }
       }}
       loading="lazy"
+      decoding="async"
       className="max-h-12 max-w-[120px] w-auto h-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500"
     />
   );
