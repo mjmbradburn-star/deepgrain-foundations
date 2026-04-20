@@ -1,5 +1,9 @@
 import finomLogo from "@/assets/client-logos/finom.png";
 import multiverseLogo from "@/assets/client-logos/multiverse.png";
+import masabiLogo from "@/assets/client-logos/masabi.png";
+import verticalAerospaceLogo from "@/assets/client-logos/vertical-aerospace.jpeg";
+import systemiqLogo from "@/assets/client-logos/systemiq.jpeg";
+import xyzRealityLogo from "@/assets/client-logos/xyz-reality.jpeg";
 
 export interface Client {
   name: string;
@@ -31,4 +35,8 @@ export const clients: Client[] = [
   { name: "Vestiaire Collective", domain: "vestiairecollective.com" },
   { name: "Pret a Manger", domain: "pret.com" },
   { name: "Fundapps", domain: "fundapps.co" },
+  { name: "Masabi", domain: "masabi.com", override: { kind: "image", src: masabiLogo } },
+  { name: "Vertical Aerospace", domain: "vertical-aerospace.com", override: { kind: "image", src: verticalAerospaceLogo } },
+  { name: "Systemiq", domain: "systemiq.earth", override: { kind: "image", src: systemiqLogo } },
+  { name: "XYZ Reality", domain: "xyzreality.com", override: { kind: "image", src: xyzRealityLogo } },
 ];
