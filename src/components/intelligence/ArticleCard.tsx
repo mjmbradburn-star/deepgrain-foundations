@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import type { Article } from "@/lib/intelligence";
-import { CATEGORIES } from "@/lib/intelligence";
+import { CATEGORIES, getHeroImage } from "@/lib/intelligence";
 
 interface ArticleCardProps {
   article: Article;
