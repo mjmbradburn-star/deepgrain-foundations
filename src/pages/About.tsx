@@ -65,7 +65,7 @@ const About = () => (
                 introductory call. That&apos;s not a methodology. It&apos;s pattern
                 recognition built from real exposure.
               </p>
-              <p>
+              <p className="hidden md:block">
                 Deepgrain exists because most consulting work is designed to be
                 seen, not to last. The carpenter builds furniture that fits the
                 room and survives decades of use. Everyone else is building
