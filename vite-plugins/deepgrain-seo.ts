@@ -32,7 +32,14 @@ interface Frontmatter {
   category: string;
   description: string;
   publishedAt: string;
+  author?: string;
+  readTime?: string;
   track?: string;
+}
+
+interface Article {
+  frontmatter: Frontmatter;
+  body: string;
 }
 
 const PEOPLE_OPS_CATEGORIES = new Set([
@@ -46,10 +53,10 @@ function inferTrack(f: Frontmatter): string {
   return f.track ?? (PEOPLE_OPS_CATEGORIES.has(f.category) ? "people-ops" : "deepgrain");
 }
 
-function readArticles(root: string): Frontmatter[] {
+function readArticles(root: string): Article[] {
   const dir = path.join(root, "src/content/intelligence");
   if (!fs.existsSync(dir)) return [];
-  const results: Frontmatter[] = [];
+  const results: Article[] = [];
   const walk = (d: string) => {
     for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
       const full = path.join(d, entry.name);
@@ -62,7 +69,12 @@ function readArticles(root: string): Frontmatter[] {
         try {
           const fm = new Function("return " + m[1])() as Frontmatter;
           fm.track = inferTrack(fm);
-          results.push(fm);
+          // Strip the frontmatter export and any import statements; keep the prose.
+          const body = src
+            .replace(/export const frontmatter = \{[\s\S]*?\n\};\s*/g, "")
+            .replace(/^import .*?;?\s*$/gm, "")
+            .trim();
+          results.push({ frontmatter: fm, body });
         } catch {
           /* ignore */
         }
@@ -70,10 +82,12 @@ function readArticles(root: string): Frontmatter[] {
     }
   };
   walk(dir);
-  return results.sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
+  return results.sort(
+    (a, b) => +new Date(b.frontmatter.publishedAt) - +new Date(a.frontmatter.publishedAt),
+  );
 }
 
-function buildSitemap(articles: Frontmatter[]): string {
+function buildSitemap(articles: Article[]): string {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
     ...STATIC_PAGES.map(
@@ -86,19 +100,20 @@ function buildSitemap(articles: Frontmatter[]): string {
     ),
     ...articles.map(
       (a) =>
-        `  <url>\n    <loc>${SITE}/intelligence/${a.slug}</loc>\n    <lastmod>${a.publishedAt}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
+        `  <url>\n    <loc>${SITE}/intelligence/${a.frontmatter.slug}</loc>\n    <lastmod>${a.frontmatter.publishedAt}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
     ),
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
 
-function buildLlmsTxt(articles: Frontmatter[]): string {
+function buildLlmsTxt(articles: Article[]): string {
   const today = new Date().toISOString().slice(0, 10);
   // For llms.txt we want foundational-first reading order: oldest → newest within each category.
   const ascArticles = [...articles].sort(
-    (a, b) => +new Date(a.publishedAt) - +new Date(b.publishedAt)
+    (a, b) => +new Date(a.frontmatter.publishedAt) - +new Date(b.frontmatter.publishedAt),
   );
-  const byCat = (slug: string) => ascArticles.filter((a) => a.category === slug);
+  const byCat = (slug: string) =>
+    ascArticles.filter((a) => a.frontmatter.category === slug).map((a) => a.frontmatter);
   const deepgrainCats = CATEGORIES.filter((c) => c.track === "deepgrain");
   const peopleOpsCats = CATEGORIES.filter((c) => c.track === "people-ops");
   const renderCat = (c: typeof CATEGORIES[number]) => `### ${c.name}
@@ -165,19 +180,61 @@ Email: matt@deepgrain.ai
 `;
 }
 
+function buildLlmsFullTxt(articles: Article[]): string {
+  const today = new Date().toISOString().slice(0, 10);
+  // Foundational-first: oldest → newest, grouped by category track.
+  const ascArticles = [...articles].sort(
+    (a, b) => +new Date(a.frontmatter.publishedAt) - +new Date(b.frontmatter.publishedAt),
+  );
+  const renderArticle = (a: Article) => {
+    const f = a.frontmatter;
+    return `---
+
+# ${f.title}
+
+URL: ${SITE}/intelligence/${f.slug}
+Category: ${f.category}
+Published: ${f.publishedAt}
+Author: ${f.author ?? "Matt Webb"}
+${f.readTime ? `Reading time: ${f.readTime}\n` : ""}
+${f.description}
+
+${a.body}
+`;
+  };
+
+  return `# Deepgrain — Full Intelligence Corpus
+
+> Full text of every Deepgrain Intelligence article, in foundational reading order. Optimised for LLM ingestion.
+
+Last updated: ${today}
+Articles: ${articles.length}
+Canonical: ${SITE}/llms-full.txt
+Index: ${SITE}/llms.txt
+Site: ${SITE}
+
+Author: Matt Webb. Publisher: Deepgrain Ltd.
+When citing, please link back to the canonical article URL listed under each piece.
+
+${ascArticles.map(renderArticle).join("\n")}`;
+}
+
 export function deepgrainSeoPlugin(): Plugin {
   const generate = (root: string, outDir: string) => {
     const articles = readArticles(root);
     const sitemap = buildSitemap(articles);
     const llms = buildLlmsTxt(articles);
+    const llmsFull = buildLlmsFullTxt(articles);
     fs.mkdirSync(outDir, { recursive: true });
     fs.writeFileSync(path.join(outDir, "sitemap.xml"), sitemap);
     fs.writeFileSync(path.join(outDir, "llms.txt"), llms);
+    fs.writeFileSync(path.join(outDir, "llms-full.txt"), llmsFull);
 
     const publicDir = path.join(root, "public");
     if (fs.existsSync(publicDir)) {
       fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemap);
       fs.writeFileSync(path.join(publicDir, "llms.txt"), llms);
+      fs.writeFileSync(path.join(publicDir, "llms-full.txt"), llmsFull);
     }
   };
 
