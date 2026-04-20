@@ -6,6 +6,21 @@ import { BrassRule } from "@/components/ui/BrassRule";
 // Read · Craft · Scale — the deeper method behind Diagnose · Build · Scale.
 // Lives on walnut so it visually separates from the linen WhatWeDo section,
 // and leans into the craft/reading language rather than restating services.
+const levels = [
+  {
+    label: "Organisation",
+    body: "Strategy, operating model, and the systems thinking that holds it all together.",
+  },
+  {
+    label: "Function",
+    body: "The agentic systems and workflows that let each team operate at a different order of magnitude.",
+  },
+  {
+    label: "Individual capability",
+    body: "Coaching the people who will keep evolving this long after we&rsquo;re gone.",
+  },
+];
+
 const movements = [
   {
     title: "Read",
