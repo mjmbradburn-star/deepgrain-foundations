@@ -1,38 +1,51 @@
 
 ## Goal
-Ensure any anchor link or programmatic scroll to a `<section>` on `/method` or `/enablement` lands below the fixed primary nav + sub-nav, not underneath them.
+Strip AI tells from the homepage Method section and the Work page. Same voice rules as `/enablement`: no em dashes, no tricolons, no "we don't X, we Y" flips, no "it's not X, it's Y", tighter and plainer.
 
-## Fixed-bar heights
-- Primary nav: `h-24` (96px) mobile, `h-28` (112px) `md+`
-- Sub-nav: `h-10` (40px), positioned at `top-24` / `md:top-28`
-- Combined clearance needed: **136px** mobile, **152px** desktop
+## Scope
 
-## Approach
-Add a small CSS rule scoped to the two routes that applies `scroll-margin-top` to every `<section>` inside `<main>`. Cleaner than touching every section in both pages.
+### 1. Homepage Method section — `src/components/sections/Method.tsx`
+Audit and rewrite:
+- Eyebrow / heading / subhead
+- The three step cards (Read, Craft, Scale) — titles and bodies
+- Any CTA copy
+- Keep the "Or see how we train your team" link wording (already approved last pass)
 
-Two viable spots:
-1. **`src/index.css`** — add a route-agnostic utility class, then apply via a wrapper.
-2. **`SiteShell.tsx`** — add a className to `<main>` when `hasSubnav`, with a Tailwind arbitrary variant targeting child sections.
+### 2. Work page — `src/pages/Work.tsx`
+Audit and rewrite:
+- Page hero (eyebrow, H1, subhead)
+- Any intro / framing copy above the case study grid
+- Case study card copy if it lives in the page (otherwise flag `src/data/caseStudies.ts` and `src/components/sections/CaseStudyCard.tsx`)
+- The walnut outcome band above the email capture
+- Email capture surrounding copy if present
 
-Going with option 2, one-line change:
+### 3. Data file — `src/data/caseStudies.ts`
+If case study titles, summaries, or outcome strings contain em dashes / tricolons / rhetorical flips, rewrite those too. Most likely culprits.
 
-```tsx
-<main
-  className={cn(
-    "flex-1",
-    hasSubnav && "pt-10 [&_section]:scroll-mt-36 md:[&_section]:scroll-mt-[152px]"
-  )}
->
-```
+## Voice rules (same as last pass)
+- No `—` anywhere. Replace with `.`, `,`, or `:`.
+- No "X, Y, and Z" tricolons used for rhythm. One or two beats max.
+- No "we don't X. we Y." or "it's not X, it's Y."
+- No "operating", "craftsmanship", "deeply", "truly", "simply" filler unless load-bearing.
+- Short sentences. Active voice. Specific nouns.
+- Keep proper nouns and the existing brand vocabulary (Read, Craft, Scale; deepgrain; operating system; champions).
 
-- `scroll-mt-36` = 144px (covers 136px mobile with 8px breathing room)
-- `md:scroll-mt-[152px]` = exact desktop clearance
+## Process
+1. Read `Method.tsx`, `Work.tsx`, `caseStudies.ts`, and `CaseStudyCard.tsx` in parallel.
+2. Identify every offending string. Note line numbers.
+3. Rewrite in place via `code--line_replace`. Copy-only edits, no structural or component changes.
+4. Grep the two files + the data file for `—` after edits to confirm zero em dashes remain.
 
-## Files
-- Edited: `src/components/layout/SiteShell.tsx` (one className addition)
+## Files likely edited
+- `src/components/sections/Method.tsx`
+- `src/pages/Work.tsx`
+- `src/data/caseStudies.ts` (probable)
+- `src/components/sections/CaseStudyCard.tsx` (only if it contains hardcoded copy, not just layout)
 
-## Why this is enough
-- CSS-only, no JS.
-- Scoped to routes that have the sub-nav (won't affect other pages).
-- Applies to every current and future `<section>` on both pages automatically.
-- No regression risk to layout — `scroll-margin-top` only affects scroll landing position, not rendering.
+## Out of scope
+- No layout, component, or routing changes.
+- No changes to other pages or sections this pass.
+- No changes to the email capture form mechanics.
+
+## Deliverable
+One pass, all offending copy on the homepage Method section and the entire Work page rewritten in your voice. Zero em dashes. Ready for you to read and red-pen.
