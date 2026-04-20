@@ -26,12 +26,12 @@ export const Hero = () => (
     <div className="relative container-grain pt-32 pb-32 md:pt-40">
       <div className="relative max-w-2xl">
         <h1
-          className="fade-in-up fade-in-up-1 font-display font-semibold uppercase text-cream leading-[0.95] text-[56px] sm:text-[80px] md:text-[104px] lg:text-[120px] -mt-8 md:-mt-12"
+          className="font-display font-semibold uppercase text-cream leading-[0.95] text-[56px] sm:text-[80px] md:text-[104px] lg:text-[120px] -mt-8 md:-mt-12"
           style={{ letterSpacing: "0.02em" }}
         >
           Work with<br />the grain.
         </h1>
-        <p className="fade-in-up fade-in-up-2 text-cream/85 mt-10 max-w-[480px] text-lg leading-relaxed">
+        <p className="text-cream/85 mt-10 max-w-[480px] text-lg leading-relaxed">
           Every organisation has a grain. The real pattern of how work flows,
           where decisions actually get made, where friction forms before it
           shows on a dashboard. Most have never read it.
