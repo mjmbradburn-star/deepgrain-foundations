@@ -39,10 +39,17 @@ export const Method = () => (
             method — and a live model of what it could be worth in your
             function — sits one click away.
           </p>
-          <div className="mt-10">
+          <div className="mt-10 flex flex-col items-start gap-5">
             <PillButton href="/method" variant="filled">
               See what it's worth in your function →
             </PillButton>
+            <Link
+              to="/enablement"
+              className="group inline-flex items-center gap-1 text-sm text-cream/70 transition-colors hover:text-brass"
+            >
+              Or see how we train your team
+              <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
+            </Link>
           </div>
         </ScrollReveal>
 

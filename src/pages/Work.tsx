@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import { caseStudies } from "@/data/caseStudies";
 import { CaseStudyCard } from "@/components/sections/CaseStudyCard";
 import { LogoCarousel } from "@/components/sections/LogoCarousel";
@@ -35,6 +37,28 @@ const Work = () => (
     {caseStudies.map((study, i) => (
       <CaseStudyCard key={study.id} study={study} variant={variants[i]} />
     ))}
+
+    <section className="bg-walnut text-cream py-14 md:py-16">
+      <div className="container-grain">
+        <ScrollReveal>
+          <Link
+            to="/enablement"
+            className="group flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
+          >
+            <p className="font-display text-cream text-2xl md:text-3xl leading-snug max-w-3xl">
+              Every engagement leaves a trained team behind.{" "}
+              <span className="text-brass transition-colors group-hover:text-cream">
+                See how →
+              </span>
+            </p>
+            <ArrowUpRight
+              className="hidden md:block h-7 w-7 text-brass transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+              strokeWidth={2}
+            />
+          </Link>
+        </ScrollReveal>
+      </div>
+    </section>
 
     <section className="bg-linen py-20 md:py-28">
       <div className="container-grain max-w-3xl">
