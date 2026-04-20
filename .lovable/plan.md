@@ -1,42 +1,14 @@
 
 ## Goal
+Visually verify that the recent Navigation and SiteShell changes (forced opaque nav on /method and /enablement, conditional `pt-10` under sub-nav) didn't regress the homepage Method teaser link, the Work outcome band, or the /method and /enablement pages themselves.
 
-Rewrite every line of copy on `/enablement` so it reads in your voice — tighter, plainer, no em dashes, no AI tells. Keep the page structure and components intact; only the strings change.
+## Steps
+1. Desktop (1366×768): visit `/`, scroll to Method section, screenshot. Confirm both CTAs render (filled pill + "Or see how we train your team" link).
+2. Same viewport: visit `/work`, scroll to the walnut outcome band above the email capture, screenshot. Confirm layout and link.
+3. Visit `/method` and `/enablement`, screenshot top of each. Confirm sub-nav sits flush, hero clears it, no background bleed.
+4. Mobile (390×844): repeat the same four routes, screenshot each relevant area.
+5. Click the homepage "Or see how we train your team" link and the Work outcome band link to confirm both land on `/enablement`.
 
-## Voice rules I'll apply
-
-- No em dashes (`—`). Use full stops, commas, or colons.
-- No "we don't X. we Y." rhetorical flips. No "it's not X, it's Y."
-- No tricolons ("brief, run, and judge"). Cut to one verb where possible.
-- No "actually," "genuinely," "honestly," "truly."
-- No "calm," "quiet," "the test is."
-- Shorter sentences. Concrete nouns. Active verbs.
-- Lowercase eyebrows stay; section logic stays.
-
-## Sections to rewrite (in `src/pages/Enablement.tsx`)
-
-1. **Hero** — headline + sub. Drop "We don't replace your team. We grow it." (classic AI cadence). Replace with something declarative about what enablement is.
-2. **`upskilled` array** — three items (Fluency / Craft / Practice). Each body sentence rewritten without the em dash and tricolon patterns.
-3. **"What the metric actually means" intro** — strip "actually," strip the "Not X. Not Y. A Z." cadence.
-4. **Champion model section** — three prose paragraphs and the heading. Currently leans heavily on em dashes and "this works because of grain" lecture tone. Tighten to plain claims.
-5. **`championNeeds` array** — three items. Bodies currently use em dashes ("twenty per cent floor — protected from..."). Rewrite with commas.
-6. **Curriculum intro + 6 modules** — module bodies are mostly short but several use em dashes ("Tools, triggers, handoffs — building the plumbing..."). Trim each to a flat sentence.
-7. **Outcomes (4 bullets)** — short already, just remove em dashes and the "compounds" abstraction.
-8. **Closing paragraph + CTA** — "Two months after the engagement ends, the champions are still building..." rewrite without "That is the test."
-
-## What I won't touch
-
-- Layout, classes, colours, component structure, routing, sub-nav, SEO meta tags (unless you want the meta description rewritten too — I'll do it by default since it has the same AI cadence).
-- `the-champion-model.mdx` essay (separate artifact, separate decision).
-
-## One thing to confirm before I write
-
-I'll draft the new copy in your voice based on the existing site (Hero, Method, Work pages). If you have a specific phrase you want in the hero ("Enablement is how the work stays after we leave" or similar), drop it in the next message and I'll build around it. Otherwise I'll propose one.
-
-## Files
-
-- Edited: `src/pages/Enablement.tsx` (copy strings only)
-
-## Deliverable
-
-One pass, all sections rewritten, no em dashes anywhere on the page, ready for you to read and red-pen.
+## Notes
+- Pure verification. No code changes expected.
+- If anything renders incorrectly (overflow, clipped hero, broken link, sub-nav misalignment), I'll stop and report before fixing.
