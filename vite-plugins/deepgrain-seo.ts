@@ -53,10 +53,10 @@ function inferTrack(f: Frontmatter): string {
   return f.track ?? (PEOPLE_OPS_CATEGORIES.has(f.category) ? "people-ops" : "deepgrain");
 }
 
-function readArticles(root: string): Frontmatter[] {
+function readArticles(root: string): Article[] {
   const dir = path.join(root, "src/content/intelligence");
   if (!fs.existsSync(dir)) return [];
-  const results: Frontmatter[] = [];
+  const results: Article[] = [];
   const walk = (d: string) => {
     for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
       const full = path.join(d, entry.name);
@@ -69,7 +69,12 @@ function readArticles(root: string): Frontmatter[] {
         try {
           const fm = new Function("return " + m[1])() as Frontmatter;
           fm.track = inferTrack(fm);
-          results.push(fm);
+          // Strip the frontmatter export and any import statements; keep the prose.
+          const body = src
+            .replace(/export const frontmatter = \{[\s\S]*?\n\};\s*/g, "")
+            .replace(/^import .*?;?\s*$/gm, "")
+            .trim();
+          results.push({ frontmatter: fm, body });
         } catch {
           /* ignore */
         }
@@ -77,10 +82,12 @@ function readArticles(root: string): Frontmatter[] {
     }
   };
   walk(dir);
-  return results.sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
+  return results.sort(
+    (a, b) => +new Date(b.frontmatter.publishedAt) - +new Date(a.frontmatter.publishedAt),
+  );
 }
 
-function buildSitemap(articles: Frontmatter[]): string {
+function buildSitemap(articles: Article[]): string {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
     ...STATIC_PAGES.map(
@@ -93,7 +100,7 @@ function buildSitemap(articles: Frontmatter[]): string {
     ),
     ...articles.map(
       (a) =>
-        `  <url>\n    <loc>${SITE}/intelligence/${a.slug}</loc>\n    <lastmod>${a.publishedAt}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
+        `  <url>\n    <loc>${SITE}/intelligence/${a.frontmatter.slug}</loc>\n    <lastmod>${a.frontmatter.publishedAt}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
     ),
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
