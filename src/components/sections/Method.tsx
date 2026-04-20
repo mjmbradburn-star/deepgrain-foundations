@@ -60,7 +60,42 @@ export const Method = () => (
         </div>
       </ScrollReveal>
 
-      <div className="mt-16 md:mt-20 grid gap-12 md:grid-cols-3 md:gap-0 max-w-5xl mx-auto">
+          <BrassRule className="mx-auto mt-10" />
+        </div>
+      </ScrollReveal>
+
+      {/* Three levels of change — echoes the ICP strip framing */}
+      <ScrollReveal>
+        <div className="mt-16 md:mt-20 max-w-5xl mx-auto">
+          <p className="text-center font-display italic text-cream/70 text-xl md:text-2xl leading-snug">
+            We work across{" "}
+            <span className="text-brass not-italic font-medium">
+              three levels of change.
+            </span>
+          </p>
+          <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
+            {levels.map((l, i) => (
+              <div
+                key={l.label}
+                className={`md:px-6 ${i > 0 ? "md:border-l md:border-cream/10" : ""}`}
+              >
+                <div
+                  className="font-sans uppercase text-brass text-[11px] md:text-[12px] font-semibold"
+                  style={{ letterSpacing: "0.18em" }}
+                >
+                  {l.label}
+                </div>
+                <p
+                  className="mt-3 text-cream/75 leading-relaxed text-sm md:text-base"
+                  dangerouslySetInnerHTML={{ __html: l.body }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <div className="mt-20 md:mt-24 grid gap-12 md:grid-cols-3 md:gap-0 max-w-5xl mx-auto">
         {movements.map((m, i) => (
           <ScrollReveal
             key={m.title}
