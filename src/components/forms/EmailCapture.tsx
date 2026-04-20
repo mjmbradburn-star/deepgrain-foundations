@@ -67,22 +67,9 @@ export const EmailCapture = ({
       return;
     }
 
-    if (!isDuplicate) {
-      // Fire-and-forget welcome email. Failure here must not block the UX.
-      const idempotencyKey = `subscriber-welcome-${source}-${parsed.data.email.toLowerCase()}`;
-      supabase.functions
-        .invoke("send-transactional-email", {
-          body: {
-            templateName: "subscriber-welcome",
-            recipientEmail: parsed.data.email,
-            idempotencyKey,
-            templateData: { source, articleSlug: articleSlug ?? null },
-          },
-        })
-        .catch(() => {
-          // swallow — subscription is already saved
-        });
-    }
+    // Welcome email is dispatched server-side by a Postgres trigger on
+    // `subscribers` INSERT — no client invocation needed (and not allowed,
+    // to prevent abuse of the transactional email function).
 
     setSubmitting(false);
     setDone(true);
