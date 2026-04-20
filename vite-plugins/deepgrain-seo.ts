@@ -106,13 +106,14 @@ function buildSitemap(articles: Article[]): string {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
 
-function buildLlmsTxt(articles: Frontmatter[]): string {
+function buildLlmsTxt(articles: Article[]): string {
   const today = new Date().toISOString().slice(0, 10);
   // For llms.txt we want foundational-first reading order: oldest → newest within each category.
   const ascArticles = [...articles].sort(
-    (a, b) => +new Date(a.publishedAt) - +new Date(b.publishedAt)
+    (a, b) => +new Date(a.frontmatter.publishedAt) - +new Date(b.frontmatter.publishedAt),
   );
-  const byCat = (slug: string) => ascArticles.filter((a) => a.category === slug);
+  const byCat = (slug: string) =>
+    ascArticles.filter((a) => a.frontmatter.category === slug).map((a) => a.frontmatter);
   const deepgrainCats = CATEGORIES.filter((c) => c.track === "deepgrain");
   const peopleOpsCats = CATEGORIES.filter((c) => c.track === "people-ops");
   const renderCat = (c: typeof CATEGORIES[number]) => `### ${c.name}
