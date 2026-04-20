@@ -15,7 +15,7 @@ interface PageMetaProps {
 }
 
 const SITE = "https://deepgrain.ai";
-const DEFAULT_OG = "https://deepgrain.ai/og-image.jpg";
+const DEFAULT_OG = "https://deepgrain.ai/og-image.png";
 
 /**
  * Per-page SEO block. Renders title, description, canonical, OG/Twitter tags,
