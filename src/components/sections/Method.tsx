@@ -17,7 +17,7 @@ const levels = [
   },
   {
     label: "Individual capability",
-    body: "Coaching the people who will keep evolving this long after we&rsquo;re gone.",
+    body: "Coaching the people who will keep evolving this long after we’re gone.",
   },
 ];
 
@@ -60,10 +60,6 @@ export const Method = () => (
         </div>
       </ScrollReveal>
 
-          <BrassRule className="mx-auto mt-10" />
-        </div>
-      </ScrollReveal>
-
       {/* Three levels of change — echoes the ICP strip framing */}
       <ScrollReveal>
         <div className="mt-16 md:mt-20 max-w-5xl mx-auto">
@@ -85,10 +81,9 @@ export const Method = () => (
                 >
                   {l.label}
                 </div>
-                <p
-                  className="mt-3 text-cream/75 leading-relaxed text-sm md:text-base"
-                  dangerouslySetInnerHTML={{ __html: l.body }}
-                />
+                <p className="mt-3 text-cream/75 leading-relaxed text-sm md:text-base">
+                  {l.body}
+                </p>
               </div>
             ))}
           </div>
