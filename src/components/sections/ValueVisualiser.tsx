@@ -13,7 +13,7 @@ export const ValueVisualiser = () => {
   const [hours, setHours] = useState(8);
   const [rate, setRate] = useState(70);
 
-  const { hoursReclaimed, fteFreed, annualValue, hiresAvoided, totalHours, reclaimedPct } = useMemo(() => {
+  const { hoursReclaimed, fteFreed, annualValue, peopleUpskilled, totalHours, reclaimedPct } = useMemo(() => {
     const total = team * hours;
     const reclaimed = Math.round(total * RECLAIM_RATE);
     const fte = (reclaimed * WORKING_WEEKS) / FTE_HOURS;
@@ -23,7 +23,7 @@ export const ValueVisualiser = () => {
       hoursReclaimed: reclaimed,
       fteFreed: Number(fte.toFixed(1)),
       annualValue: Math.round(value),
-      hiresAvoided: Math.round(fte),
+      peopleUpskilled: team,
       reclaimedPct: total > 0 ? (reclaimed / total) * 100 : 0,
     };
   }, [team, hours, rate]);
@@ -37,9 +37,10 @@ export const ValueVisualiser = () => {
             What might this be worth in your function?
           </h2>
           <p className="mt-6 max-w-2xl text-body/75 leading-relaxed text-lg">
-            Move the sliders. The numbers update as you go. It is a model, not a
-            quote — the real figure comes out of the diagnostic, usually within
-            ten percent of what you see here.
+            This is a partnership model, not a replacement one. Agents take the
+            repeatable work; your people are coached to design, run, and extend
+            them. Move the sliders to see what that shift could be worth in
+            your function.
           </p>
         </ScrollReveal>
 
@@ -100,17 +101,17 @@ export const ValueVisualiser = () => {
 
             {/* Outputs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-walnut/15 border border-walnut/15 rounded-2xl overflow-hidden">
+              <Output label="People upskilled">
+                <AnimatedNumber value={peopleUpskilled} live />
+              </Output>
               <Output label="Hours/week reclaimed">
                 <AnimatedNumber value={hoursReclaimed} live />
               </Output>
-              <Output label="FTE freed">
+              <Output label="FTE freed for higher-judgment work">
                 <AnimatedNumber value={fteFreed} live decimals={1} />
               </Output>
-              <Output label="Annual value">
+              <Output label="Annual value created">
                 <AnimatedNumber value={annualValue} live prefix="£" />
-              </Output>
-              <Output label="Hires avoided">
-                <AnimatedNumber value={hiresAvoided} live />
               </Output>
             </div>
           </div>
@@ -118,10 +119,11 @@ export const ValueVisualiser = () => {
 
         <ScrollReveal delay={200}>
           <p className="mt-12 max-w-2xl text-sm text-body/60 italic leading-relaxed">
-            Assumes ~60% of identified low-judgment hours are genuinely
-            recoverable across a 48-week year. A directional model, not a quote.
-            The actual number for your function comes out of the diagnostic —
-            usually within ten percent of this.
+            Reclaimed hours go back to your people for higher-judgment work —
+            this is a partnership model, not a replacement one. Assumes ~60% of
+            identified low-judgment hours are genuinely recoverable across a
+            48-week year. A directional model, not a quote; the actual number
+            comes out of the diagnostic, usually within ten percent of this.
           </p>
         </ScrollReveal>
       </div>

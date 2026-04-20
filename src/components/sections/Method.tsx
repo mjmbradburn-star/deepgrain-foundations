@@ -13,6 +13,11 @@ const sliders = [
   { label: "Loaded hourly cost", display: "£70/hr", fill: 27 },
 ];
 
+const stats = [
+  { label: "People upskilled", value: "25" },
+  { label: "Annual value", value: "£1.2M" },
+];
+
 export const Method = () => (
   <section className="bg-walnut text-cream section-pad">
     <div className="container-grain">
@@ -29,8 +34,10 @@ export const Method = () => (
           <p className="mt-6 text-cream/75 leading-relaxed text-lg">
             Read · Craft · Scale is how we work across{" "}
             <span className="text-brass font-medium">three levels of change</span>
-            . The full method — and a live model of what it could be worth in
-            your function — sits one click away.
+            . Agents partner with your people on the repeatable work, and we
+            coach the champions who keep building after we leave. The full
+            method — and a live model of what it could be worth in your
+            function — sits one click away.
           </p>
           <div className="mt-10">
             <PillButton href="/method" variant="filled">
@@ -85,17 +92,21 @@ export const Method = () => (
               ))}
             </div>
 
-            {/* Headline output */}
-            <div className="mt-9 pt-7 border-t border-walnut/10 flex items-end justify-between gap-4">
-              <div>
-                <div className="text-[11px] uppercase tracking-[0.2em] text-walnut/55 font-semibold">
-                  Annual value
-                </div>
-                <div className="mt-2 font-display font-semibold text-brass text-4xl md:text-5xl leading-none tabular-nums">
-                  £1,209,600
-                </div>
+            {/* Headline outputs — empowerment first */}
+            <div className="mt-9 pt-7 border-t border-walnut/10">
+              <div className="grid grid-cols-2 gap-6">
+                {stats.map((s) => (
+                  <div key={s.label}>
+                    <div className="text-[11px] uppercase tracking-[0.2em] text-walnut/55 font-semibold">
+                      {s.label}
+                    </div>
+                    <div className="mt-2 font-display font-semibold text-brass text-3xl md:text-4xl leading-none tabular-nums">
+                      {s.value}
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="text-[11px] text-walnut/55 italic text-right max-w-[150px] leading-snug">
+              <div className="mt-5 text-[11px] text-walnut/55 italic">
                 Directional model · live on /method
               </div>
             </div>
