@@ -33,6 +33,11 @@ const SectionFallback = () => <div aria-hidden className="min-h-[60vh]" />;
 
 const Home = () => (
   <>
+    <PageMeta
+      title="Deepgrain — Work with the grain."
+      description="Organisational consultancy that reads how your company actually operates — then builds the agents, automations, and team capabilities that hold. Function by function, top to bottom."
+      path="/"
+    />
     <Hero />
     <Suspense fallback={<SectionFallback />}>
       <BeliefStatement />
