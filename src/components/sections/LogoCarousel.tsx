@@ -72,7 +72,7 @@ export const LogoCarousel = ({
         </div>
       )}
       <div className="relative w-full">
-        <div className="flex w-max logo-track gap-6 md:gap-8" role="marquee">
+        <div className="flex w-max logo-track gap-6 md:gap-8">
           {doubled.map((c, i) => (
             <div
               key={`${c.domain}-${i}`}
