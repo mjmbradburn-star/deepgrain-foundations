@@ -56,17 +56,7 @@ export interface Article {
   Component: LazyExoticComponent<ComponentType>;
 }
 
-// Eager-load ONLY frontmatter from each MDX file. The compiled JSX body is
-// pulled in lazily via `lazyModules` below, keeping article HTML out of the
-// initial bundle (and out of any page that just lists titles).
-const frontmatterModules = import.meta.glob<{ frontmatter: ArticleFrontmatter }>(
-  "../content/intelligence/**/*.mdx",
-  { eager: true, import: "frontmatter" }
-);
-
-const lazyModules = import.meta.glob<{ default: ComponentType }>(
-  "../content/intelligence/**/*.mdx"
-);
+import { FRONTMATTERS, LOADERS } from "virtual:intelligence-manifest";
 
 // Eager-load all People Ops hero images and key them by slug
 const heroImageModules = import.meta.glob<{ default: string }>(
@@ -92,16 +82,12 @@ const PEOPLE_OPS_CATEGORIES: CategorySlug[] = [
 const inferTrack = (f: ArticleFrontmatter): Track =>
   f.track ?? (PEOPLE_OPS_CATEGORIES.includes(f.category) ? "people-ops" : "deepgrain");
 
-export const ARTICLES: Article[] = Object.entries(frontmatterModules)
-  .map(([path, mod]) => {
-    // The frontmatter glob returns the frontmatter export directly when
-    // `import: "frontmatter"` is used. Vite types it as { frontmatter } but
-    // the runtime value is the frontmatter object itself.
-    const fm = (mod as unknown as ArticleFrontmatter & { frontmatter?: ArticleFrontmatter }).frontmatter
-      ?? (mod as unknown as ArticleFrontmatter);
-    const loader = lazyModules[path];
+export const ARTICLES: Article[] = FRONTMATTERS
+  .map((entry) => {
+    const { __path, ...fm } = entry;
+    const loader = LOADERS[__path];
     return {
-      frontmatter: { ...fm, track: inferTrack(fm) },
+      frontmatter: { ...fm, track: inferTrack(fm) } as ArticleFrontmatter,
       Component: lazy(loader),
     };
   })
