@@ -1,0 +1,93 @@
+export const frontmatter = {
+  title: "A workflow assessment framework for People Ops",
+  slug: "workflow-assessment-framework",
+  category: "people-ops-systems",
+  track: "people-ops",
+  description: "Most People teams pick AI workflows by instinct or by what is loudest. A simple scoring framework — value, frequency, fit, risk — turns a wishlist into a 90-day plan you can actually defend.",
+  keywords: ["AI workflow assessment", "People Ops automation prioritisation", "AI opportunity score", "automation roadmap", "HR workflow audit"],
+  readTime: "11 min",
+  publishedAt: "2026-04-15",
+  author: "Matt Webb",
+  featured: true,
+};
+
+# A workflow assessment framework for People Ops
+
+The question we get asked more than any other is some version of: *we know there are dozens of things AI could do for our team — how do we choose what to build first?*
+
+The honest answer is that most teams choose badly. They pick the workflow someone is loudest about, or the one that sounds most impressive on a slide, or the one a vendor demoed last week. Three months later, the build is half-finished, the team is sceptical, and the next workflow gets harder to fund.
+
+There is a better way. It is not complicated. It is a scoring exercise that takes an afternoon, properly done, and turns a wishlist into a sequenced plan you can defend to the CFO.
+
+## The four dimensions that matter
+
+Every candidate workflow can be scored on four dimensions. None of them are novel. The discipline is in scoring honestly and in not skipping any of them.
+
+**Value.** How much time, money, or quality lift would a working version of this actually deliver, per cycle? Be specific. Not "saves time on hiring" but "removes 4 hours of recruiter coordination per role, and we hire 60 roles a year." Workflows that cannot be made specific in this way are usually not as valuable as they sound.
+
+**Frequency.** How often does this work happen? Weekly workflows compound. Annual workflows do not. A 30-minute weekly task is worth more than a 4-hour quarterly one, even though the quarterly one feels bigger. The first builds 26 hours of leverage a year and a team that uses the system every week. The second builds 16 hours and a team that forgets the system between cycles.
+
+**Fit.** How well-suited is this work to AI today? Some work is a natural fit — drafting, summarising, classifying, structured extraction, first-pass analysis. Some work is a poor fit — high-stakes judgment, sensitive ER conversations, anything where being wrong is much worse than being slow. Score honestly. The most expensive failures come from forcing AI into work it is bad at.
+
+**Risk.** What is the cost of being wrong? A wrong-but-quickly-fixed-internal-comms-draft is low risk. A wrong calibration recommendation that goes into a real conversation is much higher. Score risk separately because high-risk workflows can still be built — they just need different guardrails (human-in-the-loop, narrower scope, slower rollout) and you should know that before you start, not after.
+
+Score each dimension 1–5, honestly, with the team. The combined score is not a perfect ranking, but it is a much better starting point than instinct.
+
+## A worked example
+
+Take a real People Ops backlog from a 250-person company. Six candidate workflows on the board:
+
+| Workflow | Value | Freq | Fit | Risk (lower = better) | Score |
+|---|---|---|---|---|---|
+| Recruiter–hiring manager kickoff doc generation | 4 | 5 | 5 | 5 | **19** |
+| Engagement survey free-text theming | 5 | 2 | 5 | 4 | **16** |
+| Onboarding first-week Slack sequence | 3 | 5 | 5 | 4 | **17** |
+| Performance calibration recommendations | 5 | 1 | 2 | 1 | **9** |
+| New policy first-draft generation | 3 | 2 | 4 | 4 | **13** |
+| Interview scorecard summarisation | 4 | 5 | 5 | 4 | **18** |
+
+Three workflows separate from the pack: kickoff doc generation, interview scorecard summarisation, and the onboarding sequence. All three are weekly or near-weekly, score well on fit, and carry manageable risk.
+
+The performance calibration workflow — which was, predictably, the one most loudly requested — scores poorly. Not because it has no value (it does), but because it is annual, a poor fit for current AI, and high-risk. That does not mean never. It means later, with much more guardrail design, after the team has built confidence on simpler work.
+
+This is the conversation the framework forces. The loudest request is rarely the best first workflow. The data lets you have that conversation without it being personal.
+
+## The honest part of scoring
+
+Three rules, learned the hard way.
+
+**Score with the people who do the work, not just the people who lead it.** A Head of People often scores Value high and Frequency low because they see the strategic version of the work. The Talent Partner doing the actual coordination scores Value moderate and Frequency very high — and they are usually right about the shape. Both perspectives matter; only one of them is in the room by default.
+
+**Score Risk before you score the others, not after.** People naturally inflate Value and Fit on workflows they want to build. Scoring Risk first — and explicitly imagining what the failure modes look like — keeps the rest of the scoring honest.
+
+**Be ruthless about specificity.** "Improves manager experience" is not a Value score. "Saves 20 minutes per manager per quarter on the prep for performance conversations, across 35 managers" is. If you cannot make a candidate workflow specific to that level, it is not ready to be scored. Park it until it is.
+
+Most teams find, after their first scoring exercise, that a third of their backlog disappears. It was not workflows. It was wishful thinking.
+
+## From score to roadmap
+
+A score gives you a ranking. A ranking is not yet a roadmap. Three more moves turn one into the other.
+
+**Sequence by capability building, not just by score.** The first workflow is rarely the highest-scoring one. It is the highest-scoring one that the team can build to working state in 4–6 weeks, with what they currently have. A slightly lower-scoring workflow that ships is worth far more than a top-scoring workflow that is still being scoped in week ten.
+
+**Group workflows by shared infrastructure.** If three of your top scorers all need the same data integration (say, the ATS connected to the workspace), build them as a cluster. The second and third workflow in a cluster cost a fraction of what the first one cost. This is where compounding starts.
+
+**Reserve 20% of build capacity for the unscoreable.** Some of the highest-leverage work in a year comes from things that did not exist when you scored. A regulatory change, a reorg, a tool deprecation, an opportunistic experiment a champion brings back from a course. If 100% of build time is committed to the scored backlog, none of these get done. Reserve a fifth of the time and the team retains the ability to respond.
+
+A 90-day roadmap that emerges from this exercise typically looks like: one cluster of three workflows shipped, one harder solo workflow underway, and one opportunistic build that surprised everyone. Not glamorous. Genuinely transformative if you do it three quarters in a row.
+
+## When to re-score
+
+Once a quarter is roughly right. Not more often, because workflows in build need stability. Not less often, because the world moves and so does what AI can do well.
+
+Re-scoring is also the moment to retire workflows that have not been built. If something has scored well twice and not been built, it is telling you something — either the team does not actually want it, or it is harder than the score suggested, or there is a sponsorship problem. Pretending the backlog is still live is worse than removing it.
+
+## The framework's real job
+
+The framework is not really about prioritisation. It is about giving the team a shared language for talking about which AI work is worth doing. Without it, every conversation about a new workflow turns into either enthusiasm or doubt — both of which are exhausting and neither of which scales.
+
+With it, the conversation gets shorter and better. Someone proposes a workflow. The team scores it together. The score either confirms what everyone suspected, or it surfaces a disagreement worth having. Either outcome moves the work forward.
+
+That is the test of a good framework. Not that it produces perfect rankings. That it makes the next conversation easier than the last one. Score the backlog. Sequence the build. Ship the first cluster. Then re-score, and do it again. Three quarters in, you will have an automation portfolio that the team understands, the CFO can defend, and the function genuinely depends on.
+
+That is what a working People Ops automation roadmap looks like. It is built from a spreadsheet, not a strategy deck.
