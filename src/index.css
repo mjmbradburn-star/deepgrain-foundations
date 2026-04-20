@@ -96,7 +96,7 @@
   to   { transform: translateX(-50%); }
 }
 .logo-track {
-  animation: scroll-left 40s linear infinite;
+  animation: scroll-left 75s linear infinite;
 }
 .logo-track:hover {
   animation-play-state: paused;
