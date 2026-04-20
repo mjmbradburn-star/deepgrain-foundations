@@ -71,8 +71,8 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "Climate Consultancy · Growth stage · ~60 employees",
     headline: "The right systems\nfor the next phase.",
     body: [
-      "A specialist climate consultancy scaling through significant growth needed its Associate Lifecycle redesigned from scratch. Onboarding, development, progression, and offboarding, with AI woven through every stage.",
-      "Not a new tool. A new operating model. Built to compound as the organisation continued to grow.",
+      "A specialist climate consultancy scaling through significant growth needed its Associate Lifecycle redesigned from scratch. Onboarding through to offboarding, with AI woven through every stage.",
+      "A new operating model rather than a new tool. Built to compound as the organisation continued to grow.",
     ],
     metrics: [],
   },
