@@ -1,28 +1,23 @@
 
 ## Goal
-Standardise all page `<title>` tags on the pipe separator (`|`) so the brand has zero em dashes anywhere in head metadata.
+Rewrite the Hero subhead so it doesn't read like AI. The current line is the classic AI tricolon: short declarative + "do X, Y happens" + mirrored opposite. Three beats, perfect symmetry, slightly proverb-y. It's the tell.
 
-## Findings
-From the earlier audit, 9 files use `Title — Deepgrain` in their `PageMeta` title. The newer legal pages I just shipped (`Privacy`, `Cookies`, `Terms`) and `Work` already use `|`, so the codebase is half-converted.
+> Every organisation has a grain. Read it, and the work flows. Cut against it, and nothing holds.
 
-Files to touch (title strings only):
-- `src/pages/Home.tsx`
-- `src/pages/About.tsx`
-- `src/pages/Enablement.tsx`
-- `src/pages/Intelligence.tsx`
-- `src/pages/IntelligenceArticle.tsx`
-- `src/pages/IntelligenceCategory.tsx`
-- `src/pages/MethodPage.tsx`
-- `src/pages/PeopleOps.tsx`
-- `src/pages/Contact.tsx`
-- `src/pages/Unsubscribe.tsx` (if present)
-- `src/pages/NotFound.tsx` (if present)
-- `index.html` (default `<title>`, if it uses an em dash)
+## What's wrong with it
+- Tricolon rhythm (three sentences, descending length).
+- Conditional/consequence mirror ("read it → flows" / "cut against it → nothing holds").
+- Abstract verbs ("flows", "holds") doing emotional work instead of meaning.
+- Sounds like a fortune cookie, not an operator.
 
-## Change
-For each: replace ` — Deepgrain` with ` | Deepgrain` in the title prop only. No body copy, no descriptions, no MDX. OG/Twitter titles inherit from the same string via `PageMeta`, so they update automatically.
+## Direction
+Keep the grain metaphor (it's the brand). Drop the symmetry. Make it sound like Matt actually said it. Asymmetric, one concrete noun, no rhetorical flourish.
 
-## Out of scope
-- MDX prose em dashes (separate decision).
-- Body copy em dashes (separate pass).
-- Description fields (no separator issue there).
+## Options to choose from
+
+<lov-actions>
+<lov-suggestion message="Use this Hero subhead: 'Every organisation has a grain. Most leaders are working against theirs without knowing it.'">Option A — diagnostic</lov-suggestion>
+<lov-suggestion message="Use this Hero subhead: 'Every organisation has a grain. We help you find yours before you spend another year cutting against it.'">Option B — direct offer</lov-suggestion>
+<lov-suggestion message="Use this Hero subhead: 'Every company has a grain it runs best along. Most leadership teams have never stopped to find theirs.'">Option C — observational</lov-suggestion>
+<lov-suggestion message="Give me three more options in the same voice, shorter this time.">Show me three more, shorter</lov-suggestion>
+</lov-actions>
