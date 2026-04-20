@@ -6,6 +6,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { Invitation } from "@/components/sections/Invitation";
+import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 
 const upskilled = [
   {
