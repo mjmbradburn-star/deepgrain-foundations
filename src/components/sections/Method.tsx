@@ -1,120 +1,107 @@
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
-import { BrassRule } from "@/components/ui/BrassRule";
 
-// Read · Craft · Scale — the deeper method behind Diagnose · Build · Scale.
-// Lives on walnut so it visually separates from the linen WhatWeDo section,
-// and leans into the craft/reading language rather than restating services.
-const levels = [
-  {
-    label: "Organisation",
-    body: "Strategy, operating model, and the systems thinking that holds it all together.",
-  },
-  {
-    label: "Function",
-    body: "The agentic systems and workflows that let each team operate at a different order of magnitude.",
-  },
-  {
-    label: "Individual capability",
-    body: "Coaching the people who will keep evolving this long after we’re gone.",
-  },
-];
-
-const movements = [
-  {
-    title: "Read",
-    body:
-      "Before any tool, any agent, any framework — we read the grain. How decisions actually get made. Where energy flows. Where fractures are forming before anyone has named them.",
-  },
-  {
-    title: "Craft",
-    body:
-      "We build with the grain, not against it. Human judgment and machine precision working as one system. Interventions sized to the smallest change that produces the largest effect.",
-  },
-  {
-    title: "Scale",
-    body:
-      "We leave a capability, not a deck. Teams who think well with AI. Cadences that hold as you grow. The discipline to keep what works and let the rest go.",
-  },
+// Homepage Method teaser. The full Read · Craft · Scale story and the live
+// Value Visualiser both live on /method — here we tease the visualiser as the
+// magnet to click through.
+const sliders = [
+  { label: "Team size", display: "25 people", fill: 11 },
+  { label: "Hours/week lost", display: "8 hrs/week", fill: 33 },
+  { label: "Loaded hourly cost", display: "£70/hr", fill: 27 },
 ];
 
 export const Method = () => (
   <section className="bg-walnut text-cream section-pad">
     <div className="container-grain">
-      <ScrollReveal>
-        <div className="text-center max-w-2xl mx-auto">
-          <Eyebrow className="text-brass mb-6">The deeper method</Eyebrow>
+      <div className="grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20 items-center">
+        {/* Left — copy */}
+        <ScrollReveal>
+          <Eyebrow className="text-brass mb-6">The Method</Eyebrow>
           <h2
-            className="font-display text-cream text-4xl md:text-6xl leading-[1.05] text-balance"
+            className="font-display text-cream text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance"
             style={{ letterSpacing: "-0.015em" }}
           >
-            Read · Craft · Scale.
+            Read the grain. Build with it. Leave something that compounds.
           </h2>
-          <p className="mt-6 text-cream/70 leading-relaxed text-lg">
-            Diagnose, Build, Scale is what we deliver. Read, Craft, Scale is how
-            we work — three movements in order. Skip the first and the rest is
-            theatre.
+          <p className="mt-6 text-cream/75 leading-relaxed text-lg">
+            Read · Craft · Scale is how we work across{" "}
+            <span className="text-brass font-medium">three levels of change</span>
+            . The full method — and a live model of what it could be worth in
+            your function — sits one click away.
           </p>
-          <BrassRule className="mx-auto mt-10" />
-        </div>
-      </ScrollReveal>
-
-      {/* Three levels of change — echoes the ICP strip framing */}
-      <ScrollReveal>
-        <div className="mt-16 md:mt-20 max-w-5xl mx-auto">
-          <p className="text-center font-display italic text-cream/70 text-xl md:text-2xl leading-snug">
-            We work across{" "}
-            <span className="text-brass not-italic font-medium">
-              three levels of change.
-            </span>
-          </p>
-          <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
-            {levels.map((l, i) => (
-              <div
-                key={l.label}
-                className={`md:px-6 ${i > 0 ? "md:border-l md:border-cream/10" : ""}`}
-              >
-                <div
-                  className="font-sans uppercase text-brass text-[11px] md:text-[12px] font-semibold"
-                  style={{ letterSpacing: "0.18em" }}
-                >
-                  {l.label}
-                </div>
-                <p className="mt-3 text-cream/75 leading-relaxed text-sm md:text-base">
-                  {l.body}
-                </p>
-              </div>
-            ))}
+          <div className="mt-10">
+            <PillButton href="/method" variant="filled">
+              See what it's worth in your function →
+            </PillButton>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
 
-      <div className="mt-20 md:mt-24 grid gap-12 md:grid-cols-3 md:gap-0 max-w-5xl mx-auto">
-        {movements.map((m, i) => (
-          <ScrollReveal
-            key={m.title}
-            delay={i * 120}
-            className={`md:px-10 ${i > 0 ? "md:border-l md:border-cream/15" : ""}`}
+        {/* Right — static visualiser teaser card */}
+        <ScrollReveal delay={120}>
+          <Link
+            to="/method"
+            aria-label="Open the full method and value visualiser"
+            className="group relative block rounded-2xl bg-linen text-body p-7 md:p-9 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.55)] ring-1 ring-brass/30 transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:-translate-y-1 hover:shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]"
           >
-            <h3
-              className="font-display italic text-brass text-3xl md:text-4xl"
-              style={{ letterSpacing: "-0.005em" }}
-            >
-              {m.title}
-            </h3>
-            <p className="mt-5 text-cream/80 leading-relaxed">{m.body}</p>
-          </ScrollReveal>
-        ))}
-      </div>
+            {/* Click affordance */}
+            <span className="absolute top-5 right-5 inline-flex items-center gap-1 rounded-full bg-walnut/5 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-walnut/60 transition-colors group-hover:bg-brass/15 group-hover:text-brass">
+              Explore
+              <ArrowUpRight className="h-3 w-3" strokeWidth={2.25} />
+            </span>
 
-      <ScrollReveal>
-        <div className="mt-16 md:mt-20 text-center">
-          <PillButton href="/method" variant="outline">
-            The full method →
-          </PillButton>
-        </div>
-      </ScrollReveal>
+            <div className="text-[11px] uppercase tracking-[0.2em] text-walnut/55 font-semibold">
+              Value Visualiser
+            </div>
+            <div className="mt-1 font-display text-walnut text-2xl md:text-[28px] leading-tight">
+              What might this be worth in your function?
+            </div>
+
+            {/* Static slider rows */}
+            <div className="mt-8 space-y-6">
+              {sliders.map((s) => (
+                <div key={s.label}>
+                  <div className="flex items-baseline justify-between mb-2">
+                    <span className="font-display text-walnut text-base md:text-lg">
+                      {s.label}
+                    </span>
+                    <span className="font-display text-brass text-base md:text-lg tabular-nums">
+                      {s.display}
+                    </span>
+                  </div>
+                  <div className="relative h-1.5 w-full rounded-full bg-walnut/15">
+                    <div
+                      className="absolute left-0 top-0 h-full rounded-full bg-brass"
+                      style={{ width: `${s.fill}%` }}
+                    />
+                    <div
+                      className="absolute -top-1.5 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-brass bg-cream shadow-md"
+                      style={{ left: `${s.fill}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Headline output */}
+            <div className="mt-9 pt-7 border-t border-walnut/10 flex items-end justify-between gap-4">
+              <div>
+                <div className="text-[11px] uppercase tracking-[0.2em] text-walnut/55 font-semibold">
+                  Annual value
+                </div>
+                <div className="mt-2 font-display font-semibold text-brass text-4xl md:text-5xl leading-none tabular-nums">
+                  £1,209,600
+                </div>
+              </div>
+              <div className="text-[11px] text-walnut/55 italic text-right max-w-[150px] leading-snug">
+                Directional model · live on /method
+              </div>
+            </div>
+          </Link>
+        </ScrollReveal>
+      </div>
     </div>
   </section>
 );
