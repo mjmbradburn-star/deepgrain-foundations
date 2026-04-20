@@ -33,7 +33,7 @@ export const BeliefStatement = () => (
     <div className="relative container-grain text-center">
       <ScrollReveal>
         <p className="font-display italic font-light text-cream text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-tight max-w-4xl mx-auto text-balance">
-          &ldquo;Function by function. Workflow by workflow.<br />Building the agents and team capabilities that hold.&rdquo;
+          &ldquo;Strategy at the top. Enablement and training across the team. Agents and automations in the workflow. Built function by function, top to bottom.&rdquo;
         </p>
       </ScrollReveal>
     </div>
