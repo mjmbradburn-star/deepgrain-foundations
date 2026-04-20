@@ -46,6 +46,7 @@ const Home = () => (
     <ICPStrip />
     <Suspense fallback={<SectionFallback />}>
       <LogoCarousel background="green" />
+      <WhatWeDo />
       <BeliefStatement />
       <OperatingProof />
       <Method />
