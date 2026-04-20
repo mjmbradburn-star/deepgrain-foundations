@@ -1,37 +1,58 @@
 
 
-The user re-confirmed the same two answers (new project + all three levels). My previous reply already explained that AIOI must be built in a separate Lovable project — I can't create that from inside this codebase.
+The user wants two distinct enhancements: (1) an interactive ROI/value calculator on the Method page, and (2) animated number visualisations on the homepage's OperatingProof section. Let me plan both.
 
-Two productive things I *can* do in **this** project right now while they spin up the new one:
+## 1. Animated counters on the homepage (OperatingProof)
 
-1. Add cross-link CTAs pointing to `aioi.deepgrain.ai` (homepage, article inline band, footer)
-2. Wait for them to create the new project, then build there
+The `OperatingProof` section already has three big stat numbers (83, 70%, 0). Right now they just sit there. We'll animate them counting up when scrolled into view, using `IntersectionObserver` (matching the pattern in `ScrollReveal.tsx`).
 
-The cross-links are small and safe. The article inline AIOI CTA is currently a placeholder green band — wiring it to the real (future) URL is a clean tidy-up.
+- Create `src/components/ui/AnimatedNumber.tsx` — a small component that takes `value`, `suffix`, `duration`, and `decimals` props. Uses `requestAnimationFrame` with an ease-out curve. Respects `prefers-reduced-motion` (snap to final value).
+- Update `OperatingProof.tsx` to use `<AnimatedNumber value={83} />`, `<AnimatedNumber value={70} suffix="%" />`, `<AnimatedNumber value={0} />`.
+- Add a subtle brass underline that draws in beneath each stat as it animates (CSS scaleX transform).
 
-## Plan — cross-links to AIOI in this project
+## 2. Interactive value visualiser on the Method page
 
-**1. Homepage hero** (`src/components/sections/Hero.tsx`)
-- Add secondary outline PillButton next to the primary CTA: "Take the AI Operating Index →" linking to `https://aioi.deepgrain.ai`
+A "what is this work worth" slider block. Sits inside the existing Method page, after the explanatory prose, before the closing CTA. Lives on cream so it visually breaks from the surrounding walnut/green sections.
 
-**2. Article inline AIOI band** (`src/pages/IntelligenceArticle.tsx`)
-- Replace the placeholder green CTA band mid-article with a real link to `https://aioi.deepgrain.ai`
-- Copy: eyebrow "Diagnostic", headline "Where does your operating system stand?", subline "Take the AI Operating Index — a free 8-pillar diagnostic.", PillButton "Begin the index →"
+**Three sliders**, each driving a live calculation:
 
-**3. Footer** (`src/components/layout/Footer.tsx`)
-- Add "AI Operating Index ↗" link under the Explore column, external
+| Slider | Range | Default |
+|---|---|---|
+| Team size (people in the function) | 5 – 200 | 25 |
+| Hours/week lost to coordination & repeatable work per person | 2 – 20 | 8 |
+| Loaded hourly cost (£) | 40 – 150 | 70 |
 
-All three use a single constant `AIOI_URL = "https://aioi.deepgrain.ai"` so we can flip it later if the subdomain changes.
+**Live outputs** (animated via the same `AnimatedNumber` component):
 
-## What happens next for AIOI itself
+- **Hours/week reclaimed** = team × hours × 0.6 (we typically reclaim ~60% of identified low-judgment time)
+- **FTE freed** = (hours reclaimed × 48) / 1800
+- **Annual £ value** = hours reclaimed × 48 × hourly cost
+- **Equivalent new hires avoided** = FTE freed (rounded)
 
-You create the new Lovable project (`aioi-deepgrain`), enable Lovable Cloud, re-upload the spec there, and paste:
+Plus a single horizontal bar that visually splits the team's week into "reclaimed" (brass) vs "remaining" (walnut/15) — animates as sliders move.
 
-> "Build AIOI per the spec. All three levels (Company, Function, Individual). Start with element 1 (design system + primitives)."
+Honest framing copy underneath: *"A directional model, not a quote. The actual number for your function comes out of the diagnostic — usually within 10% of this."* This protects credibility (matches the tone of the `measuring-ai-value-in-people-ops` article).
 
-Then I execute elements 1–14 in that project, one per turn, exactly as the approved 14-element plan.
+**File:** `src/components/sections/ValueVisualiser.tsx`. Use the existing shadcn `Slider` primitive (need to check if it's installed; if not, add it via the standard pattern in `components/ui/`). Insert into `src/pages/MethodPage.tsx` at the appropriate point.
 
-## Ask
+## Technical notes
 
-Do you want me to add the three cross-links to this project now? Reply **"yes, add the cross-links"** and I'll do it. Or **"skip, I'll come back when AIOI exists"** and I'll wait.
+- `AnimatedNumber` is reusable — homepage stats now, value visualiser later, future case study numbers.
+- Slider values held in local React state; calculations are pure functions, recomputed each render (cheap).
+- Number formatting: `Intl.NumberFormat('en-GB')` for thousands separators on the £ value.
+- Mobile: sliders stack vertically, outputs grid 2×2 → 1 column under 640px.
+- Respect `prefers-reduced-motion` everywhere (snap to value, no count-up).
+
+## Out of scope for this round
+
+- A full agents-vs-headcount toggle (interesting but heavier — would need real cost modelling for "build an agent" side; better as a follow-up once this lands).
+- Animated SVG charts on the homepage (the count-up + brass underline gives the homepage enough motion without adding chart weight to the bundle).
+
+## Files touched
+
+- **New:** `src/components/ui/AnimatedNumber.tsx`
+- **New:** `src/components/sections/ValueVisualiser.tsx`
+- **Possibly new:** `src/components/ui/slider.tsx` (shadcn — only if not already present)
+- **Edited:** `src/components/sections/OperatingProof.tsx` (wire counters + draw-in rule)
+- **Edited:** `src/pages/MethodPage.tsx` (insert visualiser)
 
