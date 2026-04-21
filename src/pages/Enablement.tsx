@@ -334,6 +334,12 @@ const Enablement = () => (
       </div>
     </section>
 
+    <FAQ
+      eyebrow="Onboarding & after"
+      heading="What working with us actually looks like."
+      items={faqItems}
+    />
+
     <Invitation />
   </>
 );
