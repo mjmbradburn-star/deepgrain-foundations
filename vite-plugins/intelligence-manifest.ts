@@ -19,14 +19,17 @@ async function walk(dir: string): Promise<string[]> {
 
 async function buildManifest(): Promise<string> {
   const files = await walk(CONTENT_DIR);
-  const entries: { rel: string; raw: string }[] = [];
+  const entries: { rel: string; raw: string; faqsRaw?: string }[] = [];
 
   for (const file of files) {
     const src = await fs.readFile(file, "utf8");
     const m = src.match(/export\s+const\s+frontmatter\s*=\s*(\{[\s\S]*?\n\});/);
     if (!m) continue;
-    // Use absolute paths so dynamic imports resolve from the virtual module.
-    entries.push({ rel: file, raw: m[1] });
+    // Optional `export const faqs = [...]`. Extracted at build time so the
+    // FAQPage JSON-LD can ship in the initial HTML alongside frontmatter,
+    // rather than waiting for the lazy MDX module to resolve.
+    const fm = src.match(/export\s+const\s+faqs\s*=\s*(\[[\s\S]*?\n\]);/);
+    entries.push({ rel: file, raw: m[1], faqsRaw: fm?.[1] });
   }
 
   // Emit JS module with eager frontmatter + lazy loaders keyed by relative path.
@@ -37,6 +40,12 @@ async function buildManifest(): Promise<string> {
       (e) => `  { __path: ${JSON.stringify(e.rel)}, ...${e.raw} },`
     ),
     "];",
+    "",
+    "export const FAQS = {",
+    ...entries
+      .filter((e) => e.faqsRaw)
+      .map((e) => `  ${JSON.stringify(e.rel)}: ${e.faqsRaw},`),
+    "};",
     "",
     "export const LOADERS = {",
     ...entries.map(

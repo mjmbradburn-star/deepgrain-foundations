@@ -54,9 +54,13 @@ export interface Article {
   frontmatter: ArticleFrontmatter;
   /** Lazy-loaded MDX component — only fetched when an article page renders. */
   Component: LazyExoticComponent<ComponentType>;
+  /** Optional Common questions, extracted from `export const faqs` in the MDX
+   *  at build time. Present only when the article actually defines them. */
+  faqs?: FAQItem[];
 }
 
-import { FRONTMATTERS, LOADERS } from "virtual:intelligence-manifest";
+import { FRONTMATTERS, LOADERS, FAQS } from "virtual:intelligence-manifest";
+import type { FAQItem } from "@/components/sections/FAQ";
 
 // Eager-load all Intelligence hero images (both tracks) and key them by slug.
 // Vite resolves these to hashed asset URLs at build time — only the URL string
@@ -106,9 +110,11 @@ export const ARTICLES: Article[] = FRONTMATTERS
   .map((entry) => {
     const { __path, ...fm } = entry;
     const loader = LOADERS[__path];
+    const faqs = FAQS[__path];
     return {
       frontmatter: { ...fm, track: inferTrack(fm) } as ArticleFrontmatter,
       Component: lazy(loader),
+      ...(faqs && faqs.length > 0 ? { faqs } : {}),
     };
   })
   .sort(
