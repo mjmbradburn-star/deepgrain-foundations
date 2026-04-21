@@ -178,7 +178,7 @@ const IntelligenceArticle = () => {
           <div className="container-grain">
             <Eyebrow className="text-brass">Keep reading</Eyebrow>
             <h2 className="font-display text-3xl md:text-4xl text-cream mt-3 mb-12">
-              More from {cat?.name}
+              Related pieces
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map((a) => (
