@@ -58,18 +58,20 @@ export const ICPStrip = () => (
         : organisation, function, and individual capability.
       </p>
 
-      {/* Four pillars — what we actually deliver across those levels */}
-      <ul className="mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-3xl mx-auto list-none">
+      {/* Four pillars — what we actually deliver across those levels.
+          Force one line per pillar (whitespace-nowrap) and equal heights via
+          flex centering so the row reads as a clean, uniform set. */}
+      <ul className="mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 max-w-3xl mx-auto list-none">
         {[
           "Strategy",
-          "Agentic systems",
-          "AI enablement",
-          "AI development",
+          "Agentic Systems",
+          "AI Enablement",
+          "AI Development",
         ].map((pillar) => (
           <li
             key={pillar}
-            className="rounded-md border border-brass/25 bg-cream/[0.04] px-3 py-3 text-cream text-[13px] md:text-sm font-sans uppercase text-center"
-            style={{ letterSpacing: "0.12em" }}
+            className="h-11 md:h-12 flex items-center justify-center rounded-sm border border-brass/30 bg-cream/[0.03] px-3 text-cream text-[11px] md:text-[12px] font-sans uppercase text-center whitespace-nowrap"
+            style={{ letterSpacing: "0.14em" }}
           >
             {pillar}
           </li>
