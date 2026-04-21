@@ -63,21 +63,23 @@ export const Hero = () => (
       </div>
     </div>
 
-    <button
-      type="button"
-      onClick={() => {
-        const hero = document.getElementById("hero");
-        const next = hero?.nextElementSibling as HTMLElement | null;
-        if (next) {
-          next.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-          window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-        }
-      }}
-      aria-label="Scroll to next section"
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 text-cream/50 hover:text-cream transition-colors animate-bob p-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cream/60"
-    >
-      <ChevronDown size={28} />
-    </button>
+    <div className="absolute inset-x-0 bottom-8 flex justify-center pointer-events-none">
+      <button
+        type="button"
+        onClick={() => {
+          const hero = document.getElementById("hero");
+          const next = hero?.nextElementSibling as HTMLElement | null;
+          if (next) {
+            next.scrollIntoView({ behavior: "smooth", block: "start" });
+          } else {
+            window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+          }
+        }}
+        aria-label="Scroll to next section"
+        className="pointer-events-auto inline-flex items-center justify-center text-cream/50 hover:text-cream transition-colors animate-bob p-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cream/60"
+      >
+        <ChevronDown size={28} />
+      </button>
+    </div>
   </section>
 );
