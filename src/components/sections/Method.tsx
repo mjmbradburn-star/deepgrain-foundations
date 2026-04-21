@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
-import { BarkGrain } from "@/components/ui/BarkGrain";
+import { BarkSection } from "@/components/ui/BarkSection";
 
 // Homepage Method teaser. The full Read · Craft · Scale story and the live
 // Value Visualiser both live on /method — here we tease the visualiser as the
@@ -20,9 +20,10 @@ const stats = [
 ];
 
 export const Method = () => (
-  <section className="relative overflow-hidden bg-bark text-cream section-pad">
-    <BarkGrain />
-    <div className="container-grain relative">
+  <BarkSection
+    className="section-pad"
+    contentClassName="container-grain"
+  >
       <div className="grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20 items-center">
         {/* Left — copy */}
         <ScrollReveal>

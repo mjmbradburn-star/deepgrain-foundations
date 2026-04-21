@@ -82,5 +82,5 @@ export const ICPStrip = () => (
         ))}
       </ul>
     </div>
-  </section>
+  </BarkSection>
 );
