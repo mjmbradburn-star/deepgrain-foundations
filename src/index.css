@@ -108,6 +108,15 @@
 }
 .animate-bob { animation: bob 2s ease-in-out infinite; }
 
+/* Hero ambient drift — GPU-only transform on a low-opacity wood-grain layer.
+   60s linear cycle, alternates so it eases back to origin. */
+@keyframes hero-drift {
+  0%   { transform: translate3d(0, 0, 0); }
+  50%  { transform: translate3d(2%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+.hero-drift { animation: hero-drift 60s linear infinite; will-change: transform; }
+
 /* CSS-only fade-in-up for above-the-fold content (replaces framer-motion on critical path) */
 @keyframes fade-in-up {
   from { opacity: 0; transform: translate3d(0, 24px, 0); }
@@ -137,7 +146,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .fade-in-up,
-  [data-reveal] {
+  [data-reveal],
+  .hero-drift,
+  .animate-bob {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
