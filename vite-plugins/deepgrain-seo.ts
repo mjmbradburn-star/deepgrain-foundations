@@ -20,6 +20,7 @@ const STATIC_PAGES = [
   { url: "/", priority: "1.0", changefreq: "weekly" },
   { url: "/method", priority: "0.8", changefreq: "monthly" },
   { url: "/work", priority: "0.8", changefreq: "monthly" },
+  { url: "/enablement", priority: "0.8", changefreq: "monthly" },
   { url: "/about", priority: "0.7", changefreq: "monthly" },
   { url: "/contact", priority: "0.6", changefreq: "yearly" },
   { url: "/intelligence", priority: "0.9", changefreq: "weekly" },
