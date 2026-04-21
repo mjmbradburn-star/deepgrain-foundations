@@ -121,10 +121,13 @@ const Enablement = () => (
       description="What 'people upskilled' means inside a Deepgrain engagement. The coaching curriculum, the champion model, and the capability your team keeps after we leave."
       image="https://deepgrain.ai/og-enablement.png"
       path="/enablement"
-      jsonLd={buildBreadcrumbLd([
-        { name: "Home", url: "https://deepgrain.ai/" },
-        { name: "Enablement", url: "https://deepgrain.ai/enablement" },
-      ])}
+      jsonLd={[
+        buildBreadcrumbLd([
+          { name: "Home", url: "https://deepgrain.ai/" },
+          { name: "Enablement", url: "https://deepgrain.ai/enablement" },
+        ]),
+        buildFAQLd(faqItems),
+      ]}
     />
 
     {/* Hero */}
