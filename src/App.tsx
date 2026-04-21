@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
+import { Analytics } from "@/components/analytics/Analytics";
 import Home from "./pages/Home";
 
 // Route-level code splitting — only Home is in the initial bundle.
@@ -33,6 +34,7 @@ const App = () => (
       <Toaster />
       <BrowserRouter>
         <ScrollToTop />
+        <Analytics />
         <SiteShell>
           <Suspense fallback={<RouteFallback />}>
             <Routes>
