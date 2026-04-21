@@ -2,30 +2,33 @@
 
 ## Goal
 
-Render the 3px brass hairline rule between the page header/hero block and the first content section on every page, matching the divider that already runs between subsequent adjacent sections.
-
-## Why it's missing today
-
-The global rule in `SiteShell`'s `<main>` is `[&_section+section]:border-t-[3px]` — it only fires when one `<section>` is *immediately preceded* by another `<section>`. The very first section on each page (the Hero on `/`, or the page header on every other route) has no `<section>` sibling above it, so it gets no top border. The fixed `<Navigation>` header sits outside `<main>`, so it never satisfies the selector either.
+Make the wood-grain motion unmistakably visible for the first few seconds after load, then ease back into the subtle ambient drift we have today. This gives a clear "yes, it's alive" signal without making the texture distracting long-term.
 
 ## Approach
 
-Add a top border to the **first** `<section>` inside `<main>` as well, using the same brass token and thickness, so the rule appears under the nav/hero on every page automatically.
+Two-stage animation on `.bark-grain`:
 
-One change in `src/components/layout/SiteShell.tsx`: extend the existing className on `<main>` with `[&_section:first-of-type]:border-t-[3px] [&_section:first-of-type]:border-brass/35`. The `:first-of-type` pseudo targets the first `<section>` descendant, which on `/` is the Hero (we'll exempt it — see below) and on every other page is the page-header section.
+1. **Boot stage (0–6s)**: a one-shot `grain-flow-boot` keyframe with larger amplitude (~8% translate, 1.08 scale) and a 6s duration. Runs once on mount.
+2. **Ambient stage (6s →)**: the existing `grain-flow` keyframe with its current subtle values, started via `animation-delay: 6s` and `infinite`. Both animations are declared in a single `animation` shorthand list so the handoff is seamless.
 
-### Exempting the Hero on `/`
+Because both keyframes start and end at `transform: translate3d(0,0,0) scale(1)`, the transition between them is invisible — no jump.
 
-The Hero is a full-bleed dark image and a brass line directly under the fixed nav would float awkwardly over it. We add `data-no-rule` to the Hero's root `<section>` and refine the selector to `[&_section:first-of-type:not([data-no-rule])]:border-t-[3px]` so the rule is suppressed there. Every other page's first section (which is a normal page header on linen) gets the divider.
+### Reduced motion
+
+The existing `@media (prefers-reduced-motion: reduce)` block in `index.css` already nukes `.bark-grain` animation. We leave that intact so users with the OS preference set see no motion at all, boot stage included.
+
+### Debug mode
+
+`BarkGrain.tsx` currently overrides `animation` to `grain-flow 12s ease-in-out infinite` when `?debugGrain=1` is set. We update that override to also chain the boot stage so debug sessions reflect production behaviour.
 
 ## Files
 
-- `src/components/layout/SiteShell.tsx` — extend the `<main>` className with the first-section selector (with the `:not([data-no-rule])` guard).
-- `src/components/sections/Hero.tsx` — add `data-no-rule` to the root `<section>`.
+- `src/index.css` — add `@keyframes grain-flow-boot` (8% translate, 1.08 scale, 6s) and update `.bark-grain` to run `grain-flow-boot 6s ease-out 1, grain-flow 90s ease-in-out 6s infinite`.
+- `src/components/ui/BarkGrain.tsx` — update the debug-mode `animation` override to the same two-stage chain (with the faster 12s ambient duration kept for debug visibility).
 
 ## Out of scope
 
-- Changing thickness or colour (already 3px brass/35).
-- Adding a rule between `<main>` and `<Footer>` — separate request.
-- Touching the BarkGrain debug code from the previous turn.
+- Changing the ambient amplitude or duration beyond the boot window.
+- Touching non-bark surfaces or the Hero's `.hero-drift` layer.
+- Removing the BarkGrain debug HUD.
 
