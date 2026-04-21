@@ -50,7 +50,7 @@ export const Hero = () => (
         </p>
         <div className="fade-in-up fade-in-up-3 mt-10 flex flex-wrap items-center gap-3 md:gap-4">
           <PillButton href={AIOI_URL} variant="filled" external>
-            Take the AI Operating Index →
+            Review our AI Operating Index →
           </PillButton>
           <PillButton href="/method" variant="outline">
             How we work →
