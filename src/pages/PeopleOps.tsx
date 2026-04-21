@@ -165,6 +165,7 @@ const PeopleOps = () => {
         <meta name="twitter:image" content="https://deepgrain.ai/og-people-ops.png" />
         <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(buildFAQLd(FAQ_ITEMS))}</script>
       </Helmet>
 
       {/* Hero */}
@@ -261,6 +262,13 @@ const PeopleOps = () => {
           })}
         </div>
       </section>
+
+      {/* FAQ — common questions from People leaders before they engage. */}
+      <FAQ
+        eyebrow="Common questions"
+        heading="What People leaders ask before they build."
+        items={FAQ_ITEMS}
+      />
 
       {/* AIOI CTA */}
       <section className="bg-green text-cream py-20 md:py-28">
