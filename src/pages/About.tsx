@@ -4,6 +4,8 @@ import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { BarkSection } from "@/components/ui/BarkSection";
+import { Linkedin } from "lucide-react";
+import matthewPortrait from "@/assets/matthew-bradburn.jpg";
 
 const testimonials = [
   {
