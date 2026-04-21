@@ -140,7 +140,7 @@ A strategy that contradicts operating reality is not a strategy. It is a wish.
 URL: https://deepgrain.ai/intelligence/what-is-an-ai-operating-system
 Category: ai-operating-systems
 Published: 2026-02-16
-Author: Matt Webb
+Author: Matt Bradburn
 Reading time: 10 min
 
 An AI operating system is the layer between models and work. It is what turns a clever demo into a compounding capability.
