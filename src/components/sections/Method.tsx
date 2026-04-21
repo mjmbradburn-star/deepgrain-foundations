@@ -122,6 +122,5 @@ export const Method = () => (
           </Link>
         </ScrollReveal>
       </div>
-    </div>
-  </section>
+  </BarkSection>
 );
