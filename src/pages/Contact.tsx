@@ -40,9 +40,9 @@ const Contact = () => (
     </section>
 
     {/* Booking — cream/linen panel */}
-    <section className="bg-linen text-body py-20 md:py-28">
+    <section className="bg-linen text-body py-20 md:py-24 lg:py-28">
       <div className="container-grain">
-        <div className="grid gap-12 md:grid-cols-[5fr_7fr] md:gap-16 items-start">
+        <div className="grid gap-12 md:gap-10 lg:gap-16 md:grid-cols-[5fr_7fr] items-start">
           <ScrollReveal>
             <Eyebrow withRule className="text-walnut/70 mb-6">
               Booking
@@ -78,7 +78,7 @@ const Contact = () => (
               <iframe
                 src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1RAkNriqYTtoBEaOJM92B07HFwq_4dSvaiwERC1mO3XJVbPEf_3dNFAgYI4XxvXomrLtBa2TAW?gv=true"
                 title="Book a call with Matthew Bradburn"
-                className="w-full h-[680px] md:h-[720px] block"
+                className="w-full h-[680px] md:h-[820px] lg:h-[760px] xl:h-[720px] block"
                 style={{ border: 0, colorScheme: "light" }}
                 frameBorder={0}
                 loading="lazy"
