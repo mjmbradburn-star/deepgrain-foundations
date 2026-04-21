@@ -357,6 +357,17 @@ const MethodPage = () => (
               systems alongside it. The hours we reclaim go back to your
               people for the work only they can do.
             </p>
+            <figure className="mt-10 border-l-2 border-brass/60 pl-6">
+              <blockquote className="font-display text-walnut text-xl md:text-2xl leading-snug italic">
+                “The leaders who get this right don't lead the rollout. They lead the conditions that make the rollout inevitable.”
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-body/70">
+                From{" "}
+                <Link to="/intelligence/leading-the-ai-transformation" className={linkCls}>
+                  Leading the AI transformation →
+                </Link>
+              </figcaption>
+            </figure>
           </div>
         </ScrollReveal>
       </div>
