@@ -67,9 +67,15 @@ const About = () => (
                 come apart.
               </p>
               <p>
-                After enough of that, you read an organisation before the
-                introductory call is over. It is pattern recognition built from
-                real exposure, nothing more.
+                After enough of that,{" "}
+                <strong className="font-semibold text-brass">
+                  you read an organisation before the introductory call is over
+                </strong>
+                . It is{" "}
+                <strong className="font-semibold text-brass">
+                  pattern recognition built from real exposure
+                </strong>
+                , nothing more.
               </p>
               <p className="hidden md:block">
                 Deepgrain exists because most consulting work is built to be
