@@ -91,6 +91,88 @@ const About = () => (
       </div>
     </section>
 
+    {/* Bio — who Matthew is, in his own grain */}
+    <section className="bg-linen text-body section-pad">
+      <div className="container-grain max-w-6xl">
+        <div className="grid gap-12 md:gap-16 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-start">
+          <ScrollReveal>
+            <div className="relative">
+              <div className="absolute -inset-3 md:-inset-4 rounded-[36px] bg-brass/15 blur-2xl" aria-hidden />
+              <div className="relative overflow-hidden rounded-[28px] md:rounded-[36px] border border-walnut/15 shadow-[0_30px_80px_-30px_rgba(43,33,24,0.45)]">
+                <img
+                  src={matthewPortrait}
+                  alt="Matthew Bradburn, founder of Deepgrain"
+                  width={1920}
+                  height={1280}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-auto object-cover aspect-[3/4] md:aspect-[4/5]"
+                />
+              </div>
+              <a
+                href="https://www.linkedin.com/in/mattbradburn/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] text-walnut hover:text-brass transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brass/60 rounded"
+              >
+                <Linkedin size={16} aria-hidden />
+                Matthew on LinkedIn
+              </a>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <Eyebrow className="text-walnut/60 mb-6">Who runs this</Eyebrow>
+            <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-[60px] leading-[1.05] text-balance">
+              Matthew Bradburn. Two decades inside the room, not next to it.
+            </h2>
+            <div className="mt-8 space-y-5 text-body/85 leading-relaxed text-lg">
+              <p>
+                I&apos;ve built and rebuilt people, operating, and AI functions
+                across companies from fifty to six hundred. Defence, climate,
+                fintech, transit, health, legal, e-commerce. Different sectors,
+                same underlying craft &mdash; reading the grain before laying a
+                single new beam.
+              </p>
+              <p>
+                I founded and exited People Collective, trained{" "}
+                <strong className="font-semibold text-walnut">
+                  1,000+ managers across 100+ cohorts
+                </strong>
+                , and have led PE and M&amp;A advisory work through to
+                exit-ready outcomes. The work that travels best is the work
+                that survives the carpenter leaving the room.
+              </p>
+              <p>
+                Deepgrain is the consolidation of that practice. Strategy at
+                the top, enablement and training across the team, agents and
+                automations in the workflow &mdash; built function by function,
+                top to bottom. We run the model on ourselves first, then bring
+                it to clients who want something built to last.
+              </p>
+            </div>
+
+            <BrassRule className="my-10" />
+
+            <dl className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8">
+              {[
+                { v: "20+", l: "Years inside operating teams" },
+                { v: "100+", l: "Manager cohorts trained" },
+                { v: "7", l: "Sectors of operating exposure" },
+              ].map((s) => (
+                <div key={s.l}>
+                  <dt className="font-display font-semibold text-brass text-4xl md:text-5xl leading-none">
+                    {s.v}
+                  </dt>
+                  <dd className="mt-3 text-sm text-body/75 leading-snug">{s.l}</dd>
+                </div>
+              ))}
+            </dl>
+          </ScrollReveal>
+        </div>
+      </div>
+    </section>
+
     {/* The belief — moved here from the homepage so the line still lives somewhere */}
     <section className="bg-cream text-walnut py-24 md:py-32 border-y border-walnut/10">
       <div className="container-grain max-w-4xl text-center">
