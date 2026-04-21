@@ -2,44 +2,38 @@
 
 ## Goal
 
-Replace the current uniform vertical-stripe "grain" with a real wood-grain texture — organic, flowing, knot-bearing — that drifts very slowly behind content on every bark section, while preserving readability and our dark grey-green palette. Also harden the code so the recent `Component is not a function` error cannot recur.
+Restore visible (but still gentle) motion to the wood-grain texture on every bark section. Currently the grain is static because the animated transform is applied to the wrapper `<div>`, but the SVG inside fills the wrapper exactly — so translating the wrapper moves nothing visible. We need the *texture* to drift, not its container.
 
-## Reference
+## Why there's no motion now
 
-The uploaded grey oak image: long vertical fibres, a clear central knot/cathedral figure, soft variation in tone, no hard repeating lines. We will evoke this — not embed the photo (it's grey, not grey-green, and a tiled photo would clash with our palette and add weight).
+In `BarkGrain.tsx` the `.bark-grain` wrapper has `position: absolute; inset: 0` and the `<svg>` inside has `width: 100%; height: 100%`. The CSS keyframe `grain-flow` translates the wrapper by ~1% — but because the wrapper is clipped to the section bounds and the SVG fills it edge-to-edge, the visible pixels don't change. Net effect: zero perceptible motion.
 
-## Approach — organic grain (SVG, no photo)
+## Fix
 
-Replace `BarkGrain.tsx`'s two `repeating-linear-gradient`s with an inline SVG turbulence texture. SVG `<feTurbulence>` + `<feDisplacementMap>` generates non-repeating, wood-like fibres natively in the browser, ~2KB, GPU-composited as a single layer.
+Two small, surgical changes:
 
-Construction (one `<svg>` rendered as an absolutely-positioned layer, `aria-hidden`):
+1. **Move the animation onto the SVG, not the wrapper, and oversize the SVG so it has room to drift.**
+   - Wrapper stays static (`absolute inset-0`, holds the base gradient wash).
+   - The `<svg>` is sized `width: 110%; height: 110%` and offset `left: -5%; top: -5%`, then gets the `bark-grain` class with the transform animation. Now translating it by 2–3% reveals fresh turbulence on each side instead of clipping to nothing.
 
-1. **Base wash** — vertical linear gradient using our tokens `--bark` → `--bark-2` → `--bark` so the surface still reads as our dark grey-green.
-2. **Fibre layer** — `<feTurbulence type="fractalNoise" baseFrequency="0.9 0.012" numOctaves="2">` (high X frequency, very low Y frequency) produces long vertical fibres like real grain. Piped through `<feColorMatrix>` to tint toward cream highlights and ink shadows at ~10–14% alpha.
-3. **Knot/figure layer** — a second, lower-frequency turbulence (`baseFrequency="0.015 0.008"`) at ~6% alpha gives the soft cathedral figure and occasional knots. No two sections look identical because each `<feTurbulence>` gets a different `seed` (we'll seed once per mount with `useId`).
-4. **Motion** — instead of sliding background-position, we animate the SVG's `transform: translate3d(...)` on a 120s cycle (twice as slow as today) plus a barely-perceptible `scale(1.02)` breathe. A single transform on one layer = cheap, GPU-accelerated, and the turbulence itself stays put so the grain looks like it's *flowing* slightly rather than scrolling.
-5. **Readability guard** — overall layer opacity capped at `0.35`, and `BarkSection` keeps the existing `z-10` content wrapper. No blend modes (avoids the soft-light cost we just removed).
-6. **Reduced motion** — existing `@media (prefers-reduced-motion: reduce)` block already disables `.bark-grain` animation; we keep that selector so the new transform animation is also halted.
+2. **Make the keyframe motion larger and a touch faster, but still gentle.**
+   - New `@keyframes grain-flow`: drifts `translate3d(-3%, 1.5%, 0)` at the midpoint and back, with a barely-there `scale(1.04)` breathe.
+   - Duration: 90s (down from 120s) — slow enough to feel ambient, fast enough that a viewer notices movement within 10–15 seconds.
+   - Easing stays `ease-in-out` so it glides rather than ticks.
 
-Net result: a slow, living, non-repeating grain that visibly resembles the reference photo's flow, rendered from one SVG layer instead of three gradient layers.
-
-## Approach — error hardening
-
-The `TypeError: Component is not a function` came from `BarkSection` being consumed during HMR while a render-prop edit was mid-flight. To make it impossible to recur:
-
-- Keep `BarkSection` a plain named function component (no `forwardRef`, no dynamic `as` evaluation surprises). Default `as` to the string `"section"` and narrow the `as` prop type to `"section" | "footer" | "aside" | "div"` so a bad value can't be passed.
-- Export `BarkGrain` and `BarkSection` as named exports only (already the case) and confirm every consumer uses the named import (audit list below).
-- Add a tiny runtime guard: if `Tag` is somehow falsy, fall back to `"section"`. Cheap, eliminates the blank-screen failure mode.
+3. **Keep readability and reduced-motion guards intact.**
+   - SVG opacity stays at 0.35.
+   - The existing `@media (prefers-reduced-motion: reduce)` block already disables `.bark-grain` animation — no change needed.
 
 ## Files
 
-- `src/components/ui/BarkGrain.tsx` — replace gradient stack with SVG turbulence layer + slow transform animation; accept optional `seed` prop.
-- `src/components/ui/BarkSection.tsx` — narrow `as` typing, add fallback, pass a stable `useId`-derived seed to `BarkGrain` so each section's grain is unique.
-- `src/index.css` — replace `@keyframes grain-drift` (background-position) with `@keyframes grain-flow` (transform translate + micro-scale), 120s duration; keep the reduced-motion guard.
-- No other files change. All existing `BarkSection` consumers (`Footer`, `ICPStrip`, `ClientVoice`, `Method`, `About`, `Work`, `PeopleOps`, `IntelligenceArticle`) inherit the new look automatically.
+- `src/components/ui/BarkGrain.tsx` — move the `bark-grain` class from the wrapper `<div>` to the `<svg>`; oversize and offset the SVG so it has room to translate without revealing the section background.
+- `src/index.css` — update `@keyframes grain-flow` values (larger translate, slight scale) and shorten duration to 90s.
+
+No other files change. All bark sections (`Footer`, `ICPStrip`, `ClientVoice`, `Method`, `MobileProofVoice`, `About`, `Work`, `PeopleOps`, `IntelligenceArticle`, `Intelligence`, `Enablement`, `MethodPage`) inherit the restored motion automatically.
 
 ## Out of scope
 
-- Embedding the uploaded photo as a tiled background (palette mismatch, weight, repeat artefacts).
-- Touching Hero, light/linen sections, or any non-bark surface.
+- Any change to grain colour, density, or seed logic.
+- Touching non-bark surfaces.
 
