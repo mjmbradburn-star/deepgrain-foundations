@@ -10,6 +10,110 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PillButton } from "@/components/ui/PillButton";
 import { AIOI_URL } from "@/lib/aioi";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
+
+// Match the Method page styling so contextual CTAs feel consistent across the site.
+const linkCls = "text-brass underline-offset-4 hover:underline";
+const trailingCls = "inline-flex items-center gap-1 text-sm text-brass font-medium hover:text-walnut transition-colors";
+const ctaCls = "inline-flex items-center gap-1.5 rounded-full border border-brass/40 bg-brass/5 hover:bg-brass hover:text-cream text-brass text-xs font-semibold uppercase tracking-[0.12em] px-4 py-2 transition-colors";
+
+const askLink = (prompt: string) =>
+  `/contact?subject=${encodeURIComponent(prompt)}`;
+
+const FaqFooter = ({
+  related,
+  ask,
+}: {
+  related?: { to: string; label: string };
+  ask: string;
+}) => (
+  <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+    {related && (
+      <Link to={related.to} className={trailingCls}>
+        {related.label}
+      </Link>
+    )}
+    <Link to={askLink(ask)} className={ctaCls}>
+      Ask about this →
+    </Link>
+  </div>
+);
+
+const FAQ_ITEMS: FAQItem[] = [
+  {
+    question: "Where do most People teams get stuck with AI?",
+    answer:
+      "In one of two traps. The Dabbler tries ChatGPT once, gets a generic output, and gives up — individual tricks, no team capability. The Tool Shopper spends months evaluating tools and writing strategies nobody reads, while the market moves on. Neither path produces operating leverage. The third path is building: small, specific workflows that compound.",
+    answerNode: (
+      <>
+        In one of two traps. The Dabbler tries ChatGPT once, gets a generic output, and gives up — individual tricks, no team capability. The Tool Shopper spends months evaluating tools and writing strategies nobody reads, while the market moves on. Neither path produces operating leverage. The third path is building: small, specific workflows that compound.
+        <FaqFooter
+          related={{ to: "/intelligence/people-ops/from-prompts-to-systems", label: "From prompts to systems →" }}
+          ask="Our People function feels stuck between dabbling and tool-shopping. A bit about where we are: "
+        />
+      </>
+    ),
+  },
+  {
+    question: "Do we need to hire engineers to build AI workflows in our People function?",
+    answer:
+      "No. Hiring engineers into People to do AI usually backfires — they solve the problem they understand, which is rarely the problem the team has. The champion model uses three or four existing senior coordinators, HRBPs, or Ops leads, given a different mandate and a protected fifth of their week. They know where the friction is because they live in it.",
+    answerNode: (
+      <>
+        No. Hiring engineers into People to do AI usually backfires — they solve the problem they understand, which is rarely the problem the team has. The{" "}
+        <Link to="/intelligence/people-ops/the-champion-model" className={linkCls}>champion model</Link> uses three or four existing senior coordinators, HRBPs, or Ops leads, given a different mandate and a protected fifth of their week. They know where the friction is because they live in it.
+        <FaqFooter
+          related={{ to: "/enablement", label: "How champions are trained →" }}
+          ask="I'd like to talk about who in our team could become AI champions. A bit about our function: "
+        />
+      </>
+    ),
+  },
+  {
+    question: "How do we know if our People function is ready to build with AI?",
+    answer:
+      "Six signals, in order of importance: data hygiene (one source of truth, not three), process clarity (can the workflow be drawn on a whiteboard in five minutes), tool fragmentation (under five integrations is workable), curiosity distribution (who has already played with AI), sponsor presence (a named senior leader who will defend the time), and risk posture (how the company thinks about AI risk). Sponsor presence is the single best predictor.",
+    answerNode: (
+      <>
+        Six signals, in order of importance: data hygiene (one source of truth, not three), process clarity (can the workflow be drawn on a whiteboard in five minutes), tool fragmentation (under five integrations is workable), curiosity distribution (who has already played with AI), sponsor presence (a named senior leader who will defend the time), and risk posture (how the company thinks about AI risk). Sponsor presence is the single best predictor.
+        <FaqFooter
+          related={{ to: "/intelligence/people-ops/diagnosing-ai-readiness-in-people-ops", label: "The full readiness diagnostic →" }}
+          ask="I'd like to understand how ready our People function is to build with AI. A bit about us: "
+        />
+      </>
+    ),
+  },
+  {
+    question: "How should we handle governance without slowing the work to a crawl?",
+    answer:
+      "Treat governance as steering, not braking. Decide early — in writing — which decisions a model never makes alone (hiring, termination, performance, comp, accommodations, discipline), which data the model never sees (special-category, NDA, identifiable salary), which outputs a human always reviews (anything that goes to a candidate or a regulator), and what logging exists. With those four boundaries set, you can move fast on everything else.",
+    answerNode: (
+      <>
+        Treat governance as steering, not braking. Decide early — in writing — which decisions a model never makes alone (hiring, termination, performance, comp, accommodations, discipline), which data the model never sees (special-category, NDA, identifiable salary), which outputs a human always reviews (anything that goes to a candidate or a regulator), and what logging exists. With those four boundaries set, you can move fast on everything else.
+        <FaqFooter
+          related={{ to: "/intelligence/people-ops/ai-governance-for-people-teams", label: "AI governance for People teams →" }}
+          ask="I'd like to talk about setting up governance for AI in our People function. A bit about our context: "
+        />
+      </>
+    ),
+  },
+  {
+    question: "What's the best first step if we want to take this seriously?",
+    answer:
+      "Start with the diagnostic. The AI Operating Index is a free 8-pillar self-assessment that shows you where your operating system holds and where it gives — across data, tools, governance, and capability. It produces a starting picture in under fifteen minutes. From there, the next move is usually a 30-day Read phase to surface the operating reality before any building begins.",
+    answerNode: (
+      <>
+        Start with the diagnostic. The{" "}
+        <a href={AIOI_URL} target="_blank" rel="noreferrer" className={linkCls}>
+          AI Operating Index
+        </a>{" "}
+        is a free 8-pillar self-assessment that shows you where your operating system holds and where it gives — across data, tools, governance, and capability. It produces a starting picture in under fifteen minutes. From there, the next move is usually a 30-day{" "}
+        <Link to="/method#read" className={linkCls}>Read</Link> phase to surface the operating reality before any building begins.
+        <FaqFooter ask="I'd like to talk about how to start building AI capability in our People function. A bit about us: " />
+      </>
+    ),
+  },
+];
 
 const PeopleOps = () => {
   const url = "https://deepgrain.ai/intelligence/people-ops";
@@ -61,6 +165,7 @@ const PeopleOps = () => {
         <meta name="twitter:image" content="https://deepgrain.ai/og-people-ops.png" />
         <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(buildFAQLd(FAQ_ITEMS))}</script>
       </Helmet>
 
       {/* Hero */}
@@ -157,6 +262,13 @@ const PeopleOps = () => {
           })}
         </div>
       </section>
+
+      {/* FAQ — common questions from People leaders before they engage. */}
+      <FAQ
+        eyebrow="Common questions"
+        heading="What People leaders ask before they build."
+        items={FAQ_ITEMS}
+      />
 
       {/* AIOI CTA */}
       <section className="bg-green text-cream py-20 md:py-28">
