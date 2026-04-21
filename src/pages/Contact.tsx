@@ -9,7 +9,7 @@ const Contact = () => (
   <section className="bg-green text-cream min-h-screen pt-40 pb-32">
     <PageMeta
       title="Contact | Deepgrain"
-      description="Start a conversation with Deepgrain. If you have an organisation worth getting right, write to Matt Webb directly."
+      description="Start a conversation with Deepgrain. If you have an organisation worth getting right, write to Matthew Bradburn directly."
       path="/contact"
       jsonLd={buildBreadcrumbLd([
         { name: "Home", url: "https://deepgrain.ai/" },

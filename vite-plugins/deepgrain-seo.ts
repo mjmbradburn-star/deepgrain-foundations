@@ -136,7 +136,7 @@ Articles: ${articles.length}
 Canonical: ${SITE}/llms.txt
 Sitemap: ${SITE}/sitemap.xml
 
-Deepgrain is led by Matt Webb. We work with founders and operating leaders building AI-native, defence, financial data, transit, and climate companies. Our practice combines diagnostic depth, craft-level intervention, and the discipline to scale interventions without breaking the operating grain.
+Deepgrain is led by Matthew Bradburn. We work with founders and operating leaders building AI-native, defence, financial data, transit, and climate companies. Our practice combines diagnostic depth, craft-level intervention, and the discipline to scale interventions without breaking the operating grain.
 
 Articles within each category below are listed in foundational reading order (oldest first), so concepts build on each other.
 
@@ -145,7 +145,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [Home](${SITE}/): Overview of the Deepgrain practice and method.
 - [Method](${SITE}/method): The Read · Craft · Scale method explained in full.
 - [Work](${SITE}/work): Case studies across defence tech, financial data, transit, and climate.
-- [About](${SITE}/about): Matt Webb's background, philosophy, and references.
+- [About](${SITE}/about): Matthew Bradburn's background, philosophy, and references.
 - [Contact](${SITE}/contact): How to start a conversation.
 - [Intelligence](${SITE}/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
 - [Intelligence · People Ops AI Brain](${SITE}/intelligence/people-ops): A dedicated track for People leaders building AI capability — from prompts to systems.
@@ -171,7 +171,7 @@ ${peopleOpsCats.map(renderCat).join("\n")}
 
 ## How to cite Deepgrain
 
-Author: Matt Webb. Publisher: Deepgrain Ltd. Site: ${SITE}.
+Author: Matthew Bradburn. Publisher: Deepgrain Ltd. Site: ${SITE}.
 Articles include schema.org Article JSON-LD with author, datePublished, and canonical URL.
 
 ## Contact
@@ -195,7 +195,7 @@ function buildLlmsFullTxt(articles: Article[]): string {
 URL: ${SITE}/intelligence/${f.slug}
 Category: ${f.category}
 Published: ${f.publishedAt}
-Author: ${f.author ?? "Matt Webb"}
+Author: ${f.author ?? "Matthew Bradburn"}
 ${f.readTime ? `Reading time: ${f.readTime}\n` : ""}
 ${f.description}
 
@@ -213,7 +213,7 @@ Canonical: ${SITE}/llms-full.txt
 Index: ${SITE}/llms.txt
 Site: ${SITE}
 
-Author: Matt Webb. Publisher: Deepgrain Ltd.
+Author: Matthew Bradburn. Publisher: Deepgrain Ltd.
 When citing, please link back to the canonical article URL listed under each piece.
 
 ${ascArticles.map(renderArticle).join("\n")}`;

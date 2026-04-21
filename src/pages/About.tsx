@@ -21,14 +21,14 @@ const testimonials = [
 const About = () => (
   <>
     <PageMeta
-      title="About Matt Webb | Deepgrain"
-      description="Matt Webb leads Deepgrain. Background, philosophy, and references from founders and operators across AI-native, defence, fintech, transit, and climate companies."
+      title="About Matthew Bradburn | Deepgrain"
+      description="Matthew Bradburn leads Deepgrain. Background, philosophy, and references from founders and operators across AI-native, defence, fintech, transit, and climate companies."
       path="/about"
       jsonLd={[
         {
           "@context": "https://schema.org",
           "@type": "Person",
-          name: "Matt Webb",
+          name: "Matthew Bradburn",
           jobTitle: "Founder",
           worksFor: { "@type": "Organization", name: "Deepgrain" },
           url: "https://deepgrain.ai/about",
