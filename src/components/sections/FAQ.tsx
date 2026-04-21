@@ -117,12 +117,12 @@ const FaqDetails = ({
       <summary
         data-faq-summary
         onKeyDown={handleSummaryKeyDown}
-        className="flex cursor-pointer items-start justify-between gap-6 list-none rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-brass/60 focus-visible:ring-offset-2 focus-visible:ring-offset-linen"
+        className="flex cursor-pointer items-start justify-between gap-4 sm:gap-6 list-none rounded-sm -mx-2 px-2 py-1 min-h-[44px] outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-linen"
       >
         <dt className={questionClass}>{item.question}</dt>
         <span
           aria-hidden
-          className="mt-2 shrink-0 text-brass text-xl leading-none transition-transform duration-300 ease-out group-open:rotate-45"
+          className="mt-1 sm:mt-2 shrink-0 text-brass text-2xl sm:text-xl leading-none w-11 h-11 sm:w-auto sm:h-auto flex items-center justify-center -mr-2 sm:mr-0 transition-transform duration-300 ease-out group-open:rotate-45"
         >
           +
         </span>
