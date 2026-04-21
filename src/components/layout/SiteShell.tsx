@@ -21,6 +21,7 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
       <main
         className={cn(
           "flex-1",
+          "[&_section+section]:border-t-[3px] [&_section+section]:border-brass/35",
           hasSubnav &&
             "pt-10 [&_section]:scroll-mt-36 md:[&_section]:scroll-mt-[152px]"
         )}
