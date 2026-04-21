@@ -5,8 +5,21 @@
  * Three lines: who → where → the problem we partner on.
  */
 export const ICPStrip = () => (
-  <section className="bg-walnut text-cream border-y border-brass/25">
-    <div className="container-grain py-10 md:py-14 text-center">
+  <section className="relative overflow-hidden bg-bark text-cream border-y border-brass/30">
+    {/* Animated wood-grain texture layer — drifts slowly, paused for reduced-motion users. */}
+    <div
+      aria-hidden
+      className="bark-grain pointer-events-none absolute inset-0 opacity-[0.18] mix-blend-overlay"
+      style={{
+        backgroundImage: [
+          "linear-gradient(180deg, hsl(var(--bark)) 0%, hsl(var(--bark-2)) 50%, hsl(var(--bark)) 100%)",
+          "repeating-linear-gradient(88deg, hsl(var(--cream) / 0.06) 0px, hsl(var(--cream) / 0.06) 1px, transparent 1px, transparent 5px)",
+          "repeating-linear-gradient(92deg, hsl(var(--bark-2) / 0.5) 0px, hsl(var(--bark-2) / 0.5) 1px, transparent 1px, transparent 7px)",
+        ].join(", "),
+        backgroundSize: "100% 100%, 200% 100%, 200% 100%",
+      }}
+    />
+    <div className="container-grain py-10 md:py-14 text-center relative">
       {/* Line 1 — Who: roles + company types as two simple columns */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 max-w-3xl mx-auto items-start">
         <div>
