@@ -11,6 +11,25 @@ export const frontmatter = {
   featured: true,
 };
 
+export const faqs = [
+  {
+    question: "Why does most People-function AI governance fail?",
+    answer: "It starts with a fear and ends with a policy nobody reads. The fear is real — bias, leakage, EU AI Act, candidate complaints, employment tribunals. The policy is real too, sitting in a Notion page nobody opens after the day it was written. The gap is not \"do we have a policy\" but \"does the policy meet the work.\" Treated as a brake, governance gets routed around — people still use AI, they just stop telling you about it.",
+  },
+  {
+    question: "What decisions should an AI model never make alone in a People function?",
+    answer: "Hiring decisions. Termination decisions. Performance ratings. Compensation calls. Reasonable adjustments and accommodations. Discipline outcomes. These are the places where the consequence of a wrong call is high, the data is messy, and the bias risk is concentrated. The model can prepare, summarise, suggest, draft. The model never decides. A named human does. Always.",
+  },
+  {
+    question: "What data should the model never see?",
+    answer: "Health information. Disability status. Salary detail tied to identity. Grievance content. Anything covered by special category data under GDPR, anything covered by an NDA, anything that — if it leaked — would damage trust permanently. Enforcement is rarely \"we trust people not to paste it.\" It is configuration: approved tools that route to enterprise endpoints with no training, workflows that strip identifiers before the model sees them, and a short list of providers rather than a long one.",
+  },
+  {
+    question: "How do you tell if you actually have governance, not just aspirations?",
+    answer: "You should be able to answer four questions in under five minutes. Which workflows use a model? Which model, and where does it run? Where is the prompt and output history? Who is accountable for each workflow? If you can't, you don't have governance. Good practice usually looks the same from inside: a one-pager listing every AI workflow, a regular short review by the owners, a named person whose job includes \"the AI is in good order,\" and a culture where surfacing a near-miss is a gift to the team, not a confession.",
+  },
+];
+
 Most AI governance work in People functions starts with a fear and ends with a policy nobody reads. The fear is real — bias, leakage, EU AI Act, candidate complaints, employment tribunals. The policy is real too. It exists in a Notion page nobody opens after the day it was written. In between, the actual decisions about what AI does inside the People function are being made by individuals, in private, one prompt at a time.
 
 That is the gap. Not "do we have a policy" but "does the policy meet the work."

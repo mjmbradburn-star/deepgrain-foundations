@@ -11,6 +11,25 @@ export const frontmatter = {
   featured: true,
 };
 
+export const faqs = [
+  {
+    question: "Why diagnose readiness before building anything?",
+    answer: "Because the cost of skipping the diagnostic is not subtle. It shows up four months later as a half-built workflow nobody adopted, a tool the team works around, a champion who burned out trying to drag the function somewhere it was not ready to go. Reading first, building second — always. The building is faster afterwards, every time.",
+  },
+  {
+    question: "What axes should we actually assess?",
+    answer: "Six axes, none of them about the model. Data hygiene: is there one source of truth or three? Process clarity: can the team draw each major workflow on a whiteboard in five minutes? Tool fragmentation: how many tools does the average workflow touch? Curiosity distribution: who has already played with AI and who hasn't? Sponsor presence: is there a named senior leader who will defend the champions' time? Risk posture: how does the company think about AI risk?",
+  },
+  {
+    question: "Which axis matters most?",
+    answer: "Sponsor presence. Without a named senior leader — CPO, Head of People, COO — who will publicly say \"this is part of how we work now\" and defend the time the champions take, every workflow build will be the first thing dropped when a quarter gets hot. The presence of a real sponsor is the single best predictor of whether anything gets built. Better than budget, better than tooling, better than capability.",
+  },
+  {
+    question: "What does the diagnostic produce?",
+    answer: "A short, honest description of where the function actually stands on each axis, and what that implies about the order of the work. Not a score out of ten, not a maturity model — a six-line summary. From that, the build order writes itself: start where the data is good and the process is clear, use the curious people as initial champions, set up governance early if the risk posture demands it, leave the murky areas for phase two. The diagnostic is not the strategy. It is the thing that makes the strategy obvious.",
+  },
+];
+
 Before any team builds anything with AI, there is a step almost everyone skips: actually reading where the function is right now. Not the aspirational version. Not the version that lives in the strategy deck. The version that exists when you walk through the team's week, hour by hour, and notice what is actually happening.
 
 The cost of skipping the diagnostic is not subtle. It shows up four months later as a half-built workflow nobody adopted, a tool the team works around, a champion who burned out trying to drag the function somewhere it was not ready to go.
