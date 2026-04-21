@@ -96,6 +96,98 @@ const FAQ_ITEMS: FAQItem[] = [
   },
 ];
 
+// HowTo schema mirrors the visible Read · Craft · Scale sections below.
+// Step descriptions stay short and faithful to the on-page prose so the
+// markup-vs-content match Google requires for HowTo eligibility holds.
+const howToLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "The Deepgrain method: Read · Craft · Scale",
+  description:
+    "Three sequential movements for building AI capability that compounds inside an organisation: read the operating reality, craft interventions with the grain, then leave something that scales.",
+  totalTime: "P9M",
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "Read the grain",
+      url: "https://deepgrain.ai/method#read",
+      text: "A 30-day operating diagnostic. Sit inside the operating cadence, run structured interviews, and surface where the operating story diverges from the operating reality. Output is a written diagnostic leadership can act on — not slideware.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "Craft with the grain",
+      url: "https://deepgrain.ai/method#craft",
+      text: "Build a small set of agentic systems and operating rituals alongside three or four internal champions. Human judgment and machine precision working together, designed around how this specific organisation actually moves.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Scale without breaking the grain",
+      url: "https://deepgrain.ai/method#scale",
+      text: "Hand the practice to the team. Trained champions extend the work into corners we never touched. The capability stays in the function, not in a vendor.",
+    },
+  ],
+};
+
+// Service schema declares the consultancy offering for entity-graph clarity.
+// Kept conservative: no price (no public pricing on site), no aggregateRating
+// (no published reviews). Only claims that are supported by visible page copy.
+const serviceLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Deepgrain operating consultancy",
+  serviceType: "Organisational consultancy and AI operating systems",
+  description:
+    "Operating consultancy that reads an organisation's grain, builds agentic systems and rituals with it, and leaves a trained internal capability behind.",
+  url: "https://deepgrain.ai/method",
+  provider: {
+    "@type": "Organization",
+    name: "Deepgrain",
+    url: "https://deepgrain.ai",
+    email: "matt@deepgrain.ai",
+  },
+  areaServed: { "@type": "Place", name: "United Kingdom" },
+  audience: {
+    "@type": "Audience",
+    audienceType: "Founders and operating leaders in AI-native, defence tech, financial data, transit and mobility, and climate organisations",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Engagement phases",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Read",
+          description: "30-day operating diagnostic. Written output leadership can act on.",
+          url: "https://deepgrain.ai/method#read",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Craft",
+          description: "Building agentic systems and operating rituals with internal champions.",
+          url: "https://deepgrain.ai/method#craft",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Scale",
+          description: "Capability handover. Champions extend the practice after the engagement ends.",
+          url: "https://deepgrain.ai/method#scale",
+        },
+      },
+    ],
+  },
+};
+
 const MethodPage = () => (
   <>
     <PageMeta
@@ -109,6 +201,8 @@ const MethodPage = () => (
           { name: "Method", url: "https://deepgrain.ai/method" },
         ]),
         buildFAQLd(FAQ_ITEMS),
+        howToLd,
+        serviceLd,
       ]}
     />
     {/* Intro */}
