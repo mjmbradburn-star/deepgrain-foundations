@@ -121,6 +121,8 @@ const FaqDetails = ({
   rowPadding: string;
 }) => {
   const ref = useRef<HTMLDetailsElement>(null);
+  const id = faqIdFromQuestion(item.question);
+  const [copied, setCopied] = useState(false);
 
   // Respect prefers-reduced-motion: skip the height transition entirely.
   const onToggle = useCallback(() => {
@@ -131,11 +133,58 @@ const FaqDetails = ({
     }
   }, []);
 
+  // Deep linking: open the matching <details> when the URL hash points at it
+  // (on first paint AND on subsequent hashchange events — e.g. user pastes a
+  // share link into the address bar of an already-loaded page). We scroll
+  // after a tick so the panel has a chance to expand to its real height.
+  useEffect(() => {
+    const tryOpen = () => {
+      if (typeof window === "undefined") return;
+      if (window.location.hash.slice(1) !== id) return;
+      const el = ref.current;
+      if (!el) return;
+      el.open = true;
+      requestAnimationFrame(() => {
+        el.scrollIntoView({
+          behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)")
+            .matches
+            ? "auto"
+            : "smooth",
+          block: "start",
+        });
+      });
+    };
+    tryOpen();
+    window.addEventListener("hashchange", tryOpen);
+    return () => window.removeEventListener("hashchange", tryOpen);
+  }, [id]);
+
+  const onCopyLink = useCallback(
+    async (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const url = `${window.location.origin}${window.location.pathname}${window.location.search}#${id}`;
+      try {
+        await navigator.clipboard.writeText(url);
+      } catch {
+        // Clipboard API can reject in insecure contexts / older browsers —
+        // fall back to updating the URL hash so the user can copy from the bar.
+      }
+      // Always reflect the anchor in the address bar so back/forward + manual
+      // copy still work even when the clipboard write fails.
+      history.replaceState(null, "", `#${id}`);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
+    },
+    [id],
+  );
+
   return (
     <details
       ref={ref}
+      id={id}
       onToggle={onToggle}
-      className={`group ${rowPadding} [&_summary::-webkit-details-marker]:hidden`}
+      className={`group scroll-mt-24 ${rowPadding} [&_summary::-webkit-details-marker]:hidden`}
     >
       <summary
         data-faq-summary
@@ -150,14 +199,6 @@ const FaqDetails = ({
           +
         </span>
       </summary>
-      {/*
-        Animated panel.
-        - Closed: grid-rows-[0fr], opacity-0 → child collapses to 0 height.
-        - Open  : grid-rows-[1fr], opacity-1 → child expands to its auto height.
-        - The inner div MUST be `min-h-0 overflow-hidden` so the grid track
-          can actually clip it during the transition.
-        - `motion-reduce` short-circuits the transition for users who opt out.
-      */}
       <div
         className={[
           "faq-panel grid transition-all duration-300 ease-out",
@@ -168,6 +209,17 @@ const FaqDetails = ({
       >
         <dd className={`min-h-0 overflow-hidden ${answerClass}`}>
           <div className="pt-4">{item.answerNode ?? item.answer}</div>
+          <div className="pt-4">
+            <button
+              type="button"
+              onClick={onCopyLink}
+              aria-label={`Copy link to question: ${item.question}`}
+              className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.12em] text-walnut/60 hover:text-brass focus-visible:text-brass outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-linen rounded-sm px-1 py-1 -mx-1 transition-colors"
+            >
+              <span aria-hidden>{copied ? "✓" : "🔗"}</span>
+              <span>{copied ? "Link copied" : "Copy link"}</span>
+            </button>
+          </div>
         </dd>
       </div>
     </details>
