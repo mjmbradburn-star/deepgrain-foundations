@@ -169,6 +169,18 @@ const FaqDetails = ({
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
       el.dataset.animate = "off";
     }
+
+    // Analytics: fire a GA4 event on every user toggle. Guarded so SSR /
+    // ad-blocked / pre-consent loads silently no-op. We deliberately send
+    // only the stable id + action + path — no question text, no PII.
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", "faq_toggle", {
+        faq_id: id,
+        action: el.open ? "open" : "close",
+        page_path: window.location.pathname,
+      });
+    }
+
     const key = storageKey();
     if (!key) return;
     try {
