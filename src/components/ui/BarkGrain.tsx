@@ -1,26 +1,31 @@
 /**
  * Animated wood-grain texture layer for dark grey-green (bark) surfaces.
  *
- * Drop into any `relative overflow-hidden` parent with `bg-bark`. Two stacked
- * repeating-linear-gradients drift slowly via the `.bark-grain` keyframe; the
- * whole layer respects `prefers-reduced-motion` (handled in index.css).
+ * Sits at `z-0` inside any `relative overflow-hidden` parent with `bg-bark`.
+ * Content should be wrapped in a `relative z-10` container (BarkSection does
+ * this automatically) so it always paints above the grain.
+ *
+ * Two background layers (down from four) keep paint cost low while preserving
+ * the wood look:
+ *   1. A tight highlight/shadow stripe pair drifting one way.
+ *   2. A wider, softer knot band drifting the other way at half speed.
+ *
+ * No blend modes — the colours are pre-baked at the right alpha so the
+ * compositor can fast-path the layer. Animation runs on `background-position`
+ * only, which the browser GPU-accelerates.
  */
 export const BarkGrain = () => (
   <div
     aria-hidden
-    className="bark-grain pointer-events-none absolute inset-0 opacity-[0.55] mix-blend-soft-light"
+    className="bark-grain pointer-events-none absolute inset-0 z-0"
     style={{
       backgroundImage: [
-        // Vertical depth wash so the section isn't flat.
-        "linear-gradient(180deg, hsl(var(--bark)) 0%, hsl(var(--bark-2)) 50%, hsl(var(--bark)) 100%)",
-        // Bright cream highlight grain — tight, sharp, drifts fastest.
-        "repeating-linear-gradient(89deg, hsl(var(--cream) / 0.18) 0px, hsl(var(--cream) / 0.18) 1px, transparent 1px, transparent 4px)",
-        // Dark shadow grain — slightly off-axis so it interferes with the highlight.
-        "repeating-linear-gradient(91deg, hsl(0 0% 0% / 0.35) 0px, hsl(0 0% 0% / 0.35) 1px, transparent 1px, transparent 6px)",
-        // Wider knot/streak band — soft, low-frequency, drifts slowest.
-        "repeating-linear-gradient(90deg, hsl(var(--cream) / 0.08) 0px, hsl(var(--cream) / 0.08) 2px, transparent 2px, transparent 17px)",
+        // Tight grain: bright cream highlight + dark shadow in one repeating band.
+        "repeating-linear-gradient(90deg, hsl(var(--cream) / 0.10) 0px, hsl(var(--cream) / 0.10) 1px, transparent 1px, transparent 3px, hsl(0 0% 0% / 0.18) 3px, hsl(0 0% 0% / 0.18) 4px, transparent 4px, transparent 7px)",
+        // Wider knot/streak band — soft, low-frequency.
+        "repeating-linear-gradient(90deg, hsl(var(--cream) / 0.05) 0px, hsl(var(--cream) / 0.05) 2px, transparent 2px, transparent 19px)",
       ].join(", "),
-      backgroundSize: "100% 100%, 220% 100%, 180% 100%, 320% 100%",
+      backgroundSize: "220% 100%, 320% 100%",
     }}
   />
 );
