@@ -22,12 +22,22 @@ export const Hero = () => (
       />
       <div className="absolute inset-0 bg-green/55" />
       <div className="absolute inset-0 bg-gradient-to-r from-green/70 via-green/30 to-transparent" />
+      {/* Ambient wood-grain drift — purely decorative, GPU transform only. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none opacity-[0.05] hero-drift mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(92deg, hsl(var(--cream) / 0.6) 0 1px, transparent 1px 7px), repeating-linear-gradient(88deg, hsl(var(--brass) / 0.4) 0 1px, transparent 1px 13px)",
+          backgroundSize: "200% 100%",
+        }}
+      />
     </div>
 
     <div className="relative container-grain pt-32 pb-32 md:pt-40">
       <div className="relative max-w-2xl">
         <h1
-          className="font-display font-semibold uppercase text-cream leading-[0.95] text-[56px] sm:text-[80px] md:text-[104px] lg:text-[120px] -mt-8 md:-mt-12"
+          className="font-display font-semibold uppercase text-cream leading-[0.95] text-[2.5rem] sm:text-[80px] md:text-[104px] lg:text-[120px] -mt-8 md:-mt-12"
           style={{ letterSpacing: "0.02em" }}
         >
           Work with<br />the grain.
