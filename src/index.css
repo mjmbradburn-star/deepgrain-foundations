@@ -121,15 +121,19 @@
 }
 .hero-drift { animation: hero-drift 60s linear infinite; will-change: transform; }
 
-/* Bark grain — drifting wood-grain texture for dark grey-green surfaces.
-   Two background layers move at different rates and directions so the grain
-   reads as living wood rather than scrolling stripes. GPU-accelerated via
-   background-position only. */
-@keyframes grain-drift {
-  0%   { background-position:    0% 0%,    0% 0%; }
-  100% { background-position:  220% 0%, -160% 0%; }
+/* Bark grain — slow, living wood-grain motion for dark grey-green surfaces.
+   The turbulence texture itself is static SVG; we animate the wrapper with
+   a tiny translate + breathe so the grain appears to flow rather than scroll.
+   GPU-accelerated via transform only. 120s cycle = barely perceptible. */
+@keyframes grain-flow {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-1.2%, 0.6%, 0) scale(1.02); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
 }
-.bark-grain { animation: grain-drift 60s linear infinite; will-change: background-position; }
+.bark-grain {
+  animation: grain-flow 120s ease-in-out infinite;
+  will-change: transform;
+}
 
 /* CSS-only fade-in-up for above-the-fold content (replaces framer-motion on critical path) */
 @keyframes fade-in-up {
