@@ -8,6 +8,35 @@ import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { Invitation } from "@/components/sections/Invitation";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
+import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
+
+const faqItems: FAQItem[] = [
+  {
+    question: "How does onboarding work in the first two weeks?",
+    answer:
+      "We name an exec sponsor, identify three or four champions inside the function, and pick one bounded, painful workflow to build first. No procurement marathon, no tooling debate — we use what you already have where we can, and stand up the missing pieces (an LLM provider, one workflow tool) on the right terms in week one.",
+  },
+  {
+    question: "Who from our team needs to be involved, and how much of their time?",
+    answer:
+      "An exec sponsor for air cover (a few hours a month), and three or four champions giving roughly a fifth of their week. Champions are existing senior coordinators, People Partners, or Ops leads — people you already pay, given a different mandate. We do not need engineers.",
+  },
+  {
+    question: "What does the coaching curriculum actually cover?",
+    answer:
+      "Six modules run alongside live builds: reading the grain, briefing agents, wiring workflows, governance and trust, measuring value, and sustaining the practice. There is no classroom phase — champions learn the craft on their own systems, with their own data, on problems they already wanted to solve.",
+  },
+  {
+    question: "What happens after the engagement ends?",
+    answer:
+      "Champions keep building. They run a monthly review of each other's workflows, extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team — not parked with a vendor on a retainer.",
+  },
+  {
+    question: "How do you measure that the capability has actually transferred?",
+    answer:
+      "Three signals. Champions ship a workflow we did not scope, end-to-end, without us. A new joiner is brought up to speed by a colleague rather than a deck. And six months on, the workflow count has grown — not flatlined. If those are not true, the engagement did not land, regardless of hours saved.",
+  },
+];
 
 const upskilled = [
   {
@@ -92,10 +121,13 @@ const Enablement = () => (
       description="What 'people upskilled' means inside a Deepgrain engagement. The coaching curriculum, the champion model, and the capability your team keeps after we leave."
       image="https://deepgrain.ai/og-enablement.png"
       path="/enablement"
-      jsonLd={buildBreadcrumbLd([
-        { name: "Home", url: "https://deepgrain.ai/" },
-        { name: "Enablement", url: "https://deepgrain.ai/enablement" },
-      ])}
+      jsonLd={[
+        buildBreadcrumbLd([
+          { name: "Home", url: "https://deepgrain.ai/" },
+          { name: "Enablement", url: "https://deepgrain.ai/enablement" },
+        ]),
+        buildFAQLd(faqItems),
+      ]}
     />
 
     {/* Hero */}
@@ -301,6 +333,12 @@ const Enablement = () => (
         </ScrollReveal>
       </div>
     </section>
+
+    <FAQ
+      eyebrow="Onboarding & after"
+      heading="What working with us actually looks like."
+      items={faqItems}
+    />
 
     <Invitation />
   </>
