@@ -7,7 +7,6 @@ import { BarkGrain } from "@/components/ui/BarkGrain";
  * Three lines: who → where → the problem we partner on.
  */
 export const ICPStrip = () => (
-export const ICPStrip = () => (
   <section className="relative overflow-hidden bg-bark text-cream border-y border-brass/30">
     <BarkGrain />
     <div className="container-grain py-10 md:py-14 text-center relative">
