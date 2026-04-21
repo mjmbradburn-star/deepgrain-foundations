@@ -51,8 +51,7 @@ const Contact = () => (
               Find a time.
             </h2>
             <p className="mt-6 text-body/80 leading-relaxed max-w-md">
-              Pick a slot that works. Thirty minutes, no agenda required —
-              tell me what you're trying to fix and we'll go from there.
+              Find a slot that works. Thirty minutes, lmk whats of interest.
             </p>
             <BrassRule className="my-8" />
             <ul className="space-y-3 text-body/75 text-sm">
