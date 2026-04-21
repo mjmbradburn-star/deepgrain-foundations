@@ -97,6 +97,9 @@
     width: 100%;
     display: block;
   }
+  .brass-rule {
+    border-top: 3px solid hsl(var(--brass) / 0.35);
+  }
 }
 
 /* Logo carousel */
