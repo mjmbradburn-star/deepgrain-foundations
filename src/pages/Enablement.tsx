@@ -11,9 +11,35 @@ import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 
 // Each FAQ keeps `answer` as the canonical text mirrored in JSON-LD; `answerNode`
-// adds inline navigation (where natural) or a trailing "Related" link (otherwise).
+// adds inline navigation, an optional "Related" link, and a contextual "Ask about
+// this" CTA that deep-links to /contact with a question-specific ?subject= prefill.
 const linkCls = "text-brass underline-offset-4 hover:underline";
-const trailingCls = "mt-3 inline-flex items-center gap-1 text-sm text-brass font-medium hover:text-walnut transition-colors";
+const trailingCls = "inline-flex items-center gap-1 text-sm text-brass font-medium hover:text-walnut transition-colors";
+const ctaCls = "inline-flex items-center gap-1.5 rounded-full border border-brass/40 bg-brass/5 hover:bg-brass hover:text-cream text-brass text-xs font-semibold uppercase tracking-[0.12em] px-4 py-2 transition-colors";
+
+/** Build a /contact link with a polite, conversational prefill quoting the FAQ. */
+const askLink = (prompt: string) =>
+  `/contact?subject=${encodeURIComponent(prompt)}`;
+
+/** Footer row under each FAQ answer: optional related link + the contextual CTA. */
+const FaqFooter = ({
+  related,
+  ask,
+}: {
+  related?: { to: string; label: string };
+  ask: string;
+}) => (
+  <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+    {related && (
+      <Link to={related.to} className={trailingCls}>
+        {related.label}
+      </Link>
+    )}
+    <Link to={askLink(ask)} className={ctaCls}>
+      Ask about this →
+    </Link>
+  </div>
+);
 
 const faqItems: FAQItem[] = [
   {
@@ -23,9 +49,10 @@ const faqItems: FAQItem[] = [
     answerNode: (
       <>
         We name an exec sponsor, identify three or four champions inside the function, and pick one bounded, painful workflow to build first. No procurement marathon, no tooling debate — we use what you already have where we can, and stand up the missing pieces (an LLM provider, one workflow tool) on the right terms in week one.
-        <Link to="/method#read" className={trailingCls}>
-          See how the Read phase frames it →
-        </Link>
+        <FaqFooter
+          related={{ to: "/method#read", label: "See how the Read phase frames it →" }}
+          ask="I'd like to understand what onboarding would look like for our team. A bit about us: "
+        />
       </>
     ),
   },
@@ -37,6 +64,7 @@ const faqItems: FAQItem[] = [
       <>
         An exec sponsor for air cover (a few hours a month), and three or four{" "}
         <Link to="/intelligence/the-champion-model" className={linkCls}>champions</Link> giving roughly a fifth of their week. Champions are existing senior coordinators, People Partners, or Ops leads — people you already pay, given a different mandate. We do not need engineers.
+        <FaqFooter ask="I'd like to talk about who in our team could become champions. A bit about our function: " />
       </>
     ),
   },
@@ -48,6 +76,7 @@ const faqItems: FAQItem[] = [
       <>
         Six modules run alongside live builds: reading the grain, briefing agents, wiring workflows, governance and trust, measuring value, and sustaining the practice. There is no classroom phase — champions learn the{" "}
         <Link to="/method#craft" className={linkCls}>craft</Link> on their own systems, with their own data, on problems they already wanted to solve.
+        <FaqFooter ask="I'd like to know more about the coaching curriculum and how it would map to our team. A bit about our context: " />
       </>
     ),
   },
@@ -58,9 +87,10 @@ const faqItems: FAQItem[] = [
     answerNode: (
       <>
         Champions keep building. They extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team — not parked with a vendor on a retainer.
-        <Link to="/method#scale" className={trailingCls}>
-          How the Scale phase works →
-        </Link>
+        <FaqFooter
+          related={{ to: "/method#scale", label: "How the Scale phase works →" }}
+          ask="I'd like to understand what life looks like after the engagement ends. A bit about us: "
+        />
       </>
     ),
   },
@@ -71,9 +101,10 @@ const faqItems: FAQItem[] = [
     answerNode: (
       <>
         Three signals. Champions ship a workflow we did not scope, end-to-end, without us. A new joiner is brought up to speed by a colleague rather than a deck. And six months on, the workflow count has grown — not flatlined. If those are not true, the engagement did not land, regardless of hours saved.
-        <Link to="/work" className={trailingCls}>
-          See where it has landed →
-        </Link>
+        <FaqFooter
+          related={{ to: "/work", label: "See where it has landed →" }}
+          ask="I'd like to talk about how we'd measure capability transfer in our context. A bit about us: "
+        />
       </>
     ),
   },
