@@ -92,6 +92,11 @@
   .container-grain {
     @apply mx-auto px-6 md:px-12 lg:px-20 max-w-[1400px];
   }
+  .section-rule {
+    border-top: 3px solid hsl(var(--brass) / 0.35);
+    width: 100%;
+    display: block;
+  }
 }
 
 /* Logo carousel */
