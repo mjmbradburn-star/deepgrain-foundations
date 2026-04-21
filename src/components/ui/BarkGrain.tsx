@@ -28,7 +28,7 @@ export const BarkGrain = ({ seed = 7 }: BarkGrainProps) => {
   return (
     <div
       aria-hidden
-      className="bark-grain pointer-events-none absolute inset-0 z-0"
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       style={{
         // Base dark grey-green wash so the SVG fibres tint over a real surface.
         background:
@@ -36,10 +36,10 @@ export const BarkGrain = ({ seed = 7 }: BarkGrainProps) => {
       }}
     >
       <svg
-        className="absolute inset-0 h-full w-full"
+        className="bark-grain absolute"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
-        style={{ opacity: 0.35 }}
+        style={{ opacity: 0.35, top: "-5%", left: "-5%", width: "110%", height: "110%" }}
       >
         <defs>
           {/* Fine vertical fibres: high X frequency, very low Y frequency. */}
