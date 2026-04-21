@@ -135,12 +135,55 @@ export const getCategory = (slug: string) =>
 export const getFeaturedArticles = (limit = 3) =>
   ARTICLES.filter((a) => a.frontmatter.featured).slice(0, limit);
 
+/**
+ * Keyword-weighted related articles for stronger internal linking.
+ *
+ * Score = (shared keywords × 3) + (same category × 2) + (same track × 1).
+ * Sort: score desc, then most recent. Articles with score 0 are excluded
+ * unless we'd otherwise return fewer than `limit` — in which case we top up
+ * with same-track, then site-wide recency, so the section is never empty.
+ */
 export const getRelatedArticles = (slug: string, limit = 3) => {
   const current = getArticleBySlug(slug);
   if (!current) return [];
-  return ARTICLES.filter(
-    (a) =>
-      a.frontmatter.slug !== slug &&
-      a.frontmatter.category === current.frontmatter.category
-  ).slice(0, limit);
+  const cf = current.frontmatter;
+  const currentKeywords = new Set((cf.keywords ?? []).map((k) => k.toLowerCase()));
+
+  const scored = ARTICLES.filter((a) => a.frontmatter.slug !== slug).map((a) => {
+    const f = a.frontmatter;
+    const sharedKeywords = (f.keywords ?? []).reduce(
+      (n, k) => (currentKeywords.has(k.toLowerCase()) ? n + 1 : n),
+      0
+    );
+    const sameCategory = f.category === cf.category ? 1 : 0;
+    const sameTrack = f.track === cf.track ? 1 : 0;
+    const score = sharedKeywords * 3 + sameCategory * 2 + sameTrack;
+    return { article: a, score, sharedKeywords };
+  });
+
+  const byRecency = (a: { article: Article }, b: { article: Article }) =>
+    new Date(b.article.frontmatter.publishedAt).getTime() -
+    new Date(a.article.frontmatter.publishedAt).getTime();
+
+  const ranked = scored
+    .filter((s) => s.score > 0)
+    .sort((a, b) => b.score - a.score || byRecency(a, b));
+
+  if (ranked.length >= limit) return ranked.slice(0, limit).map((s) => s.article);
+
+  // Top-up with same-track recency, then site-wide, avoiding duplicates.
+  const chosen = new Set(ranked.map((s) => s.article.frontmatter.slug));
+  const fillers = ARTICLES
+    .filter(
+      (a) => a.frontmatter.slug !== slug && !chosen.has(a.frontmatter.slug)
+    )
+    .sort(
+      (a, b) =>
+        (a.frontmatter.track === cf.track ? -1 : 0) -
+          (b.frontmatter.track === cf.track ? -1 : 0) ||
+        new Date(b.frontmatter.publishedAt).getTime() -
+          new Date(a.frontmatter.publishedAt).getTime()
+    );
+
+  return [...ranked.map((s) => s.article), ...fillers].slice(0, limit);
 };
