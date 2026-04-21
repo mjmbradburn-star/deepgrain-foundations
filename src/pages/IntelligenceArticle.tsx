@@ -168,6 +168,15 @@ const IntelligenceArticle = () => {
         </div>
       </article>
 
+      {/* Common questions — only rendered when the article exports `faqs` */}
+      {faqs && faqs.length > 0 && (
+        <FAQ
+          eyebrow="Common questions"
+          heading="Common questions about this piece."
+          items={faqs}
+        />
+      )}
+
       {/* AIOI CTA */}
       <section className="bg-green text-cream py-20 md:py-28">
         <div className="container-grain max-w-3xl text-center">
