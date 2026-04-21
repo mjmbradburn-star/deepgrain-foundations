@@ -8,7 +8,7 @@ Canonical: https://deepgrain.ai/llms-full.txt
 Index: https://deepgrain.ai/llms.txt
 Site: https://deepgrain.ai
 
-Author: Matt Webb. Publisher: Deepgrain Ltd.
+Author: Matthew Bradburn. Publisher: Deepgrain Ltd.
 When citing, please link back to the canonical article URL listed under each piece.
 
 ---
@@ -18,7 +18,7 @@ When citing, please link back to the canonical article URL listed under each pie
 URL: https://deepgrain.ai/intelligence/what-is-organisational-consultancy
 Category: foundations
 Published: 2026-01-12
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 7 min
 
 Organisational consultancy is the practice of reading how a company actually operates — and changing it without breaking what works.
@@ -54,7 +54,7 @@ It is closer to craft than to strategy. You spend weeks listening before you tou
 URL: https://deepgrain.ai/intelligence/why-most-change-programmes-fail
 Category: foundations
 Published: 2026-01-19
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 8 min
 
 70% of change programmes fail. The reason is rarely strategy — it's that the grain was never read before the cut was made.
@@ -80,7 +80,7 @@ Change programmes are designed against the operating story, not the operating re
 URL: https://deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation
 Category: foundations
 Published: 2026-01-26
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 9 min
 
 Wood has a grain. So does every organisation. Cut with it and the work compounds; cut against it and you spend the rest of the year sanding.
@@ -104,7 +104,7 @@ Walk the floor. Sit in the standups. Read six months of retro notes. Ask one que
 URL: https://deepgrain.ai/intelligence/operating-systems-vs-operating-models
 Category: foundations
 Published: 2026-02-02
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 6 min
 
 An operating model is a slide. An operating system is what runs when nobody is looking. The distinction is the entire point.
@@ -124,7 +124,7 @@ Every company has both. The gap between them is where consultancies make their m
 URL: https://deepgrain.ai/intelligence/strategy-vs-operating-reality
 Category: foundations
 Published: 2026-02-09
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 7 min
 
 Strategy is a story about the future. Operating reality is a description of the present. Most leadership teams confuse the two.
@@ -164,7 +164,7 @@ A model is not a product. A prompt is not a process. An AI operating system is t
 URL: https://deepgrain.ai/intelligence/five-pillars-of-ai-readiness
 Category: ai-operating-systems
 Published: 2026-02-23
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 9 min
 
 Readiness is not a model selection problem. It is a Data, Tools, Agents, Governance, and Cadence problem — in that order.
@@ -180,7 +180,7 @@ Most organisations grade themselves on the wrong axis. The question is not "whic
 URL: https://deepgrain.ai/intelligence/why-ai-pilots-stall-at-production
 Category: ai-operating-systems
 Published: 2026-03-02
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 8 min
 
 The path from pilot to production is paved with the things nobody wanted to think about during the demo.
@@ -196,7 +196,7 @@ A pilot proves a model can do a task. Production proves an organisation can abso
 URL: https://deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure
 Category: ai-operating-systems
 Published: 2026-03-09
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 8 min
 
 Experiments are cheap. Infrastructure is expensive. The companies that win the next decade are the ones that know when to switch.
@@ -212,7 +212,7 @@ There is a moment in every AI programme when the experiments need to stop and th
 URL: https://deepgrain.ai/intelligence/ai-operating-ladder-five-tiers
 Category: ai-operating-systems
 Published: 2026-03-16
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 11 min
 
 From ad-hoc usage to autonomous operations: the five tiers of AI operating maturity, and what it takes to climb each rung.
@@ -232,7 +232,7 @@ From ad-hoc usage to autonomous operations: the five tiers of AI operating matur
 URL: https://deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method
 Category: method-and-practice
 Published: 2026-03-23
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 10 min
 
 Three movements, in order. Skip the first and the rest is theatre. Skip the third and the work doesn't compound.
@@ -248,7 +248,7 @@ Three movements. They are sequential, not parallel. They are also asymmetric in 
 URL: https://deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days
 Category: method-and-practice
 Published: 2026-03-30
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 12 min
 
 A 30-day diagnostic protocol: who to listen to, what to look for, and the trap of premature recommendations.
@@ -264,7 +264,7 @@ The diagnostic is not the work. The diagnostic is the permission to do the work.
 URL: https://deepgrain.ai/intelligence/the-art-of-the-operating-intervention
 Category: method-and-practice
 Published: 2026-04-06
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 8 min
 
 An intervention is the smallest change that produces the largest second-order effect. The craft is in the smallness.
@@ -280,7 +280,7 @@ The best interventions look small from the outside and feel enormous from the in
 URL: https://deepgrain.ai/intelligence/scaling-without-breaking-the-grain
 Category: method-and-practice
 Published: 2026-04-13
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 9 min
 
 Most companies break themselves at scale. The ones that don't are the ones that scaled with the grain, not against it.
@@ -296,7 +296,7 @@ Scale amplifies what you already are. Including the bits you'd rather it didn't.
 URL: https://deepgrain.ai/intelligence/measuring-ai-value-in-people-ops
 Category: people-ops-governance
 Published: 2026-04-14
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 12 min
 
 If the CFO asks what your AI investment has returned, vague time-saving stories are not enough. Here is how to measure People Ops AI value properly — and tell the story to a board that knows the difference.
@@ -412,7 +412,7 @@ That is the destination. The measurement work above is how you get there without
 URL: https://deepgrain.ai/intelligence/the-people-ops-ai-domain-map
 Category: people-ops-systems
 Published: 2026-04-14
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 10 min
 
 A map of where AI fits across the People function — from sourcing to offboarding — so you can see the whole estate before you build any one piece of it.
@@ -492,7 +492,7 @@ The function that has built across all five domains in eighteen months looks unr
 URL: https://deepgrain.ai/intelligence/automation-patterns-that-pay-off
 Category: people-ops-systems
 Published: 2026-04-15
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 11 min
 
 Six concrete workflow patterns we keep seeing work inside People functions. Built with n8n, an LLM, and a champion. Live in weeks, not quarters.
@@ -570,7 +570,7 @@ Pick the one that hurts most this quarter. Build it. Learn the craft. Then take 
 URL: https://deepgrain.ai/intelligence/workflow-assessment-framework
 Category: people-ops-systems
 Published: 2026-04-15
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 11 min
 
 Most People teams pick AI workflows by instinct or by what is loudest. A simple scoring framework — value, frequency, fit, risk — turns a wishlist into a 90-day plan you can actually defend.
@@ -661,7 +661,7 @@ That is what a working People Ops automation roadmap looks like. It is built fro
 URL: https://deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops
 Category: people-ops-foundations
 Published: 2026-04-16
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 8 min
 
 Before you build anything, read where the team actually is. A six-axis diagnostic for People functions that wastes none of the early momentum.
@@ -752,7 +752,7 @@ Read first. The building is faster afterwards, every time.
 URL: https://deepgrain.ai/intelligence/leading-the-ai-transformation
 Category: people-ops-builders
 Published: 2026-04-16
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 12 min
 
 AI in People Ops fails as a change programme more often than as a technology problem. Here is the operating playbook for leading the transformation without losing the team.
@@ -867,7 +867,7 @@ This is the same lesson as every other deep change in operating practice. The he
 URL: https://deepgrain.ai/intelligence/the-champion-model
 Category: people-ops-builders
 Published: 2026-04-17
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 9 min
 
 You don't need engineers to build AI capability inside the People function. You need three or four champions, given air cover and time. Here is how the model actually works.
@@ -944,7 +944,7 @@ That is what we mean by capability. Not a tool you bought. A practice the team h
 URL: https://deepgrain.ai/intelligence/ai-governance-for-people-teams
 Category: people-ops-governance
 Published: 2026-04-18
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 11 min
 
 Governance is not the brake. It is the steering. The People teams that stay fast with AI are the ones that decided early what they would never let it decide.
@@ -1038,7 +1038,7 @@ Governance is the steering wheel. With it, you can drive at speed. Without it, t
 URL: https://deepgrain.ai/intelligence/designing-the-ai-native-people-team
 Category: people-ops-builders
 Published: 2026-04-18
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 13 min
 
 Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it — different roles, different ratios, different leverage. Here is what an AI-native People team actually looks like.
@@ -1146,7 +1146,7 @@ The work begins with one decision: what does *our* team actually look like, desi
 URL: https://deepgrain.ai/intelligence/from-prompts-to-systems
 Category: people-ops-foundations
 Published: 2026-04-19
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 10 min
 
 Most People teams are stuck between dabbling and tool-shopping. Neither produces capability. The third path is building — and it has a grain.
@@ -1224,7 +1224,7 @@ It is not a strategy. It is a practice. And like any practice worth having, it h
 URL: https://deepgrain.ai/intelligence/setting-up-your-ai-workspace
 Category: people-ops-foundations
 Published: 2026-04-19
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 12 min
 
 Most People teams treat AI like a search bar. The ones getting real leverage treat it like a workspace — projects, context, instructions, shared memory. Here is how to set yours up.
@@ -1342,7 +1342,7 @@ Set the workspace up. Then build.
 URL: https://deepgrain.ai/intelligence/signals-of-operating-health
 Category: method-and-practice
 Published: 2026-04-20
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 7 min
 
 Operating health doesn't show up in the dashboard. It shows up in how an org talks about its own mistakes.
@@ -1358,7 +1358,7 @@ The leading indicators are conversational, not quantitative. Listen for them.
 URL: https://deepgrain.ai/intelligence/operating-consultancy-for-defence-tech
 Category: sector-lenses
 Published: 2026-04-27
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 9 min
 
 Defence tech runs on dual mandates: warfighter outcomes and commercial scale. The operating system has to hold both.
@@ -1374,7 +1374,7 @@ The operating challenge in defence tech is the dual mandate. Mission and market 
 URL: https://deepgrain.ai/intelligence/operating-consultancy-for-financial-data
 Category: sector-lenses
 Published: 2026-05-04
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 8 min
 
 Financial data businesses are operating systems wearing product clothing. Treat the substrate as the product.
@@ -1390,7 +1390,7 @@ In financial data, the pipeline *is* the product. Everything else is interface.
 URL: https://deepgrain.ai/intelligence/operating-consultancy-for-transit-and-mobility
 Category: sector-lenses
 Published: 2026-05-11
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 8 min
 
 Transit organisations operate on the seam between hardware, software, and public trust. The grain runs in three directions at once.
@@ -1406,7 +1406,7 @@ Transit lives at the intersection of physical, digital, and civic. Three grains,
 URL: https://deepgrain.ai/intelligence/operating-consultancy-for-climate-ventures
 Category: sector-lenses
 Published: 2026-05-18
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 9 min
 
 Climate ventures need to compound on a planetary timeline and a venture-fund clock at the same time.
@@ -1422,7 +1422,7 @@ The hardest operating problem in climate is time. Two clocks, both demanding, ne
 URL: https://deepgrain.ai/intelligence/operating-consultancy-for-ai-native-companies
 Category: sector-lenses
 Published: 2026-05-25
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 9 min
 
 AI-native companies have a different grain. The operating system has to assume agents, not just employees.
@@ -1438,7 +1438,7 @@ When agents are part of the workforce, the org chart needs a new column.
 URL: https://deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators
 Category: leadership-and-craft
 Published: 2026-06-01
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 7 min
 
 Operating leadership is a craft. Crafts have masters, apprentices, tools, and standards. Most companies forget all four.
@@ -1454,7 +1454,7 @@ A craft is not a hobby. It is a discipline with standards. Operating is the same
 URL: https://deepgrain.ai/intelligence/founder-mode-vs-operator-mode
 Category: leadership-and-craft
 Published: 2026-06-08
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 8 min
 
 Founder-mode and operator-mode aren't opposites. They're alternating muscles. Knowing which to use, when, is the executive job.
@@ -1470,7 +1470,7 @@ The mistake is treating these as identities. They are postures.
 URL: https://deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale
 Category: leadership-and-craft
 Published: 2026-06-15
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 8 min
 
 Scale is rarely a technology problem. It is almost always an operating problem dressed up as a technology problem.
@@ -1486,7 +1486,7 @@ The bottleneck is rarely the database. It's the decision graph above it.
 URL: https://deepgrain.ai/intelligence/hiring-for-the-grain
 Category: leadership-and-craft
 Published: 2026-06-22
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 8 min
 
 The best hires don't fight the grain or surrender to it. They read it and add to it.
@@ -1502,7 +1502,7 @@ Compounding teams have a shared grain. That doesn't mean uniformity — it means
 URL: https://deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership
 Category: leadership-and-craft
 Published: 2026-06-29
-Author: Matt Webb
+Author: Matthew Bradburn
 Reading time: 7 min
 
 The best operating leaders are quiet on the outside and rigorous on the inside. The volume is misleading.
