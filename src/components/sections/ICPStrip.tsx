@@ -7,12 +7,31 @@
 export const ICPStrip = () => (
   <section className="bg-walnut text-cream border-y border-brass/25">
     <div className="container-grain py-10 md:py-14 text-center">
-      {/* Line 1 — Who */}
-      <p className="font-display font-medium leading-tight text-cream text-2xl md:text-[32px] lg:text-[38px] max-w-3xl mx-auto text-balance">
-        <span className="text-brass">For</span>{" "}
-        CEOs, COOs, CFOs, Chief People Officers, and VPs of Operations.{" "}
-        <span className="text-brass">VC, PE-backed, and bootstrapped.</span>
-      </p>
+      {/* Line 1 — Who: roles + company types as two simple columns */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 max-w-3xl mx-auto items-start">
+        <div>
+          <p
+            className="font-sans text-[11px] md:text-[12px] uppercase text-brass mb-3"
+            style={{ letterSpacing: "0.18em" }}
+          >
+            Roles
+          </p>
+          <p className="font-display font-medium leading-tight text-cream text-xl md:text-[26px] lg:text-[30px] text-balance">
+            CEOs, COOs, CFOs, Chief People Officers, and VPs of Operations.
+          </p>
+        </div>
+        <div>
+          <p
+            className="font-sans text-[11px] md:text-[12px] uppercase text-brass mb-3"
+            style={{ letterSpacing: "0.18em" }}
+          >
+            Company types
+          </p>
+          <p className="font-display font-medium leading-tight text-cream text-xl md:text-[26px] lg:text-[30px] text-balance">
+            VC, PE-backed, and bootstrapped.
+          </p>
+        </div>
+      </div>
 
       {/* Hairline divider */}
       <div
