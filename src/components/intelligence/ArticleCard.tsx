@@ -56,10 +56,10 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
           </picture>
         </div>
       )}
-      <div className="flex flex-col flex-1 gap-3 px-6 py-5">
-        <div className="flex items-center gap-3">
+      <div className="flex flex-col flex-1 gap-2 px-4 py-4 md:gap-3 md:px-6 md:py-5">
+        <div className="flex items-center gap-2 md:gap-3">
           <span
-            className={`font-sans uppercase text-[10px] ${
+            className={`font-sans uppercase text-[9px] md:text-[10px] ${
               isGreen ? "text-brass" : "text-green/80"
             }`}
             style={{ letterSpacing: "0.16em" }}
@@ -67,12 +67,12 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
             {cat?.name}
           </span>
           <span className={`text-[10px] ${isGreen ? "text-cream/50" : "text-walnut/40"}`}>·</span>
-          <span className={`text-[11px] ${isGreen ? "text-cream/60" : "text-walnut/50"}`}>
+          <span className={`text-[10px] md:text-[11px] ${isGreen ? "text-cream/60" : "text-walnut/50"}`}>
             {f.readTime}
           </span>
         </div>
         <h3
-          className={`font-display text-xl md:text-2xl leading-[1.15] line-clamp-2 [&]:min-h-[calc(2*1.15*1.5rem)] ${
+          className={`font-display text-lg md:text-2xl leading-[1.15] line-clamp-2 [&]:min-h-[calc(2*1.15*1.125rem)] md:[&]:min-h-[calc(2*1.15*1.5rem)] ${
             isGreen ? "text-cream" : "text-walnut"
           }`}
           style={{ letterSpacing: "-0.005em" }}
@@ -80,14 +80,14 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
           {f.title}
         </h3>
         <p
-          className={`text-[13px] leading-[1.55] line-clamp-2 ${
+          className={`text-[12px] md:text-[13px] leading-[1.5] md:leading-[1.55] line-clamp-2 ${
             isGreen ? "text-cream/75" : "text-walnut/70"
           }`}
         >
           {description}
         </p>
         <div
-          className={`text-[11px] uppercase mt-auto pt-2 ${isGreen ? "text-brass" : "text-green"}`}
+          className={`text-[10px] md:text-[11px] uppercase mt-auto pt-1 md:pt-2 ${isGreen ? "text-brass" : "text-green"}`}
           style={{ letterSpacing: "0.14em" }}
         >
           Read →
