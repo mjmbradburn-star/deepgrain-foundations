@@ -51,44 +51,41 @@ export const FAQ = ({
   variant = "section",
 }: FAQProps) => {
   if (variant === "inline") {
-    // Composes inside <article className="bg-linen ..."> on Intelligence pages.
-    // No own background, tighter spacing, article-scale typography. Sits within
-    // the same `max-w-2xl` measure as the body prose for vertical rhythm.
+    // Designed to be placed *inside* the article body's existing max-w-2xl
+    // container — does NOT render its own section/container, so it inherits
+    // the article's measure and vertical rhythm. Heading and question text
+    // align with the article h2/h3 scale defined in mdxComponents.tsx.
     return (
-      <section className="bg-linen text-walnut" aria-label={eyebrow}>
-        <div className="container-grain max-w-2xl">
-          <div className="mt-16 pt-12 border-t border-walnut/15">
-            <h2
-              className="font-display text-3xl md:text-4xl text-walnut leading-tight mb-8"
-              style={{ letterSpacing: "-0.005em" }}
+      <section className="mt-16 pt-12 border-t border-walnut/15" aria-label={eyebrow}>
+        <h2
+          className="font-display text-3xl md:text-4xl text-walnut leading-tight mb-8"
+          style={{ letterSpacing: "-0.005em" }}
+        >
+          {heading}
+        </h2>
+        <dl className="divide-y divide-walnut/15 border-t border-walnut/15">
+          {items.map((item) => (
+            <details
+              key={item.question}
+              className="group py-5 [&_summary::-webkit-details-marker]:hidden"
             >
-              {heading}
-            </h2>
-            <dl className="divide-y divide-walnut/15 border-t border-walnut/15">
-              {items.map((item) => (
-                <details
-                  key={item.question}
-                  className="group py-5 [&_summary::-webkit-details-marker]:hidden"
+              <summary className="flex cursor-pointer items-start justify-between gap-6 list-none">
+                <dt className="font-display text-walnut text-lg md:text-xl leading-snug">
+                  {item.question}
+                </dt>
+                <span
+                  aria-hidden
+                  className="mt-1.5 shrink-0 text-brass text-xl leading-none transition-transform duration-200 group-open:rotate-45"
                 >
-                  <summary className="flex cursor-pointer items-start justify-between gap-6 list-none">
-                    <dt className="font-display text-walnut text-lg md:text-xl leading-snug">
-                      {item.question}
-                    </dt>
-                    <span
-                      aria-hidden
-                      className="mt-1.5 shrink-0 text-brass text-xl leading-none transition-transform duration-200 group-open:rotate-45"
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <dd className="mt-4 text-walnut/85 leading-[1.7] text-[17px] md:text-[18px]">
-                    {item.answerNode ?? item.answer}
-                  </dd>
-                </details>
-              ))}
-            </dl>
-          </div>
-        </div>
+                  +
+                </span>
+              </summary>
+              <dd className="mt-4 text-walnut/85 leading-[1.7] text-[17px] md:text-[18px]">
+                {item.answerNode ?? item.answer}
+              </dd>
+            </details>
+          ))}
+        </dl>
       </section>
     );
   }
