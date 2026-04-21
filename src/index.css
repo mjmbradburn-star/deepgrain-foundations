@@ -121,6 +121,13 @@
 }
 .hero-drift { animation: hero-drift 60s linear infinite; will-change: transform; }
 
+/* Bark grain — slow drifting wood-grain texture for dark grey-green surfaces. */
+@keyframes grain-drift {
+  0%   { background-position: 0% 0%, 0% 0%, 0% 0%; }
+  100% { background-position: 200% 0%, -150% 0%, 100% 0%; }
+}
+.bark-grain { animation: grain-drift 90s linear infinite; will-change: background-position; }
+
 /* CSS-only fade-in-up for above-the-fold content (replaces framer-motion on critical path) */
 @keyframes fade-in-up {
   from { opacity: 0; transform: translate3d(0, 24px, 0); }
