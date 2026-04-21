@@ -2,57 +2,70 @@
 
 ## Goal
 
-Add an internal-only checklist page at `/seo-checklist` that walks you through the three Search Console verification steps for `deepgrain.ai`: domain verification, sitemap submission, and URL Inspection on the homepage. Persistent per-step completion state in `localStorage` so progress survives reloads.
+Produce two artifacts you can post on LinkedIn today:
 
-## Approach
+1. A **LinkedIn post** in your voice — a "process diary" walking from positioning conversation in Claude → markdown brand brief → Lovable build → live site at `deepgrain.ai`. Naming both Claude and Lovable.
+2. A **5-slide carousel** (1080×1350 PNGs, LinkedIn portrait), site-faithful: linen background, `#123524` deep green type, brass `#b58a4a` accents, Cormorant Garamond display, 12px brass eyebrows. Hybrid structure: hook → Diagnose → Build → Scale → how it was built / CTA.
 
-A single new route, noindexed, not linked from any public nav — you reach it by typing the URL. Three numbered steps, each as a card with: a one-line goal, the exact actions to take in Search Console, a deep link straight into the right GSC screen, copy-to-clipboard buttons for the values you'll paste (your domain, your sitemap URL, your homepage URL), and a checkbox that marks the step done.
+Both delivered as files in `/mnt/documents/` so you can download and post directly.
 
-A small progress indicator at the top ("1 of 3 complete") and a "Reset checklist" link at the bottom.
+## The post (draft for review inside the plan)
 
-### The three steps
+Long-form, plainspoken, no hype words, British English, declarative short sentences. Roughly this shape — final copy will be tightened in the file:
 
-1. **Verify the domain in Search Console**
-   - Goal: prove ownership of `deepgrain.ai` so GSC will show indexing data.
-   - Action summary: open Search Console → Add property → choose **Domain** (not URL prefix) → enter `deepgrain.ai` → copy the TXT record GSC gives you → add it at your DNS provider → click Verify.
-   - Deep link: `https://search.google.com/search-console/welcome`
-   - Copy buttons: `deepgrain.ai`
-   - Note that DNS propagation can take a few minutes to a few hours; if Verify fails, wait and retry — don't delete the property.
+> I built deepgrain.ai over a weekend. The stack was a conversation and a build tool.
+>
+> Day one: a long positioning conversation with Claude. Not a prompt. A conversation. We argued about what the practice actually was, what it wasn't, who it was for, and what the voice should sound like out loud. The output wasn't a deck. It was a small folder of markdown files — a brand brief, a tone-of-voice document, a manifesto, an offer matrix.
+>
+> Day two: I handed those markdown files to Lovable and asked it to build the site. Not "make me a landing page" — "here is the practice; build the front door."
+>
+> The grain metaphor came out of the Claude conversation. Carpenters don't argue with wood. They read it first. Most consulting argues with the wood. Deepgrain reads it.
+>
+> What I offer sits in three movements: **Diagnose. Build. Scale.** A 30-day operating diagnostic. Agents and automations built into the workflow, function by function. Then the cadence so the gains compound after I leave.
+>
+> Two things I'd tell anyone trying this:
+> 1. Spend longer than feels comfortable on the positioning conversation. The build is fast; the brief is the work.
+> 2. Write the brief in markdown, not slides. Build tools read markdown like a native language.
+>
+> Site is live: https://deepgrain.ai
+> Carousel below walks through the offer and how it was built. ↓
 
-2. **Submit the sitemap**
-   - Goal: tell Google where every canonical URL on the site lives.
-   - Action summary: in Search Console for the verified `deepgrain.ai` property → left nav → **Sitemaps** → paste the sitemap path → Submit. Confirm status reads "Success".
-   - Deep link: `https://search.google.com/search-console/sitemaps?resource_id=sc-domain%3Adeepgrain.ai`
-   - Copy buttons: `https://deepgrain.ai/sitemap.xml` and the path-only form `sitemap.xml`
-   - Note: the sitemap is already generated at build time by `vite-plugins/deepgrain-seo.ts` and served from `public/sitemap.xml` — nothing to deploy, just submit.
+Closes with a soft line about the AI Operating Index for anyone who wants a starting point.
 
-3. **Run URL Inspection on the homepage**
-   - Goal: force Google to fetch and render the homepage now, confirm the prerendered HTML is what Googlebot sees, and request indexing.
-   - Action summary: in Search Console → top search bar → paste `https://deepgrain.ai/` → wait for the inspection result → click **Test live URL** → when it returns, click **View tested page → Screenshot** and **HTML** to confirm the rendered content includes the H1 and hero copy → back on the inspection screen click **Request indexing**.
-   - Deep link: `https://search.google.com/search-console/inspect?resource_id=sc-domain%3Adeepgrain.ai&url=https%3A%2F%2Fdeepgrain.ai%2F`
-   - Copy buttons: `https://deepgrain.ai/`
-   - Note: this is also the definitive answer to the earlier "is the site invisible to crawlers?" question — the rendered HTML preview in URL Inspection is exactly what Google indexes.
+## The carousel (5 slides, 1080×1350)
 
-### State
+| # | Background | Eyebrow | Headline | Body | Visual motif |
+|---|------------|---------|----------|------|--------------|
+| 1 | Linen | `A PRACTICE, BUILT IN A WEEKEND` | *Work with the grain.* | "How I built deepgrain.ai with Claude and Lovable." | Brass top rule, large Cormorant display, small wordmark `Deepgrain` bottom-left |
+| 2 | Linen | `01 — DIAGNOSE` | *Read the grain first.* | "A 30-day operating diagnostic. Where work actually flows. Where decisions get made. Where AI leverage is sitting unused." | Numbered top-left `01`, brass rule, brass-highlighted phrase on "AI leverage is sitting unused" |
+| 3 | Linen | `02 — BUILD` | *Cut with it, not against it.* | "Agents and automations built into the workflow, function by function. Plus the enablement so the team can run them." | Same numbered structure, brass highlight |
+| 4 | Linen | `03 — SCALE` | *Make the gains compound.* | "Strategy at the top. Capability across the team. The operating cadence that keeps the work compounding after I leave." | Same structure, brass highlight |
+| 5 | Linen | `HOW IT WAS BUILT` | *Markdown in. Site out.* | Two-column: **Positioning** — long conversation in Claude; output a folder of markdown briefs. **Build** — handed the briefs to Lovable; site shipped in a weekend. CTA: `deepgrain.ai` + small note "Take the AI Operating Index". | Brass rule between the two columns, small `Claude · Lovable` credit at the bottom |
 
-- `localStorage` key `deepgrain.seo-checklist.v1` storing `{ step1: boolean, step2: boolean, step3: boolean }`.
-- Hydrate on mount, write on every change. No backend, no auth — this is a personal operator tool.
+Every slide:
+- Linen `#e8dfcd` background.
+- Body type in deep green `#123524`.
+- 3px brass `#b58a4a` rule at top under the eyebrow (the site's signature).
+- Cormorant Garamond for display, system sans for eyebrow + body.
+- Generous margin (≈80px), `Deepgrain` wordmark bottom-left, slide number bottom-right (`01 / 05` etc.).
+- No emoji, no icons, no stock imagery. Quiet authority — same as the site.
 
-### Visual treatment
+## How it gets built
 
-Reuse existing site chrome and tokens — `BarkSection` for the page background, `Eyebrow` + display heading for the page header, the existing card styling pattern from `IntelligenceTeaser`/`ArticleCard` for each step, `PillButton` (filled) for the "Open in Search Console" deep links and (outline) for "Copy". Checkbox uses a simple bordered square with a brass tick when checked. No new design tokens.
+- **Post**: written straight to `/mnt/documents/linkedin-post.md` (and a `.txt` plain-text mirror for easy paste into LinkedIn).
+- **Carousel**: a single Python script using Pillow renders all five slides at 1080×1350 PNG. Cormorant Garamond pulled from the canvas-design skill fonts; system sans fallback for body. Brass rule, eyebrow, headline, body, wordmark, page number all positioned from the same layout function so they're pixel-consistent across slides.
+- **QA loop**: render all 5 → inspect each PNG → fix any overflow, low contrast, baseline drift, or rule misalignment → re-render → repeat until clean. Report what was checked and any fixes made. No browser tools, no copying QA images to `/mnt/documents/`.
 
-`PageMeta` with `noindex` so the checklist itself never appears in search results. Page is wrapped in `<main>` via the existing `SiteShell`, and gets a `data-no-rule` on its first section so the auto-applied brass top-rule from `<main>` is suppressed (the page sits directly under the nav, no rule needed above the first card).
+## Files delivered
 
-## Files
-
-- `src/pages/SeoChecklist.tsx` — new page. Three step cards, progress indicator, reset link, `PageMeta` with `noindex`, all state in a single `useState` + `useEffect` pair against `localStorage`.
-- `src/App.tsx` — register `<Route path="/seo-checklist" element={<SeoChecklist />} />` inside the existing lazy-loaded route block (`const SeoChecklist = lazy(() => import("./pages/SeoChecklist"))`).
+- `/mnt/documents/linkedin-post.md` — long-form post, formatted.
+- `/mnt/documents/linkedin-post.txt` — same, plain text for the LinkedIn composer.
+- `/mnt/documents/deepgrain-carousel-01.png` through `-05.png` — the five branded slides, 1080×1350, ready to upload as a LinkedIn document/carousel.
 
 ## Out of scope
 
-- Linking the checklist from the public nav, footer, or sitemap — it stays unlisted and noindexed.
-- Adding the checklist URL to `sitemap.xml` or `robots.txt`.
-- Automating any GSC API calls (would require OAuth + a service account; not worth it for a one-time setup).
-- The earlier debate about migrating to Next.js / adding a prerender plugin — unchanged from the previous turn's conclusion (not needed).
+- Posting to LinkedIn directly (no API connector wired up).
+- Animated/video version of the carousel.
+- A Canva-editable version — these are flat PNGs. If you want a Canva template later, that's a separate pass.
+- Changes to the live site or any code in the project.
 
