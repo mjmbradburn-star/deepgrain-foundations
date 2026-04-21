@@ -46,6 +46,10 @@
     --linen-dark: 39 21% 81%;
     --body-text: 60 10% 18%;
 
+    /* Bark — dark grey-green tones for wood-grain surfaces */
+    --bark: 140 12% 12%;
+    --bark-2: 120 10% 18%;
+
     --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 }
