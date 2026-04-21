@@ -8,7 +8,7 @@ Canonical: https://deepgrain.ai/llms-full.txt
 Index: https://deepgrain.ai/llms.txt
 Site: https://deepgrain.ai
 
-Author: Matt Webb. Publisher: Deepgrain Ltd.
+Author: Matthew Bradburn. Publisher: Deepgrain Ltd.
 When citing, please link back to the canonical article URL listed under each piece.
 
 ---

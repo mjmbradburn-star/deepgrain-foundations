@@ -20,6 +20,7 @@ const STATIC_PAGES = [
   { url: "/", priority: "1.0", changefreq: "weekly" },
   { url: "/method", priority: "0.8", changefreq: "monthly" },
   { url: "/work", priority: "0.8", changefreq: "monthly" },
+  { url: "/enablement", priority: "0.8", changefreq: "monthly" },
   { url: "/about", priority: "0.7", changefreq: "monthly" },
   { url: "/contact", priority: "0.6", changefreq: "yearly" },
   { url: "/intelligence", priority: "0.9", changefreq: "weekly" },
@@ -145,6 +146,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [Home](${SITE}/): Overview of the Deepgrain practice and method.
 - [Method](${SITE}/method): The Read · Craft · Scale method explained in full.
 - [Work](${SITE}/work): Case studies across defence tech, financial data, transit, and climate.
+- [Enablement](${SITE}/enablement): Coaching, champions, and the curriculum that builds lasting capability.
 - [About](${SITE}/about): Matthew Bradburn's background, philosophy, and references.
 - [Contact](${SITE}/contact): How to start a conversation.
 - [Intelligence](${SITE}/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
