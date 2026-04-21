@@ -38,9 +38,9 @@ export const WhoThisIsFor = () => (
         <ScrollReveal>
           <Eyebrow className="text-brass mb-8">The pattern we keep seeing</Eyebrow>
           <h2 className="font-display text-cream text-4xl sm:text-5xl md:text-6xl lg:text-[80px] leading-[1.05] max-w-3xl text-balance">
-            Something isn&apos;t working.
+            AI rollouts aren&apos;t working.
             <br />
-            And no one can yet name why.
+            And no one can say why.
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={150}>
