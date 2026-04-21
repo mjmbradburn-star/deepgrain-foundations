@@ -6,7 +6,7 @@ import { AIOI_URL } from "@/lib/aioi";
 // CSS-only entrance animations (see index.css .fade-in-up). Removing
 // framer-motion from the Hero takes motion-vendor off the critical path.
 export const Hero = () => (
-  <section className="relative min-h-screen flex items-center overflow-hidden" id="hero">
+  <section className="relative min-h-screen flex items-center overflow-hidden" id="hero" data-no-rule>
     <div className="absolute inset-0">
       <img
         src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=55&fm=webp"
