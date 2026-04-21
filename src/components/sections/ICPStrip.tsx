@@ -50,14 +50,31 @@ export const ICPStrip = () => (
 
       {/* Line 3 — Problem + partnership */}
       <p className="mt-8 md:mt-10 text-base md:text-lg leading-relaxed text-cream/85 max-w-2xl mx-auto text-balance">
-        Your workflows are messy and the AI conversation has outpaced your
+        Your workflows are messy. The AI conversation has outpaced your
         operating reality. Deepgrain partners with you across{" "}
         <strong className="font-semibold text-brass">
           three levels of change
         </strong>
-        : organisation, function, and individual capability. The strategy, the
-        agentic systems, and the people who can keep evolving them.
+        : organisation, function, and individual capability.
       </p>
+
+      {/* Four pillars — what we actually deliver across those levels */}
+      <ul className="mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-3xl mx-auto list-none">
+        {[
+          "Strategy",
+          "Agentic systems",
+          "AI enablement",
+          "AI development",
+        ].map((pillar) => (
+          <li
+            key={pillar}
+            className="rounded-md border border-brass/25 bg-cream/[0.04] px-3 py-3 text-cream text-[13px] md:text-sm font-sans uppercase text-center"
+            style={{ letterSpacing: "0.12em" }}
+          >
+            {pillar}
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 );
