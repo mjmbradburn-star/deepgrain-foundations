@@ -1,9 +1,11 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
+import { BarkGrain } from "@/components/ui/BarkGrain";
 
 export const ClientVoice = () => (
-  <section className="bg-walnut text-cream section-pad">
-    <div className="container-grain max-w-4xl text-center">
+  <section className="relative overflow-hidden bg-bark text-cream section-pad">
+    <BarkGrain />
+    <div className="container-grain max-w-4xl text-center relative">
       <ScrollReveal>
         <BrassRule className="mx-auto mb-12" />
         <blockquote className="font-display italic text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug text-cream max-w-3xl mx-auto text-balance">
