@@ -9,6 +9,7 @@ import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { Invitation } from "@/components/sections/Invitation";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
+import { BarkSection } from "@/components/ui/BarkSection";
 
 // Each FAQ keeps `answer` as the canonical text mirrored in JSON-LD; `answerNode`
 // adds inline navigation, an optional "Related" link, and a contextual "Ask about
@@ -372,39 +373,37 @@ const Enablement = () => (
     </section>
 
     {/* Outcomes */}
-    <section className="bg-walnut text-cream section-pad">
-      <div className="container-grain">
-        <ScrollReveal>
-          <div className="max-w-3xl">
-            <Eyebrow className="text-brass mb-4">What you walk away with</Eyebrow>
-            <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight">
-              A practice the team holds.
-            </h2>
-          </div>
-          <ul className="mt-14 grid gap-8 md:grid-cols-2">
-            {outcomes.map((o) => (
-              <li
-                key={o}
-                className="border-t border-brass/40 pt-6 text-cream/85 text-lg leading-relaxed"
-              >
-                {o}
-              </li>
-            ))}
-          </ul>
-          <BrassRule className="mt-16" />
-          <p className="mt-10 max-w-2xl text-cream/70 leading-relaxed">
-            Six months on, the champions are still building. They have extended the work
-            into places nobody asked them to touch, and they are training the next champion.
-            That is what capability looks like.
-          </p>
-          <div className="mt-12">
-            <PillButton href="/intelligence/the-champion-model" variant="outline">
-              Read the champion model →
-            </PillButton>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
+    <BarkSection className="section-pad" contentClassName="container-grain">
+      <ScrollReveal>
+        <div className="max-w-3xl">
+          <Eyebrow className="text-brass mb-4">What you walk away with</Eyebrow>
+          <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight">
+            A practice the team holds.
+          </h2>
+        </div>
+        <ul className="mt-14 grid gap-8 md:grid-cols-2">
+          {outcomes.map((o) => (
+            <li
+              key={o}
+              className="border-t border-brass/40 pt-6 text-cream/85 text-lg leading-relaxed"
+            >
+              {o}
+            </li>
+          ))}
+        </ul>
+        <BrassRule className="mt-16" />
+        <p className="mt-10 max-w-2xl text-cream/70 leading-relaxed">
+          Six months on, the champions are still building. They have extended the work
+          into places nobody asked them to touch, and they are training the next champion.
+          That is what capability looks like.
+        </p>
+        <div className="mt-12">
+          <PillButton href="/intelligence/the-champion-model" variant="outline">
+            Read the champion model →
+          </PillButton>
+        </div>
+      </ScrollReveal>
+    </BarkSection>
 
     <FAQ
       eyebrow="Onboarding & after"
