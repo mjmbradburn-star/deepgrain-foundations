@@ -38,6 +38,29 @@ const Contact = () => (
       <ScrollReveal delay={150}>
         <div className="mt-20">
           <BrassRule className="mx-auto mb-12" />
+          <p className="font-display italic text-cream/70 text-2xl mb-6">
+            Or book a time directly.
+          </p>
+          <p className="text-cream/60 text-sm max-w-md mx-auto mb-10 leading-relaxed">
+            Find a slot that works. Thirty minutes, no agenda required —
+            tell me what you're trying to fix and we'll go from there.
+          </p>
+          <div className="rounded-2xl overflow-hidden bg-cream/5 border border-cream/10 shadow-2xl">
+            <iframe
+              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1RAkNriqYTtoBEaOJM92B07HFwq_4dSvaiwERC1mO3XJVbPEf_3dNFAgYI4XxvXomrLtBa2TAW?gv=true"
+              title="Book a call with Matthew Bradburn"
+              className="w-full h-[700px] md:h-[750px] block"
+              style={{ border: 0, colorScheme: "light" }}
+              frameBorder={0}
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={250}>
+        <div className="mt-20">
+          <BrassRule className="mx-auto mb-12" />
           <p className="font-display italic text-cream/70 text-2xl mb-10">
             Or send a note here.
           </p>
