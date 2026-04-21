@@ -319,6 +319,17 @@ const MethodPage = () => (
               grain. So do we. We build alongside your people, in your tools,
               with your context. Then we hand it over.
             </p>
+            <figure className="mt-10 border-l-2 border-brass/60 pl-6">
+              <blockquote className="font-display text-cream text-xl md:text-2xl leading-snug italic">
+                “A prompt is a moment of cleverness. A system is what makes the cleverness reliable on a Tuesday afternoon when nobody's watching.”
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-cream/60">
+                From{" "}
+                <Link to="/intelligence/from-prompts-to-systems" className={linkCls}>
+                  From prompts to systems →
+                </Link>
+              </figcaption>
+            </figure>
           </div>
         </ScrollReveal>
       </div>
