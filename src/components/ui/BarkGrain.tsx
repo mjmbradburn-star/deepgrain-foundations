@@ -1,20 +1,12 @@
 /**
  * Organic wood-grain texture layer for dark grey-green (bark) surfaces.
- *
- * Built from SVG turbulence (not repeating gradients) so the grain reads as
- * real wood: long vertical fibres, soft cathedral figure, subtle knots, no
- * uniform stripes. Two filtered layers stack inside one `<svg>`:
- *   1. Tight high-X / low-Y turbulence → fine vertical fibres.
- *   2. Low-frequency turbulence → broad cathedral figure / knots.
- * Each consumer passes a unique `seed` so no two sections look identical.
- *
- * Sits at `z-0` inside any `relative overflow-hidden` parent with `bg-bark`.
- * Content should be wrapped in a `relative z-10` container (BarkSection does
- * this automatically) so it always paints above the grain.
- *
- * Motion: animated via a single `transform` on the wrapper (`.bark-grain`),
- * 120s cycle, GPU-accelerated. Reduced-motion users get a static grain.
+ * See file history for full notes. Now includes an opt-in debug mode
+ * (append `?debugGrain=1` to the URL) that outlines the animated SVG
+ * and registers it with a fixed HUD so we can verify motion.
  */
+import { useEffect, useRef } from "react";
+import { isGrainDebug, registerGrain } from "@/lib/debugGrain";
+
 interface BarkGrainProps {
   seed?: number;
 }
@@ -24,25 +16,58 @@ export const BarkGrain = ({ seed = 7 }: BarkGrainProps) => {
   const figureSeed = seed + 13;
   const fibreId = `bark-fibre-${seed}`;
   const figureId = `bark-figure-${seed}`;
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const debug = isGrainDebug();
+
+  useEffect(() => {
+    if (!debug) return;
+    const el = svgRef.current;
+    const parent = el?.parentElement ?? null;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // eslint-disable-next-line no-console
+    console.info("[BarkGrain] mount", {
+      seed,
+      parentTag: parent?.tagName,
+      parentClass: parent?.className,
+      parentOverflow: parent ? getComputedStyle(parent).overflow : null,
+      parentPosition: parent ? getComputedStyle(parent).position : null,
+      prefersReducedMotion: reduced,
+    });
+    return registerGrain(seed, el);
+  }, [debug, seed]);
 
   return (
     <div
       aria-hidden
       className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       style={{
-        // Base dark grey-green wash so the SVG fibres tint over a real surface.
         background:
           "linear-gradient(180deg, hsl(var(--bark)) 0%, hsl(var(--bark-2)) 50%, hsl(var(--bark)) 100%)",
       }}
     >
       <svg
+        ref={svgRef}
         className="bark-grain absolute"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
-        style={{ opacity: 0.35, top: "-5%", left: "-5%", width: "110%", height: "110%" }}
+        style={{
+          opacity: 0.35,
+          top: "-5%",
+          left: "-5%",
+          width: "110%",
+          height: "110%",
+          ...(debug
+            ? {
+                outline: "2px dashed #ff4fd8",
+                outlineOffset: "-2px",
+                backgroundColor: "rgba(255, 79, 216, 0.15)",
+                // Force motion on in debug, even under reduced-motion
+                animation: "grain-flow 12s ease-in-out infinite",
+              }
+            : {}),
+        }}
       >
         <defs>
-          {/* Fine vertical fibres: high X frequency, very low Y frequency. */}
           <filter id={fibreId} x="0%" y="0%" width="100%" height="100%">
             <feTurbulence
               type="fractalNoise"
@@ -60,7 +85,6 @@ export const BarkGrain = ({ seed = 7 }: BarkGrainProps) => {
                       0 0 0 0.45 -0.2"
             />
           </filter>
-          {/* Broad figure / knots: low frequency in both axes. */}
           <filter id={figureId} x="0%" y="0%" width="100%" height="100%">
             <feTurbulence
               type="fractalNoise"
