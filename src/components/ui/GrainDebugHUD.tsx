@@ -13,7 +13,10 @@ export const GrainDebugHUD = () => {
   const [rows, setRows] = useState<Row[]>([]);
   const [, force] = useState(0);
 
-  useEffect(() => subscribeGrainRegistry(() => force((n) => n + 1)), []);
+  useEffect(() => {
+    const unsub = subscribeGrainRegistry(() => force((n) => n + 1));
+    return () => { unsub; };
+  }, []);
 
   useEffect(() => {
     let raf = 0;
