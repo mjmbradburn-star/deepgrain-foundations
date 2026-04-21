@@ -23,6 +23,7 @@ const Enablement = lazy(() => import("./pages/Enablement"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const CookiesPage = lazy(() => import("./pages/Cookies"));
 const Terms = lazy(() => import("./pages/Terms"));
+const SeoChecklist = lazy(() => import("./pages/SeoChecklist"));
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ const App = () => (
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/cookies" element={<CookiesPage />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/seo-checklist" element={<SeoChecklist />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
