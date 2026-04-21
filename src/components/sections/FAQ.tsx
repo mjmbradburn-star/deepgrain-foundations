@@ -66,10 +66,7 @@ export const FAQ = ({
         className="mt-16 pt-12 border-t border-walnut/15"
         aria-label={eyebrow}
       >
-        <h2
-          className="font-display text-3xl md:text-4xl text-walnut leading-tight mb-6"
-          style={{ letterSpacing: "-0.005em" }}
-        >
+        <h2 className={`${articleTypography.h2} mb-6`} style={articleH2Style}>
           {heading}
         </h2>
         <dl className="divide-y divide-walnut/15 border-t border-walnut/15">
@@ -79,7 +76,8 @@ export const FAQ = ({
               className="group py-6 [&_summary::-webkit-details-marker]:hidden"
             >
               <summary className="flex cursor-pointer items-start justify-between gap-6 list-none">
-                <dt className="font-display text-walnut text-xl md:text-2xl leading-snug">
+                {/* Question uses article H3 token — same scale as in-prose H3s. */}
+                <dt className={articleTypography.h3}>
                   {item.question}
                 </dt>
                 <span
@@ -89,7 +87,8 @@ export const FAQ = ({
                   +
                 </span>
               </summary>
-              <dd className="mt-4 font-sans text-[18px] leading-[1.7] text-walnut/85">
+              {/* Answer uses article body token — identical to MDX <p>. */}
+              <dd className={`${articleTypography.body} mt-4`}>
                 {item.answerNode ?? item.answer}
               </dd>
             </details>
