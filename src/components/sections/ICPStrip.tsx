@@ -1,4 +1,4 @@
-import { BarkGrain } from "@/components/ui/BarkGrain";
+import { BarkSection } from "@/components/ui/BarkSection";
 
 /**
  * ICP qualifier section. Sits directly under the Hero so the right person
@@ -7,9 +7,10 @@ import { BarkGrain } from "@/components/ui/BarkGrain";
  * Three lines: who → where → the problem we partner on.
  */
 export const ICPStrip = () => (
-  <section className="relative overflow-hidden bg-bark text-cream border-y border-brass/30">
-    <BarkGrain />
-    <div className="container-grain py-10 md:py-14 text-center relative">
+  <BarkSection
+    className="border-y border-brass/30"
+    contentClassName="container-grain py-10 md:py-14 text-center"
+  >
       {/* Line 1 — Who: roles + company types as two simple columns */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 max-w-3xl mx-auto items-start">
         <div>
@@ -80,6 +81,5 @@ export const ICPStrip = () => (
           </li>
         ))}
       </ul>
-    </div>
-  </section>
+  </BarkSection>
 );

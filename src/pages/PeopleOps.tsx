@@ -11,7 +11,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { AIOI_URL } from "@/lib/aioi";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
-import { BarkGrain } from "@/components/ui/BarkGrain";
+import { BarkSection } from "@/components/ui/BarkSection";
 
 // Match the Method page styling so contextual CTAs feel consistent across the site.
 const linkCls = "text-brass underline-offset-4 hover:underline";
@@ -170,9 +170,10 @@ const PeopleOps = () => {
       </Helmet>
 
       {/* Hero */}
-      <section className="bg-bark text-cream pt-40 md:pt-48 pb-24 md:pb-32 relative overflow-hidden">
-        <BarkGrain />
-        <div className="container-grain max-w-4xl relative">
+      <BarkSection
+        className="pt-40 md:pt-48 pb-24 md:pb-32"
+        contentClassName="container-grain max-w-4xl"
+      >
           <Link
             to="/intelligence"
             className="text-[11px] uppercase text-brass hover:text-cream transition-colors"
@@ -197,8 +198,7 @@ const PeopleOps = () => {
               produces capability. This track is about the third path: building.
             </p>
           </div>
-        </div>
-      </section>
+      </BarkSection>
 
       {/* Two traps */}
       <section className="bg-linen text-body py-24 md:py-32">
