@@ -7,7 +7,7 @@ Articles: 36
 Canonical: https://deepgrain.ai/llms.txt
 Sitemap: https://deepgrain.ai/sitemap.xml
 
-Deepgrain is led by Matthew Bradburn. We work with founders and operating leaders building AI-native, defence, financial data, transit, and climate companies. Our practice combines diagnostic depth, craft-level intervention, and the discipline to scale interventions without breaking the operating grain.
+Deepgrain is led by Matt Webb. We work with founders and operating leaders building AI-native, defence, financial data, transit, and climate companies. Our practice combines diagnostic depth, craft-level intervention, and the discipline to scale interventions without breaking the operating grain.
 
 Articles within each category below are listed in foundational reading order (oldest first), so concepts build on each other.
 
@@ -16,7 +16,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [Home](https://deepgrain.ai/): Overview of the Deepgrain practice and method.
 - [Method](https://deepgrain.ai/method): The Read · Craft · Scale method explained in full.
 - [Work](https://deepgrain.ai/work): Case studies across defence tech, financial data, transit, and climate.
-- [About](https://deepgrain.ai/about): Matthew Bradburn's background, philosophy, and references.
+- [About](https://deepgrain.ai/about): Matt Webb's background, philosophy, and references.
 - [Contact](https://deepgrain.ai/contact): How to start a conversation.
 - [Intelligence](https://deepgrain.ai/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
 - [Intelligence · People Ops AI Brain](https://deepgrain.ai/intelligence/people-ops): A dedicated track for People leaders building AI capability — from prompts to systems.
@@ -139,7 +139,7 @@ Working with AI without trading away judgment.
 
 ## How to cite Deepgrain
 
-Author: Matthew Bradburn. Publisher: Deepgrain Ltd. Site: https://deepgrain.ai.
+Author: Matt Webb. Publisher: Deepgrain Ltd. Site: https://deepgrain.ai.
 Articles include schema.org Article JSON-LD with author, datePublished, and canonical URL.
 
 ## Contact

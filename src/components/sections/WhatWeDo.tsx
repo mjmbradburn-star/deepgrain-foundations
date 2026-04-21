@@ -6,7 +6,7 @@ type Segment = { text: string; highlight?: boolean };
 const items: { number: string; title: string; body: Segment[] }[] = [
   {
     number: "01",
-    title: "Diagnose",
+    title: "Read",
     body: [
       { text: "A 30-day operating diagnostic. We read where work actually flows, where decisions get made, and where " },
       { text: "AI leverage is sitting unused", highlight: true },
@@ -15,7 +15,7 @@ const items: { number: string; title: string; body: Segment[] }[] = [
   },
   {
     number: "02",
-    title: "Build",
+    title: "Craft",
     body: [
       { text: "" },
       { text: "Agents and automations built into the workflow, function by function.", highlight: true },
@@ -49,7 +49,7 @@ export const WhatWeDo = () => (
             className="font-display text-walnut text-3xl md:text-5xl leading-[1.05] text-balance"
             style={{ letterSpacing: "-0.01em" }}
           >
-            Diagnose. Build. Scale.
+            Read. Craft. Scale.
           </h2>
         </div>
       </ScrollReveal>
