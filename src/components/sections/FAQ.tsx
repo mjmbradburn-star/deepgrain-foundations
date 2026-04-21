@@ -51,18 +51,19 @@ export const FAQ = ({
   variant = "section",
 }: FAQProps) => {
   if (variant === "inline") {
-    // Designed to be placed *inside* the article body. Self-constrains to the
-    // article body measure (max-w-2xl) regardless of parent container width
-    // — the IntelligenceArticle body uses `container-grain max-w-2xl`, but
-    // the arbitrary max-width on `container-grain` wins the Tailwind cascade,
-    // so we re-apply our own max-width here to guarantee article-body measure.
+    // Designed to live *inside* the article body. Inherits the parent's
+    // measure (the IntelligenceArticle body is `container-grain max-w-2xl`),
+    // so we don't re-apply width here. Spacing mirrors the EmailCapture
+    // wrapper directly below it (`mt-16 pt-12 border-t border-walnut/15`)
+    // and the MDX h2 rhythm (`mb-6`, `text-3xl md:text-4xl`) so the block
+    // reads as a native section of the article, not a separate component.
     return (
       <section
-        className="mx-auto max-w-2xl mt-16 pt-12 border-t border-walnut/15"
+        className="mt-16 pt-12 border-t border-walnut/15"
         aria-label={eyebrow}
       >
         <h2
-          className="font-display text-3xl md:text-4xl text-walnut leading-tight mb-8"
+          className="font-display text-3xl md:text-4xl text-walnut leading-tight mb-6"
           style={{ letterSpacing: "-0.005em" }}
         >
           {heading}
@@ -71,20 +72,20 @@ export const FAQ = ({
           {items.map((item) => (
             <details
               key={item.question}
-              className="group py-5 [&_summary::-webkit-details-marker]:hidden"
+              className="group py-6 [&_summary::-webkit-details-marker]:hidden"
             >
               <summary className="flex cursor-pointer items-start justify-between gap-6 list-none">
-                <dt className="font-display text-walnut text-lg md:text-xl leading-snug">
+                <dt className="font-display text-walnut text-xl md:text-2xl leading-snug">
                   {item.question}
                 </dt>
                 <span
                   aria-hidden
-                  className="mt-1.5 shrink-0 text-brass text-xl leading-none transition-transform duration-200 group-open:rotate-45"
+                  className="mt-2 shrink-0 text-brass text-xl leading-none transition-transform duration-200 group-open:rotate-45"
                 >
                   +
                 </span>
               </summary>
-              <dd className="mt-4 text-walnut/85 leading-[1.7] text-[17px] md:text-[18px]">
+              <dd className="mt-4 font-sans text-[18px] leading-[1.7] text-walnut/85">
                 {item.answerNode ?? item.answer}
               </dd>
             </details>
