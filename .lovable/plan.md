@@ -1,88 +1,38 @@
 
 
-## Plan: Polish pass — cards, palette, mobile, motion, Work FAQ
+## Plan: Tighten Intelligence article cards
 
-Five focused workstreams, ordered by risk (lowest first). Each is independently shippable.
+Single-file fix to `src/components/intelligence/ArticleCard.tsx` plus a small content tweak to keep descriptions short.
 
-### 1. Fix Intelligence article cards (bug)
+### What's actually wrong
 
-`ArticleCard.tsx` has two issues visible on the Intelligence grid:
+1. **Title can overflow its reserved space.** `min-h-[5.5rem]` reserves ~88px (≈ 2 lines of `text-3xl`), but several titles wrap to 3 lines on desktop and 4 on the narrowest tablet breakpoint. The extra line pushes the description down and the bottom `Read →` row visibly bleeds past the rounded corner — worsened by the `group-hover:translate-x-1` transform on the title.
+2. **No clamp on the title.** Only the description has `line-clamp-3`; the title is unbounded.
+3. **Description text is genuinely too long** for the card footprint under the image — the 3-line clamp truncates mid-sentence on most cards, which reads as broken rather than intentional.
+4. **`min-h` + `flex-1`** combine badly: when the title is short, the title block still takes 88px of empty space, then `flex-1` on the description pushes `Read →` to the very bottom — making short-title cards feel hollow.
 
-- The card uses `flex flex-col h-full gap-6` but the parent grid doesn't stretch children, so heights vary and the description `<p>` runs unbounded — long descriptions visually bleed past the card edge on hover-scale.
-- Description has no line clamp, so 3-line and 6-line cards sit side by side.
+### Changes
 
-Changes:
-- Add `h-full` to the card root and `items-stretch` to the parent grids in `Intelligence.tsx`, `IntelligenceTeaser.tsx`, `IntelligenceCategory.tsx`.
-- Clamp description to 3 lines with `line-clamp-3` (Tailwind built-in, no plugin needed in v3).
-- Tighten internal spacing: `gap-6 p-8` → `gap-4 p-7` so the card breathes the same regardless of description length.
-- Reserve a fixed minimum for the title block (`min-h-[5.5rem]`) so the meta row + Read → always align across cards in a row.
+**`ArticleCard.tsx`**
+- Clamp the title to **2 lines** with `line-clamp-2` and remove `min-h-[5.5rem]`. Replace with a fixed 2-line reservation using `[&]:min-h-[calc(2*1.15*1.875rem)]` (i.e. `line-height × text-3xl`) so 1-line and 2-line titles align across a row without leaving phantom space when titles are short.
+- Drop title size one notch on the largest breakpoint: `text-2xl md:text-3xl` → `text-xl md:text-2xl`. Titles fit cleanly in 2 lines at this size for every current article.
+- Tighten the description: `line-clamp-3` → `line-clamp-2`, and shrink to `text-[13px] leading-[1.55]` so two clamped lines sit comfortably between the title and `Read →`.
+- Remove `flex-1` from the description; instead add `mt-auto` to the `Read →` row only (already there). The card body becomes content-sized, with `Read →` pinned to the bottom — no more vertical bleed.
+- Reduce inner padding on the body from `p-7` to `px-6 py-5` so the image-to-text rhythm feels tighter under the 16:9 hero.
+- Remove the title's `group-hover:translate-x-1` (it's the source of the hover-bleed past the rounded corner). Keep the image's `group-hover:scale-[1.03]` for hover feedback.
 
-### 2. Palette: subtle walnut → tree nudge
+**`src/lib/intelligence.ts`** (only if descriptions are derived there)
+- I'll check whether descriptions come from MDX frontmatter or are computed. If frontmatter, no code change needed — the 2-line clamp absorbs current copy. If any description currently exceeds ~140 characters, I'll note them in a comment for a follow-up content edit, but won't rewrite frontmatter without approval.
 
-In `src/index.css`, shift `--walnut` from warm chocolate toward muted forest-brown, and quiet the brass slightly so it stops reading as honey. Conservative deltas — no layout impact.
+### Out of scope
 
-```text
---walnut:  19 48% 8%   →  90 12% 11%   (cooler, greener-grey-brown)
---brass:   36 65% 58%  →  35 42% 52%   (less saturated, aged-bronze)
---body-text: 26 21% 20% → 60 10% 18%   (matches new walnut family)
---border:  39 21% 75%  →  60 12% 74%   (so borders don't read pink against new walnut)
-```
+- Palette, motion, mobile merge — already shipped in the previous polish pass.
+- Any change to grid layout in `Intelligence.tsx` / `IntelligenceTeaser.tsx` / `IntelligenceCategory.tsx`. The `items-stretch` + `h-full` from the previous pass is correct; the bleed is internal to the card.
 
-`--green` and `--cream` stay untouched — they're the brand anchor. I'll spot-check the dark sections (Hero, walnut CTAs, Footer) after the swap and nudge brass opacity in 1–2 places if contrast drops.
+### Verification
 
-### 3. Mobile: trim + merge
-
-Two changes, both <768px only:
-
-**Trim** — global section padding utility tightens on mobile:
-- `.section-pad` becomes `py-14 md:py-[140px]` (was `py-20 md:py-[140px]`)
-- Hero h1 drops one step on mobile (`text-5xl` → `text-[2.5rem]` with tighter leading)
-- `IntelligenceTeaser` headline drops from `text-4xl` to `text-3xl` <md
-
-**Merge** — on mobile only, render `OperatingProof` and `ClientVoice` as one alternating block:
-- New wrapper `MobileProofVoice.tsx` interleaves 1 proof stat → 1 voice quote → 1 proof stat → 1 voice quote, single column, walnut background.
-- Desktop is unchanged: `Home.tsx` renders `<OperatingProof />` and `<ClientVoice />` inside an `md:contents` wrapper, with `<MobileProofVoice />` shown only `<md:block`.
-- Net effect on mobile: ~1.5 fewer screens of scroll between Method and IntelligenceTeaser.
-
-### 4. Subtle motion: hero ambient + section eyebrow draw-in
-
-**Hero ambient (CSS-only, no JS):**
-- Add a single fixed-position SVG wood-grain layer behind `Hero.tsx` content, `opacity-[0.04]`, `pointer-events-none`, with a 60s linear `translate3d` keyframe drifting 2% horizontally then back. GPU-only transform, no layout, no paint.
-- Respects `prefers-reduced-motion` (already wired in `index.css`).
-
-**Eyebrow draw-in:**
-- `BrassRule.tsx` already exists. Extend `Eyebrow.tsx` with an optional companion rule that animates `scaleX` from 0→1 (300ms, brass color) when its parent enters viewport via the existing `[data-reveal="in"]` hook.
-- Apply to section eyebrows on Home, Method, Work, Intelligence — opt-in via `<Eyebrow withRule>`. No change to existing call sites unless we add the prop.
-
-Bundle cost: ~0 JS (reuses ScrollReveal's IntersectionObserver), ~1KB SVG inlined.
-
-### 5. Work page FAQ — Outcomes & proof
-
-Add an `<FAQ variant="section">` block to `Work.tsx` between the "every engagement leaves a trained team" CTA and the EmailCapture, with 5–6 items on:
-- How we measure whether the work compounded
-- What "lasting change" means concretely (1–2 examples)
-- How case studies are selected and what's anonymised
-- Confidentiality boundaries during and after engagements
-- What proof we share in a sales conversation that we can't publish
-- Whether we'll talk to a reference client
-
-The FAQ component already emits FAQPage JSON-LD via `assertFAQPageShape` — Work page will pick this up automatically through the existing prebuild validator.
-
-I'll draft answers in the implementation step; you can edit them inline via Visual Edits afterwards.
-
----
-
-### Order of execution
-
-1. Cards fix (5 min, isolated)
-2. Palette nudge (10 min, visual QA after)
-3. Work FAQ (15 min, content)
-4. Mobile trim + merge (25 min, new component)
-5. Motion (20 min, last so palette is settled before tuning opacity)
-
-### Out of scope (flag for later)
-
-- Magnetic card hover / cursor-follow (you picked the lighter motion option)
-- Hiding LogoCarousel on mobile (you picked merge instead)
-- Any palette change to green or cream
+After the edit I'll spot-check the three pages that render `ArticleCard` (Intelligence index, IntelligenceTeaser on Home, IntelligenceCategory) and confirm:
+- All cards in a row have identical heights.
+- No title or description overflows the card boundary on hover.
+- The shortest-title card no longer has a hollow gap above `Read →`.
 
