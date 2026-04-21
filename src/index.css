@@ -127,11 +127,11 @@
    GPU-accelerated via transform only. 120s cycle = barely perceptible. */
 @keyframes grain-flow {
   0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(-1.2%, 0.6%, 0) scale(1.02); }
+  50%  { transform: translate3d(-3%, 1.5%, 0) scale(1.04); }
   100% { transform: translate3d(0, 0, 0) scale(1); }
 }
 .bark-grain {
-  animation: grain-flow 120s ease-in-out infinite;
+  animation: grain-flow 90s ease-in-out infinite;
   will-change: transform;
 }
 
