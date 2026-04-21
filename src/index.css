@@ -159,6 +159,7 @@
   .fade-in-up,
   [data-reveal],
   .hero-drift,
+  .bark-grain,
   .animate-bob {
     animation: none !important;
     transition: none !important;
