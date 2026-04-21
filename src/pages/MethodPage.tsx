@@ -88,7 +88,7 @@ const MethodPage = () => (
     </section>
 
     {/* Read */}
-    <section className="bg-linen text-body section-pad">
+    <section id="read" className="bg-linen text-body section-pad scroll-mt-40">
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
           <Eyebrow className="text-brass mb-4">01 Read</Eyebrow>
@@ -114,7 +114,7 @@ const MethodPage = () => (
     </section>
 
     {/* Craft */}
-    <section className="bg-walnut text-cream section-pad">
+    <section id="craft" className="bg-walnut text-cream section-pad scroll-mt-40">
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
           <Eyebrow className="text-brass mb-4">02 Craft</Eyebrow>
@@ -169,7 +169,7 @@ const MethodPage = () => (
     <BuildVsHire />
 
     {/* Scale */}
-    <section className="bg-linen text-body section-pad">
+    <section id="scale" className="bg-linen text-body section-pad scroll-mt-40">
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
           <Eyebrow className="text-brass mb-4">03 Scale</Eyebrow>
