@@ -124,14 +124,63 @@ const FaqDetails = ({
   const id = faqIdFromQuestion(item.question);
   const [copied, setCopied] = useState(false);
 
-  // Respect prefers-reduced-motion: skip the height transition entirely.
+  // Per-pathname storage key. Scoping by pathname means an open question on
+  // /method doesn't accidentally pre-open an unrelated question on /people-ops
+  // that happens to share an id slug, and keeps the value JSON-serialisable.
+  const storageKey = useCallback(() => {
+    if (typeof window === "undefined") return null;
+    return `dg:faq-open:${window.location.pathname}`;
+  }, []);
+
+  const readOpenSet = useCallback((): Set<string> => {
+    const key = storageKey();
+    if (!key) return new Set();
+    try {
+      const raw = window.localStorage.getItem(key);
+      if (!raw) return new Set();
+      const parsed = JSON.parse(raw);
+      return new Set(Array.isArray(parsed) ? parsed.filter((v) => typeof v === "string") : []);
+    } catch {
+      return new Set();
+    }
+  }, [storageKey]);
+
+  // Restore persisted open state on mount. Runs before the hash-open effect's
+  // scroll, but if the hash matches this id, that effect will also flip `open`
+  // — both are idempotent so ordering doesn't matter.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (readOpenSet().has(id)) {
+      el.dataset.animate = "off"; // skip the expand animation on rehydration
+      el.open = true;
+      // Re-enable animations on the next frame so subsequent user toggles
+      // still get the smooth transition.
+      requestAnimationFrame(() => {
+        if (el) delete el.dataset.animate;
+      });
+    }
+  }, [id, readOpenSet]);
+
+  // Persist + reduced-motion handling on every native toggle.
   const onToggle = useCallback(() => {
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
       el.dataset.animate = "off";
     }
-  }, []);
+    const key = storageKey();
+    if (!key) return;
+    try {
+      const set = readOpenSet();
+      if (el.open) set.add(id);
+      else set.delete(id);
+      window.localStorage.setItem(key, JSON.stringify(Array.from(set)));
+    } catch {
+      // localStorage can throw in private mode / quota — silently ignore;
+      // the FAQ remains fully functional, it just won't persist.
+    }
+  }, [id, readOpenSet, storageKey]);
 
   // Deep linking: open the matching <details> when the URL hash points at it
   // (on first paint AND on subsequent hashchange events — e.g. user pastes a
