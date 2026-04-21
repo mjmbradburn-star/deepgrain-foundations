@@ -9,6 +9,7 @@ import { EmailCapture } from "@/components/forms/EmailCapture";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { BarkGrain } from "@/components/ui/BarkGrain";
 
 const variants: Array<"linen" | "walnut" | "green"> = ["linen", "walnut", "linen", "green"];
 
@@ -81,8 +82,9 @@ const Work = () => (
       <CaseStudyCard key={study.id} study={study} variant={variants[i]} />
     ))}
 
-    <section className="bg-walnut text-cream py-14 md:py-16">
-      <div className="container-grain">
+    <section className="relative overflow-hidden bg-bark text-cream py-14 md:py-16">
+      <BarkGrain />
+      <div className="container-grain relative">
         <ScrollReveal>
           <Link
             to="/enablement"
