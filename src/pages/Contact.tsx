@@ -3,6 +3,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const Contact = () => (
   <section className="bg-green text-cream min-h-screen pt-40 pb-32">
@@ -10,6 +11,10 @@ const Contact = () => (
       title="Contact | Deepgrain"
       description="Start a conversation with Deepgrain. If you have an organisation worth getting right, write to Matt Webb directly."
       path="/contact"
+      jsonLd={buildBreadcrumbLd([
+        { name: "Home", url: "https://deepgrain.ai/" },
+        { name: "Contact", url: "https://deepgrain.ai/contact" },
+      ])}
     />
     <div className="container-grain max-w-3xl text-center">
       <ScrollReveal>

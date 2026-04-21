@@ -8,8 +8,9 @@ interface PageMetaProps {
   /** Absolute URL to a 1200×630 OG/Twitter image. Defaults to the site OG. */
   image?: string;
   type?: "website" | "article" | "profile";
-  /** Optional JSON-LD object emitted as application/ld+json. */
-  jsonLd?: Record<string, unknown>;
+  /** JSON-LD object(s) emitted as application/ld+json. Pass an array to emit
+   *  multiple blocks (e.g. Article + BreadcrumbList on the same page). */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** Set true on pages that should not be indexed (e.g. Unsubscribe). */
   noindex?: boolean;
 }
@@ -51,9 +52,12 @@ export const PageMeta = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
-      {jsonLd && (
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      )}
+      {jsonLd &&
+        (Array.isArray(jsonLd) ? jsonLd : [jsonLd]).map((block, i) => (
+          <script key={i} type="application/ld+json">
+            {JSON.stringify(block)}
+          </script>
+        ))}
     </Helmet>
   );
 };

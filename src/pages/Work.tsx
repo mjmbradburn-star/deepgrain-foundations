@@ -7,6 +7,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { EmailCapture } from "@/components/forms/EmailCapture";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const variants: Array<"linen" | "walnut" | "green"> = ["linen", "walnut", "linen", "green"];
 
@@ -17,6 +18,10 @@ const Work = () => (
       description="Case studies from our consulting work across defence tech, financial data, transit and mobility, climate, and AI-native companies."
       image="https://deepgrain.ai/og-work.png"
       path="/work"
+      jsonLd={buildBreadcrumbLd([
+        { name: "Home", url: "https://deepgrain.ai/" },
+        { name: "Work", url: "https://deepgrain.ai/work" },
+      ])}
     />
     <section className="bg-green text-cream pt-40 pb-20">
       <div className="container-grain max-w-4xl">

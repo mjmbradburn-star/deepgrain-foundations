@@ -9,6 +9,7 @@ import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PillButton } from "@/components/ui/PillButton";
 import { AIOI_URL } from "@/lib/aioi";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const PeopleOps = () => {
   const url = "https://deepgrain.ai/intelligence/people-ops";
@@ -30,6 +31,12 @@ const PeopleOps = () => {
       author: { "@type": "Person", name: a.frontmatter.author },
     })),
   };
+
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: "Home", url: "https://deepgrain.ai/" },
+    { name: "Intelligence", url: "https://deepgrain.ai/intelligence" },
+    { name: "People Ops AI Brain", url },
+  ]);
 
   return (
     <>
@@ -53,6 +60,7 @@ const PeopleOps = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://deepgrain.ai/og-people-ops.png" />
         <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
       </Helmet>
 
       {/* Hero */}
