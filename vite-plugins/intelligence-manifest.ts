@@ -17,6 +17,65 @@ async function walk(dir: string): Promise<string[]> {
   return out;
 }
 
+/**
+ * Validates an extracted `faqs` array literal at build time.
+ *
+ * The MDX `faqs` export is captured as a raw source string by `buildManifest`,
+ * so we can't introspect the runtime objects directly. Instead we evaluate the
+ * literal in a sandboxed `new Function` and assert the schema.org FAQPage
+ * shape we'll later emit via buildFAQLd():
+ *
+ *   - non-empty array
+ *   - each item: { question: non-empty string, answer: non-empty string }
+ *
+ * Throws with a precise file + index pointer on the first violation, which
+ * surfaces in the Vite build output and aborts the build.
+ */
+function validateFaqsLiteral(file: string, raw: string): void {
+  let parsed: unknown;
+  try {
+    // The raw source is a JS array literal containing JSX expressions for
+    // `answerNode`. JSX won't eval here, but `answer` (plain string) and
+    // `question` will — and those are the only fields we ship in JSON-LD.
+    // We strip `answerNode: ( ... ),` blocks (balanced parens) before eval.
+    const stripped = raw.replace(
+      /answerNode\s*:\s*\([\s\S]*?\)\s*,?/g,
+      "",
+    );
+    parsed = new Function(`return (${stripped});`)();
+  } catch (err) {
+    throw new Error(
+      `[intelligence-manifest] Failed to parse faqs export in ${file}: ${(err as Error).message}`,
+    );
+  }
+
+  if (!Array.isArray(parsed) || parsed.length === 0) {
+    throw new Error(
+      `[intelligence-manifest] ${file}: \`faqs\` must be a non-empty array.`,
+    );
+  }
+
+  parsed.forEach((item, i) => {
+    if (!item || typeof item !== "object") {
+      throw new Error(
+        `[intelligence-manifest] ${file} faqs[${i}]: must be an object.`,
+      );
+    }
+    const { question, answer } = item as Record<string, unknown>;
+    if (typeof question !== "string" || question.trim() === "") {
+      throw new Error(
+        `[intelligence-manifest] ${file} faqs[${i}]: \`question\` must be a non-empty string.`,
+      );
+    }
+    if (typeof answer !== "string" || answer.trim() === "") {
+      throw new Error(
+        `[intelligence-manifest] ${file} faqs[${i}].\`answer\` must be a non-empty string ` +
+          `— it's the canonical text shipped in FAQPage JSON-LD.`,
+      );
+    }
+  });
+}
+
 async function buildManifest(): Promise<string> {
   const files = await walk(CONTENT_DIR);
   const entries: { rel: string; raw: string; faqsRaw?: string }[] = [];
@@ -29,6 +88,11 @@ async function buildManifest(): Promise<string> {
     // FAQPage JSON-LD can ship in the initial HTML alongside frontmatter,
     // rather than waiting for the lazy MDX module to resolve.
     const fm = src.match(/export\s+const\s+faqs\s*=\s*(\[[\s\S]*?\n\]);/);
+    if (fm) {
+      // Validate before emitting — bad schema aborts the build with a precise
+      // error pointing at the offending file and item index.
+      validateFaqsLiteral(file, fm[1]);
+    }
     entries.push({ rel: file, raw: m[1], faqsRaw: fm?.[1] });
   }
 
