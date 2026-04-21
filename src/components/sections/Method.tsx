@@ -19,8 +19,9 @@ const stats = [
 ];
 
 export const Method = () => (
-  <section className="bg-walnut text-cream section-pad">
-    <div className="container-grain">
+  <section className="relative overflow-hidden bg-bark text-cream section-pad">
+    <BarkGrain />
+    <div className="container-grain relative">
       <div className="grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20 items-center">
         {/* Left — copy */}
         <ScrollReveal>
