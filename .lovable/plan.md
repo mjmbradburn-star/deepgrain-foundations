@@ -2,45 +2,45 @@
 
 ## Goal
 
-Replace the ad-hoc `[&_section+section]:…` and `[&_section:first-of-type:not([data-no-rule])]:…` selectors currently living on `<main>` in `SiteShell.tsx`, plus the manual `border-t-[3px] border-brass/35` on `<Footer>`, with a single reusable utility class so any new section or footer-like block automatically picks up the 3px brass rule behaviour without anyone remembering selectors.
+Fix the bark grain motion not being visible by applying the well-known SVG transform-animation workaround: split the absolutely-positioned SVG into an outer wrapper that handles **position** and an inner wrapper that handles **animation only**, with `transform-box` and `transform-origin` set explicitly so percentage-based translates animate consistently across Chromium, Firefox, and Safari.
+
+## Why the current setup fails
+
+Today, `<svg class="bark-grain absolute">` mixes layout transforms (none currently, but `position:absolute` + percentage offsets) with the keyframe `transform: translate3d(-8%, 4%, 0) scale(1.08)`. On SVG root elements, browsers compute percentage transforms against the SVG viewport, and `transform-origin` defaults differ between SVG and HTML — the result in some engines is that the animation either resolves to a no-op transform or animates around an unexpected origin, so nothing visibly moves. Animating a plain HTML wrapper around the SVG sidesteps every one of those quirks.
 
 ## Approach
 
-Add one utility class — `.brass-rule` — in `src/index.css` under `@layer utilities`, defined as:
+Rework `BarkGrain.tsx` to a three-layer structure:
 
-```css
-.brass-rule { border-top: 3px solid hsl(var(--brass) / 0.35); }
+```text
+<div bg-gradient, overflow-hidden>          ← outer: clip + bark gradient (unchanged)
+  <div bark-grain-anim absolute -inset[5%]> ← NEW inner: holds the animation
+    <svg width=100% height=100%>            ← SVG: pure texture, no animation, no offsets
+      …filters + rects…
+    </svg>
+  </div>
+</div>
 ```
 
-This is the same visual we already produce inline; centralising it means the colour/thickness can be tuned in exactly one place forever.
+- The animation moves to the new `.bark-grain-anim` HTML div. The SVG itself becomes a static, fully-sized child — no `top/left/width/height` overrides, no `.bark-grain` class.
+- Rename the CSS hook: `.bark-grain` → `.bark-grain-anim` in `src/index.css` (same two-stage `grain-flow-boot` + `grain-flow` keyframes, untouched). Add `transform-box: border-box;` and `transform-origin: 50% 50%;` to lock down the reference box and origin so the percentage translates and `scale(1.08)` behave identically in every engine.
+- The 110% × 110% bleed (so edges never show during the 8% drift) moves to the wrapper via `inset: -5%` (Tailwind `-inset-[5%]`) instead of being applied to the SVG.
+- Debug mode keeps working: the `?debugGrain=1` overrides (outline, magenta tint, forced animation) move from the `<svg>` to the new `.bark-grain-anim` div. The HUD's `registerGrain` call now registers the animated div instead of the SVG — update its type to `HTMLDivElement` so computed-style sampling reads from the element that actually owns the animation.
 
-Then expose it via two opt-in patterns on `<main>`:
+### Reduced motion / debug parity
 
-1. **Auto-applied between adjacent sections and above the first section** — keep the global behaviour, but express it through the new utility instead of duplicating the border declaration. We rewrite the `<main>` className to:
-
-   ```
-   [&_section+section]:brass-rule
-   [&_section:first-of-type:not([data-no-rule])]:brass-rule
-   ```
-
-   Tailwind's arbitrary-variant syntax happily applies a custom class via the descendant selector, so this works without any plugin. The `data-no-rule` escape hatch on the Hero stays untouched.
-
-2. **Manual application** — anything outside `<main>` (today: the Footer; tomorrow: a CTA strip, a callout band, etc.) just adds `className="brass-rule"` and gets the identical line. We replace the Footer's hand-written `border-t-[3px] border-brass/35` with `brass-rule`.
-
-### Why a CSS utility, not a Tailwind plugin or a React component
-
-- **vs. plugin**: a plugin requires `tailwind.config.ts` surgery and a build cycle to iterate. A single CSS rule in `index.css` is clearer for one declaration and matches how `.section-pad`, `.container-grain`, and `.section-rule` are already defined in this file.
-- **vs. `<BrassRule />` component**: we already have `src/components/ui/BrassRule.tsx` for explicit standalone hairlines inside content. The need here is a *modifier* on existing block boundaries (sections, footer), not an inserted element — a class is the right shape.
+- The `prefers-reduced-motion` block in `index.css` currently targets `.bark-grain` — update to `.bark-grain-anim`. Behaviour preserved.
+- Debug HUD's "NOT MOVING" detector keeps working unchanged because it reads computed `transform` from whichever element we register, and that element is now the one with the animation.
 
 ## Files
 
-- `src/index.css` — add `.brass-rule { border-top: 3px solid hsl(var(--brass) / 0.35); }` inside the existing `@layer utilities` block.
-- `src/components/layout/SiteShell.tsx` — replace the two long arbitrary-variant border declarations on `<main>` with `[&_section+section]:brass-rule` and `[&_section:first-of-type:not([data-no-rule])]:brass-rule`.
-- `src/components/layout/Footer.tsx` — replace `border-t-[3px] border-brass/35` with `brass-rule`.
+- `src/components/ui/BarkGrain.tsx` — restructure JSX into outer gradient div → inner `.bark-grain-anim` div → static SVG. Move debug-mode style overrides and the `registerGrain` ref onto the inner div. Update ref type to `HTMLDivElement`.
+- `src/index.css` — rename `.bark-grain` rule to `.bark-grain-anim`, add `transform-box: border-box;` and `transform-origin: 50% 50%;`. Update the matching selector inside the `prefers-reduced-motion` block.
+- `src/lib/debugGrain.ts` — broaden `GrainEntry.el` and `registerGrain` element type from `SVGSVGElement` to `Element` (or `HTMLElement | SVGElement`) so the registry accepts the new HTML wrapper without any other call-site changes.
 
 ## Out of scope
 
-- Removing or restyling the existing `.section-rule` utility (semantically different — it's a standalone `<hr>`-style block, not a top border).
-- Touching `BrassRule.tsx` (still the right choice for inline content rules).
-- Changing where dividers appear, the `data-no-rule` escape hatch on the Hero, or the colour/thickness values.
+- Changing the keyframe values, durations, or the boot/ambient two-stage chain.
+- Touching `.hero-drift` or any non-bark surface.
+- Removing the debug HUD or the `?debugGrain=1` flag — both stay until we've confirmed the fix in the live preview.
 
