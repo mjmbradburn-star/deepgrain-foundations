@@ -69,14 +69,18 @@ export const Hero = () => (
         onClick={() => {
           const hero = document.getElementById("hero");
           const next = hero?.nextElementSibling as HTMLElement | null;
+          const prefersReducedMotion =
+            typeof window !== "undefined" &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          const behavior: ScrollBehavior = prefersReducedMotion ? "auto" : "smooth";
           if (next) {
-            next.scrollIntoView({ behavior: "smooth", block: "start" });
+            next.scrollIntoView({ behavior, block: "start" });
           } else {
-            window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+            window.scrollTo({ top: window.innerHeight, behavior });
           }
         }}
         aria-label="Scroll to next section"
-        className="pointer-events-auto inline-flex items-center justify-center text-cream/50 hover:text-cream transition-colors animate-bob p-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cream/60"
+        className="pointer-events-auto inline-flex items-center justify-center text-cream/50 hover:text-cream transition-colors animate-bob motion-reduce:animate-none p-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cream/60"
       >
         <ChevronDown size={28} />
       </button>
