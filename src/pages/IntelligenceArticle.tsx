@@ -200,8 +200,9 @@ const IntelligenceArticle = () => {
 
       {/* Related */}
       {related.length > 0 && (
-        <section className="bg-walnut text-cream py-20 md:py-28">
-          <div className="container-grain">
+        <section className="relative overflow-hidden bg-bark text-cream py-20 md:py-28">
+          <BarkGrain />
+          <div className="container-grain relative">
             <Eyebrow className="text-brass">Keep reading</Eyebrow>
             <h2 className="font-display text-3xl md:text-4xl text-cream mt-3 mb-12">
               Related pieces

@@ -81,8 +81,9 @@ const Work = () => (
       <CaseStudyCard key={study.id} study={study} variant={variants[i]} />
     ))}
 
-    <section className="bg-walnut text-cream py-14 md:py-16">
-      <div className="container-grain">
+    <section className="relative overflow-hidden bg-bark text-cream py-14 md:py-16">
+      <BarkGrain />
+      <div className="container-grain relative">
         <ScrollReveal>
           <Link
             to="/enablement"

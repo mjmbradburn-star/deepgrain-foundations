@@ -90,14 +90,16 @@ export const LogoCarousel = ({
   headline = "Organisations that chose to understand themselves first.",
   eyebrow = "Trusted by",
 }: LogoCarouselProps) => {
-  const bgClass = background === "green" ? "bg-green" : "bg-walnut";
+  const isWalnut = background !== "green";
+  const bgClass = background === "green" ? "bg-green" : "bg-bark";
   const doubled = [...clients, ...clients];
 
   return (
     <section
-      className={cn("py-24 md:py-32 overflow-hidden", bgClass)}
+      className={cn("relative overflow-hidden py-24 md:py-32", bgClass)}
       aria-label="Client logos"
     >
+      {isWalnut && <BarkGrain />}
       {showHeadline && (
         <div className="container-grain text-center mb-16">
           <Eyebrow className="text-brass mb-6">{eyebrow}</Eyebrow>

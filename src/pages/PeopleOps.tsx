@@ -169,7 +169,8 @@ const PeopleOps = () => {
       </Helmet>
 
       {/* Hero */}
-      <section className="bg-walnut text-cream pt-40 md:pt-48 pb-24 md:pb-32 relative overflow-hidden">
+      <section className="bg-bark text-cream pt-40 md:pt-48 pb-24 md:pb-32 relative overflow-hidden">
+        <BarkGrain />
         <div className="container-grain max-w-4xl relative">
           <Link
             to="/intelligence"

@@ -139,8 +139,9 @@ const About = () => (
       </div>
     </section>
 
-    <section className="bg-walnut text-cream section-pad">
-      <div className="container-grain max-w-4xl">
+    <section className="relative overflow-hidden bg-bark text-cream section-pad">
+      <BarkGrain />
+      <div className="container-grain max-w-4xl relative">
         <ScrollReveal>
           <Eyebrow className="text-brass mb-6">Track record</Eyebrow>
           <div className="space-y-4 text-cream/85 leading-relaxed text-lg">

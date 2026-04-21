@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
+import { BarkGrain } from "@/components/ui/BarkGrain";
 
 // Homepage Method teaser. The full Read · Craft · Scale story and the live
 // Value Visualiser both live on /method — here we tease the visualiser as the

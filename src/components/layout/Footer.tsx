@@ -16,8 +16,9 @@ const links = [
 ];
 
 export const Footer = () => (
-  <footer className="bg-walnut text-cream/80 py-20">
-    <div className="container-grain">
+  <footer className="relative overflow-hidden bg-bark text-cream/80 py-20">
+    <BarkGrain />
+    <div className="container-grain relative">
       <div className="grid gap-12 md:grid-cols-3 mb-16">
         <div>
           <div
