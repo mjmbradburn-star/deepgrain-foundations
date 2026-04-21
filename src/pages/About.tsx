@@ -124,15 +124,14 @@ const About = () => (
           <ScrollReveal>
             <Eyebrow className="text-walnut/60 mb-6">Who runs this</Eyebrow>
             <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-[60px] leading-[1.05] text-balance">
-              Matthew Bradburn. Two decades inside the room, not next to it.
+              Matthew Bradburn - Founder, Operator, Builder
             </h2>
             <div className="mt-8 space-y-5 text-body/85 leading-relaxed text-lg">
               <p>
-                I&apos;ve built and rebuilt people, operating, and AI functions
+                I&apos;ve built and rebuilt people ops and operating approaches,
                 across companies from fifty to six hundred. Defence, climate,
                 fintech, transit, health, legal, e-commerce. Different sectors,
-                same underlying craft &mdash; reading the grain before laying a
-                single new beam.
+                same underlying craft.
               </p>
               <p>
                 I founded and exited People Collective, trained{" "}
