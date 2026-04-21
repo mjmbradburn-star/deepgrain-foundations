@@ -62,7 +62,10 @@ export const WhoThisIsFor = () => (
           </div>
         </ScrollReveal>
         <ScrollReveal delay={300}>
-          <div className="mt-12">
+          <div className="mt-12 flex flex-wrap items-center gap-3 md:gap-4">
+            <PillButton href="/contact" variant="filled">
+              Book an intro — find your grain →
+            </PillButton>
             <PillButton href="/work" variant="outline">
               See the work →
             </PillButton>
