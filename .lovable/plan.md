@@ -2,45 +2,57 @@
 
 ## Goal
 
-Fix the bark grain motion not being visible by applying the well-known SVG transform-animation workaround: split the absolutely-positioned SVG into an outer wrapper that handles **position** and an inner wrapper that handles **animation only**, with `transform-box` and `transform-origin` set explicitly so percentage-based translates animate consistently across Chromium, Firefox, and Safari.
-
-## Why the current setup fails
-
-Today, `<svg class="bark-grain absolute">` mixes layout transforms (none currently, but `position:absolute` + percentage offsets) with the keyframe `transform: translate3d(-8%, 4%, 0) scale(1.08)`. On SVG root elements, browsers compute percentage transforms against the SVG viewport, and `transform-origin` defaults differ between SVG and HTML — the result in some engines is that the animation either resolves to a no-op transform or animates around an unexpected origin, so nothing visibly moves. Animating a plain HTML wrapper around the SVG sidesteps every one of those quirks.
+Add an internal-only checklist page at `/seo-checklist` that walks you through the three Search Console verification steps for `deepgrain.ai`: domain verification, sitemap submission, and URL Inspection on the homepage. Persistent per-step completion state in `localStorage` so progress survives reloads.
 
 ## Approach
 
-Rework `BarkGrain.tsx` to a three-layer structure:
+A single new route, noindexed, not linked from any public nav — you reach it by typing the URL. Three numbered steps, each as a card with: a one-line goal, the exact actions to take in Search Console, a deep link straight into the right GSC screen, copy-to-clipboard buttons for the values you'll paste (your domain, your sitemap URL, your homepage URL), and a checkbox that marks the step done.
 
-```text
-<div bg-gradient, overflow-hidden>          ← outer: clip + bark gradient (unchanged)
-  <div bark-grain-anim absolute -inset[5%]> ← NEW inner: holds the animation
-    <svg width=100% height=100%>            ← SVG: pure texture, no animation, no offsets
-      …filters + rects…
-    </svg>
-  </div>
-</div>
-```
+A small progress indicator at the top ("1 of 3 complete") and a "Reset checklist" link at the bottom.
 
-- The animation moves to the new `.bark-grain-anim` HTML div. The SVG itself becomes a static, fully-sized child — no `top/left/width/height` overrides, no `.bark-grain` class.
-- Rename the CSS hook: `.bark-grain` → `.bark-grain-anim` in `src/index.css` (same two-stage `grain-flow-boot` + `grain-flow` keyframes, untouched). Add `transform-box: border-box;` and `transform-origin: 50% 50%;` to lock down the reference box and origin so the percentage translates and `scale(1.08)` behave identically in every engine.
-- The 110% × 110% bleed (so edges never show during the 8% drift) moves to the wrapper via `inset: -5%` (Tailwind `-inset-[5%]`) instead of being applied to the SVG.
-- Debug mode keeps working: the `?debugGrain=1` overrides (outline, magenta tint, forced animation) move from the `<svg>` to the new `.bark-grain-anim` div. The HUD's `registerGrain` call now registers the animated div instead of the SVG — update its type to `HTMLDivElement` so computed-style sampling reads from the element that actually owns the animation.
+### The three steps
 
-### Reduced motion / debug parity
+1. **Verify the domain in Search Console**
+   - Goal: prove ownership of `deepgrain.ai` so GSC will show indexing data.
+   - Action summary: open Search Console → Add property → choose **Domain** (not URL prefix) → enter `deepgrain.ai` → copy the TXT record GSC gives you → add it at your DNS provider → click Verify.
+   - Deep link: `https://search.google.com/search-console/welcome`
+   - Copy buttons: `deepgrain.ai`
+   - Note that DNS propagation can take a few minutes to a few hours; if Verify fails, wait and retry — don't delete the property.
 
-- The `prefers-reduced-motion` block in `index.css` currently targets `.bark-grain` — update to `.bark-grain-anim`. Behaviour preserved.
-- Debug HUD's "NOT MOVING" detector keeps working unchanged because it reads computed `transform` from whichever element we register, and that element is now the one with the animation.
+2. **Submit the sitemap**
+   - Goal: tell Google where every canonical URL on the site lives.
+   - Action summary: in Search Console for the verified `deepgrain.ai` property → left nav → **Sitemaps** → paste the sitemap path → Submit. Confirm status reads "Success".
+   - Deep link: `https://search.google.com/search-console/sitemaps?resource_id=sc-domain%3Adeepgrain.ai`
+   - Copy buttons: `https://deepgrain.ai/sitemap.xml` and the path-only form `sitemap.xml`
+   - Note: the sitemap is already generated at build time by `vite-plugins/deepgrain-seo.ts` and served from `public/sitemap.xml` — nothing to deploy, just submit.
+
+3. **Run URL Inspection on the homepage**
+   - Goal: force Google to fetch and render the homepage now, confirm the prerendered HTML is what Googlebot sees, and request indexing.
+   - Action summary: in Search Console → top search bar → paste `https://deepgrain.ai/` → wait for the inspection result → click **Test live URL** → when it returns, click **View tested page → Screenshot** and **HTML** to confirm the rendered content includes the H1 and hero copy → back on the inspection screen click **Request indexing**.
+   - Deep link: `https://search.google.com/search-console/inspect?resource_id=sc-domain%3Adeepgrain.ai&url=https%3A%2F%2Fdeepgrain.ai%2F`
+   - Copy buttons: `https://deepgrain.ai/`
+   - Note: this is also the definitive answer to the earlier "is the site invisible to crawlers?" question — the rendered HTML preview in URL Inspection is exactly what Google indexes.
+
+### State
+
+- `localStorage` key `deepgrain.seo-checklist.v1` storing `{ step1: boolean, step2: boolean, step3: boolean }`.
+- Hydrate on mount, write on every change. No backend, no auth — this is a personal operator tool.
+
+### Visual treatment
+
+Reuse existing site chrome and tokens — `BarkSection` for the page background, `Eyebrow` + display heading for the page header, the existing card styling pattern from `IntelligenceTeaser`/`ArticleCard` for each step, `PillButton` (filled) for the "Open in Search Console" deep links and (outline) for "Copy". Checkbox uses a simple bordered square with a brass tick when checked. No new design tokens.
+
+`PageMeta` with `noindex` so the checklist itself never appears in search results. Page is wrapped in `<main>` via the existing `SiteShell`, and gets a `data-no-rule` on its first section so the auto-applied brass top-rule from `<main>` is suppressed (the page sits directly under the nav, no rule needed above the first card).
 
 ## Files
 
-- `src/components/ui/BarkGrain.tsx` — restructure JSX into outer gradient div → inner `.bark-grain-anim` div → static SVG. Move debug-mode style overrides and the `registerGrain` ref onto the inner div. Update ref type to `HTMLDivElement`.
-- `src/index.css` — rename `.bark-grain` rule to `.bark-grain-anim`, add `transform-box: border-box;` and `transform-origin: 50% 50%;`. Update the matching selector inside the `prefers-reduced-motion` block.
-- `src/lib/debugGrain.ts` — broaden `GrainEntry.el` and `registerGrain` element type from `SVGSVGElement` to `Element` (or `HTMLElement | SVGElement`) so the registry accepts the new HTML wrapper without any other call-site changes.
+- `src/pages/SeoChecklist.tsx` — new page. Three step cards, progress indicator, reset link, `PageMeta` with `noindex`, all state in a single `useState` + `useEffect` pair against `localStorage`.
+- `src/App.tsx` — register `<Route path="/seo-checklist" element={<SeoChecklist />} />` inside the existing lazy-loaded route block (`const SeoChecklist = lazy(() => import("./pages/SeoChecklist"))`).
 
 ## Out of scope
 
-- Changing the keyframe values, durations, or the boot/ambient two-stage chain.
-- Touching `.hero-drift` or any non-bark surface.
-- Removing the debug HUD or the `?debugGrain=1` flag — both stay until we've confirmed the fix in the live preview.
+- Linking the checklist from the public nav, footer, or sitemap — it stays unlisted and noindexed.
+- Adding the checklist URL to `sitemap.xml` or `robots.txt`.
+- Automating any GSC API calls (would require OAuth + a service account; not worth it for a one-time setup).
+- The earlier debate about migrating to Next.js / adding a prerender plugin — unchanged from the previous turn's conclusion (not needed).
 
