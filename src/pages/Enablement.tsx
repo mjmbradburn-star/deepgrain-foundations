@@ -54,10 +54,10 @@ const faqItems: FAQItem[] = [
   {
     question: "What happens after the engagement ends?",
     answer:
-      "Champions keep building. They run a monthly review of each other's workflows, extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team — not parked with a vendor on a retainer.",
+      "Champions keep building. They extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team — not parked with a vendor on a retainer.",
     answerNode: (
       <>
-        Champions keep building. They run a monthly review of each other's workflows, extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team — not parked with a vendor on a retainer.
+        Champions keep building. They extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team — not parked with a vendor on a retainer.
         <Link to="/method#scale" className={trailingCls}>
           How the Scale phase works →
         </Link>
