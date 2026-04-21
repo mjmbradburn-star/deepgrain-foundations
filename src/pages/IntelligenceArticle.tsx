@@ -155,8 +155,21 @@ const IntelligenceArticle = () => {
               <Component />
             </Suspense>
           </MDXProvider>
+        </div>
 
-          <div className="mt-20 pt-12 border-t border-walnut/15">
+        {/* Common questions — only rendered when the article exports `faqs`.
+            Inline variant matches the article body's max-width and h2 scale. */}
+        {faqs && faqs.length > 0 && (
+          <FAQ
+            eyebrow="Common questions"
+            heading="Common questions"
+            items={faqs}
+            variant="inline"
+          />
+        )}
+
+        <div className="container-grain max-w-2xl">
+          <div className="mt-16 pt-12 border-t border-walnut/15">
             <EmailCapture
               source="article"
               articleSlug={f.slug}
@@ -167,15 +180,6 @@ const IntelligenceArticle = () => {
           </div>
         </div>
       </article>
-
-      {/* Common questions — only rendered when the article exports `faqs` */}
-      {faqs && faqs.length > 0 && (
-        <FAQ
-          eyebrow="Common questions"
-          heading="Common questions about this piece."
-          items={faqs}
-        />
-      )}
 
       {/* AIOI CTA */}
       <section className="bg-green text-cream py-20 md:py-28">
