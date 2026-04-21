@@ -43,12 +43,12 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What deliverables do we walk away with?",
     answer:
-      "Three things. First, the diagnostic document from the Read phase. Second, the interventions themselves — usually a small set of agentic systems and operating rituals built and shipped during Craft. Third, three to five trained champions inside the team who can extend, debug, and govern the work after we leave. The capability stays with you, not in a vendor.",
+      "Three things. First, the diagnostic document from the Read phase. Second, the interventions themselves — usually a small set of agentic systems and operating rituals built and shipped during Craft. Third, three or four trained champions inside the team who can extend, debug, and govern the work after we leave. The capability stays with you, not in a vendor.",
     answerNode: (
       <>
         Three things. First, the diagnostic document from the{" "}
         <Link to="/method#read" className={linkCls}>Read</Link> phase. Second, the interventions themselves — usually a small set of agentic systems and operating rituals built and shipped during{" "}
-        <Link to="/method#craft" className={linkCls}>Craft</Link>. Third, three to five trained champions inside the team who can extend, debug, and govern the work after we leave. The capability stays with you, not in a vendor.
+        <Link to="/method#craft" className={linkCls}>Craft</Link>. Third, three or four trained champions inside the team who can extend, debug, and govern the work after we leave. The capability stays with you, not in a vendor.
         <Link to="/enablement" className={trailingCls}>
           See how champions are trained →
         </Link>
@@ -58,10 +58,10 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Who is the right fit for this work?",
     answer:
-      "Founders and operating leaders at Series A through Series C, typically 25–250 people, in AI-native, defence tech, financial data, transit and mobility, or climate. The common thread: an organisation worth getting right, leadership willing to look at the operating reality honestly, and a team capable of holding the practice once we hand it over.",
+      "Founders and operating leaders inside organisations worth getting right — typically AI-native, defence tech, financial data, transit and mobility, or climate. The common thread: leadership willing to look at the operating reality honestly, and a team capable of holding the practice once we hand it over.",
     answerNode: (
       <>
-        Founders and operating leaders at Series A through Series C, typically 25–250 people, in AI-native, defence tech, financial data, transit and mobility, or climate. The common thread: an organisation worth getting right, leadership willing to look at the operating reality honestly, and a team capable of holding the practice once we hand it over.
+        Founders and operating leaders inside organisations worth getting right — typically AI-native, defence tech, financial data, transit and mobility, or climate. The common thread: leadership willing to look at the operating reality honestly, and a team capable of holding the practice once we hand it over.
         <Link to="/work" className={trailingCls}>
           See who we work with →
         </Link>
@@ -84,13 +84,10 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How does pricing work?",
     answer:
-      "Engagements are scoped and priced per phase, not by retainer or day rate. Read is fixed-fee. Craft is scoped against the interventions we agreed in the diagnostic. Scale is a capped advisory window. We share indicative ranges in the first conversation once we understand the shape of the work — write to matt@deepgrain.ai to start there.",
+      "Engagements are scoped per phase, not by retainer or day rate. We share indicative ranges in the first conversation once we understand the shape of the work — write to matt@deepgrain.ai to start there.",
     answerNode: (
       <>
-        Engagements are scoped and priced per phase, not by retainer or day rate.{" "}
-        <Link to="/method#read" className={linkCls}>Read</Link> is fixed-fee.{" "}
-        <Link to="/method#craft" className={linkCls}>Craft</Link> is scoped against the interventions we agreed in the diagnostic.{" "}
-        <Link to="/method#scale" className={linkCls}>Scale</Link> is a capped advisory window. We share indicative ranges in the first conversation once we understand the shape of the work — write to matt@deepgrain.ai to start there.
+        Engagements are scoped per phase, not by retainer or day rate. We share indicative ranges in the first conversation once we understand the shape of the work — write to matt@deepgrain.ai to start there.
         <Link to="/contact" className={trailingCls}>
           Start the conversation →
         </Link>
