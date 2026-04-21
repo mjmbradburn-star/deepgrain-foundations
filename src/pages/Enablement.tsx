@@ -10,31 +10,72 @@ import { Invitation } from "@/components/sections/Invitation";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 
+// Each FAQ keeps `answer` as the canonical text mirrored in JSON-LD; `answerNode`
+// adds inline navigation (where natural) or a trailing "Related" link (otherwise).
+const linkCls = "text-brass underline-offset-4 hover:underline";
+const trailingCls = "mt-3 inline-flex items-center gap-1 text-sm text-brass font-medium hover:text-walnut transition-colors";
+
 const faqItems: FAQItem[] = [
   {
     question: "How does onboarding work in the first two weeks?",
     answer:
       "We name an exec sponsor, identify three or four champions inside the function, and pick one bounded, painful workflow to build first. No procurement marathon, no tooling debate — we use what you already have where we can, and stand up the missing pieces (an LLM provider, one workflow tool) on the right terms in week one.",
+    answerNode: (
+      <>
+        We name an exec sponsor, identify three or four champions inside the function, and pick one bounded, painful workflow to build first. No procurement marathon, no tooling debate — we use what you already have where we can, and stand up the missing pieces (an LLM provider, one workflow tool) on the right terms in week one.
+        <Link to="/method#read" className={trailingCls}>
+          See how the Read phase frames it →
+        </Link>
+      </>
+    ),
   },
   {
     question: "Who from our team needs to be involved, and how much of their time?",
     answer:
       "An exec sponsor for air cover (a few hours a month), and three or four champions giving roughly a fifth of their week. Champions are existing senior coordinators, People Partners, or Ops leads — people you already pay, given a different mandate. We do not need engineers.",
+    answerNode: (
+      <>
+        An exec sponsor for air cover (a few hours a month), and three or four{" "}
+        <Link to="/intelligence/the-champion-model" className={linkCls}>champions</Link> giving roughly a fifth of their week. Champions are existing senior coordinators, People Partners, or Ops leads — people you already pay, given a different mandate. We do not need engineers.
+      </>
+    ),
   },
   {
     question: "What does the coaching curriculum actually cover?",
     answer:
       "Six modules run alongside live builds: reading the grain, briefing agents, wiring workflows, governance and trust, measuring value, and sustaining the practice. There is no classroom phase — champions learn the craft on their own systems, with their own data, on problems they already wanted to solve.",
+    answerNode: (
+      <>
+        Six modules run alongside live builds: reading the grain, briefing agents, wiring workflows, governance and trust, measuring value, and sustaining the practice. There is no classroom phase — champions learn the{" "}
+        <Link to="/method#craft" className={linkCls}>craft</Link> on their own systems, with their own data, on problems they already wanted to solve.
+      </>
+    ),
   },
   {
     question: "What happens after the engagement ends?",
     answer:
       "Champions keep building. They run a monthly review of each other's workflows, extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team — not parked with a vendor on a retainer.",
+    answerNode: (
+      <>
+        Champions keep building. They run a monthly review of each other's workflows, extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team — not parked with a vendor on a retainer.
+        <Link to="/method#scale" className={trailingCls}>
+          How the Scale phase works →
+        </Link>
+      </>
+    ),
   },
   {
     question: "How do you measure that the capability has actually transferred?",
     answer:
       "Three signals. Champions ship a workflow we did not scope, end-to-end, without us. A new joiner is brought up to speed by a colleague rather than a deck. And six months on, the workflow count has grown — not flatlined. If those are not true, the engagement did not land, regardless of hours saved.",
+    answerNode: (
+      <>
+        Three signals. Champions ship a workflow we did not scope, end-to-end, without us. A new joiner is brought up to speed by a colleague rather than a deck. And six months on, the workflow count has grown — not flatlined. If those are not true, the engagement did not land, regardless of hours saved.
+        <Link to="/work" className={trailingCls}>
+          See where it has landed →
+        </Link>
+      </>
+    ),
   },
 ];
 
