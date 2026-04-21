@@ -283,6 +283,17 @@ const MethodPage = () => (
               where it stalls. We find the fractures forming before anyone
               has named them. Only then do we build.
             </p>
+            <figure className="mt-10 border-l-2 border-brass/60 pl-6">
+              <blockquote className="font-display text-walnut text-xl md:text-2xl leading-snug italic">
+                “If you can't name where the work is actually getting stuck, every tool you buy will land in the wrong place.”
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-body/70">
+                From{" "}
+                <Link to="/intelligence/diagnosing-ai-readiness-in-people-ops" className={linkCls}>
+                  Diagnosing AI readiness in People Ops →
+                </Link>
+              </figcaption>
+            </figure>
           </div>
         </ScrollReveal>
       </div>
