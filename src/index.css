@@ -143,7 +143,9 @@
   50%  { transform: translate3d(-8%, 4%, 0) scale(1.08); }
   100% { transform: translate3d(0, 0, 0) scale(1); }
 }
-.bark-grain {
+.bark-grain-anim {
+  transform-box: border-box;
+  transform-origin: 50% 50%;
   animation: grain-flow-boot 6s ease-out 1, grain-flow 90s ease-in-out 6s infinite;
   will-change: transform;
 }
@@ -179,7 +181,7 @@
   .fade-in-up,
   [data-reveal],
   .hero-drift,
-  .bark-grain,
+  .bark-grain-anim,
   .animate-bob {
     animation: none !important;
     transition: none !important;

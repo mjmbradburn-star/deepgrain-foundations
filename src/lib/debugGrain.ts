@@ -21,7 +21,7 @@ export function isGrainDebug(): boolean {
 
 export interface GrainEntry {
   seed: number;
-  el: SVGSVGElement;
+  el: Element;
 }
 
 const registry: GrainEntry[] = [];
@@ -37,7 +37,7 @@ function mountHUD() {
   hudRoot.render(createElement(GrainDebugHUD));
 }
 
-export function registerGrain(seed: number, el: SVGSVGElement | null) {
+export function registerGrain(seed: number, el: Element | null) {
   if (!isGrainDebug() || !el) return () => {};
   registry.push({ seed, el });
   listeners.forEach((l) => l());
