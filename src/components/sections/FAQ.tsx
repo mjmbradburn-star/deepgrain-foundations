@@ -51,12 +51,16 @@ export const FAQ = ({
   variant = "section",
 }: FAQProps) => {
   if (variant === "inline") {
-    // Designed to be placed *inside* the article body's existing max-w-2xl
-    // container — does NOT render its own section/container, so it inherits
-    // the article's measure and vertical rhythm. Heading and question text
-    // align with the article h2/h3 scale defined in mdxComponents.tsx.
+    // Designed to be placed *inside* the article body. Self-constrains to the
+    // article body measure (max-w-2xl) regardless of parent container width
+    // — the IntelligenceArticle body uses `container-grain max-w-2xl`, but
+    // the arbitrary max-width on `container-grain` wins the Tailwind cascade,
+    // so we re-apply our own max-width here to guarantee article-body measure.
     return (
-      <section className="mt-16 pt-12 border-t border-walnut/15" aria-label={eyebrow}>
+      <section
+        className="mx-auto max-w-2xl mt-16 pt-12 border-t border-walnut/15"
+        aria-label={eyebrow}
+      >
         <h2
           className="font-display text-3xl md:text-4xl text-walnut leading-tight mb-8"
           style={{ letterSpacing: "-0.005em" }}
