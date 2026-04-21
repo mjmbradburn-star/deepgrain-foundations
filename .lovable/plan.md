@@ -2,33 +2,45 @@
 
 ## Goal
 
-Make the wood-grain motion unmistakably visible for the first few seconds after load, then ease back into the subtle ambient drift we have today. This gives a clear "yes, it's alive" signal without making the texture distracting long-term.
+Replace the ad-hoc `[&_section+section]:…` and `[&_section:first-of-type:not([data-no-rule])]:…` selectors currently living on `<main>` in `SiteShell.tsx`, plus the manual `border-t-[3px] border-brass/35` on `<Footer>`, with a single reusable utility class so any new section or footer-like block automatically picks up the 3px brass rule behaviour without anyone remembering selectors.
 
 ## Approach
 
-Two-stage animation on `.bark-grain`:
+Add one utility class — `.brass-rule` — in `src/index.css` under `@layer utilities`, defined as:
 
-1. **Boot stage (0–6s)**: a one-shot `grain-flow-boot` keyframe with larger amplitude (~8% translate, 1.08 scale) and a 6s duration. Runs once on mount.
-2. **Ambient stage (6s →)**: the existing `grain-flow` keyframe with its current subtle values, started via `animation-delay: 6s` and `infinite`. Both animations are declared in a single `animation` shorthand list so the handoff is seamless.
+```css
+.brass-rule { border-top: 3px solid hsl(var(--brass) / 0.35); }
+```
 
-Because both keyframes start and end at `transform: translate3d(0,0,0) scale(1)`, the transition between them is invisible — no jump.
+This is the same visual we already produce inline; centralising it means the colour/thickness can be tuned in exactly one place forever.
 
-### Reduced motion
+Then expose it via two opt-in patterns on `<main>`:
 
-The existing `@media (prefers-reduced-motion: reduce)` block in `index.css` already nukes `.bark-grain` animation. We leave that intact so users with the OS preference set see no motion at all, boot stage included.
+1. **Auto-applied between adjacent sections and above the first section** — keep the global behaviour, but express it through the new utility instead of duplicating the border declaration. We rewrite the `<main>` className to:
 
-### Debug mode
+   ```
+   [&_section+section]:brass-rule
+   [&_section:first-of-type:not([data-no-rule])]:brass-rule
+   ```
 
-`BarkGrain.tsx` currently overrides `animation` to `grain-flow 12s ease-in-out infinite` when `?debugGrain=1` is set. We update that override to also chain the boot stage so debug sessions reflect production behaviour.
+   Tailwind's arbitrary-variant syntax happily applies a custom class via the descendant selector, so this works without any plugin. The `data-no-rule` escape hatch on the Hero stays untouched.
+
+2. **Manual application** — anything outside `<main>` (today: the Footer; tomorrow: a CTA strip, a callout band, etc.) just adds `className="brass-rule"` and gets the identical line. We replace the Footer's hand-written `border-t-[3px] border-brass/35` with `brass-rule`.
+
+### Why a CSS utility, not a Tailwind plugin or a React component
+
+- **vs. plugin**: a plugin requires `tailwind.config.ts` surgery and a build cycle to iterate. A single CSS rule in `index.css` is clearer for one declaration and matches how `.section-pad`, `.container-grain`, and `.section-rule` are already defined in this file.
+- **vs. `<BrassRule />` component**: we already have `src/components/ui/BrassRule.tsx` for explicit standalone hairlines inside content. The need here is a *modifier* on existing block boundaries (sections, footer), not an inserted element — a class is the right shape.
 
 ## Files
 
-- `src/index.css` — add `@keyframes grain-flow-boot` (8% translate, 1.08 scale, 6s) and update `.bark-grain` to run `grain-flow-boot 6s ease-out 1, grain-flow 90s ease-in-out 6s infinite`.
-- `src/components/ui/BarkGrain.tsx` — update the debug-mode `animation` override to the same two-stage chain (with the faster 12s ambient duration kept for debug visibility).
+- `src/index.css` — add `.brass-rule { border-top: 3px solid hsl(var(--brass) / 0.35); }` inside the existing `@layer utilities` block.
+- `src/components/layout/SiteShell.tsx` — replace the two long arbitrary-variant border declarations on `<main>` with `[&_section+section]:brass-rule` and `[&_section:first-of-type:not([data-no-rule])]:brass-rule`.
+- `src/components/layout/Footer.tsx` — replace `border-t-[3px] border-brass/35` with `brass-rule`.
 
 ## Out of scope
 
-- Changing the ambient amplitude or duration beyond the boot window.
-- Touching non-bark surfaces or the Hero's `.hero-drift` layer.
-- Removing the BarkGrain debug HUD.
+- Removing or restyling the existing `.section-rule` utility (semantically different — it's a standalone `<hr>`-style block, not a top border).
+- Touching `BrassRule.tsx` (still the right choice for inline content rules).
+- Changing where dividers appear, the `data-no-rule` escape hatch on the Hero, or the colour/thickness values.
 
