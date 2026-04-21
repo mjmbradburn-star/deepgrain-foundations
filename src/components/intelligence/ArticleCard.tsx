@@ -8,11 +8,26 @@ interface ArticleCardProps {
   variant?: "linen" | "green";
 }
 
+/**
+ * Trim copy to a character budget on a word boundary, appending an ellipsis.
+ * Belt-and-braces with the CSS line-clamp below: guarantees the description
+ * never exceeds ~2 lines of `text-[13px]` on any card width, regardless of
+ * font metrics or future copy edits.
+ */
+const trimDescription = (text: string, max = 130): string => {
+  if (text.length <= max) return text;
+  const slice = text.slice(0, max);
+  const lastSpace = slice.lastIndexOf(" ");
+  const cut = lastSpace > max * 0.6 ? slice.slice(0, lastSpace) : slice;
+  return cut.replace(/[\s,;:.\-—–]+$/, "") + "…";
+};
+
 export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
   ({ article, variant = "linen" }, ref) => {
     const { frontmatter: f } = article;
     const cat = CATEGORIES.find((c) => c.slug === f.category);
     const hero = getHeroImage(f.slug);
+    const description = trimDescription(f.description);
 
     const isGreen = variant === "green";
 
