@@ -184,7 +184,7 @@ export const FAQ = ({
               item={item}
               questionClass={articleTypography.h3}
               answerClass={articleTypography.body}
-              rowPadding="py-6"
+              rowPadding="py-5 sm:py-6"
             />
           ))}
         </dl>
@@ -209,7 +209,7 @@ export const FAQ = ({
                 item={item}
                 questionClass="font-display text-walnut text-xl md:text-2xl leading-snug"
                 answerClass="text-walnut/80 leading-relaxed text-base md:text-lg"
-                rowPadding="py-6"
+                rowPadding="py-5 sm:py-6"
               />
             ))}
           </dl>
