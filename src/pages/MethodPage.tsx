@@ -417,6 +417,13 @@ const MethodPage = () => (
                   the function. You need three or four champions, given air cover
                   and time.&rdquo;
                 </p>
+                <div className="mt-3 text-xs text-walnut/60">
+                  From{" "}
+                  <span className="text-brass underline-offset-4 group-hover:underline">
+                    The champion model
+                  </span>{" "}
+                  · Deepgrain Intelligence
+                </div>
                 <div className="mt-4 inline-flex items-center gap-1 text-sm text-brass font-medium transition-colors group-hover:text-walnut">
                   See how enablement works
                   <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
