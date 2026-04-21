@@ -15,6 +15,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { EmailCapture } from "@/components/forms/EmailCapture";
 import { AIOI_URL } from "@/lib/aioi";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { FAQ, buildFAQLd } from "@/components/sections/FAQ";
 
 const IntelligenceArticle = () => {
   const { slug = "" } = useParams();
@@ -22,7 +23,7 @@ const IntelligenceArticle = () => {
 
   if (!article) return <Navigate to="/intelligence" replace />;
 
-  const { frontmatter: f, Component } = article;
+  const { frontmatter: f, Component, faqs } = article;
   const cat = getCategory(f.category);
   const related = getRelatedArticles(slug, 3);
   const url = `https://deepgrain.ai/intelligence/${f.slug}`;
@@ -78,6 +79,9 @@ const IntelligenceArticle = () => {
         <meta property="article:section" content={cat?.name} />
         <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        {faqs && faqs.length > 0 && (
+          <script type="application/ld+json">{JSON.stringify(buildFAQLd(faqs))}</script>
+        )}
       </Helmet>
 
       {/* Hero image band (16:9, full-width) */}
