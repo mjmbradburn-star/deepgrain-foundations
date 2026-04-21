@@ -17,7 +17,7 @@ const links = [
 ];
 
 export const Footer = () => (
-  <BarkSection as="footer" className="text-cream/80 py-20">
+  <BarkSection as="footer" className="text-cream/80 py-20 border-t-[3px] border-brass/35">
     <div className="container-grain">
       <div className="grid gap-12 md:grid-cols-3 mb-16">
         <div>
