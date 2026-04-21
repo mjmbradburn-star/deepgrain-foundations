@@ -107,8 +107,7 @@ describe("buildFAQLd", () => {
 
     it("fails when acceptedAnswer.text is missing", () => {
       const bad = valid();
-      // @ts-expect-error — intentionally malformed for the negative test
-      delete bad.mainEntity[0].acceptedAnswer.text;
+      delete (bad.mainEntity[0].acceptedAnswer as { text?: string }).text;
       expect(() => assertFAQPageShape(bad)).toThrow();
     });
 
