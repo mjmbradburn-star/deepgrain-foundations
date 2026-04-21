@@ -8,14 +8,19 @@
 export const BarkGrain = () => (
   <div
     aria-hidden
-    className="bark-grain pointer-events-none absolute inset-0 opacity-[0.18] mix-blend-overlay"
+    className="bark-grain pointer-events-none absolute inset-0 opacity-[0.55] mix-blend-soft-light"
     style={{
       backgroundImage: [
+        // Vertical depth wash so the section isn't flat.
         "linear-gradient(180deg, hsl(var(--bark)) 0%, hsl(var(--bark-2)) 50%, hsl(var(--bark)) 100%)",
-        "repeating-linear-gradient(88deg, hsl(var(--cream) / 0.06) 0px, hsl(var(--cream) / 0.06) 1px, transparent 1px, transparent 5px)",
-        "repeating-linear-gradient(92deg, hsl(var(--bark-2) / 0.5) 0px, hsl(var(--bark-2) / 0.5) 1px, transparent 1px, transparent 7px)",
+        // Bright cream highlight grain — tight, sharp, drifts fastest.
+        "repeating-linear-gradient(89deg, hsl(var(--cream) / 0.18) 0px, hsl(var(--cream) / 0.18) 1px, transparent 1px, transparent 4px)",
+        // Dark shadow grain — slightly off-axis so it interferes with the highlight.
+        "repeating-linear-gradient(91deg, hsl(0 0% 0% / 0.35) 0px, hsl(0 0% 0% / 0.35) 1px, transparent 1px, transparent 6px)",
+        // Wider knot/streak band — soft, low-frequency, drifts slowest.
+        "repeating-linear-gradient(90deg, hsl(var(--cream) / 0.08) 0px, hsl(var(--cream) / 0.08) 2px, transparent 2px, transparent 17px)",
       ].join(", "),
-      backgroundSize: "100% 100%, 200% 100%, 200% 100%",
+      backgroundSize: "100% 100%, 220% 100%, 180% 100%, 320% 100%",
     }}
   />
 );
