@@ -125,6 +125,7 @@ export const ContactForm = () => {
         <label className={labelClass} htmlFor="message">What's on your mind?</label>
         <textarea
           id="message"
+          ref={messageRef}
           value={form.message}
           onChange={update("message")}
           rows={5}
