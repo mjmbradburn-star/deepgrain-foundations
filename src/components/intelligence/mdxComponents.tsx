@@ -1,6 +1,26 @@
 import type { MDXComponents } from "mdx/types";
 import { Link } from "react-router-dom";
 
+/**
+ * Shared article typography tokens.
+ *
+ * These are the canonical class strings for Intelligence article prose.
+ * Components that render *inside* an article body (e.g. the inline FAQ)
+ * import these directly so headings and body copy stay in lockstep with
+ * MDX-rendered content. Update here, propagate everywhere.
+ */
+export const articleTypography = {
+  /** Article H2 — section break inside an article. */
+  h2: "font-display text-3xl md:text-4xl text-walnut leading-tight",
+  /** Article H3 — used for question-weight headings inside the FAQ. */
+  h3: "font-display text-2xl md:text-3xl text-walnut leading-snug",
+  /** Article body paragraph. */
+  body: "font-sans text-[18px] leading-[1.7] text-walnut/85",
+} as const;
+
+/** Inline style applied alongside the H2 class for tracking. */
+export const articleH2Style = { letterSpacing: "-0.005em" };
+
 export const mdxComponents: MDXComponents = {
   h1: (props) => (
     <h1
@@ -11,16 +31,16 @@ export const mdxComponents: MDXComponents = {
   ),
   h2: (props) => (
     <h2
-      className="font-display text-3xl md:text-4xl text-walnut leading-tight mt-16 mb-6"
-      style={{ letterSpacing: "-0.005em" }}
+      className={`${articleTypography.h2} mt-16 mb-6`}
+      style={articleH2Style}
       {...props}
     />
   ),
   h3: (props) => (
-    <h3 className="font-display text-2xl md:text-3xl text-walnut leading-snug mt-12 mb-4" {...props} />
+    <h3 className={`${articleTypography.h3} mt-12 mb-4`} {...props} />
   ),
   p: (props) => (
-    <p className="font-sans text-[18px] leading-[1.7] text-walnut/85 mb-6" {...props} />
+    <p className={`${articleTypography.body} mb-6`} {...props} />
   ),
   ul: (props) => <ul className="list-disc pl-6 mb-6 space-y-2 text-[18px] text-walnut/85" {...props} />,
   ol: (props) => <ol className="list-decimal pl-6 mb-6 space-y-2 text-[18px] text-walnut/85" {...props} />,
