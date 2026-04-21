@@ -48,17 +48,13 @@ export const Hero = () => (
         <p className="hidden md:block text-cream/75 mt-5 max-w-[520px] text-base md:text-lg leading-relaxed">
           We read yours, then build the strategy, the agentic systems, and the people who can keep evolving them.
         </p>
-        <div className="fade-in-up fade-in-up-3 mt-10 flex flex-wrap items-center gap-6">
+        <div className="fade-in-up fade-in-up-3 mt-10 flex flex-wrap items-center gap-3 md:gap-4">
           <PillButton href={AIOI_URL} variant="filled" external>
             Take the AI Operating Index →
           </PillButton>
-          <Link
-            to="/method"
-            className="font-sans text-sm uppercase text-cream/80 hover:text-cream transition-colors border-b border-cream/30 hover:border-cream pb-1"
-            style={{ letterSpacing: "0.16em" }}
-          >
-            How we work
-          </Link>
+          <PillButton href="/method" variant="outline">
+            How we work →
+          </PillButton>
         </div>
       </div>
     </div>
