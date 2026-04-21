@@ -1,4 +1,11 @@
-import { useCallback, useRef, type KeyboardEvent, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -6,6 +13,22 @@ import {
   articleTypography,
   articleH2Style,
 } from "@/components/intelligence/mdxComponents";
+
+/**
+ * Stable, URL-safe id derived from the question text. Used both as the
+ * <details id="..."> anchor target and as the slug appended to share links
+ * (`#faq-...`). Deterministic so external links keep working across deploys
+ * as long as the question wording is unchanged.
+ */
+export const faqIdFromQuestion = (question: string): string =>
+  "faq-" +
+  question
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
 
 export interface FAQItem {
   question: string;
