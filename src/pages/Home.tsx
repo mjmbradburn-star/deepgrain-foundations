@@ -22,6 +22,9 @@ const WhoThisIsFor = lazy(() =>
 const ClientVoice = lazy(() =>
   import("@/components/sections/ClientVoice").then((m) => ({ default: m.ClientVoice }))
 );
+const MobileProofVoice = lazy(() =>
+  import("@/components/sections/MobileProofVoice").then((m) => ({ default: m.MobileProofVoice }))
+);
 const IntelligenceTeaser = lazy(() =>
   import("@/components/sections/IntelligenceTeaser").then((m) => ({ default: m.IntelligenceTeaser }))
 );
@@ -44,10 +47,16 @@ const Home = () => (
     <Suspense fallback={<SectionFallback />}>
       <LogoCarousel background="green" />
       <WhatWeDo />
-      <OperatingProof />
+      {/* Desktop: full OperatingProof + ClientVoice. Mobile: condensed merge. */}
+      <div className="hidden md:contents">
+        <OperatingProof />
+      </div>
+      <MobileProofVoice />
       <Method />
       <WhoThisIsFor />
-      <ClientVoice />
+      <div className="hidden md:contents">
+        <ClientVoice />
+      </div>
       <IntelligenceTeaser />
       <Invitation />
     </Suspense>

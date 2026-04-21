@@ -14,9 +14,9 @@ export const IntelligenceTeaser = () => {
         <ScrollReveal>
           <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
             <div className="max-w-2xl">
-              <Eyebrow>Deepgrain Intelligence</Eyebrow>
+              <Eyebrow withRule>Deepgrain Intelligence</Eyebrow>
               <h2
-                className="font-display text-4xl md:text-5xl lg:text-[3.25rem] text-walnut leading-[1.05] mt-4"
+                className="font-display text-3xl md:text-5xl lg:text-[3.25rem] text-walnut leading-[1.05] mt-4"
                 style={{ letterSpacing: "-0.01em" }}
               >
                 Essays on operating with the grain.
@@ -32,7 +32,7 @@ export const IntelligenceTeaser = () => {
           </div>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {featured.map((a, i) => (
             <ScrollReveal
               key={a.frontmatter.slug}

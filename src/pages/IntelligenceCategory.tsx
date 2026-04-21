@@ -56,7 +56,7 @@ const IntelligenceCategory = () => {
 
       <section className="bg-linen py-20 md:py-28">
         <div className="container-grain">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             {items.map((a) => (
               <ArticleCard key={a.frontmatter.slug} article={a} />
             ))}

@@ -19,32 +19,32 @@
     --primary: 153 51% 14%;            /* deep green #123524 */
     --primary-foreground: 44 53% 90%;  /* cream */
 
-    --secondary: 19 48% 8%;            /* walnut #1C0F0A */
+    --secondary: 90 12% 11%;           /* walnut — muted forest */
     --secondary-foreground: 44 53% 90%;
 
     --muted: 39 21% 81%;               /* linen-dark */
     --muted-foreground: 26 21% 30%;
 
-    --accent: 30 43% 44%;              /* brass #A07840 */
+    --accent: 35 42% 52%;              /* brass — aged bronze */
     --accent-foreground: 44 53% 90%;
 
     --destructive: 0 70% 40%;
     --destructive-foreground: 44 53% 90%;
 
-    --border: 39 21% 75%;
-    --input: 39 21% 75%;
+    --border: 60 12% 74%;
+    --input: 60 12% 74%;
     --ring: 153 51% 14%;
 
     --radius: 999px;
 
     /* Named brand tokens (HSL triplets) */
     --green: 153 51% 14%;
-    --walnut: 19 48% 8%;
-    --brass: 36 65% 58%;
+    --walnut: 90 12% 11%;
+    --brass: 35 42% 52%;
     --cream: 44 53% 90%;
     --linen: 39 32% 90%;
     --linen-dark: 39 21% 81%;
-    --body-text: 26 21% 20%;
+    --body-text: 60 10% 18%;
 
     --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
   }
@@ -83,7 +83,7 @@
     text-wrap: balance;
   }
   .section-pad {
-    @apply py-20 md:py-[140px];
+    @apply py-14 md:py-[140px];
   }
   .container-grain {
     @apply mx-auto px-6 md:px-12 lg:px-20 max-w-[1400px];
@@ -107,6 +107,15 @@
   50%      { transform: translateY(8px); }
 }
 .animate-bob { animation: bob 2s ease-in-out infinite; }
+
+/* Hero ambient drift — GPU-only transform on a low-opacity wood-grain layer.
+   60s linear cycle, alternates so it eases back to origin. */
+@keyframes hero-drift {
+  0%   { transform: translate3d(0, 0, 0); }
+  50%  { transform: translate3d(2%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+.hero-drift { animation: hero-drift 60s linear infinite; will-change: transform; }
 
 /* CSS-only fade-in-up for above-the-fold content (replaces framer-motion on critical path) */
 @keyframes fade-in-up {
@@ -137,7 +146,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .fade-in-up,
-  [data-reveal] {
+  [data-reveal],
+  .hero-drift,
+  .animate-bob {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;

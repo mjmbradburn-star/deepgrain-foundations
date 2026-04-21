@@ -19,8 +19,8 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
     return (
       <Link
         ref={ref}
-        to={`/intelligence/${f.slug}`}
-      className={`group block rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+      to={`/intelligence/${f.slug}`}
+      className={`group flex flex-col h-full rounded-2xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
         isGreen
           ? "bg-green text-cream hover:bg-green/90"
           : "bg-cream/60 hover:bg-cream border border-walnut/10"
@@ -41,7 +41,7 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
           </picture>
         </div>
       )}
-      <div className="flex flex-col h-full gap-6 p-8">
+      <div className="flex flex-col flex-1 gap-4 p-7">
         <div className="flex items-center gap-3">
           <span
             className={`font-sans uppercase text-[10px] ${
@@ -57,7 +57,7 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
           </span>
         </div>
         <h3
-          className={`font-display text-2xl md:text-3xl leading-[1.15] flex-1 ${
+          className={`font-display text-2xl md:text-3xl leading-[1.15] min-h-[5.5rem] ${
             isGreen ? "text-cream" : "text-walnut"
           } group-hover:translate-x-1 transition-transform duration-300`}
           style={{ letterSpacing: "-0.005em" }}
@@ -65,14 +65,14 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
           {f.title}
         </h3>
         <p
-          className={`text-sm leading-relaxed ${
+          className={`text-sm leading-relaxed line-clamp-3 flex-1 ${
             isGreen ? "text-cream/75" : "text-walnut/70"
           }`}
         >
           {f.description}
         </p>
         <div
-          className={`text-[11px] uppercase ${isGreen ? "text-brass" : "text-green"}`}
+          className={`text-[11px] uppercase mt-auto ${isGreen ? "text-brass" : "text-green"}`}
           style={{ letterSpacing: "0.14em" }}
         >
           Read →
