@@ -393,7 +393,12 @@ const MethodPage = () => (
               Two months after the engagement ends, our champions are still
               building. They have extended the work into places we never
               touched. That is the test. What you still have, and what you
-              have added, six months on.
+              have added, six months on. The guardrails that keep it trustworthy
+              live with the team too —{" "}
+              <Link to="/intelligence/ai-governance-for-people-teams" className={linkCls}>
+                governance designed for the people doing the work
+              </Link>
+              , not bolted on after the fact.
             </p>
           </div>
 
