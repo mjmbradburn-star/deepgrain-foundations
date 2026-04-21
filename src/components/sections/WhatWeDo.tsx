@@ -1,24 +1,37 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
-const items = [
+type Segment = { text: string; highlight?: boolean };
+
+const items: { number: string; title: string; body: Segment[] }[] = [
   {
     number: "01",
     title: "Diagnose",
-    body:
-      "A 30-day operating diagnostic. We read where work actually flows, where decisions get made, and where AI leverage is sitting unused.",
+    body: [
+      { text: "A 30-day operating diagnostic. We read where work actually flows, where decisions get made, and where " },
+      { text: "AI leverage is sitting unused", highlight: true },
+      { text: "." },
+    ],
   },
   {
     number: "02",
     title: "Build",
-    body:
-      "Agents and automations built into the workflow, function by function. Plus the enablement and training so the team can run them.",
+    body: [
+      { text: "" },
+      { text: "Agents and automations built into the workflow, function by function.", highlight: true },
+      { text: " Plus the " },
+      { text: "enablement and training", highlight: true },
+      { text: " so the team can run them." },
+    ],
   },
   {
     number: "03",
     title: "Scale",
-    body:
-      "Strategy at the top, capability across the team. We embed the operating cadence so the gains compound after we leave.",
+    body: [
+      { text: "Strategy at the top, capability across the team. We embed the operating cadence so " },
+      { text: "the gains compound after we leave", highlight: true },
+      { text: "." },
+    ],
   },
 ];
 
