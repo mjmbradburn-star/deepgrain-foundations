@@ -3,7 +3,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
-import { BarkGrain } from "@/components/ui/BarkGrain";
+import { BarkSection } from "@/components/ui/BarkSection";
 
 const testimonials = [
   {
@@ -140,9 +140,10 @@ const About = () => (
       </div>
     </section>
 
-    <section className="relative overflow-hidden bg-bark text-cream section-pad">
-      <BarkGrain />
-      <div className="container-grain max-w-4xl relative">
+    <BarkSection
+      className="section-pad"
+      contentClassName="container-grain max-w-4xl"
+    >
         <ScrollReveal>
           <Eyebrow className="text-brass mb-6">Track record</Eyebrow>
           <div className="space-y-4 text-cream/85 leading-relaxed text-lg">

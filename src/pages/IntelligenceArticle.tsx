@@ -16,7 +16,7 @@ import { EmailCapture } from "@/components/forms/EmailCapture";
 import { AIOI_URL } from "@/lib/aioi";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { FAQ, buildFAQLd } from "@/components/sections/FAQ";
-import { BarkGrain } from "@/components/ui/BarkGrain";
+import { BarkSection } from "@/components/ui/BarkSection";
 
 const IntelligenceArticle = () => {
   const { slug = "" } = useParams();
@@ -201,9 +201,10 @@ const IntelligenceArticle = () => {
 
       {/* Related */}
       {related.length > 0 && (
-        <section className="relative overflow-hidden bg-bark text-cream py-20 md:py-28">
-          <BarkGrain />
-          <div className="container-grain relative">
+        <BarkSection
+          className="py-20 md:py-28"
+          contentClassName="container-grain"
+        >
             <Eyebrow className="text-brass">Keep reading</Eyebrow>
             <h2 className="font-display text-3xl md:text-4xl text-cream mt-3 mb-12">
               Related pieces
