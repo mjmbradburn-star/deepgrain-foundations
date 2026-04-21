@@ -8,7 +8,6 @@ import { BarkSection } from "@/components/ui/BarkSection";
  */
 export const ICPStrip = () => (
   <BarkSection
-    className="border-y border-brass/30"
     contentClassName="container-grain py-10 md:py-14 text-center"
   >
       {/* Line 1 — Who: roles + company types as two simple columns */}
