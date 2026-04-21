@@ -198,8 +198,7 @@ const PeopleOps = () => {
               produces capability. This track is about the third path: building.
             </p>
           </div>
-        </div>
-      </section>
+      </BarkSection>
 
       {/* Two traps */}
       <section className="bg-linen text-body py-24 md:py-32">

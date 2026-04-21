@@ -168,8 +168,7 @@ const About = () => (
             ))}
           </div>
         </ScrollReveal>
-      </div>
-    </section>
+    </BarkSection>
   </>
 );
 

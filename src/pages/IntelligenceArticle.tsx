@@ -214,8 +214,7 @@ const IntelligenceArticle = () => {
                 <ArticleCard key={a.frontmatter.slug} article={a} variant="green" />
               ))}
             </div>
-          </div>
-        </section>
+        </BarkSection>
       )}
     </>
   );

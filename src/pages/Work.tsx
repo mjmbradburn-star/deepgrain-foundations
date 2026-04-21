@@ -103,8 +103,7 @@ const Work = () => (
             />
           </Link>
         </ScrollReveal>
-      </div>
-    </section>
+    </BarkSection>
 
     <FAQ
       eyebrow="Outcomes & proof"
