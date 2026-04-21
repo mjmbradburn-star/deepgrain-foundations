@@ -218,6 +218,9 @@ const MethodPage = () => (
     {/* Value visualiser */}
     <ValueVisualiser />
 
+    {/* FAQ */}
+    <FAQ heading="What clients ask before they engage." items={FAQ_ITEMS} />
+
     {/* CTA */}
     <section className="bg-green text-cream section-pad">
       <div className="container-grain max-w-3xl text-center">
