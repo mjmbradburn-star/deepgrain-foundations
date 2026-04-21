@@ -666,6 +666,25 @@ Reading time: 8 min
 
 Before you build anything, read where the team actually is. A six-axis diagnostic for People functions that wastes none of the early momentum.
 
+export const faqs = [
+  {
+    question: "Why diagnose readiness before building anything?",
+    answer: "Because the cost of skipping the diagnostic is not subtle. It shows up four months later as a half-built workflow nobody adopted, a tool the team works around, a champion who burned out trying to drag the function somewhere it was not ready to go. Reading first, building second — always. The building is faster afterwards, every time.",
+  },
+  {
+    question: "What axes should we actually assess?",
+    answer: "Six axes, none of them about the model. Data hygiene: is there one source of truth or three? Process clarity: can the team draw each major workflow on a whiteboard in five minutes? Tool fragmentation: how many tools does the average workflow touch? Curiosity distribution: who has already played with AI and who hasn't? Sponsor presence: is there a named senior leader who will defend the champions' time? Risk posture: how does the company think about AI risk?",
+  },
+  {
+    question: "Which axis matters most?",
+    answer: "Sponsor presence. Without a named senior leader — CPO, Head of People, COO — who will publicly say \"this is part of how we work now\" and defend the time the champions take, every workflow build will be the first thing dropped when a quarter gets hot. The presence of a real sponsor is the single best predictor of whether anything gets built. Better than budget, better than tooling, better than capability.",
+  },
+  {
+    question: "What does the diagnostic produce?",
+    answer: "A short, honest description of where the function actually stands on each axis, and what that implies about the order of the work. Not a score out of ten, not a maturity model — a six-line summary. From that, the build order writes itself: start where the data is good and the process is clear, use the curious people as initial champions, set up governance early if the risk posture demands it, leave the murky areas for phase two. The diagnostic is not the strategy. It is the thing that makes the strategy obvious.",
+  },
+];
+
 Before any team builds anything with AI, there is a step almost everyone skips: actually reading where the function is right now. Not the aspirational version. Not the version that lives in the strategy deck. The version that exists when you walk through the team's week, hour by hour, and notice what is actually happening.
 
 The cost of skipping the diagnostic is not subtle. It shows up four months later as a half-built workflow nobody adopted, a tool the team works around, a champion who burned out trying to drag the function somewhere it was not ready to go.
@@ -737,6 +756,25 @@ Author: Matt Webb
 Reading time: 12 min
 
 AI in People Ops fails as a change programme more often than as a technology problem. Here is the operating playbook for leading the transformation without losing the team.
+
+export const faqs = [
+  {
+    question: "Why do most AI initiatives in People Ops fail?",
+    answer: "Almost every AI failure inside a People function is, on closer inspection, a change failure. The tools work. The workflows are sound. The capability could be built. What broke is the human side — fear that was never named, sequencing that asked too much too soon, leaders who confused announcing change with leading it. The hardest part is not technology. It is leading a meaningful transformation while the rest of the business is also changing, with a team that is rightly anxious about what this means for them.",
+  },
+  {
+    question: "How should a CPO open the conversation about AI with the team?",
+    answer: "By naming the fear before anyone else has to. Treating AI as a productivity story — \"this will free us up to do more strategic work\" — invites the obvious counter-thought: or to do the same work with fewer of us. Leaders who get the next twelve months right say openly that AI will change what the team does, that some roles will look meaningfully different, that the team will grow capability faster than the work shrinks, and that nobody will be surprised by a change to their role. Said with the lights on, that does more for adoption than any tool rollout.",
+  },
+  {
+    question: "What is the sequence that actually works?",
+    answer: "Five phases, in order. Personal capability (months 1–2): the CPO and leadership build their own working knowledge through real reps before asking anyone else to. A small visible win (months 2–4): pick one bounded, painful, visible workflow and ship it. Champions and shared workspace (months 3–6): three or four named champions, the workspace set up properly, capability begins to compound. Function-wide rollout (months 6–12): the patterns get rolled out across the function. Redesign (months 12+): roles evolve, some shrink, some appear. The phases overlap, but the order matters — skipping Phase 1 produces the most expensive failures.",
+  },
+  {
+    question: "What should we measure to know the transformation is working?",
+    answer: "Resist the urge to measure usage — prompts, users, training hours are vanity numbers that tell you who is busy, not who is getting leverage. Three things are worth measuring. Workflow count and depth: how many workflows the team actually runs on AI infrastructure end to end, and how many survived their original builder leaving. Time reallocation: has the percentage of time spent on coordination and drafting actually fallen, and the percentage spent on judgment and partnering actually risen? Confidence and capability: ask the team twice a year whether they can confidently use AI in their daily work and teach a new joiner how the team uses AI.",
+  },
+];
 
 Almost every AI failure inside a People function is, on closer inspection, a change failure. The tools work. The workflows are sound. The capability could be built. What broke is the human side — fear that was never named, sequencing that asked too much too soon, leaders who confused announcing change with leading it.
 
@@ -834,6 +872,25 @@ Reading time: 9 min
 
 You don't need engineers to build AI capability inside the People function. You need three or four champions, given air cover and time. Here is how the model actually works.
 
+export const faqs = [
+  {
+    question: "Do we need to hire engineers to build AI capability inside our People function?",
+    answer: "No. Hiring engineers into a People function to \"do AI\" usually backfires — they solve the problem they understand, which is rarely the problem the team has. The champion model uses people already inside the team — senior coordinators, People Partners, Ops leads, Talent Partners — who know where the friction is because they live in it. They are people you already pay, given a different mandate.",
+  },
+  {
+    question: "What does a champion actually need to succeed?",
+    answer: "Three things, in order. Air cover: a named exec sponsor (usually the CPO or Head of People) who has said, in writing, that the champion can spend at least twenty per cent of their week on building. Tools and a small budget with no procurement friction — one workflow tool, an LLM provider on the right enterprise terms, a few hundred a month total. And a small starting brief: one bounded, painful workflow owned by a colleague willing to test the new version. Not a programme. One thing.",
+  },
+  {
+    question: "Why three or four champions, not just one?",
+    answer: "A single champion is fragile. They get sick, get pulled into a crisis, or leave — and the work stops. Three or four champions distributed across TA, HRBP, and Ops review each other's work, share patterns, and cover each other when one is buried. Four is roughly the number where emergent behaviour starts: workflows being reused, naming conventions appearing without anyone mandating them, junior people asking \"can we do that for X?\" because they've seen it work for Y.",
+  },
+  {
+    question: "What does success look like six months in?",
+    answer: "Eight or twelve workflows running, each saving a few hours a week, together changing what the function spends its time on. More importantly, the team's relationship with AI has shifted — it's no longer a thing they read about, it's a thing they make. New joiners learn the craft from the champions, not from an enablement deck. The real test: two months after the engagement ends, the champions are still building, extending the work into corners nobody asked them to touch, and training the next champion.",
+  },
+];
+
 The most common question we get from People leaders is some version of: *do I need to hire technical people to do this?* The honest answer is no — and the more interesting answer is that hiring engineers into a People function to "do AI" usually backfires. Engineers solve the problem they understand, which is rarely the problem the team has.
 
 What works, almost everywhere we have seen it work, is the champion model.
@@ -891,6 +948,25 @@ Author: Matt Webb
 Reading time: 11 min
 
 Governance is not the brake. It is the steering. The People teams that stay fast with AI are the ones that decided early what they would never let it decide.
+
+export const faqs = [
+  {
+    question: "Why does most People-function AI governance fail?",
+    answer: "It starts with a fear and ends with a policy nobody reads. The fear is real — bias, leakage, EU AI Act, candidate complaints, employment tribunals. The policy is real too, sitting in a Notion page nobody opens after the day it was written. The gap is not \"do we have a policy\" but \"does the policy meet the work.\" Treated as a brake, governance gets routed around — people still use AI, they just stop telling you about it.",
+  },
+  {
+    question: "What decisions should an AI model never make alone in a People function?",
+    answer: "Hiring decisions. Termination decisions. Performance ratings. Compensation calls. Reasonable adjustments and accommodations. Discipline outcomes. These are the places where the consequence of a wrong call is high, the data is messy, and the bias risk is concentrated. The model can prepare, summarise, suggest, draft. The model never decides. A named human does. Always.",
+  },
+  {
+    question: "What data should the model never see?",
+    answer: "Health information. Disability status. Salary detail tied to identity. Grievance content. Anything covered by special category data under GDPR, anything covered by an NDA, anything that — if it leaked — would damage trust permanently. Enforcement is rarely \"we trust people not to paste it.\" It is configuration: approved tools that route to enterprise endpoints with no training, workflows that strip identifiers before the model sees them, and a short list of providers rather than a long one.",
+  },
+  {
+    question: "How do you tell if you actually have governance, not just aspirations?",
+    answer: "You should be able to answer four questions in under five minutes. Which workflows use a model? Which model, and where does it run? Where is the prompt and output history? Who is accountable for each workflow? If you can't, you don't have governance. Good practice usually looks the same from inside: a one-pager listing every AI workflow, a regular short review by the owners, a named person whose job includes \"the AI is in good order,\" and a culture where surfacing a near-miss is a gift to the team, not a confession.",
+  },
+];
 
 Most AI governance work in People functions starts with a fear and ends with a policy nobody reads. The fear is real — bias, leakage, EU AI Act, candidate complaints, employment tribunals. The policy is real too. It exists in a Notion page nobody opens after the day it was written. In between, the actual decisions about what AI does inside the People function are being made by individuals, in private, one prompt at a time.
 
@@ -1074,6 +1150,25 @@ Author: Matt Webb
 Reading time: 10 min
 
 Most People teams are stuck between dabbling and tool-shopping. Neither produces capability. The third path is building — and it has a grain.
+
+export const faqs = [
+  {
+    question: "Why hasn't anything changed six months after we started \"doing AI\"?",
+    answer: "Because most teams fall into one of two traps. The Dabbler asks ChatGPT once, gets a generic answer, and quietly stops using it — they treated the model like Google, and Google has no memory of you. The Tool Shopper books a strategy day, evaluates vendors, runs three pilots, writes an AI strategy deck, and six months later the market has moved twice and the team has produced nothing they actually use. Dabblers produce individual tricks. Tool shoppers produce decks. Neither produces team capability.",
+  },
+  {
+    question: "What does a real AI capability inside a People function actually look like?",
+    answer: "Four things together. Connected context: the system holds what your company is, who your people are, what your policies say. Repeatable workflows: the work that used to consume an afternoon now happens in a chain of steps the team can re-run, refine, and trust. Internal builders: a small number of people inside the team who can wire two tools together — not engineers, people who know the work and have learned the craft. And clear governance: where the human stays in the loop, where the model never goes alone, what is logged, what is reviewed, what is forbidden.",
+  },
+  {
+    question: "Why do dabbling and tool-shopping both fail?",
+    answer: "They share the same fault: they treat AI as a thing you procure — a tool, a model, a feature — rather than as something you build with. They mistake the answer for the system that produces the answer. None of the things that constitute a real capability — connected context, repeatable workflows, internal builders, clear governance — comes from a single prompt, and none of it comes from a procurement cycle.",
+  },
+  {
+    question: "What is the third path that actually works?",
+    answer: "A small group inside the People team takes one workflow — usually a painful, well-bounded one like inbound applications, first-week onboarding, or the manager check-in cycle — and rebuilds it with AI in the loop. They build it together: one person who understands the work, one who has learned to wire things up. They run it, watch where it breaks, fix it, then take a second workflow. After six months the team has not \"done AI.\" It has changed how four pieces of its work get done. The change compounds. It is not a strategy. It is a practice.",
+  },
+];
 
 The People function is in a strange position with AI. The technology is cheap, the curiosity is high, the leadership pressure is real — and yet, six months in, almost nothing has changed in how the work actually gets done. Recruiters still triage manually. Onboarding still depends on a single person's calendar. Performance reviews still consume entire weeks every cycle. The dashboard says "AI initiative in progress." The grain says otherwise.
 
