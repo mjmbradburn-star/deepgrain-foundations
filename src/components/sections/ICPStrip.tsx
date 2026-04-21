@@ -1,10 +1,3 @@
-/**
- * ICP qualifier section. Sits directly under the Hero so the right person
- * thinks "yes, this is me" — and the wrong fit moves on.
- *
- * Three lines: who → where → the problem we partner on.
- */
-export const ICPStrip = () => (
 import { BarkGrain } from "@/components/ui/BarkGrain";
 
 /**
@@ -13,6 +6,7 @@ import { BarkGrain } from "@/components/ui/BarkGrain";
  *
  * Three lines: who → where → the problem we partner on.
  */
+export const ICPStrip = () => (
 export const ICPStrip = () => (
   <section className="relative overflow-hidden bg-bark text-cream border-y border-brass/30">
     <BarkGrain />
