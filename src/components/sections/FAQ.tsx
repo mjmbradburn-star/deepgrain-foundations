@@ -20,10 +20,23 @@ export interface FAQItem {
   answerNode?: ReactNode;
 }
 
+/**
+ * Visual treatment for the FAQ block.
+ *
+ * - `section` (default): full-bleed section used on /method, /people-ops,
+ *   /enablement — own background, large display heading, BrassRule, eyebrow.
+ * - `inline`: composes inside an existing article body. No background of its
+ *   own, no eyebrow, heading drops to article-h2 scale (`text-3xl md:text-4xl`)
+ *   so it reads as a section *within* the prose rather than a new page chapter.
+ *   Question text drops one notch closer to body weight to match article rhythm.
+ */
+type FAQVariant = "section" | "inline";
+
 interface FAQProps {
   eyebrow?: string;
   heading: string;
   items: FAQItem[];
+  variant?: FAQVariant;
 }
 
 /**
@@ -31,42 +44,93 @@ interface FAQProps {
  * mirrors the rendered Q&A — Google requires the markup to match what
  * users actually see, otherwise it's grounds for a manual action.
  */
-export const FAQ = ({ eyebrow = "Common questions", heading, items }: FAQProps) => (
-  <section className="bg-linen text-walnut section-pad">
-    <div className="container-grain max-w-3xl">
-      <ScrollReveal>
-        <Eyebrow className="text-brass mb-4">{eyebrow}</Eyebrow>
-        <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-6xl leading-tight text-balance">
-          {heading}
-        </h2>
-        <BrassRule className="mt-10 mb-12" />
-        <dl className="divide-y divide-walnut/15">
-          {items.map((item) => (
-            <details
-              key={item.question}
-              className="group py-6 [&_summary::-webkit-details-marker]:hidden"
+export const FAQ = ({
+  eyebrow = "Common questions",
+  heading,
+  items,
+  variant = "section",
+}: FAQProps) => {
+  if (variant === "inline") {
+    // Composes inside <article className="bg-linen ..."> on Intelligence pages.
+    // No own background, tighter spacing, article-scale typography. Sits within
+    // the same `max-w-2xl` measure as the body prose for vertical rhythm.
+    return (
+      <section className="bg-linen text-walnut" aria-label={eyebrow}>
+        <div className="container-grain max-w-2xl">
+          <div className="mt-16 pt-12 border-t border-walnut/15">
+            <h2
+              className="font-display text-3xl md:text-4xl text-walnut leading-tight mb-8"
+              style={{ letterSpacing: "-0.005em" }}
             >
-              <summary className="flex cursor-pointer items-start justify-between gap-6 list-none">
-                <dt className="font-display text-walnut text-xl md:text-2xl leading-snug">
-                  {item.question}
-                </dt>
-                <span
-                  aria-hidden
-                  className="mt-2 shrink-0 text-brass text-2xl leading-none transition-transform duration-200 group-open:rotate-45"
+              {heading}
+            </h2>
+            <dl className="divide-y divide-walnut/15 border-t border-walnut/15">
+              {items.map((item) => (
+                <details
+                  key={item.question}
+                  className="group py-5 [&_summary::-webkit-details-marker]:hidden"
                 >
-                  +
-                </span>
-              </summary>
-              <dd className="mt-5 text-walnut/80 leading-relaxed text-base md:text-lg">
-                {item.answerNode ?? item.answer}
-              </dd>
-            </details>
-          ))}
-        </dl>
-      </ScrollReveal>
-    </div>
-  </section>
-);
+                  <summary className="flex cursor-pointer items-start justify-between gap-6 list-none">
+                    <dt className="font-display text-walnut text-lg md:text-xl leading-snug">
+                      {item.question}
+                    </dt>
+                    <span
+                      aria-hidden
+                      className="mt-1.5 shrink-0 text-brass text-xl leading-none transition-transform duration-200 group-open:rotate-45"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <dd className="mt-4 text-walnut/85 leading-[1.7] text-[17px] md:text-[18px]">
+                    {item.answerNode ?? item.answer}
+                  </dd>
+                </details>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Default: full-bleed section — used on /method, /people-ops, /enablement.
+  return (
+    <section className="bg-linen text-walnut section-pad">
+      <div className="container-grain max-w-3xl">
+        <ScrollReveal>
+          <Eyebrow className="text-brass mb-4">{eyebrow}</Eyebrow>
+          <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-6xl leading-tight text-balance">
+            {heading}
+          </h2>
+          <BrassRule className="mt-10 mb-12" />
+          <dl className="divide-y divide-walnut/15">
+            {items.map((item) => (
+              <details
+                key={item.question}
+                className="group py-6 [&_summary::-webkit-details-marker]:hidden"
+              >
+                <summary className="flex cursor-pointer items-start justify-between gap-6 list-none">
+                  <dt className="font-display text-walnut text-xl md:text-2xl leading-snug">
+                    {item.question}
+                  </dt>
+                  <span
+                    aria-hidden
+                    className="mt-2 shrink-0 text-brass text-2xl leading-none transition-transform duration-200 group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <dd className="mt-5 text-walnut/80 leading-relaxed text-base md:text-lg">
+                  {item.answerNode ?? item.answer}
+                </dd>
+              </details>
+            ))}
+          </dl>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+};
 
 /**
  * Builds schema.org FAQPage JSON-LD that mirrors the visible FAQ.
