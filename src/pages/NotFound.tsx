@@ -1,8 +1,15 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PillButton } from "@/components/ui/PillButton";
+import { PageMeta } from "@/components/seo/PageMeta";
 
 const NotFound = () => (
   <section className="bg-green text-cream min-h-screen flex items-center justify-center">
+    <PageMeta
+      title="Page not found | Deepgrain"
+      description="The page you're looking for isn't here. Return to Deepgrain."
+      path="/404"
+      noindex
+    />
     <div className="container-grain max-w-2xl text-center">
       <Eyebrow className="text-cream/60 mb-6">404</Eyebrow>
       <h1 className="font-display text-5xl md:text-7xl leading-tight text-cream">
