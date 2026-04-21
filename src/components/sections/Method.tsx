@@ -40,7 +40,7 @@ export const Method = () => (
           </p>
           <div className="mt-10 flex flex-col items-start gap-5">
             <PillButton href="/method" variant="filled">
-              See what it's worth in your function →
+              See the method →
             </PillButton>
             <Link
               to="/enablement"
