@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
-import { BarkGrain } from "@/components/ui/BarkGrain";
+import { BarkSection } from "@/components/ui/BarkSection";
 
 // Lazy: pulls in supabase + zod, ~250KB. Footer is below the fold on every page.
 const EmailCapture = lazy(() =>
@@ -17,9 +17,11 @@ const links = [
 ];
 
 export const Footer = () => (
-  <footer className="relative overflow-hidden bg-bark text-cream/80 py-20">
-    <BarkGrain />
-    <div className="container-grain relative">
+  <BarkSection
+    as="footer"
+    className="text-cream/80 py-20"
+    contentClassName="container-grain"
+  >
       <div className="grid gap-12 md:grid-cols-3 mb-16">
         <div>
           <div
