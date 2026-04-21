@@ -84,7 +84,7 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
             isGreen ? "text-cream/75" : "text-walnut/70"
           }`}
         >
-          {f.description}
+          {description}
         </p>
         <div
           className={`text-[11px] uppercase mt-auto pt-2 ${isGreen ? "text-brass" : "text-green"}`}
