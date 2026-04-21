@@ -7,6 +7,7 @@ import {
 } from "@/lib/intelligence";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const Intelligence = () => {
   const url = "https://deepgrain.ai/intelligence";
@@ -27,6 +28,11 @@ const Intelligence = () => {
       author: { "@type": "Person", name: a.frontmatter.author },
     })),
   };
+
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: "Home", url: "https://deepgrain.ai/" },
+    { name: "Intelligence", url },
+  ]);
 
   return (
     <>
@@ -50,6 +56,7 @@ const Intelligence = () => {
         <meta name="twitter:image" content="https://deepgrain.ai/og-intelligence.png" />
         <meta property="og:url" content={url} />
         <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
       </Helmet>
 
       {/* Hero */}

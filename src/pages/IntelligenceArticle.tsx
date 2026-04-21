@@ -14,6 +14,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PillButton } from "@/components/ui/PillButton";
 import { EmailCapture } from "@/components/forms/EmailCapture";
 import { AIOI_URL } from "@/lib/aioi";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const IntelligenceArticle = () => {
   const { slug = "" } = useParams();
@@ -47,6 +48,15 @@ const IntelligenceArticle = () => {
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: "Home", url: "https://deepgrain.ai/" },
+    { name: "Intelligence", url: "https://deepgrain.ai/intelligence" },
+    ...(cat
+      ? [{ name: cat.name, url: `https://deepgrain.ai/intelligence/category/${cat.slug}` }]
+      : []),
+    { name: f.title, url },
+  ]);
+
   return (
     <>
       <Helmet>
@@ -67,6 +77,7 @@ const IntelligenceArticle = () => {
         <meta property="article:author" content={f.author} />
         <meta property="article:section" content={cat?.name} />
         <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
       </Helmet>
 
       {/* Hero image band (16:9, full-width) */}

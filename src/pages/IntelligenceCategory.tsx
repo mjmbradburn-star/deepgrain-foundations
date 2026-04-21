@@ -3,6 +3,7 @@ import { Navigate, useParams, Link } from "react-router-dom";
 import { getArticlesByCategory, getCategory } from "@/lib/intelligence";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const IntelligenceCategory = () => {
   const { name = "" } = useParams();
@@ -11,6 +12,12 @@ const IntelligenceCategory = () => {
 
   const items = getArticlesByCategory(cat.slug);
   const url = `https://deepgrain.ai/intelligence/category/${cat.slug}`;
+
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: "Home", url: "https://deepgrain.ai/" },
+    { name: "Intelligence", url: "https://deepgrain.ai/intelligence" },
+    { name: cat.name, url },
+  ]);
 
   return (
     <>
@@ -22,6 +29,7 @@ const IntelligenceCategory = () => {
         <meta property="og:description" content={cat.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
       </Helmet>
 
       <section className="bg-green text-cream pt-40 md:pt-48 pb-20 md:pb-28">
