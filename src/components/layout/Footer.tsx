@@ -86,5 +86,5 @@ export const Footer = () => (
       </nav>
       <p>Work with the grain.</p>
     </div>
-  </footer>
+  </BarkSection>
 );
