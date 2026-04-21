@@ -41,7 +41,7 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
           </picture>
         </div>
       )}
-      <div className="flex flex-col flex-1 gap-4 p-7">
+      <div className="flex flex-col flex-1 gap-3 px-6 py-5">
         <div className="flex items-center gap-3">
           <span
             className={`font-sans uppercase text-[10px] ${
@@ -57,22 +57,22 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
           </span>
         </div>
         <h3
-          className={`font-display text-2xl md:text-3xl leading-[1.15] min-h-[5.5rem] ${
+          className={`font-display text-xl md:text-2xl leading-[1.15] line-clamp-2 [&]:min-h-[calc(2*1.15*1.5rem)] ${
             isGreen ? "text-cream" : "text-walnut"
-          } group-hover:translate-x-1 transition-transform duration-300`}
+          }`}
           style={{ letterSpacing: "-0.005em" }}
         >
           {f.title}
         </h3>
         <p
-          className={`text-sm leading-relaxed line-clamp-3 flex-1 ${
+          className={`text-[13px] leading-[1.55] line-clamp-2 ${
             isGreen ? "text-cream/75" : "text-walnut/70"
           }`}
         >
           {f.description}
         </p>
         <div
-          className={`text-[11px] uppercase mt-auto ${isGreen ? "text-brass" : "text-green"}`}
+          className={`text-[11px] uppercase mt-auto pt-2 ${isGreen ? "text-brass" : "text-green"}`}
           style={{ letterSpacing: "0.14em" }}
         >
           Read →
