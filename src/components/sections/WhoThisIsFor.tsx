@@ -37,10 +37,9 @@ export const WhoThisIsFor = () => (
       <div className="relative bg-walnut/92 backdrop-blur-sm rounded-[48px] md:rounded-[80px] p-10 md:p-16 lg:p-20 max-w-4xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20">
         <ScrollReveal>
           <Eyebrow className="text-brass mb-8">The pattern we keep seeing</Eyebrow>
-          <h2 className="font-display text-cream text-4xl sm:text-5xl md:text-6xl lg:text-[80px] leading-[1.05] max-w-3xl text-balance">
-            AI rollouts aren&apos;t working.
-            <br />
-            And no one can say why.
+          <h2 className="font-display text-cream text-[2rem] sm:text-5xl md:text-6xl lg:text-[80px] leading-[1.1] sm:leading-[1.05] max-w-3xl text-pretty">
+            <span className="block">AI rollouts aren&apos;t working.</span>
+            <span className="block mt-1 sm:mt-2">And no one can say why.</span>
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={150}>
