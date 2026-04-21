@@ -146,6 +146,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [Home](${SITE}/): Overview of the Deepgrain practice and method.
 - [Method](${SITE}/method): The Read · Craft · Scale method explained in full.
 - [Work](${SITE}/work): Case studies across defence tech, financial data, transit, and climate.
+- [Enablement](${SITE}/enablement): Coaching, champions, and the curriculum that builds lasting capability.
 - [About](${SITE}/about): Matthew Bradburn's background, philosophy, and references.
 - [Contact](${SITE}/contact): How to start a conversation.
 - [Intelligence](${SITE}/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
