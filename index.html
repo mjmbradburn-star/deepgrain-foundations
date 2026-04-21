@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) — SPA: pageviews fired manually per route in src/components/analytics/Analytics.tsx -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-93DFWMX8GP"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-93DFWMX8GP');
+      gtag('config', 'G-93DFWMX8GP', { send_page_view: false });
     </script>
     <title>Deepgrain | Work with the grain.</title>
     <meta name="description" content="Organisational consultancy. Deepgrain reads how your organisation actually works, then builds what lasts." />
