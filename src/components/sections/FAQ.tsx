@@ -1,11 +1,23 @@
+import type { ReactNode } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export interface FAQItem {
   question: string;
-  /** Plain text answer — what gets emitted into FAQPage JSON-LD. */
+  /**
+   * Plain-text answer — required, and what gets emitted into FAQPage JSON-LD.
+   * Google requires the schema's `answer.text` to mirror visible wording, so
+   * this string MUST contain the full readable answer (no link markup).
+   */
   answer: string;
+  /**
+   * Optional rich rendering for the answer (e.g. inline <Link> elements or a
+   * trailing "Related" link). When present, this is what users see; `answer`
+   * remains the canonical text shipped in JSON-LD. Keep the prose identical
+   * to `answer` — only add navigational affordances, never new claims.
+   */
+  answerNode?: ReactNode;
 }
 
 interface FAQProps {
@@ -15,7 +27,7 @@ interface FAQProps {
 }
 
 /**
- * Visible FAQ block. Pair with FAQPageLd in the same page so the schema
+ * Visible FAQ block. Pair with buildFAQLd in the same page so the schema
  * mirrors the rendered Q&A — Google requires the markup to match what
  * users actually see, otherwise it's grounds for a manual action.
  */
@@ -46,7 +58,7 @@ export const FAQ = ({ eyebrow = "Common questions", heading, items }: FAQProps) 
                 </span>
               </summary>
               <dd className="mt-5 text-walnut/80 leading-relaxed text-base md:text-lg">
-                {item.answer}
+                {item.answerNode ?? item.answer}
               </dd>
             </details>
           ))}
@@ -56,7 +68,11 @@ export const FAQ = ({ eyebrow = "Common questions", heading, items }: FAQProps) 
   </section>
 );
 
-/** Builds schema.org FAQPage JSON-LD that mirrors the visible FAQ. */
+/**
+ * Builds schema.org FAQPage JSON-LD that mirrors the visible FAQ.
+ * Always uses the plain-text `answer` field so the schema text matches the
+ * prose users read (excluding link chrome), per Google's structured-data rules.
+ */
 export const buildFAQLd = (items: FAQItem[]) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
