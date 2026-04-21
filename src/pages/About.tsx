@@ -145,7 +145,7 @@ const About = () => (
               <p>
                 Deepgrain is the consolidation of that practice. Strategy at
                 the top, enablement and training across the team, agents and
-                automations in the workflow &mdash; built function by function,
+                automations in the workflow;  built function by function,
                 top to bottom. We run the model on ourselves first, then bring
                 it to clients who want something built to last.
               </p>
