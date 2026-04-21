@@ -11,10 +11,35 @@ import { BuildVsHire } from "@/components/sections/BuildVsHire";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 
 // Each FAQ keeps `answer` as the canonical text mirrored in JSON-LD; `answerNode`
-// adds inline navigation (where natural) or a trailing "Related" link (otherwise)
-// so users can jump straight to the relevant section after reading.
+// adds inline navigation (where natural) plus a small "Ask about this" CTA that
+// deep-links to /contact with a question-specific prefill in ?subject=.
 const linkCls = "text-brass underline-offset-4 hover:underline";
-const trailingCls = "mt-3 inline-flex items-center gap-1 text-sm text-brass font-medium hover:text-walnut transition-colors";
+const trailingCls = "inline-flex items-center gap-1 text-sm text-brass font-medium hover:text-walnut transition-colors";
+const ctaCls = "inline-flex items-center gap-1.5 rounded-full border border-brass/40 bg-brass/5 hover:bg-brass hover:text-cream text-brass text-xs font-semibold uppercase tracking-[0.12em] px-4 py-2 transition-colors";
+
+/** Build a /contact link with a polite, conversational prefill quoting the FAQ. */
+const askLink = (prompt: string) =>
+  `/contact?subject=${encodeURIComponent(prompt)}`;
+
+/** Footer row under each FAQ answer: optional related link + the contextual CTA. */
+const FaqFooter = ({
+  related,
+  ask,
+}: {
+  related?: { to: string; label: string };
+  ask: string;
+}) => (
+  <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+    {related && (
+      <Link to={related.to} className={trailingCls}>
+        {related.label}
+      </Link>
+    )}
+    <Link to={askLink(ask)} className={ctaCls}>
+      Ask about this →
+    </Link>
+  </div>
+);
 
 const FAQ_ITEMS: FAQItem[] = [
   {
@@ -27,6 +52,7 @@ const FAQ_ITEMS: FAQItem[] = [
         <Link to="/method#read" className={linkCls}>Read</Link> phase to surface the operating reality, then move into{" "}
         <Link to="/method#craft" className={linkCls}>Craft</Link> (typically 60–120 days of focused interventions paired with champion development), and finally a{" "}
         <Link to="/method#scale" className={linkCls}>Scale</Link> phase that hands the practice over to your team. Some clients renew into a lighter advisory cadence after that.
+        <FaqFooter ask="I'd like to understand what an engagement timeline would look like for us. A bit about our situation: " />
       </>
     ),
   },
@@ -37,6 +63,7 @@ const FAQ_ITEMS: FAQItem[] = [
     answerNode: (
       <>
         The <Link to="/method#read" className={linkCls}>Read</Link> phase. Matt sits inside your operating cadence — standups, one-to-ones, leadership reviews — and runs structured interviews across the org. The output is a written diagnostic: where the operating story diverges from the operating reality, which interventions would compound, and which would break the grain. No slideware, no benchmarks. A document leadership can act on.
+        <FaqFooter ask="I'd like to talk about what a Read phase would surface in our organisation. A bit about us: " />
       </>
     ),
   },
@@ -49,9 +76,10 @@ const FAQ_ITEMS: FAQItem[] = [
         Three things. First, the diagnostic document from the{" "}
         <Link to="/method#read" className={linkCls}>Read</Link> phase. Second, the interventions themselves — usually a small set of agentic systems and operating rituals built and shipped during{" "}
         <Link to="/method#craft" className={linkCls}>Craft</Link>. Third, three or four trained champions inside the team who can extend, debug, and govern the work after we leave. The capability stays with you, not in a vendor.
-        <Link to="/enablement" className={trailingCls}>
-          See how champions are trained →
-        </Link>
+        <FaqFooter
+          related={{ to: "/enablement", label: "See how champions are trained →" }}
+          ask="I'd like to understand what deliverables would look like for our function. A bit about us: "
+        />
       </>
     ),
   },
@@ -62,9 +90,10 @@ const FAQ_ITEMS: FAQItem[] = [
     answerNode: (
       <>
         Founders and operating leaders inside organisations worth getting right — typically AI-native, defence tech, financial data, transit and mobility, or climate. The common thread: leadership willing to look at the operating reality honestly, and a team capable of holding the practice once we hand it over.
-        <Link to="/work" className={trailingCls}>
-          See who we work with →
-        </Link>
+        <FaqFooter
+          related={{ to: "/work", label: "See who we work with →" }}
+          ask="I'd like to know whether we're a fit for Deepgrain. A bit about our organisation: "
+        />
       </>
     ),
   },
@@ -75,9 +104,10 @@ const FAQ_ITEMS: FAQItem[] = [
     answerNode: (
       <>
         No. The champion model is built around non-engineers — heads of People, ops leads, chiefs of staff, domain operators. They learn to design and run agents inside their own function. We bring the engineering muscle when something needs to be built deeper, but the day-to-day capability lives with operators, not coders.
-        <Link to="/enablement" className={trailingCls}>
-          How the champion model works →
-        </Link>
+        <FaqFooter
+          related={{ to: "/enablement", label: "How the champion model works →" }}
+          ask="I'd like to talk about who in our team could become champions. A bit about our function: "
+        />
       </>
     ),
   },
@@ -88,9 +118,7 @@ const FAQ_ITEMS: FAQItem[] = [
     answerNode: (
       <>
         Engagements are scoped per phase, not by retainer or day rate. We share indicative ranges in the first conversation once we understand the shape of the work — write to matt@deepgrain.ai to start there.
-        <Link to="/contact" className={trailingCls}>
-          Start the conversation →
-        </Link>
+        <FaqFooter ask="I'd like an indicative range for an engagement. A bit about what we're trying to fix: " />
       </>
     ),
   },

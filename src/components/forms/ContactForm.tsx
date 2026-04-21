@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { PillButton } from "@/components/ui/PillButton";
@@ -19,17 +19,41 @@ const inputClass =
   "w-full bg-transparent border-0 border-b border-cream/30 focus:border-cream/80 focus:outline-none py-3 text-cream placeholder:text-cream/40 font-sans text-base transition-colors";
 const labelClass = "block text-cream/70 text-[11px] uppercase tracking-[0.15em] mb-1";
 
+/** Hard cap on prefill length — generous, but stops anyone using ?subject= as
+ *  a stuffing vector for arbitrary content into our enquiries table. */
+const PREFILL_MAX = 500;
+
 export const ContactForm = () => {
+  const [params] = useSearchParams();
+  // Read `?subject=` once on mount. We deliberately don't react to later changes
+  // — once the user is in the form, they own the textarea.
+  const initialMessage = useRef(
+    (params.get("subject") ?? "").slice(0, PREFILL_MAX),
+  ).current;
+
   const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
     organisation: "",
     size: "",
-    message: "",
+    message: initialMessage,
   });
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const { toast } = useToast();
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  // When arriving via a prefill link, focus the message field so it's obvious
+  // the form is ready and the user can edit before sending.
+  useEffect(() => {
+    if (initialMessage && messageRef.current) {
+      messageRef.current.focus();
+      messageRef.current.setSelectionRange(
+        initialMessage.length,
+        initialMessage.length,
+      );
+    }
+  }, [initialMessage]);
 
   const update = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -101,6 +125,7 @@ export const ContactForm = () => {
         <label className={labelClass} htmlFor="message">What's on your mind?</label>
         <textarea
           id="message"
+          ref={messageRef}
           value={form.message}
           onChange={update("message")}
           rows={5}
