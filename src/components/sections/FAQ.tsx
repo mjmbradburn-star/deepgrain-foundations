@@ -2,6 +2,10 @@ import type { ReactNode } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import {
+  articleTypography,
+  articleH2Style,
+} from "@/components/intelligence/mdxComponents";
 
 export interface FAQItem {
   question: string;
