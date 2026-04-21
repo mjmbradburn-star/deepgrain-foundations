@@ -70,7 +70,17 @@ export const WhatWeDo = () => (
               >
                 {item.title}
               </h3>
-              <p className="text-walnut/75 leading-relaxed">{item.body}</p>
+              <p className="text-walnut/75 leading-relaxed">
+                {item.body.map((seg, j) =>
+                  seg.highlight ? (
+                    <span key={j} className="text-brass font-medium">
+                      {seg.text}
+                    </span>
+                  ) : (
+                    <span key={j}>{seg.text}</span>
+                  ),
+                )}
+              </p>
             </div>
           </ScrollReveal>
         ))}
