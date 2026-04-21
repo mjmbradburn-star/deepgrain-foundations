@@ -7,6 +7,7 @@ import {
 } from "@/lib/intelligence";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { BarkSection } from "@/components/ui/BarkSection";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const Intelligence = () => {
@@ -78,36 +79,37 @@ const Intelligence = () => {
       </section>
 
       {/* People Ops track signpost */}
-      <section className="bg-walnut text-cream py-16 md:py-20 border-b border-brass/15">
-        <div className="container-grain">
-          <Link
-            to="/intelligence/people-ops"
-            className="group block max-w-5xl mx-auto"
-          >
-            <div className="grid md:grid-cols-[auto,1fr,auto] gap-6 md:gap-10 items-center">
-              <Eyebrow className="text-brass">A Track</Eyebrow>
-              <div>
-                <h2
-                  className="font-display text-3xl md:text-4xl lg:text-5xl text-cream group-hover:text-brass transition-colors leading-tight"
-                  style={{ letterSpacing: "-0.01em" }}
-                >
-                  The People Ops AI Brain
-                </h2>
-                <p className="text-cream/70 mt-3 max-w-2xl leading-relaxed">
-                  A dedicated track for People leaders building AI capability —
-                  from prompts to systems, with governance that holds.
-                </p>
-              </div>
-              <span
-                className="text-[11px] uppercase text-brass group-hover:translate-x-1 transition-transform"
-                style={{ letterSpacing: "0.16em" }}
+      <BarkSection
+        className="border-b border-brass/15"
+        contentClassName="container-grain py-16 md:py-20"
+      >
+        <Link
+          to="/intelligence/people-ops"
+          className="group block max-w-5xl mx-auto"
+        >
+          <div className="grid md:grid-cols-[auto,1fr,auto] gap-6 md:gap-10 items-center">
+            <Eyebrow className="text-brass">A Track</Eyebrow>
+            <div>
+              <h2
+                className="font-display text-3xl md:text-4xl lg:text-5xl text-cream group-hover:text-brass transition-colors leading-tight"
+                style={{ letterSpacing: "-0.01em" }}
               >
-                Enter →
-              </span>
+                The People Ops AI Brain
+              </h2>
+              <p className="text-cream/70 mt-3 max-w-2xl leading-relaxed">
+                A dedicated track for People leaders building AI capability —
+                from prompts to systems, with governance that holds.
+              </p>
             </div>
-          </Link>
-        </div>
-      </section>
+            <span
+              className="text-[11px] uppercase text-brass group-hover:translate-x-1 transition-transform"
+              style={{ letterSpacing: "0.16em" }}
+            >
+              Enter →
+            </span>
+          </div>
+        </Link>
+      </BarkSection>
 
       {/* Section index — mirrors breadcrumb hierarchy with deep anchor links.
           Reinforces the BreadcrumbList JSON-LD with on-page navigation that

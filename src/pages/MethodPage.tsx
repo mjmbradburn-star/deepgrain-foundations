@@ -9,6 +9,7 @@ import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { ValueVisualiser } from "@/components/sections/ValueVisualiser";
 import { BuildVsHire } from "@/components/sections/BuildVsHire";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
+import { BarkSection } from "@/components/ui/BarkSection";
 
 // Each FAQ keeps `answer` as the canonical text mirrored in JSON-LD; `answerNode`
 // adds inline navigation (where natural) plus a small "Ask about this" CTA that
@@ -300,40 +301,42 @@ const MethodPage = () => (
     </section>
 
     {/* Craft */}
-    <section id="craft" className="bg-walnut text-cream section-pad scroll-mt-40">
-      <div className="container-grain max-w-3xl">
-        <ScrollReveal>
-          <Eyebrow className="text-brass mb-4">02 Craft</Eyebrow>
-          <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight">
-            We build with the grain, not against it.
-          </h2>
-          <div className="mt-10 space-y-6 text-cream/80 leading-relaxed text-lg">
-            <p>
-              Human judgment and machine precision, working together from day
-              one. Agents that remove friction without removing thought.
-              Systems designed around how this specific place actually works,
-              rather than borrowed from a playbook that worked somewhere else.
-            </p>
-            <p className="hidden md:block">
-              The carpenter knows the wood will split if you cut against the
-              grain. So do we. We build alongside your people, in your tools,
-              with your context. Then we hand it over.
-            </p>
-            <figure className="mt-10 border-l-2 border-brass/60 pl-6">
-              <blockquote className="font-display text-cream text-xl md:text-2xl leading-snug italic">
-                “A prompt is a moment of cleverness. A system is what makes the cleverness reliable on a Tuesday afternoon when nobody's watching.”
-              </blockquote>
-              <figcaption className="mt-3 text-sm text-cream/60">
-                From{" "}
-                <Link to="/intelligence/from-prompts-to-systems" className={linkCls}>
-                  From prompts to systems →
-                </Link>
-              </figcaption>
-            </figure>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
+    <BarkSection
+      id="craft"
+      className="section-pad scroll-mt-40"
+      contentClassName="container-grain max-w-3xl"
+    >
+      <ScrollReveal>
+        <Eyebrow className="text-brass mb-4">02 Craft</Eyebrow>
+        <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight">
+          We build with the grain, not against it.
+        </h2>
+        <div className="mt-10 space-y-6 text-cream/80 leading-relaxed text-lg">
+          <p>
+            Human judgment and machine precision, working together from day
+            one. Agents that remove friction without removing thought.
+            Systems designed around how this specific place actually works,
+            rather than borrowed from a playbook that worked somewhere else.
+          </p>
+          <p className="hidden md:block">
+            The carpenter knows the wood will split if you cut against the
+            grain. So do we. We build alongside your people, in your tools,
+            with your context. Then we hand it over.
+          </p>
+          <figure className="mt-10 border-l-2 border-brass/60 pl-6">
+            <blockquote className="font-display text-cream text-xl md:text-2xl leading-snug italic">
+              “A prompt is a moment of cleverness. A system is what makes the cleverness reliable on a Tuesday afternoon when nobody's watching.”
+            </blockquote>
+            <figcaption className="mt-3 text-sm text-cream/60">
+              From{" "}
+              <Link to="/intelligence/from-prompts-to-systems" className={linkCls}>
+                From prompts to systems →
+              </Link>
+            </figcaption>
+          </figure>
+        </div>
+      </ScrollReveal>
+    </BarkSection>
 
     {/* Empowerment beat */}
     <section className="bg-linen text-body section-pad">
