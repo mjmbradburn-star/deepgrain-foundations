@@ -8,6 +8,40 @@ import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { ValueVisualiser } from "@/components/sections/ValueVisualiser";
 import { BuildVsHire } from "@/components/sections/BuildVsHire";
+import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
+
+const FAQ_ITEMS: FAQItem[] = [
+  {
+    question: "How long does a Deepgrain engagement run?",
+    answer:
+      "Most engagements run between three and nine months. We start with a 30-day Read phase to surface the operating reality, then move into Craft (typically 60–120 days of focused interventions paired with champion development), and finally a Scale phase that hands the practice over to your team. Some clients renew into a lighter advisory cadence after that.",
+  },
+  {
+    question: "What does the first 30 days actually look like?",
+    answer:
+      "The Read phase. Matt sits inside your operating cadence — standups, one-to-ones, leadership reviews — and runs structured interviews across the org. The output is a written diagnostic: where the operating story diverges from the operating reality, which interventions would compound, and which would break the grain. No slideware, no benchmarks. A document leadership can act on.",
+  },
+  {
+    question: "What deliverables do we walk away with?",
+    answer:
+      "Three things. First, the diagnostic document from the Read phase. Second, the interventions themselves — usually a small set of agentic systems and operating rituals built and shipped during Craft. Third, three to five trained champions inside the team who can extend, debug, and govern the work after we leave. The capability stays with you, not in a vendor.",
+  },
+  {
+    question: "Who is the right fit for this work?",
+    answer:
+      "Founders and operating leaders at Series A through Series C, typically 25–250 people, in AI-native, defence tech, financial data, transit and mobility, or climate. The common thread: an organisation worth getting right, leadership willing to look at the operating reality honestly, and a team capable of holding the practice once we hand it over.",
+  },
+  {
+    question: "Do I need a technical team to make this work?",
+    answer:
+      "No. The champion model is built around non-engineers — heads of People, ops leads, chiefs of staff, domain operators. They learn to design and run agents inside their own function. We bring the engineering muscle when something needs to be built deeper, but the day-to-day capability lives with operators, not coders.",
+  },
+  {
+    question: "How does pricing work?",
+    answer:
+      "Engagements are scoped and priced per phase, not by retainer or day rate. Read is fixed-fee. Craft is scoped against the interventions we agreed in the diagnostic. Scale is a capped advisory window. We share indicative ranges in the first conversation once we understand the shape of the work — write to matt@deepgrain.ai to start there.",
+  },
+];
 
 const MethodPage = () => (
   <>
@@ -16,10 +50,13 @@ const MethodPage = () => (
       description="The Deepgrain method in full. Read the operating reality, craft the smallest interventions that compound, then scale without breaking the grain."
       image="https://deepgrain.ai/og-method.png"
       path="/method"
-      jsonLd={buildBreadcrumbLd([
-        { name: "Home", url: "https://deepgrain.ai/" },
-        { name: "Method", url: "https://deepgrain.ai/method" },
-      ])}
+      jsonLd={[
+        buildBreadcrumbLd([
+          { name: "Home", url: "https://deepgrain.ai/" },
+          { name: "Method", url: "https://deepgrain.ai/method" },
+        ]),
+        buildFAQLd(FAQ_ITEMS),
+      ]}
     />
     {/* Intro */}
     <section className="relative min-h-[80vh] flex items-end overflow-hidden">
@@ -180,6 +217,9 @@ const MethodPage = () => (
 
     {/* Value visualiser */}
     <ValueVisualiser />
+
+    {/* FAQ */}
+    <FAQ heading="What clients ask before they engage." items={FAQ_ITEMS} />
 
     {/* CTA */}
     <section className="bg-green text-cream section-pad">
