@@ -135,8 +135,13 @@
   50%  { transform: translate3d(-3%, 1.5%, 0) scale(1.04); }
   100% { transform: translate3d(0, 0, 0) scale(1); }
 }
+@keyframes grain-flow-boot {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-8%, 4%, 0) scale(1.08); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
 .bark-grain {
-  animation: grain-flow 90s ease-in-out infinite;
+  animation: grain-flow-boot 6s ease-out 1, grain-flow 90s ease-in-out 6s infinite;
   will-change: transform;
 }
 

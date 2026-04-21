@@ -62,7 +62,8 @@ export const BarkGrain = ({ seed = 7 }: BarkGrainProps) => {
                 outlineOffset: "-2px",
                 backgroundColor: "rgba(255, 79, 216, 0.15)",
                 // Force motion on in debug, even under reduced-motion
-                animation: "grain-flow 12s ease-in-out infinite",
+                animation:
+                  "grain-flow-boot 6s ease-out 1, grain-flow 12s ease-in-out 6s infinite",
               }
             : {}),
         }}
