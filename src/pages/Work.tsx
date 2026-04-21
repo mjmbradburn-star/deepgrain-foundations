@@ -9,6 +9,7 @@ import { EmailCapture } from "@/components/forms/EmailCapture";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { BarkGrain } from "@/components/ui/BarkGrain";
 
 const variants: Array<"linen" | "walnut" | "green"> = ["linen", "walnut", "linen", "green"];
 

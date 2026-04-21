@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
+import { BarkGrain } from "@/components/ui/BarkGrain";
 
 // Lazy: pulls in supabase + zod, ~250KB. Footer is below the fold on every page.
 const EmailCapture = lazy(() =>

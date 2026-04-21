@@ -3,6 +3,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { BarkGrain } from "@/components/ui/BarkGrain";
 
 const testimonials = [
   {

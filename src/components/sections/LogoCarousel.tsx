@@ -3,6 +3,7 @@ import { clients, type Client } from "@/data/clients";
 import { LogoFallback } from "@/components/ui/LogoFallback";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { cn } from "@/lib/utils";
+import { BarkGrain } from "@/components/ui/BarkGrain";
 
 interface LogoCarouselProps {
   background?: "green" | "walnut";

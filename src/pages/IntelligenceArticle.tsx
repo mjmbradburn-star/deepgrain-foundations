@@ -16,6 +16,7 @@ import { EmailCapture } from "@/components/forms/EmailCapture";
 import { AIOI_URL } from "@/lib/aioi";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { FAQ, buildFAQLd } from "@/components/sections/FAQ";
+import { BarkGrain } from "@/components/ui/BarkGrain";
 
 const IntelligenceArticle = () => {
   const { slug = "" } = useParams();
