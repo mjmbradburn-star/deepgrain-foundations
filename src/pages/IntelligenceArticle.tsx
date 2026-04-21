@@ -155,20 +155,18 @@ const IntelligenceArticle = () => {
               <Component />
             </Suspense>
           </MDXProvider>
-        </div>
 
-        {/* Common questions — only rendered when the article exports `faqs`.
-            Inline variant matches the article body's max-width and h2 scale. */}
-        {faqs && faqs.length > 0 && (
-          <FAQ
-            eyebrow="Common questions"
-            heading="Common questions"
-            items={faqs}
-            variant="inline"
-          />
-        )}
+          {/* Common questions — only rendered when the article exports `faqs`.
+              Inline variant: no own container, inherits article body's measure. */}
+          {faqs && faqs.length > 0 && (
+            <FAQ
+              eyebrow="Common questions"
+              heading="Common questions"
+              items={faqs}
+              variant="inline"
+            />
+          )}
 
-        <div className="container-grain max-w-2xl">
           <div className="mt-16 pt-12 border-t border-walnut/15">
             <EmailCapture
               source="article"
