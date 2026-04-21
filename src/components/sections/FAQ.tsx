@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useCallback, useRef, type KeyboardEvent, type ReactNode } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -44,6 +44,114 @@ interface FAQProps {
 }
 
 /**
+ * Keyboard nav across <summary> elements within a single FAQ list:
+ *   ArrowDown / ArrowUp  — move focus to next/previous question
+ *   Home / End           — jump to first / last question
+ * Native Space/Enter (toggle) is preserved — we don't intercept those.
+ *
+ * We resolve siblings at keydown time by querying the parent <dl>, so the
+ * handler is index-free and works regardless of how items were rendered.
+ */
+const handleSummaryKeyDown = (e: KeyboardEvent<HTMLElement>) => {
+  const key = e.key;
+  if (key !== "ArrowDown" && key !== "ArrowUp" && key !== "Home" && key !== "End") {
+    return;
+  }
+  const summary = e.currentTarget;
+  const list = summary.closest("dl");
+  if (!list) return;
+  const summaries = Array.from(
+    list.querySelectorAll<HTMLElement>("summary[data-faq-summary]"),
+  );
+  const i = summaries.indexOf(summary);
+  if (i === -1) return;
+
+  let next: HTMLElement | undefined;
+  if (key === "ArrowDown") next = summaries[i + 1];
+  else if (key === "ArrowUp") next = summaries[i - 1];
+  else if (key === "Home") next = summaries[0];
+  else if (key === "End") next = summaries[summaries.length - 1];
+
+  if (next) {
+    e.preventDefault();
+    next.focus();
+  }
+};
+
+/**
+ * Smoothly-animated <details>. Native semantics + keyboard + a11y are kept;
+ * we only animate the answer panel using the CSS grid-rows `0fr → 1fr` trick,
+ * which transitions to `auto` height without measuring the DOM.
+ *
+ * The grid wrapper sits *outside* the <summary> so layout stays correct and
+ * the wrapper inherits the `[open]` state via `details[open] > .faq-panel`.
+ */
+const FaqDetails = ({
+  item,
+  questionClass,
+  answerClass,
+  rowPadding,
+}: {
+  item: FAQItem;
+  questionClass: string;
+  answerClass: string;
+  rowPadding: string;
+}) => {
+  const ref = useRef<HTMLDetailsElement>(null);
+
+  // Respect prefers-reduced-motion: skip the height transition entirely.
+  const onToggle = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      el.dataset.animate = "off";
+    }
+  }, []);
+
+  return (
+    <details
+      ref={ref}
+      onToggle={onToggle}
+      className={`group ${rowPadding} [&_summary::-webkit-details-marker]:hidden`}
+    >
+      <summary
+        data-faq-summary
+        onKeyDown={handleSummaryKeyDown}
+        className="flex cursor-pointer items-start justify-between gap-6 list-none rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-brass/60 focus-visible:ring-offset-2 focus-visible:ring-offset-linen"
+      >
+        <dt className={questionClass}>{item.question}</dt>
+        <span
+          aria-hidden
+          className="mt-2 shrink-0 text-brass text-xl leading-none transition-transform duration-300 ease-out group-open:rotate-45"
+        >
+          +
+        </span>
+      </summary>
+      {/*
+        Animated panel.
+        - Closed: grid-rows-[0fr], opacity-0 → child collapses to 0 height.
+        - Open  : grid-rows-[1fr], opacity-1 → child expands to its auto height.
+        - The inner div MUST be `min-h-0 overflow-hidden` so the grid track
+          can actually clip it during the transition.
+        - `motion-reduce` short-circuits the transition for users who opt out.
+      */}
+      <div
+        className={[
+          "faq-panel grid transition-all duration-300 ease-out",
+          "grid-rows-[0fr] opacity-0",
+          "group-open:grid-rows-[1fr] group-open:opacity-100",
+          "motion-reduce:transition-none",
+        ].join(" ")}
+      >
+        <dd className={`min-h-0 overflow-hidden ${answerClass}`}>
+          <div className="pt-4">{item.answerNode ?? item.answer}</div>
+        </dd>
+      </div>
+    </details>
+  );
+};
+
+/**
  * Visible FAQ block. Pair with buildFAQLd in the same page so the schema
  * mirrors the rendered Q&A — Google requires the markup to match what
  * users actually see, otherwise it's grounds for a manual action.
@@ -71,27 +179,13 @@ export const FAQ = ({
         </h2>
         <dl className="divide-y divide-walnut/15 border-t border-walnut/15">
           {items.map((item) => (
-            <details
+            <FaqDetails
               key={item.question}
-              className="group py-6 [&_summary::-webkit-details-marker]:hidden"
-            >
-              <summary className="flex cursor-pointer items-start justify-between gap-6 list-none">
-                {/* Question uses article H3 token — same scale as in-prose H3s. */}
-                <dt className={articleTypography.h3}>
-                  {item.question}
-                </dt>
-                <span
-                  aria-hidden
-                  className="mt-2 shrink-0 text-brass text-xl leading-none transition-transform duration-200 group-open:rotate-45"
-                >
-                  +
-                </span>
-              </summary>
-              {/* Answer uses article body token — identical to MDX <p>. */}
-              <dd className={`${articleTypography.body} mt-4`}>
-                {item.answerNode ?? item.answer}
-              </dd>
-            </details>
+              item={item}
+              questionClass={articleTypography.h3}
+              answerClass={articleTypography.body}
+              rowPadding="py-6"
+            />
           ))}
         </dl>
       </section>
@@ -110,25 +204,13 @@ export const FAQ = ({
           <BrassRule className="mt-10 mb-12" />
           <dl className="divide-y divide-walnut/15">
             {items.map((item) => (
-              <details
+              <FaqDetails
                 key={item.question}
-                className="group py-6 [&_summary::-webkit-details-marker]:hidden"
-              >
-                <summary className="flex cursor-pointer items-start justify-between gap-6 list-none">
-                  <dt className="font-display text-walnut text-xl md:text-2xl leading-snug">
-                    {item.question}
-                  </dt>
-                  <span
-                    aria-hidden
-                    className="mt-2 shrink-0 text-brass text-2xl leading-none transition-transform duration-200 group-open:rotate-45"
-                  >
-                    +
-                  </span>
-                </summary>
-                <dd className="mt-5 text-walnut/80 leading-relaxed text-base md:text-lg">
-                  {item.answerNode ?? item.answer}
-                </dd>
-              </details>
+                item={item}
+                questionClass="font-display text-walnut text-xl md:text-2xl leading-snug"
+                answerClass="text-walnut/80 leading-relaxed text-base md:text-lg"
+                rowPadding="py-6"
+              />
             ))}
           </dl>
         </ScrollReveal>
