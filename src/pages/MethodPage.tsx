@@ -283,6 +283,17 @@ const MethodPage = () => (
               where it stalls. We find the fractures forming before anyone
               has named them. Only then do we build.
             </p>
+            <figure className="mt-10 border-l-2 border-brass/60 pl-6">
+              <blockquote className="font-display text-walnut text-xl md:text-2xl leading-snug italic">
+                “If you can't name where the work is actually getting stuck, every tool you buy will land in the wrong place.”
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-body/70">
+                From{" "}
+                <Link to="/intelligence/diagnosing-ai-readiness-in-people-ops" className={linkCls}>
+                  Diagnosing AI readiness in People Ops →
+                </Link>
+              </figcaption>
+            </figure>
           </div>
         </ScrollReveal>
       </div>
@@ -308,6 +319,17 @@ const MethodPage = () => (
               grain. So do we. We build alongside your people, in your tools,
               with your context. Then we hand it over.
             </p>
+            <figure className="mt-10 border-l-2 border-brass/60 pl-6">
+              <blockquote className="font-display text-cream text-xl md:text-2xl leading-snug italic">
+                “A prompt is a moment of cleverness. A system is what makes the cleverness reliable on a Tuesday afternoon when nobody's watching.”
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-cream/60">
+                From{" "}
+                <Link to="/intelligence/from-prompts-to-systems" className={linkCls}>
+                  From prompts to systems →
+                </Link>
+              </figcaption>
+            </figure>
           </div>
         </ScrollReveal>
       </div>
@@ -335,6 +357,17 @@ const MethodPage = () => (
               systems alongside it. The hours we reclaim go back to your
               people for the work only they can do.
             </p>
+            <figure className="mt-10 border-l-2 border-brass/60 pl-6">
+              <blockquote className="font-display text-walnut text-xl md:text-2xl leading-snug italic">
+                “The leaders who get this right don't lead the rollout. They lead the conditions that make the rollout inevitable.”
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-body/70">
+                From{" "}
+                <Link to="/intelligence/leading-the-ai-transformation" className={linkCls}>
+                  Leading the AI transformation →
+                </Link>
+              </figcaption>
+            </figure>
           </div>
         </ScrollReveal>
       </div>
@@ -360,13 +393,18 @@ const MethodPage = () => (
               Two months after the engagement ends, our champions are still
               building. They have extended the work into places we never
               touched. That is the test. What you still have, and what you
-              have added, six months on.
+              have added, six months on. The guardrails that keep it trustworthy
+              live with the team too —{" "}
+              <Link to="/intelligence/ai-governance-for-people-teams" className={linkCls}>
+                governance designed for the people doing the work
+              </Link>
+              , not bolted on after the fact.
             </p>
           </div>
 
-          {/* Champions trained — pull-quote callout linking to the deep dive */}
+          {/* Champions trained — pull-quote callout linking to the essay */}
           <Link
-            to="/enablement"
+            to="/intelligence/the-champion-model"
             className="group mt-12 block rounded-2xl border-l-4 border-brass bg-walnut/[0.04] p-7 md:p-9 transition-colors hover:bg-walnut/[0.07]"
           >
             <div className="flex items-start justify-between gap-6">
@@ -380,7 +418,7 @@ const MethodPage = () => (
                   and time.&rdquo;
                 </p>
                 <div className="mt-4 inline-flex items-center gap-1 text-sm text-brass font-medium transition-colors group-hover:text-walnut">
-                  See how enablement works
+                  Read &middot; The champion model
                   <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
                 </div>
               </div>
