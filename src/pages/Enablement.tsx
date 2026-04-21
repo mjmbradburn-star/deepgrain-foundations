@@ -5,6 +5,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { Invitation } from "@/components/sections/Invitation";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 
@@ -91,6 +92,10 @@ const Enablement = () => (
       description="What 'people upskilled' means inside a Deepgrain engagement. The coaching curriculum, the champion model, and the capability your team keeps after we leave."
       image="https://deepgrain.ai/og-enablement.png"
       path="/enablement"
+      jsonLd={buildBreadcrumbLd([
+        { name: "Home", url: "https://deepgrain.ai/" },
+        { name: "Enablement", url: "https://deepgrain.ai/enablement" },
+      ])}
     />
 
     {/* Hero */}

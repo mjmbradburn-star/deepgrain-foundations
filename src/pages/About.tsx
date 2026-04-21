@@ -2,6 +2,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const testimonials = [
   {
@@ -22,15 +23,21 @@ const About = () => (
       title="About Matt Webb | Deepgrain"
       description="Matt Webb leads Deepgrain. Background, philosophy, and references from founders and operators across AI-native, defence, fintech, transit, and climate companies."
       path="/about"
-      jsonLd={{
-        "@context": "https://schema.org",
-        "@type": "Person",
-        name: "Matt Webb",
-        jobTitle: "Founder",
-        worksFor: { "@type": "Organization", name: "Deepgrain" },
-        url: "https://deepgrain.ai/about",
-        email: "matt@deepgrain.ai",
-      }}
+      jsonLd={[
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Matt Webb",
+          jobTitle: "Founder",
+          worksFor: { "@type": "Organization", name: "Deepgrain" },
+          url: "https://deepgrain.ai/about",
+          email: "matt@deepgrain.ai",
+        },
+        buildBreadcrumbLd([
+          { name: "Home", url: "https://deepgrain.ai/" },
+          { name: "About", url: "https://deepgrain.ai/about" },
+        ]),
+      ]}
     />
     <section className="relative min-h-[90vh] flex items-end overflow-hidden">
       <div className="absolute inset-0">

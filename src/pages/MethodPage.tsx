@@ -5,6 +5,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { ValueVisualiser } from "@/components/sections/ValueVisualiser";
 import { BuildVsHire } from "@/components/sections/BuildVsHire";
 
@@ -15,6 +16,10 @@ const MethodPage = () => (
       description="The Deepgrain method in full. Read the operating reality, craft the smallest interventions that compound, then scale without breaking the grain."
       image="https://deepgrain.ai/og-method.png"
       path="/method"
+      jsonLd={buildBreadcrumbLd([
+        { name: "Home", url: "https://deepgrain.ai/" },
+        { name: "Method", url: "https://deepgrain.ai/method" },
+      ])}
     />
     {/* Intro */}
     <section className="relative min-h-[80vh] flex items-end overflow-hidden">
