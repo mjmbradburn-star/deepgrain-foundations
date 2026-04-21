@@ -57,6 +57,8 @@ export default {
         linen: "hsl(var(--linen))",
         "linen-dark": "hsl(var(--linen-dark))",
         body: "hsl(var(--body-text))",
+        bark: "hsl(var(--bark))",
+        "bark-2": "hsl(var(--bark-2))",
       },
       borderRadius: {
         lg: "var(--radius)",
