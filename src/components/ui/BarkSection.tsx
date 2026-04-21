@@ -30,6 +30,6 @@ export const BarkSection = ({
     {...rest}
   >
     <BarkGrain />
-    <div className={cn("relative", contentClassName)}>{children}</div>
+    <div className={cn("relative z-10", contentClassName)}>{children}</div>
   </Tag>
 );

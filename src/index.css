@@ -122,14 +122,14 @@
 .hero-drift { animation: hero-drift 60s linear infinite; will-change: transform; }
 
 /* Bark grain — drifting wood-grain texture for dark grey-green surfaces.
-   Four background layers; first is the static depth wash, the next three
-   slide at different rates and directions so the grain reads as living wood
-   rather than scrolling stripes. */
+   Two background layers move at different rates and directions so the grain
+   reads as living wood rather than scrolling stripes. GPU-accelerated via
+   background-position only. */
 @keyframes grain-drift {
-  0%   { background-position: 0% 0%, 0% 0%,    0% 0%,    0% 0%; }
-  100% { background-position: 0% 0%, 220% 0%, -180% 0%, 160% 0%; }
+  0%   { background-position:    0% 0%,    0% 0%; }
+  100% { background-position:  220% 0%, -160% 0%; }
 }
-.bark-grain { animation: grain-drift 45s linear infinite; will-change: background-position; }
+.bark-grain { animation: grain-drift 60s linear infinite; will-change: background-position; }
 
 /* CSS-only fade-in-up for above-the-fold content (replaces framer-motion on critical path) */
 @keyframes fade-in-up {
