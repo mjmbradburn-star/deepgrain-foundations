@@ -124,37 +124,6 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: 'Failed to process unsubscribe' }, 500)
   }
 
-  // Defence-in-depth: explicitly revoke any active brain access tokens
-  // for this address. The suppressed_emails trigger handles this too,
-  // but doing it here gives us a clear application-layer log line and
-  // protects against future trigger refactors.
-  const { data: revokedTokens, error: revokeError } = await supabase
-    .from('brain_access_tokens')
-    .update({ revoked_at: new Date().toISOString(), revoke_reason: 'unsubscribed' })
-    .in(
-      'subscriber_id',
-      (
-        await supabase
-          .from('brain_subscribers')
-          .select('id')
-          .ilike('email', tokenRecord.email)
-      ).data?.map((r) => r.id) ?? [],
-    )
-    .is('revoked_at', null)
-    .select('id')
-
-  if (revokeError) {
-    console.warn('Failed to revoke brain access tokens', {
-      error: revokeError,
-      email: tokenRecord.email,
-    })
-  } else if (revokedTokens && revokedTokens.length > 0) {
-    console.log('Brain access tokens revoked on unsubscribe', {
-      email: tokenRecord.email,
-      count: revokedTokens.length,
-    })
-  }
-
   console.log('Email unsubscribed', { email: tokenRecord.email })
 
   return jsonResponse({ success: true })

@@ -30,19 +30,25 @@ interface BrainWelcomeProps {
   firstName?: string | null
   brainUrl: string
   aioiUrl: string
+  isResend?: boolean
 }
 
 const BrainWelcomeEmail = ({
   firstName,
   brainUrl,
   aioiUrl,
+  isResend = false,
 }: BrainWelcomeProps) => {
   const greeting = firstName ? `Hello ${firstName},` : 'Hello,'
 
   return (
     <Html lang="en" dir="ltr">
       <Head />
-      <Preview>The People Ops AI Brain — your personal link inside.</Preview>
+      <Preview>
+        {isResend
+          ? 'Your Brain link, fresh from the press.'
+          : 'The People Ops AI Brain — one link, yours to keep.'}
+      </Preview>
       <Body style={main}>
         <Container style={container}>
           {/* Brand mark */}
@@ -52,22 +58,17 @@ const BrainWelcomeEmail = ({
 
           {/* Primary content */}
           <Section style={contentSection}>
-            <Text style={eyebrow}>The Brain</Text>
+            <Text style={eyebrow}>{isResend ? 'Brain link · resend' : 'The Brain'}</Text>
             <Heading style={h1}>
-              The People Ops AI Brain.
+              {isResend ? 'Here\u2019s your Brain link again.' : 'The People Ops AI Brain.'}
             </Heading>
 
             <Text style={text}>{greeting}</Text>
 
             <Text style={text}>
-              Thanks for asking for the Brain. The button below opens
-              your personal access link — it&apos;s tied to this email
-              address, so please don&apos;t forward it. If a colleague
-              wants in, send them to{' '}
-              <Link href={`${SITE_URL}/brain`} style={link}>
-                deepgrain.ai/brain
-              </Link>{' '}
-              and they can request their own.
+              {isResend
+                ? 'You asked us to resend your Brain link. The fresh link below replaces any earlier ones — older links from us no longer work.'
+                : 'Thanks for asking for the Brain. The link below is yours to keep \u2014 personal to you, valid for 12 months, and not for forwarding.'}
             </Text>
 
             <Section style={ctaSection}>
@@ -82,18 +83,8 @@ const BrainWelcomeEmail = ({
                 Find Your Starting Point
               </Link>{' '}
               section near the top is the fastest route in. From there
-              you can drop into Foundations, Skills, Systems, or the
-              Human Layer depending on what you need this week.
-            </Text>
-
-            <Text style={fineprint}>
-              The link stays live for a year and is revoked automatically
-              if you unsubscribe. If it ever stops working, just request
-              a fresh one at{' '}
-              <Link href={`${SITE_URL}/brain`} style={fineprintLink}>
-                deepgrain.ai/brain
-              </Link>
-              .
+              you can drop into Foundations, Skills, Systems, or the Human
+              Layer depending on what you need this week.
             </Text>
 
             <Hr style={hr} />
@@ -146,7 +137,10 @@ const BrainWelcomeEmail = ({
 
 export const template = {
   component: BrainWelcomeEmail,
-  subject: 'The People Ops AI Brain — your link inside',
+  subject: (data: Record<string, unknown>) =>
+    data?.isResend
+      ? 'Your Brain link (resend)'
+      : 'The People Ops AI Brain — your link inside',
   displayName: 'Brain — welcome',
   previewData: {
     firstName: 'Sam',
@@ -310,18 +304,4 @@ const footer = {
 const footerLink = {
   color: COLOR_MUTED,
   textDecoration: 'none',
-}
-
-const fineprint = {
-  fontSize: '13px',
-  lineHeight: '1.6',
-  color: COLOR_MUTED,
-  margin: '0 0 24px',
-  fontStyle: 'italic' as const,
-}
-
-const fineprintLink = {
-  color: COLOR_MUTED,
-  textDecoration: 'underline',
-  textDecorationColor: COLOR_BRASS,
 }

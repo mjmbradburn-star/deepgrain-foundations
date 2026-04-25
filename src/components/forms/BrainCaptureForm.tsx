@@ -112,10 +112,8 @@ export const BrainCaptureForm = ({
                 isDark ? "text-cream/70" : "text-walnut/70",
               )}
             >
-              The Brain link is on its way. It&apos;s personal to your
-              email address — please don&apos;t forward it. If a colleague
-              wants in, point them back here. While you wait, see how
-              your People function actually scores.
+              The Brain link is on its way. While you wait, see how your
+              People function actually scores.
             </p>
             <a
               href={AIOI_URL}
@@ -225,6 +223,15 @@ export const BrainCaptureForm = ({
           )}
         >
           Privacy
+        </Link>
+        <Link
+          to="/brain/resend"
+          className={cn(
+            "text-xs underline underline-offset-2 transition-colors",
+            isDark ? "text-cream/55 hover:text-cream/80" : "text-walnut/55 hover:text-walnut/80",
+          )}
+        >
+          Already signed up? Resend my link →
         </Link>
       </div>
 

@@ -10,7 +10,15 @@ const corsHeaders = {
 
 const SITE_BASE = 'https://deepgrain.ai'
 
-function htmlResponse(title: string, body: string, status = 200): Response {
+function htmlResponse(
+  title: string,
+  body: string,
+  status = 200,
+  resendReason?: 'not_found' | 'revoked' | 'expired' | 'malformed',
+): Response {
+  const cta = resendReason
+    ? `<p><a class="btn" href="${SITE_BASE}/brain/resend?reason=${resendReason}">Request a fresh link →</a></p>`
+    : `<p><a href="${SITE_BASE}/brain">Return to deepgrain.ai/brain</a></p>`
   // Tiny self-contained HTML — keeps copy on-brand without pulling the SPA bundle.
   const html = `<!doctype html>
 <html lang="en">
@@ -26,13 +34,15 @@ function htmlResponse(title: string, body: string, status = 200): Response {
     h1 { font-size: 28px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 16px; }
     p { font-size: 16px; line-height: 1.6; color: #4a4a4a; margin: 0 0 16px; }
     a { color: #1a1a1a; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    a.btn { display: inline-block; padding: 12px 22px; border: 1px solid #1a1a1a; border-radius: 999px; text-decoration: none; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+    a.btn:hover { background: #1a1a1a; color: #faf8f3; }
   </style>
 </head>
 <body>
   <main>
     <h1>${title}</h1>
     ${body}
-    <p><a href="${SITE_BASE}/brain">Return to deepgrain.ai/brain</a></p>
+    ${cta}
   </main>
 </body>
 </html>`
@@ -86,8 +96,9 @@ Deno.serve(async (req) => {
   if (!token || token.length < 16 || token.length > 128) {
     return htmlResponse(
       'Link not recognised',
-      '<p>This Brain link is missing or malformed. If you signed up but never received a working link, request a fresh one by re-submitting the form on deepgrain.ai/brain.</p>',
+      '<p>This Brain link is missing or malformed. If you signed up but never received a working link, request a fresh one below.</p>',
       400,
+      'malformed',
     )
   }
 
@@ -107,24 +118,27 @@ Deno.serve(async (req) => {
   if (!tokenRow) {
     return htmlResponse(
       'Link not recognised',
-      '<p>This Brain link doesn’t match any active subscriber. Request a fresh one by re-submitting the form on deepgrain.ai/brain.</p>',
+      '<p>This Brain link doesn’t match any active subscriber. Request a fresh one below.</p>',
       404,
+      'not_found',
     )
   }
 
   if (tokenRow.revoked_at) {
     return htmlResponse(
       'Access revoked',
-      `<p>This Brain link has been revoked${tokenRow.revoke_reason ? ` (${tokenRow.revoke_reason})` : ''}. If this is unexpected, email <a href="mailto:matt@peopleleaders.io">matt@peopleleaders.io</a>.</p>`,
+      `<p>This Brain link has been revoked${tokenRow.revoke_reason ? ` (${tokenRow.revoke_reason})` : ''}. If you still subscribe, request a fresh one below. If this is unexpected, email <a href="mailto:matt@peopleleaders.io">matt@peopleleaders.io</a>.</p>`,
       410,
+      'revoked',
     )
   }
 
   if (new Date(tokenRow.expires_at).getTime() < Date.now()) {
     return htmlResponse(
       'Link expired',
-      '<p>This Brain link has expired. Request a fresh one by re-submitting the form on deepgrain.ai/brain.</p>',
+      '<p>This Brain link has expired. Request a fresh one below.</p>',
       410,
+      'expired',
     )
   }
 
