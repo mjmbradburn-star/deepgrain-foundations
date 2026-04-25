@@ -462,7 +462,7 @@ Deno.serve(async (req) => {
         headers: {
           'Content-Type': 'application/json',
           apikey: supabasePublishableKey,
-          Authorization: `Bearer ${supabasePublishableKey}`,
+          Authorization: `Bearer ${supabaseServiceKey}`,
         },
         body: JSON.stringify({
           templateName: 'brain-welcome',
