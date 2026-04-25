@@ -7,13 +7,12 @@ import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { brainCards } from "@/data/brainCards";
 import matthewPortrait from "@/assets/matthew-bradburn.jpg";
+import { BrainCaptureForm } from "@/components/forms/BrainCaptureForm";
 
 /**
  * /brain — The People Ops AI Brain (lead capture).
  *
- * Phase 2: full visual composition. The capture form is a non-functional
- * placeholder (`<BrainCapturePlaceholder />`); backend wiring lands in Phase 3
- * via `<BrainCaptureForm />` + the `send-brain-welcome` edge function.
+ * Phase 3: form is wired to the `send-brain-welcome` edge function.
  */
 
 const FORM_TARGET_ID = "brain-capture-form";
@@ -28,95 +27,6 @@ const scrollToForm = () => {
     behavior: prefersReducedMotion ? "auto" : "smooth",
     block: "center",
   });
-};
-
-/**
- * Visual-only capture form. Identical markup to what Phase 3's
- * `<BrainCaptureForm />` will render in its idle state, so styling is final.
- */
-const BrainCapturePlaceholder = ({
-  variant = "dark",
-  formId,
-}: {
-  variant?: "dark" | "light";
-  formId?: string;
-}) => {
-  const isDark = variant === "dark";
-  return (
-    <form
-      id={formId}
-      aria-label="Subscribe to The People Ops AI Brain"
-      onSubmit={(e) => e.preventDefault()}
-      className="w-full max-w-xl"
-    >
-      <div className="flex flex-col sm:flex-row gap-3">
-        <input
-          type="text"
-          autoComplete="given-name"
-          placeholder="First name (optional)"
-          className={
-            isDark
-              ? "flex-1 bg-transparent border-0 border-b border-cream/30 focus:border-cream/80 text-cream placeholder:text-cream/40 py-3 px-1 font-sans text-base focus:outline-none transition-colors"
-              : "flex-1 bg-transparent border-0 border-b border-walnut/30 focus:border-walnut/80 text-walnut placeholder:text-walnut/40 py-3 px-1 font-sans text-base focus:outline-none transition-colors"
-          }
-        />
-        <input
-          type="email"
-          autoComplete="email"
-          required
-          placeholder="you@company.com"
-          className={
-            isDark
-              ? "flex-[1.3] bg-transparent border-0 border-b border-cream/30 focus:border-cream/80 text-cream placeholder:text-cream/40 py-3 px-1 font-sans text-base focus:outline-none transition-colors"
-              : "flex-[1.3] bg-transparent border-0 border-b border-walnut/30 focus:border-walnut/80 text-walnut placeholder:text-walnut/40 py-3 px-1 font-sans text-base focus:outline-none transition-colors"
-          }
-        />
-      </div>
-
-      <label
-        className={
-          "mt-5 flex items-start gap-3 text-sm leading-relaxed cursor-pointer " +
-          (isDark ? "text-cream/70" : "text-walnut/75")
-        }
-      >
-        <input
-          type="checkbox"
-          className={
-            "mt-1 h-4 w-4 rounded-sm border " +
-            (isDark
-              ? "border-cream/40 bg-transparent accent-brass"
-              : "border-walnut/40 bg-transparent accent-brass")
-          }
-        />
-        <span>
-          Send me the Brain and occasional updates. I can unsubscribe any time.
-        </span>
-      </label>
-
-      <div className="mt-6 flex items-center gap-4">
-        <button
-          type="submit"
-          disabled
-          className={
-            "font-sans uppercase text-[11px] px-7 py-3 rounded-full border transition-colors disabled:opacity-50 disabled:cursor-not-allowed " +
-            (isDark
-              ? "border-brass text-brass"
-              : "border-walnut text-walnut")
-          }
-          style={{ letterSpacing: "0.16em" }}
-        >
-          Send me the Brain →
-        </button>
-        <span
-          className={
-            "text-xs " + (isDark ? "text-cream/40" : "text-walnut/50")
-          }
-        >
-          Wiring lands in Phase 3
-        </span>
-      </div>
-    </form>
-  );
 };
 
 const Brain = () => (
@@ -169,7 +79,7 @@ const Brain = () => (
           </p>
 
           <div className="mt-10">
-            <BrainCapturePlaceholder />
+            <BrainCaptureForm formId={FORM_TARGET_ID} />
           </div>
 
           <p className="mt-6 text-cream/55 text-xs max-w-md leading-relaxed">
@@ -395,7 +305,7 @@ const Brain = () => (
           <BrassRule className="mx-auto my-10" />
 
           <div className="flex justify-center">
-            <BrainCapturePlaceholder formId={FORM_TARGET_ID} />
+            <BrainCaptureForm formId={`${FORM_TARGET_ID}-secondary`} />
           </div>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
