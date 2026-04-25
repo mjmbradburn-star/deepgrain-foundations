@@ -285,20 +285,18 @@ async function logOutcome(
   //    never let a logging failure break the user-facing response.
   if (!supabase) return
   try {
+    // Map outcomes onto the constrained `status` enum used by the existing
+    // dashboard. The granular outcome stays in metadata.outcome.
+    //   success           → pending  (the real send row is written later
+    //                                  by send-transactional-email)
+    //   send_suppressed   → suppressed
+    //   everything else   → failed   (with reason in error_message + metadata)
     const status =
       outcome === 'success'
         ? 'pending'
-        : outcome === 'duplicate'
-          ? 'duplicate'
-          : outcome === 'blocked_domain'
-            ? 'blocked'
-            : outcome === 'rate_limited'
-              ? 'rate_limited'
-              : outcome === 'send_suppressed'
-                ? 'suppressed'
-                : outcome === 'validation_failed' || outcome === 'invalid_json'
-                  ? 'rejected'
-                  : 'failed'
+        : outcome === 'send_suppressed'
+          ? 'suppressed'
+          : 'failed'
 
     await supabase.from('email_send_log').insert({
       message_id: `brain-welcome-meta-${crypto.randomUUID()}`,
