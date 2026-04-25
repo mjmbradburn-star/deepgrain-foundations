@@ -225,6 +225,8 @@ Deno.serve(async (req) => {
     console.warn('resend-brain-link: validation failed', {
       hasEmail: typeof r.email,
       emailRawLen: emailRaw.length,
+      emailRawValue: emailRaw,
+      regexTest: EMAIL_REGEX.test(emailRaw),
       keys: Object.keys(r),
     })
     await logOutcome(supabase, 'resend_validation_failed', { ip, detail: { field: 'email' } })
