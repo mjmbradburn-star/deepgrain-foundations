@@ -548,10 +548,11 @@ Deno.serve(async (req) => {
       React.createElement(brainWelcomeTemplate.component, templateData),
       { plainText: true },
     )
+    const subjectField = brainWelcomeTemplate.subject as
+      | string
+      | ((data: typeof templateData) => string)
     const resolvedSubject =
-      typeof brainWelcomeTemplate.subject === 'function'
-        ? brainWelcomeTemplate.subject(templateData)
-        : brainWelcomeTemplate.subject
+      typeof subjectField === 'function' ? subjectField(templateData) : subjectField
 
     // 4. Log a `pending` row before enqueue so we have a record even if
     //    enqueue throws.
