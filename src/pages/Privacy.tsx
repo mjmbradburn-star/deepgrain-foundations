@@ -89,19 +89,20 @@ const Privacy = () => (
 
         <H2>How long we keep it</H2>
         <P>
-          Subscriber records are kept until you unsubscribe. Enquiries are kept
-          for up to three years so we can pick up a conversation later, then
-          deleted. Server logs are short-lived and managed by our hosting
-          providers.
+          Subscriber records are kept until you unsubscribe. Brain subscribers
+          are kept for up to 24 months after your last engagement, then deleted
+          unless you ask us to keep you on the list. Enquiries are kept for up
+          to three years so we can pick up a conversation later, then deleted.
+          Server logs are short-lived and managed by our hosting providers.
         </P>
 
         <H2>Who processes it</H2>
         <P>
           We use a small set of trusted providers to run the site and send
-          email. These include our hosting platform (Lovable Cloud, which uses
-          Supabase) and our transactional email provider. These providers act
-          as processors on our instructions and are bound by data processing
-          terms.
+          email. Brain subscriber data and the welcome email are handled by
+          Lovable Cloud (EU-region storage), which uses Supabase as the
+          underlying platform. These providers act as processors on our
+          instructions and are bound by data processing terms.
         </P>
 
         <H2>International transfers</H2>
