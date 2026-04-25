@@ -16,6 +16,8 @@ const CATEGORIES = [
   { slug: "people-ops-governance", name: "People Ops · Governance & Trust", description: "Working with AI without trading away judgment.", track: "people-ops" },
 ];
 
+// Static, indexable routes. Keep in sync with src/App.tsx.
+// Excluded by design: /unsubscribe, /brain/resend, /seo-checklist, /* (404).
 const STATIC_PAGES = [
   { url: "/", priority: "1.0", changefreq: "weekly" },
   { url: "/method", priority: "0.8", changefreq: "monthly" },
@@ -24,7 +26,10 @@ const STATIC_PAGES = [
   { url: "/about", priority: "0.7", changefreq: "monthly" },
   { url: "/contact", priority: "0.6", changefreq: "yearly" },
   { url: "/intelligence", priority: "0.9", changefreq: "weekly" },
-  { url: "/intelligence/people-ops", priority: "0.9", changefreq: "weekly" },
+  { url: "/brain", priority: "0.9", changefreq: "monthly" },
+  { url: "/privacy", priority: "0.3", changefreq: "yearly" },
+  { url: "/cookies", priority: "0.3", changefreq: "yearly" },
+  { url: "/terms", priority: "0.3", changefreq: "yearly" },
 ];
 
 interface Frontmatter {
