@@ -335,7 +335,9 @@ Deno.serve(async (req) => {
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
-  if (!supabaseUrl || !supabaseServiceKey) {
+  const supabasePublishableKey =
+    Deno.env.get('SUPABASE_PUBLISHABLE_KEY') ?? Deno.env.get('SUPABASE_ANON_KEY')
+  if (!supabaseUrl || !supabaseServiceKey || !supabasePublishableKey) {
     await logOutcome(null, 'config_error', { ip })
     return jsonResponse({ error: 'Server configuration error' }, 500)
   }
@@ -439,38 +441,58 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: 'Something went wrong. Try again shortly.' }, 500)
   }
 
-  // Invoke send-transactional-email via the Supabase SDK so the gateway's
-  // JWT validation gets the same auth flow the dispatcher uses (the legacy
-  // SERVICE_ROLE_KEY env is still HS256-signed and is rejected by the
-  // asymmetric-keys gateway when sent as a raw bearer token).
-  const sendInvocation = await supabase.functions.invoke(
-    'send-transactional-email',
-    {
-      body: {
-        templateName: 'brain-welcome',
-        recipientEmail: email,
-        idempotencyKey: `brain-welcome-${inserted.id}`,
-        templateData: {
-          firstName,
-          brainUrl: BRAIN_NOTION_URL,
-          aioiUrl: AIOI_URL,
+  // Call send-transactional-email over HTTP using the publishable
+  // (asymmetric-signed) key. This avoids the gateway rejecting the legacy
+  // HS256 SERVICE_ROLE_KEY when used as a bearer token, while still letting
+  // send-transactional-email render the React Email template, manage the
+  // unsubscribe token, and enqueue the pre-rendered payload for the
+  // dispatcher.
+  const messageId = `brain-welcome-${inserted.id}`
+  const idempotencyKey = `brain-welcome-${inserted.id}`
+
+  let sentOk = false
+  let sendErrorReason: string | null = null
+  let httpStatus = 0
+
+  try {
+    const sendResp = await fetch(
+      `${supabaseUrl}/functions/v1/send-transactional-email`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: supabasePublishableKey,
+          Authorization: `Bearer ${supabaseServiceKey}`,
         },
+        body: JSON.stringify({
+          templateName: 'brain-welcome',
+          recipientEmail: email,
+          idempotencyKey,
+          messageId,
+          templateData: {
+            firstName,
+            brainUrl: BRAIN_NOTION_URL,
+            aioiUrl: AIOI_URL,
+          },
+        }),
       },
-    },
-  )
+    )
+    httpStatus = sendResp.status
+    const sendBody = (await sendResp.json().catch(() => ({}))) as {
+      success?: boolean
+      reason?: string
+      error?: string
+    }
+    sentOk = sendResp.ok && sendBody.success !== false
+    sendErrorReason = sentOk ? null : (sendBody.error ?? sendBody.reason ?? null)
+  } catch (e) {
+    sentOk = false
+    sendErrorReason = e instanceof Error ? e.message : 'send_fetch_failed'
+    httpStatus = 0
+  }
 
-  const sendBody: { success?: boolean; reason?: string; error?: string } =
-    (sendInvocation.data as Record<string, unknown> | null) ?? {}
-  const sendError = sendInvocation.error
-  // The SDK only sets `error` for non-2xx responses; data carries the body.
-  const httpStatus = sendError ? 502 : 200
+  const status = sentOk ? 'queued' : 'failed'
 
-  const sentOk = !sendError && sendBody.success !== false
-  const status = sentOk
-    ? 'queued'
-    : sendBody.reason === 'email_suppressed'
-      ? 'suppressed'
-      : 'failed'
 
   // Stamp the row with the outcome — best-effort, don't fail the request on it.
   const { error: updateError } = await supabase
@@ -496,13 +518,6 @@ Deno.serve(async (req) => {
       domain,
       detail: { subscriber_id: inserted.id },
     })
-  } else if (status === 'suppressed') {
-    await logOutcome(supabase, 'send_suppressed', {
-      ip,
-      email,
-      domain,
-      detail: { subscriber_id: inserted.id, reason: sendBody.reason },
-    })
   } else {
     await logOutcome(supabase, 'send_failed', {
       ip,
@@ -511,7 +526,7 @@ Deno.serve(async (req) => {
       detail: {
         subscriber_id: inserted.id,
         http_status: httpStatus,
-        reason: sendBody.error ?? sendBody.reason ?? null,
+        reason: sendErrorReason,
       },
     })
   }
