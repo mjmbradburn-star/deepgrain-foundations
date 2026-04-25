@@ -505,13 +505,6 @@ Deno.serve(async (req) => {
       domain,
       detail: { subscriber_id: inserted.id },
     })
-  } else if (status === 'suppressed') {
-    await logOutcome(supabase, 'send_suppressed', {
-      ip,
-      email,
-      domain,
-      detail: { subscriber_id: inserted.id, reason: sendBody.reason },
-    })
   } else {
     await logOutcome(supabase, 'send_failed', {
       ip,
@@ -520,7 +513,7 @@ Deno.serve(async (req) => {
       detail: {
         subscriber_id: inserted.id,
         http_status: httpStatus,
-        reason: sendBody.error ?? sendBody.reason ?? null,
+        reason: enqueueError?.message ?? null,
       },
     })
   }
