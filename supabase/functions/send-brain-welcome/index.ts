@@ -335,7 +335,9 @@ Deno.serve(async (req) => {
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
-  if (!supabaseUrl || !supabaseServiceKey) {
+  const supabasePublishableKey =
+    Deno.env.get('SUPABASE_PUBLISHABLE_KEY') ?? Deno.env.get('SUPABASE_ANON_KEY')
+  if (!supabaseUrl || !supabaseServiceKey || !supabasePublishableKey) {
     await logOutcome(null, 'config_error', { ip })
     return jsonResponse({ error: 'Server configuration error' }, 500)
   }
