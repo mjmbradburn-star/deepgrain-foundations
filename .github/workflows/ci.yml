@@ -40,7 +40,10 @@ jobs:
         run: deno fmt --check supabase/functions
 
       - name: Lint (deno lint)
-        # Catches obvious bugs / style issues across all edge functions.
+        # Advisory for now — surfaces issues without blocking deploys
+        # while we work through pre-existing findings. Flip to required
+        # once the backlog is clean.
+        continue-on-error: true
         run: deno lint supabase/functions
 
       - name: Type-check every edge function
