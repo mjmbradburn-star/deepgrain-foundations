@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Critical CSS: paints the linen background + system-font body text
+         before the Tailwind bundle parses, improving First Contentful Paint.
+         Values mirror :root tokens and the body rule in src/index.css. -->
+    <style>
+      html, body { margin: 0; background: hsl(39 32% 90%); color: hsl(26 21% 20%); }
+      body { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+      #root { min-height: 100vh; }
+    </style>
+
+    <!-- Warm the Unsplash connection alongside the hero image preload below. -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
     <!-- Google tag (gtag.js) — SPA: pageviews fired manually per route in src/components/analytics/Analytics.tsx
          Loaded after window 'load' to keep ~156KB of analytics JS off the critical path (FCP/LCP).
          dataLayer + gtag shim are defined synchronously so route-change events queued before the
