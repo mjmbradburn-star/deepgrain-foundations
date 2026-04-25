@@ -79,7 +79,7 @@ const Brain = () => (
           </p>
 
           <div className="mt-10">
-            <BrainCapturePlaceholder />
+            <BrainCaptureForm formId={FORM_TARGET_ID} />
           </div>
 
           <p className="mt-6 text-cream/55 text-xs max-w-md leading-relaxed">
@@ -305,7 +305,7 @@ const Brain = () => (
           <BrassRule className="mx-auto my-10" />
 
           <div className="flex justify-center">
-            <BrainCapturePlaceholder formId={FORM_TARGET_ID} />
+            <BrainCaptureForm formId={`${FORM_TARGET_ID}-secondary`} />
           </div>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
