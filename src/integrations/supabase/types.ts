@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      brain_access_audit_log: {
+        Row: {
+          created_at: string
+          details: Json | null
+          event: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          details?: Json | null
+          event: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          details?: Json | null
+          event?: string
+          id?: string
+        }
+        Relationships: []
+      }
       brain_access_tokens: {
         Row: {
           created_at: string
@@ -310,6 +331,7 @@ export type Database = {
           read_ct: number
         }[]
       }
+      reconcile_brain_access_tokens: { Args: never; Returns: Json }
       set_email_vt: {
         Args: { message_id: number; queue_name: string; vt_seconds: number }
         Returns: boolean
