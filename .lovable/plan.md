@@ -1,143 +1,116 @@
-## /brain — People Ops AI Brain lead capture
+## What Business plan changes
 
-A phased plan to build the `/brain` route per the brief, composed entirely from existing tokens, components, and infrastructure. No new fonts, colours, component libraries, or design patterns will be introduced.
+On Notion Business you get two relevant capabilities the free/Plus tier doesn't have:
 
----
+1. **Site permissions on published sites** — restrict a published Notion site so only specific email addresses (or a domain) can view it. Visitors get a "request access / sign in with email" gate; Notion sends them a magic link; only emails on the allow-list get through.
+2. **Programmatic membership management via the Notion API** — you can add/remove guests on a page, and (with the published-sites API) manage the allow-list for a site.
 
-## Key deviation from the brief (please confirm)
-
-The brief specifies **Resend** + a bespoke `send-brain-welcome` edge function. The project already has the full Lovable Email infrastructure live: queue, retry/backoff, suppression list, unsubscribe tokens, send log, and a verified sender domain (`notify.deepgrain.ai`, just configured this session).
-
-**Recommendation: use the existing infrastructure** for the welcome email. Reasons:
-
-- The sender domain is already verified through Lovable; adding Resend would create a DNS conflict on the same subdomain.
-- Retries, suppression, bounce handling, and one-click unsubscribe already work and are already styled into `/unsubscribe`.
-- No new secret (`RESEND_API_KEY`) is needed.
-- The `From` address can still be `Matt Bradburn <matt@notify.deepgrain.ai>` (display-from-root can show `@deepgrain.ai` if enabled).
-- The template, gating, and audit-trail requirements are unchanged — only the delivery path differs.
-
-The brain_subscribers table, consent capture, audit fields, edge function entry point, and email content are all built as the brief specifies. The substitution is purely the transport layer.
-
-If you'd rather follow the brief literally and add Resend as a parallel system, say so and I'll swap Phase 3 accordingly (this means removing Lovable Emails from `notify.deepgrain.ai` first — see the email infra guide for the DNS implications).  
-  
-I have decided to use the Lovable Email infrastructure we have in place as it makes perfect sense. Ignore the resend aspects of the plan. 
+This means we can make the Brain **actually private** instead of relying on a shared-secret URL. The `/brain` form becomes the system of record for who's allowed in, and Notion enforces the gate at view time.
 
 ---
 
-## Phase 1 — Foundations: routes, nav, schema
+## Recommended approach: Notion-enforced allow-list, synced from `brain_subscribers`
 
-Goal: scaffolding in place so subsequent phases have a route to render into and a table to write to.
+The flow becomes:
 
-1. **Database migration** — create `brain_subscribers` table per Section 9 of the brief (all fields, three indexes, RLS enabled, anon/authenticated revoked). One migration, reviewed before applying.
-2. **Routing** — add `/brain` to `src/App.tsx` as a lazy-loaded page (matching the existing pattern). The `/privacy` and `/unsubscribe` routes already exist.
-3. **Navigation** — add `{ to: "/brain", label: "Brain" }` to the `links` array in `src/components/layout/Navigation.tsx`, positioned between Intelligence and About. Mobile drawer picks it up automatically.
-4. **Page shell** — create `src/pages/Brain.tsx` rendering placeholder sections so the route resolves and the nav link works end-to-end.
+```text
+User submits /brain form
+  → send-brain-welcome inserts brain_subscribers row
+  → send-brain-welcome calls Notion API to add email to the Brain site's allow-list
+  → welcome email goes out with the published Brain URL
+  → user clicks link → Notion shows email-gate → user enters their email
+  → Notion sends magic link → user lands on the Brain
+```
 
----
-
-## Phase 2 — Page composition (visual build)
-
-Goal: every section visually approved against the existing design system before any backend wiring.
-
-1. **Brain card data** — `src/data/brainCards.ts` with the nine cards from Section 5 (typed, hardcoded).
-2. **Section 1 — Hero** — forest backdrop (reuse the homepage hero image), eyebrow `THE BRAIN`, three-line Cormorant headline, sub-headline, form slot (visual only, non-functional in this phase), micro-copy line, scroll chevron matching homepage.
-3. **Section 2 — What's Inside** — linen/walnut body section, eyebrow + heading + sub, three-column responsive card grid reusing the existing card pattern from FOUNDATIONS / ArticleCard styling.
-4. **Section 3 — Sample Article** — phthalo green full-bleed, structural placeholder using lorem-style copy with correct typography and a `BrassRule` quote block reusing the existing pattern. Outline pill CTA that smooth-scrolls to the form in Section 5.
-5. **Section 4 — Author Block** — walnut surface, two-column layout, portrait placeholder of correct dimensions, eyebrow + Cormorant heading + two body paragraphs + three brass-outline credibility chips matching `/about`.
-6. **Section 5 — Second CTA** — forest backdrop with deeper overlay, centred stack, headline, second instance of the form slot, three brass-bordered chip rows.
-7. **Section 6 — Footer** — uses existing `<Footer />` via `<SiteShell>`. Verify privacy link present; add it to the footer link group if missing (single-line change).
-8. **Page meta** — `<PageMeta>` with title, description, path `/brain`.
-
-Animations limited to: chevron bounce, `ScrollReveal` fade-in on sections, form state transition. No new animation library.
+Unsubscribe / suppression flows the other way: when `brain_subscribers.unsubscribed_at` is stamped (or the address hits suppression), we call Notion to revoke that email's access.
 
 ---
 
-## Phase 3 — Form + edge function (backend wiring)
+## What changes in Notion (one-time setup)
 
-Goal: form submits, row written, welcome email sent, audit trail captured.
-
-1. `**<BrainCaptureForm />` component** — `src/components/forms/BrainCaptureForm.tsx`:
-  - Two inputs (first name optional, email required) + consent checkbox + submit button, styled per Section 6.
-  - States: idle → submitting → success / error. Success state replaces form inline with the tick + Cormorant headline + AIOI cross-sell pill.
-  - Validation: permissive RFC email regex, lowercase + trim, submit disabled until valid email + consent.
-  - Captures `userAgent`, `referrer`, `consentTimestamp`, hardcoded `source: 'brain'`.
-  - Posts to the edge function (no direct table write).
-  - Mounted into both Hero and Section 5.
-2. **Edge function `send-brain-welcome**` — `supabase/functions/send-brain-welcome/index.ts`:
-  - Validates payload (email format, `consentGiven === true`, throwaway-domain blocklist).
-  - Reads IP from `x-forwarded-for`.
-  - Inserts row into `brain_subscribers` via service role.
-  - Invokes the existing `send-transactional-email` function with template `brain-welcome` and `templateData` containing `firstName`, `brainUrl`, `aioiUrl`. The existing system handles retries, queue, suppression, and the unsubscribe token automatically.
-  - Updates row with `email_sent_at`, `email_status`, `email_provider_id` on success / `failed` on error.
-  - Rate limit: in-memory map, 5 submissions per IP per 60s, 429 on the 6th.
-  - Always returns success-shaped response on duplicates (no duplicate signal to caller).
-3. **React Email template `brain-welcome**` — `supabase/functions/_shared/transactional-email-templates/brain-welcome.tsx`:
-  - Per Section 11: max-width 600px, phthalo green background, walnut card, brass accents, cream body, Georgia/serif fallback headlines, system sans body.
-  - DEEPGRAIN wordmark, greeting, body, brass pill "Open the Brain →" linking to `brainUrl`, where-to-start paragraph, brass divider, walnut secondary block with "Take the AIOI →" outline CTA, sign-off, footer with unsubscribe + privacy links.
-  - Registered in `_shared/transactional-email-templates/registry.ts`.
-4. **Secrets** — add `BRAIN_NOTION_URL` (your Notion link) and `AIOI_URL` (`https://aioi.deepgrain.ai`) as edge function secrets. `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` already present. No `RESEND_API_KEY` (see deviation note above).
-5. **Deploy edge functions**: `send-brain-welcome` and `send-transactional-email` (the latter to pick up the new template).
+1. **Share → Publish tab**: keep Publish ON for the `peopleleaders.notion.site/...` URL.
+2. **Publish → Site permissions**: switch from "Anyone with the link" to **"Restrict access"** (Business-only setting). Add `matt@peopleleaders.io` as an initial allowed email so you don't lock yourself out.
+3. **Search engine indexing → OFF.** It's currently On per your screenshot.
+4. **Share tab → General access**: set the canonical `notion.so/...` URL to **No access**. Only the published site URL is the entry point.
+5. **Rotate the published-site slug** once, to invalidate the link that's been circulating publicly.
+6. **Create a Notion internal integration** (Settings → Connections → Develop integrations → New internal integration) with the minimum scopes needed to manage site members. Copy the integration token. Connect it to the Brain page (••• menu → Connections → add the integration).
 
 ---
 
-## Phase 4 — Privacy + unsubscribe
+## What changes in our codebase
 
-Goal: legal + opt-out work end-to-end.
+### Phase 1 — Add the Notion sync to send-brain-welcome
 
-1. **Privacy page** — extend the existing `src/pages/Privacy.tsx` with a `Brain` subsection covering the data captured at `/brain` (first name, email, consent timestamp, IP, user agent), retention (24 months post last engagement), processors (Lovable Cloud + EU-region storage), and the rights statement. Existing chrome and styling unchanged.
-2. **Unsubscribe** — the existing `/unsubscribe` page uses the global suppression token system. Extend the `handle-email-unsubscribe` edge function (or add a tiny `unsubscribe-brain` companion) so that when a token resolves to a brain subscriber, `brain_subscribers.unsubscribed_at` is also stamped. Visual states (success / error) already match the brief's requirements; minor copy tweak only if needed.
-3. **Footer link** — verify privacy link target. (Already present in Footer per existing routes.)
+1. **Secrets** (added via `add_secret`):
+   - `NOTION_INTEGRATION_TOKEN` — the internal integration token.
+   - `NOTION_BRAIN_SITE_ID` — the published-site identifier the API needs to manage members.
+   - `BRAIN_NOTION_URL` — promote the existing hard-coded constant to a secret (currently in `supabase/functions/send-brain-welcome/index.ts` line 39 and `brain-welcome.tsx` previewData), and set it to the new rotated `peopleleaders.notion.site/...` URL.
+2. **`send-brain-welcome/index.ts`**:
+   - After successful insert into `brain_subscribers` and before enqueuing the welcome email, call the Notion API to add the email to the site allow-list.
+   - Wrap in try/catch: if Notion sync fails, still send the email (so the user isn't stranded), but stamp `brain_subscribers.notion_sync_status = 'failed'` and log a `notion_sync_failed` outcome via the existing `logOutcome` helper.
+   - Add a new outcome type `notion_sync_failed` to the `Outcome` union and the `negative` list.
+3. **DB migration**: add two columns to `brain_subscribers` — `notion_sync_status text` (values: `pending` | `synced` | `failed` | `revoked`) and `notion_synced_at timestamptz`. Both nullable, no backfill needed.
+
+### Phase 2 — Wire the revoke path
+
+1. **`handle-email-unsubscribe/index.ts`**: when the token resolves to a brain subscriber, in addition to stamping `unsubscribed_at`, call the Notion API to revoke that email from the site allow-list. Same try/catch posture: log a metric, don't block the unsubscribe response.
+2. **`handle-email-suppression/index.ts`** (bounce/complaint webhook): if the bounced/complained address exists in `brain_subscribers`, revoke from Notion as well.
+3. Stamp `notion_sync_status = 'revoked'` on success.
+
+### Phase 3 — Reconciliation safety net
+
+A small scheduled edge function (daily via `pg_cron`) — `reconcile-brain-notion-access` — that:
+- pulls the current Notion site allow-list,
+- diff against `brain_subscribers` where `unsubscribed_at IS NULL` and `email_status NOT IN ('suppressed','bounced')`,
+- adds anything missing, removes anything that shouldn't be there,
+- logs the diff to a new `brain_notion_sync_log` table for audit.
+
+This catches drift from failed Notion calls, manual edits in Notion's UI, or API outages.
+
+### Phase 4 — Tighten the email + page
+
+1. Update the welcome email copy in `brain-welcome.tsx` to set expectations: "When you click through, Notion will ask for your email so it can send a one-time sign-in link. Use the same address you signed up with."
+2. Update `src/pages/Brain.tsx` success state copy to mirror the same expectation.
+3. Update `src/pages/Privacy.tsx` Brain section to disclose that the email is shared with Notion to enforce the access gate (Notion becomes a named processor).
 
 ---
 
-## Phase 5 — QA, content, launch checklist
+## Trade-offs to be aware of
 
-Goal: meet every acceptance criterion in Section 13.
-
-1. **Functional QA**:
-  - Submit valid form → row appears with all fields; email arrives within 60s; both links work.
-  - Submit without consent / invalid email → submit stays disabled, no console errors.
-  - Click unsubscribe link → `/unsubscribe?token=…` updates the row, success state renders.
-  - Browser console attempt to `select` from `brain_subscribers` with anon key → fails.
-2. **Cross-browser/device check** — Chrome, Safari, Firefox, mobile Safari, mobile Chrome. Lighthouse a11y ≥ 95.
-3. **Email render check** — preview the `brain-welcome` template via the existing `preview-transactional-email` function; send to `delivered@resend.dev`-equivalent test inbox.
-4. **Voice scrub** — re-read every line of new copy against Section 1's blocklist (no "leverage", "seamlessly", "robust", em dashes, etc.).
-5. **Items pending from Matt** (block launch only, not build):
-  - Sample article MDX for Section 3 (placeholder until then).
-  - Final `BRAIN_NOTION_URL` (you've supplied it: `https://www.notion.so/The-Deepgrain-People-Ops-AI-Brain-2f61569da34481baa942d9758263742d`).
-  - Author portrait image.
-  - Privacy-policy sign-off.
+- **One extra step for the reader.** Each visit (or each new device/cleared cookies) requires the Notion magic-link dance. This is the price of real enforcement. The welcome-email copy needs to set this expectation clearly or you'll get confused replies.
+- **Email address must match.** If the subscriber forwards the welcome email to a colleague, the colleague can't get in unless they sign up themselves. That's the feature.
+- **Notion API rate limits** apply. At your volume this is a non-issue, but the reconcile job should batch politely.
+- **Notion outage = no new sign-ins.** The reconcile job + the "send the email even if Notion sync fails" fallback mean a temporary Notion API outage doesn't black-hole subscribers — they'll be added once Notion is back.
 
 ---
 
-## Files touched (summary)
+## Files touched
 
 New:
-
-- `src/pages/Brain.tsx`
-- `src/components/forms/BrainCaptureForm.tsx`
-- `src/data/brainCards.ts`
-- `supabase/functions/send-brain-welcome/index.ts` (+ `deno.json`)
-- `supabase/functions/_shared/transactional-email-templates/brain-welcome.tsx`
-- One DB migration (`brain_subscribers` + RLS)
+- DB migration: add `notion_sync_status`, `notion_synced_at` to `brain_subscribers`; create `brain_notion_sync_log` table; schedule `reconcile-brain-notion-access` via `pg_cron`.
+- `supabase/functions/_shared/notion-brain-access.ts` — small helper module for `addToAllowlist(email)` / `removeFromAllowlist(email)` / `listAllowlist()`.
+- `supabase/functions/reconcile-brain-notion-access/` (index.ts + deno.json + config block).
 
 Modified:
-
-- `src/App.tsx` (add `/brain` route)
-- `src/components/layout/Navigation.tsx` (add Brain link)
-- `src/components/layout/Footer.tsx` (only if privacy link missing)
-- `src/pages/Privacy.tsx` (append Brain clauses)
-- `supabase/functions/_shared/transactional-email-templates/registry.ts` (register new template)
-- `supabase/functions/handle-email-unsubscribe/index.ts` (also stamp `brain_subscribers.unsubscribed_at`)
-- `supabase/config.toml` (config block for `send-brain-welcome` if non-default needed)
+- `supabase/functions/send-brain-welcome/index.ts` — call sync helper, new outcome type.
+- `supabase/functions/handle-email-unsubscribe/index.ts` — revoke on unsubscribe.
+- `supabase/functions/handle-email-suppression/index.ts` — revoke on bounce/complaint.
+- `supabase/functions/_shared/transactional-email-templates/brain-welcome.tsx` — explain the Notion email-gate; update preview URL.
+- `src/pages/Brain.tsx` — success-state copy.
+- `src/pages/Privacy.tsx` — disclose Notion as a processor.
+- `public/robots.txt` — disallow the new slug as defence-in-depth.
+- `supabase/config.toml` — config block for the new function.
 
 ---
 
-## Out of scope (explicitly)
+## Out of scope
 
-- Double opt-in (per Section 14).
-- Iframe of the Notion page (per Section 14).
-- Share-with-a-friend (per Section 14).
-- New Tailwind tokens, fonts, colours, animation libraries.
-- CMS-driven cards (hardcoded for v1).
-- Newsletter / re-engagement sequences (transactional-only — anything bulk would need a separate marketing tool).
+- Replacing the Notion magic-link UX with our own SSO bridge (would require Notion Enterprise + SCIM).
+- Migrating the Brain content off Notion.
+- Re-emailing existing subscribers to warn them of the new gate (separate decision; recommended once the sync is live and verified).
+
+---
+
+## Open question before I build
+
+Do you want to **bulk-add all existing `brain_subscribers` to the Notion allow-list** as part of the rollout, so they're not locked out on their next visit? I'd do this as a one-shot script run after Phase 1 ships and before you rotate the slug. Say the word and I'll include it.
