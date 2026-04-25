@@ -63,6 +63,17 @@ const Privacy = () => (
           trail for the consent record.
         </P>
         <P>
+          <strong>Brain link resends.</strong> If you ask us to resend your
+          Brain link at{" "}
+          <Link to="/brain/resend" className="text-walnut underline underline-offset-2 hover:text-brass">
+            /brain/resend
+          </Link>
+          , we'll tell you whether your address is on file, has unsubscribed,
+          or has been blocked due to bounces or spam complaints — so you know
+          why access isn't working. This is a deliberate, scoped exception to
+          our usual practice of not disclosing whether an email is on file.
+        </P>
+        <P>
           <strong>Enquiries.</strong> If you use the contact form, we store the
           name, email, organisation, team size, and message you give us.
         </P>
