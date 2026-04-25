@@ -263,6 +263,10 @@ export type Database = {
           read_ct: number
         }[]
       }
+      set_email_vt: {
+        Args: { message_id: number; queue_name: string; vt_seconds: number }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
