@@ -234,7 +234,7 @@ const Brain = () => (
                 Read the full Brain →
               </PillButton>
               <span className="text-cream/55 text-sm">
-                Eight more pieces like this.
+                20+ more pieces like this.
               </span>
             </div>
           </ScrollReveal>
@@ -335,7 +335,7 @@ const Brain = () => (
                     className="font-sans uppercase text-[10px] text-walnut/55"
                     style={{ letterSpacing: "0.18em" }}
                   >
-                    Preview · 1 of 9
+                    ​
                   </span>
                   <span className="font-display text-brass text-sm">
                     deepgrain.ai/brain
@@ -376,13 +376,12 @@ const Brain = () => (
             <div className="mt-8 space-y-5 text-cream/80 leading-relaxed max-w-xl">
               <p>
                 Two decades inside companies, building People functions,
-                fixing them, sitting in the rooms where the hard calls get
-                made. Multiverse, Bud, defence, fintech, climate. The kind of
-                exposure that turns instinct into pattern.
+                fixing them. The kind of exposure that turns instinct into
+                pattern.
               </p>
               <p>
                 The Brain is the working file: what we&apos;ve actually tried,
-                what stuck, and the systems we&apos;d keep if we were starting
+                what works, and the systems we&apos;d keep if we were starting
                 from scratch tomorrow.
               </p>
             </div>
