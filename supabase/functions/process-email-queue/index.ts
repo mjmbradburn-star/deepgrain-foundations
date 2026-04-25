@@ -13,6 +13,20 @@ const DEFAULT_SEND_DELAY_MS = 200
 const DEFAULT_AUTH_TTL_MINUTES = 15
 const DEFAULT_TRANSACTIONAL_TTL_MINUTES = 60
 
+// Exponential backoff for transient send failures.
+// Visibility timeout grows with each failed attempt:
+//   attempt 1 -> 30s, 2 -> 60s, 3 -> 120s, 4 -> 240s, 5 -> 480s (capped).
+// Jitter (±20%) avoids thundering-herd retries when many messages fail at once.
+const BACKOFF_BASE_SECONDS = 30
+const BACKOFF_MAX_SECONDS = 480
+function computeBackoffSeconds(failedAttempts: number): number {
+  const exp = Math.min(failedAttempts, 6) // clamp the exponent
+  const raw = BACKOFF_BASE_SECONDS * Math.pow(2, Math.max(0, exp - 1))
+  const capped = Math.min(raw, BACKOFF_MAX_SECONDS)
+  const jitter = 1 + (Math.random() * 0.4 - 0.2) // ±20%
+  return Math.max(1, Math.round(capped * jitter))
+}
+
 // Check if an error is a rate-limit (429) response.
 // Uses EmailAPIError.status when available (email-js >=0.x with structured errors),
 // falls back to parsing the error message for older versions.
