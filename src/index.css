@@ -189,3 +189,29 @@
     transform: none !important;
   }
 }
+
+/* BrainCaptureForm — neutralise browser autofill so inputs keep the
+   site's transparent/cream styling instead of WebKit's default white+black. */
+.brain-capture-input {
+  font-family: inherit;
+}
+.brain-capture-input:-webkit-autofill,
+.brain-capture-input:-webkit-autofill:hover,
+.brain-capture-input:-webkit-autofill:focus,
+.brain-capture-input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: hsl(var(--cream));
+  caret-color: hsl(var(--cream));
+  transition: background-color 9999s ease-in-out 0s;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  font-family: inherit;
+}
+.brain-capture-input[data-variant="light"]:-webkit-autofill,
+.brain-capture-input[data-variant="light"]:-webkit-autofill:hover,
+.brain-capture-input[data-variant="light"]:-webkit-autofill:focus,
+.brain-capture-input[data-variant="light"]:-webkit-autofill:active {
+  -webkit-text-fill-color: hsl(var(--walnut));
+  caret-color: hsl(var(--walnut));
+}
