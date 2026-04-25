@@ -634,7 +634,6 @@ Deno.serve(async (req) => {
       domain,
       detail: {
         subscriber_id: inserted.id,
-        http_status: httpStatus,
         reason: sendErrorReason,
       },
     })
