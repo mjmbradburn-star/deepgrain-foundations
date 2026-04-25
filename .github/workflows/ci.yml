@@ -34,6 +34,15 @@ jobs:
           restore-keys: |
             deno-${{ runner.os }}-
 
+      - name: Format check (deno fmt)
+        # Non-mutating check across all edge functions. Fails the build
+        # if any file would be reformatted, keeping style consistent.
+        run: deno fmt --check supabase/functions
+
+      - name: Lint (deno lint)
+        # Catches obvious bugs / style issues across all edge functions.
+        run: deno lint supabase/functions
+
       - name: Type-check every edge function
         # Each function has its own deno.json (especially for React/JSX
         # rendering functions) so we install + check from inside each
@@ -76,6 +85,9 @@ jobs:
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
+
+      - name: Lint (eslint)
+        run: bun run lint
 
       - name: TypeScript check
         run: bunx tsc --noEmit -p tsconfig.app.json
