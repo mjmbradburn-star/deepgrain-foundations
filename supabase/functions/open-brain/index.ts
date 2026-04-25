@@ -1,24 +1,25 @@
 // open-brain: validates a per-subscriber access token and 302-redirects
 // to the secret Notion URL. The Notion URL is never exposed in HTML, JSON,
 // sitemap, or marketing surfaces — only here, only after token validation.
-import { createClient } from 'npm:@supabase/supabase-js@2'
+import { createClient } from "npm:@supabase/supabase-js@2";
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type",
+};
 
-const SITE_BASE = 'https://deepgrain.ai'
+const SITE_BASE = "https://deepgrain.ai";
 
 function htmlResponse(
   title: string,
   body: string,
   status = 200,
-  resendReason?: 'not_found' | 'revoked' | 'expired' | 'malformed',
+  resendReason?: "not_found" | "revoked" | "expired" | "malformed",
 ): Response {
   const cta = resendReason
     ? `<p><a class="btn" href="${SITE_BASE}/brain/resend?reason=${resendReason}">Request a fresh link →</a></p>`
-    : `<p><a href="${SITE_BASE}/brain">Return to deepgrain.ai/brain</a></p>`
+    : `<p><a href="${SITE_BASE}/brain">Return to deepgrain.ai/brain</a></p>`;
   // Tiny self-contained HTML — keeps copy on-brand without pulling the SPA bundle.
   const html = `<!doctype html>
 <html lang="en">
@@ -45,128 +46,149 @@ function htmlResponse(
     ${cta}
   </main>
 </body>
-</html>`
+</html>`;
   return new Response(html, {
     status,
-    headers: { ...corsHeaders, 'Content-Type': 'text/html; charset=utf-8' },
-  })
+    headers: { ...corsHeaders, "Content-Type": "text/html; charset=utf-8" },
+  });
 }
 
 Deno.serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders })
+  if (req.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
   }
 
-  if (req.method !== 'GET') {
-    return htmlResponse('Method not allowed', '<p>This link only accepts GET requests.</p>', 405)
+  if (req.method !== "GET") {
+    return htmlResponse(
+      "Method not allowed",
+      "<p>This link only accepts GET requests.</p>",
+      405,
+    );
   }
 
-  const supabaseUrl = Deno.env.get('SUPABASE_URL')
-  const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
-  const brainUrl = Deno.env.get('BRAIN_NOTION_URL')
+  const supabaseUrl = Deno.env.get("SUPABASE_URL");
+  const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+  const brainUrl = Deno.env.get("BRAIN_NOTION_URL");
 
   if (!supabaseUrl || !supabaseServiceKey || !brainUrl) {
-    console.error('open-brain: missing config', {
+    console.error("open-brain: missing config", {
       hasUrl: !!supabaseUrl,
       hasKey: !!supabaseServiceKey,
       hasBrain: !!brainUrl,
-    })
+    });
     return htmlResponse(
-      'Service unavailable',
+      "Service unavailable",
       '<p>The Brain link service is temporarily misconfigured. Please email <a href="mailto:matt@peopleleaders.io">matt@peopleleaders.io</a>.</p>',
       500,
-    )
+    );
   }
 
   // Defensive: refuse to ever resolve to a public notion.so/notion.site URL
   // that hasn't been swapped to the rotated, locked-down one.
   try {
-    const parsed = new URL(brainUrl)
+    const parsed = new URL(brainUrl);
     if (!/notion\.so$|notion\.site$/.test(parsed.hostname)) {
-      console.error('open-brain: BRAIN_NOTION_URL is not a Notion host', { host: parsed.hostname })
-      return htmlResponse('Service unavailable', '<p>The Brain link is misconfigured.</p>', 500)
+      console.error("open-brain: BRAIN_NOTION_URL is not a Notion host", {
+        host: parsed.hostname,
+      });
+      return htmlResponse(
+        "Service unavailable",
+        "<p>The Brain link is misconfigured.</p>",
+        500,
+      );
     }
   } catch {
-    return htmlResponse('Service unavailable', '<p>The Brain link is misconfigured.</p>', 500)
+    return htmlResponse(
+      "Service unavailable",
+      "<p>The Brain link is misconfigured.</p>",
+      500,
+    );
   }
 
-  const url = new URL(req.url)
-  const token = url.searchParams.get('t')
+  const url = new URL(req.url);
+  const token = url.searchParams.get("t");
 
   if (!token || token.length < 16 || token.length > 128) {
     return htmlResponse(
-      'Link not recognised',
-      '<p>This Brain link is missing or malformed. If you signed up but never received a working link, request a fresh one below.</p>',
+      "Link not recognised",
+      "<p>This Brain link is missing or malformed. If you signed up but never received a working link, request a fresh one below.</p>",
       400,
-      'malformed',
-    )
+      "malformed",
+    );
   }
 
-  const supabase = createClient(supabaseUrl, supabaseServiceKey)
+  const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
   const { data: tokenRow, error: lookupError } = await supabase
-    .from('brain_access_tokens')
-    .select('id, subscriber_id, expires_at, revoked_at, revoke_reason, use_count')
-    .eq('token', token)
-    .maybeSingle()
+    .from("brain_access_tokens")
+    .select(
+      "id, subscriber_id, expires_at, revoked_at, revoke_reason, use_count",
+    )
+    .eq("token", token)
+    .maybeSingle();
 
   if (lookupError) {
-    console.error('open-brain: lookup failed', { error: lookupError })
-    return htmlResponse('Service unavailable', '<p>Please try again in a moment.</p>', 500)
+    console.error("open-brain: lookup failed", { error: lookupError });
+    return htmlResponse(
+      "Service unavailable",
+      "<p>Please try again in a moment.</p>",
+      500,
+    );
   }
 
   if (!tokenRow) {
     return htmlResponse(
-      'Link not recognised',
-      '<p>This Brain link doesn’t match any active subscriber. Request a fresh one below.</p>',
+      "Link not recognised",
+      "<p>This Brain link doesn’t match any active subscriber. Request a fresh one below.</p>",
       404,
-      'not_found',
-    )
+      "not_found",
+    );
   }
 
   if (tokenRow.revoked_at) {
     return htmlResponse(
-      'Access revoked',
-      `<p>This Brain link has been revoked${tokenRow.revoke_reason ? ` (${tokenRow.revoke_reason})` : ''}. If you still subscribe, request a fresh one below. If this is unexpected, email <a href="mailto:matt@peopleleaders.io">matt@peopleleaders.io</a>.</p>`,
+      "Access revoked",
+      `<p>This Brain link has been revoked${
+        tokenRow.revoke_reason ? ` (${tokenRow.revoke_reason})` : ""
+      }. If you still subscribe, request a fresh one below. If this is unexpected, email <a href="mailto:matt@peopleleaders.io">matt@peopleleaders.io</a>.</p>`,
       410,
-      'revoked',
-    )
+      "revoked",
+    );
   }
 
   if (new Date(tokenRow.expires_at).getTime() < Date.now()) {
     return htmlResponse(
-      'Link expired',
-      '<p>This Brain link has expired. Request a fresh one below.</p>',
+      "Link expired",
+      "<p>This Brain link has expired. Request a fresh one below.</p>",
       410,
-      'expired',
-    )
+      "expired",
+    );
   }
 
   // Best-effort audit. Don't block the redirect on failure.
-  const ip =
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    req.headers.get('x-real-ip') ||
-    null
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    req.headers.get("x-real-ip") ||
+    null;
 
   supabase
-    .from('brain_access_tokens')
+    .from("brain_access_tokens")
     .update({
       last_used_at: new Date().toISOString(),
       use_count: (tokenRow.use_count ?? 0) + 1,
       last_ip: ip,
     })
-    .eq('id', tokenRow.id)
+    .eq("id", tokenRow.id)
     .then(({ error }) => {
-      if (error) console.warn('open-brain: audit update failed', { error })
-    })
+      if (error) console.warn("open-brain: audit update failed", { error });
+    });
 
   return new Response(null, {
     status: 302,
     headers: {
       Location: brainUrl,
-      'Cache-Control': 'private, no-store',
-      'Referrer-Policy': 'no-referrer',
-      'X-Robots-Tag': 'noindex, nofollow',
+      "Cache-Control": "private, no-store",
+      "Referrer-Policy": "no-referrer",
+      "X-Robots-Tag": "noindex, nofollow",
     },
-  })
-})
+  });
+});

@@ -8,158 +8,163 @@
 // Abuse is mitigated with: a strict zod schema, a throwaway-domain blocklist,
 // and an in-memory IP rate limit (5 / 60s).
 
-import * as React from 'npm:react@18.3.1'
-import { renderAsync } from 'npm:@react-email/components@0.0.22'
-import { createClient } from 'npm:@supabase/supabase-js@2'
-import { template as brainWelcomeTemplate } from '../_shared/transactional-email-templates/brain-welcome.tsx'
+import * as React from "npm:react@18.3.1";
+import { renderAsync } from "npm:@react-email/components@0.0.22";
+import { createClient } from "npm:@supabase/supabase-js@2";
+import { template as brainWelcomeTemplate } from "../_shared/transactional-email-templates/brain-welcome.tsx";
 
 // Email pipeline constants — must mirror send-transactional-email/index.ts.
 // Re-run the email domain setup flow if these need to change.
-const SITE_NAME = 'deepgrain-foundations'
-const SENDER_DOMAIN = 'notify.www.deepgrain.ai'
-const FROM_DOMAIN = 'notify.www.deepgrain.ai'
+const SITE_NAME = "deepgrain-foundations";
+const SENDER_DOMAIN = "notify.www.deepgrain.ai";
+const FROM_DOMAIN = "notify.www.deepgrain.ai";
 
 function generateUnsubscribeToken(): string {
-  const bytes = new Uint8Array(32)
-  crypto.getRandomValues(bytes)
+  const bytes = new Uint8Array(32);
+  crypto.getRandomValues(bytes);
   return Array.from(bytes)
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('')
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers':
-    'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-}
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
 
 // The Brain is gated behind a per-subscriber tokenised redirect served by
 // the `open-brain` edge function. We never put the raw Notion URL in HTML,
 // JSON, sitemaps, or marketing surfaces — only `open-brain` resolves it,
 // and only after token validation. AIOI remains public.
-const BRAIN_OPEN_BASE = `${Deno.env.get('SUPABASE_URL') ?? ''}/functions/v1/open-brain`
-const AIOI_URL = 'https://aioi.deepgrain.ai'
+const BRAIN_OPEN_BASE = `${
+  Deno.env.get("SUPABASE_URL") ?? ""
+}/functions/v1/open-brain`;
+const AIOI_URL = "https://aioi.deepgrain.ai";
 
 function generateBrainAccessToken(): string {
-  const bytes = new Uint8Array(32)
-  crypto.getRandomValues(bytes)
+  const bytes = new Uint8Array(32);
+  crypto.getRandomValues(bytes);
   return Array.from(bytes)
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('')
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 // Throwaway / disposable email domains we don't want to bother sending to.
 const DISPOSABLE_DOMAINS = new Set([
-  'mailinator.com',
-  'guerrillamail.com',
-  'sharklasers.com',
-  '10minutemail.com',
-  'temp-mail.org',
-  'yopmail.com',
-  'trashmail.com',
-  'fakeinbox.com',
-  'getnada.com',
-  'maildrop.cc',
-  'tempmail.com',
-  'throwawaymail.com',
-])
+  "mailinator.com",
+  "guerrillamail.com",
+  "sharklasers.com",
+  "10minutemail.com",
+  "temp-mail.org",
+  "yopmail.com",
+  "trashmail.com",
+  "fakeinbox.com",
+  "getnada.com",
+  "maildrop.cc",
+  "tempmail.com",
+  "throwawaymail.com",
+]);
 
 // Permissive RFC-ish email regex — matches what the client validates.
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 interface BrainPayload {
-  firstName: string | null
-  email: string
-  consentGiven: true
-  consentTimestamp: string | null
-  source: string
-  referrer: string | null
-  userAgent: string | null
+  firstName: string | null;
+  email: string;
+  consentGiven: true;
+  consentTimestamp: string | null;
+  source: string;
+  referrer: string | null;
+  userAgent: string | null;
 }
 
 type ValidationResult =
   | { ok: true; data: BrainPayload }
-  | { ok: false; issues: Record<string, string> }
+  | { ok: false; issues: Record<string, string> };
 
 function validatePayload(raw: unknown): ValidationResult {
-  const issues: Record<string, string> = {}
-  if (typeof raw !== 'object' || raw === null) {
-    return { ok: false, issues: { _: 'Payload must be an object' } }
+  const issues: Record<string, string> = {};
+  if (typeof raw !== "object" || raw === null) {
+    return { ok: false, issues: { _: "Payload must be an object" } };
   }
-  const r = raw as Record<string, unknown>
+  const r = raw as Record<string, unknown>;
 
   // firstName — optional, max 80
-  let firstName: string | null = null
-  if (r.firstName !== undefined && r.firstName !== null && r.firstName !== '') {
-    if (typeof r.firstName !== 'string') {
-      issues.firstName = 'Must be a string'
+  let firstName: string | null = null;
+  if (r.firstName !== undefined && r.firstName !== null && r.firstName !== "") {
+    if (typeof r.firstName !== "string") {
+      issues.firstName = "Must be a string";
     } else {
-      const trimmed = r.firstName.trim()
-      if (trimmed.length > 80) issues.firstName = 'Too long'
-      else if (trimmed.length > 0) firstName = trimmed
+      const trimmed = r.firstName.trim();
+      if (trimmed.length > 80) issues.firstName = "Too long";
+      else if (trimmed.length > 0) firstName = trimmed;
     }
   }
 
   // email — required, lowercase, regex
-  let email = ''
-  if (typeof r.email !== 'string') {
-    issues.email = 'Email is required'
+  let email = "";
+  if (typeof r.email !== "string") {
+    issues.email = "Email is required";
   } else {
-    email = r.email.trim().toLowerCase()
-    if (email.length === 0) issues.email = 'Email is required'
-    else if (email.length > 320) issues.email = 'Too long'
-    else if (!EMAIL_REGEX.test(email)) issues.email = 'Invalid email'
+    email = r.email.trim().toLowerCase();
+    if (email.length === 0) issues.email = "Email is required";
+    else if (email.length > 320) issues.email = "Too long";
+    else if (!EMAIL_REGEX.test(email)) issues.email = "Invalid email";
   }
 
   // consentGiven — must be exactly true
   if (r.consentGiven !== true) {
-    issues.consentGiven = 'Consent is required'
+    issues.consentGiven = "Consent is required";
   }
 
   // consentTimestamp — optional ISO string
-  let consentTimestamp: string | null = null
+  let consentTimestamp: string | null = null;
   if (r.consentTimestamp !== undefined && r.consentTimestamp !== null) {
-    if (typeof r.consentTimestamp !== 'string' || isNaN(Date.parse(r.consentTimestamp))) {
-      issues.consentTimestamp = 'Invalid timestamp'
+    if (
+      typeof r.consentTimestamp !== "string" ||
+      isNaN(Date.parse(r.consentTimestamp))
+    ) {
+      issues.consentTimestamp = "Invalid timestamp";
     } else {
-      consentTimestamp = r.consentTimestamp
+      consentTimestamp = r.consentTimestamp;
     }
   }
 
   // source — optional, default 'brain'
-  let source = 'brain'
-  if (r.source !== undefined && r.source !== null && r.source !== '') {
-    if (typeof r.source !== 'string') issues.source = 'Must be a string'
+  let source = "brain";
+  if (r.source !== undefined && r.source !== null && r.source !== "") {
+    if (typeof r.source !== "string") issues.source = "Must be a string";
     else {
-      const trimmed = r.source.trim()
-      if (trimmed.length > 40) issues.source = 'Too long'
-      else if (trimmed.length > 0) source = trimmed
+      const trimmed = r.source.trim();
+      if (trimmed.length > 40) issues.source = "Too long";
+      else if (trimmed.length > 0) source = trimmed;
     }
   }
 
   // referrer — optional, max 2000
-  let referrer: string | null = null
-  if (r.referrer !== undefined && r.referrer !== null && r.referrer !== '') {
-    if (typeof r.referrer !== 'string') issues.referrer = 'Must be a string'
+  let referrer: string | null = null;
+  if (r.referrer !== undefined && r.referrer !== null && r.referrer !== "") {
+    if (typeof r.referrer !== "string") issues.referrer = "Must be a string";
     else {
-      const trimmed = r.referrer.trim().slice(0, 2000)
-      if (trimmed.length > 0) referrer = trimmed
+      const trimmed = r.referrer.trim().slice(0, 2000);
+      if (trimmed.length > 0) referrer = trimmed;
     }
   }
 
   // userAgent — optional, max 500
-  let userAgent: string | null = null
-  if (r.userAgent !== undefined && r.userAgent !== null && r.userAgent !== '') {
-    if (typeof r.userAgent !== 'string') issues.userAgent = 'Must be a string'
+  let userAgent: string | null = null;
+  if (r.userAgent !== undefined && r.userAgent !== null && r.userAgent !== "") {
+    if (typeof r.userAgent !== "string") issues.userAgent = "Must be a string";
     else {
-      const trimmed = r.userAgent.trim().slice(0, 500)
-      if (trimmed.length > 0) userAgent = trimmed
+      const trimmed = r.userAgent.trim().slice(0, 500);
+      if (trimmed.length > 0) userAgent = trimmed;
     }
   }
 
   if (Object.keys(issues).length > 0) {
-    return { ok: false, issues }
+    return { ok: false, issues };
   }
   return {
     ok: true,
@@ -172,38 +177,39 @@ function validatePayload(raw: unknown): ValidationResult {
       referrer,
       userAgent,
     },
-  }
+  };
 }
 
 // In-memory IP rate limit. 5 requests per 60s per IP. Resets on cold start —
 // adequate for a low-volume lead-capture form, not a fortress.
-const RATE_LIMIT_WINDOW_MS = 60_000
-const RATE_LIMIT_MAX = 5
-const ipHits = new Map<string, number[]>()
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 5;
+const ipHits = new Map<string, number[]>();
 
 function rateLimited(ip: string): boolean {
-  const now = Date.now()
-  const window = ipHits.get(ip)?.filter((t) => now - t < RATE_LIMIT_WINDOW_MS) ?? []
+  const now = Date.now();
+  const window =
+    ipHits.get(ip)?.filter((t) => now - t < RATE_LIMIT_WINDOW_MS) ?? [];
   if (window.length >= RATE_LIMIT_MAX) {
-    ipHits.set(ip, window)
-    return true
+    ipHits.set(ip, window);
+    return true;
   }
-  window.push(now)
-  ipHits.set(ip, window)
-  return false
+  window.push(now);
+  ipHits.set(ip, window);
+  return false;
 }
 
 function jsonResponse(data: Record<string, unknown>, status = 200): Response {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-  })
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
 }
 
 // Always-success response shape for the client. We never reveal whether an
 // email already existed or was suppressed — keeps enumeration off the table.
 const successResponse = () =>
-  jsonResponse({ success: true, message: 'Check your inbox.' })
+  jsonResponse({ success: true, message: "Check your inbox." });
 
 // ──────────────────────────────────────────────────────────────────────
 // Server-side metrics
@@ -224,48 +230,48 @@ const successResponse = () =>
 // ──────────────────────────────────────────────────────────────────────
 
 type Outcome =
-  | 'success'           // new subscriber, send queued
-  | 'duplicate'         // email already on file
-  | 'blocked_domain'    // disposable / throwaway domain
-  | 'rate_limited'      // IP exceeded the 5/60s window
-  | 'validation_failed' // payload failed validation
-  | 'invalid_json'      // body wasn't JSON
-  | 'method_not_allowed'
-  | 'config_error'      // missing SUPABASE_* envs
-  | 'lookup_failed'     // SELECT against brain_subscribers errored
-  | 'insert_failed'     // INSERT into brain_subscribers errored
-  | 'send_failed'       // send-transactional-email returned non-OK
-  | 'send_suppressed'   // recipient is on the suppression list
+  | "success" // new subscriber, send queued
+  | "duplicate" // email already on file
+  | "blocked_domain" // disposable / throwaway domain
+  | "rate_limited" // IP exceeded the 5/60s window
+  | "validation_failed" // payload failed validation
+  | "invalid_json" // body wasn't JSON
+  | "method_not_allowed"
+  | "config_error" // missing SUPABASE_* envs
+  | "lookup_failed" // SELECT against brain_subscribers errored
+  | "insert_failed" // INSERT into brain_subscribers errored
+  | "send_failed" // send-transactional-email returned non-OK
+  | "send_suppressed"; // recipient is on the suppression list
 
 // Short SHA-256 fingerprint of the email. Lets us correlate metric rows
 // for the same recipient without ever logging the address itself.
 async function emailFingerprint(email: string | null): Promise<string | null> {
-  if (!email) return null
-  const data = new TextEncoder().encode(email.toLowerCase().trim())
-  const hash = await crypto.subtle.digest('SHA-256', data)
+  if (!email) return null;
+  const data = new TextEncoder().encode(email.toLowerCase().trim());
+  const hash = await crypto.subtle.digest("SHA-256", data);
   return Array.from(new Uint8Array(hash))
     .slice(0, 8)
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('')
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 // Drop the last octet of an IPv4 address (or the tail of v6) so logs keep
 // an aggregation key without storing the full client IP.
 function maskIp(ip: string): string {
-  if (!ip || ip === 'unknown') return 'unknown'
-  if (ip.includes(':')) {
-    return ip.split(':').slice(0, 3).join(':') + ':…'
+  if (!ip || ip === "unknown") return "unknown";
+  if (ip.includes(":")) {
+    return ip.split(":").slice(0, 3).join(":") + ":…";
   }
-  const parts = ip.split('.')
-  if (parts.length === 4) return `${parts[0]}.${parts[1]}.${parts[2]}.x`
-  return 'masked'
+  const parts = ip.split(".");
+  if (parts.length === 4) return `${parts[0]}.${parts[1]}.${parts[2]}.x`;
+  return "masked";
 }
 
 interface OutcomeContext {
-  ip: string
-  email?: string | null
-  domain?: string | null
-  detail?: Record<string, unknown>
+  ip: string;
+  email?: string | null;
+  domain?: string | null;
+  detail?: Record<string, unknown>;
 }
 
 // Use `any` for the client here so we don't fight the deeply-inferred
@@ -276,57 +282,57 @@ async function logOutcome(
   outcome: Outcome,
   ctx: OutcomeContext,
 ): Promise<void> {
-  const fingerprint = await emailFingerprint(ctx.email ?? null)
-  const ipMasked = maskIp(ctx.ip)
+  const fingerprint = await emailFingerprint(ctx.email ?? null);
+  const ipMasked = maskIp(ctx.ip);
 
   // 1) Structured stdout — single source of truth for the agent / log search.
   const line = {
-    metric: 'brain_welcome_metric',
+    metric: "brain_welcome_metric",
     outcome,
     domain: ctx.domain ?? null,
     email_fp: fingerprint,
     ip_masked: ipMasked,
     ts: new Date().toISOString(),
     ...(ctx.detail ?? {}),
-  }
+  };
   const negative: Outcome[] = [
-    'blocked_domain',
-    'rate_limited',
-    'validation_failed',
-    'invalid_json',
-    'method_not_allowed',
-    'config_error',
-    'lookup_failed',
-    'insert_failed',
-    'send_failed',
-    'send_suppressed',
-  ]
+    "blocked_domain",
+    "rate_limited",
+    "validation_failed",
+    "invalid_json",
+    "method_not_allowed",
+    "config_error",
+    "lookup_failed",
+    "insert_failed",
+    "send_failed",
+    "send_suppressed",
+  ];
   if (negative.includes(outcome)) {
-    console.warn(JSON.stringify(line))
+    console.warn(JSON.stringify(line));
   } else {
-    console.log(JSON.stringify(line))
+    console.log(JSON.stringify(line));
   }
 
   // 2) email_send_log — only for negative/edge outcomes. We deliberately
   //    skip `success` here because send-transactional-email writes its own
   //    pending→sent rows under the real `brain-welcome-<id>` message_id.
   //    Writing a duplicate would inflate dashboard counts.
-  if (!supabase || outcome === 'success') return
+  if (!supabase || outcome === "success") return;
   try {
     // Map onto the constrained `status` enum on email_send_log. The
     // granular outcome stays in metadata.outcome.
     //   send_suppressed → suppressed
     //   everything else → failed (with reason in error_message + metadata)
-    const status = outcome === 'send_suppressed' ? 'suppressed' : 'failed'
+    const status = outcome === "send_suppressed" ? "suppressed" : "failed";
 
-    await supabase.from('email_send_log').insert({
+    await supabase.from("email_send_log").insert({
       message_id: `brain-welcome-meta-${crypto.randomUUID()}`,
-      template_name: 'brain-welcome',
+      template_name: "brain-welcome",
       // Recipient is required by schema. For meta rows where we don't have
       // a validated address, log a stable sentinel so we don't leak garbage.
-      recipient_email: ctx.email ?? 'unknown@brain-welcome.meta',
+      recipient_email: ctx.email ?? "unknown@brain-welcome.meta",
       status,
-      error_message: typeof ctx.detail?.reason === 'string'
+      error_message: typeof ctx.detail?.reason === "string"
         ? (ctx.detail.reason as string)
         : null,
       metadata: {
@@ -336,95 +342,111 @@ async function logOutcome(
         ip_masked: ipMasked,
         ...(ctx.detail ?? {}),
       },
-    })
+    });
   } catch (err) {
-    console.warn('send-brain-welcome: metric persist failed', {
+    console.warn("send-brain-welcome: metric persist failed", {
       outcome,
       err: String(err),
-    })
+    });
   }
 }
 
 Deno.serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders })
+  if (req.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
   }
 
   // Resolve client IP early so all metrics carry it.
-  const forwardedFor = req.headers.get('x-forwarded-for') ?? ''
-  const ip = forwardedFor.split(',')[0]?.trim() || 'unknown'
+  const forwardedFor = req.headers.get("x-forwarded-for") ?? "";
+  const ip = forwardedFor.split(",")[0]?.trim() || "unknown";
 
-  if (req.method !== 'POST') {
-    await logOutcome(null, 'method_not_allowed', { ip, detail: { method: req.method } })
-    return jsonResponse({ error: 'Method not allowed' }, 405)
+  if (req.method !== "POST") {
+    await logOutcome(null, "method_not_allowed", {
+      ip,
+      detail: { method: req.method },
+    });
+    return jsonResponse({ error: "Method not allowed" }, 405);
   }
 
-  const supabaseUrl = Deno.env.get('SUPABASE_URL')
-  const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+  const supabaseUrl = Deno.env.get("SUPABASE_URL");
+  const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   if (!supabaseUrl || !supabaseServiceKey) {
-    await logOutcome(null, 'config_error', { ip })
-    return jsonResponse({ error: 'Server configuration error' }, 500)
+    await logOutcome(null, "config_error", { ip });
+    return jsonResponse({ error: "Server configuration error" }, 500);
   }
 
-  const supabase = createClient(supabaseUrl, supabaseServiceKey)
+  const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
   if (rateLimited(ip)) {
-    await logOutcome(supabase, 'rate_limited', { ip })
+    await logOutcome(supabase, "rate_limited", { ip });
     return jsonResponse(
-      { error: 'Too many requests. Please try again in a minute.' },
+      { error: "Too many requests. Please try again in a minute." },
       429,
-    )
+    );
   }
 
   // Parse body
-  let raw: unknown
+  let raw: unknown;
   try {
-    raw = await req.json()
+    raw = await req.json();
   } catch {
-    await logOutcome(supabase, 'invalid_json', { ip })
-    return jsonResponse({ error: 'Invalid JSON' }, 400)
+    await logOutcome(supabase, "invalid_json", { ip });
+    return jsonResponse({ error: "Invalid JSON" }, 400);
   }
 
-  const parsed = validatePayload(raw)
+  const parsed = validatePayload(raw);
   if (!parsed.ok) {
-    await logOutcome(supabase, 'validation_failed', {
+    await logOutcome(supabase, "validation_failed", {
       ip,
       detail: { fields: Object.keys(parsed.issues) },
-    })
-    return jsonResponse({ error: 'Validation failed', issues: parsed.issues }, 400)
+    });
+    return jsonResponse(
+      { error: "Validation failed", issues: parsed.issues },
+      400,
+    );
   }
 
-  const { firstName, email, consentGiven, consentTimestamp, source, referrer, userAgent } =
-    parsed.data
-  const domain = email.split('@')[1] ?? ''
+  const {
+    firstName,
+    email,
+    consentGiven,
+    consentTimestamp,
+    source,
+    referrer,
+    userAgent,
+  } = parsed.data;
+  const domain = email.split("@")[1] ?? "";
 
   // Block disposable domains
   if (DISPOSABLE_DOMAINS.has(domain)) {
-    await logOutcome(supabase, 'blocked_domain', { ip, email, domain })
+    await logOutcome(supabase, "blocked_domain", { ip, email, domain });
     // Same shape as success — don't leak the blocklist.
-    return successResponse()
+    return successResponse();
   }
 
   // Check for existing subscriber. We treat duplicates as success
   // (idempotent UX) and skip resending the email.
   const { data: existing, error: lookupError } = await supabase
-    .from('brain_subscribers')
-    .select('id, email_status, unsubscribed_at')
-    .eq('email', email)
-    .maybeSingle()
+    .from("brain_subscribers")
+    .select("id, email_status, unsubscribed_at")
+    .eq("email", email)
+    .maybeSingle();
 
   if (lookupError) {
-    await logOutcome(supabase, 'lookup_failed', {
+    await logOutcome(supabase, "lookup_failed", {
       ip,
       email,
       domain,
       detail: { reason: lookupError.message },
-    })
-    return jsonResponse({ error: 'Something went wrong. Try again shortly.' }, 500)
+    });
+    return jsonResponse(
+      { error: "Something went wrong. Try again shortly." },
+      500,
+    );
   }
 
   if (existing) {
-    await logOutcome(supabase, 'duplicate', {
+    await logOutcome(supabase, "duplicate", {
       ip,
       email,
       domain,
@@ -432,16 +454,15 @@ Deno.serve(async (req) => {
         prior_status: existing.email_status,
         unsubscribed: Boolean(existing.unsubscribed_at),
       },
-    })
-    return successResponse()
+    });
+    return successResponse();
   }
 
   // Insert the subscriber row.
-  const insertedConsentTimestamp =
-    consentTimestamp ?? new Date().toISOString()
+  const insertedConsentTimestamp = consentTimestamp ?? new Date().toISOString();
 
   const { data: inserted, error: insertError } = await supabase
-    .from('brain_subscribers')
+    .from("brain_subscribers")
     .insert({
       first_name: firstName,
       email,
@@ -452,17 +473,20 @@ Deno.serve(async (req) => {
       referrer: referrer ?? null,
       user_agent: userAgent ?? null,
     })
-    .select('id')
-    .single()
+    .select("id")
+    .single();
 
   if (insertError || !inserted) {
-    await logOutcome(supabase, 'insert_failed', {
+    await logOutcome(supabase, "insert_failed", {
       ip,
       email,
       domain,
-      detail: { reason: insertError?.message ?? 'no row returned' },
-    })
-    return jsonResponse({ error: 'Something went wrong. Try again shortly.' }, 500)
+      detail: { reason: insertError?.message ?? "no row returned" },
+    });
+    return jsonResponse(
+      { error: "Something went wrong. Try again shortly." },
+      500,
+    );
   }
 
   // Render the brain-welcome React Email template inline and enqueue the
@@ -471,126 +495,132 @@ Deno.serve(async (req) => {
   // HTTP entry point — that gateway rejects calls from this function under
   // the asymmetric-keys regime — while preserving exactly the same payload
   // shape the dispatcher (process-email-queue) expects.
-  const messageId = `brain-welcome-${inserted.id}`
-  const idempotencyKey = `brain-welcome-${inserted.id}`
+  const messageId = `brain-welcome-${inserted.id}`;
+  const idempotencyKey = `brain-welcome-${inserted.id}`;
 
-  let sentOk = false
-  let sendErrorReason: string | null = null
+  let sentOk = false;
+  let sendErrorReason: string | null = null;
 
   try {
     // 1. Suppression check — never enqueue to a suppressed address.
     const { data: suppressed, error: suppressedError } = await supabase
-      .from('suppressed_emails')
-      .select('email')
-      .eq('email', email)
-      .maybeSingle()
+      .from("suppressed_emails")
+      .select("email")
+      .eq("email", email)
+      .maybeSingle();
 
-    if (suppressedError) throw new Error(`suppression_check_failed: ${suppressedError.message}`)
+    if (suppressedError) {
+      throw new Error(`suppression_check_failed: ${suppressedError.message}`);
+    }
 
     if (suppressed) {
-      await logOutcome(supabase, 'send_suppressed', {
+      await logOutcome(supabase, "send_suppressed", {
         ip,
         email,
         domain,
         detail: { subscriber_id: inserted.id },
-      })
+      });
       // Stamp the subscriber row + bail.
       await supabase
-        .from('brain_subscribers')
-        .update({ email_status: 'suppressed' })
-        .eq('id', inserted.id)
-      return successResponse()
+        .from("brain_subscribers")
+        .update({ email_status: "suppressed" })
+        .eq("id", inserted.id);
+      return successResponse();
     }
 
     // 2. Get-or-create the unsubscribe token for this recipient.
     const { data: existingToken } = await supabase
-      .from('email_unsubscribe_tokens')
-      .select('token, used_at')
-      .eq('email', email)
-      .maybeSingle()
+      .from("email_unsubscribe_tokens")
+      .select("token, used_at")
+      .eq("email", email)
+      .maybeSingle();
 
-    let unsubscribeToken: string
+    let unsubscribeToken: string;
     if (existingToken && !existingToken.used_at) {
-      unsubscribeToken = existingToken.token
+      unsubscribeToken = existingToken.token;
     } else if (!existingToken) {
-      unsubscribeToken = generateUnsubscribeToken()
+      unsubscribeToken = generateUnsubscribeToken();
       await supabase
-        .from('email_unsubscribe_tokens')
+        .from("email_unsubscribe_tokens")
         .upsert(
           { token: unsubscribeToken, email },
-          { onConflict: 'email', ignoreDuplicates: true },
-        )
+          { onConflict: "email", ignoreDuplicates: true },
+        );
       // Re-read in case another request raced us.
       const { data: stored } = await supabase
-        .from('email_unsubscribe_tokens')
-        .select('token')
-        .eq('email', email)
-        .maybeSingle()
-      if (!stored?.token) throw new Error('unsubscribe_token_persist_failed')
-      unsubscribeToken = stored.token
+        .from("email_unsubscribe_tokens")
+        .select("token")
+        .eq("email", email)
+        .maybeSingle();
+      if (!stored?.token) throw new Error("unsubscribe_token_persist_failed");
+      unsubscribeToken = stored.token;
     } else {
       // Token used — recipient unsubscribed but isn't on suppression list.
       // Treat as suppressed and skip sending.
-      await logOutcome(supabase, 'send_suppressed', {
+      await logOutcome(supabase, "send_suppressed", {
         ip,
         email,
         domain,
-        detail: { subscriber_id: inserted.id, reason: 'unsubscribe_token_used' },
-      })
+        detail: {
+          subscriber_id: inserted.id,
+          reason: "unsubscribe_token_used",
+        },
+      });
       await supabase
-        .from('brain_subscribers')
-        .update({ email_status: 'suppressed' })
-        .eq('id', inserted.id)
-      return successResponse()
+        .from("brain_subscribers")
+        .update({ email_status: "suppressed" })
+        .eq("id", inserted.id);
+      return successResponse();
     }
 
     // 3a. Mint a per-subscriber access token, then build the gated open-brain URL.
     //     If this fails we still send the welcome email (the user isn't stranded);
     //     they'll get a "link not recognised" page and can re-submit.
-    const brainAccessToken = generateBrainAccessToken()
+    const brainAccessToken = generateBrainAccessToken();
     const { error: tokenInsertError } = await supabase
-      .from('brain_access_tokens')
-      .insert({ subscriber_id: inserted.id, token: brainAccessToken })
+      .from("brain_access_tokens")
+      .insert({ subscriber_id: inserted.id, token: brainAccessToken });
     if (tokenInsertError) {
-      console.warn('send-brain-welcome: brain access token insert failed', {
+      console.warn("send-brain-welcome: brain access token insert failed", {
         error: tokenInsertError,
         subscriber_id: inserted.id,
-      })
+      });
     }
-    const brainUrl = `${BRAIN_OPEN_BASE}?t=${brainAccessToken}`
+    const brainUrl = `${BRAIN_OPEN_BASE}?t=${brainAccessToken}`;
 
     // 3b. Render the React Email template to HTML + plain text.
     const templateData = {
       firstName,
       brainUrl,
       aioiUrl: AIOI_URL,
-    }
+    };
     const html = await renderAsync(
       React.createElement(brainWelcomeTemplate.component, templateData),
-    )
+    );
     const plainText = await renderAsync(
       React.createElement(brainWelcomeTemplate.component, templateData),
       { plainText: true },
-    )
+    );
     const subjectField = brainWelcomeTemplate.subject as
       | string
-      | ((data: typeof templateData) => string)
-    const resolvedSubject =
-      typeof subjectField === 'function' ? subjectField(templateData) : subjectField
+      | ((data: typeof templateData) => string);
+    const resolvedSubject = typeof subjectField === "function"
+      ? subjectField(templateData)
+      : subjectField;
 
     // 4. Log a `pending` row before enqueue so we have a record even if
     //    enqueue throws.
-    await supabase.from('email_send_log').insert({
+    await supabase.from("email_send_log").insert({
       message_id: messageId,
-      template_name: 'brain-welcome',
+      template_name: "brain-welcome",
       recipient_email: email,
-      status: 'pending',
-    })
+      status: "pending",
+    });
 
     // 5. Enqueue. Payload shape mirrors send-transactional-email exactly
     //    so the dispatcher consumes it without any branching.
-    const { error: enqueueError } = await supabase.rpc('enqueue_email', {
-      queue_name: 'transactional_emails',
+    const { error: enqueueError } = await supabase.rpc("enqueue_email", {
+      queue_name: "transactional_emails",
       payload: {
         message_id: messageId,
         to: email,
@@ -599,59 +629,60 @@ Deno.serve(async (req) => {
         subject: resolvedSubject,
         html,
         text: plainText,
-        purpose: 'transactional',
-        label: 'brain-welcome',
+        purpose: "transactional",
+        label: "brain-welcome",
         idempotency_key: idempotencyKey,
         unsubscribe_token: unsubscribeToken,
         queued_at: new Date().toISOString(),
       },
-    })
+    });
 
-    if (enqueueError) throw new Error(`enqueue_failed: ${enqueueError.message}`)
+    if (enqueueError) {
+      throw new Error(`enqueue_failed: ${enqueueError.message}`);
+    }
 
-    sentOk = true
+    sentOk = true;
   } catch (e) {
-    sentOk = false
-    sendErrorReason = e instanceof Error ? e.message : 'enqueue_unknown_error'
+    sentOk = false;
+    sendErrorReason = e instanceof Error ? e.message : "enqueue_unknown_error";
     // Best-effort failure record so the dashboard reflects what happened.
-    await supabase.from('email_send_log').insert({
+    await supabase.from("email_send_log").insert({
       message_id: messageId,
-      template_name: 'brain-welcome',
+      template_name: "brain-welcome",
       recipient_email: email,
-      status: 'failed',
+      status: "failed",
       error_message: sendErrorReason,
-    })
+    });
   }
 
-  const status = sentOk ? 'queued' : 'failed'
-
+  const status = sentOk ? "queued" : "failed";
 
   // Stamp the row with the outcome — best-effort, don't fail the request on it.
   const { error: updateError } = await supabase
-    .from('brain_subscribers')
+    .from("brain_subscribers")
     .update({
       email_status: status,
       email_sent_at: sentOk ? new Date().toISOString() : null,
       email_provider_id: `brain-welcome-${inserted.id}`,
     })
-    .eq('id', inserted.id)
+    .eq("id", inserted.id);
 
   if (updateError) {
-    console.warn('send-brain-welcome: status update failed', {
+    console.warn("send-brain-welcome: status update failed", {
       updateError,
       id: inserted.id,
-    })
+    });
   }
 
   if (sentOk) {
-    await logOutcome(supabase, 'success', {
+    await logOutcome(supabase, "success", {
       ip,
       email,
       domain,
       detail: { subscriber_id: inserted.id },
-    })
+    });
   } else {
-    await logOutcome(supabase, 'send_failed', {
+    await logOutcome(supabase, "send_failed", {
       ip,
       email,
       domain,
@@ -659,9 +690,9 @@ Deno.serve(async (req) => {
         subscriber_id: inserted.id,
         reason: sendErrorReason,
       },
-    })
+    });
   }
 
   // Always return the same success shape — never reveal send-side outcome.
-  return successResponse()
-})
+  return successResponse();
+});

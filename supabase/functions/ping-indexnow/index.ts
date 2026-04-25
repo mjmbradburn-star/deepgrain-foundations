@@ -18,7 +18,9 @@ const SITEMAP_URL = `https://${HOST}/sitemap.xml`;
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 
 async function extractUrlsFromSitemap(): Promise<string[]> {
-  const res = await fetch(SITEMAP_URL, { headers: { "User-Agent": "deepgrain-indexnow/1.0" } });
+  const res = await fetch(SITEMAP_URL, {
+    headers: { "User-Agent": "deepgrain-indexnow/1.0" },
+  });
   if (!res.ok) throw new Error(`sitemap fetch failed: ${res.status}`);
   const xml = await res.text();
   const urls: string[] = [];
@@ -40,7 +42,10 @@ Deno.serve(async (req) => {
     if (urlList.length === 0) {
       return new Response(
         JSON.stringify({ ok: false, error: "no urls in sitemap" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        },
       );
     }
 
@@ -77,7 +82,10 @@ Deno.serve(async (req) => {
   } catch (err) {
     return new Response(
       JSON.stringify({ ok: false, error: (err as Error).message }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   }
 });
