@@ -2,7 +2,7 @@
 
 > Organisational consultancy that reads the grain of how a company actually operates — then changes it without breaking what works. Read · Craft · Scale.
 
-Last updated: 2026-04-21
+Last updated: 2026-04-25
 Articles: 36
 Canonical: https://deepgrain.ai/llms.txt
 Sitemap: https://deepgrain.ai/sitemap.xml

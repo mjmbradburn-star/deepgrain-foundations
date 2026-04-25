@@ -2,7 +2,7 @@
 
 > Full text of every Deepgrain Intelligence article, in foundational reading order. Optimised for LLM ingestion.
 
-Last updated: 2026-04-21
+Last updated: 2026-04-25
 Articles: 36
 Canonical: https://deepgrain.ai/llms-full.txt
 Index: https://deepgrain.ai/llms.txt
