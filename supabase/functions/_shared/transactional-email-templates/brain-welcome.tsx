@@ -42,7 +42,7 @@ const BrainWelcomeEmail = ({
   return (
     <Html lang="en" dir="ltr">
       <Head />
-      <Preview>The People Ops AI Brain — one link, yours to keep.</Preview>
+      <Preview>The People Ops AI Brain — your personal link inside.</Preview>
       <Body style={main}>
         <Container style={container}>
           {/* Brand mark */}
@@ -60,8 +60,14 @@ const BrainWelcomeEmail = ({
             <Text style={text}>{greeting}</Text>
 
             <Text style={text}>
-              Thanks for asking for the Brain. The link below is yours to
-              keep — no expiry, no drip, no follow-up unless you want one.
+              Thanks for asking for the Brain. The button below opens
+              your personal access link — it&apos;s tied to this email
+              address, so please don&apos;t forward it. If a colleague
+              wants in, send them to{' '}
+              <Link href={`${SITE_URL}/brain`} style={link}>
+                deepgrain.ai/brain
+              </Link>{' '}
+              and they can request their own.
             </Text>
 
             <Section style={ctaSection}>
@@ -76,8 +82,18 @@ const BrainWelcomeEmail = ({
                 Find Your Starting Point
               </Link>{' '}
               section near the top is the fastest route in. From there
-              you can drop into Foundations, Skills, Systems, or the Human
-              Layer depending on what you need this week.
+              you can drop into Foundations, Skills, Systems, or the
+              Human Layer depending on what you need this week.
+            </Text>
+
+            <Text style={fineprint}>
+              The link stays live for a year and is revoked automatically
+              if you unsubscribe. If it ever stops working, just request
+              a fresh one at{' '}
+              <Link href={`${SITE_URL}/brain`} style={fineprintLink}>
+                deepgrain.ai/brain
+              </Link>
+              .
             </Text>
 
             <Hr style={hr} />
