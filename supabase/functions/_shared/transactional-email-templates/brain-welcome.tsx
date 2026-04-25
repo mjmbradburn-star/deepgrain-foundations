@@ -30,19 +30,25 @@ interface BrainWelcomeProps {
   firstName?: string | null
   brainUrl: string
   aioiUrl: string
+  isResend?: boolean
 }
 
 const BrainWelcomeEmail = ({
   firstName,
   brainUrl,
   aioiUrl,
+  isResend = false,
 }: BrainWelcomeProps) => {
   const greeting = firstName ? `Hello ${firstName},` : 'Hello,'
 
   return (
     <Html lang="en" dir="ltr">
       <Head />
-      <Preview>The People Ops AI Brain — one link, yours to keep.</Preview>
+      <Preview>
+        {isResend
+          ? 'Your Brain link, fresh from the press.'
+          : 'The People Ops AI Brain — one link, yours to keep.'}
+      </Preview>
       <Body style={main}>
         <Container style={container}>
           {/* Brand mark */}
@@ -52,16 +58,17 @@ const BrainWelcomeEmail = ({
 
           {/* Primary content */}
           <Section style={contentSection}>
-            <Text style={eyebrow}>The Brain</Text>
+            <Text style={eyebrow}>{isResend ? 'Brain link · resend' : 'The Brain'}</Text>
             <Heading style={h1}>
-              The People Ops AI Brain.
+              {isResend ? 'Here\u2019s your Brain link again.' : 'The People Ops AI Brain.'}
             </Heading>
 
             <Text style={text}>{greeting}</Text>
 
             <Text style={text}>
-              Thanks for asking for the Brain. The link below is yours to
-              keep — no expiry, no drip, no follow-up unless you want one.
+              {isResend
+                ? 'You asked us to resend your Brain link. The fresh link below replaces any earlier ones — older links from us no longer work.'
+                : 'Thanks for asking for the Brain. The link below is yours to keep \u2014 personal to you, valid for 12 months, and not for forwarding.'}
             </Text>
 
             <Section style={ctaSection}>
@@ -130,7 +137,10 @@ const BrainWelcomeEmail = ({
 
 export const template = {
   component: BrainWelcomeEmail,
-  subject: 'The People Ops AI Brain — your link inside',
+  subject: (data: Record<string, unknown>) =>
+    data?.isResend
+      ? 'Your Brain link (resend)'
+      : 'The People Ops AI Brain — your link inside',
   displayName: 'Brain — welcome',
   previewData: {
     firstName: 'Sam',
