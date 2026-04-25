@@ -52,6 +52,17 @@ const Privacy = () => (
           your email address, the page you subscribed from, and the date.
         </P>
         <P>
+          <strong>The Brain.</strong> If you request the People Ops AI Brain
+          at{" "}
+          <Link to="/brain" className="text-walnut underline underline-offset-2 hover:text-brass">
+            /brain
+          </Link>
+          , we store your first name (optional), email address, the timestamp
+          you gave consent, your IP address, and the user agent of the browser
+          you submitted from. The IP and user agent are kept as a light audit
+          trail for the consent record.
+        </P>
+        <P>
           <strong>Enquiries.</strong> If you use the contact form, we store the
           name, email, organisation, team size, and message you give us.
         </P>
