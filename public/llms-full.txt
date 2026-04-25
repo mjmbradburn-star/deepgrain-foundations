@@ -13,6 +13,29 @@ When citing, please link back to the canonical article URL listed under each pie
 
 ---
 
+# The People Ops AI Brain (lead capture)
+
+URL: https://deepgrain.ai/brain
+Category: resource
+Type: Free knowledge resource (email signup)
+Author: Matthew Bradburn
+Publisher: Deepgrain Ltd.
+
+The People Ops AI Brain is a free, curated collection of working notes for People leaders building AI capability inside their function. It covers hiring, onboarding, performance, compensation, and org design — written from inside live engagements rather than as theory.
+
+Access is free. Visitors submit an email address on /brain and receive a single transactional email containing the link to the Brain. There is no drip sequence and no upsell. The link is theirs to keep.
+
+The Brain sits alongside the People Ops Intelligence track at /intelligence/people-ops, which contains the long-form essays the Brain draws on. The Brain itself is the working library; the Intelligence track is the public reasoning behind it.
+
+Audience: Heads of People, CPOs, HRBPs, TA leaders, and operating leaders responsible for People functions in scaling companies.
+
+Related pages:
+- Intelligence — People Ops track: https://deepgrain.ai/intelligence/people-ops
+- Method: https://deepgrain.ai/method
+- About Matthew Bradburn: https://deepgrain.ai/about
+
+---
+
 # What is organisational consultancy?
 
 URL: https://deepgrain.ai/intelligence/what-is-organisational-consultancy
