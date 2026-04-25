@@ -311,3 +311,17 @@ const footerLink = {
   color: COLOR_MUTED,
   textDecoration: 'none',
 }
+
+const fineprint = {
+  fontSize: '13px',
+  lineHeight: '1.6',
+  color: COLOR_MUTED,
+  margin: '0 0 24px',
+  fontStyle: 'italic' as const,
+}
+
+const fineprintLink = {
+  color: COLOR_MUTED,
+  textDecoration: 'underline',
+  textDecorationColor: COLOR_BRASS,
+}
