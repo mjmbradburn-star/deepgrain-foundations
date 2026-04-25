@@ -526,7 +526,7 @@ Deno.serve(async (req) => {
       detail: {
         subscriber_id: inserted.id,
         http_status: httpStatus,
-        reason: enqueueError?.message ?? null,
+        reason: sendErrorReason,
       },
     })
   }
