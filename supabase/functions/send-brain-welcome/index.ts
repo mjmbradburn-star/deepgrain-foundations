@@ -8,7 +8,24 @@
 // Abuse is mitigated with: a strict zod schema, a throwaway-domain blocklist,
 // and an in-memory IP rate limit (5 / 60s).
 
+import * as React from 'npm:react@18.3.1'
+import { renderAsync } from 'npm:@react-email/components@0.0.22'
 import { createClient } from 'npm:@supabase/supabase-js@2'
+import { template as brainWelcomeTemplate } from '../_shared/transactional-email-templates/brain-welcome.tsx'
+
+// Email pipeline constants — must mirror send-transactional-email/index.ts.
+// Re-run the email domain setup flow if these need to change.
+const SITE_NAME = 'deepgrain-foundations'
+const SENDER_DOMAIN = 'notify.www.deepgrain.ai'
+const FROM_DOMAIN = 'notify.www.deepgrain.ai'
+
+function generateUnsubscribeToken(): string {
+  const bytes = new Uint8Array(32)
+  crypto.getRandomValues(bytes)
+  return Array.from(bytes)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
+}
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
