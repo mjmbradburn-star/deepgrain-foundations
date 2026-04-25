@@ -2,17 +2,16 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
   ARTICLES,
+  CATEGORIES,
   getArticlesByCategory,
-  getCategoriesByTrack,
 } from "@/lib/intelligence";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { BarkSection } from "@/components/ui/BarkSection";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const Intelligence = () => {
   const url = "https://deepgrain.ai/intelligence";
-  const deepgrainCategories = getCategoriesByTrack("deepgrain");
+  const allCategories = CATEGORIES;
 
   const collectionLd = {
     "@context": "https://schema.org",
@@ -78,39 +77,6 @@ const Intelligence = () => {
         </div>
       </section>
 
-      {/* People Ops track signpost */}
-      <BarkSection
-        className="border-b border-brass/15"
-        contentClassName="container-grain py-16 md:py-20"
-      >
-        <Link
-          to="/intelligence/people-ops"
-          className="group block max-w-5xl mx-auto"
-        >
-          <div className="grid md:grid-cols-[auto,1fr,auto] gap-6 md:gap-10 items-center">
-            <Eyebrow className="text-brass">A Track</Eyebrow>
-            <div>
-              <h2
-                className="font-display text-3xl md:text-4xl lg:text-5xl text-cream group-hover:text-brass transition-colors leading-tight"
-                style={{ letterSpacing: "-0.01em" }}
-              >
-                The People Ops AI Brain
-              </h2>
-              <p className="text-cream/70 mt-3 max-w-2xl leading-relaxed">
-                A dedicated track for People leaders building AI capability —
-                from prompts to systems, with governance that holds.
-              </p>
-            </div>
-            <span
-              className="text-[11px] uppercase text-brass group-hover:translate-x-1 transition-transform"
-              style={{ letterSpacing: "0.16em" }}
-            >
-              Enter →
-            </span>
-          </div>
-        </Link>
-      </BarkSection>
-
       {/* Section index — mirrors breadcrumb hierarchy with deep anchor links.
           Reinforces the BreadcrumbList JSON-LD with on-page navigation that
           search engines can follow as named-fragment URLs. */}
@@ -128,20 +94,13 @@ const Intelligence = () => {
                 className="font-display text-2xl md:text-3xl text-walnut mt-2"
                 style={{ letterSpacing: "-0.005em" }}
               >
-                Sections of the Deepgrain track
+                Sections
               </h2>
             </div>
-            <Link
-              to="/intelligence/people-ops"
-              className="text-[11px] uppercase text-green hover:text-brass transition-colors"
-              style={{ letterSpacing: "0.14em" }}
-            >
-              Switch to People Ops track →
-            </Link>
           </div>
           <nav aria-label="Intelligence sections">
             <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 list-none counter-reset-[section]">
-              {deepgrainCategories.map((cat, i) => {
+              {allCategories.map((cat, i) => {
                 const items = getArticlesByCategory(cat.slug);
                 if (items.length === 0) return null;
                 return (
@@ -179,10 +138,10 @@ const Intelligence = () => {
         </div>
       </section>
 
-      {/* Categories — Deepgrain track only */}
+      {/* Categories — all tracks, one stream */}
       <section className="bg-linen py-24 md:py-32">
         <div className="container-grain space-y-24">
-          {deepgrainCategories.map((cat) => {
+          {allCategories.map((cat) => {
             const items = getArticlesByCategory(cat.slug);
             if (items.length === 0) return null;
             return (

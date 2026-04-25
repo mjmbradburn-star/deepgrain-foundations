@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteShell } from "@/components/layout/SiteShell";
@@ -16,7 +16,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Intelligence = lazy(() => import("./pages/Intelligence"));
 const IntelligenceArticle = lazy(() => import("./pages/IntelligenceArticle"));
 const IntelligenceCategory = lazy(() => import("./pages/IntelligenceCategory"));
-const PeopleOps = lazy(() => import("./pages/PeopleOps"));
+
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 const Enablement = lazy(() => import("./pages/Enablement"));
@@ -47,7 +47,7 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/intelligence" element={<Intelligence />} />
-              <Route path="/intelligence/people-ops" element={<PeopleOps />} />
+              <Route path="/intelligence/people-ops" element={<Navigate to="/intelligence" replace />} />
               <Route path="/intelligence/category/:name" element={<IntelligenceCategory />} />
               <Route path="/intelligence/:slug" element={<IntelligenceArticle />} />
               <Route path="/enablement" element={<Enablement />} />
