@@ -441,46 +441,57 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: 'Something went wrong. Try again shortly.' }, 500)
   }
 
-  // Enqueue the welcome email directly into the transactional_emails PGMQ
-  // queue. The shared `process-email-queue` cron worker drains the queue,
-  // calls Lovable Email, and writes its own row to `email_send_log` with
-  // template_name='brain-welcome'. Going via PGMQ (instead of invoking
-  // send-transactional-email over HTTP) avoids an extra gateway hop and
-  // keeps retry/rate-limit handling inside the queue.
+  // Call send-transactional-email over HTTP using the publishable
+  // (asymmetric-signed) key. This avoids the gateway rejecting the legacy
+  // HS256 SERVICE_ROLE_KEY when used as a bearer token, while still letting
+  // send-transactional-email render the React Email template, manage the
+  // unsubscribe token, and enqueue the pre-rendered payload for the
+  // dispatcher.
   const messageId = `brain-welcome-${inserted.id}`
-  const queuePayload = {
-    message_id: messageId,
-    label: 'brain-welcome',
-    to: email,
-    template: 'brain-welcome',
-    template_data: {
-      firstName,
-      brainUrl: BRAIN_NOTION_URL,
-      aioiUrl: AIOI_URL,
-    },
-    queued_at: new Date().toISOString(),
+  const idempotencyKey = `brain-welcome-${inserted.id}`
+
+  let sentOk = false
+  let sendErrorReason: string | null = null
+  let httpStatus = 0
+
+  try {
+    const sendResp = await fetch(
+      `${supabaseUrl}/functions/v1/send-transactional-email`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: supabasePublishableKey,
+          Authorization: `Bearer ${supabasePublishableKey}`,
+        },
+        body: JSON.stringify({
+          templateName: 'brain-welcome',
+          recipientEmail: email,
+          idempotencyKey,
+          messageId,
+          templateData: {
+            firstName,
+            brainUrl: BRAIN_NOTION_URL,
+            aioiUrl: AIOI_URL,
+          },
+        }),
+      },
+    )
+    httpStatus = sendResp.status
+    const sendBody = (await sendResp.json().catch(() => ({}))) as {
+      success?: boolean
+      reason?: string
+      error?: string
+    }
+    sentOk = sendResp.ok && sendBody.success !== false
+    sendErrorReason = sentOk ? null : (sendBody.error ?? sendBody.reason ?? null)
+  } catch (e) {
+    sentOk = false
+    sendErrorReason = e instanceof Error ? e.message : 'send_fetch_failed'
+    httpStatus = 0
   }
 
-  const { error: enqueueError } = await supabase.rpc('enqueue_email', {
-    queue_name: 'transactional_emails',
-    payload: queuePayload,
-  })
-
-  // Mirror the queue insert with a `pending` row in email_send_log so the
-  // dashboard reflects the in-flight send and the dispatcher's idempotency
-  // check (`alreadySent`) sees it.
-  if (!enqueueError) {
-    await supabase.from('email_send_log').insert({
-      message_id: messageId,
-      template_name: 'brain-welcome',
-      recipient_email: email,
-      status: 'pending',
-    })
-  }
-
-  const sentOk = !enqueueError
   const status = sentOk ? 'queued' : 'failed'
-  const httpStatus = sentOk ? 200 : 502
 
 
   // Stamp the row with the outcome — best-effort, don't fail the request on it.
