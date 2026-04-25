@@ -1,11 +1,5 @@
 import { sendLovableEmail } from 'npm:@lovable.dev/email-js'
-// deno-lint-ignore no-explicit-any
-import { createClient as createSupabaseClient } from 'npm:@supabase/supabase-js@2'
-// The pgmq RPCs and dynamic queue names are not in the generated Database
-// type, so we use an untyped client here. Email tables are accessed by
-// string name only.
-// deno-lint-ignore no-explicit-any
-const createClient = createSupabaseClient as unknown as (url: string, key: string) => any
+import { createClient } from 'npm:@supabase/supabase-js@2'
 
 const MAX_RETRIES = 5
 const DEFAULT_BATCH_SIZE = 10
@@ -60,10 +54,9 @@ function parseJwtClaims(token: string): Record<string, unknown> | null {
 
 // Move a message to the dead letter queue and log the reason.
 async function moveToDlq(
-  // deno-lint-ignore no-explicit-any
   supabase: any,
   queue: string,
-  msg: { msg_id: number; message: Record<string, unknown> },
+  msg: { msg_id: number; message: Record<string, any> },
   reason: string
 ): Promise<void> {
   const payload = msg.message
@@ -118,7 +111,7 @@ Deno.serve(async (req) => {
     )
   }
 
-  const supabase = createClient(supabaseUrl, supabaseServiceKey)
+  const supabase: any = createClient(supabaseUrl, supabaseServiceKey)
 
   // 1. Check rate-limit cooldown and read queue config
   const { data: state } = await supabase
@@ -162,14 +155,13 @@ Deno.serve(async (req) => {
     // messages not attempted when a 429 stops processing early.
     const messageIds = Array.from(
       new Set(
-        messages
-          // deno-lint-ignore no-explicit-any
+        (messages as any[])
           .map((msg: any) =>
             msg?.message?.message_id && typeof msg.message.message_id === 'string'
               ? msg.message.message_id
               : null
           )
-          .filter((id: string | null): id is string => Boolean(id))
+          .filter((id: any): id is string => Boolean(id))
       )
     )
     const failedAttemptsByMessageId = new Map<string, number>()
