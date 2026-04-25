@@ -112,7 +112,7 @@ export const BrainCaptureForm = ({
                 isDark ? "text-cream/70" : "text-walnut/70",
               )}
             >
-              The Brain link is on its way. While you wait — see how your
+              The Brain link is on its way. While you wait, see how your
               People function actually scores.
             </p>
             <a

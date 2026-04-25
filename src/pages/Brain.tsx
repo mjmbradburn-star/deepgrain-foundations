@@ -165,7 +165,7 @@ const Brain = () => (
           {/* Intro column */}
           <ScrollReveal>
             <Eyebrow withRule className="text-brass mb-6">
-              A taste — Layer 1
+              A taste · Layer 1
             </Eyebrow>
             <h2 className="font-display text-cream text-4xl md:text-5xl lg:text-[56px] leading-[1.05] text-balance">
               Setting up your AI workspace.
@@ -174,7 +174,7 @@ const Brain = () => (
               15 min read · Foundations
             </p>
             <p className="mt-8 text-cream/80 leading-relaxed max-w-md">
-              A look at the first piece in the Brain — the workspace
+              A look at the first piece in the Brain. The workspace
               architecture that decides whether AI sounds like your
               organisation or like everyone else&apos;s.
             </p>
@@ -234,8 +234,8 @@ const Brain = () => (
                     workspace problem.
                   </p>
                   <p className="hidden md:block">
-                    A real AI workspace has three layers — and getting them
-                    in the right order changes everything downstream.
+                    A real AI workspace has three layers. Get them in the
+                    right order and everything downstream changes.
                   </p>
                 </div>
 
@@ -325,7 +325,7 @@ const Brain = () => (
             </h2>
             <div className="mt-8 space-y-5 text-cream/80 leading-relaxed max-w-xl">
               <p>
-                Two decades inside companies — building People functions,
+                Two decades inside companies, building People functions,
                 fixing them, sitting in the rooms where the hard calls get
                 made. Multiverse, Bud, defence, fintech, climate. The kind of
                 exposure that turns instinct into pattern.
@@ -376,7 +376,7 @@ const Brain = () => (
             One link. Yours to keep.
           </h2>
           <p className="mt-6 text-cream/75 leading-relaxed max-w-lg mx-auto">
-            Drop your email — we&apos;ll send the Brain straight back. No
+            Drop your email and we&apos;ll send the Brain straight back. No
             sequence, no funnel, no follow-up unless you ask.
           </p>
 
