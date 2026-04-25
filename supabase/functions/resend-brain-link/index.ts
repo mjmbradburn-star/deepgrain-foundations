@@ -222,6 +222,11 @@ Deno.serve(async (req) => {
 
   const emailRaw = typeof r.email === 'string' ? r.email.trim().toLowerCase() : ''
   if (!emailRaw || emailRaw.length > 320 || !EMAIL_REGEX.test(emailRaw)) {
+    console.warn('resend-brain-link: validation failed', {
+      hasEmail: typeof r.email,
+      emailRawLen: emailRaw.length,
+      keys: Object.keys(r),
+    })
     await logOutcome(supabase, 'resend_validation_failed', { ip, detail: { field: 'email' } })
     return jsonResponse({ error: 'Please enter a valid email address.' }, 400)
   }
