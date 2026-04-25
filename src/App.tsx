@@ -24,6 +24,7 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const CookiesPage = lazy(() => import("./pages/Cookies"));
 const Terms = lazy(() => import("./pages/Terms"));
 const SeoChecklist = lazy(() => import("./pages/SeoChecklist"));
+const Brain = lazy(() => import("./pages/Brain"));
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,7 @@ const App = () => (
               <Route path="/cookies" element={<CookiesPage />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/seo-checklist" element={<SeoChecklist />} />
+              <Route path="/brain" element={<Brain />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
