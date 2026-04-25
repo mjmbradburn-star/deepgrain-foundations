@@ -364,11 +364,40 @@ Deno.serve(async (req) => {
           status: 'failed',
           error_message: errorMsg.slice(0, 1000),
         })
+        const nextFailedAttempts = failedAttempts + 1
         if (payload?.message_id && typeof payload.message_id === 'string') {
-          failedAttemptsByMessageId.set(payload.message_id, failedAttempts + 1)
+          failedAttemptsByMessageId.set(payload.message_id, nextFailedAttempts)
         }
 
-        // Non-429 errors: message stays invisible until VT expires, then retried
+        // Exponential backoff: defer the message's next visibility based on
+        // how many real failures it's racked up. Without this, the message
+        // would be retried after the default 30s VT every time, regardless
+        // of how many times it's already failed.
+        if (nextFailedAttempts < MAX_RETRIES) {
+          const backoffSeconds = computeBackoffSeconds(nextFailedAttempts)
+          const { error: vtError } = await supabase.rpc('set_email_vt', {
+            queue_name: queue,
+            message_id: msg.msg_id,
+            vt_seconds: backoffSeconds,
+          })
+          if (vtError) {
+            console.error('Failed to set backoff VT', {
+              queue,
+              msg_id: msg.msg_id,
+              backoff_seconds: backoffSeconds,
+              error: vtError,
+            })
+          } else {
+            console.log('Applied exponential backoff', {
+              queue,
+              msg_id: msg.msg_id,
+              failed_attempts: nextFailedAttempts,
+              next_retry_in_seconds: backoffSeconds,
+            })
+          }
+        }
+
+        // Non-429 errors: message stays invisible for the backoff window, then retried
       }
 
       // Small delay between sends to smooth bursts
