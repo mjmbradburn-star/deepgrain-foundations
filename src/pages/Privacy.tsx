@@ -52,6 +52,17 @@ const Privacy = () => (
           your email address, the page you subscribed from, and the date.
         </P>
         <P>
+          <strong>The Brain.</strong> If you request the People Ops AI Brain
+          at{" "}
+          <Link to="/brain" className="text-walnut underline underline-offset-2 hover:text-brass">
+            /brain
+          </Link>
+          , we store your first name (optional), email address, the timestamp
+          you gave consent, your IP address, and the user agent of the browser
+          you submitted from. The IP and user agent are kept as a light audit
+          trail for the consent record.
+        </P>
+        <P>
           <strong>Enquiries.</strong> If you use the contact form, we store the
           name, email, organisation, team size, and message you give us.
         </P>
@@ -78,19 +89,20 @@ const Privacy = () => (
 
         <H2>How long we keep it</H2>
         <P>
-          Subscriber records are kept until you unsubscribe. Enquiries are kept
-          for up to three years so we can pick up a conversation later, then
-          deleted. Server logs are short-lived and managed by our hosting
-          providers.
+          Subscriber records are kept until you unsubscribe. Brain subscribers
+          are kept for up to 24 months after your last engagement, then deleted
+          unless you ask us to keep you on the list. Enquiries are kept for up
+          to three years so we can pick up a conversation later, then deleted.
+          Server logs are short-lived and managed by our hosting providers.
         </P>
 
         <H2>Who processes it</H2>
         <P>
           We use a small set of trusted providers to run the site and send
-          email. These include our hosting platform (Lovable Cloud, which uses
-          Supabase) and our transactional email provider. These providers act
-          as processors on our instructions and are bound by data processing
-          terms.
+          email. Brain subscriber data and the welcome email are handled by
+          Lovable Cloud (EU-region storage), which uses Supabase as the
+          underlying platform. These providers act as processors on our
+          instructions and are bound by data processing terms.
         </P>
 
         <H2>International transfers</H2>
