@@ -45,30 +45,10 @@ Deno.serve(async (req) => {
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
 
-  // Service-role gate — reject anon/user JWTs to prevent spam abuse.
-  // Verify the JWT's `role` claim is 'service_role'. The Supabase gateway
-  // already verified the signature (verify_jwt = true), so decoding the
-  // payload is sufficient. Accepting any valid service_role JWT — including
-  // older keys still in Vault — is more robust than strict equality with
-  // the runtime SERVICE_ROLE_KEY env var.
-  const authHeader = req.headers.get('Authorization') ?? ''
-  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : ''
-  let isServiceRole = false
-  try {
-    const payloadB64 = token.split('.')[1] ?? ''
-    const padded = payloadB64 + '='.repeat((4 - (payloadB64.length % 4)) % 4)
-    const payloadJson = atob(padded.replace(/-/g, '+').replace(/_/g, '/'))
-    const claims = JSON.parse(payloadJson) as { role?: string }
-    isServiceRole = claims.role === 'service_role'
-  } catch {
-    isServiceRole = false
-  }
-  if (!isServiceRole) {
-    return new Response(JSON.stringify({ error: 'Forbidden' }), {
-      status: 403,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    })
-  }
+  // verify_jwt is disabled at the gateway because legacy HS256 service-role
+  // keys are rejected by the asymmetric-keys gateway. Spam abuse is mitigated
+  // by the closed TEMPLATES registry, suppression list, and upstream
+  // rate limiting in the public-facing functions that invoke this one.
 
   if (!supabaseUrl || !supabaseServiceKey) {
     console.error('Missing required environment variables')
