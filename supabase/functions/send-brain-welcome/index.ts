@@ -446,6 +446,41 @@ Deno.serve(async (req) => {
   }
 
   if (existing) {
+    // Duplicate signup → trigger the resend flow so the user actually gets
+    // a fresh, working link (the original may be lost in spam, deleted, or
+    // for an unsubscribed/suppressed address). resend-brain-link handles
+    // its own per-subscriber hourly cooldown, suppression checks, and
+    // unsubscribe handling, so we can safely fire-and-forget here.
+    let resendStatus: string | null = null;
+    let resendError: string | null = null;
+    try {
+      const resendResp = await fetch(
+        `${supabaseUrl}/functions/v1/resend-brain-link`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${supabaseServiceKey}`,
+            "x-forwarded-for": ip,
+          },
+          body: JSON.stringify({ email }),
+        },
+      );
+      try {
+        const body = await resendResp.json();
+        if (body && typeof body.status === "string") {
+          resendStatus = body.status;
+        }
+      } catch {
+        // ignore body-parse errors
+      }
+      if (!resendResp.ok && !resendStatus) {
+        resendError = `resend_http_${resendResp.status}`;
+      }
+    } catch (e) {
+      resendError = e instanceof Error ? e.message : "resend_invoke_failed";
+    }
+
     await logOutcome(supabase, "duplicate", {
       ip,
       email,
@@ -453,6 +488,8 @@ Deno.serve(async (req) => {
       detail: {
         prior_status: existing.email_status,
         unsubscribed: Boolean(existing.unsubscribed_at),
+        resend_status: resendStatus,
+        resend_error: resendError,
       },
     });
     return successResponse();
