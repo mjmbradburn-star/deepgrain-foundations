@@ -134,8 +134,7 @@ export const template = {
   displayName: 'Brain — welcome',
   previewData: {
     firstName: 'Sam',
-    brainUrl:
-      'https://www.notion.so/The-Deepgrain-People-Ops-AI-Brain-2f61569da34481baa942d9758263742d',
+    brainUrl: 'https://deepgrain.ai/brain/open?t=preview',
     aioiUrl: 'https://aioi.deepgrain.ai',
   },
 } satisfies TemplateEntry
