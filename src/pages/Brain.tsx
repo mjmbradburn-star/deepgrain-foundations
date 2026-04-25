@@ -169,7 +169,7 @@ const Brain = () => (
             What&apos;s inside
           </Eyebrow>
           <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-6xl leading-[1.05] max-w-3xl text-balance">
-            Nine practical pieces. Built for the work, not the theory.
+            Nine examples. Something for every capability level.
           </h2>
           <p className="mt-6 max-w-2xl text-body/75 leading-relaxed">
             Each one starts with a real problem, walks through what we
