@@ -179,28 +179,175 @@ function jsonResponse(data: Record<string, unknown>, status = 200): Response {
 const successResponse = () =>
   jsonResponse({ success: true, message: 'Check your inbox.' })
 
+// ──────────────────────────────────────────────────────────────────────
+// Server-side metrics
+//
+// All outcomes are logged in two places:
+//
+//   1. Structured stdout JSON line (`brain_welcome_metric`) — picked up by
+//      the edge function log explorer and easy to grep.
+//   2. A row in `email_send_log` with template_name = 'brain-welcome' and a
+//      synthetic `message_id` of `brain-welcome-meta-<uuid>` for outcomes
+//      that don't correspond to an actual send attempt (duplicate, blocked,
+//      rate-limited, validation_failed, …). The real send goes through
+//      `send-transactional-email` and produces its own `email_send_log` rows
+//      keyed by the proper `brain-welcome-<subscriber_id>` message_id.
+//
+// Sensitive inputs (raw email, IP, user agent) are never written to
+// `email_send_log.metadata` — only hashed/abbreviated forms.
+// ──────────────────────────────────────────────────────────────────────
+
+type Outcome =
+  | 'success'           // new subscriber, send queued
+  | 'duplicate'         // email already on file
+  | 'blocked_domain'    // disposable / throwaway domain
+  | 'rate_limited'      // IP exceeded the 5/60s window
+  | 'validation_failed' // payload failed validation
+  | 'invalid_json'      // body wasn't JSON
+  | 'method_not_allowed'
+  | 'config_error'      // missing SUPABASE_* envs
+  | 'lookup_failed'     // SELECT against brain_subscribers errored
+  | 'insert_failed'     // INSERT into brain_subscribers errored
+  | 'send_failed'       // send-transactional-email returned non-OK
+  | 'send_suppressed'   // recipient is on the suppression list
+
+// Short SHA-256 fingerprint of the email. Lets us correlate metric rows
+// for the same recipient without ever logging the address itself.
+async function emailFingerprint(email: string | null): Promise<string | null> {
+  if (!email) return null
+  const data = new TextEncoder().encode(email.toLowerCase().trim())
+  const hash = await crypto.subtle.digest('SHA-256', data)
+  return Array.from(new Uint8Array(hash))
+    .slice(0, 8)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
+}
+
+// Drop the last octet of an IPv4 address (or the tail of v6) so logs keep
+// an aggregation key without storing the full client IP.
+function maskIp(ip: string): string {
+  if (!ip || ip === 'unknown') return 'unknown'
+  if (ip.includes(':')) {
+    return ip.split(':').slice(0, 3).join(':') + ':…'
+  }
+  const parts = ip.split('.')
+  if (parts.length === 4) return `${parts[0]}.${parts[1]}.${parts[2]}.x`
+  return 'masked'
+}
+
+interface OutcomeContext {
+  ip: string
+  email?: string | null
+  domain?: string | null
+  detail?: Record<string, unknown>
+}
+
+async function logOutcome(
+  supabase: ReturnType<typeof createClient> | null,
+  outcome: Outcome,
+  ctx: OutcomeContext,
+): Promise<void> {
+  const fingerprint = await emailFingerprint(ctx.email ?? null)
+  const ipMasked = maskIp(ctx.ip)
+
+  // 1) Structured stdout — single source of truth for the agent / log search.
+  const line = {
+    metric: 'brain_welcome_metric',
+    outcome,
+    domain: ctx.domain ?? null,
+    email_fp: fingerprint,
+    ip_masked: ipMasked,
+    ts: new Date().toISOString(),
+    ...(ctx.detail ?? {}),
+  }
+  const negative: Outcome[] = [
+    'blocked_domain',
+    'rate_limited',
+    'validation_failed',
+    'invalid_json',
+    'method_not_allowed',
+    'config_error',
+    'lookup_failed',
+    'insert_failed',
+    'send_failed',
+    'send_suppressed',
+  ]
+  if (negative.includes(outcome)) {
+    console.warn(JSON.stringify(line))
+  } else {
+    console.log(JSON.stringify(line))
+  }
+
+  // 2) email_send_log — only when we have a service-role client. Best-effort:
+  //    never let a logging failure break the user-facing response.
+  if (!supabase) return
+  try {
+    const status =
+      outcome === 'success'
+        ? 'pending'
+        : outcome === 'duplicate'
+          ? 'duplicate'
+          : outcome === 'blocked_domain'
+            ? 'blocked'
+            : outcome === 'rate_limited'
+              ? 'rate_limited'
+              : outcome === 'send_suppressed'
+                ? 'suppressed'
+                : outcome === 'validation_failed' || outcome === 'invalid_json'
+                  ? 'rejected'
+                  : 'failed'
+
+    await supabase.from('email_send_log').insert({
+      message_id: `brain-welcome-meta-${crypto.randomUUID()}`,
+      template_name: 'brain-welcome',
+      // Recipient is required by schema. For meta rows where we don't have
+      // a validated address, log a stable sentinel so we don't leak garbage.
+      recipient_email: ctx.email ?? 'unknown@brain-welcome.meta',
+      status,
+      error_message: typeof ctx.detail?.reason === 'string'
+        ? (ctx.detail.reason as string)
+        : null,
+      metadata: {
+        outcome,
+        domain: ctx.domain ?? null,
+        email_fp: fingerprint,
+        ip_masked: ipMasked,
+        ...(ctx.detail ?? {}),
+      },
+    })
+  } catch (err) {
+    console.warn('send-brain-welcome: metric persist failed', {
+      outcome,
+      err: String(err),
+    })
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders })
   }
 
+  // Resolve client IP early so all metrics carry it.
+  const forwardedFor = req.headers.get('x-forwarded-for') ?? ''
+  const ip = forwardedFor.split(',')[0]?.trim() || 'unknown'
+
   if (req.method !== 'POST') {
+    await logOutcome(null, 'method_not_allowed', { ip, detail: { method: req.method } })
     return jsonResponse({ error: 'Method not allowed' }, 405)
   }
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
   if (!supabaseUrl || !supabaseServiceKey) {
-    console.error('send-brain-welcome: missing SUPABASE env')
+    await logOutcome(null, 'config_error', { ip })
     return jsonResponse({ error: 'Server configuration error' }, 500)
   }
 
-  // Resolve client IP (Supabase passes through x-forwarded-for).
-  const forwardedFor = req.headers.get('x-forwarded-for') ?? ''
-  const ip = forwardedFor.split(',')[0]?.trim() || 'unknown'
+  const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
   if (rateLimited(ip)) {
-    console.warn('send-brain-welcome: rate limited', { ip })
+    await logOutcome(supabase, 'rate_limited', { ip })
     return jsonResponse(
       { error: 'Too many requests. Please try again in a minute.' },
       429,
@@ -212,26 +359,29 @@ Deno.serve(async (req) => {
   try {
     raw = await req.json()
   } catch {
+    await logOutcome(supabase, 'invalid_json', { ip })
     return jsonResponse({ error: 'Invalid JSON' }, 400)
   }
 
   const parsed = validatePayload(raw)
   if (!parsed.ok) {
+    await logOutcome(supabase, 'validation_failed', {
+      ip,
+      detail: { fields: Object.keys(parsed.issues) },
+    })
     return jsonResponse({ error: 'Validation failed', issues: parsed.issues }, 400)
   }
 
   const { firstName, email, consentGiven, consentTimestamp, source, referrer, userAgent } =
     parsed.data
+  const domain = email.split('@')[1] ?? ''
 
   // Block disposable domains
-  const domain = email.split('@')[1] ?? ''
   if (DISPOSABLE_DOMAINS.has(domain)) {
-    console.warn('send-brain-welcome: disposable domain blocked', { domain })
+    await logOutcome(supabase, 'blocked_domain', { ip, email, domain })
     // Same shape as success — don't leak the blocklist.
     return successResponse()
   }
-
-  const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
   // Check for existing subscriber. We treat duplicates as success
   // (idempotent UX) and skip resending the email.
@@ -242,13 +392,24 @@ Deno.serve(async (req) => {
     .maybeSingle()
 
   if (lookupError) {
-    console.error('send-brain-welcome: lookup failed', { lookupError })
+    await logOutcome(supabase, 'lookup_failed', {
+      ip,
+      email,
+      domain,
+      detail: { reason: lookupError.message },
+    })
     return jsonResponse({ error: 'Something went wrong. Try again shortly.' }, 500)
   }
 
   if (existing) {
-    console.log('send-brain-welcome: duplicate subscriber, returning success', {
-      id: existing.id,
+    await logOutcome(supabase, 'duplicate', {
+      ip,
+      email,
+      domain,
+      detail: {
+        prior_status: existing.email_status,
+        unsubscribed: Boolean(existing.unsubscribed_at),
+      },
     })
     return successResponse()
   }
@@ -273,7 +434,12 @@ Deno.serve(async (req) => {
     .single()
 
   if (insertError || !inserted) {
-    console.error('send-brain-welcome: insert failed', { insertError })
+    await logOutcome(supabase, 'insert_failed', {
+      ip,
+      email,
+      domain,
+      detail: { reason: insertError?.message ?? 'no row returned' },
+    })
     return jsonResponse({ error: 'Something went wrong. Try again shortly.' }, 500)
   }
 
@@ -331,14 +497,33 @@ Deno.serve(async (req) => {
     })
   }
 
-  if (!sentOk && status === 'failed') {
-    console.error('send-brain-welcome: send-transactional-email failed', {
-      status: sendResp.status,
-      body: sendBody,
+  if (sentOk) {
+    await logOutcome(supabase, 'success', {
+      ip,
+      email,
+      domain,
+      detail: { subscriber_id: inserted.id },
     })
-    // Still return success to the user — their row is saved, retry happens
-    // server-side via the queue or manually.
+  } else if (status === 'suppressed') {
+    await logOutcome(supabase, 'send_suppressed', {
+      ip,
+      email,
+      domain,
+      detail: { subscriber_id: inserted.id, reason: sendBody.reason },
+    })
+  } else {
+    await logOutcome(supabase, 'send_failed', {
+      ip,
+      email,
+      domain,
+      detail: {
+        subscriber_id: inserted.id,
+        http_status: sendResp.status,
+        reason: sendBody.error ?? sendBody.reason ?? null,
+      },
+    })
   }
 
+  // Always return the same success shape — never reveal send-side outcome.
   return successResponse()
 })
