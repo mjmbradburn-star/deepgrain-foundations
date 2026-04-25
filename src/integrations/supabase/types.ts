@@ -14,6 +14,53 @@ export type Database = {
   }
   public: {
     Tables: {
+      brain_access_tokens: {
+        Row: {
+          created_at: string
+          expires_at: string
+          id: string
+          last_ip: string | null
+          last_used_at: string | null
+          revoke_reason: string | null
+          revoked_at: string | null
+          subscriber_id: string
+          token: string
+          use_count: number
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string
+          id?: string
+          last_ip?: string | null
+          last_used_at?: string | null
+          revoke_reason?: string | null
+          revoked_at?: string | null
+          subscriber_id: string
+          token: string
+          use_count?: number
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string
+          id?: string
+          last_ip?: string | null
+          last_used_at?: string | null
+          revoke_reason?: string | null
+          revoked_at?: string | null
+          subscriber_id?: string
+          token?: string
+          use_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "brain_access_tokens_subscriber_id_fkey"
+            columns: ["subscriber_id"]
+            isOneToOne: false
+            referencedRelation: "brain_subscribers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       brain_subscribers: {
         Row: {
           consent_given: boolean
