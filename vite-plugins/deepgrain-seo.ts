@@ -155,7 +155,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [About](${SITE}/about): Matthew Bradburn's background, philosophy, and references.
 - [Contact](${SITE}/contact): How to start a conversation.
 - [Intelligence](${SITE}/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
-- [Intelligence · People Ops AI Brain](${SITE}/intelligence/people-ops): A dedicated track for People leaders building AI capability — from prompts to systems.
+- [Brain](${SITE}/brain): The People Ops AI Brain — nine working notes on running People functions with AI. Free with email.
 
 ## Intelligence — Deepgrain Foundations
 
