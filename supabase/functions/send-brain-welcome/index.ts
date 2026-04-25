@@ -242,8 +242,11 @@ interface OutcomeContext {
   detail?: Record<string, unknown>
 }
 
+// Use `any` for the client here so we don't fight the deeply-inferred
+// generics from createClient — this helper only ever calls a single insert.
+// deno-lint-ignore no-explicit-any
 async function logOutcome(
-  supabase: ReturnType<typeof createClient> | null,
+  supabase: any | null,
   outcome: Outcome,
   ctx: OutcomeContext,
 ): Promise<void> {
