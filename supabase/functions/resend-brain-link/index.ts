@@ -39,7 +39,7 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 }
 
-const EMAIL_REGEX = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function jsonResponse(data: Record<string, unknown>, status = 200): Response {
   return new Response(JSON.stringify(data), {
@@ -222,13 +222,6 @@ Deno.serve(async (req) => {
 
   const emailRaw = typeof r.email === 'string' ? r.email.trim().toLowerCase() : ''
   if (!emailRaw || emailRaw.length > 320 || !EMAIL_REGEX.test(emailRaw)) {
-    console.warn('resend-brain-link: validation failed', {
-      hasEmail: typeof r.email,
-      emailRawLen: emailRaw.length,
-      emailRawValue: emailRaw,
-      regexTest: EMAIL_REGEX.test(emailRaw),
-      keys: Object.keys(r),
-    })
     await logOutcome(supabase, 'resend_validation_failed', { ip, detail: { field: 'email' } })
     return jsonResponse({ error: 'Please enter a valid email address.' }, 400)
   }
