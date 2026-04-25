@@ -99,9 +99,12 @@ const Privacy = () => (
         <H2>Who processes it</H2>
         <P>
           We use a small set of trusted providers to run the site and send
-          email. Brain subscriber data and the welcome email are handled by
-          Lovable Cloud (EU-region storage), which uses Supabase as the
-          underlying platform. These providers act as processors on our
+          email. Brain subscriber data, access tokens and the welcome email
+          are handled by Lovable Cloud (EU-region storage), which uses
+          Supabase as the underlying platform. The Brain content itself is
+          hosted on Notion (Notion Labs, Inc.); Notion only sees inbound
+          traffic from people who arrive through a valid access link, not
+          your subscriber record. These providers act as processors on our
           instructions and are bound by data processing terms.
         </P>
 
