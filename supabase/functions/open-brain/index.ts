@@ -10,7 +10,15 @@ const corsHeaders = {
 
 const SITE_BASE = 'https://deepgrain.ai'
 
-function htmlResponse(title: string, body: string, status = 200): Response {
+function htmlResponse(
+  title: string,
+  body: string,
+  status = 200,
+  resendReason?: 'not_found' | 'revoked' | 'expired' | 'malformed',
+): Response {
+  const cta = resendReason
+    ? `<p><a class="btn" href="${SITE_BASE}/brain/resend?reason=${resendReason}">Request a fresh link →</a></p>`
+    : `<p><a href="${SITE_BASE}/brain">Return to deepgrain.ai/brain</a></p>`
   // Tiny self-contained HTML — keeps copy on-brand without pulling the SPA bundle.
   const html = `<!doctype html>
 <html lang="en">
@@ -26,13 +34,15 @@ function htmlResponse(title: string, body: string, status = 200): Response {
     h1 { font-size: 28px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 16px; }
     p { font-size: 16px; line-height: 1.6; color: #4a4a4a; margin: 0 0 16px; }
     a { color: #1a1a1a; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    a.btn { display: inline-block; padding: 12px 22px; border: 1px solid #1a1a1a; border-radius: 999px; text-decoration: none; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+    a.btn:hover { background: #1a1a1a; color: #faf8f3; }
   </style>
 </head>
 <body>
   <main>
     <h1>${title}</h1>
     ${body}
-    <p><a href="${SITE_BASE}/brain">Return to deepgrain.ai/brain</a></p>
+    ${cta}
   </main>
 </body>
 </html>`
