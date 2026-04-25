@@ -9,7 +9,6 @@
 // and an in-memory IP rate limit (5 / 60s).
 
 import { createClient } from 'npm:@supabase/supabase-js@2'
-import { z } from 'npm:zod@3.23.8'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
