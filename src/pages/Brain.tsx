@@ -34,7 +34,42 @@ const Brain = () => (
     <PageMeta
       title="The People Ops AI Brain | Deepgrain"
       description="The most comprehensive selection of learnings on how to practically utilize AI within organizations — hiring, onboarding, performance, comp, org design. Free with your email."
-...
+      path="/brain"
+      jsonLd={buildBreadcrumbLd([
+        { name: "Home", url: "https://deepgrain.ai/" },
+        { name: "Brain", url: "https://deepgrain.ai/brain" },
+      ])}
+    />
+
+    {/* ───────── Section 1 — Hero ───────── */}
+    <section
+      className="relative min-h-screen flex items-center overflow-hidden"
+      data-no-rule
+    >
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=60&fm=webp"
+          alt=""
+          width={1600}
+          height={1067}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-green/65" />
+        <div className="absolute inset-0 bg-gradient-to-r from-green/80 via-green/40 to-transparent" />
+      </div>
+
+      <div className="relative container-grain pt-32 pb-32 md:pt-40">
+        <div className="max-w-3xl">
+          <Eyebrow className="text-brass mb-8">The Brain</Eyebrow>
+          <h1
+            className="font-display font-semibold text-cream leading-[0.95] text-[2.75rem] sm:text-7xl md:text-[88px] lg:text-[104px]"
+            style={{ letterSpacing: "0.01em" }}
+          >
+            The People<br />Ops AI<br />Brain.
+          </h1>
           <p className="mt-10 max-w-xl text-cream text-xl md:text-2xl leading-snug font-medium">
             The most comprehensive selection of learnings on how to practically utilize AI within organizations
           </p>
