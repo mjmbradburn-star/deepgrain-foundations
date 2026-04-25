@@ -63,6 +63,19 @@ const Privacy = () => (
           trail for the consent record.
         </P>
         <P>
+          <strong>Brain access link.</strong> The Brain itself is hosted on
+          Notion. To keep it private, we generate a personal access token
+          tied to your subscriber record and embed it in the welcome email
+          as a link through{" "}
+          <code className="font-mono text-[0.85em]">deepgrain.ai</code>. When
+          you click it, our system checks the token is still valid and
+          forwards you on to the Brain. The token is valid for 12 months and
+          is revoked automatically if you unsubscribe, your address bounces,
+          or you mark a Deepgrain email as spam. We log the time of each
+          redirect and the IP it came from so we can spot abuse — that log
+          is kept for 12 months and is not used for marketing.
+        </P>
+        <P>
           <strong>Enquiries.</strong> If you use the contact form, we store the
           name, email, organisation, team size, and message you give us.
         </P>
@@ -99,9 +112,12 @@ const Privacy = () => (
         <H2>Who processes it</H2>
         <P>
           We use a small set of trusted providers to run the site and send
-          email. Brain subscriber data and the welcome email are handled by
-          Lovable Cloud (EU-region storage), which uses Supabase as the
-          underlying platform. These providers act as processors on our
+          email. Brain subscriber data, access tokens and the welcome email
+          are handled by Lovable Cloud (EU-region storage), which uses
+          Supabase as the underlying platform. The Brain content itself is
+          hosted on Notion (Notion Labs, Inc.); Notion only sees inbound
+          traffic from people who arrive through a valid access link, not
+          your subscriber record. These providers act as processors on our
           instructions and are bound by data processing terms.
         </P>
 

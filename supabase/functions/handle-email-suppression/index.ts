@@ -124,6 +124,38 @@ Deno.serve(async (req) => {
     })
   }
 
+  // Defence-in-depth: explicitly revoke any active brain access tokens
+  // for this address. The suppressed_emails AFTER INSERT trigger covers
+  // this, but logging at the application layer makes audit easier.
+  const { data: brainSubs } = await supabase
+    .from('brain_subscribers')
+    .select('id')
+    .ilike('email', normalizedEmail)
+
+  if (brainSubs && brainSubs.length > 0) {
+    const { data: revoked, error: revokeError } = await supabase
+      .from('brain_access_tokens')
+      .update({
+        revoked_at: new Date().toISOString(),
+        revoke_reason: payload.reason,
+      })
+      .in('subscriber_id', brainSubs.map((s) => s.id))
+      .is('revoked_at', null)
+      .select('id')
+
+    if (revokeError) {
+      console.warn('Failed to revoke brain access tokens on suppression', {
+        error: revokeError,
+        reason: payload.reason,
+      })
+    } else if (revoked && revoked.length > 0) {
+      console.log('Brain access tokens revoked on suppression', {
+        reason: payload.reason,
+        count: revoked.length,
+      })
+    }
+  }
+
   console.log('Suppression processed', {
     email_redacted: normalizedEmail[0] + '***@' + normalizedEmail.split('@')[1],
     reason: payload.reason,
