@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same branch.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  edge-functions:
+    name: Edge functions (deno check)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          # Pin to a recent stable. Bump deliberately if Supabase Edge Runtime moves.
+          deno-version: v1.46.x
+
+      - name: Cache Deno deps
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/deno
+            supabase/functions/*/node_modules
+          key: deno-${{ runner.os }}-${{ hashFiles('supabase/functions/*/deno.lock') }}
+          restore-keys: |
+            deno-${{ runner.os }}-
+
+      - name: Type-check every edge function
+        # Each function has its own deno.json (especially for React/JSX
+        # rendering functions) so we install + check from inside each
+        # directory. This catches the same workspace resolution issues
+        # that broke resend-brain-link locally — missing deno.json,
+        # mismatched npm specifiers, JSX config drift.
+        run: |
+          set -e
+          fail=0
+          for dir in supabase/functions/*/; do
+            fn=$(basename "$dir")
+            # Skip _shared (no entrypoint, imported by others).
+            if [ "$fn" = "_shared" ]; then
+              continue
+            fi
+            if [ ! -f "$dir/index.ts" ]; then
+              echo "::warning::skipping $fn — no index.ts"
+              continue
+            fi
+            echo "::group::$fn"
+            (
+              cd "$dir"
+              deno install --entrypoint index.ts > /dev/null 2>&1 || true
+              deno check index.ts
+            ) || { echo "::error::deno check failed for $fn"; fail=1; }
+            echo "::endgroup::"
+          done
+          exit $fail
+
+  frontend:
+    name: Frontend (typecheck + build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: TypeScript check
+        run: bunx tsc --noEmit -p tsconfig.app.json
+
+      - name: Build
+        run: bun run build
+
+      - name: Test
+        run: bunx vitest run
