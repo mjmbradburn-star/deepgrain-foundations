@@ -94,20 +94,13 @@ const Intelligence = () => {
                 className="font-display text-2xl md:text-3xl text-walnut mt-2"
                 style={{ letterSpacing: "-0.005em" }}
               >
-                Sections of the Deepgrain track
+                Sections
               </h2>
             </div>
-            <Link
-              to="/intelligence/people-ops"
-              className="text-[11px] uppercase text-green hover:text-brass transition-colors"
-              style={{ letterSpacing: "0.14em" }}
-            >
-              Switch to People Ops track →
-            </Link>
           </div>
           <nav aria-label="Intelligence sections">
             <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 list-none counter-reset-[section]">
-              {deepgrainCategories.map((cat, i) => {
+              {allCategories.map((cat, i) => {
                 const items = getArticlesByCategory(cat.slug);
                 if (items.length === 0) return null;
                 return (
@@ -145,10 +138,10 @@ const Intelligence = () => {
         </div>
       </section>
 
-      {/* Categories — Deepgrain track only */}
+      {/* Categories — all tracks, one stream */}
       <section className="bg-linen py-24 md:py-32">
         <div className="container-grain space-y-24">
-          {deepgrainCategories.map((cat) => {
+          {allCategories.map((cat) => {
             const items = getArticlesByCategory(cat.slug);
             if (items.length === 0) return null;
             return (
