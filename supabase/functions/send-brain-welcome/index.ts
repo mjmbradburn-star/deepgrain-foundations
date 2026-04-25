@@ -458,54 +458,146 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: 'Something went wrong. Try again shortly.' }, 500)
   }
 
-  // Call send-transactional-email over HTTP using the publishable
-  // (asymmetric-signed) key. This avoids the gateway rejecting the legacy
-  // HS256 SERVICE_ROLE_KEY when used as a bearer token, while still letting
-  // send-transactional-email render the React Email template, manage the
-  // unsubscribe token, and enqueue the pre-rendered payload for the
-  // dispatcher.
+  // Render the brain-welcome React Email template inline and enqueue the
+  // pre-rendered payload directly to the `transactional_emails` pgmq queue
+  // via the `enqueue_email` RPC. This bypasses send-transactional-email's
+  // HTTP entry point — that gateway rejects calls from this function under
+  // the asymmetric-keys regime — while preserving exactly the same payload
+  // shape the dispatcher (process-email-queue) expects.
   const messageId = `brain-welcome-${inserted.id}`
   const idempotencyKey = `brain-welcome-${inserted.id}`
 
   let sentOk = false
   let sendErrorReason: string | null = null
-  let httpStatus = 0
 
   try {
-    const sendResp = await fetch(
-      `${supabaseUrl}/functions/v1/send-transactional-email`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          apikey: supabasePublishableKey,
-          Authorization: `Bearer ${supabaseServiceKey}`,
-        },
-        body: JSON.stringify({
-          templateName: 'brain-welcome',
-          recipientEmail: email,
-          idempotencyKey,
-          messageId,
-          templateData: {
-            firstName,
-            brainUrl: BRAIN_NOTION_URL,
-            aioiUrl: AIOI_URL,
-          },
-        }),
-      },
-    )
-    httpStatus = sendResp.status
-    const sendBody = (await sendResp.json().catch(() => ({}))) as {
-      success?: boolean
-      reason?: string
-      error?: string
+    // 1. Suppression check — never enqueue to a suppressed address.
+    const { data: suppressed, error: suppressedError } = await supabase
+      .from('suppressed_emails')
+      .select('email')
+      .eq('email', email)
+      .maybeSingle()
+
+    if (suppressedError) throw new Error(`suppression_check_failed: ${suppressedError.message}`)
+
+    if (suppressed) {
+      await logOutcome(supabase, 'send_suppressed', {
+        ip,
+        email,
+        domain,
+        detail: { subscriber_id: inserted.id },
+      })
+      // Stamp the subscriber row + bail.
+      await supabase
+        .from('brain_subscribers')
+        .update({ email_status: 'suppressed' })
+        .eq('id', inserted.id)
+      return successResponse()
     }
-    sentOk = sendResp.ok && sendBody.success !== false
-    sendErrorReason = sentOk ? null : (sendBody.error ?? sendBody.reason ?? null)
+
+    // 2. Get-or-create the unsubscribe token for this recipient.
+    const { data: existingToken } = await supabase
+      .from('email_unsubscribe_tokens')
+      .select('token, used_at')
+      .eq('email', email)
+      .maybeSingle()
+
+    let unsubscribeToken: string
+    if (existingToken && !existingToken.used_at) {
+      unsubscribeToken = existingToken.token
+    } else if (!existingToken) {
+      unsubscribeToken = generateUnsubscribeToken()
+      await supabase
+        .from('email_unsubscribe_tokens')
+        .upsert(
+          { token: unsubscribeToken, email },
+          { onConflict: 'email', ignoreDuplicates: true },
+        )
+      // Re-read in case another request raced us.
+      const { data: stored } = await supabase
+        .from('email_unsubscribe_tokens')
+        .select('token')
+        .eq('email', email)
+        .maybeSingle()
+      if (!stored?.token) throw new Error('unsubscribe_token_persist_failed')
+      unsubscribeToken = stored.token
+    } else {
+      // Token used — recipient unsubscribed but isn't on suppression list.
+      // Treat as suppressed and skip sending.
+      await logOutcome(supabase, 'send_suppressed', {
+        ip,
+        email,
+        domain,
+        detail: { subscriber_id: inserted.id, reason: 'unsubscribe_token_used' },
+      })
+      await supabase
+        .from('brain_subscribers')
+        .update({ email_status: 'suppressed' })
+        .eq('id', inserted.id)
+      return successResponse()
+    }
+
+    // 3. Render the React Email template to HTML + plain text.
+    const templateData = {
+      firstName,
+      brainUrl: BRAIN_NOTION_URL,
+      aioiUrl: AIOI_URL,
+    }
+    const html = await renderAsync(
+      React.createElement(brainWelcomeTemplate.component, templateData),
+    )
+    const plainText = await renderAsync(
+      React.createElement(brainWelcomeTemplate.component, templateData),
+      { plainText: true },
+    )
+    const resolvedSubject =
+      typeof brainWelcomeTemplate.subject === 'function'
+        ? brainWelcomeTemplate.subject(templateData)
+        : brainWelcomeTemplate.subject
+
+    // 4. Log a `pending` row before enqueue so we have a record even if
+    //    enqueue throws.
+    await supabase.from('email_send_log').insert({
+      message_id: messageId,
+      template_name: 'brain-welcome',
+      recipient_email: email,
+      status: 'pending',
+    })
+
+    // 5. Enqueue. Payload shape mirrors send-transactional-email exactly
+    //    so the dispatcher consumes it without any branching.
+    const { error: enqueueError } = await supabase.rpc('enqueue_email', {
+      queue_name: 'transactional_emails',
+      payload: {
+        message_id: messageId,
+        to: email,
+        from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+        sender_domain: SENDER_DOMAIN,
+        subject: resolvedSubject,
+        html,
+        text: plainText,
+        purpose: 'transactional',
+        label: 'brain-welcome',
+        idempotency_key: idempotencyKey,
+        unsubscribe_token: unsubscribeToken,
+        queued_at: new Date().toISOString(),
+      },
+    })
+
+    if (enqueueError) throw new Error(`enqueue_failed: ${enqueueError.message}`)
+
+    sentOk = true
   } catch (e) {
     sentOk = false
-    sendErrorReason = e instanceof Error ? e.message : 'send_fetch_failed'
-    httpStatus = 0
+    sendErrorReason = e instanceof Error ? e.message : 'enqueue_unknown_error'
+    // Best-effort failure record so the dashboard reflects what happened.
+    await supabase.from('email_send_log').insert({
+      message_id: messageId,
+      template_name: 'brain-welcome',
+      recipient_email: email,
+      status: 'failed',
+      error_message: sendErrorReason,
+    })
   }
 
   const status = sentOk ? 'queued' : 'failed'
