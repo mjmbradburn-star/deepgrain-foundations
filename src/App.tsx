@@ -48,7 +48,6 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/intelligence" element={<Intelligence />} />
               <Route path="/intelligence/people-ops" element={<Navigate to="/intelligence" replace />} />
-              <Route path="/brain/people-ops" element={<Navigate to="/intelligence" replace />} />
               <Route path="/intelligence/category/:name" element={<IntelligenceCategory />} />
               <Route path="/intelligence/:slug" element={<IntelligenceArticle />} />
               <Route path="/enablement" element={<Enablement />} />
