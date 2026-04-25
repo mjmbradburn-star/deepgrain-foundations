@@ -35,10 +35,58 @@ const Brain = () => (
       title="The People Ops AI Brain | Deepgrain"
       description="The most thorough collection of working notes on running People functions with AI: hiring, onboarding, performance, comp, org design. Free with your email."
       path="/brain"
-      jsonLd={buildBreadcrumbLd([
-        { name: "Home", url: "https://deepgrain.ai/" },
-        { name: "Brain", url: "https://deepgrain.ai/brain" },
-      ])}
+      jsonLd={[
+        buildBreadcrumbLd([
+          { name: "Home", url: "https://deepgrain.ai/" },
+          { name: "Brain", url: "https://deepgrain.ai/brain" },
+        ]),
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "The People Ops AI Brain",
+          url: "https://deepgrain.ai/brain",
+          description:
+            "A curated collection of working notes for People leaders building AI capability — hiring, onboarding, performance, comp, org design. Free with your email.",
+          inLanguage: "en",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Deepgrain",
+            url: "https://deepgrain.ai",
+          },
+          author: {
+            "@type": "Person",
+            name: "Matthew Bradburn",
+            url: "https://deepgrain.ai/about",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "Deepgrain",
+            url: "https://deepgrain.ai",
+          },
+          potentialAction: {
+            "@type": "SubscribeAction",
+            target: "https://deepgrain.ai/brain#brain-capture-form",
+            name: "Get the Brain",
+          },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Offer",
+          name: "The People Ops AI Brain",
+          description:
+            "Free access to the People Ops AI Brain in exchange for an email address.",
+          url: "https://deepgrain.ai/brain",
+          price: "0",
+          priceCurrency: "GBP",
+          availability: "https://schema.org/InStock",
+          category: "Knowledge resource",
+          seller: {
+            "@type": "Organization",
+            name: "Deepgrain",
+            url: "https://deepgrain.ai",
+          },
+        },
+      ]}
     />
 
     {/* ───────── Section 1 — Hero ───────── */}
