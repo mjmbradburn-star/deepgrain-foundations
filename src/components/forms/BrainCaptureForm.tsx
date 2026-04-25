@@ -224,6 +224,15 @@ export const BrainCaptureForm = ({
         >
           Privacy
         </Link>
+        <Link
+          to="/brain/resend"
+          className={cn(
+            "text-xs underline underline-offset-2 transition-colors",
+            isDark ? "text-cream/55 hover:text-cream/80" : "text-walnut/55 hover:text-walnut/80",
+          )}
+        >
+          Already signed up? Resend my link →
+        </Link>
       </div>
 
       {errorMsg && (
