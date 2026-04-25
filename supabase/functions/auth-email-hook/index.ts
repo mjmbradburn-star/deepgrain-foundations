@@ -17,12 +17,12 @@ const corsHeaders = {
 }
 
 const EMAIL_SUBJECTS: Record<string, string> = {
-  signup: 'Confirm your email',
-  invite: "You've been invited",
-  magiclink: 'Your login link',
-  recovery: 'Reset your password',
-  email_change: 'Confirm your new email',
-  reauthentication: 'Your verification code',
+  signup: 'Confirm your email · Deepgrain',
+  invite: "You've been invited to Deepgrain",
+  magiclink: 'Your sign-in link · Deepgrain',
+  recovery: 'Reset your password · Deepgrain',
+  email_change: 'Confirm your new email · Deepgrain',
+  reauthentication: 'Your verification code · Deepgrain',
 }
 
 // Template mapping
@@ -36,7 +36,7 @@ const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
 }
 
 // Configuration
-const SITE_NAME = "deepgrain-foundations"
+const SITE_NAME = "Deepgrain"
 const SENDER_DOMAIN = "notify.deepgrain.ai"
 const ROOT_DOMAIN = "deepgrain.ai"
 const FROM_DOMAIN = "deepgrain.ai" // Domain shown in From address (may be root or sender subdomain)
