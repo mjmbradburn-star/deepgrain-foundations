@@ -34,11 +34,20 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 }
 
-// The Brain link Matt shared (the People Ops AI Brain Notion page) and
-// the public AIOI URL. Both are public — baked in rather than secrets.
-const BRAIN_NOTION_URL =
-  'https://www.notion.so/The-Deepgrain-People-Ops-AI-Brain-2f61569da34481baa942d9758263742d'
+// The Brain is gated behind a per-subscriber tokenised redirect served by
+// the `open-brain` edge function. We never put the raw Notion URL in HTML,
+// JSON, sitemaps, or marketing surfaces — only `open-brain` resolves it,
+// and only after token validation. AIOI remains public.
+const BRAIN_OPEN_BASE = `${Deno.env.get('SUPABASE_URL') ?? ''}/functions/v1/open-brain`
 const AIOI_URL = 'https://aioi.deepgrain.ai'
+
+function generateBrainAccessToken(): string {
+  const bytes = new Uint8Array(32)
+  crypto.getRandomValues(bytes)
+  return Array.from(bytes)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
+}
 
 // Throwaway / disposable email domains we don't want to bother sending to.
 const DISPOSABLE_DOMAINS = new Set([
@@ -535,10 +544,25 @@ Deno.serve(async (req) => {
       return successResponse()
     }
 
-    // 3. Render the React Email template to HTML + plain text.
+    // 3a. Mint a per-subscriber access token, then build the gated open-brain URL.
+    //     If this fails we still send the welcome email (the user isn't stranded);
+    //     they'll get a "link not recognised" page and can re-submit.
+    const brainAccessToken = generateBrainAccessToken()
+    const { error: tokenInsertError } = await supabase
+      .from('brain_access_tokens')
+      .insert({ subscriber_id: inserted.id, token: brainAccessToken })
+    if (tokenInsertError) {
+      console.warn('send-brain-welcome: brain access token insert failed', {
+        error: tokenInsertError,
+        subscriber_id: inserted.id,
+      })
+    }
+    const brainUrl = `${BRAIN_OPEN_BASE}?t=${brainAccessToken}`
+
+    // 3b. Render the React Email template to HTML + plain text.
     const templateData = {
       firstName,
-      brainUrl: BRAIN_NOTION_URL,
+      brainUrl,
       aioiUrl: AIOI_URL,
     }
     const html = await renderAsync(

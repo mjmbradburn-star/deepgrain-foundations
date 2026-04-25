@@ -13,5 +13,7 @@ project_id = "todgunffzlopbenewfnp"
     verify_jwt = true
   [functions.send-brain-welcome]
     verify_jwt = false
+  [functions.open-brain]
+    verify_jwt = false
   [functions.send-transactional-email]
     verify_jwt = false
