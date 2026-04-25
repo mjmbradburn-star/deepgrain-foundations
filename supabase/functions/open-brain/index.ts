@@ -96,8 +96,9 @@ Deno.serve(async (req) => {
   if (!token || token.length < 16 || token.length > 128) {
     return htmlResponse(
       'Link not recognised',
-      '<p>This Brain link is missing or malformed. If you signed up but never received a working link, request a fresh one by re-submitting the form on deepgrain.ai/brain.</p>',
+      '<p>This Brain link is missing or malformed. If you signed up but never received a working link, request a fresh one below.</p>',
       400,
+      'malformed',
     )
   }
 
@@ -117,24 +118,27 @@ Deno.serve(async (req) => {
   if (!tokenRow) {
     return htmlResponse(
       'Link not recognised',
-      '<p>This Brain link doesn’t match any active subscriber. Request a fresh one by re-submitting the form on deepgrain.ai/brain.</p>',
+      '<p>This Brain link doesn’t match any active subscriber. Request a fresh one below.</p>',
       404,
+      'not_found',
     )
   }
 
   if (tokenRow.revoked_at) {
     return htmlResponse(
       'Access revoked',
-      `<p>This Brain link has been revoked${tokenRow.revoke_reason ? ` (${tokenRow.revoke_reason})` : ''}. If this is unexpected, email <a href="mailto:matt@peopleleaders.io">matt@peopleleaders.io</a>.</p>`,
+      `<p>This Brain link has been revoked${tokenRow.revoke_reason ? ` (${tokenRow.revoke_reason})` : ''}. If you still subscribe, request a fresh one below. If this is unexpected, email <a href="mailto:matt@peopleleaders.io">matt@peopleleaders.io</a>.</p>`,
       410,
+      'revoked',
     )
   }
 
   if (new Date(tokenRow.expires_at).getTime() < Date.now()) {
     return htmlResponse(
       'Link expired',
-      '<p>This Brain link has expired. Request a fresh one by re-submitting the form on deepgrain.ai/brain.</p>',
+      '<p>This Brain link has expired. Request a fresh one below.</p>',
       410,
+      'expired',
     )
   }
 
