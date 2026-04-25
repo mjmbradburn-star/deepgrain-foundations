@@ -52,11 +52,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Deepgrain" />
 
+    <!-- Hero LCP image. Quality lowered to q=45 because the image sits under
+         a green/55 overlay + gradient — detail is invisible, bytes are not.
+         Cuts ~30% transfer vs q=55/60 with no perceptible visual change. -->
     <link
       rel="preload"
       as="image"
-      href="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=55&fm=webp"
-      imagesrcset="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=55&fm=webp 400w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=640&q=55&fm=webp 640w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=55&fm=webp 1200w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=60&fm=webp 1600w"
+      href="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=45&fm=webp"
+      imagesrcset="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=45&fm=webp 400w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=640&q=45&fm=webp 640w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=45&fm=webp 1200w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=50&fm=webp 1600w"
       imagesizes="100vw"
       fetchpriority="high"
     />
