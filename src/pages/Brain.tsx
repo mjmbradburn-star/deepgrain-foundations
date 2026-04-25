@@ -158,65 +158,143 @@ const Brain = () => (
       </div>
     </section>
 
-    {/* ───────── Section 3 — Sample Article ───────── */}
-    <section className="bg-green text-cream py-24 md:py-32">
-      <div className="container-grain max-w-3xl">
-        <ScrollReveal>
-          <Eyebrow withRule className="text-brass mb-6">
-            A taste — Layer 1
-          </Eyebrow>
-          <h2 className="font-display text-cream text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
-            Setting up your AI workspace.
-          </h2>
-          <p className="mt-5 text-cream/55 text-sm font-sans uppercase" style={{ letterSpacing: "0.16em" }}>
-            15 min read · Foundations
-          </p>
-
-          <div className="mt-10 space-y-6 text-cream/85 leading-relaxed text-lg">
-            <p>
-              Most People teams skip the foundation and then wonder why their
-              AI feels generic. They open a chat window, type a question, and
-              judge the model on whatever comes back. That isn&apos;t the
-              model&apos;s fault. It&apos;s a workspace problem.
+    {/* ───────── Section 3 — Sample Article Preview ───────── */}
+    <section className="bg-green text-cream py-24 md:py-32 overflow-hidden">
+      <div className="container-grain">
+        <div className="grid gap-12 lg:gap-20 lg:grid-cols-[5fr_7fr] items-center">
+          {/* Intro column */}
+          <ScrollReveal>
+            <Eyebrow withRule className="text-brass mb-6">
+              A taste — Layer 1
+            </Eyebrow>
+            <h2 className="font-display text-cream text-4xl md:text-5xl lg:text-[56px] leading-[1.05] text-balance">
+              Setting up your AI workspace.
+            </h2>
+            <p className="mt-5 text-cream/55 text-sm font-sans uppercase" style={{ letterSpacing: "0.16em" }}>
+              15 min read · Foundations
             </p>
-            <p>
-              A real AI workspace has three layers. Projects architecture
-              decides what the model sees. A three-tier document strategy
-              decides what counts as canonical context, what counts as
-              working material, and what gets thrown away. Custom instructions
-              decide the voice, the constraints, and the defaults that shape
-              every output before you&apos;ve typed a word.
+            <p className="mt-8 text-cream/80 leading-relaxed max-w-md">
+              A look at the first piece in the Brain — the workspace
+              architecture that decides whether AI sounds like your
+              organisation or like everyone else&apos;s.
             </p>
 
-            <div className="my-10 pl-6 border-l-2 border-brass">
-              <p className="font-display italic text-cream text-2xl md:text-3xl leading-snug text-balance">
-                Get the workspace right and the same model that felt generic
-                yesterday starts producing work that sounds like your
-                organisation. Get it wrong and no amount of prompting
-                rescues it.
-              </p>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <PillButton onClick={scrollToForm} variant="outline">
+                Read the full Brain →
+              </PillButton>
+              <span className="text-cream/55 text-sm">
+                Eight more pieces like this.
+              </span>
             </div>
+          </ScrollReveal>
 
-            <p>
-              The piece walks through the projects pattern that works across
-              ChatGPT, Claude and Copilot, the document discipline that
-              prevents context drift, and the team setup choices that decide
-              whether AI compounds across your function or stays a private
-              hobby on a few laptops.
-            </p>
-          </div>
+          {/* Visual preview — styled to echo the cards in section 2 */}
+          <ScrollReveal delay={120}>
+            <div className="relative">
+              {/* offset frame for depth */}
+              <div
+                aria-hidden
+                className="absolute -inset-3 md:-inset-4 rounded-[2rem] border border-brass/20"
+              />
+              <article
+                aria-label="Article preview: Setting up your AI workspace"
+                className="relative bg-cream text-body rounded-3xl p-8 md:p-10 border border-linen-dark shadow-2xl shadow-black/30"
+              >
+                {/* Card header — mirrors section 2 cards */}
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-display text-brass text-2xl">01</p>
+                  <span
+                    className="font-sans uppercase text-[10px] text-walnut/60 px-2.5 py-1 rounded-full border border-walnut/15"
+                    style={{ letterSpacing: "0.16em" }}
+                  >
+                    Foundations
+                  </span>
+                </div>
+                <BrassRule className="mt-4 mb-6" />
 
-          <BrassRule className="mt-12 mb-10" />
+                {/* Article title */}
+                <h3 className="font-display text-walnut text-3xl md:text-[36px] leading-[1.1] text-balance">
+                  Setting up your AI workspace.
+                </h3>
+                <p
+                  className="mt-3 text-walnut/55 text-[11px] font-sans uppercase"
+                  style={{ letterSpacing: "0.18em" }}
+                >
+                  Matthew Bradburn · 15 min read
+                </p>
 
-          <div className="flex flex-wrap items-center gap-4">
-            <PillButton onClick={scrollToForm} variant="outline">
-              Read the full Brain →
-            </PillButton>
-            <span className="text-cream/55 text-sm">
-              Eight more pieces like this inside.
-            </span>
-          </div>
-        </ScrollReveal>
+                {/* Body excerpt */}
+                <div className="mt-6 space-y-4 text-body/80 text-sm md:text-[15px] leading-relaxed">
+                  <p>
+                    Most People teams skip the foundation and then wonder why
+                    their AI feels generic. They open a chat window, type a
+                    question, and judge the model on whatever comes back.
+                    That isn&apos;t the model&apos;s fault. It&apos;s a
+                    workspace problem.
+                  </p>
+                  <p className="hidden md:block">
+                    A real AI workspace has three layers — and getting them
+                    in the right order changes everything downstream.
+                  </p>
+                </div>
+
+                {/* Three-layer diagram */}
+                <div className="mt-7 rounded-2xl bg-green text-cream p-5 md:p-6">
+                  <p
+                    className="text-brass text-[10px] font-sans uppercase mb-4"
+                    style={{ letterSpacing: "0.18em" }}
+                  >
+                    The three layers
+                  </p>
+                  <ul className="space-y-2.5">
+                    {[
+                      { n: "01", label: "Projects", note: "what the model sees" },
+                      { n: "02", label: "Documents", note: "canonical vs working context" },
+                      { n: "03", label: "Instructions", note: "voice & defaults" },
+                    ].map((row) => (
+                      <li
+                        key={row.n}
+                        className="flex items-center gap-4 rounded-lg border border-brass/30 px-4 py-3"
+                      >
+                        <span className="font-display text-brass text-base w-6">
+                          {row.n}
+                        </span>
+                        <span className="font-display text-cream text-base md:text-lg">
+                          {row.label}
+                        </span>
+                        <span className="ml-auto text-cream/55 text-xs hidden sm:inline">
+                          {row.note}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Pullquote — same brass-bar treatment as before */}
+                <div className="mt-7 pl-5 border-l-2 border-brass">
+                  <p className="font-display italic text-walnut text-lg md:text-xl leading-snug text-balance">
+                    Get the workspace right and the same model that felt
+                    generic yesterday starts sounding like your organisation.
+                  </p>
+                </div>
+
+                {/* Footer chip */}
+                <div className="mt-7 flex items-center justify-between gap-3">
+                  <span
+                    className="font-sans uppercase text-[10px] text-walnut/55"
+                    style={{ letterSpacing: "0.18em" }}
+                  >
+                    Preview · 1 of 9
+                  </span>
+                  <span className="font-display text-brass text-sm">
+                    deepgrain.ai/brain
+                  </span>
+                </div>
+              </article>
+            </div>
+          </ScrollReveal>
+        </div>
       </div>
     </section>
 
