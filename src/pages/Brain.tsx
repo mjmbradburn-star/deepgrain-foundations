@@ -6,6 +6,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { brainCards } from "@/data/brainCards";
+import matthewPortrait from "@/assets/matthew-bradburn.jpg";
 
 /**
  * /brain — The People Ops AI Brain (lead capture).
@@ -221,10 +222,18 @@ const Brain = () => (
         <div className="mt-14 grid gap-6 md:gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {brainCards.map((card, i) => (
             <ScrollReveal key={card.number} delay={i * 60}>
-              <article className="h-full bg-cream rounded-3xl p-8 md:p-9 border border-linen-dark hover:border-brass/50 transition-colors">
-                <p className="font-display text-brass text-2xl">
-                  {card.number}
-                </p>
+              <article className="h-full bg-cream rounded-3xl p-8 md:p-9 border border-linen-dark hover:border-brass/50 transition-colors flex flex-col">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-display text-brass text-2xl">
+                    {card.number}
+                  </p>
+                  <span
+                    className="font-sans uppercase text-[10px] text-walnut/60 px-2.5 py-1 rounded-full border border-walnut/15"
+                    style={{ letterSpacing: "0.16em" }}
+                  >
+                    {card.layer}
+                  </span>
+                </div>
                 <BrassRule className="mt-4 mb-5" />
                 <h3 className="font-display text-walnut text-2xl md:text-[28px] leading-[1.15] text-balance">
                   {card.title}
@@ -244,40 +253,46 @@ const Brain = () => (
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
           <Eyebrow withRule className="text-brass mb-6">
-            A taste
+            A taste — Layer 1
           </Eyebrow>
           <h2 className="font-display text-cream text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
-            Where AI actually belongs in People Ops.
+            Setting up your AI workspace.
           </h2>
+          <p className="mt-5 text-cream/55 text-sm font-sans uppercase" style={{ letterSpacing: "0.16em" }}>
+            15 min read · Foundations
+          </p>
 
           <div className="mt-10 space-y-6 text-cream/85 leading-relaxed text-lg">
             <p>
-              Most People teams are being asked the same question right now:
-              what should AI be doing here, and what should it stay out of?
-              The honest answer is more interesting than the headline version.
+              Most People teams skip the foundation and then wonder why their
+              AI feels generic. They open a chat window, type a question, and
+              judge the model on whatever comes back. That isn&apos;t the
+              model&apos;s fault. It&apos;s a workspace problem.
             </p>
             <p>
-              The work splits cleanly into three buckets. There&apos;s the
-              throughput work — scheduling, scorecards, summaries — where AI
-              earns its keep within a quarter. There&apos;s the judgment work
-              — calibration, conflict, hiring decisions — where it should sit
-              in the room but never hold the pen. And there&apos;s the
-              relational work, where its presence is a tax, not a tool.
+              A real AI workspace has three layers. Projects architecture
+              decides what the model sees. A three-tier document strategy
+              decides what counts as canonical context, what counts as
+              working material, and what gets thrown away. Custom instructions
+              decide the voice, the constraints, and the defaults that shape
+              every output before you&apos;ve typed a word.
             </p>
 
             <div className="my-10 pl-6 border-l-2 border-brass">
               <p className="font-display italic text-cream text-2xl md:text-3xl leading-snug text-balance">
-                The teams getting this right aren&apos;t the ones with the
-                biggest stack. They&apos;re the ones with the clearest line
-                between the three.
+                Get the workspace right and the same model that felt generic
+                yesterday starts producing work that sounds like your
+                organisation. Get it wrong and no amount of prompting
+                rescues it.
               </p>
             </div>
 
             <p>
-              We walk through each bucket with the systems we&apos;ve built or
-              torn out, the cost of getting the line wrong, and the questions
-              we&apos;d ask before introducing a model into any People-facing
-              workflow.
+              The piece walks through the projects pattern that works across
+              ChatGPT, Claude and Copilot, the document discipline that
+              prevents context drift, and the team setup choices that decide
+              whether AI compounds across your function or stays a private
+              hobby on a few laptops.
             </p>
           </div>
 
@@ -300,13 +315,16 @@ const Brain = () => (
       <div className="container-grain">
         <div className="grid gap-12 md:gap-16 md:grid-cols-[5fr_7fr] items-start">
           <ScrollReveal>
-            <div
-              className="aspect-[4/5] rounded-3xl bg-bark border border-brass/15 overflow-hidden flex items-center justify-center"
-              aria-label="Portrait of Matthew Bradburn"
-            >
-              <span className="font-display text-cream/30 text-sm uppercase tracking-[0.25em]">
-                Portrait
-              </span>
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-brass/15 bg-bark">
+              <img
+                src={matthewPortrait}
+                alt="Matthew Bradburn, founder of Deepgrain"
+                width={800}
+                height={1000}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover"
+              />
             </div>
           </ScrollReveal>
 
