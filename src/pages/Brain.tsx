@@ -87,6 +87,18 @@ const Brain = () => (
             url: "https://deepgrain.ai",
           },
         },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: brainCards.map((card) => ({
+            "@type": "Question",
+            name: `${card.title}?`,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: card.blurb,
+            },
+          })),
+        },
       ]}
     />
 
