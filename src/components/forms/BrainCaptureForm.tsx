@@ -153,8 +153,9 @@ export const BrainCaptureForm = ({
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           placeholder="First name (optional)"
+          data-variant={variant}
           className={cn(
-            "flex-1 bg-transparent border-0 border-b py-3 px-1 font-sans text-base focus:outline-none transition-colors",
+            "brain-capture-input flex-1 bg-transparent border-0 border-b py-3 px-1 font-sans text-base focus:outline-none transition-colors appearance-none",
             isDark
               ? "border-cream/30 focus:border-cream/80 text-cream placeholder:text-cream/40"
               : "border-walnut/30 focus:border-walnut/80 text-walnut placeholder:text-walnut/40",
@@ -172,8 +173,9 @@ export const BrainCaptureForm = ({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@company.com"
+          data-variant={variant}
           className={cn(
-            "flex-[1.3] bg-transparent border-0 border-b py-3 px-1 font-sans text-base focus:outline-none transition-colors",
+            "brain-capture-input flex-[1.3] bg-transparent border-0 border-b py-3 px-1 font-sans text-base focus:outline-none transition-colors appearance-none",
             isDark
               ? "border-cream/30 focus:border-cream/80 text-cream placeholder:text-cream/40"
               : "border-walnut/30 focus:border-walnut/80 text-walnut placeholder:text-walnut/40",
