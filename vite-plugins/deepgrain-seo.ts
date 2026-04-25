@@ -226,9 +226,48 @@ When citing, please link back to the canonical article URL listed under each pie
 ${ascArticles.map(renderArticle).join("\n")}`;
 }
 
+// Routes intentionally excluded from sitemap (private, redirect, transactional, or 404).
+const EXCLUDED_ROUTES = new Set([
+  "*",
+  "/unsubscribe",
+  "/brain/resend",
+  "/seo-checklist",
+  "/intelligence/people-ops", // 301 redirect → /intelligence
+]);
+
+/**
+ * Audit App.tsx so concrete routes can never silently drift out of the sitemap.
+ * Dynamic routes (containing `:`) and EXCLUDED_ROUTES are skipped. Anything
+ * else that isn't covered by STATIC_PAGES, the category list, or article
+ * slugs is logged as a warning during build.
+ */
+function auditRoutes(root: string, articles: Article[]): void {
+  const appPath = path.join(root, "src/App.tsx");
+  if (!fs.existsSync(appPath)) return;
+  const src = fs.readFileSync(appPath, "utf8");
+  const routes = [...src.matchAll(/<Route\s+path="([^"]+)"/g)].map((m) => m[1]);
+
+  const sitemapPaths = new Set<string>([
+    ...STATIC_PAGES.map((p) => p.url),
+    ...CATEGORIES.map((c) => `/intelligence/category/${c.slug}`),
+    ...articles.map((a) => `/intelligence/${a.frontmatter.slug}`),
+  ]);
+
+  const missing = routes.filter(
+    (r) => !r.includes(":") && !EXCLUDED_ROUTES.has(r) && !sitemapPaths.has(r),
+  );
+  if (missing.length > 0) {
+    console.warn(
+      `[deepgrain-seo] ${missing.length} route(s) in App.tsx are missing from the sitemap. ` +
+        `Add to STATIC_PAGES or EXCLUDED_ROUTES in vite-plugins/deepgrain-seo.ts:\n  - ${missing.join("\n  - ")}`,
+    );
+  }
+}
+
 export function deepgrainSeoPlugin(): Plugin {
   const generate = (root: string, outDir: string) => {
     const articles = readArticles(root);
+    auditRoutes(root, articles);
     const sitemap = buildSitemap(articles);
     const llms = buildLlmsTxt(articles);
     const llmsFull = buildLlmsFullTxt(articles);
