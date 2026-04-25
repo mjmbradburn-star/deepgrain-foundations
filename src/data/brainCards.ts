@@ -24,7 +24,7 @@ export const brainCards: BrainCard[] = [
     layer: "Foundations",
     title: "Setting up your AI workspace",
     blurb:
-      "Projects architecture, the three-tier document strategy, and custom instructions that actually shape output. Where most people skip — and why their AI feels generic.",
+      "Projects architecture, the three-tier document strategy, and custom instructions that actually shape output. The step most people skip, and the reason their AI feels generic.",
   },
   {
     number: "02",
@@ -66,7 +66,7 @@ export const brainCards: BrainCard[] = [
     layer: "Systems",
     title: "Building your first automation",
     blurb:
-      "End-to-end build: a New Hire Welcome automation with n8n + Claude. The five-component anatomy, testing, and deployment — all in one sitting.",
+      "End-to-end build: a New Hire Welcome automation with n8n + Claude. The five-component anatomy, testing, and deployment, all in one sitting.",
   },
   {
     number: "08",
@@ -80,6 +80,6 @@ export const brainCards: BrainCard[] = [
     layer: "Human Layer",
     title: "Leading the AI transformation",
     blurb:
-      "Understanding fear — yours and theirs. The five-phase transformation sequence, resistance patterns, building champions, and the ninety-day organisational plan.",
+      "Understanding fear, yours and theirs. The five-phase transformation sequence, resistance patterns, building champions, and the ninety-day organisational plan.",
   },
 ];
