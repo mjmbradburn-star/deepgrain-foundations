@@ -465,7 +465,7 @@ Deno.serve(async (req) => {
   // The SDK only sets `error` for non-2xx responses; data carries the body.
   const httpStatus = sendError ? 502 : 200
 
-  const sentOk = sendResp.ok && sendBody.success !== false
+  const sentOk = !sendError && sendBody.success !== false
   const status = sentOk
     ? 'queued'
     : sendBody.reason === 'email_suppressed'
@@ -510,7 +510,7 @@ Deno.serve(async (req) => {
       domain,
       detail: {
         subscriber_id: inserted.id,
-        http_status: sendResp.status,
+        http_status: httpStatus,
         reason: sendBody.error ?? sendBody.reason ?? null,
       },
     })
