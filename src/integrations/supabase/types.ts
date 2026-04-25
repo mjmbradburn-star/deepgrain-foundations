@@ -14,6 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
+      brain_subscribers: {
+        Row: {
+          consent_given: boolean
+          consent_timestamp: string
+          created_at: string
+          email: string
+          email_provider_id: string | null
+          email_sent_at: string | null
+          email_status: string | null
+          first_name: string | null
+          id: string
+          ip_address: string | null
+          referrer: string | null
+          source: string
+          unsubscribe_token: string
+          unsubscribed_at: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          consent_given?: boolean
+          consent_timestamp: string
+          created_at?: string
+          email: string
+          email_provider_id?: string | null
+          email_sent_at?: string | null
+          email_status?: string | null
+          first_name?: string | null
+          id?: string
+          ip_address?: string | null
+          referrer?: string | null
+          source?: string
+          unsubscribe_token?: string
+          unsubscribed_at?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          consent_given?: boolean
+          consent_timestamp?: string
+          created_at?: string
+          email?: string
+          email_provider_id?: string | null
+          email_sent_at?: string | null
+          email_status?: string | null
+          first_name?: string | null
+          id?: string
+          ip_address?: string | null
+          referrer?: string | null
+          source?: string
+          unsubscribe_token?: string
+          unsubscribed_at?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       email_send_log: {
         Row: {
           created_at: string
