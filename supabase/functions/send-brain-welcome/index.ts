@@ -281,22 +281,17 @@ async function logOutcome(
     console.log(JSON.stringify(line))
   }
 
-  // 2) email_send_log — only when we have a service-role client. Best-effort:
-  //    never let a logging failure break the user-facing response.
-  if (!supabase) return
+  // 2) email_send_log — only for negative/edge outcomes. We deliberately
+  //    skip `success` here because send-transactional-email writes its own
+  //    pending→sent rows under the real `brain-welcome-<id>` message_id.
+  //    Writing a duplicate would inflate dashboard counts.
+  if (!supabase || outcome === 'success') return
   try {
-    // Map outcomes onto the constrained `status` enum used by the existing
-    // dashboard. The granular outcome stays in metadata.outcome.
-    //   success           → pending  (the real send row is written later
-    //                                  by send-transactional-email)
-    //   send_suppressed   → suppressed
-    //   everything else   → failed   (with reason in error_message + metadata)
-    const status =
-      outcome === 'success'
-        ? 'pending'
-        : outcome === 'send_suppressed'
-          ? 'suppressed'
-          : 'failed'
+    // Map onto the constrained `status` enum on email_send_log. The
+    // granular outcome stays in metadata.outcome.
+    //   send_suppressed → suppressed
+    //   everything else → failed (with reason in error_message + metadata)
+    const status = outcome === 'send_suppressed' ? 'suppressed' : 'failed'
 
     await supabase.from('email_send_log').insert({
       message_id: `brain-welcome-meta-${crypto.randomUUID()}`,
