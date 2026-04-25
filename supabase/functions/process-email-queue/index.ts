@@ -7,6 +7,20 @@ const DEFAULT_SEND_DELAY_MS = 200
 const DEFAULT_AUTH_TTL_MINUTES = 15
 const DEFAULT_TRANSACTIONAL_TTL_MINUTES = 60
 
+// Exponential backoff for transient send failures.
+// Visibility timeout grows with each failed attempt:
+//   attempt 1 -> 30s, 2 -> 60s, 3 -> 120s, 4 -> 240s, 5 -> 480s (capped).
+// Jitter (±20%) avoids thundering-herd retries when many messages fail at once.
+const BACKOFF_BASE_SECONDS = 30
+const BACKOFF_MAX_SECONDS = 480
+function computeBackoffSeconds(failedAttempts: number): number {
+  const exp = Math.min(failedAttempts, 6) // clamp the exponent
+  const raw = BACKOFF_BASE_SECONDS * Math.pow(2, Math.max(0, exp - 1))
+  const capped = Math.min(raw, BACKOFF_MAX_SECONDS)
+  const jitter = 1 + (Math.random() * 0.4 - 0.2) // ±20%
+  return Math.max(1, Math.round(capped * jitter))
+}
+
 // Check if an error is a rate-limit (429) response.
 // Uses EmailAPIError.status when available (email-js >=0.x with structured errors),
 // falls back to parsing the error message for older versions.
@@ -342,11 +356,40 @@ Deno.serve(async (req) => {
           status: 'failed',
           error_message: errorMsg.slice(0, 1000),
         })
+        const nextFailedAttempts = failedAttempts + 1
         if (payload?.message_id && typeof payload.message_id === 'string') {
-          failedAttemptsByMessageId.set(payload.message_id, failedAttempts + 1)
+          failedAttemptsByMessageId.set(payload.message_id, nextFailedAttempts)
         }
 
-        // Non-429 errors: message stays invisible until VT expires, then retried
+        // Exponential backoff: defer the message's next visibility based on
+        // how many real failures it's racked up. Without this, the message
+        // would be retried after the default 30s VT every time, regardless
+        // of how many times it's already failed.
+        if (nextFailedAttempts < MAX_RETRIES) {
+          const backoffSeconds = computeBackoffSeconds(nextFailedAttempts)
+          const { error: vtError } = await supabase.rpc('set_email_vt', {
+            queue_name: queue,
+            message_id: msg.msg_id,
+            vt_seconds: backoffSeconds,
+          })
+          if (vtError) {
+            console.error('Failed to set backoff VT', {
+              queue,
+              msg_id: msg.msg_id,
+              backoff_seconds: backoffSeconds,
+              error: vtError,
+            })
+          } else {
+            console.log('Applied exponential backoff', {
+              queue,
+              msg_id: msg.msg_id,
+              failed_attempts: nextFailedAttempts,
+              next_retry_in_seconds: backoffSeconds,
+            })
+          }
+        }
+
+        // Non-429 errors: message stays invisible for the backoff window, then retried
       }
 
       // Small delay between sends to smooth bursts
