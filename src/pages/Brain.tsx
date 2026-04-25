@@ -35,6 +35,7 @@ const Brain = () => (
       title="The People Ops AI Brain | Deepgrain"
       description="The most thorough collection of working notes on running People functions with AI. Free with your email. One link, yours to keep."
       path="/brain"
+      image="https://deepgrain.ai/og-brain.png"
       jsonLd={[
         buildBreadcrumbLd([
           { name: "Home", url: "https://deepgrain.ai/" },
