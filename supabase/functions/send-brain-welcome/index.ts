@@ -40,29 +40,114 @@ const DISPOSABLE_DOMAINS = new Set([
 ])
 
 // Permissive RFC-ish email regex — matches what the client validates.
-const EMAIL_REGEX = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-const PayloadSchema = z.object({
-  firstName: z
-    .string()
-    .trim()
-    .max(80)
-    .optional()
-    .transform((v) => (v && v.length > 0 ? v : null)),
-  email: z
-    .string()
-    .trim()
-    .toLowerCase()
-    .max(320)
-    .regex(EMAIL_REGEX, 'Invalid email'),
-  consentGiven: z.literal(true, {
-    errorMap: () => ({ message: 'Consent is required' }),
-  }),
-  consentTimestamp: z.string().datetime().optional(),
-  source: z.string().trim().max(40).default('brain'),
-  referrer: z.string().trim().max(2000).optional().nullable(),
-  userAgent: z.string().trim().max(500).optional().nullable(),
-})
+interface BrainPayload {
+  firstName: string | null
+  email: string
+  consentGiven: true
+  consentTimestamp: string | null
+  source: string
+  referrer: string | null
+  userAgent: string | null
+}
+
+type ValidationResult =
+  | { ok: true; data: BrainPayload }
+  | { ok: false; issues: Record<string, string> }
+
+function validatePayload(raw: unknown): ValidationResult {
+  const issues: Record<string, string> = {}
+  if (typeof raw !== 'object' || raw === null) {
+    return { ok: false, issues: { _: 'Payload must be an object' } }
+  }
+  const r = raw as Record<string, unknown>
+
+  // firstName — optional, max 80
+  let firstName: string | null = null
+  if (r.firstName !== undefined && r.firstName !== null && r.firstName !== '') {
+    if (typeof r.firstName !== 'string') {
+      issues.firstName = 'Must be a string'
+    } else {
+      const trimmed = r.firstName.trim()
+      if (trimmed.length > 80) issues.firstName = 'Too long'
+      else if (trimmed.length > 0) firstName = trimmed
+    }
+  }
+
+  // email — required, lowercase, regex
+  let email = ''
+  if (typeof r.email !== 'string') {
+    issues.email = 'Email is required'
+  } else {
+    email = r.email.trim().toLowerCase()
+    if (email.length === 0) issues.email = 'Email is required'
+    else if (email.length > 320) issues.email = 'Too long'
+    else if (!EMAIL_REGEX.test(email)) issues.email = 'Invalid email'
+  }
+
+  // consentGiven — must be exactly true
+  if (r.consentGiven !== true) {
+    issues.consentGiven = 'Consent is required'
+  }
+
+  // consentTimestamp — optional ISO string
+  let consentTimestamp: string | null = null
+  if (r.consentTimestamp !== undefined && r.consentTimestamp !== null) {
+    if (typeof r.consentTimestamp !== 'string' || isNaN(Date.parse(r.consentTimestamp))) {
+      issues.consentTimestamp = 'Invalid timestamp'
+    } else {
+      consentTimestamp = r.consentTimestamp
+    }
+  }
+
+  // source — optional, default 'brain'
+  let source = 'brain'
+  if (r.source !== undefined && r.source !== null && r.source !== '') {
+    if (typeof r.source !== 'string') issues.source = 'Must be a string'
+    else {
+      const trimmed = r.source.trim()
+      if (trimmed.length > 40) issues.source = 'Too long'
+      else if (trimmed.length > 0) source = trimmed
+    }
+  }
+
+  // referrer — optional, max 2000
+  let referrer: string | null = null
+  if (r.referrer !== undefined && r.referrer !== null && r.referrer !== '') {
+    if (typeof r.referrer !== 'string') issues.referrer = 'Must be a string'
+    else {
+      const trimmed = r.referrer.trim().slice(0, 2000)
+      if (trimmed.length > 0) referrer = trimmed
+    }
+  }
+
+  // userAgent — optional, max 500
+  let userAgent: string | null = null
+  if (r.userAgent !== undefined && r.userAgent !== null && r.userAgent !== '') {
+    if (typeof r.userAgent !== 'string') issues.userAgent = 'Must be a string'
+    else {
+      const trimmed = r.userAgent.trim().slice(0, 500)
+      if (trimmed.length > 0) userAgent = trimmed
+    }
+  }
+
+  if (Object.keys(issues).length > 0) {
+    return { ok: false, issues }
+  }
+  return {
+    ok: true,
+    data: {
+      firstName,
+      email,
+      consentGiven: true,
+      consentTimestamp,
+      source,
+      referrer,
+      userAgent,
+    },
+  }
+}
 
 // In-memory IP rate limit. 5 requests per 60s per IP. Resets on cold start —
 // adequate for a low-volume lead-capture form, not a fortress.
@@ -130,15 +215,9 @@ Deno.serve(async (req) => {
     return jsonResponse({ error: 'Invalid JSON' }, 400)
   }
 
-  const parsed = PayloadSchema.safeParse(raw)
-  if (!parsed.success) {
-    return jsonResponse(
-      {
-        error: 'Validation failed',
-        issues: parsed.error.flatten().fieldErrors,
-      },
-      400,
-    )
+  const parsed = validatePayload(raw)
+  if (!parsed.ok) {
+    return jsonResponse({ error: 'Validation failed', issues: parsed.issues }, 400)
   }
 
   const { firstName, email, consentGiven, consentTimestamp, source, referrer, userAgent } =
