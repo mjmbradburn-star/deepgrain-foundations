@@ -33,7 +33,7 @@ const Brain = () => (
   <>
     <PageMeta
       title="The People Ops AI Brain | Deepgrain"
-      description="Twenty-plus articles on how People teams build with AI — hiring, onboarding, performance, comp, org design. Free with your email."
+      description="The most comprehensive selection of learnings on how to practically utilize AI within organizations — hiring, onboarding, performance, comp, org design. Free with your email."
       path="/brain"
       jsonLd={buildBreadcrumbLd([
         { name: "Home", url: "https://deepgrain.ai/" },
@@ -71,7 +71,7 @@ const Brain = () => (
             The People<br />Ops AI<br />Brain.
           </h1>
           <p className="mt-10 max-w-xl text-cream text-xl md:text-2xl leading-snug font-medium">
-            Twenty-plus articles on how People teams actually build with AI.
+            The most comprehensive selection of learnings on how to practically utilize AI within organizations
           </p>
           <p className="mt-5 max-w-lg text-cream/75 text-base md:text-lg leading-relaxed">
             Free with your email. No drip sequence, no upsell — one link,
