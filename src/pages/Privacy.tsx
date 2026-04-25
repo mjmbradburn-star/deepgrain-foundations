@@ -63,6 +63,19 @@ const Privacy = () => (
           trail for the consent record.
         </P>
         <P>
+          <strong>Brain access link.</strong> The Brain itself is hosted on
+          Notion. To keep it private, we generate a personal access token
+          tied to your subscriber record and embed it in the welcome email
+          as a link through{" "}
+          <code className="font-mono text-[0.85em]">deepgrain.ai</code>. When
+          you click it, our system checks the token is still valid and
+          forwards you on to the Brain. The token is valid for 12 months and
+          is revoked automatically if you unsubscribe, your address bounces,
+          or you mark a Deepgrain email as spam. We log the time of each
+          redirect and the IP it came from so we can spot abuse — that log
+          is kept for 12 months and is not used for marketing.
+        </P>
+        <P>
           <strong>Enquiries.</strong> If you use the contact form, we store the
           name, email, organisation, team size, and message you give us.
         </P>
