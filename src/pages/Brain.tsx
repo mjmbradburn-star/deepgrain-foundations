@@ -6,6 +6,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { brainCards } from "@/data/brainCards";
+import matthewPortrait from "@/assets/matthew-bradburn.jpg";
 
 /**
  * /brain — The People Ops AI Brain (lead capture).
