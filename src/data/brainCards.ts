@@ -1,11 +1,19 @@
 /**
- * The nine cards rendered in Section 2 ("What's Inside") of /brain.
+ * The nine articles surfaced in Section 2 ("What's Inside") of /brain.
  *
- * Hardcoded for v1 per the build brief — content is small, ships with
- * the bundle, and avoids a CMS round-trip on a lead-capture page.
+ * These are real subpages of "The Deepgrain People Ops AI Brain" Notion
+ * workspace, chosen to span all four layers of the resource:
+ *   - Layer 1: Foundations
+ *   - Layer 2: Skills & Capabilities
+ *   - Layer 3: Systems, Orchestration & Scale
+ *   - Layer 4: The Human Layer & Leading Change
+ *
+ * Subheaders are paraphrased from each subpage's intro line so the cards
+ * read in Matt's voice without quoting verbatim.
  */
 export interface BrainCard {
   number: string;
+  layer: "Foundations" | "Skills" | "Systems" | "Human Layer";
   title: string;
   blurb: string;
 }
@@ -13,56 +21,65 @@ export interface BrainCard {
 export const brainCards: BrainCard[] = [
   {
     number: "01",
-    title: "Where AI actually belongs in People Ops",
+    layer: "Foundations",
+    title: "Setting up your AI workspace",
     blurb:
-      "A taxonomy that separates the work AI improves from the work it shouldn't touch.",
+      "Projects architecture, the three-tier document strategy, and custom instructions that actually shape output. Where most people skip — and why their AI feels generic.",
   },
   {
     number: "02",
-    title: "The hiring loop, rebuilt",
+    layer: "Foundations",
+    title: "From prompts to skills files",
     blurb:
-      "From sourcing to scorecards: where models help, where they hurt, and what to keep human.",
+      "Move past throwaway prompts to reusable skills. Chain them without context drift, and build conductor skills that orchestrate whole workflows across Claude, ChatGPT, Copilot and Gemini.",
   },
   {
     number: "03",
-    title: "Onboarding as a system",
+    layer: "Skills",
+    title: "Getting better output",
     blurb:
-      "Designing the first ninety days so AI compounds context instead of erasing it.",
+      "Critical thinking applied to AI output. Devil's advocate prompting, perspective shifting, and the critique-and-refinement loop that turns mediocre drafts into useful work.",
   },
   {
     number: "04",
-    title: "Performance without theatre",
+    layer: "Skills",
+    title: "The People Ops domain map",
     blurb:
-      "Calibration, feedback, and reviews when half your team is shipping with copilots.",
+      "Seven domains, sixty-plus AI capabilities mapped across TA, EX, performance, comp, L&D, ER and analytics. Find exactly where AI helps in your patch.",
   },
   {
     number: "05",
-    title: "Levelling and progression",
+    layer: "Skills",
+    title: "Workflow assessment framework",
     blurb:
-      "Re-grading craft when the floor of capability has moved this fast.",
+      "The Workflow Canvas, the AI Opportunity Score formula, and a ninety-day integration roadmap. Audit systematically; find the highest-value places to start.",
   },
   {
     number: "06",
-    title: "Comp in an AI-native company",
+    layer: "Systems",
+    title: "Claude Cowork for People teams",
     blurb:
-      "Pay frameworks for teams where leverage per person looks nothing like 2019.",
+      "The desktop agent that runs multi-step work across files and tools. Four People Ops playbooks: weekly digest, offboarding orchestrator, survey synthesis, vendor review pack.",
   },
   {
     number: "07",
-    title: "Org design for small, dense teams",
+    layer: "Systems",
+    title: "Building your first automation",
     blurb:
-      "Spans, layers, and decision rights when a team of twelve does the work of fifty.",
+      "End-to-end build: a New Hire Welcome automation with n8n + Claude. The five-component anatomy, testing, and deployment — all in one sitting.",
   },
   {
     number: "08",
-    title: "The People Ops AI stack",
+    layer: "Human Layer",
+    title: "Designing the AI-native People team",
     blurb:
-      "What we use, what we'd avoid, and the integrations worth the effort.",
+      "AI-Enabled → AI-Augmented → AI-Native. Maturity definitions, role evolution, the AI Champion model, team structures by company size, and the governance underneath.",
   },
   {
     number: "09",
-    title: "Operating cadences",
+    layer: "Human Layer",
+    title: "Leading the AI transformation",
     blurb:
-      "Weekly, monthly, quarterly rituals that keep a fast team coherent.",
+      "Understanding fear — yours and theirs. The five-phase transformation sequence, resistance patterns, building champions, and the ninety-day organisational plan.",
   },
 ];
