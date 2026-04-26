@@ -253,6 +253,36 @@ export type Database = {
         }
         Relationships: []
       }
+      notion_sync_state: {
+        Row: {
+          id: number
+          last_run_at: string | null
+          last_run_count: number | null
+          last_run_error: string | null
+          last_run_status: string | null
+          last_synced_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: number
+          last_run_at?: string | null
+          last_run_count?: number | null
+          last_run_error?: string | null
+          last_run_status?: string | null
+          last_synced_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: number
+          last_run_at?: string | null
+          last_run_count?: number | null
+          last_run_error?: string | null
+          last_run_status?: string | null
+          last_synced_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           article_slug: string | null
