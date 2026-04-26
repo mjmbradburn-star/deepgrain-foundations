@@ -86,9 +86,10 @@ async function notionFetch(
 async function existsInNotion(
   subscriberId: string,
   apiKey: string,
+  dbId: string,
 ): Promise<boolean> {
   const res = await notionFetch(
-    `/databases/${NOTION_DATABASE_ID}/query`,
+    `/databases/${dbId}/query`,
     {
       method: "POST",
       body: JSON.stringify({
@@ -112,6 +113,7 @@ async function existsInNotion(
 async function createNotionPage(
   sub: BrainSubscriber,
   apiKey: string,
+  dbId: string,
 ): Promise<void> {
   const displayName =
     (sub.first_name && sub.first_name.trim()) || sub.email;
@@ -137,7 +139,7 @@ async function createNotionPage(
     {
       method: "POST",
       body: JSON.stringify({
-        parent: { database_id: NOTION_DATABASE_ID },
+        parent: { database_id: dbId },
         properties,
       }),
     },
