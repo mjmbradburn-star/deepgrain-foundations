@@ -236,11 +236,11 @@ Deno.serve(async (req) => {
 
   try {
     for (const sub of (subs ?? []) as BrainSubscriber[]) {
-      const already = await existsInNotion(sub.id, notionKey);
+      const already = await existsInNotion(sub.id, notionKey, notionDbId);
       if (already) {
         skipped++;
       } else {
-        await createNotionPage(sub, notionKey);
+        await createNotionPage(sub, notionKey, notionDbId);
         synced++;
         await sleep(350); // stay below Notion's ~3 req/s ceiling
       }
