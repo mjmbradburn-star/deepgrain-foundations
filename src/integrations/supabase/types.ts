@@ -261,6 +261,7 @@ export type Database = {
           last_run_error: string | null
           last_run_status: string | null
           last_synced_at: string
+          last_unsub_synced_at: string
           updated_at: string
         }
         Insert: {
@@ -270,6 +271,7 @@ export type Database = {
           last_run_error?: string | null
           last_run_status?: string | null
           last_synced_at?: string
+          last_unsub_synced_at?: string
           updated_at?: string
         }
         Update: {
@@ -279,6 +281,7 @@ export type Database = {
           last_run_error?: string | null
           last_run_status?: string | null
           last_synced_at?: string
+          last_unsub_synced_at?: string
           updated_at?: string
         }
         Relationships: []

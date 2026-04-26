@@ -1,0 +1,1 @@
+ALTER TABLE public.notion_sync_state ADD COLUMN IF NOT EXISTS last_unsub_synced_at timestamptz NOT NULL DEFAULT '1970-01-01 00:00:00+00'::timestamptz;
