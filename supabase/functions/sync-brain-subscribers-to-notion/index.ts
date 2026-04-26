@@ -110,6 +110,60 @@ async function existsInNotion(
   return Array.isArray(data.results) && data.results.length > 0;
 }
 
+async function findNotionPageId(
+  subscriberId: string,
+  apiKey: string,
+  dbId: string,
+): Promise<string | null> {
+  const res = await notionFetch(
+    `/databases/${dbId}/query`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        filter: {
+          property: "Subscriber ID",
+          rich_text: { equals: subscriberId },
+        },
+        page_size: 1,
+      }),
+    },
+    apiKey,
+  );
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Notion query failed (${res.status}): ${body}`);
+  }
+  const data = await res.json();
+  const first = Array.isArray(data.results) ? data.results[0] : null;
+  return first?.id ?? null;
+}
+
+async function markNotionPageUnsubscribed(
+  pageId: string,
+  unsubscribedAt: string,
+  apiKey: string,
+): Promise<void> {
+  const res = await notionFetch(
+    `/pages/${pageId}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({
+        properties: {
+          Unsubscribed: { checkbox: true },
+          "Unsubscribed At": { date: { start: unsubscribedAt } },
+        },
+      }),
+    },
+    apiKey,
+  );
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(
+      `Notion mark unsubscribed failed for page ${pageId} (${res.status}): ${body}`,
+    );
+  }
+}
+
 async function createNotionPage(
   sub: BrainSubscriber,
   apiKey: string,
