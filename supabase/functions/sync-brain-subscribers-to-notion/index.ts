@@ -249,10 +249,10 @@ Deno.serve(async (req) => {
 
   const supabase = createClient(supabaseUrl, serviceKey);
 
-  // 1. Read cursor
+  // 1. Read cursors (one for new subs, one for unsubscribes)
   const { data: stateRow, error: stateErr } = await supabase
     .from("notion_sync_state")
-    .select("last_synced_at")
+    .select("last_synced_at, last_unsub_synced_at")
     .eq("id", 1)
     .maybeSingle();
 
@@ -265,8 +265,10 @@ Deno.serve(async (req) => {
   }
 
   const cursor = stateRow?.last_synced_at ?? "1970-01-01T00:00:00Z";
+  const unsubCursor =
+    stateRow?.last_unsub_synced_at ?? "1970-01-01T00:00:00Z";
 
-  // 2. Fetch new subscribers
+  // 2a. Fetch new subscribers
   const { data: subs, error: subsErr } = await supabase
     .from("brain_subscribers")
     .select("id, email, first_name, source, referrer, created_at")
@@ -283,9 +285,29 @@ Deno.serve(async (req) => {
     );
   }
 
+  // 2b. Fetch newly unsubscribed subscribers
+  const { data: unsubs, error: unsubsErr } = await supabase
+    .from("brain_subscribers")
+    .select("id, email, unsubscribed_at")
+    .gt("unsubscribed_at", unsubCursor)
+    .not("unsubscribed_at", "is", null)
+    .order("unsubscribed_at", { ascending: true })
+    .limit(500);
+
+  if (unsubsErr) {
+    console.error("brain_subscribers unsubs read failed", unsubsErr);
+    return new Response(
+      JSON.stringify({ error: "unsubs read failed" }),
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
+  }
+
   let synced = 0;
   let skipped = 0;
+  let unsubSynced = 0;
+  let unsubMissing = 0;
   let maxCreatedAt = cursor;
+  let maxUnsubAt = unsubCursor;
   let runError: string | null = null;
 
   try {
@@ -300,19 +322,38 @@ Deno.serve(async (req) => {
       }
       if (sub.created_at > maxCreatedAt) maxCreatedAt = sub.created_at;
     }
+
+    // Propagate unsubscribes to Notion. We always look the page up by
+    // Subscriber ID — if it doesn't exist (never synced), we skip it.
+    for (const u of (unsubs ?? []) as Array<{
+      id: string;
+      email: string;
+      unsubscribed_at: string;
+    }>) {
+      const pageId = await findNotionPageId(u.id, notionKey, notionDbId);
+      if (!pageId) {
+        unsubMissing++;
+      } else {
+        await markNotionPageUnsubscribed(pageId, u.unsubscribed_at, notionKey);
+        unsubSynced++;
+        await sleep(350);
+      }
+      if (u.unsubscribed_at > maxUnsubAt) maxUnsubAt = u.unsubscribed_at;
+    }
   } catch (err) {
     runError = err instanceof Error ? err.message : String(err);
     console.error("notion sync error", runError);
   }
 
-  // 3. Update state — advance cursor only on clean run
+  // 3. Update state — advance cursors only on clean run
   await supabase
     .from("notion_sync_state")
     .update({
       last_synced_at: runError ? cursor : maxCreatedAt,
+      last_unsub_synced_at: runError ? unsubCursor : maxUnsubAt,
       last_run_at: new Date().toISOString(),
       last_run_status: runError ? "error" : "ok",
-      last_run_count: synced,
+      last_run_count: synced + unsubSynced,
       last_run_error: runError,
       updated_at: new Date().toISOString(),
     })
@@ -325,7 +366,11 @@ Deno.serve(async (req) => {
       considered: subs?.length ?? 0,
       synced,
       skipped,
+      unsubs_considered: unsubs?.length ?? 0,
+      unsubs_synced: unsubSynced,
+      unsubs_missing_in_notion: unsubMissing,
       cursor_advanced_to: runError ? cursor : maxCreatedAt,
+      unsub_cursor_advanced_to: runError ? unsubCursor : maxUnsubAt,
       error: runError,
     }),
     { status, headers: { ...corsHeaders, "Content-Type": "application/json" } },
