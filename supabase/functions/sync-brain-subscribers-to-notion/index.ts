@@ -176,6 +176,23 @@ Deno.serve(async (req) => {
     );
   }
 
+  // Resolve + validate the target Notion database ID at startup so a
+  // misconfigured secret fails fast (and never silently writes elsewhere).
+  let notionDbId: string;
+  try {
+    const rawDbId =
+      Deno.env.get("NOTION_SUBSCRIBERS_DB_ID") ?? FALLBACK_NOTION_DATABASE_ID;
+    notionDbId = normaliseDbId(rawDbId);
+    await validateNotionDatabase(notionDbId, notionKey);
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("notion db validation failed", msg);
+    return new Response(
+      JSON.stringify({ error: `Notion DB validation failed: ${msg}` }),
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
+  }
+
   const supabase = createClient(supabaseUrl, serviceKey);
 
   // 1. Read cursor
