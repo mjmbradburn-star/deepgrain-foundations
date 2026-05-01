@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 const CoworkPreview = () => {
   const [page, setPage] = useState(0); // 0-indexed, left page of the spread on desktop
   const [isFs, setIsFs] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [, setIsDesktop] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const total = coworkPages.length;
 
@@ -26,7 +26,7 @@ const CoworkPreview = () => {
     return () => mql.removeEventListener("change", sync);
   }, []);
 
-  const step = isDesktop && !isFs ? 2 : 1;
+  const step = 1;
 
   const goTo = useCallback(
     (n: number) => {
@@ -86,44 +86,25 @@ const CoworkPreview = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [prev, next, goTo, total, toggleFullscreen]);
 
-  // Spread = current page + (current+1) on desktop. Always show page on left.
-  const showSpread = isDesktop && !isFs;
+  // Single page only. PDF pages are 16:9 landscape (3200x1800).
   const leftIdx = page;
-  const rightIdx = showSpread && page + 1 < total ? page + 1 : null;
+  const rightIdx: number | null = null;
+  const showSpread = false;
 
-  // Indicator label
-  const label =
-    showSpread && rightIdx !== null
-      ? `${String(leftIdx + 1).padStart(2, "0")}–${String(rightIdx + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`
-      : `${String(leftIdx + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
-
+  const label = `${String(page + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
   const atStart = page === 0;
   const atEnd = page + step >= total;
 
-  // A4 page is 1:1.414. Spread is 2:1.414 ≈ 1.414:1 landscape.
-  const stageAspect = showSpread ? "aspect-[2/1.414]" : "aspect-[1/1.414]";
-  const stageMaxW = showSpread ? "max-w-[920px]" : "max-w-[440px]";
-
-  const Page = ({ idx, side }: { idx: number; side: "left" | "right" | "solo" }) => (
-    <div
-      className={cn(
-        "relative h-full bg-linen overflow-hidden",
-        side === "left" && "rounded-l-xl border-r border-walnut/10",
-        side === "right" && "rounded-r-xl",
-        side === "solo" && "rounded-xl",
-      )}
-      style={{ flex: "1 1 0", minWidth: 0 }}
-    >
+  const Page = ({ idx }: { idx: number }) => (
+    <div className="relative h-full w-full bg-linen overflow-hidden rounded-xl">
       <img
         src={coworkPages[idx]}
         alt={`Claude Cowork for People Teams, page ${idx + 1} of ${total}`}
-        width={1240}
-        height={1754}
+        width={3200}
+        height={1800}
         loading={idx <= 2 ? "eager" : "lazy"}
         decoding="async"
         draggable={false}
-        // touch-pinch-zoom + touch-pan-y lets the browser handle native pinch
-        // and vertical scroll without us hijacking the gesture
         style={{ touchAction: "pinch-zoom" }}
         className="absolute inset-0 h-full w-full object-contain select-none"
       />
@@ -180,7 +161,7 @@ const CoworkPreview = () => {
           </button>
         </div>
 
-        {/* Stage */}
+        {/* Stage, sized to the PDF's 16:9 page */}
         <div
           className={cn(
             "relative",
@@ -190,26 +171,12 @@ const CoworkPreview = () => {
           <div
             className={cn(
               "relative mx-auto",
-              isFs
-                ? "h-full w-auto max-h-full"
-                : cn("w-full", stageAspect, stageMaxW),
+              isFs ? "h-full w-auto max-h-full" : "w-full aspect-[16/9]",
             )}
-            style={
-              isFs
-                ? { aspectRatio: showSpread ? "2 / 1.414" : "1 / 1.414" }
-                : undefined
-            }
+            style={isFs ? { aspectRatio: "16 / 9" } : undefined}
           >
-            {/* Pages */}
-            <div className="absolute inset-0 flex rounded-xl overflow-hidden shadow-md shadow-black/20 ring-1 ring-walnut/10">
-              {showSpread && rightIdx !== null ? (
-                <>
-                  <Page idx={leftIdx} side="left" />
-                  <Page idx={rightIdx} side="right" />
-                </>
-              ) : (
-                <Page idx={leftIdx} side="solo" />
-              )}
+            <div className="absolute inset-0 rounded-xl overflow-hidden shadow-md shadow-black/20 ring-1 ring-walnut/10">
+              <Page idx={leftIdx} />
             </div>
 
             {/* No mobile tap-zones: they block native pinch-to-zoom.
