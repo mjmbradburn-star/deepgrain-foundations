@@ -33,7 +33,7 @@ const scrollToForm = () => {
 const Brain = () => (
   <>
     <PageMeta
-      title="The People Ops AI Brain — 9 Examples, 27 Practical Guides | Deepgrain"
+      title="The People Ops AI Brain: 9 Examples, 27 Practical Guides | Deepgrain"
       description="9 worked examples and 27 deep practical guides on running People functions with AI. Free with your email. One link, yours to keep."
       path="/brain"
       image="https://deepgrain.ai/og-brain.png"
