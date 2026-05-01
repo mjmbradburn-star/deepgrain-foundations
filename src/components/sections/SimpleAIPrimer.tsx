@@ -90,11 +90,7 @@ export const SimpleAIPrimer = () => {
 
             <ul className="mt-8 space-y-5 max-w-xl">
               {bullets.map((b) => (
-                <li key={b.lead} className="flex gap-4">
-                  <span
-                    aria-hidden
-                    className="mt-[14px] inline-block h-px w-6 shrink-0 bg-brass"
-                  />
+                <li key={b.lead}>
                   <p className="text-walnut/85 leading-relaxed">
                     <span className="text-brass font-medium">{b.lead}</span>
                     {b.rest}
