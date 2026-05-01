@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from "lucide-react";
-import { coworkPages } from "@/assets/brain-cowork";
+import { coworkPages, coworkPlaceholders } from "@/assets/brain-cowork";
 import { cn } from "@/lib/utils";
 
 /**
