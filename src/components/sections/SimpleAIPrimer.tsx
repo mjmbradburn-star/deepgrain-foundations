@@ -96,10 +96,7 @@ export const SimpleAIPrimer = () => {
             </ul>
 
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <PillButton
-                href="/brain"
-                className="whitespace-nowrap px-6 sm:px-8 text-xs sm:text-sm bg-green text-walnut border-green hover:bg-green/90 hover:text-walnut"
-              >
+              <PillButton href="/brain" variant="outline" className="whitespace-nowrap px-6 sm:px-8 text-xs sm:text-sm">
                 Go deeper · The Brain →
               </PillButton>
             </div>
