@@ -47,9 +47,9 @@ const Home = () => (
       jsonLd={{
         "@context": "https://schema.org",
         "@type": "VideoObject",
-        name: "Simple AI · a 90-second primer for People leaders",
+        name: "Simple AI · a 90-second primer for G&A leaders",
         description:
-          "Seventeen of the terms cluttering every AI conversation, in plain English. Made for People leaders, not engineers.",
+          "Seventeen of the terms cluttering every AI conversation, in plain English. Made for G&A leaders, not engineers.",
         thumbnailUrl: "https://deepgrain.ai/simple-ai-poster.jpg",
         uploadDate: "2026-05-01",
         duration: "PT1M30S",
