@@ -4,27 +4,15 @@ import { coworkPages, coworkPlaceholders } from "@/assets/brain-cowork";
 import { cn } from "@/lib/utils";
 
 /**
- * CoworkPreview, page-by-page flipbook of the Cowork Brain piece.
- *
- * Desktop: two-page landscape spread (left + right).
- * Mobile: single page.
- * Native fullscreen, keyboard nav, page dots.
+ * CoworkPreview: page-by-page flipbook of the Claude Cowork for People Teams
+ * piece, sized to the PDF's native 16:9 landscape pages. Native fullscreen,
+ * keyboard nav, page dots. Pinch-to-zoom on touch devices.
  */
 const CoworkPreview = () => {
-  const [page, setPage] = useState(0); // 0-indexed, left page of the spread on desktop
+  const [page, setPage] = useState(0);
   const [isFs, setIsFs] = useState(false);
-  const [, setIsDesktop] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const total = coworkPages.length;
-
-  // Track viewport for spread vs single
-  useEffect(() => {
-    const mql = window.matchMedia("(min-width: 768px)");
-    const sync = () => setIsDesktop(mql.matches);
-    sync();
-    mql.addEventListener("change", sync);
-    return () => mql.removeEventListener("change", sync);
-  }, []);
 
   const step = 1;
 
