@@ -1,9 +1,23 @@
-// Pings IndexNow with every URL in the Deepgrain sitemap.
-// Bing, Yandex and Microsoft Copilot consume IndexNow; Google ignores it but
-// Search Console handles Google separately.
+// Pings IndexNow with the URLs in the Deepgrain sitemap, but ONLY when the
+// sitemap content has actually changed since the last check.
 //
-// Scheduled daily via pg_cron (see migration). Also callable manually:
+// How it works:
+//   1. Fetch sitemap.xml
+//   2. SHA-256 the body, compare to public.sitemap_state.content_hash
+//   3. If unchanged → return { ok: true, changed: false } (no IndexNow call)
+//   4. If changed → diff against the stored URL list, ping IndexNow with
+//      the union of (added URLs ∪ removed URLs ∪ a small set of "always
+//      important" anchor URLs like the home page), then persist the new
+//      hash + URL list.
+//
+// Scheduled every 10 minutes via pg_cron. Also callable manually:
 //   curl -X POST https://<project>.supabase.co/functions/v1/ping-indexnow
+//   curl -X POST '.../ping-indexnow?force=true'   ← re-pings every URL
+//
+// Bing, Yandex, Seznam, Naver and Microsoft Copilot consume IndexNow.
+// Google ignores it; Search Console handles Google separately.
+
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -16,20 +30,49 @@ const KEY = "74fbf61ed22a2c644b4d621320ac07b9";
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 const SITEMAP_URL = `https://${HOST}/sitemap.xml`;
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
+const ANCHOR_URLS = [`https://${HOST}/`, `https://${HOST}/intelligence`];
 
-async function extractUrlsFromSitemap(): Promise<string[]> {
+interface SitemapFetch {
+  body: string;
+  hash: string;
+  urls: string[];
+}
+
+async function fetchSitemap(): Promise<SitemapFetch> {
   const res = await fetch(SITEMAP_URL, {
     headers: { "User-Agent": "deepgrain-indexnow/1.0" },
   });
   if (!res.ok) throw new Error(`sitemap fetch failed: ${res.status}`);
-  const xml = await res.text();
+  const body = await res.text();
+
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(body),
+  );
+  const hash = Array.from(new Uint8Array(digest))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
   const urls: string[] = [];
   const re = /<loc>([^<]+)<\/loc>/g;
   let m: RegExpExecArray | null;
-  while ((m = re.exec(xml)) !== null) {
-    urls.push(m[1].trim());
-  }
-  return urls;
+  while ((m = re.exec(body)) !== null) urls.push(m[1].trim());
+
+  return { body, hash, urls };
+}
+
+async function pingIndexNow(urlList: string[]) {
+  const ping = await fetch(INDEXNOW_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    body: JSON.stringify({
+      host: HOST,
+      key: KEY,
+      keyLocation: KEY_LOCATION,
+      urlList,
+    }),
+  });
+  return { status: ping.status, response: (await ping.text()).slice(0, 500) };
 }
 
 Deno.serve(async (req) => {
@@ -37,42 +80,106 @@ Deno.serve(async (req) => {
     return new Response("ok", { headers: corsHeaders });
   }
 
+  const supabase = createClient(
+    Deno.env.get("SUPABASE_URL")!,
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+    { auth: { persistSession: false } },
+  );
+
+  const url = new URL(req.url);
+  const force = url.searchParams.get("force") === "true";
+
   try {
-    const urlList = await extractUrlsFromSitemap();
-    if (urlList.length === 0) {
+    const { hash, urls } = await fetchSitemap();
+
+    const { data: state } = await supabase
+      .from("sitemap_state")
+      .select("content_hash, url_list")
+      .eq("id", true)
+      .maybeSingle();
+
+    const previousHash: string | null = state?.content_hash ?? null;
+    const previousUrls: string[] = (state?.url_list as string[]) ?? [];
+    const checkedAt = new Date().toISOString();
+
+    // Unchanged: record the check and return early. No IndexNow call.
+    if (!force && previousHash === hash) {
+      await supabase
+        .from("sitemap_state")
+        .update({ last_checked_at: checkedAt })
+        .eq("id", true);
+
       return new Response(
-        JSON.stringify({ ok: false, error: "no urls in sitemap" }),
+        JSON.stringify({
+          ok: true,
+          changed: false,
+          urlsInSitemap: urls.length,
+          checkedAt,
+          message: "sitemap unchanged, no ping sent",
+        }),
         {
-          status: 500,
+          status: 200,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         },
       );
     }
 
-    // IndexNow accepts up to 10,000 URLs per request — we're well under.
-    const payload = {
-      host: HOST,
-      key: KEY,
-      keyLocation: KEY_LOCATION,
-      urlList,
-    };
+    // Build the URL list to ping.
+    // - On `force=true`: ping every URL in the sitemap.
+    // - On a real change: ping the diff (added + removed) plus the anchor
+    //   URLs so home/index always get a nudge, plus every URL when this is
+    //   the very first run (no previous hash).
+    const prevSet = new Set(previousUrls);
+    const currSet = new Set(urls);
+    const added = urls.filter((u) => !prevSet.has(u));
+    const removed = previousUrls.filter((u) => !currSet.has(u));
 
-    const ping = await fetch(INDEXNOW_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify(payload),
-    });
+    let toPing: string[];
+    if (force || previousHash === null) {
+      toPing = urls;
+    } else {
+      const merged = new Set<string>([...added, ...removed, ...ANCHOR_URLS]);
+      // Strip any anchor URLs that aren't in the current sitemap (avoid
+      // pinging a 404), and any "removed" URLs we just took out.
+      toPing = [...merged].filter(
+        (u) => currSet.has(u) || removed.includes(u),
+      );
+    }
 
-    const responseText = await ping.text();
-    const ok = ping.status >= 200 && ping.status < 300;
+    if (toPing.length === 0) {
+      // Hash changed but no URL set difference (e.g. only lastmod updated).
+      // Still ping the anchor URLs so search engines re-fetch.
+      toPing = ANCHOR_URLS.filter((u) => currSet.has(u));
+    }
+
+    const { status, response } = await pingIndexNow(toPing);
+    const ok = status >= 200 && status < 300;
+
+    await supabase
+      .from("sitemap_state")
+      .update({
+        content_hash: hash,
+        url_list: urls,
+        last_checked_at: checkedAt,
+        last_changed_at: checkedAt,
+        last_pinged_at: checkedAt,
+        last_ping_status: status,
+        last_ping_response: response,
+      })
+      .eq("id", true);
 
     return new Response(
       JSON.stringify({
         ok,
-        status: ping.status,
-        urlsSubmitted: urlList.length,
-        endpoint: INDEXNOW_ENDPOINT,
-        response: responseText.slice(0, 500),
+        changed: true,
+        force,
+        firstRun: previousHash === null,
+        urlsInSitemap: urls.length,
+        added: added.length,
+        removed: removed.length,
+        urlsPinged: toPing.length,
+        indexNowStatus: status,
+        indexNowResponse: response,
       }),
       {
         status: ok ? 200 : 502,
