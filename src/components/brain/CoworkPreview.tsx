@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 const CoworkPreview = () => {
   const [page, setPage] = useState(0); // 0-indexed, left page of the spread on desktop
   const [isFs, setIsFs] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [, setIsDesktop] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const total = coworkPages.length;
 
@@ -26,7 +26,7 @@ const CoworkPreview = () => {
     return () => mql.removeEventListener("change", sync);
   }, []);
 
-  const step = isDesktop && !isFs ? 2 : 1;
+  const step = 1;
 
   const goTo = useCallback(
     (n: number) => {
