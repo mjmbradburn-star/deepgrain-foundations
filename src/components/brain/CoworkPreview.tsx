@@ -95,21 +95,56 @@ const CoworkPreview = () => {
   const atStart = page === 0;
   const atEnd = page + step >= total;
 
-  const Page = ({ idx }: { idx: number }) => (
-    <div className="relative h-full w-full bg-linen overflow-hidden rounded-xl">
-      <img
-        src={coworkPages[idx]}
-        alt={`Claude Cowork for People Teams, page ${idx + 1} of ${total}`}
-        width={3200}
-        height={1800}
-        loading={idx <= 2 ? "eager" : "lazy"}
-        decoding="async"
-        draggable={false}
-        style={{ touchAction: "pinch-zoom" }}
-        className="absolute inset-0 h-full w-full object-contain select-none"
-      />
-    </div>
-  );
+  // Track which pages have ever been visited so we don't unmount their <img>
+  // once loaded (avoids re-fetching when the user flips back and forth).
+  const [seen, setSeen] = useState<Set<number>>(() => new Set([0]));
+  useEffect(() => {
+    setSeen((prev) => {
+      if (prev.has(page) && prev.has(page + 1)) return prev;
+      const next = new Set(prev);
+      next.add(page);
+      if (page + 1 < total) next.add(page + 1); // preload neighbour
+      return next;
+    });
+  }, [page, total]);
+
+  const Page = ({ idx }: { idx: number }) => {
+    const shouldRenderFull = seen.has(idx);
+    return (
+      <div className="relative h-full w-full bg-linen overflow-hidden rounded-xl">
+        {/* Tiny blurred placeholder, always present, instant render */}
+        <img
+          src={coworkPlaceholders[idx]}
+          alt=""
+          aria-hidden
+          width={3200}
+          height={1800}
+          decoding="async"
+          draggable={false}
+          className="absolute inset-0 h-full w-full object-contain select-none scale-105 blur-md"
+        />
+        {/* Full-res image, only mounted once the page is current/neighbour/visited */}
+        {shouldRenderFull && (
+          <img
+            src={coworkPages[idx]}
+            alt={`Claude Cowork for People Teams, page ${idx + 1} of ${total}`}
+            width={3200}
+            height={1800}
+            loading={idx === 0 ? "eager" : "lazy"}
+            decoding="async"
+            fetchPriority={idx === page ? "high" : "low"}
+            draggable={false}
+            style={{ touchAction: "pinch-zoom" }}
+            className={cn(
+              "relative h-full w-full object-contain select-none",
+              "transition-opacity duration-300 motion-reduce:transition-none",
+              "animate-in fade-in",
+            )}
+          />
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="relative">
