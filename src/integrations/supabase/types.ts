@@ -286,6 +286,45 @@ export type Database = {
         }
         Relationships: []
       }
+      sitemap_state: {
+        Row: {
+          content_hash: string | null
+          created_at: string
+          id: boolean
+          last_changed_at: string | null
+          last_checked_at: string | null
+          last_ping_response: string | null
+          last_ping_status: number | null
+          last_pinged_at: string | null
+          updated_at: string
+          url_list: Json
+        }
+        Insert: {
+          content_hash?: string | null
+          created_at?: string
+          id?: boolean
+          last_changed_at?: string | null
+          last_checked_at?: string | null
+          last_ping_response?: string | null
+          last_ping_status?: number | null
+          last_pinged_at?: string | null
+          updated_at?: string
+          url_list?: Json
+        }
+        Update: {
+          content_hash?: string | null
+          created_at?: string
+          id?: boolean
+          last_changed_at?: string | null
+          last_checked_at?: string | null
+          last_ping_response?: string | null
+          last_ping_status?: number | null
+          last_pinged_at?: string | null
+          updated_at?: string
+          url_list?: Json
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           article_slug: string | null
