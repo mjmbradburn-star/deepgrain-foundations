@@ -85,7 +85,7 @@ export const SimpleAIPrimer = () => {
             </h2>
             <p className="mt-5 md:mt-6 text-walnut/75 leading-relaxed text-base md:text-lg max-w-xl">
               Seventeen of the terms cluttering every AI conversation,
-              explained for G&A leaders — not engineers.
+              explained for G&A leaders, not engineers.
             </p>
 
             <ul className="mt-6 md:mt-8 space-y-4 md:space-y-5 max-w-xl">
