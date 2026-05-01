@@ -122,6 +122,9 @@ const CoworkPreview = () => {
         loading={idx <= 2 ? "eager" : "lazy"}
         decoding="async"
         draggable={false}
+        // touch-pinch-zoom + touch-pan-y lets the browser handle native pinch
+        // and vertical scroll without us hijacking the gesture
+        style={{ touchAction: "pinch-zoom" }}
         className="absolute inset-0 h-full w-full object-contain select-none"
       />
     </div>
