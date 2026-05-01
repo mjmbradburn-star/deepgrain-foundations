@@ -234,16 +234,14 @@ const Brain = () => (
             </h2>
             <p className="mt-6 text-cream/80 leading-relaxed max-w-xl mx-auto">
               <span className="text-brass">Claude Cowork for People Teams.</span>{" "}
-              The desktop AI that does the work while you go and live your
-              life — and where most People teams will get their first real
-              operating leverage from agents. Twelve pages, straight from
-              inside the Brain.
+              The desktop AI that does the work while you live your life.
+              Twelve pages, straight from inside the Brain.
             </p>
           </ScrollReveal>
         </div>
 
         <ScrollReveal delay={120}>
-          <div className="mt-12 md:mt-16 max-w-3xl mx-auto">
+          <div className="mt-12 md:mt-16 max-w-5xl mx-auto">
             <CoworkPreview />
           </div>
         </ScrollReveal>
