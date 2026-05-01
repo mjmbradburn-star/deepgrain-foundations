@@ -7,12 +7,12 @@ type Bullet = { lead: string; rest: string };
 
 const bullets: Bullet[] = [
   {
-    lead: "I love to help folks in G&A functions learn the context they need... ",
+    lead: "",
     rest: "LLMs, Agents, MCP, Harness, cli. What the words actually mean.\n\n\n",
   },
   {
-    lead: "I love to help folks in G&A functions learn the context they need... ",
-    rest: " Not just let the engineers have all the fun",
+    lead: "",
+    rest: "",
   },
   {
     lead: "A 90-second primer.",
