@@ -7,12 +7,8 @@ type Bullet = { lead: string; rest: string };
 
 const bullets: Bullet[] = [
   {
-    lead: "Plain English.",
-    rest: " LLMs, agents, MCP, RAG, harness, CLI — what the words actually mean.",
-  },
-  {
     lead: "Built for G&A.",
-    rest: " The context People, Finance and Ops leaders need — not just the engineers.",
+    rest: " The context People, Finance and Ops leaders need, not just the engineers.",
   },
   {
     lead: "Ninety seconds.",
