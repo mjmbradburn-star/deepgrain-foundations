@@ -11,10 +11,6 @@ const bullets: Bullet[] = [
     rest: "LLMs, Agents, MCP, Harness, cli. What the words actually mean.\n\n\n",
   },
   {
-    lead: "",
-    rest: "",
-  },
-  {
     lead: "A 90-second primer.",
     rest: " The plumbing in one watch. The leverage is in what you build with it.",
   },
