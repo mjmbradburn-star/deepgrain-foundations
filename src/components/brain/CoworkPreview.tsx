@@ -4,19 +4,29 @@ import { coworkPages } from "@/assets/brain-cowork";
 import { cn } from "@/lib/utils";
 
 /**
- * CoworkPreview — page-by-page flipbook of the
- * "Claude Cowork for People Teams" Brain piece.
+ * CoworkPreview, page-by-page flipbook of the Cowork Brain piece.
  *
- * - Prev / Next pill buttons + tap-zones on the image
- * - Page dots + "04 / 12" indicator
- * - Native fullscreen toggle (with fullscreenchange listener)
- * - Keyboard nav: ←, →, Home, End, F, Esc
+ * Desktop: two-page landscape spread (left + right).
+ * Mobile: single page.
+ * Native fullscreen, keyboard nav, page dots.
  */
 const CoworkPreview = () => {
-  const [page, setPage] = useState(0); // 0-indexed
+  const [page, setPage] = useState(0); // 0-indexed, left page of the spread on desktop
   const [isFs, setIsFs] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const total = coworkPages.length;
+
+  // Track viewport for spread vs single
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+    const sync = () => setIsDesktop(mql.matches);
+    sync();
+    mql.addEventListener("change", sync);
+    return () => mql.removeEventListener("change", sync);
+  }, []);
+
+  const step = isDesktop && !isFs ? 2 : 1;
 
   const goTo = useCallback(
     (n: number) => {
@@ -27,8 +37,8 @@ const CoworkPreview = () => {
     },
     [total],
   );
-  const prev = useCallback(() => goTo(page - 1), [goTo, page]);
-  const next = useCallback(() => goTo(page + 1), [goTo, page]);
+  const prev = useCallback(() => goTo(page - step), [goTo, page, step]);
+  const next = useCallback(() => goTo(page + step), [goTo, page, step]);
 
   const toggleFullscreen = useCallback(async () => {
     const el = wrapRef.current;
@@ -44,7 +54,6 @@ const CoworkPreview = () => {
     }
   }, []);
 
-  // Track fullscreen state
   useEffect(() => {
     const onChange = () =>
       setIsFs(document.fullscreenElement === wrapRef.current);
@@ -52,10 +61,8 @@ const CoworkPreview = () => {
     return () => document.removeEventListener("fullscreenchange", onChange);
   }, []);
 
-  // Keyboard nav (always-on; cheap & scoped to this page)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      // Don't hijack typing
       const tag = (e.target as HTMLElement | null)?.tagName;
       if (tag === "INPUT" || tag === "TEXTAREA") return;
       if (e.key === "ArrowLeft") {
@@ -79,12 +86,50 @@ const CoworkPreview = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [prev, next, goTo, total, toggleFullscreen]);
 
-  const pageNum = String(page + 1).padStart(2, "0");
-  const totalNum = String(total).padStart(2, "0");
+  // Spread = current page + (current+1) on desktop. Always show page on left.
+  const showSpread = isDesktop && !isFs;
+  const leftIdx = page;
+  const rightIdx = showSpread && page + 1 < total ? page + 1 : null;
+
+  // Indicator label
+  const label =
+    showSpread && rightIdx !== null
+      ? `${String(leftIdx + 1).padStart(2, "0")}–${String(rightIdx + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`
+      : `${String(leftIdx + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+
+  const atStart = page === 0;
+  const atEnd = page + step >= total;
+
+  // A4 page is 1:1.414. Spread is 2:1.414 ≈ 1.414:1 landscape.
+  const stageAspect = showSpread ? "aspect-[2/1.414]" : "aspect-[1/1.414]";
+  const stageMaxW = showSpread ? "max-w-[920px]" : "max-w-[440px]";
+
+  const Page = ({ idx, side }: { idx: number; side: "left" | "right" | "solo" }) => (
+    <div
+      className={cn(
+        "relative h-full bg-linen overflow-hidden",
+        side === "left" && "rounded-l-xl border-r border-walnut/10",
+        side === "right" && "rounded-r-xl",
+        side === "solo" && "rounded-xl",
+      )}
+      style={{ flex: "1 1 0", minWidth: 0 }}
+    >
+      <img
+        src={coworkPages[idx]}
+        alt={`Claude Cowork for People Teams, page ${idx + 1} of ${total}`}
+        width={1240}
+        height={1754}
+        loading={idx <= 2 ? "eager" : "lazy"}
+        decoding="async"
+        draggable={false}
+        className="absolute inset-0 h-full w-full object-contain select-none"
+      />
+    </div>
+  );
 
   return (
     <div className="relative">
-      {/* Offset frame for depth — echoes section 2 cards */}
+      {/* Offset frame for depth */}
       <div
         aria-hidden
         className="absolute -inset-3 md:-inset-4 rounded-[2rem] border border-brass/20 pointer-events-none"
@@ -96,175 +141,169 @@ const CoworkPreview = () => {
         aria-label={`Claude Cowork preview, page ${page + 1} of ${total}`}
         className={cn(
           "relative bg-cream rounded-3xl border border-linen-dark shadow-2xl shadow-black/30",
-          "p-5 sm:p-7 md:p-9",
+          "p-4 sm:p-5 md:p-6",
           isFs &&
             "fixed inset-0 z-[100] rounded-none border-0 shadow-none bg-walnut p-0 flex flex-col",
         )}
       >
-        {/* Top bar */}
+        {/* Compact top bar */}
         <div
           className={cn(
             "flex items-center justify-between gap-3",
-            isFs && "px-5 py-4 text-cream",
+            isFs ? "px-5 py-3 text-cream" : "px-1 pb-3",
           )}
         >
-          <p
-            className={cn(
-              "font-display text-2xl",
-              isFs ? "text-brass" : "text-brass",
-            )}
-          >
-            05
-          </p>
           <span
             className={cn(
-              "font-sans uppercase text-[10px] px-2.5 py-1 rounded-full border",
-              isFs
-                ? "text-cream/70 border-cream/20"
-                : "text-walnut/60 border-walnut/15",
+              "font-sans uppercase text-[10px] tracking-[0.16em]",
+              isFs ? "text-cream/70" : "text-walnut/55",
             )}
-            style={{ letterSpacing: "0.16em" }}
           >
-            Cowork · 12 pages
+            Cowork for People Teams
           </span>
+          <button
+            type="button"
+            onClick={toggleFullscreen}
+            aria-label={isFs ? "Exit fullscreen" : "Enter fullscreen"}
+            className={cn(
+              "inline-flex items-center justify-center h-8 w-8 rounded-full transition-colors",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-brass",
+              isFs
+                ? "bg-cream/10 text-cream hover:bg-cream/20 border border-cream/20"
+                : "bg-walnut/10 text-walnut hover:bg-walnut hover:text-cream",
+            )}
+          >
+            {isFs ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+          </button>
         </div>
 
         {/* Stage */}
         <div
           className={cn(
-            "relative mt-4",
-            isFs
-              ? "flex-1 min-h-0 flex items-center justify-center px-4 pb-4"
-              : "",
+            "relative",
+            isFs && "flex-1 min-h-0 flex items-center justify-center px-6 pb-4",
           )}
         >
           <div
             className={cn(
-              "relative mx-auto overflow-hidden rounded-2xl bg-linen",
+              "relative mx-auto",
               isFs
-                ? "h-full w-auto max-h-full max-w-full bg-transparent rounded-none"
-                : "w-full aspect-[1/1.414] max-w-[640px] border border-linen-dark",
+                ? "h-full w-auto max-h-full"
+                : cn("w-full", stageAspect, stageMaxW),
             )}
+            style={
+              isFs
+                ? { aspectRatio: showSpread ? "2 / 1.414" : "1 / 1.414" }
+                : undefined
+            }
           >
-            {/* Pre-render all pages so transitions are instant; show only current */}
-            {coworkPages.map((src, i) => {
-              const isActive = i === page;
-              const isNeighbour = Math.abs(i - page) <= 1;
-              return (
-                <img
-                  key={src}
-                  src={src}
-                  alt={`Claude Cowork for People Teams — page ${i + 1} of ${total}`}
-                  width={1240}
-                  height={1754}
-                  loading={i === 0 ? "eager" : isNeighbour ? "eager" : "lazy"}
-                  decoding="async"
-                  draggable={false}
-                  className={cn(
-                    "absolute inset-0 m-auto h-full w-full select-none",
-                    isFs ? "object-contain" : "object-contain",
-                    "transition-opacity duration-200 motion-reduce:transition-none",
-                    isActive ? "opacity-100" : "opacity-0 pointer-events-none",
-                  )}
-                />
-              );
-            })}
+            {/* Pages */}
+            <div className="absolute inset-0 flex rounded-xl overflow-hidden shadow-md shadow-black/20 ring-1 ring-walnut/10">
+              {showSpread && rightIdx !== null ? (
+                <>
+                  <Page idx={leftIdx} side="left" />
+                  <Page idx={rightIdx} side="right" />
+                </>
+              ) : (
+                <Page idx={leftIdx} side="solo" />
+              )}
+            </div>
 
-            {/* Tap zones (mobile-friendly) */}
+            {/* Tap zones for mobile */}
             <button
               type="button"
               onClick={prev}
-              disabled={page === 0}
+              disabled={atStart}
               aria-label="Previous page"
-              className="absolute inset-y-0 left-0 w-1/3 focus:outline-none disabled:cursor-not-allowed"
+              className="md:hidden absolute inset-y-0 left-0 w-1/3 focus:outline-none disabled:cursor-not-allowed"
             />
             <button
               type="button"
               onClick={next}
-              disabled={page === total - 1}
+              disabled={atEnd}
               aria-label="Next page"
-              className="absolute inset-y-0 right-0 w-1/3 focus:outline-none disabled:cursor-not-allowed"
+              className="md:hidden absolute inset-y-0 right-0 w-1/3 focus:outline-none disabled:cursor-not-allowed"
             />
 
-            {/* Fullscreen toggle (top-right of stage) */}
+            {/* Side arrows */}
             <button
               type="button"
-              onClick={toggleFullscreen}
-              aria-label={isFs ? "Exit fullscreen" : "Enter fullscreen"}
+              onClick={prev}
+              disabled={atStart}
+              aria-label="Previous page"
               className={cn(
-                "absolute top-3 right-3 inline-flex items-center justify-center",
-                "h-9 w-9 rounded-full backdrop-blur-sm transition-colors",
+                "hidden md:inline-flex items-center justify-center absolute top-1/2 -translate-y-1/2",
+                "h-11 w-11 rounded-full transition-colors",
                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-brass",
+                "disabled:opacity-25 disabled:cursor-not-allowed",
                 isFs
-                  ? "bg-cream/10 text-cream hover:bg-cream/20 border border-cream/20"
-                  : "bg-walnut/85 text-cream hover:bg-walnut",
+                  ? "left-4 bg-cream/10 text-cream hover:bg-cream/20 border border-cream/20"
+                  : "-left-5 lg:-left-6 bg-walnut text-cream hover:bg-walnut/85 shadow-lg",
               )}
             >
-              {isFs ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              disabled={atEnd}
+              aria-label="Next page"
+              className={cn(
+                "hidden md:inline-flex items-center justify-center absolute top-1/2 -translate-y-1/2",
+                "h-11 w-11 rounded-full transition-colors",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-brass",
+                "disabled:opacity-25 disabled:cursor-not-allowed",
+                isFs
+                  ? "right-4 bg-cream/10 text-cream hover:bg-cream/20 border border-cream/20"
+                  : "-right-5 lg:-right-6 bg-walnut text-cream hover:bg-walnut/85 shadow-lg",
+              )}
+            >
+              <ChevronRight size={20} />
             </button>
           </div>
+        </div>
 
-          {/* Side arrows (md+) */}
+        {/* Footer: dots + indicator */}
+        <div
+          className={cn(
+            "mt-4 flex items-center justify-between gap-4",
+            isFs ? "px-6 pb-4 text-cream" : "px-1",
+          )}
+        >
+          {/* Mobile prev */}
           <button
             type="button"
             onClick={prev}
-            disabled={page === 0}
+            disabled={atStart}
             aria-label="Previous page"
             className={cn(
-              "hidden md:inline-flex items-center justify-center absolute top-1/2 -translate-y-1/2",
-              "h-11 w-11 rounded-full transition-colors",
+              "md:hidden inline-flex items-center justify-center h-9 w-9 rounded-full",
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-brass",
               "disabled:opacity-30 disabled:cursor-not-allowed",
-              isFs
-                ? "left-6 bg-cream/10 text-cream hover:bg-cream/20 border border-cream/20"
-                : "-left-2 lg:-left-5 bg-walnut text-cream hover:bg-walnut/85 shadow-lg",
+              isFs ? "bg-cream/10 text-cream" : "bg-walnut text-cream",
             )}
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={16} />
           </button>
-          <button
-            type="button"
-            onClick={next}
-            disabled={page === total - 1}
-            aria-label="Next page"
-            className={cn(
-              "hidden md:inline-flex items-center justify-center absolute top-1/2 -translate-y-1/2",
-              "h-11 w-11 rounded-full transition-colors",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-brass",
-              "disabled:opacity-30 disabled:cursor-not-allowed",
-              isFs
-                ? "right-6 bg-cream/10 text-cream hover:bg-cream/20 border border-cream/20"
-                : "-right-2 lg:-right-5 bg-walnut text-cream hover:bg-walnut/85 shadow-lg",
-            )}
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
 
-        {/* Footer: dots + indicator + mobile arrows */}
-        <div
-          className={cn(
-            "mt-5 flex flex-col items-center gap-3",
-            isFs && "px-5 pb-4 text-cream",
-          )}
-        >
           {/* Dots */}
-          <div className="flex flex-wrap items-center justify-center gap-1.5">
+          <div className="flex flex-wrap items-center justify-center gap-1.5 flex-1">
             {coworkPages.map((_, i) => {
-              const active = i === page;
+              const isCurrent =
+                i === leftIdx || (rightIdx !== null && i === rightIdx);
               return (
                 <button
                   key={i}
                   type="button"
                   onClick={() => goTo(i)}
                   aria-label={`Go to page ${i + 1}`}
-                  aria-current={active ? "true" : undefined}
+                  aria-current={isCurrent ? "true" : undefined}
                   className={cn(
                     "h-1.5 rounded-full transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brass",
-                    active
-                      ? "w-6 bg-brass"
+                    isCurrent
+                      ? "w-5 bg-brass"
                       : isFs
-                      ? "w-1.5 bg-cream/30 hover:bg-cream/60"
+                      ? "w-1.5 bg-cream/25 hover:bg-cream/60"
                       : "w-1.5 bg-walnut/20 hover:bg-walnut/40",
                   )}
                 />
@@ -272,55 +311,35 @@ const CoworkPreview = () => {
             })}
           </div>
 
-          {/* Mobile prev/next + indicator */}
-          <div className="flex items-center justify-between w-full md:w-auto md:justify-center gap-4">
-            <button
-              type="button"
-              onClick={prev}
-              disabled={page === 0}
-              aria-label="Previous page"
-              className={cn(
-                "md:hidden inline-flex items-center justify-center h-9 w-9 rounded-full",
-                "focus:outline-none focus-visible:ring-2 focus-visible:ring-brass",
-                "disabled:opacity-30 disabled:cursor-not-allowed",
-                isFs
-                  ? "bg-cream/10 text-cream"
-                  : "bg-walnut text-cream",
-              )}
-            >
-              <ChevronLeft size={18} />
-            </button>
+          {/* Indicator */}
+          <p
+            aria-live="polite"
+            className={cn(
+              "font-display text-xs tabular-nums whitespace-nowrap",
+              isFs ? "text-cream/80" : "text-walnut/60",
+            )}
+            style={{ letterSpacing: "0.12em" }}
+          >
+            <span className="text-brass">{label.split(" / ")[0]}</span>
+            <span className="px-1 opacity-50">/</span>
+            <span>{label.split(" / ")[1]}</span>
+          </p>
 
-            <p
-              aria-live="polite"
-              className={cn(
-                "font-display text-sm tabular-nums",
-                isFs ? "text-cream/80" : "text-walnut/70",
-              )}
-              style={{ letterSpacing: "0.12em" }}
-            >
-              <span className="text-brass">{pageNum}</span>
-              <span className="px-1.5 opacity-60">/</span>
-              <span>{totalNum}</span>
-            </p>
-
-            <button
-              type="button"
-              onClick={next}
-              disabled={page === total - 1}
-              aria-label="Next page"
-              className={cn(
-                "md:hidden inline-flex items-center justify-center h-9 w-9 rounded-full",
-                "focus:outline-none focus-visible:ring-2 focus-visible:ring-brass",
-                "disabled:opacity-30 disabled:cursor-not-allowed",
-                isFs
-                  ? "bg-cream/10 text-cream"
-                  : "bg-walnut text-cream",
-              )}
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
+          {/* Mobile next */}
+          <button
+            type="button"
+            onClick={next}
+            disabled={atEnd}
+            aria-label="Next page"
+            className={cn(
+              "md:hidden inline-flex items-center justify-center h-9 w-9 rounded-full",
+              "focus:outline-none focus-visible:ring-2 focus-visible:ring-brass",
+              "disabled:opacity-30 disabled:cursor-not-allowed",
+              isFs ? "bg-cream/10 text-cream" : "bg-walnut text-cream",
+            )}
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
       </div>
     </div>
