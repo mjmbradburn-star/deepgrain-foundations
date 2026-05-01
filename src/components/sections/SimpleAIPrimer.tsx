@@ -48,9 +48,9 @@ export const SimpleAIPrimer = () => {
   }, []);
 
   return (
-    <section className="bg-linen py-20 md:py-28" aria-labelledby="simple-ai-heading">
+    <section className="bg-linen pt-16 pb-10 md:pt-24 md:pb-12" aria-labelledby="simple-ai-heading">
       <div className="container-grain">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+        <div className="grid gap-10 md:gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left — video */}
           <ScrollReveal>
             <figure className="relative overflow-hidden rounded-2xl ring-1 ring-walnut/15 bg-bark shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]">
@@ -73,22 +73,22 @@ export const SimpleAIPrimer = () => {
 
           {/* Right — copy */}
           <ScrollReveal delay={120}>
-            <Eyebrow withRule className="text-walnut/70 mb-6">
+            <Eyebrow withRule className="text-walnut/70 mb-4 md:mb-6">
               Watch · 90 seconds
             </Eyebrow>
             <h2
               id="simple-ai-heading"
-              className="font-display text-walnut text-3xl md:text-5xl lg:text-[3.25rem] leading-[1.05] text-balance"
+              className="font-display text-walnut text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.05] text-balance"
               style={{ letterSpacing: "-0.01em" }}
             >
               The jargon is just plumbing.
             </h2>
-            <p className="mt-6 text-walnut/75 leading-relaxed text-lg max-w-xl">
+            <p className="mt-5 md:mt-6 text-walnut/75 leading-relaxed text-base md:text-lg max-w-xl">
               Seventeen of the terms cluttering every AI conversation, in plain
               English. Made for G&A leaders, not engineers.
             </p>
 
-            <ul className="mt-8 space-y-5 max-w-xl">
+            <ul className="mt-6 md:mt-8 space-y-4 md:space-y-5 max-w-xl">
               {bullets.map((b) => (
                 <li key={b.lead}>
                   <p className="text-walnut/85 leading-relaxed">
@@ -99,12 +99,18 @@ export const SimpleAIPrimer = () => {
               ))}
             </ul>
 
-            <div className="mt-10">
+            <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
               <PillButton href="/brain" variant="outline">
                 Go deeper · The People Ops AI Brain →
               </PillButton>
             </div>
           </ScrollReveal>
+        </div>
+
+        <div className="mt-10 md:mt-12 flex justify-center">
+          <PillButton href="/brain">
+            Visit the Brain →
+          </PillButton>
         </div>
       </div>
     </section>
