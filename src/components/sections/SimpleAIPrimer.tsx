@@ -84,8 +84,8 @@ export const SimpleAIPrimer = () => {
               The jargon is just plumbing.
             </h2>
             <p className="mt-5 md:mt-6 text-walnut/75 leading-relaxed text-base md:text-lg max-w-xl">
-              Seventeen of the terms cluttering every AI conversation, in plain
-              English. Made for G&A leaders, not engineers.
+              Seventeen of the terms cluttering every AI conversation,
+              explained for G&A leaders — not engineers.
             </p>
 
             <ul className="mt-6 md:mt-8 space-y-4 md:space-y-5 max-w-xl">
@@ -105,12 +105,6 @@ export const SimpleAIPrimer = () => {
               </PillButton>
             </div>
           </ScrollReveal>
-        </div>
-
-        <div className="mt-10 md:mt-12 flex justify-center">
-          <PillButton href="/brain">
-            Visit the Brain →
-          </PillButton>
         </div>
       </div>
     </section>
