@@ -7,12 +7,12 @@ type Bullet = { lead: string; rest: string };
 
 const bullets: Bullet[] = [
   {
-    lead: "LLMs, agents, MCP, RAG, embeddings.",
-    rest: " What the words actually mean, with no acronym soup.",
+    lead: "I love to help folks in G&A functions learn the context they need... ",
+    rest: "LLMs, Agents, MCP, Harness, cli. What the words actually mean.\n\n\n",
   },
   {
-    lead: "Built for People functions.",
-    rest: " Every example pulled from how teams actually run, not vendor demos.",
+    lead: "I love to help folks in G&A functions learn the context they need... ",
+    rest: " Not just let the engineers have all the fun",
   },
   {
     lead: "A 90-second primer.",
@@ -85,7 +85,7 @@ export const SimpleAIPrimer = () => {
             </h2>
             <p className="mt-6 text-walnut/75 leading-relaxed text-lg max-w-xl">
               Seventeen of the terms cluttering every AI conversation, in plain
-              English. Made for People leaders, not engineers.
+              English. Made for G&A leaders, not engineers.
             </p>
 
             <ul className="mt-8 space-y-5 max-w-xl">
