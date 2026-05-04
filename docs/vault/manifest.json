@@ -1,0 +1,32 @@
+{
+  "source": "https://peopleleaders.notion.site/Knowledge-Vault-96ab5ed2db5c424595b286cf5ba5768c",
+  "fetchedAt": "2026-05-04",
+  "method": "Notion MCP fetch (public Knowledge Vault)",
+  "note": "Source material distilled into Intelligence MDX articles. No verbatim copy. Each derived article links back as a deeper reference where useful.",
+  "sources": [
+    { "id": "1a61569da3448084992bf15fd7d8a3d2", "title": "The Ultimate Guide to Effective Prompts for People Ops Leaders", "theme": "prompting", "derived": ["prompting-patterns-for-people-ops"] },
+    { "id": "1c81569da344803db7dfdad1d746f14b", "title": "What's the Best AI for your HR Tasks?", "theme": "model-choice", "derived": ["choosing-ai-models-for-hr-work"] },
+    { "id": "2ae1569da34480159b9fe9e5b521a2ca", "title": "Prompt Engineering, Chaining & Critical Thinking", "theme": "prompting", "derived": ["prompting-patterns-for-people-ops"] },
+    { "id": "2161569da344802dadc7e638a8a9fa1e", "title": "AI Maturity Assessment - People Team Edition", "theme": "diagnostic", "derived": ["diagnosing-ai-readiness-in-people-ops"] },
+    { "id": "25e1569da3448021a019df845eb4d50c", "title": "Building an AI-Ready People Function", "theme": "operating-model", "derived": ["diagnosing-ai-readiness-in-people-ops", "ai-enablement-operating-model"] },
+    { "id": "2a91569da34480c68821f70e4c197a5d", "title": "Systems & Orchestration", "theme": "systems", "derived": ["from-prompts-to-systems"] },
+    { "id": "2f01569da3448028bb1fd3abcdbf0b37", "title": "Workflows, Automations & Agents", "theme": "systems", "derived": ["from-prompts-to-systems"] },
+    { "id": "2571569da34480099b97e264536a6db5", "title": "Enabling AI - Head to CHRO", "theme": "operating-model", "derived": ["ai-enablement-operating-model"] },
+    { "id": "2e31569da3448081bc48f2ce458e1f53", "title": "AI Enablement That Actually Scales", "theme": "operating-model", "derived": ["ai-enablement-operating-model"] },
+    { "id": "2391569da34480cabb15df83efde51bf", "title": "AI-Driven HR Automation: Why Data (and n8n)", "theme": "production-agents", "derived": ["production-agents-for-people-ops"] },
+    { "id": "2e61569da34480ae853bec1d9a0b9c6c", "title": "100x a business with AI: production agents playbook", "theme": "production-agents", "derived": ["production-agents-for-people-ops"] },
+    { "id": "1ca1569da3448053a10bf6bccc4c0016", "title": "One stop shop AI policy creation", "theme": "policy", "derived": ["ai-policy-blueprint-for-people-teams"] },
+    { "id": "2ab1569da34480eaa032feb7a14ca7c4", "title": "Strategic Automation Audit Workshop", "theme": "automation-audit", "derived": ["automation-audit-playbook"] },
+    { "id": "1ad1569da34480359999d4f0a4360f25", "title": "Underperformance Early Warning Checklist", "theme": "diagnostic", "derived": ["people-ops-diagnostic-toolkit"] },
+    { "id": "1c31569da34480109766eea38bbdd74a", "title": "People as a Product Checklist", "theme": "operating-model", "derived": ["people-ops-diagnostic-toolkit"] },
+    { "id": "1b41569da34480a5a44ff163f8f04aec", "title": "90-Day Roadmap Builder for Startups", "theme": "roadmap", "derived": ["people-ops-diagnostic-toolkit", "ai-roadmap-case-study-finedge"] },
+    { "id": "2f01569da34480a8a719e4dd217122a6", "title": "The Untouchable HR Architect", "theme": "role", "derived": ["the-hr-architect-role"] },
+    { "id": "30a1569da344805991b3f2e2fd38b165", "title": "AI Isn't Taking Jobs. Yet.", "theme": "role", "derived": ["the-hr-architect-role"] },
+    { "id": "1ee1569da34480c9894ff23a56937e4b", "title": "Engineering Manager Action Guide", "theme": "leadership", "derived": ["coaching-and-feedback-systems"] },
+    { "id": "1ee1569da344804eb6fddfba26480d50", "title": "Engineering Feedback", "theme": "leadership", "derived": ["coaching-and-feedback-systems"] },
+    { "id": "1a61569da34480b2bc7de34ebe762be9", "title": "10x Values Development", "theme": "values", "derived": ["designing-values-that-stick"] },
+    { "id": "2481569da34480e184b2f51aa14307bf", "title": "Why most corporate values projects fail", "theme": "values", "derived": ["designing-values-that-stick"] },
+    { "id": "1b01569da34480358cf1d943877aea78", "title": "Research Report: Leveraging GenAI for People Debt", "theme": "research", "derived": ["people-debt-and-genai"] },
+    { "id": "1d71569da344805b932df208b5bb5d16", "title": "How to Prompt with GPT-4.1 for HR Teams", "theme": "prompting", "derived": ["prompting-patterns-for-people-ops"] }
+  ]
+}
