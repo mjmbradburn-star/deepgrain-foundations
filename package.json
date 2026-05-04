@@ -7,6 +7,7 @@
     "dev": "vite",
     "prebuild": "node scripts/build-seo-indexes.mjs && vitest run src/test/faq-jsonld.test.ts src/test/people-ops-seo.test.ts src/test/intelligence-structure.test.ts",
     "build:seo-indexes": "node scripts/build-seo-indexes.mjs",
+    "seo:verify": "node scripts/inject-verification-codes.mjs",
     "test:seo": "vitest run src/test/people-ops-seo.test.ts",
     "build": "vite build",
     "build:dev": "vite build --mode development",
