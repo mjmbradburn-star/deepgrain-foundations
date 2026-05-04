@@ -1,89 +1,84 @@
-## What I tested
+# SEO + LLM Visibility Plan
 
-I exercised the recently changed surfaces end-to-end against the live backend.
+## What the GSC data actually says (last 28 days)
 
-### Edge function auth gates (post-hardening) — all good
-| Function | No auth | Anon JWT | Result |
-|---|---|---|---|
-| `ping-indexnow` | 401 Unauthorized | 403 Forbidden | ✅ correctly service-role only |
-| `send-transactional-email` | (gateway) | 403 Forbidden | ✅ correctly service-role only |
-| `sync-brain-subscribers-to-notion` | (gateway) | 403 Forbidden | ✅ correctly service-role only |
+- **Volume is tiny:** 14 clicks / 121 impressions. Average position 30. This is a cold-start problem, not a ranking decay problem.
+- **Brand works:** "deepgrain" / "deep grain" → position 1-4, 58% CTR. Not the issue.
+- **The opportunity is one cluster:** "ai operating system" and variants ("ai os", "artificial intelligence operating system", "ai based operating system", "ai powered operating system") = **35+ impressions, 0 clicks, position 70-82.** Google sees us as topically relevant but not authoritative.
+- **One page is on the cusp:** `/intelligence/setting-up-your-ai-workspace` = position 7.15, 13 impressions. One push moves it to page 1.
+- **Two pages exist but Google can't find them properly:**
+  - `/intelligence/people-ops` (the hub) gets 16 impressions but **is missing from sitemap.xml**.
+  - `aioi.deepgrain.ai` (the AI Operating Index subdomain) appears with 5 impressions and is not interlinked from the main site sitemap or nav.
+- **Mobile CTR is 33% vs desktop 9.8%.** Mobile titles/snippets are working harder than desktop. Don't break this.
+- **Long-tail proof:** "how does the enablement agent integrate with coaching workflows" - someone is already asking conversational/AI-style queries. This is exactly what LLM citation traffic looks like.
 
-### Sitemap / IndexNow plumbing
-- `https://deepgrain.ai/sitemap.xml` → 200, 56 URLs.
-- IndexNow key file `74fbf61ed22a2c644b4d621320ac07b9.txt` → 200.
-- `sitemap_state` row populated, last successful ping recorded earlier today (status 200).
-- Recent `send-brain-welcome` invocations show real signups succeeding.
+## Strategy: three concentric rings, all low credit cost
 
-### Database linter / security scan
-- Security scan: 0 outstanding findings.
-- Supabase linter: 2 WARN (`USING (true)` on INSERT, see issue 2 below).
-
-## Issues found
-
-### 1. CRITICAL — IndexNow cron is now broken (silent failure)
-
-The hardening I shipped requires a `service_role` JWT, but the pg_cron job (`jobid: 7`, schedule `*/10 * * * *`) for `ping-indexnow` was created with the **public anon key** hardcoded in both `Authorization` and `apikey` headers. After the security fix, every cron tick now gets a 403 Forbidden, so the sitemap is no longer being auto-pinged. The other cron jobs (`process-email-queue`, `reconcile-brain-access`, `sync-brain-subscribers-to-notion`) correctly read `email_queue_service_role_key` from the Vault, so they still work.
-
-**Fix:** Replace the `ping-indexnow` cron command to read the service-role JWT from the Vault, matching the pattern used by the other three jobs. Migration:
-
-```sql
-SELECT cron.unschedule(7); -- or unschedule by name if named
-SELECT cron.schedule(
-  'ping-indexnow-every-10-min',
-  '*/10 * * * *',
-  $$
-  SELECT net.http_post(
-    url := 'https://todgunffzlopbenewfnp.supabase.co/functions/v1/ping-indexnow',
-    headers := jsonb_build_object(
-      'Content-Type', 'application/json',
-      'Authorization', 'Bearer ' || (
-        SELECT decrypted_secret FROM vault.decrypted_secrets
-        WHERE name = 'email_queue_service_role_key' LIMIT 1
-      )
-    ),
-    body := '{"trigger":"cron"}'::jsonb,
-    timeout_milliseconds := 30000
-  );
-  $$
-);
+```text
+  Ring 1 (this week)   Technical hygiene + sitemap fixes
+  Ring 2 (next 2 wks)  Own the "AI operating system" cluster
+  Ring 3 (ongoing)     LLM-citation surface + low-effort backlinks
 ```
 
-I'll also drop the redundant `apikey` header (gateway only needs the `Authorization` Bearer for `verify_jwt = false` functions enforcing role in-code).
+---
 
-### 2. WARN — Two public INSERT policies use `WITH CHECK (true)`
+## Ring 1: Technical hygiene (1 build session, ~no API spend)
 
-Linter flags `public.enquiries` ("Anyone can submit an enquiry") and `public.subscribers` ("Anyone can subscribe") as overly permissive. Both are intentionally public-write (anonymous form submissions), so we cannot scope them by `auth.uid()`. The right move is one of:
+1. **Fix sitemap gaps.** Add `/intelligence/people-ops` (hub) and the `aioi` subdomain entry. Add `lastmod` updates so Google re-crawls.
+2. **Add hreflang + self-canonical sanity check** on `/intelligence/*` (currently inherits index.html canonical in some lazy routes — verify `PageMeta` is firing on every article).
+3. **Fix http→https duplication.** GSC shows both `http://deepgrain.ai/` and `https://deepgrain.ai/` getting impressions. Confirm 301 from http and from any non-www variants.
+4. **Internal linking audit.** Every "AI OS" article should link to the pillar page (`/intelligence/what-is-an-ai-operating-system`) with the exact-match anchor. Currently that page is at **position 75 with 35 impressions** - the highest single-page opportunity in the entire account.
+5. **Submit IndexNow ping** for all updated URLs (already automated, just trigger after the sitemap change).
 
-- **Acknowledge as intentional** (matches site behaviour) and mark the linter findings as accepted in the security memory, OR
-- **Add lightweight write constraints** so they aren't trivially abusable. Recommended additions:
-  - `enquiries`: enforce non-empty `email` + `message`, length bounds (e.g. `length(message) BETWEEN 1 AND 5000`), and a basic email regex.
-  - `subscribers`: enforce non-empty + valid-shape `email`, length bound, and reject obvious junk.
+## Ring 2: Own the "AI operating system" cluster (2 build sessions)
 
-I recommend the second option (still permits public submits, but stops `INSERT ... DEFAULT VALUES` and oversize payloads). Both forms already have client-side validation and the contact form goes through an edge function, so this just hardens the DB floor.
+This is your single biggest unlock. Google has decided you're topically related but not authoritative. Fix that with structured depth, not more articles.
 
-```sql
-DROP POLICY "Anyone can submit an enquiry" ON public.enquiries;
-CREATE POLICY "Public can submit a valid enquiry"
-  ON public.enquiries FOR INSERT TO anon, authenticated
-  WITH CHECK (
-    email ~* '^[^@\s]+@[^@\s]+\.[^@\s]+$'
-    AND length(email) BETWEEN 5 AND 320
-    AND length(coalesce(message,'')) BETWEEN 1 AND 5000
-  );
--- analogous policy for public.subscribers
-```
+1. **Rebuild `/intelligence/what-is-an-ai-operating-system` as a true pillar page:**
+   - Add a TOC, a clear definition in the first 60 words (snippet bait), an H2 for each query variant ("AI OS", "AI-based operating system", "AI-powered operating system").
+   - Add a comparison table (AI OS vs Operating Model vs Workflow Automation).
+   - Add `FAQPage` JSON-LD with the 5 actual GSC query variants as questions. You already have the FAQ infra (`src/test/faq-jsonld.test.ts`).
+   - Add `Article` + `BreadcrumbList` JSON-LD if missing.
+2. **Cluster all 6 related articles** behind it. Every related article links *up* to the pillar with anchor text "AI operating system". The pillar links *down* to each as a "Related" rail.
+3. **Push `/intelligence/setting-up-your-ai-workspace` from position 7 → page 1.** Add 2-3 internal links from higher-traffic pages (Brain page, People Ops hub) and tighten the title to lead with the keyword.
+4. **Add the AIOI subdomain to the main sitemap as a separate `<sitemap>` reference** (sitemap index pattern), or proxy/link it from the homepage so it inherits authority.
 
-### 3. Minor — Migration drift
+## Ring 3: LLM citations + cheap backlinks (ongoing, near-zero credit cost)
 
-The runtime `pg_cron` schedule for `ping-indexnow` was never captured in `supabase/migrations/`. The fix migration above will close that gap going forward.
+LLMs cite sources that are: well-structured, frequently updated, and quoted by other sites. We optimise for all three.
 
-## Plan
+1. **`llms.txt` + `llms-full.txt` are already shipping.** Confirm they list every pillar page with a one-line summary (this is what Perplexity/Claude actually parse).
+2. **Add a "Definitions" block** to each pillar (Read·Craft·Scale, AI OS, Operating Intervention, Grain). Single-sentence, quotable, schema-marked as `DefinedTerm`. LLMs scrape these verbatim.
+3. **Distribution playbook (no credits, just time):**
+   - Cross-post 3 best articles as LinkedIn long-form with canonical link back to deepgrain.ai.
+   - Submit `/intelligence/what-is-an-ai-operating-system` to: Hacker News (Show HN if you reposition the AIOI), Indie Hackers, the Lenny's Newsletter community, r/PeopleOps, r/HRTech.
+   - List Deepgrain on: Clutch, Consultancy.uk, The Org, Crunchbase, AI consultancy directories.
+   - Pitch one guest post to `peopleops.com` or `Charthop`'s blog with a backlink to the People Ops hub.
+4. **One-click Notion/Slack share** on every Intelligence article. Free distribution = backlinks over time.
+5. **Quarterly "AI Operating Index" report** on the `aioi` subdomain, gated by email. This is your linkable asset - PR/Substack writers cite reports, not blog posts.
 
-1. **Write a migration** to:
-   - Unschedule the broken `ping-indexnow` cron and re-schedule it using the Vault-stored service-role key.
-   - Replace the two `WITH CHECK (true)` INSERT policies with format/length-validated equivalents.
-2. **Smoke-test after deploy:** force a cron-style call from the migration with `SELECT net.http_post(...)`, then re-query `sitemap_state.last_pinged_at` to confirm the cron path now returns 200. Re-run the linter to confirm 0 warnings.
-3. **Update security memory** noting that `enquiries`/`subscribers` allow public INSERT but with content validation, and that `ping-indexnow` cron is authenticated via the Vault secret.
+## What I am NOT proposing
 
-No frontend changes required.
+- No new content commissioned until the existing pillar ranks. Writing more articles when 30 articles already underperform is the wrong move.
+- No paid backlink services.
+- No sweeping redesign. The site converts; the funnel isn't the bottleneck. Discovery is.
+
+## Technical scope (for the build phase)
+
+Files I'd touch in Ring 1+2:
+- `public/sitemap.xml` - add People Ops hub, AIOI reference, refresh lastmods
+- `src/content/intelligence/what-is-an-ai-operating-system.mdx` - rewrite as pillar
+- `src/content/intelligence/setting-up-your-ai-workspace.mdx` - title + internal links
+- `src/components/seo/PageMeta.tsx` - add optional `FAQPage` + `DefinedTerm` JSON-LD helpers
+- `src/components/intelligence/mdxComponents.tsx` - add `<Definition>` and `<Faq>` components
+- `public/llms.txt` / `public/llms-full.txt` - re-sync after pillar rewrite
+- Trigger `ping-indexnow` after deploy
+
+## Success metric (check at day 30)
+
+- Pillar page position: 75 → under 20
+- "Setting up your AI workspace": position 7 → under 5
+- Total impressions: 121 → 400+
+- At least 1 LLM citation appearing in `referer` or branded search uplift
+
+Approve and I'll execute Ring 1 + Ring 2 in the next session. Ring 3 is mostly your distribution work, but I'll prep the LinkedIn-ready exports and directory submission copy.
