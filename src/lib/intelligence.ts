@@ -161,16 +161,36 @@ export const getRelatedArticles = (slug: string, limit = 3) => {
   const cf = current.frontmatter;
   const currentKeywords = new Set((cf.keywords ?? []).map((k) => k.toLowerCase()));
 
+  const currentClusters = new Set<string>([
+    ...(cf.primaryCluster ? [cf.primaryCluster] : []),
+    ...(cf.clusters ?? []),
+  ]);
+
   const scored = ARTICLES.filter((a) => a.frontmatter.slug !== slug).map((a) => {
     const f = a.frontmatter;
     const sharedKeywords = (f.keywords ?? []).reduce(
       (n, k) => (currentKeywords.has(k.toLowerCase()) ? n + 1 : n),
       0
     );
+    const otherClusters = new Set<string>([
+      ...(f.primaryCluster ? [f.primaryCluster] : []),
+      ...(f.clusters ?? []),
+    ]);
+    let sharedClusters = 0;
+    for (const c of otherClusters) if (currentClusters.has(c)) sharedClusters++;
+    const samePrimaryCluster =
+      cf.primaryCluster && f.primaryCluster === cf.primaryCluster ? 1 : 0;
     const sameCategory = f.category === cf.category ? 1 : 0;
     const sameTrack = f.track === cf.track ? 1 : 0;
-    const score = sharedKeywords * 3 + sameCategory * 2 + sameTrack;
-    return { article: a, score, sharedKeywords };
+    // Cluster overlap is a stronger signal than free-form keywords because
+    // clusters are curated. Primary-cluster match is the strongest signal.
+    const score =
+      samePrimaryCluster * 5 +
+      sharedClusters * 3 +
+      sharedKeywords * 3 +
+      sameCategory * 2 +
+      sameTrack;
+    return { article: a, score, sharedKeywords, sharedClusters };
   });
 
   const byRecency = (a: { article: Article }, b: { article: Article }) =>
