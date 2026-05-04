@@ -1,19 +1,21 @@
 #!/usr/bin/env node
 /**
- * Build-time prerender for /intelligence/* routes.
+ * Build-time prerender for every public route in sitemap.xml.
  *
  * Why: Deepgrain ships as a Vite SPA. LLM crawlers (GPTBot, ClaudeBot,
- * PerplexityBot, CCBot) and most social scrapers do not execute JavaScript,
- * so they see an empty <div id="root"> on every Intelligence page. This
- * script post-processes the `dist` output to write fully-rendered static
- * HTML for every Intelligence URL listed in the sitemap.
+ * PerplexityBot, CCBot), most social scrapers, and Google's video indexer
+ * do not execute JavaScript reliably, so they see an empty <div id="root">
+ * on every route. This script post-processes the `dist` output to write
+ * fully-rendered static HTML for every URL listed in sitemap.xml.
  *
  * How:
  *   1. `vite build` has already produced dist/index.html (the SPA shell).
  *   2. We launch `vite preview` against `dist/` on a local port.
- *   3. We launch headless Chromium and visit every /intelligence/* URL.
+ *   3. We launch headless Chromium and visit every URL on the deepgrain.ai
+ *      origin in the sitemap.
  *   4. For each route we wait for an <h1> to appear, then snapshot the
- *      fully-rendered DOM and write it to `dist/<route>/index.html`.
+ *      fully-rendered DOM and write it to `dist/<route>/index.html` (or
+ *      dist/index.html for the root).
  *   5. Lovable's hosting serves real files when present and falls back to
  *      index.html otherwise, so no redirect rules are needed.
  *
@@ -58,14 +60,13 @@ const allLocs = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
 );
 const routes = allLocs
   .filter((u) => u.startsWith(SITE_ORIGIN))
-  .map((u) => u.slice(SITE_ORIGIN.length) || "/")
-  .filter((p) => p === "/intelligence" || p.startsWith("/intelligence/"));
+  .map((u) => u.slice(SITE_ORIGIN.length) || "/");
 
 if (!routes.length) {
-  console.warn("[prerender] no /intelligence routes in sitemap, skipping.");
+  console.warn("[prerender] no routes in sitemap, skipping.");
   process.exit(0);
 }
-console.log(`[prerender] found ${routes.length} intelligence routes.`);
+console.log(`[prerender] found ${routes.length} routes (all of sitemap).`);
 
 // --- 2. Find an open port and start `vite preview` ---
 const port = await new Promise((resolve, reject) => {
