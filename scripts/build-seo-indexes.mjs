@@ -158,7 +158,7 @@ const STATIC_ROUTES = [
 
 // ---------- sitemap.xml -------------------------------------------------
 
-function buildSitemap(articles) {
+async function buildSitemap(articles) {
   const urls = [];
   const push = (loc, lastmod, priority, changefreq = "monthly") => {
     urls.push({ loc, lastmod, priority, changefreq });
@@ -338,7 +338,7 @@ ${items}
 // ---------- main --------------------------------------------------------
 
 const articles = await loadArticles();
-const sitemap = buildSitemap(articles);
+const sitemap = await buildSitemap(articles);
 const llms = buildLlmsTxt(articles);
 const llmsFull = buildLlmsFullTxt(articles);
 
