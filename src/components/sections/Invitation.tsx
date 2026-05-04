@@ -13,7 +13,7 @@ export const Invitation = () => (
           start.
         </p>
         <div className="mt-12">
-          <PillButton href="/contact" variant="filled">
+          <PillButton href="/contact" variant="filled" cta="contact" ctaLocation="invitation">
             Get in touch →
           </PillButton>
         </div>
