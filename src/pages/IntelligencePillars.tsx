@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { PILLARS } from "@/data/pillars";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 const IntelligencePillars = () => {
   const url = "https://deepgrain.ai/intelligence/pillars";
@@ -47,6 +48,15 @@ const IntelligencePillars = () => {
 
       <section className="bg-green text-cream pt-40 md:pt-48 pb-20 md:pb-28">
         <div className="container-grain max-w-4xl">
+          <Breadcrumbs
+            variant="dark"
+            className="mb-6"
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Intelligence", href: "/intelligence" },
+              { name: "Pillars" },
+            ]}
+          />
           <Link
             to="/intelligence"
             className="text-[11px] uppercase text-brass hover:text-cream transition-colors"

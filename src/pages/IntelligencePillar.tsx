@@ -6,6 +6,7 @@ import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { RelatedClusterArticles } from "@/components/intelligence/RelatedClusterArticles";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 
 const IntelligencePillar = () => {
   const { slug = "" } = useParams();
@@ -64,6 +65,16 @@ const IntelligencePillar = () => {
 
       <section className="bg-green text-cream pt-40 md:pt-48 pb-20 md:pb-28">
         <div className="container-grain max-w-4xl">
+          <Breadcrumbs
+            variant="dark"
+            className="mb-6"
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Intelligence", href: "/intelligence" },
+              { name: "Pillars", href: "/intelligence/pillars" },
+              { name: pillar.title },
+            ]}
+          />
           <Link
             to="/intelligence/pillars"
             className="text-[11px] uppercase text-brass hover:text-cream transition-colors"
