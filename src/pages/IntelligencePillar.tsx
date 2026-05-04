@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { getPillar, PILLARS } from "@/data/pillars";
 import { getArticleBySlug } from "@/lib/intelligence";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
+import { RelatedClusterArticles } from "@/components/intelligence/RelatedClusterArticles";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
@@ -138,6 +139,14 @@ const IntelligencePillar = () => {
           })}
         </div>
       </section>
+
+      {/* SEO-ready related modules driven by primaryCluster + clusters */}
+      <RelatedClusterArticles
+        sourceArticles={sections.flatMap((s) => s.items)}
+        excludeSlugs={sections.flatMap((s) => s.items.map((a) => a.frontmatter.slug))}
+        heading="Related across the library"
+        kicker="Related articles"
+      />
 
       {/* Related pillars */}
       {pillar.related && pillar.related.length > 0 && (

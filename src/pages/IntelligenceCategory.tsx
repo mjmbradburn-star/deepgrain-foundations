@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Navigate, useParams, Link } from "react-router-dom";
 import { getArticlesByCategory, getCategory } from "@/lib/intelligence";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
+import { RelatedClusterArticles } from "@/components/intelligence/RelatedClusterArticles";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
@@ -63,6 +64,14 @@ const IntelligenceCategory = () => {
           </div>
         </div>
       </section>
+
+      {/* SEO-ready related modules driven by primaryCluster + clusters */}
+      <RelatedClusterArticles
+        sourceArticles={items}
+        excludeSlugs={items.map((a) => a.frontmatter.slug)}
+        variant="cream"
+        heading={`More ways into ${cat.name.toLowerCase()}`}
+      />
     </>
   );
 };
