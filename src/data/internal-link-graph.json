@@ -5,37 +5,37 @@
       {
         "slug": "leading-the-ai-transformation",
         "title": "Leading the AI transformation in People",
-        "score": 6,
+        "score": 8,
         "shared_keywords": [],
-        "shared_heading_tokens": 0,
+        "shared_heading_tokens": 1,
         "shared_concept_tokens": 6
       },
       {
         "slug": "from-prompts-to-systems",
         "title": "From prompts to systems",
-        "score": 5,
+        "score": 7,
         "shared_keywords": [
           "ai capability building"
         ],
-        "shared_heading_tokens": 0,
+        "shared_heading_tokens": 1,
         "shared_concept_tokens": 2
       },
       {
         "slug": "the-champion-model",
         "title": "The champion model",
-        "score": 5,
+        "score": 7,
         "shared_keywords": [
           "ai enablement"
         ],
-        "shared_heading_tokens": 1,
+        "shared_heading_tokens": 2,
         "shared_concept_tokens": 0
       },
       {
         "slug": "prompting-patterns-for-people-ops",
         "title": "Prompting patterns for People Ops",
-        "score": 4,
+        "score": 6,
         "shared_keywords": [],
-        "shared_heading_tokens": 1,
+        "shared_heading_tokens": 2,
         "shared_concept_tokens": 2
       }
     ]
@@ -52,6 +52,14 @@
         "shared_concept_tokens": 0
       },
       {
+        "slug": "people-debt-and-genai",
+        "title": "People debt: what GenAI exposes, and what to do about it",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 4,
+        "shared_concept_tokens": 0
+      },
+      {
         "slug": "setting-up-your-ai-workspace",
         "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
         "score": 8,
@@ -62,14 +70,6 @@
       {
         "slug": "designing-the-ai-native-people-team",
         "title": "Designing the AI-native People team",
-        "score": 6,
-        "shared_keywords": [],
-        "shared_heading_tokens": 3,
-        "shared_concept_tokens": 0
-      },
-      {
-        "slug": "production-agents-for-people-ops",
-        "title": "Production agents for People Ops",
         "score": 6,
         "shared_keywords": [],
         "shared_heading_tokens": 3,
@@ -97,20 +97,57 @@
         "shared_concept_tokens": 3
       },
       {
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      },
+      {
         "slug": "ai-governance-for-people-teams",
         "title": "AI governance for People teams",
         "score": 4,
         "shared_keywords": [],
         "shared_heading_tokens": 2,
         "shared_concept_tokens": 0
-      },
+      }
+    ]
+  },
+  "ai-roadmap-case-study-finedge": {
+    "title": "AI roadmap case study: FinEdge's first 90 days",
+    "neighbours": [
       {
-        "slug": "automation-patterns-that-pay-off",
-        "title": "Automation patterns that pay off",
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
         "score": 4,
         "shared_keywords": [],
         "shared_heading_tokens": 2,
         "shared_concept_tokens": 0
+      },
+      {
+        "slug": "measuring-ai-value-in-people-ops",
+        "title": "Measuring AI value in People Ops",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "workflow-assessment-framework",
+        "title": "A workflow assessment framework for People Ops",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      },
+      {
+        "slug": "setting-up-your-ai-workspace",
+        "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
+        "score": 3,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 1
       }
     ]
   },
@@ -179,8 +216,8 @@
         "shared_concept_tokens": 3
       },
       {
-        "slug": "ai-policy-blueprint-for-people-teams",
-        "title": "An AI policy blueprint for People teams",
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
         "score": 4,
         "shared_keywords": [],
         "shared_heading_tokens": 2,
@@ -200,27 +237,64 @@
         "shared_concept_tokens": 0
       },
       {
+        "slug": "coaching-and-feedback-systems",
+        "title": "Coaching and feedback systems that actually compound",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "designing-values-that-stick",
+        "title": "Designing values that stick",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
         "slug": "production-agents-for-people-ops",
         "title": "Production agents for People Ops",
         "score": 4,
         "shared_keywords": [],
         "shared_heading_tokens": 2,
         "shared_concept_tokens": 0
+      }
+    ]
+  },
+  "coaching-and-feedback-systems": {
+    "title": "Coaching and feedback systems that actually compound",
+    "neighbours": [
+      {
+        "slug": "designing-values-that-stick",
+        "title": "Designing values that stick",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 1
       },
       {
-        "slug": "setting-up-your-ai-workspace",
-        "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
+        "slug": "ai-policy-blueprint-for-people-teams",
+        "title": "An AI policy blueprint for People teams",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      },
+      {
+        "slug": "choosing-ai-models-for-hr-work",
+        "title": "Choosing AI models for HR work",
         "score": 4,
         "shared_keywords": [],
         "shared_heading_tokens": 2,
         "shared_concept_tokens": 0
       },
       {
-        "slug": "ai-governance-for-people-teams",
-        "title": "AI governance for People teams",
-        "score": 2,
+        "slug": "leading-the-ai-transformation",
+        "title": "Leading the AI transformation in People",
+        "score": 4,
         "shared_keywords": [],
-        "shared_heading_tokens": 1,
+        "shared_heading_tokens": 2,
         "shared_concept_tokens": 0
       }
     ]
@@ -237,6 +311,14 @@
         "shared_concept_tokens": 4
       },
       {
+        "slug": "people-debt-and-genai",
+        "title": "People debt: what GenAI exposes, and what to do about it",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 1
+      },
+      {
         "slug": "setting-up-your-ai-workspace",
         "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
         "score": 7,
@@ -251,13 +333,42 @@
         "shared_keywords": [],
         "shared_heading_tokens": 3,
         "shared_concept_tokens": 0
-      },
+      }
+    ]
+  },
+  "designing-values-that-stick": {
+    "title": "Designing values that stick",
+    "neighbours": [
       {
-        "slug": "diagnosing-ai-readiness-in-people-ops",
-        "title": "Diagnosing AI readiness in People Ops",
+        "slug": "leading-the-ai-transformation",
+        "title": "Leading the AI transformation in People",
         "score": 6,
         "shared_keywords": [],
         "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "coaching-and-feedback-systems",
+        "title": "Coaching and feedback systems that actually compound",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 1
+      },
+      {
+        "slug": "ai-policy-blueprint-for-people-teams",
+        "title": "An AI policy blueprint for People teams",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "automation-patterns-that-pay-off",
+        "title": "Automation patterns that pay off",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
         "shared_concept_tokens": 0
       }
     ]
@@ -274,6 +385,14 @@
         "shared_concept_tokens": 0
       },
       {
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      },
+      {
         "slug": "ai-governance-for-people-teams",
         "title": "AI governance for People teams",
         "score": 4,
@@ -288,14 +407,6 @@
         "shared_keywords": [],
         "shared_heading_tokens": 2,
         "shared_concept_tokens": 0
-      },
-      {
-        "slug": "production-agents-for-people-ops",
-        "title": "Production agents for People Ops",
-        "score": 4,
-        "shared_keywords": [],
-        "shared_heading_tokens": 2,
-        "shared_concept_tokens": 0
       }
     ]
   },
@@ -305,11 +416,11 @@
       {
         "slug": "ai-enablement-operating-model",
         "title": "An AI enablement operating model for People leaders",
-        "score": 5,
+        "score": 7,
         "shared_keywords": [
           "ai capability building"
         ],
-        "shared_heading_tokens": 0,
+        "shared_heading_tokens": 1,
         "shared_concept_tokens": 2
       },
       {
@@ -342,6 +453,14 @@
     "title": "Leading the AI transformation in People",
     "neighbours": [
       {
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 6
+      },
+      {
         "slug": "measuring-ai-value-in-people-ops",
         "title": "Measuring AI value in People Ops",
         "score": 7,
@@ -358,20 +477,12 @@
         "shared_concept_tokens": 3
       },
       {
-        "slug": "ai-enablement-operating-model",
-        "title": "An AI enablement operating model for People leaders",
+        "slug": "designing-values-that-stick",
+        "title": "Designing values that stick",
         "score": 6,
         "shared_keywords": [],
-        "shared_heading_tokens": 0,
-        "shared_concept_tokens": 6
-      },
-      {
-        "slug": "setting-up-your-ai-workspace",
-        "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
-        "score": 5,
-        "shared_keywords": [],
-        "shared_heading_tokens": 2,
-        "shared_concept_tokens": 1
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
       }
     ]
   },
@@ -395,20 +506,94 @@
         "shared_concept_tokens": 0
       },
       {
+        "slug": "people-debt-and-genai",
+        "title": "People debt: what GenAI exposes, and what to do about it",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 4,
+        "shared_concept_tokens": 0
+      },
+      {
         "slug": "setting-up-your-ai-workspace",
         "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
         "score": 8,
         "shared_keywords": [],
         "shared_heading_tokens": 3,
         "shared_concept_tokens": 2
-      },
+      }
+    ]
+  },
+  "people-debt-and-genai": {
+    "title": "People debt: what GenAI exposes, and what to do about it",
+    "neighbours": [
       {
-        "slug": "workflow-assessment-framework",
-        "title": "A workflow assessment framework for People Ops",
+        "slug": "ai-governance-for-people-teams",
+        "title": "AI governance for People teams",
         "score": 8,
         "shared_keywords": [],
-        "shared_heading_tokens": 1,
-        "shared_concept_tokens": 6
+        "shared_heading_tokens": 4,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "measuring-ai-value-in-people-ops",
+        "title": "Measuring AI value in People Ops",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 4,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "people-ops-diagnostic-toolkit",
+        "title": "The People Ops diagnostic toolkit",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 4,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "designing-the-ai-native-people-team",
+        "title": "Designing the AI-native People team",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 1
+      }
+    ]
+  },
+  "people-ops-diagnostic-toolkit": {
+    "title": "The People Ops diagnostic toolkit",
+    "neighbours": [
+      {
+        "slug": "people-debt-and-genai",
+        "title": "People debt: what GenAI exposes, and what to do about it",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 4,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "automation-audit-playbook",
+        "title": "The automation audit playbook",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "measuring-ai-value-in-people-ops",
+        "title": "Measuring AI value in People Ops",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "production-agents-for-people-ops",
+        "title": "Production agents for People Ops",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
       }
     ]
   },
@@ -432,16 +617,16 @@
         "shared_concept_tokens": 0
       },
       {
-        "slug": "choosing-ai-models-for-hr-work",
-        "title": "Choosing AI models for HR work",
-        "score": 4,
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
+        "score": 5,
         "shared_keywords": [],
-        "shared_heading_tokens": 2,
-        "shared_concept_tokens": 0
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 3
       },
       {
-        "slug": "designing-the-ai-native-people-team",
-        "title": "Designing the AI-native People team",
+        "slug": "choosing-ai-models-for-hr-work",
+        "title": "Choosing AI models for HR work",
         "score": 4,
         "shared_keywords": [],
         "shared_heading_tokens": 2,
@@ -453,6 +638,14 @@
     "title": "Prompting patterns for People Ops",
     "neighbours": [
       {
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 2
+      },
+      {
         "slug": "designing-the-ai-native-people-team",
         "title": "Designing the AI-native People team",
         "score": 5,
@@ -461,12 +654,12 @@
         "shared_concept_tokens": 3
       },
       {
-        "slug": "ai-enablement-operating-model",
-        "title": "An AI enablement operating model for People leaders",
+        "slug": "designing-values-that-stick",
+        "title": "Designing values that stick",
         "score": 4,
         "shared_keywords": [],
-        "shared_heading_tokens": 1,
-        "shared_concept_tokens": 2
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
       },
       {
         "slug": "leading-the-ai-transformation",
@@ -475,14 +668,6 @@
         "shared_keywords": [],
         "shared_heading_tokens": 2,
         "shared_concept_tokens": 0
-      },
-      {
-        "slug": "production-agents-for-people-ops",
-        "title": "Production agents for People Ops",
-        "score": 4,
-        "shared_keywords": [],
-        "shared_heading_tokens": 1,
-        "shared_concept_tokens": 2
       }
     ]
   },
@@ -514,12 +699,12 @@
         "shared_concept_tokens": 5
       },
       {
-        "slug": "the-people-ops-ai-domain-map",
-        "title": "The People Ops AI domain map",
+        "slug": "people-debt-and-genai",
+        "title": "People debt: what GenAI exposes, and what to do about it",
         "score": 7,
         "shared_keywords": [],
-        "shared_heading_tokens": 1,
-        "shared_concept_tokens": 5
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 1
       }
     ]
   },
@@ -529,11 +714,11 @@
       {
         "slug": "ai-enablement-operating-model",
         "title": "An AI enablement operating model for People leaders",
-        "score": 5,
+        "score": 7,
         "shared_keywords": [
           "ai enablement"
         ],
-        "shared_heading_tokens": 1,
+        "shared_heading_tokens": 2,
         "shared_concept_tokens": 0
       },
       {

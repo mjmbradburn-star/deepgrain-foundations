@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deepgrain: People Ops AI</title>
+    <link>https://deepgrain.ai/intelligence</link>
+    <atom:link href="https://deepgrain.ai/feed/people-ops.xml" rel="self" type="application/rss+xml" />
+    <description>Working notes on running People functions with AI.</description>
+    <language>en-GB</language>
+    <lastBuildDate>Mon, 04 May 2026 16:21:20 GMT</lastBuildDate>
+    <item>
+      <title>The People Ops diagnostic toolkit</title>
+      <link>https://deepgrain.ai/intelligence/people-ops-diagnostic-toolkit</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/people-ops-diagnostic-toolkit</guid>
+      <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
+      <description>Five working diagnostics for People leaders: the underperformance early warning, the People-as-a-product checklist, the 90-day roadmap, the workflow heatmap, and the AI-readiness read. Use them together, not in isolation.</description>
+    </item>
+    <item>
+      <title>People debt: what GenAI exposes, and what to do about it</title>
+      <link>https://deepgrain.ai/intelligence/people-debt-and-genai</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/people-debt-and-genai</guid>
+      <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
+      <description>GenAI does not create People debt. It exposes it. Inconsistent levelling, undocumented processes, decision rights nobody can name, all become legible the moment you try to automate around them. The audit, and the order to repay.</description>
+    </item>
+    <item>
+      <title>Designing values that stick</title>
+      <link>https://deepgrain.ai/intelligence/designing-values-that-stick</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/designing-values-that-stick</guid>
+      <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
+      <description>Most corporate values projects fail. They produce a poster, not a behaviour. The values that actually shape a company are short, specific, costly to live by, and wired into how decisions get made. Here is the design pattern.</description>
+    </item>
+    <item>
+      <title>Coaching and feedback systems that actually compound</title>
+      <link>https://deepgrain.ai/intelligence/coaching-and-feedback-systems</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/coaching-and-feedback-systems</guid>
+      <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
+      <description>Most performance systems run once a quarter and decay between cycles. The systems that compound are weekly, lightweight, evidence-led, and instrumented. Here is the operating shape that works, and where AI fits without flattening the craft.</description>
+    </item>
+    <item>
+      <title>AI roadmap case study: FinEdge's first 90 days</title>
+      <link>https://deepgrain.ai/intelligence/ai-roadmap-case-study-finedge</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/ai-roadmap-case-study-finedge</guid>
+      <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
+      <description>How a 280-person fintech People team went from scattered ChatGPT use to nine production workflows in 90 days. The exact sequence, the trade-offs, the metrics, and the two near-misses.</description>
+    </item>
+    <item>
+      <title>The HR Architect: a new role inside the People function</title>
+      <link>https://deepgrain.ai/intelligence/the-hr-architect-role</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/the-hr-architect-role</guid>
+      <pubDate>Sun, 03 May 2026 00:00:00 GMT</pubDate>
+      <description>Every white-collar job is a sequence of clicks. AI is starting at the click layer and moving up. The roles that survive are the ones that change shape: from operator to architect.</description>
+    </item>
+    <item>
+      <title>The automation audit playbook</title>
+      <link>https://deepgrain.ai/intelligence/automation-audit-playbook</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/automation-audit-playbook</guid>
+      <pubDate>Sat, 02 May 2026 00:00:00 GMT</pubDate>
+      <description>Most automation efforts fail because they start with &quot;what can I automate?&quot; The right question is &quot;what problems am I trying to solve?&quot; A problem-first audit, with the 6T framework and a prioritisation matrix.</description>
+    </item>
+    <item>
+      <title>An AI policy blueprint for People teams</title>
+      <link>https://deepgrain.ai/intelligence/ai-policy-blueprint-for-people-teams</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/ai-policy-blueprint-for-people-teams</guid>
+      <pubDate>Fri, 01 May 2026 00:00:00 GMT</pubDate>
+      <description>An AI policy that enables, not strangles. Foundational prep, governance, guardrails, and how to handle shadow AI without driving it deeper underground.</description>
+    </item>
+    <item>
+      <title>Production agents for People Ops</title>
+      <link>https://deepgrain.ai/intelligence/production-agents-for-people-ops</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/production-agents-for-people-ops</guid>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Most &quot;agents&quot; in People Ops are demos with ambition. The ones that survive contact with production share a pattern: data first, structured context, exception handling, observability, human escalation.</description>
+    </item>
+    <item>
+      <title>An AI enablement operating model for People leaders</title>
+      <link>https://deepgrain.ai/intelligence/ai-enablement-operating-model</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/ai-enablement-operating-model</guid>
+      <pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Champions are a distribution layer, not a strategy. The operating model that makes AI enablement compound has three connected layers: org-wide, team-wide, individual.</description>
+    </item>
+    <item>
+      <title>Choosing AI models for HR work</title>
+      <link>https://deepgrain.ai/intelligence/choosing-ai-models-for-hr-work</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/choosing-ai-models-for-hr-work</guid>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 GMT</pubDate>
+      <description>A practical guide to which AI model to reach for by HR task type. ChatGPT, Claude, Gemini, Perplexity, and the trade-offs that actually matter when the work is real.</description>
+    </item>
+    <item>
+      <title>Prompting patterns for People Ops</title>
+      <link>https://deepgrain.ai/intelligence/prompting-patterns-for-people-ops</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/prompting-patterns-for-people-ops</guid>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
+      <description>A working library of prompt patterns for People teams: the five building blocks, prompt chaining, critical-thinking prompts that stress-test your output, and the model-specific shifts you need for GPT-5 and Claude class models.</description>
+    </item>
+    <item>
+      <title>AI workspace setup for People teams (Claude, ChatGPT, Copilot)</title>
+      <link>https://deepgrain.ai/intelligence/setting-up-your-ai-workspace</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/setting-up-your-ai-workspace</guid>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 GMT</pubDate>
+      <description>How to set up an AI workspace for a People team: custom instructions, projects, and reference documents that turn AI from a search bar into a colleague. Works for Claude, ChatGPT, Copilot, and Gemini.</description>
+    </item>
+    <item>
+      <title>From prompts to systems</title>
+      <link>https://deepgrain.ai/intelligence/from-prompts-to-systems</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/from-prompts-to-systems</guid>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Most People teams are stuck between dabbling and tool-shopping. The third path is building. It has a grain, and it has a mechanic: workflows, automations, agents, in that order.</description>
+    </item>
+    <item>
+      <title>Designing the AI-native People team</title>
+      <link>https://deepgrain.ai/intelligence/designing-the-ai-native-people-team</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/designing-the-ai-native-people-team</guid>
+      <pubDate>Sat, 18 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it — different roles, different ratios, different leverage. Here is what an AI-native People team actually looks like.</description>
+    </item>
+    <item>
+      <title>AI governance for People teams</title>
+      <link>https://deepgrain.ai/intelligence/ai-governance-for-people-teams</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/ai-governance-for-people-teams</guid>
+      <pubDate>Sat, 18 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Governance is not the brake. It is the steering. The People teams that stay fast with AI are the ones that decided early what they would never let it decide.</description>
+    </item>
+    <item>
+      <title>The champion model</title>
+      <link>https://deepgrain.ai/intelligence/the-champion-model</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/the-champion-model</guid>
+      <pubDate>Fri, 17 Apr 2026 00:00:00 GMT</pubDate>
+      <description>You don't need engineers to build AI capability inside the People function. You need three or four champions, given air cover and time. Here is how the model actually works.</description>
+    </item>
+    <item>
+      <title>Leading the AI transformation in People</title>
+      <link>https://deepgrain.ai/intelligence/leading-the-ai-transformation</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/leading-the-ai-transformation</guid>
+      <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
+      <description>AI in People Ops fails as a change programme more often than as a technology problem. Here is the operating playbook for leading the transformation without losing the team.</description>
+    </item>
+    <item>
+      <title>Diagnosing AI readiness in People Ops</title>
+      <link>https://deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops</guid>
+      <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
+      <description>A two-axis maturity read plus a six-axis diagnostic for People functions. Use it before you build anything, so you build the right thing first.</description>
+    </item>
+    <item>
+      <title>A workflow assessment framework for People Ops</title>
+      <link>https://deepgrain.ai/intelligence/workflow-assessment-framework</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/workflow-assessment-framework</guid>
+      <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Most People teams pick AI workflows by instinct or by what is loudest. A simple scoring framework — value, frequency, fit, risk — turns a wishlist into a 90-day plan you can actually defend.</description>
+    </item>
+    <item>
+      <title>Automation patterns that pay off</title>
+      <link>https://deepgrain.ai/intelligence/automation-patterns-that-pay-off</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/automation-patterns-that-pay-off</guid>
+      <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Six concrete workflow patterns we keep seeing work inside People functions. Built with n8n, an LLM, and a champion. Live in weeks, not quarters.</description>
+    </item>
+    <item>
+      <title>The People Ops AI domain map</title>
+      <link>https://deepgrain.ai/intelligence/the-people-ops-ai-domain-map</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/the-people-ops-ai-domain-map</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
+      <description>A map of where AI fits across the People function — from sourcing to offboarding — so you can see the whole estate before you build any one piece of it.</description>
+    </item>
+    <item>
+      <title>Measuring AI value in People Ops</title>
+      <link>https://deepgrain.ai/intelligence/measuring-ai-value-in-people-ops</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/measuring-ai-value-in-people-ops</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
+      <description>If the CFO asks what your AI investment has returned, vague time-saving stories are not enough. Here is how to measure People Ops AI value properly — and tell the story to a board that knows the difference.</description>
+    </item>
+  </channel>
+</rss>

@@ -3,6 +3,7 @@ import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { MethodSubnav } from "./MethodSubnav";
 import { CookieBanner } from "@/components/compliance/CookieBanner";
+import { SiteEntityLd } from "@/components/seo/SiteEntityLd";
 import { cn } from "@/lib/utils";
 
 export const SiteShell = ({ children }: { children: React.ReactNode }) => {
@@ -12,6 +13,7 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="min-h-screen flex flex-col bg-linen">
+      <SiteEntityLd />
       <Navigation />
       <MethodSubnav />
       {/* When the sub-nav is mounted, push main down by its 40px height so
