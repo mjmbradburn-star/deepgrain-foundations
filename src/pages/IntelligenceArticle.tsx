@@ -17,6 +17,7 @@ import { AIOI_URL } from "@/lib/aioi";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { FAQ, buildFAQLd } from "@/components/sections/FAQ";
 import { BarkSection } from "@/components/ui/BarkSection";
+import { ClusterChips } from "@/components/intelligence/ClusterChips";
 
 const IntelligenceArticle = () => {
   const { slug = "" } = useParams();
