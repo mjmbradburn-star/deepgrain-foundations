@@ -1,0 +1,17 @@
+/* TEAM */
+Founder & Principal: Matthew Bradburn
+Site: https://deepgrain.ai
+Profile: https://deepgrain.ai/about
+LinkedIn: https://www.linkedin.com/in/matthewbradburn/
+Location: London, United Kingdom
+
+/* PRACTICE */
+Name: Deepgrain
+Method: Read · Craft · Scale
+Focus: Operating consultancy and AI operating systems for AI-native, defence,
+       financial-data, transit, and climate companies.
+Diagnostic: https://aioi.deepgrain.ai
+
+/* COLOPHON */
+Built with: React, Vite, TailwindCSS, Lovable Cloud
+Last updated: 2026-05-04

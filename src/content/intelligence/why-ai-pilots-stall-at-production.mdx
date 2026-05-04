@@ -2,15 +2,83 @@ export const frontmatter = {
   title: "Why AI pilots stall at production",
   slug: "why-ai-pilots-stall-at-production",
   category: "ai-operating-systems",
-  description: "The path from pilot to production is paved with the things nobody wanted to think about during the demo.",
-  keywords: ["AI pilots", "AI production", "AI deployment"],
+  description: "The path from pilot to production is paved with the things nobody wanted to think about during the demo. Here is the recurring pattern, and how to design pilots that actually cross it.",
+  keywords: ["AI pilots", "AI production", "AI deployment", "AI operating system", "AI infrastructure"],
   readTime: "8 min",
   publishedAt: "2026-03-02",
   author: "Matthew Bradburn",
 };
 
-A pilot proves a model can do a task. Production proves an organisation can absorb the consequences. Most can't, yet.
+export const faqs = [
+  {
+    question: "Why do most AI pilots fail to reach production?",
+    answer:
+      "Because a pilot proves a model can do a task and production proves an organisation can absorb the consequences. Most pilots stall on data pipelines that were manual, integrations that were hacks, governance that lived in a Slack thread, and the absence of an owner who maintains the workflow once it is live.",
+  },
+  {
+    question: "How do you design an AI pilot that actually ships?",
+    answer:
+      "Define the production version before the pilot starts. Pick a workflow with a real owner, a real data source, a real integration, and a real governance check. Run the pilot on Monday morning data, not curated demos. The pilot is the production system at lower volume, not a separate prototype.",
+  },
+  {
+    question: "What is the most common single reason pilots stall?",
+    answer:
+      "Lack of an owner for the workflow once it is live. The pilot has a project manager. Production needs an operating leader. If you cannot name the person who will own the workflow on the Monday after launch, the pilot will not become production.",
+  },
+];
 
-The missing layer is almost always the same: there is no [AI operating system](/intelligence/what-is-an-ai-operating-system) underneath the pilot. The data pipeline is manual. Governance is a Slack thread. Nobody owns maintenance. The pilot demos in October and is dead by January.
+A pilot proves a model can do a task. Production proves an organisation can absorb the consequences. Most can't, yet, and the gap between the two is where AI programmes go to die quietly.
 
-*This article is a placeholder scaffold. Full prose to follow.*
+We have seen the same pattern across enough engagements to write it down. The model is rarely the problem. The pilot was a clever solution to the wrong test.
+
+## The recurring pattern
+
+A vendor or internal team builds a pilot in October. It demos beautifully: the model handles the workflow, the slides land, the steering committee approves "moving to production." By January, the pilot is dead, paused, or "in the next phase." Nobody quite remembers when it happened.
+
+Trace it back and you find one or more of these:
+
+**1. The data pipeline was manual.** The pilot ran on a clean export prepared by a person on the team. Production needs the data to flow on its own, on a schedule, with permissions, with refresh, with someone owning when it breaks. The pilot didn't budget for the pipe.
+
+**2. The tool integration was a hack.** The pilot used a screenshot, a copy-paste, a personal API key, or a browser extension. Production needs a stable interface, an audit trail, and a permissions model that survives the person who built it leaving.
+
+**3. Governance was a Slack thread.** The pilot got informal sign-off from legal in a DM. Production needs DPA, audit, escalation paths, and a written policy. The pilot didn't include the GC and DPO on the cadence, and now they are reading about it for the first time at the production review.
+
+**4. Nobody owned maintenance.** The pilot had a project manager who was already on to the next thing. Production needs an operating leader who owns the workflow's drift, the agent's failures, the prompt updates, the policy changes. There is no such person, so the workflow degrades and gets quietly switched off.
+
+**5. The pilot tested the model, not the operating system.** The pilot answered "can the model do this?" The production question is "can our [AI operating system](/intelligence/what-is-an-ai-operating-system) absorb this?" Different question, different answer, almost always.
+
+The model was the easy part.
+
+## What pilots that ship look like
+
+The pilots that survive to production share a small set of design choices.
+
+- **They define the production version before the pilot starts.** The owner, the data source, the integration, the policy, the cadence are all named on day one. The pilot is the production version at lower volume, not a separate artefact.
+- **They run on Monday morning data, not curated demos.** Real volume, real noise, real edge cases. If the model cannot handle the actual inbox, no demo will save it later.
+- **They have an operating leader, not just a project manager.** The person who will own the workflow on the Monday after launch is the person running the pilot.
+- **They are short on purpose.** Weeks, not quarters. A short timebox forces real questions early.
+- **They end in a decision.** Ship, kill, or budget the infrastructure to scale. Pilots that end in "let's keep iterating" are pilots that never end.
+
+## The five questions to ask before approving a pilot
+
+Before you sign off on the next AI pilot, ask:
+
+1. Who owns this workflow on the Monday after launch?
+2. Where does the data come from, on what schedule, with whose permission?
+3. What tool calls does it make, and how are they logged and reversed?
+4. What is the written policy on what the agent must not decide?
+5. What forum reviews this workflow's drift, and how often?
+
+If any of those answers is "we'll figure it out later", the pilot has not been designed. It has been wished into existence.
+
+## Where pilots fit in the larger arc
+
+Pilots are useful. They tell you whether the model can do the task and whether your team will use the result. What they do not tell you, on their own, is whether the organisation can run the workflow.
+
+That is what the [AI operating system](/intelligence/what-is-an-ai-operating-system) is for. The pilot is a probe. The AI OS is what the probe lands in. If the substrate is not there, no pilot will reach production. If the substrate is there, pilots cross to production almost automatically.
+
+For the longer arc, see [from AI experiments to AI infrastructure](/intelligence/from-ai-experiments-to-ai-infrastructure). It covers when to make the switch and what to switch into.
+
+## A working summary
+
+> AI pilots stall because the pilot proves the model can do the task and production proves the organisation can absorb the consequences. The model is rarely the problem. The pipeline, the integration, the governance, the maintenance, and the operating ownership are. Pilots that ship are designed as the production version at lower volume, with a named owner, real data, and a decision at the end.
