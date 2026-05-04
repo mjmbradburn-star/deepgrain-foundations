@@ -16,6 +16,9 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Intelligence = lazy(() => import("./pages/Intelligence"));
 const IntelligenceArticle = lazy(() => import("./pages/IntelligenceArticle"));
 const IntelligenceCategory = lazy(() => import("./pages/IntelligenceCategory"));
+const IntelligenceGlossary = lazy(() => import("./pages/IntelligenceGlossary"));
+const IntelligenceAnswers = lazy(() => import("./pages/IntelligenceAnswers"));
+const IntelligenceCompare = lazy(() => import("./pages/IntelligenceCompare"));
 
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
