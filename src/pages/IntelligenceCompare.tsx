@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Link, useParams, Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { COMPARES } from "@/data/compares";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
@@ -14,8 +14,7 @@ const SITE = "https://deepgrain.ai";
  * a comparison table, a tight summary, an FAQ, and a "read deeper" rail
  * back into the article cluster. The point is to rank, not to lecture.
  */
-const IntelligenceCompare = () => {
-  const { slug = "" } = useParams();
+const IntelligenceCompare = ({ slug }: { slug: string }) => {
   const entry = COMPARES.find((c) => c.slug === slug);
   if (!entry) return <Navigate to="/intelligence" replace />;
 

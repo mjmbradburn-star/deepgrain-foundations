@@ -54,9 +54,9 @@ const App = () => (
               <Route path="/intelligence/category/:name" element={<IntelligenceCategory />} />
               <Route path="/intelligence/glossary" element={<IntelligenceGlossary />} />
               <Route path="/intelligence/answers" element={<IntelligenceAnswers />} />
-              <Route path="/intelligence/ai-operating-system-vs-operating-model" element={<IntelligenceCompare />} />
-              <Route path="/intelligence/ai-os-vs-ai-platform" element={<IntelligenceCompare />} />
-              <Route path="/intelligence/ai-os-vs-automation" element={<IntelligenceCompare />} />
+              <Route path="/intelligence/ai-operating-system-vs-operating-model" element={<IntelligenceCompare slug="ai-operating-system-vs-operating-model" />} />
+              <Route path="/intelligence/ai-os-vs-ai-platform" element={<IntelligenceCompare slug="ai-os-vs-ai-platform" />} />
+              <Route path="/intelligence/ai-os-vs-automation" element={<IntelligenceCompare slug="ai-os-vs-automation" />} />
               <Route path="/intelligence/:slug" element={<IntelligenceArticle />} />
               <Route path="/enablement" element={<Enablement />} />
               <Route path="/unsubscribe" element={<Unsubscribe />} />
