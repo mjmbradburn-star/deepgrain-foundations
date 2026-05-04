@@ -64,6 +64,14 @@ const IntelligenceCategory = () => {
           </div>
         </div>
       </section>
+
+      {/* SEO-ready related modules driven by primaryCluster + clusters */}
+      <RelatedClusterArticles
+        sourceArticles={items}
+        excludeSlugs={items.map((a) => a.frontmatter.slug)}
+        variant="cream"
+        heading={`More ways into ${cat.name.toLowerCase()}`}
+      />
     </>
   );
 };
