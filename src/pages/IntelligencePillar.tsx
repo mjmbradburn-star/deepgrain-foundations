@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { getPillar, PILLARS } from "@/data/pillars";
 import { getArticleBySlug } from "@/lib/intelligence";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
+import { RelatedClusterArticles } from "@/components/intelligence/RelatedClusterArticles";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
