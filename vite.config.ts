@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [
-    { enforce: "pre" as const, ...mdx({ remarkPlugins: [remarkGfm], providerImportSource: "@mdx-js/react" }) },
+    { enforce: "pre" as const, ...mdx({ remarkPlugins: [remarkGfm], providerImportSource: "@mdx-js/react", development: mode === "development" }) },
     react(),
     deepgrainSeoPlugin(),
     intelligenceManifestPlugin(),
