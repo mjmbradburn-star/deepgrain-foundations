@@ -243,7 +243,7 @@ const IntelligenceArticle = () => {
           <p className="text-cream/75 max-w-xl mx-auto mb-10 leading-relaxed">
             Take the AI Operating Index — a free 8-pillar diagnostic.
           </p>
-          <PillButton href={AIOI_URL} variant="filled" external>
+          <PillButton href={AIOI_URL} variant="filled" external cta="aioi" ctaLocation="article_footer">
             Begin the index →
           </PillButton>
         </div>

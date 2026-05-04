@@ -49,10 +49,10 @@ export const Hero = () => (
           We read yours, then build the strategy, the AI systems, and the people who can keep evolving them.
         </p>
         <div className="fade-in-up fade-in-up-3 mt-10 flex flex-wrap items-center gap-3 md:gap-4">
-          <PillButton href="/method" variant="filled">
+          <PillButton href="/method" variant="filled" cta="how_we_work" ctaLocation="hero">
             How we work →
           </PillButton>
-          <PillButton href={AIOI_URL} variant="outline" external>
+          <PillButton href={AIOI_URL} variant="outline" external cta="aioi" ctaLocation="hero">
             Review our AI Operating Index →
           </PillButton>
         </div>
