@@ -20,6 +20,11 @@ Articles within each category below are listed in foundational reading order (ol
 - [About](https://deepgrain.ai/about): Matthew Bradburn's background, philosophy, and references.
 - [Contact](https://deepgrain.ai/contact): How to start a conversation.
 - [Intelligence](https://deepgrain.ai/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
+- [Glossary](https://deepgrain.ai/intelligence/glossary): Working definitions of every term used across Deepgrain Intelligence (AI operating system, operating intervention, the grain, Read · Craft · Scale, and more).
+- [Answers](https://deepgrain.ai/intelligence/answers): Direct, paragraph-length answers to the most-searched questions about AI operating systems and AI readiness.
+- [AI OS vs Operating Model](https://deepgrain.ai/intelligence/ai-operating-system-vs-operating-model): Side-by-side comparison.
+- [AI OS vs AI Platform](https://deepgrain.ai/intelligence/ai-os-vs-ai-platform): Side-by-side comparison.
+- [AI OS vs Automation](https://deepgrain.ai/intelligence/ai-os-vs-automation): Side-by-side comparison.
 - [Brain](https://deepgrain.ai/brain): The People Ops AI Brain — nine working notes on running People functions with AI. Free with email.
 
 ## Intelligence — Deepgrain Foundations
