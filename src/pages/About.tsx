@@ -30,11 +30,29 @@ const About = () => (
         {
           "@context": "https://schema.org",
           "@type": "Person",
+          "@id": "https://deepgrain.ai/about#matthew-bradburn",
           name: "Matthew Bradburn",
-          jobTitle: "Founder",
-          worksFor: { "@type": "Organization", name: "Deepgrain" },
+          givenName: "Matthew",
+          familyName: "Bradburn",
+          jobTitle: "Founder & Principal",
+          worksFor: {
+            "@type": "Organization",
+            name: "Deepgrain",
+            url: "https://deepgrain.ai",
+          },
           url: "https://deepgrain.ai/about",
           email: "matt@deepgrain.ai",
+          image: "https://deepgrain.ai/og-image.png",
+          knowsAbout: [
+            "Organisational consultancy",
+            "AI operating systems",
+            "AI readiness",
+            "Operating leadership",
+            "People operations",
+          ],
+          sameAs: [
+            "https://www.linkedin.com/in/matthewbradburn/",
+          ],
         },
         buildBreadcrumbLd([
           { name: "Home", url: "https://deepgrain.ai/" },
