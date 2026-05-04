@@ -219,3 +219,31 @@ export const getRelatedArticles = (slug: string, limit = 3) => {
 
   return [...ranked.map((s) => s.article), ...fillers].slice(0, limit);
 };
+
+/**
+ * Articles that belong to a topic cluster (primary or secondary), most
+ * recent first. Pillar/topic pages use this to render SEO-ready
+ * "related articles" modules ranked by topical fit, not just date.
+ */
+export const getArticlesByCluster = (cluster: string) =>
+  ARTICLES.filter((a) => {
+    const f = a.frontmatter;
+    return f.primaryCluster === cluster || (f.clusters ?? []).includes(cluster as never);
+  }).sort(
+    (a, b) =>
+      // Primary-cluster articles first, then by recency.
+      (b.frontmatter.primaryCluster === cluster ? 1 : 0) -
+        (a.frontmatter.primaryCluster === cluster ? 1 : 0) ||
+      new Date(b.frontmatter.publishedAt).getTime() -
+        new Date(a.frontmatter.publishedAt).getTime()
+  );
+
+/** All clusters an article participates in, primary first, deduped. */
+export const getArticleClusters = (slug: string): string[] => {
+  const a = getArticleBySlug(slug);
+  if (!a) return [];
+  const out = new Set<string>();
+  if (a.frontmatter.primaryCluster) out.add(a.frontmatter.primaryCluster);
+  for (const c of a.frontmatter.clusters ?? []) out.add(c);
+  return Array.from(out);
+};
