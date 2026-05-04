@@ -140,6 +140,14 @@ const IntelligencePillar = () => {
         </div>
       </section>
 
+      {/* SEO-ready related modules driven by primaryCluster + clusters */}
+      <RelatedClusterArticles
+        sourceArticles={sections.flatMap((s) => s.items)}
+        excludeSlugs={sections.flatMap((s) => s.items.map((a) => a.frontmatter.slug))}
+        heading="Related across the library"
+        kicker="Related articles"
+      />
+
       {/* Related pillars */}
       {pillar.related && pillar.related.length > 0 && (
         <section className="bg-green text-cream py-20 md:py-24">
