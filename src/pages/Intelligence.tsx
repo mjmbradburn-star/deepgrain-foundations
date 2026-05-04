@@ -75,6 +75,8 @@ const Intelligence = () => {
             building things that compound.
           </p>
           <div className="mt-10 flex flex-wrap gap-3 text-[12px] uppercase" style={{ letterSpacing: "0.14em" }}>
+            <Link to="/intelligence/pillars" className="text-brass hover:text-cream transition-colors">Pillar deep-dives →</Link>
+            <span className="text-cream/30">·</span>
             <Link to="/intelligence/glossary" className="text-brass hover:text-cream transition-colors">Glossary →</Link>
             <span className="text-cream/30">·</span>
             <Link to="/intelligence/answers" className="text-brass hover:text-cream transition-colors">Answers →</Link>
