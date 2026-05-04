@@ -46,6 +46,10 @@ export interface ArticleFrontmatter {
   keywords: string[];
   readTime: string;
   publishedAt: string;
+  /** ISO date when article body was last meaningfully updated. Optional;
+   *  falls back to publishedAt when absent. Drives `dateModified` JSON-LD,
+   *  visible "Updated" timestamps, and sitemap `lastmod`. */
+  updatedAt?: string;
   author: string;
   featured?: boolean;
   track?: Track;

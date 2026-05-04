@@ -15,6 +15,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { EmailCapture } from "@/components/forms/EmailCapture";
 import { AIOI_URL } from "@/lib/aioi";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { FAQ, buildFAQLd } from "@/components/sections/FAQ";
 import { BarkSection } from "@/components/ui/BarkSection";
 import { ClusterChips } from "@/components/intelligence/ClusterChips";
@@ -30,10 +31,8 @@ const IntelligenceArticle = () => {
   const related = getRelatedArticles(slug, 3);
   const url = `https://deepgrain.ai/intelligence/${f.slug}`;
   const heroImage = getHeroImage(f.slug);
-  // Bespoke 1200x630 OG card per article (hero art + title overlay) lives in
-  // /public/og/intelligence/. Falls back to the hero JPEG only if the OG file
-  // isn't generated yet for some reason.
   const ogImage = `https://deepgrain.ai/og/intelligence/${f.slug}.jpg`;
+  const dateModified = f.updatedAt || f.publishedAt;
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -48,6 +47,7 @@ const IntelligenceArticle = () => {
       url: "https://deepgrain.ai/about",
     },
     datePublished: f.publishedAt,
+    dateModified,
     publisher: {
       "@type": "Organization",
       name: "Deepgrain",
@@ -87,6 +87,7 @@ const IntelligenceArticle = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImage} />
         <meta property="article:published_time" content={f.publishedAt} />
+        <meta property="article:modified_time" content={dateModified} />
         <meta property="article:author" content={f.author} />
         <meta property="article:section" content={cat?.name} />
         <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
@@ -125,6 +126,18 @@ const IntelligenceArticle = () => {
         }`}
       >
         <div className="container-grain max-w-3xl">
+          <Breadcrumbs
+            variant="dark"
+            className="mb-6"
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Intelligence", href: "/intelligence" },
+              ...(cat
+                ? [{ name: cat.name, href: `/intelligence/category/${cat.slug}` }]
+                : []),
+              { name: f.title },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-8">
             <Link
               to={`/intelligence/category/${f.category}`}
@@ -154,16 +167,33 @@ const IntelligenceArticle = () => {
               />
             </div>
           )}
-          <div className="mt-10 pt-6 border-t border-cream/15 flex items-center gap-4 text-sm text-cream/60">
-            <span>{f.author}</span>
+          <div className="mt-10 pt-6 border-t border-cream/15 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-cream/60">
+            <Link
+              to="/about"
+              className="hover:text-cream transition-colors"
+            >
+              {f.author}
+            </Link>
             <span className="text-cream/30">·</span>
             <time dateTime={f.publishedAt}>
-              {new Date(f.publishedAt).toLocaleDateString("en-GB", {
+              Published {new Date(f.publishedAt).toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "long",
                 year: "numeric",
               })}
             </time>
+            {f.updatedAt && f.updatedAt !== f.publishedAt && (
+              <>
+                <span className="text-cream/30">·</span>
+                <time dateTime={f.updatedAt}>
+                  Updated {new Date(f.updatedAt).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </time>
+              </>
+            )}
           </div>
         </div>
       </header>

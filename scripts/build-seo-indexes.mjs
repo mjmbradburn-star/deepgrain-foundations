@@ -68,6 +68,7 @@ async function loadArticles() {
       clusters: arrField(block, "clusters"),
       keywords: arrField(block, "keywords"),
       publishedAt: strField(block, "publishedAt") || TODAY,
+      updatedAt: strField(block, "updatedAt") || strField(block, "publishedAt") || TODAY,
       readTime: strField(block, "readTime"),
       track: strField(block, "track") || (isPeopleOps ? "people-ops" : "deepgrain"),
       // Body: everything after the closing `];` of faqs (if present), else after frontmatter.
@@ -170,7 +171,7 @@ async function buildSitemap(articles) {
   for (const p of PILLARS) push(`${ORIGIN}/intelligence/pillar/${p}`, TODAY, 0.8);
   for (const c of COMPARES) push(`${ORIGIN}/intelligence/${c}`, TODAY, 0.7);
   for (const a of articles) {
-    push(`${ORIGIN}/intelligence/${a.slug}`, a.publishedAt, 0.7, "monthly");
+    push(`${ORIGIN}/intelligence/${a.slug}`, a.updatedAt || a.publishedAt, 0.7, "monthly");
   }
   // /answers/:slug per question (parsed from src/data/answers.ts).
   const answersSrc = await fs.readFile(join(ROOT, "src/data/answers.ts"), "utf8");

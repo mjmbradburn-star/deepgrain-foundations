@@ -2,6 +2,8 @@ import type { MDXComponents } from "mdx/types";
 import { Link } from "react-router-dom";
 import { slugifyHeading } from "@/lib/slugifyHeading";
 import { Takeaway } from "@/components/intelligence/Takeaway";
+import { TLDR } from "@/components/intelligence/TLDR";
+import { KeyTakeaways } from "@/components/intelligence/KeyTakeaways";
 
 /**
  * Shared article typography tokens.
@@ -105,4 +107,6 @@ export const mdxComponents: MDXComponents = {
   // can drop <Takeaway>...</Takeaway> at the end of any major section to
   // reinforce the point for scanners and LLMs.
   Takeaway,
+  TLDR,
+  KeyTakeaways,
 };
