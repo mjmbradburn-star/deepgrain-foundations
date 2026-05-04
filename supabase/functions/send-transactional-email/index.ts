@@ -30,24 +30,21 @@ function generateToken(): string {
     .join("");
 }
 
-// Auth: this function only accepts service_role callers. The Supabase gateway
-// validates the JWT (verify_jwt = true), but anon JWTs would otherwise be
-// accepted — so we additionally check the role claim here. All legitimate
-// transactional sends are dispatched server-side (DB triggers, edge functions,
-// or other server contexts), never directly from the browser.
+// Auth: this function only accepts callers presenting the project's
+// service_role key as a bearer token. We compare in constant time against
+// SUPABASE_SERVICE_ROLE_KEY rather than parsing the JWT payload, because
+// `verify_jwt = false` means the gateway does NOT verify the signature —
+// a payload-only check could be bypassed with a forged unsigned JWT.
+// All legitimate callers (DB triggers via Vault, server-side Edge Functions)
+// already send the real service_role key in the Authorization header.
 
-function parseJwtClaims(token: string): Record<string, unknown> | null {
-  const parts = token.split(".");
-  if (parts.length < 2) return null;
-  try {
-    const payload = parts[1]
-      .replaceAll("-", "+")
-      .replaceAll("_", "/")
-      .padEnd(Math.ceil(parts[1].length / 4) * 4, "=");
-    return JSON.parse(atob(payload)) as Record<string, unknown>;
-  } catch {
-    return null;
-  }
+function timingSafeEqual(a: string, b: string): boolean {
+  const ae = new TextEncoder().encode(a);
+  const be = new TextEncoder().encode(b);
+  if (ae.length !== be.length) return false;
+  let diff = 0;
+  for (let i = 0; i < ae.length; i++) diff |= ae[i] ^ be[i];
+  return diff === 0;
 }
 
 Deno.serve(async (req) => {
@@ -59,10 +56,21 @@ Deno.serve(async (req) => {
   const supabaseUrl = Deno.env.get("SUPABASE_URL");
   const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
-  // verify_jwt is disabled at the gateway (legacy HS256 service-role keys
-  // are rejected by the asymmetric-keys gateway). We enforce auth in-code:
-  // only callers presenting a service_role JWT may enqueue transactional
-  // emails. All legitimate triggers (DB triggers via vault, edge functions)
+  if (!supabaseUrl || !supabaseServiceKey) {
+    console.error("Missing required environment variables");
+    return new Response(
+      JSON.stringify({ error: "Server configuration error" }),
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
+    );
+  }
+
+  // verify_jwt is disabled at the gateway, so the signature is NOT verified
+  // before the function runs. Enforce auth in-code by requiring the caller
+  // to present the project's actual service_role key (compared in constant
+  // time). All legitimate triggers (DB triggers via Vault, edge functions)
   // sign requests with SUPABASE_SERVICE_ROLE_KEY.
   const authHeader = req.headers.get("Authorization");
   if (!authHeader?.startsWith("Bearer ")) {
@@ -75,8 +83,7 @@ Deno.serve(async (req) => {
     );
   }
   const token = authHeader.slice("Bearer ".length).trim();
-  const claims = parseJwtClaims(token);
-  if (claims?.role !== "service_role") {
+  if (!timingSafeEqual(token, supabaseServiceKey)) {
     return new Response(
       JSON.stringify({ error: "Forbidden" }),
       {
@@ -86,16 +93,6 @@ Deno.serve(async (req) => {
     );
   }
 
-  if (!supabaseUrl || !supabaseServiceKey) {
-    console.error("Missing required environment variables");
-    return new Response(
-      JSON.stringify({ error: "Server configuration error" }),
-      {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      },
-    );
-  }
 
   // Parse request body
   let templateName: string;
