@@ -12,7 +12,17 @@ import { join } from "node:path";
  */
 const DIR = join(process.cwd(), "src", "content", "intelligence");
 
-const files = readdirSync(DIR).filter((f) => f.endsWith(".mdx"));
+// Recurse so People Ops articles in subdirectories are validated too.
+function listMdx(dir: string): string[] {
+  const out: string[] = [];
+  for (const ent of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, ent.name);
+    if (ent.isDirectory()) out.push(...listMdx(full));
+    else if (ent.isFile() && ent.name.endsWith(".mdx")) out.push(full);
+  }
+  return out;
+}
+const files = listMdx(DIR).map((f) => f.slice(DIR.length + 1));
 
 describe("intelligence article structure", () => {
   it("has at least one article", () => {
