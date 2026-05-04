@@ -299,6 +299,42 @@ ${toPlain(a.body)}`;
   return head + blocks.join("\n") + "\n";
 }
 
+// ---------- RSS + per-track Atom feeds ---------------------------------
+
+const xmlEscape = (s) =>
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+function buildRss(articles, { title, description, path, filterTrack }) {
+  const items = articles
+    .filter((a) => !filterTrack || a.track === filterTrack)
+    .slice(0, 50)
+    .map((a) => {
+      const url = `${ORIGIN}/intelligence/${a.slug}`;
+      const pub = new Date(a.publishedAt).toUTCString();
+      return `    <item>
+      <title>${xmlEscape(a.title)}</title>
+      <link>${url}</link>
+      <guid isPermaLink="true">${url}</guid>
+      <pubDate>${pub}</pubDate>
+      <description>${xmlEscape(a.description)}</description>
+    </item>`;
+    })
+    .join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${xmlEscape(title)}</title>
+    <link>${ORIGIN}${path === "/feed.xml" ? "" : "/intelligence"}</link>
+    <atom:link href="${ORIGIN}${path}" rel="self" type="application/rss+xml" />
+    <description>${xmlEscape(description)}</description>
+    <language>en-GB</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+${items}
+  </channel>
+</rss>
+`;
+}
+
 // ---------- main --------------------------------------------------------
 
 const articles = await loadArticles();
@@ -306,13 +342,30 @@ const sitemap = buildSitemap(articles);
 const llms = buildLlmsTxt(articles);
 const llmsFull = buildLlmsFullTxt(articles);
 
+const feedAll = buildRss(articles, {
+  title: "Deepgrain Intelligence",
+  description: "Long-form essays on operating systems, AI readiness, and the craft of operating leadership.",
+  path: "/feed.xml",
+});
+const feedPeopleOps = buildRss(articles, {
+  title: "Deepgrain: People Ops AI",
+  description: "Working notes on running People functions with AI.",
+  path: "/feed/people-ops.xml",
+  filterTrack: "people-ops",
+});
+
+await fs.mkdir(join(PUBLIC_DIR, "feed"), { recursive: true });
 await fs.writeFile(join(PUBLIC_DIR, "sitemap.xml"), sitemap);
 await fs.writeFile(join(PUBLIC_DIR, "llms.txt"), llms);
 await fs.writeFile(join(PUBLIC_DIR, "llms-full.txt"), llmsFull);
+await fs.writeFile(join(PUBLIC_DIR, "feed.xml"), feedAll);
+await fs.writeFile(join(PUBLIC_DIR, "feed", "people-ops.xml"), feedPeopleOps);
 
 console.log(
   `Wrote sitemap.xml (${sitemap.split("\n").length} lines), ` +
   `llms.txt (${llms.length} chars), ` +
-  `llms-full.txt (${llmsFull.length} chars) ` +
+  `llms-full.txt (${llmsFull.length} chars), ` +
+  `feed.xml + feed/people-ops.xml ` +
   `from ${articles.length} articles.`
 );
+
