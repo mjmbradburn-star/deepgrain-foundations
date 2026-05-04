@@ -8,7 +8,7 @@ import { deepgrainSeoPlugin } from "./vite-plugins/deepgrain-seo";
 import { intelligenceManifestPlugin } from "./vite-plugins/intelligence-manifest";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ command, mode }) => ({
   server: {
     host: "::",
     port: 8080,
@@ -17,7 +17,14 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [
-    { enforce: "pre" as const, ...mdx({ remarkPlugins: [remarkGfm], providerImportSource: "@mdx-js/react", development: mode === "development" }) },
+    {
+      enforce: "pre" as const,
+      ...mdx({
+        remarkPlugins: [remarkGfm],
+        providerImportSource: "@mdx-js/react",
+        development: command === "serve",
+      }),
+    },
     react(),
     deepgrainSeoPlugin(),
     intelligenceManifestPlugin(),
