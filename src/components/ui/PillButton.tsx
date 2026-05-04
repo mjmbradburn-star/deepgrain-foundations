@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics";
 
 interface PillButtonProps {
   children: React.ReactNode;
@@ -10,6 +11,14 @@ interface PillButtonProps {
   disabled?: boolean;
   className?: string;
   external?: boolean;
+  /**
+   * Stable identifier for analytics, e.g. "aioi_hero", "contact_invitation".
+   * When set, fires a GA4 `cta_click` event with `cta_id`, `cta_location`,
+   * `cta_label`, and `link_url`. Use snake_case ids so reports group cleanly.
+   */
+  cta?: string;
+  /** Optional surface name for the event, e.g. "hero", "article_footer". */
+  ctaLocation?: string;
 }
 
 export const PillButton = ({
@@ -21,6 +30,8 @@ export const PillButton = ({
   disabled,
   className,
   external,
+  cta,
+  ctaLocation,
 }: PillButtonProps) => {
   const base =
     "inline-flex items-center justify-center rounded-full font-sans font-medium tracking-wider text-sm transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] disabled:opacity-50 disabled:cursor-not-allowed";
@@ -32,22 +43,47 @@ export const PillButton = ({
   };
   const classes = cn(base, variants[variant], className);
 
+  /** Fire the cta_click event. Label is derived from children when string-ish. */
+  const fireCta = () => {
+    if (!cta) return;
+    const label =
+      typeof children === "string"
+        ? children
+        : Array.isArray(children)
+          ? children.filter((c) => typeof c === "string").join(" ").trim()
+          : undefined;
+    track("cta_click", {
+      cta_id: cta,
+      cta_location: ctaLocation,
+      cta_label: label?.slice(0, 100),
+      link_url: href,
+    });
+  };
+
   if (href) {
     if (external || href.startsWith("mailto:") || href.startsWith("http")) {
       return (
-        <a href={href} className={classes}>
+        <a href={href} className={classes} onClick={fireCta}>
           {children}
         </a>
       );
     }
     return (
-      <Link to={href} className={classes}>
+      <Link to={href} className={classes} onClick={fireCta}>
         {children}
       </Link>
     );
   }
   return (
-    <button type={type} onClick={onClick} disabled={disabled} className={classes}>
+    <button
+      type={type}
+      onClick={() => {
+        fireCta();
+        onClick?.();
+      }}
+      disabled={disabled}
+      className={classes}
+    >
       {children}
     </button>
   );
