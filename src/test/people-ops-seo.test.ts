@@ -68,6 +68,27 @@ describe("People Ops SEO checklist", () => {
     }
   });
 
+  it("declares a valid primaryCluster + clusters taxonomy", async () => {
+    const { CLUSTERS_BY_SLUG } = await import("@/lib/clusters");
+    for (const a of peopleOps) {
+      const f = a.frontmatter;
+      expect(f.primaryCluster, `${f.slug} missing primaryCluster`).toBeTruthy();
+      expect(
+        CLUSTERS_BY_SLUG[f.primaryCluster!],
+        `${f.slug} primaryCluster "${f.primaryCluster}" not in CLUSTERS registry`
+      ).toBeDefined();
+      for (const c of f.clusters ?? []) {
+        expect(
+          CLUSTERS_BY_SLUG[c],
+          `${f.slug} cluster "${c}" not in CLUSTERS registry`
+        ).toBeDefined();
+        expect(c, `${f.slug} clusters[] should not repeat primaryCluster`).not.toBe(
+          f.primaryCluster
+        );
+      }
+    }
+  });
+
   describe.each(peopleOps.map((a) => [a.frontmatter.slug, a] as const))(
     "%s",
     (slug, article) => {

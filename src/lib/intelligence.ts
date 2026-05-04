@@ -36,6 +36,8 @@ export const CATEGORIES: Category[] = [
   { slug: "people-ops-governance", name: "Governance & Trust", description: "Working with AI without trading away judgment.", track: "people-ops" },
 ];
 
+import type { ClusterSlug } from "@/lib/clusters";
+
 export interface ArticleFrontmatter {
   title: string;
   slug: string;
@@ -48,6 +50,10 @@ export interface ArticleFrontmatter {
   featured?: boolean;
   track?: Track;
   heroImage?: string;
+  /** Single best topic-cluster home for this article. */
+  primaryCluster?: ClusterSlug;
+  /** Additional clusters this article strongly contributes to. */
+  clusters?: ClusterSlug[];
 }
 
 export interface Article {
@@ -155,16 +161,36 @@ export const getRelatedArticles = (slug: string, limit = 3) => {
   const cf = current.frontmatter;
   const currentKeywords = new Set((cf.keywords ?? []).map((k) => k.toLowerCase()));
 
+  const currentClusters = new Set<string>([
+    ...(cf.primaryCluster ? [cf.primaryCluster] : []),
+    ...(cf.clusters ?? []),
+  ]);
+
   const scored = ARTICLES.filter((a) => a.frontmatter.slug !== slug).map((a) => {
     const f = a.frontmatter;
     const sharedKeywords = (f.keywords ?? []).reduce(
       (n, k) => (currentKeywords.has(k.toLowerCase()) ? n + 1 : n),
       0
     );
+    const otherClusters = new Set<string>([
+      ...(f.primaryCluster ? [f.primaryCluster] : []),
+      ...(f.clusters ?? []),
+    ]);
+    let sharedClusters = 0;
+    for (const c of otherClusters) if (currentClusters.has(c)) sharedClusters++;
+    const samePrimaryCluster =
+      cf.primaryCluster && f.primaryCluster === cf.primaryCluster ? 1 : 0;
     const sameCategory = f.category === cf.category ? 1 : 0;
     const sameTrack = f.track === cf.track ? 1 : 0;
-    const score = sharedKeywords * 3 + sameCategory * 2 + sameTrack;
-    return { article: a, score, sharedKeywords };
+    // Cluster overlap is a stronger signal than free-form keywords because
+    // clusters are curated. Primary-cluster match is the strongest signal.
+    const score =
+      samePrimaryCluster * 5 +
+      sharedClusters * 3 +
+      sharedKeywords * 3 +
+      sameCategory * 2 +
+      sameTrack;
+    return { article: a, score, sharedKeywords, sharedClusters };
   });
 
   const byRecency = (a: { article: Article }, b: { article: Article }) =>
@@ -192,4 +218,32 @@ export const getRelatedArticles = (slug: string, limit = 3) => {
     );
 
   return [...ranked.map((s) => s.article), ...fillers].slice(0, limit);
+};
+
+/**
+ * Articles that belong to a topic cluster (primary or secondary), most
+ * recent first. Pillar/topic pages use this to render SEO-ready
+ * "related articles" modules ranked by topical fit, not just date.
+ */
+export const getArticlesByCluster = (cluster: string) =>
+  ARTICLES.filter((a) => {
+    const f = a.frontmatter;
+    return f.primaryCluster === cluster || (f.clusters ?? []).includes(cluster as never);
+  }).sort(
+    (a, b) =>
+      // Primary-cluster articles first, then by recency.
+      (b.frontmatter.primaryCluster === cluster ? 1 : 0) -
+        (a.frontmatter.primaryCluster === cluster ? 1 : 0) ||
+      new Date(b.frontmatter.publishedAt).getTime() -
+        new Date(a.frontmatter.publishedAt).getTime()
+  );
+
+/** All clusters an article participates in, primary first, deduped. */
+export const getArticleClusters = (slug: string): string[] => {
+  const a = getArticleBySlug(slug);
+  if (!a) return [];
+  const out = new Set<string>();
+  if (a.frontmatter.primaryCluster) out.add(a.frontmatter.primaryCluster);
+  for (const c of a.frontmatter.clusters ?? []) out.add(c);
+  return Array.from(out);
 };
