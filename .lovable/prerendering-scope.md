@@ -68,3 +68,13 @@ Sit a service in front that renders on demand and caches by URL.
 5. Ship a hosting redirect rule so the prerendered file is preferred.
 
 Estimated effort: half a day, plus hosting verification with the user.
+
+---
+
+## Decisions (2026-05-04)
+
+- **Hosting**: Lovable hosting. SPA fallback only triggers when no real file matches the path, so writing `dist/intelligence/<slug>/index.html` is enough. No redirect rules required.
+- **Trigger**: Opt-in via `npm run build:static` (or `npm run prerender` after a `vite build`). NOT wired to `postbuild`, because Puppeteer needs Chromium which is not guaranteed in every Lovable build environment, and the standard SPA build still works fine for crawlers that execute JS.
+- **Scope**: `/intelligence/*` only (the LLM-discovery surface). Other routes already index acceptably.
+- **Skip switch**: `DEEPGRAIN_SKIP_PRERENDER=1` short-circuits the script.
+- **Failure mode**: per-route failures are logged but do not fail the build; the SPA shell remains as fallback.
