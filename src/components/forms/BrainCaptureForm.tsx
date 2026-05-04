@@ -4,6 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 import { AIOI_URL } from "@/lib/aioi";
+import { trackFormSubmit } from "@/lib/analytics";
 
 /**
  * BrainCaptureForm — lead-capture form rendered in two places on /brain
@@ -77,6 +78,9 @@ export const BrainCaptureForm = ({
         return;
       }
 
+      trackFormSubmit("brain_capture", {
+        has_first_name: Boolean(firstName.trim()),
+      });
       setDone(true);
       setSubmitting(false);
     } catch (err) {

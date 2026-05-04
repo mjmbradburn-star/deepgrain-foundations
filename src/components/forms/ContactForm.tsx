@@ -4,6 +4,7 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { PillButton } from "@/components/ui/PillButton";
 import { useToast } from "@/hooks/use-toast";
+import { trackFormSubmit } from "@/lib/analytics";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Please add your name").max(200),
@@ -86,6 +87,10 @@ export const ContactForm = () => {
       });
       return;
     }
+    trackFormSubmit("contact", {
+      has_organisation: Boolean(parsed.data.organisation),
+      has_size: Boolean(parsed.data.size),
+    });
     setDone(true);
   };
 
