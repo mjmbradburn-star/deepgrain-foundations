@@ -15,6 +15,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { EmailCapture } from "@/components/forms/EmailCapture";
 import { AIOI_URL } from "@/lib/aioi";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { FAQ, buildFAQLd } from "@/components/sections/FAQ";
 import { BarkSection } from "@/components/ui/BarkSection";
 import { ClusterChips } from "@/components/intelligence/ClusterChips";
@@ -30,10 +31,8 @@ const IntelligenceArticle = () => {
   const related = getRelatedArticles(slug, 3);
   const url = `https://deepgrain.ai/intelligence/${f.slug}`;
   const heroImage = getHeroImage(f.slug);
-  // Bespoke 1200x630 OG card per article (hero art + title overlay) lives in
-  // /public/og/intelligence/. Falls back to the hero JPEG only if the OG file
-  // isn't generated yet for some reason.
   const ogImage = `https://deepgrain.ai/og/intelligence/${f.slug}.jpg`;
+  const dateModified = f.updatedAt || f.publishedAt;
 
   const articleLd = {
     "@context": "https://schema.org",
