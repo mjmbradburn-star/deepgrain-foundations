@@ -10,6 +10,8 @@
     "test:seo": "vitest run src/test/people-ops-seo.test.ts",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "prerender": "node scripts/prerender-intelligence.mjs",
+    "build:static": "vite build && node scripts/prerender-intelligence.mjs",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
     "preview": "vite preview",
