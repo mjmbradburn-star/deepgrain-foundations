@@ -144,6 +144,15 @@ const IntelligenceArticle = () => {
           <p className="text-lg md:text-xl text-cream/75 leading-relaxed">
             {f.description}
           </p>
+          {(f.primaryCluster || (f.clusters && f.clusters.length > 0)) && (
+            <div className="mt-8">
+              <ClusterChips
+                primary={f.primaryCluster}
+                secondary={f.clusters}
+                className="opacity-95"
+              />
+            </div>
+          )}
           <div className="mt-10 pt-6 border-t border-cream/15 flex items-center gap-4 text-sm text-cream/60">
             <span>{f.author}</span>
             <span className="text-cream/30">·</span>
