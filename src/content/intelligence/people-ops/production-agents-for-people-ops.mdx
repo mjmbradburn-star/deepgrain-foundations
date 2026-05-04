@@ -9,6 +9,7 @@ export const frontmatter = {
   keywords: ["AI agents HR", "production AI agents", "n8n HR automation", "AI agent People Ops"],
   readTime: "12 min",
   publishedAt: "2026-04-30",
+  updatedAt: "2026-05-04",
   author: "Matthew Bradburn",
 };
 
@@ -30,6 +31,13 @@ export const faqs = [
     answer: "Not with agents. Start with workflows you can document, automations you can stabilise, and clean data the agent can rely on. Then pick one well-bounded use case, an FAQ agent on policy, an onboarding orchestrator, a comp benchmarking research agent, with explicit guardrails and a clear escalation path. Build small, audit hard, expand only when the small thing has earned trust.",
   },
 ];
+
+<TLDR>
+- A production agent is not a prompt with ambition. It is a workflow with state, evals, and an owner.
+- Most agents in People Ops are stuck in demo loops because nobody owns the production version.
+- Production demands the boring work: error handling, logging, fallback, review.
+- Two well-run production agents beat ten experimental ones every time.
+</TLDR>
 
 Most "agents" in People Ops today are demos with ambition. They work on a clean test case and fall over the moment they meet a real employee, a real policy edge, a real Friday afternoon.
 
@@ -133,3 +141,9 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - [The HR Architect: a new role inside the People function](/intelligence/the-hr-architect-role)
 - [An AI enablement operating model for People leaders](/intelligence/ai-enablement-operating-model)
 - [Choosing AI models for HR work](/intelligence/choosing-ai-models-for-hr-work)
+
+<KeyTakeaways>
+- Promote an agent only when it has an owner, an eval set, and a fallback.
+- Log everything. Without logs, the agent is a black box you trust on faith.
+- Retire agents that stop earning their keep. Agent sprawl is real.
+</KeyTakeaways>
