@@ -6,6 +6,7 @@ export const frontmatter = {
   keywords: ["AI pilots", "AI production", "AI deployment", "AI operating system", "AI infrastructure"],
   readTime: "8 min",
   publishedAt: "2026-03-02",
+  updatedAt: "2026-05-04",
   author: "Matthew Bradburn",
 };
 
@@ -26,6 +27,14 @@ export const faqs = [
       "Lack of an owner for the workflow once it is live. The pilot has a project manager. Production needs an operating leader. If you cannot name the person who will own the workflow on the Monday after launch, the pilot will not become production.",
   },
 ];
+
+<TLDR>
+- A pilot proves a model can do a task. Production proves an organisation can absorb the consequences. Almost no pilot is designed for the second question.
+- The recurring stall pattern: manual data pipelines, hacked integrations, Slack-thread governance, no maintenance owner, and pilots that tested the model instead of the operating system.
+- Pilots that ship are designed as the production version at lower volume, with a real owner, real data, real integrations, and a decision at the end.
+- The single most common stall reason is the absence of an operating leader who owns the workflow on Monday morning.
+- The model is rarely the problem. The substrate around it is.
+</TLDR>
 
 A pilot proves a model can do a task. Production proves an organisation can absorb the consequences. Most can't, yet, and the gap between the two is where AI programmes go to die quietly.
 
@@ -84,3 +93,10 @@ For the longer arc, see [from AI experiments to AI infrastructure](/intelligence
 ## A working summary
 
 > AI pilots stall because the pilot proves the model can do the task and production proves the organisation can absorb the consequences. The model is rarely the problem. The pipeline, the integration, the governance, the maintenance, and the operating ownership are. Pilots that ship are designed as the production version at lower volume, with a named owner, real data, and a decision at the end.
+
+<KeyTakeaways>
+- Design the production version first, then run it as a pilot at lower volume.
+- Name the operating leader who will own the workflow on Monday before the pilot starts.
+- Run pilots on Monday morning data, not curated demos. The dirt is the test.
+- A pilot without a kill criterion is not a pilot. It is a budget line.
+</KeyTakeaways>
