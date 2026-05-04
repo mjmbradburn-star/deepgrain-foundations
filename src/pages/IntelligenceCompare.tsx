@@ -109,7 +109,8 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
           </div>
 
           <h2
-            className="font-display text-2xl md:text-3xl text-walnut leading-snug mt-14 mb-4"
+            id="in-one-paragraph"
+            className="font-display text-2xl md:text-3xl text-walnut leading-snug mt-14 mb-4 scroll-mt-32"
             style={{ letterSpacing: "-0.005em" }}
           >
             In one paragraph
@@ -119,7 +120,8 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
           {entry.faqs && entry.faqs.length > 0 && (
             <>
               <h2
-                className="font-display text-2xl md:text-3xl text-walnut leading-snug mt-14 mb-6"
+                id="common-questions"
+                className="font-display text-2xl md:text-3xl text-walnut leading-snug mt-14 mb-6 scroll-mt-32"
                 style={{ letterSpacing: "-0.005em" }}
               >
                 Common questions
