@@ -1,0 +1,93 @@
+export const frontmatter = {
+  title: "Choosing AI models for HR work",
+  slug: "choosing-ai-models-for-hr-work",
+  category: "people-ops-foundations",
+  track: "people-ops",
+  description: "A practical guide to which AI model to reach for by HR task type. ChatGPT, Claude, Gemini, Perplexity, and the trade-offs that actually matter when the work is real.",
+  keywords: ["best AI for HR", "ChatGPT vs Claude HR", "AI tools for People Ops", "HR AI model comparison"],
+  readTime: "10 min",
+  publishedAt: "2026-04-25",
+  author: "Matthew Bradburn",
+};
+
+export const faqs = [
+  {
+    question: "Is one AI model enough for a People team?",
+    answer: "No. The cost of running two or three is low, the productivity lift from using each one for what it is best at is meaningful. A reasonable default stack: ChatGPT for structured drafting and workflows, Claude for nuanced writing and policy work, Perplexity or Gemini for research with citations. Switching is friction-free. Sticking to one model is a habit, not a strategy.",
+  },
+  {
+    question: "Which model should we use for writing HR policies?",
+    answer: "Claude tends to win on policy drafting because it handles tone, edge cases, and the implicit \"what would a reader take from this\" check well. GPT is fine for structured first drafts. Whichever model writes it, run the draft through a second model for critique. Two passes, two perspectives, much fewer mistakes.",
+  },
+  {
+    question: "What about hiring decisions and performance work?",
+    answer: "Use AI as an assistant, never as the decision-maker, regardless of model. Claude and GPT both produce good interview question banks, calibration prompts, performance review draft frames. Both will produce confidently wrong recommendations if you let them touch decision-making without human review. Keep a human at every consequential step.",
+  },
+  {
+    question: "Is Gemini or Perplexity worth it for HR teams?",
+    answer: "Yes, for different reasons. Gemini is strong on multimodal tasks, large research synthesis, and integration into the Google stack. Perplexity is the most reliable answer engine for \"what is the current state of the art\" type questions, with sources you can check. Most People teams underuse both.",
+  },
+];
+
+The "best AI for HR" question gets asked all the time. The honest answer is that there is no best, and the right pattern is to use two or three models for what each one is best at.
+
+Here is a practical breakdown.
+
+## ChatGPT (GPT-5 class)
+
+**Where it wins.** Structured outputs, large multi-document workflows, automation scaffolding, anything where you need the model to follow instructions literally and return a clean JSON or table. Custom GPTs are still the easiest way to package a reusable workflow for a non-technical team. Strong on iteration: you can refine a draft through ten passes without it forgetting the spec.
+
+**Where it is weaker.** Tone in long-form writing can drift toward generic. Will produce confident first drafts that need critique passes.
+
+**Reach for it when.** Drafting JDs, building interview kits, structuring 30-60-90 plans, scaffolding workflows for Zapier or n8n, generating data for analysis, building Custom GPTs for the team.
+
+## Claude
+
+**Where it wins.** Long-form writing, sensitive communications, policy drafting, performance review prose, anything where tone and judgment matter. More likely than other models to push back when something feels off, which is a feature for People work. Strong on multi-step reasoning when given room to think.
+
+**Where it is weaker.** Less aggressive about structured outputs unless you specify them. Smaller default context for certain tiers.
+
+**Reach for it when.** Writing a difficult comms email, drafting policy, framing a tricky performance conversation, redesigning team rituals, anything where the words have to land carefully.
+
+## Gemini
+
+**Where it wins.** Multimodal: feed it a screenshot, a PDF, a chart. Strong on large research tasks where you want it to read a lot and synthesise. Native to the Google stack, which matters if your team lives in Workspace.
+
+**Where it is weaker.** Personality and tone are flatter than Claude. Less consistent on highly structured outputs than GPT.
+
+**Reach for it when.** Research scans, vendor comparisons, analysing screenshots of survey results, summarising long PDFs, anything where the input is varied and large.
+
+## Perplexity
+
+**Where it wins.** The answer engine for "what does the public web actually say about this." Citations are built in. Time filters work well. The first place to go for "what is the current state of comp benchmarking for engineering at Series B" type questions.
+
+**Where it is weaker.** Not a drafting tool. Not a workflow tool. Treat it as research, not as an assistant.
+
+**Reach for it when.** Market research, benchmarking, regulatory updates, "is this true" checks on something a model has told you.
+
+## Pattern stack by task
+
+A working default stack for a People team:
+
+| Task | Primary | Critique pass |
+|---|---|---|
+| Writing HR policies | Claude | GPT-5 |
+| Career pathing and coaching frames | Claude | GPT-5 |
+| Employee comms and tone rewrites | Claude | GPT-5 |
+| Recruiting: JDs, interview kits | GPT-5 | Claude |
+| Market and trend research | Perplexity or Gemini | (cross-check second source) |
+| Performance review support | Claude | GPT-5 |
+| Meeting summaries from transcripts | Gemini or Claude | n/a |
+| Internal knowledge base, SOPs | Claude | GPT-5 |
+| Workflow automation scaffolding | GPT-5 | n/a |
+| Vendor research | Perplexity | Gemini |
+
+Two reliable habits sit underneath this stack: never ship a first draft, and always cross-check important outputs with a second model. The cost of those two habits is small. The quality lift is enormous.
+
+## What this means in practice
+
+A People team that uses one model is not making a strategy decision. It is following a habit. The friction of switching between Claude, ChatGPT, Gemini and Perplexity is now small enough that the right answer for almost every team is "use the right one for the task."
+
+That is also one of the easier early wins for the [champion model](/intelligence/the-champion-model). Champions can document, by task type, which model the team should reach for, and embed that into the [AI workspace](/intelligence/setting-up-your-ai-workspace). It is a small piece of operating discipline that produces a disproportionate quality lift.
+
+The model is not the bottleneck for most teams. The bottleneck is knowing which one to pick, when. Solve that, then move on to the more interesting question: how to wire any of them into the workflows that actually matter, which is where the move from [prompts to systems](/intelligence/from-prompts-to-systems) begins.
