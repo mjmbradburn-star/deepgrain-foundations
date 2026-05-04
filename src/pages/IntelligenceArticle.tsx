@@ -47,6 +47,7 @@ const IntelligenceArticle = () => {
       url: "https://deepgrain.ai/about",
     },
     datePublished: f.publishedAt,
+    dateModified,
     publisher: {
       "@type": "Organization",
       name: "Deepgrain",
@@ -86,6 +87,7 @@ const IntelligenceArticle = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImage} />
         <meta property="article:published_time" content={f.publishedAt} />
+        <meta property="article:modified_time" content={dateModified} />
         <meta property="article:author" content={f.author} />
         <meta property="article:section" content={cat?.name} />
         <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
