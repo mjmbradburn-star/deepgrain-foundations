@@ -75,9 +75,49 @@ async function pingIndexNow(urlList: string[]) {
   return { status: ping.status, response: (await ping.text()).slice(0, 500) };
 }
 
+function parseJwtClaims(token: string): Record<string, unknown> | null {
+  const parts = token.split(".");
+  if (parts.length < 2) return null;
+  try {
+    const payload = parts[1]
+      .replaceAll("-", "+")
+      .replaceAll("_", "/")
+      .padEnd(Math.ceil(parts[1].length / 4) * 4, "=");
+    return JSON.parse(atob(payload)) as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
+  }
+
+  // Require a service_role JWT. The anon key is public and would otherwise
+  // let any caller force IndexNow pings (quota exhaustion) and overwrite
+  // sitemap_state. Legitimate callers (cron, admin tooling) sign with
+  // SUPABASE_SERVICE_ROLE_KEY.
+  const authHeader = req.headers.get("Authorization");
+  if (!authHeader?.startsWith("Bearer ")) {
+    return new Response(
+      JSON.stringify({ error: "Unauthorized" }),
+      {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
+    );
+  }
+  const token = authHeader.slice("Bearer ".length).trim();
+  const claims = parseJwtClaims(token);
+  if (claims?.role !== "service_role") {
+    return new Response(
+      JSON.stringify({ error: "Forbidden" }),
+      {
+        status: 403,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
+    );
   }
 
   const supabase = createClient(

@@ -36,6 +36,20 @@ function generateToken(): string {
 // transactional sends are dispatched server-side (DB triggers, edge functions,
 // or other server contexts), never directly from the browser.
 
+function parseJwtClaims(token: string): Record<string, unknown> | null {
+  const parts = token.split(".");
+  if (parts.length < 2) return null;
+  try {
+    const payload = parts[1]
+      .replaceAll("-", "+")
+      .replaceAll("_", "/")
+      .padEnd(Math.ceil(parts[1].length / 4) * 4, "=");
+    return JSON.parse(atob(payload)) as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+}
+
 Deno.serve(async (req) => {
   // Handle CORS preflight
   if (req.method === "OPTIONS") {
@@ -45,10 +59,32 @@ Deno.serve(async (req) => {
   const supabaseUrl = Deno.env.get("SUPABASE_URL");
   const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
-  // verify_jwt is disabled at the gateway because legacy HS256 service-role
-  // keys are rejected by the asymmetric-keys gateway. Spam abuse is mitigated
-  // by the closed TEMPLATES registry, suppression list, and upstream
-  // rate limiting in the public-facing functions that invoke this one.
+  // verify_jwt is disabled at the gateway (legacy HS256 service-role keys
+  // are rejected by the asymmetric-keys gateway). We enforce auth in-code:
+  // only callers presenting a service_role JWT may enqueue transactional
+  // emails. All legitimate triggers (DB triggers via vault, edge functions)
+  // sign requests with SUPABASE_SERVICE_ROLE_KEY.
+  const authHeader = req.headers.get("Authorization");
+  if (!authHeader?.startsWith("Bearer ")) {
+    return new Response(
+      JSON.stringify({ error: "Unauthorized" }),
+      {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
+    );
+  }
+  const token = authHeader.slice("Bearer ".length).trim();
+  const claims = parseJwtClaims(token);
+  if (claims?.role !== "service_role") {
+    return new Response(
+      JSON.stringify({ error: "Forbidden" }),
+      {
+        status: 403,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
+    );
+  }
 
   if (!supabaseUrl || !supabaseServiceKey) {
     console.error("Missing required environment variables");
