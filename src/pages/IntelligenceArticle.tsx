@@ -126,6 +126,18 @@ const IntelligenceArticle = () => {
         }`}
       >
         <div className="container-grain max-w-3xl">
+          <Breadcrumbs
+            variant="dark"
+            className="mb-6"
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Intelligence", href: "/intelligence" },
+              ...(cat
+                ? [{ name: cat.name, href: `/intelligence/category/${cat.slug}` }]
+                : []),
+              { name: f.title },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-8">
             <Link
               to={`/intelligence/category/${f.category}`}
@@ -155,16 +167,33 @@ const IntelligenceArticle = () => {
               />
             </div>
           )}
-          <div className="mt-10 pt-6 border-t border-cream/15 flex items-center gap-4 text-sm text-cream/60">
-            <span>{f.author}</span>
+          <div className="mt-10 pt-6 border-t border-cream/15 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-cream/60">
+            <Link
+              to="/about"
+              className="hover:text-cream transition-colors"
+            >
+              {f.author}
+            </Link>
             <span className="text-cream/30">·</span>
             <time dateTime={f.publishedAt}>
-              {new Date(f.publishedAt).toLocaleDateString("en-GB", {
+              Published {new Date(f.publishedAt).toLocaleDateString("en-GB", {
                 day: "numeric",
                 month: "long",
                 year: "numeric",
               })}
             </time>
+            {f.updatedAt && f.updatedAt !== f.publishedAt && (
+              <>
+                <span className="text-cream/30">·</span>
+                <time dateTime={f.updatedAt}>
+                  Updated {new Date(f.updatedAt).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </time>
+              </>
+            )}
           </div>
         </div>
       </header>
