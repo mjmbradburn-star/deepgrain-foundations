@@ -7,6 +7,7 @@ import { RelatedClusterArticles } from "@/components/intelligence/RelatedCluster
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { PillarGlossaryStrip } from "@/components/intelligence/PillarGlossaryStrip";
 
 const IntelligencePillar = () => {
   const { slug = "" } = useParams();
@@ -150,6 +151,9 @@ const IntelligencePillar = () => {
           })}
         </div>
       </section>
+
+      {/* Brief glossary strip wired to the canonical glossary page */}
+      <PillarGlossaryStrip pillarSlug={pillar.slug} />
 
       {/* SEO-ready related modules driven by primaryCluster + clusters */}
       <RelatedClusterArticles
