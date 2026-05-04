@@ -1,113 +1,75 @@
+# Plan: Mine the Notion Knowledge Vault into Intelligence content
 
-# Authority push: hacky wins + deep plays
+I can see your public Notion vault. It has ~30 deep pieces across 6 themes (AI prompting, enablement & operating models, frameworks/diagnostics, leadership, culture/values, research reports). This is a goldmine for the Intelligence section. Here's how I'll turn it into ranking, citation-worthy articles without burning credits.
 
-Two tracks. Track A is the clever/hacky stuff I can ship in one session, mostly machine-readable surfaces that LLMs and crawlers reward out of proportion to the effort. Track B is the proper content and backlink work, where I can do most of the production now and you do the human-in-the-loop posting.
+## Approach (2 rings)
 
-## Track A — Hacky, ship today
+### Ring 1: Ingest the vault (one-time scrape)
 
-### 1. Glossary page as a citation magnet
-Single page at `/intelligence/glossary` listing 20-30 short definitions (AI OS, Operating Intervention, Read·Craft·Scale, Grain, Champion Model, Operating Ladder, Operating Cadence, Five Pillars, AI Workspace, etc.). Each entry:
-- 1-2 sentence quotable definition (LLMs lift these verbatim)
-- `DefinedTerm` JSON-LD per entry, wrapped in a `DefinedTermSet`
-- Anchor `id` per term so other articles can deep-link `#ai-operating-system`
-- Internal link out to the pillar article
+1. Use a small Node script (server-side, no credit-heavy LLM calls) to:
+   - Hit each Notion subpage URL via the public `notion.site` HTML endpoint
+   - Extract title, body markdown, headings, and outbound links
+   - Save raw markdown to `/tmp/vault/<id>-<slug>.md` for inspection
+   - Save a manifest at `docs/vault/manifest.json` (id, title, theme, source URL, word count)
+2. If `notion.site` blocks plain fetch (it often hydrates client-side), fall back to the Firecrawl connector (already noted as available). One scrape per page = ~30 credits, well within budget.
 
-Why hacky: glossary pages punch way above their weight in Perplexity/Claude citations, and the schema makes them eligible for Google's definition snippets.
+I will NOT commit the raw scrapes to the repo. They live in `/tmp` and a small `docs/vault/manifest.json` index.
 
-### 2. "Compare" pages targeting zero-competition long-tail
-Three thin but useful pages:
-- `/intelligence/ai-operating-system-vs-operating-model`
-- `/intelligence/ai-os-vs-ai-platform`
-- `/intelligence/ai-os-vs-automation`
+### Ring 2: Distil into Intelligence articles
 
-Each is a comparison table + 200 words + FAQ JSON-LD. These are the exact phrasings people Google after reading the pillar. Currently zero results compete properly. Internal links from the pillar into these.
+Map vault content to the existing Intelligence taxonomy, then produce/refresh articles. Proposed mapping:
 
-### 3. HowTo + Article schema retrofit
-Add `HowTo` JSON-LD to `/setting-up-your-ai-workspace` (already a procedural article, free schema win), and `Article` + `BreadcrumbList` to every Intelligence page that's missing it. Helper in `PageMeta.tsx`.
+| Vault source | Target Intelligence article | Status |
+|---|---|---|
+| Ultimate Guide to Effective Prompts (439) + Prompt Engineering, Chaining (493) + GPT-4.1 prompting (570) | NEW `prompting-patterns-for-people-ops.mdx` | create |
+| Best AI for HR Tasks (453) | NEW `choosing-ai-models-for-hr-work.mdx` | create |
+| AI Maturity Assessment (535) + Building an AI-Ready People Function (612) | refresh `diagnosing-ai-readiness-in-people-ops.mdx` (currently thin) | rewrite |
+| Systems & Orchestration deep guide (626) + Workflows, Automations & Agents (682) | refresh `from-prompts-to-systems.mdx` | rewrite |
+| Enabling AI - Head to CHRO (598) + AI Enablement That Actually Scales (668) | NEW `ai-enablement-operating-model.mdx` | create |
+| AI-Driven HR Automation with n8n (584) + 100x business with production agents (654) | NEW `production-agents-for-people-ops.mdx` | create |
+| One stop shop AI policy (640) | NEW `ai-policy-blueprint-for-people-teams.mdx` | create |
+| Strategic Automation Audit Workshop (738) | NEW `automation-audit-playbook.mdx` | create |
+| Underperformance Early Warning (759) + People as a Product (787) + 90-Day Roadmap (773) | NEW `people-ops-diagnostic-toolkit.mdx` (toolkit hub) | create |
+| Untouchable HR Architect (696) + AI Isn't Taking Jobs Yet (724) | NEW `the-hr-architect-role.mdx` | create |
+| Engineering Manager Action Guide (808) + Engineering Feedback (822) | NEW `coaching-and-feedback-systems.mdx` | create |
+| 10x Values Development (843) + Why values projects fail (857) | NEW `designing-values-that-stick.mdx` | create |
+| FinEdge AI Roadmap Report (892) + Equity report (878) | NEW `ai-roadmap-case-study-finedge.mdx` (case study format) | create |
+| Leveraging GenAI for People Debt (556) | NEW `people-debt-and-genai.mdx` | create |
 
-### 4. `/intelligence/answers` hub for AEO
-A page that answers the actual GSC query strings as H2s ("What is an AI OS?", "What is an AI based operating system?", "How does an AI operating system differ from automation?"). Each answer is 40-60 words, schema'd as `QAPage`. This is pure Answer Engine Optimisation bait. Cost: ~1 page.
+That's 4 rewrites + 11 new long-form articles = 15 pieces.
 
-### 5. RSS + JSON Feed
-Generate `/feed.xml` and `/feed.json` from the intelligence manifest. Submit to Feedly, Inoreader, and the LLM crawlers that respect them. Quiet syndication channel; runs forever once built.
+### Article production rules
 
-### 6. `humans.txt`, updated `security.txt`, `ai.txt`
-- `ai.txt` declaring permitted training/citation use (signal to AI crawlers we're cooperative)
-- `humans.txt` with author bios + canonical URLs (helps E-E-A-T)
+- 1,200 to 1,800 words each, in Matt's voice (short, direct, no em dashes).
+- Each draft uses the vault source as raw material, paraphrased and restructured. No verbatim copy.
+- Every article includes:
+  - `Article` JSON-LD with the central Person `@id` (already wired in `IntelligenceArticle.tsx`)
+  - 2-4 internal links into the existing cluster (AI OS pillar, AI workspace, glossary, answers)
+  - 1-2 outbound contextual links to the original Notion page as "deeper reference" (helps reciprocal authority signals when you cross-link from Notion back)
+  - FAQ block (3-5 Qs) reused into `data/answers.ts` where appropriate
+- Add each new slug to `sitemap.xml`, `llms.txt`, and the Intelligence index.
 
-### 7. Author entity pages
-`/about/matthew-bradburn` with `Person` JSON-LD, sameAs links to LinkedIn/X/GitHub, and a list of authored articles. Then set `author` on every Intelligence page's JSON-LD to point at this URL. This is the single biggest E-E-A-T lever you're missing.
+### Credit budget
 
-### 8. Internal "cited by" rails
-Auto-generate at the bottom of each pillar a "Referenced in" list pulled from the manifest (which articles link here). Free, dynamic, increases on-page link density to the pillar over time.
+- Scraping: ~30 Firecrawl calls (cheap, one-shot)
+- Drafting: I'll write articles directly using vault material as source, no AI generation calls needed. Zero LLM credits.
+- Total: minimal Firecrawl spend, no Lovable AI spend.
 
-### 9. OG image per article
-Vite plugin generates a per-article OG image with the title rendered on the cream/walnut palette. Better social CTR, better LLM previews. One-time build cost.
+## Technical detail
 
-### 10. Sitemap split + news sitemap
-Split `sitemap.xml` into `sitemap-pages.xml`, `sitemap-intelligence.xml`, `sitemap-news.xml` (last 48h of new articles). News sitemap gets faster indexing for fresh content.
+- New script: `scripts/scrape-vault.ts` (run once, gitignored output to `/tmp/vault/`)
+- New committed file: `docs/vault/manifest.json` (small, human-readable index)
+- New MDX files in `src/content/intelligence/` and `src/content/intelligence/people-ops/`
+- Updates to: `public/sitemap.xml`, `public/llms.txt`, `public/llms-full.txt`, `src/data/answers.ts` (FAQ reuse)
+- No DB / no edge functions / no schema changes
 
-## Track B — Proper depth, mostly buildable now
+## Execution order once approved
 
-### 11. Rewrite the four placeholder articles
-`five-pillars-of-ai-readiness`, `ai-operating-ladder-five-tiers`, `from-ai-experiments-to-ai-infrastructure`, `why-ai-pilots-stall-at-production` are all "placeholder scaffold". Google sees thin content linking to your pillar, which dilutes the cluster. I'll rewrite each to 1,200-1,800 words with FAQs, tables, and the same structural rigour as the AI OS pillar. This is the single biggest authority unlock.
+1. Run scraper, build manifest (1 step)
+2. Show you the manifest + proposed slug list for a final tweak (optional)
+3. Produce 4 rewrites first (highest SEO leverage on existing thin pages)
+4. Produce 11 new articles in batches of 3-4
+5. Update sitemap, llms.txt, internal link rails, FAQ data
+6. Trigger IndexNow re-ping (already automated)
 
-### 12. One genuine linkable asset: "AI Operating Index 2026"
-A short report (10-15 pages, served as a real HTML page on `/intelligence/ai-operating-index-2026` plus a downloadable PDF). Built from your existing frameworks plus a synthesised dataset/POV. Reports get cited by Substack/journalists in a way blog posts never do. I can draft the content and ship the page now; you can refine the numbers.
-
-### 13. Backlink production (artefacts I can produce now, you post)
-I'll generate, ready to copy-paste:
-- 3 LinkedIn long-form posts (AI OS, AI Workspace, Champion Model) with canonical link back
-- 1 Hacker News "Show HN" post for AIOI
-- 1 Indie Hackers post
-- 5 directory submission blurbs (Clutch, The Org, Crunchbase, Consultancy.uk, AI Consultancies)
-- 2 guest post pitches (peopleops.com, CharthHR/Charthop blog) with full draft articles attached
-- A Reddit-safe post for r/PeopleOps and r/HRTech (no-link, value-first, with a soft mention)
-
-All written in your voice, no em dashes, ready to ship.
-
-### 14. Substack/newsletter-bait teardown
-One long-form teardown ("Why most AI pilots die between Q3 and Q1") designed for newsletter quotation. I draft it now.
-
-### 15. Wikipedia-adjacent: contribute references
-Identify 3-5 existing Wikipedia articles ("Operating model", "Enterprise AI", "AI agent") where Deepgrain Intelligence articles would qualify as legitimate references. I produce the suggested edits; you submit from a real account (Wikipedia rejects obvious self-promotion, so this is light-touch).
-
-## What I'll ship in the next session if you approve
-
-Ring A (today): items 1, 2, 3, 4, 6, 7, 8, 10. That's the glossary, three compare pages, schema retrofit, answers hub, ai.txt/humans.txt, author entity, cited-by rails, sitemap split. ~8 files touched, no credit spend on AI generation since it's mostly templated.
-
-Ring B (today, parallel): items 11 (rewrite the four placeholders) and 13 (backlink artefacts as markdown drafts in `/docs/distribution/`).
-
-Deferred to next pass (heavier): 5 (RSS), 9 (OG image generator), 12 (AIOI 2026 report), 14 (teardown), 15 (Wikipedia).
-
-## What I'm explicitly not doing
-
-- No black-hat link schemes, PBNs, or paid backlinks
-- No keyword stuffing or doorway pages (the compare pages are genuinely useful, not thin)
-- No AI-generated mass content; the rewrites are structured, in-voice, and pass the "would you publish this" test
-- No new subdomains or redesigns
-
-## Technical scope (for the build phase)
-
-Files I'd touch:
-- `src/pages/IntelligenceGlossary.tsx` (new), `IntelligenceAnswers.tsx` (new), `IntelligenceCompare.tsx` (new shared template), `AuthorPage.tsx` (new)
-- `src/components/seo/PageMeta.tsx` — add `definedTerm`, `qaPage`, `howTo`, `person` schema helpers
-- `src/components/intelligence/CitedByRail.tsx` (new) — reads manifest
-- `src/content/intelligence/glossary.ts` (new data source)
-- `src/content/intelligence/compare/*.mdx` (3 new files)
-- `src/content/intelligence/{five-pillars,ai-operating-ladder,from-ai-experiments,why-ai-pilots-stall}.mdx` — full rewrites
-- `public/sitemap.xml` → `sitemap.xml` (index) + `sitemap-pages.xml` + `sitemap-intelligence.xml` + `sitemap-news.xml`
-- `public/ai.txt`, `public/humans.txt` (new)
-- `vite-plugins/intelligence-manifest.ts` — extend with backlink graph for cited-by
-- `docs/distribution/` (new dir) — LinkedIn posts, HN/IH posts, directory blurbs, guest pitch drafts
-- Trigger `ping-indexnow` after deploy
-
-## Success metric (30 days)
-
-- Glossary page indexed and ranking for at least 5 "what is" queries
-- All 4 placeholders rewritten and gaining impressions
-- Pillar moves from position 75 → under 25
-- At least 2 external backlinks from your distribution work
-- First Perplexity/Claude citation visible in referer logs
-
-Approve and I'll execute Ring A + Ring B in the next session.
+If you want, I can skip step 2 and go straight through. Approve and I'll start with the scrape + the 4 rewrites in the next session.
