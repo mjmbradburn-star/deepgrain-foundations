@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import { Link } from "react-router-dom";
 import { slugifyHeading } from "@/lib/slugifyHeading";
+import { Takeaway } from "@/components/intelligence/Takeaway";
 
 /**
  * Shared article typography tokens.
@@ -100,4 +101,8 @@ export const mdxComponents: MDXComponents = {
   hr: () => <hr className="border-t border-walnut/15 my-12" />,
   strong: (props) => <strong className="font-semibold text-walnut" {...props} />,
   em: (props) => <em className="italic" {...props} />,
+  // Custom components available without import inside MDX. Article authors
+  // can drop <Takeaway>...</Takeaway> at the end of any major section to
+  // reinforce the point for scanners and LLMs.
+  Takeaway,
 };
