@@ -1,0 +1,105 @@
+export const frontmatter = {
+  title: "AI roadmap case study: FinEdge's first 90 days",
+  slug: "ai-roadmap-case-study-finedge",
+  category: "people-ops-builders",
+  primaryCluster: "enablement-and-change",
+  clusters: ["readiness-and-diagnosis", "measurement-and-roi"],
+  track: "people-ops",
+  description: "How a 280-person fintech People team went from scattered ChatGPT use to nine production workflows in 90 days. The exact sequence, the trade-offs, the metrics, and the two near-misses.",
+  keywords: ["AI roadmap case study", "People Ops AI implementation", "90-day AI plan HR", "fintech People function AI", "AI adoption case study"],
+  readTime: "12 min",
+  publishedAt: "2026-05-04",
+  author: "Matthew Bradburn",
+  featured: true,
+};
+
+export const faqs = [
+  {
+    question: "What was FinEdge's starting position?",
+    answer: "A 280-person fintech, Series B, People team of seven. Scattered ChatGPT use across the team, no shared workspace, no policy, no measurement. The CPO had a budget approved but no plan. Standard starting point.",
+  },
+  {
+    question: "What did the 90-day roadmap actually deliver?",
+    answer: "Nine production workflows, a published one-page AI policy, a shared workspace with reusable context, a weekly demo cadence, and a People metrics pack tied to revenue and risk. Time saved across the team: roughly 38 hours per week, sustained, by day 90.",
+  },
+  {
+    question: "What were the near-misses?",
+    answer: "Two. First, a comp-letter automation that would have leaked salary band logic in error states, caught in a critique pass before it reached production. Second, a candidate-screening agent that began encoding a hiring-manager preference unrelated to the role, caught in the weekly evaluation review and removed.",
+  },
+  {
+    question: "What would you do differently?",
+    answer: "Two things. Build the evaluation habit on day one, not day thirty. And resist the temptation to demo every new workflow company-wide too early, the wider the audience, the harder it is to retire something that is not working.",
+  },
+  {
+    question: "Is this template repeatable?",
+    answer: "The sequence is repeatable. The specific workflows are not. Every team's hot cells on the workflow heatmap are different. Use the sequence (diagnose, prove, scale, harden) and let the workflow choices come from your own diagnostic.",
+  },
+];
+
+This is one case study, lightly anonymised, told in enough detail that another team could run the same play. Names, numbers, and one sequencing detail have been changed. The shape of the work is exact.
+
+<Takeaway>The 90-day shape that worked: diagnose for two weeks, prove value for six, then harden and scale for the remaining four. Skip the diagnostic and you will rebuild three times.</Takeaway>
+
+## Starting position
+
+FinEdge is a 280-person fintech, Series B, payments infrastructure for mid-market merchants. The People team is seven: a CPO, two HRBPs, two TA partners, a People Ops lead, and a learning lead. The CEO had approved a six-figure People AI budget at the previous board meeting. The CPO had a budget and no plan.
+
+Pre-engagement state: scattered individual ChatGPT use across the team, no shared workspace, no policy, no measurement. Two of the seven were heavy users, three were occasional, two were avoiding it. Classic uneven adoption.
+
+## Days 1 to 14: diagnose
+
+We ran the [People Ops diagnostic toolkit](/intelligence/people-ops-diagnostic-toolkit). Three sessions over two weeks. Output: a one-page read of the function with five sections.
+
+The two findings that shaped everything that followed:
+
+1. The hottest cells on the workflow heatmap were not in TA, where the team expected. They were in onboarding (high frequency, high pain, high AI fit on the document and Q&A steps) and in HRBP request triage (medium frequency, very high pain, very high AI fit on the routing and first-response steps).
+2. The AI readiness score was 6 out of 10 on tooling, 3 on data, 2 on governance. The team had been planning to spend month one on tools. The diagnostic redirected month one to data and governance, with a single tooling decision.
+
+## Days 15 to 60: prove value
+
+Three workflows in six weeks, in this order, with a single champion on each:
+
+- **Onboarding Q&A.** A retrieval-augmented assistant grounded on the onboarding handbook plus the last 18 months of People Ops Slack answers. Replaced 40% of week-one new-hire questions to People Ops. Saved roughly 6 hours a week across the team. Live by day 28.
+- **HRBP request triage.** A workflow that classifies inbound HRBP requests, routes them, and drafts a first response for the partner to approve or rewrite. Cut median response time from 26 hours to 4. Live by day 42.
+- **Interview-loop scheduling.** Less novel, more leverage. Reduced TA partner scheduling time by half. Live by day 56.
+
+A weekly Friday demo cadence started in week three and never stopped. Fifteen minutes. One champion shows one thing. This single ritual did more for adoption than every training session combined.
+
+## Days 61 to 90: harden and scale
+
+Six more workflows, smaller and more specialised, owned by individual team members rather than dedicated champions. The pattern from the first six weeks was now legible enough that the rest of the team could replicate it.
+
+The harder work in this phase was not the workflows. It was three pieces of infrastructure:
+
+- A published one-page [AI policy](/intelligence/ai-policy-blueprint-for-people-teams) covering data, vendors, evaluation, and what is forbidden.
+- A shared workspace with reusable context and standardised prompts, following the [workspace setup pattern](/intelligence/setting-up-your-ai-workspace).
+- A People metrics pack tied to revenue and risk, refreshed monthly, presented at the exec team's monthly business review.
+
+By day 90: nine workflows in production, an estimated 38 hours per week of sustained team time freed, and a CFO who could answer the question *what is the People AI spend returning?* without flinching.
+
+## The two near-misses
+
+Both happened in the second month. Both were caught by evaluation, not by luck.
+
+The comp-letter automation drafted near-final language for promotion letters. In an error state, where the underlying salary-band data could not be retrieved, an early version fell back on a static template that hard-coded the band ranges. A critique pass caught it. We rebuilt the workflow to fail closed, with a human escalation, before it reached anyone outside the team.
+
+The candidate-screening agent was helping summarise interview feedback. Within two weeks, the weekly evaluation review picked up that it was over-weighting one specific signal that mapped to a hiring manager's stated preference, but had no validated link to performance in the role. We pulled it. The lesson: evaluation is not a quarterly exercise.
+
+## What we would do differently
+
+Two things.
+
+Build the evaluation habit on day one, not day thirty. We added it in week five. Both near-misses happened in weeks six and seven. The lag was almost the cost.
+
+Resist demoing every new workflow company-wide too early. Once the wider company has seen something, retiring it is political. Keep the audience small until the workflow has survived a month of weekly evaluation.
+
+## What this case is and is not
+
+This is one team's 90 days. The sequence is the part worth copying: diagnose, then prove, then harden and scale. The specific workflows are not. Every team's hot cells are different. Use the [diagnostic toolkit](/intelligence/people-ops-diagnostic-toolkit) to find yours, then run this same shape against them.
+
+## What this connects to
+
+- [The People Ops diagnostic toolkit](/intelligence/people-ops-diagnostic-toolkit)
+- [An AI enablement operating model for People leaders](/intelligence/ai-enablement-operating-model)
+- [Measuring AI value in People Ops](/intelligence/measuring-ai-value-in-people-ops)
+- [Leading the AI transformation in People](/intelligence/leading-the-ai-transformation)
