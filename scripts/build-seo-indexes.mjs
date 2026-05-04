@@ -172,6 +172,10 @@ function buildSitemap(articles) {
   for (const a of articles) {
     push(`${ORIGIN}/intelligence/${a.slug}`, a.publishedAt, 0.7, "monthly");
   }
+  // /answers/:slug per question (parsed from src/data/answers.ts).
+  const answersSrc = await fs.readFile(join(ROOT, "src/data/answers.ts"), "utf8");
+  const answerSlugs = Array.from(answersSrc.matchAll(/slug:\s*"([^"]+)"/g)).map((m) => m[1]);
+  for (const s of answerSlugs) push(`${ORIGIN}/answers/${s}`, TODAY, 0.6, "monthly");
 
   const body = urls.map((u) => `  <url>
     <loc>${u.loc}</loc>
