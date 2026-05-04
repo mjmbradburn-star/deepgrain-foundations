@@ -1,0 +1,676 @@
+{
+  "ai-enablement-operating-model": {
+    "title": "An AI enablement operating model for People leaders",
+    "neighbours": [
+      {
+        "slug": "leading-the-ai-transformation",
+        "title": "Leading the AI transformation in People",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 0,
+        "shared_concept_tokens": 6
+      },
+      {
+        "slug": "from-prompts-to-systems",
+        "title": "From prompts to systems",
+        "score": 5,
+        "shared_keywords": [
+          "ai capability building"
+        ],
+        "shared_heading_tokens": 0,
+        "shared_concept_tokens": 2
+      },
+      {
+        "slug": "the-champion-model",
+        "title": "The champion model",
+        "score": 5,
+        "shared_keywords": [
+          "ai enablement"
+        ],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "prompting-patterns-for-people-ops",
+        "title": "Prompting patterns for People Ops",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      }
+    ]
+  },
+  "ai-governance-for-people-teams": {
+    "title": "AI governance for People teams",
+    "neighbours": [
+      {
+        "slug": "measuring-ai-value-in-people-ops",
+        "title": "Measuring AI value in People Ops",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 4,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "setting-up-your-ai-workspace",
+        "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 4,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "designing-the-ai-native-people-team",
+        "title": "Designing the AI-native People team",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "production-agents-for-people-ops",
+        "title": "Production agents for People Ops",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
+      }
+    ]
+  },
+  "ai-policy-blueprint-for-people-teams": {
+    "title": "An AI policy blueprint for People teams",
+    "neighbours": [
+      {
+        "slug": "automation-audit-playbook",
+        "title": "The automation audit playbook",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 1
+      },
+      {
+        "slug": "workflow-assessment-framework",
+        "title": "A workflow assessment framework for People Ops",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 3
+      },
+      {
+        "slug": "ai-governance-for-people-teams",
+        "title": "AI governance for People teams",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "automation-patterns-that-pay-off",
+        "title": "Automation patterns that pay off",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      }
+    ]
+  },
+  "automation-audit-playbook": {
+    "title": "The automation audit playbook",
+    "neighbours": [
+      {
+        "slug": "measuring-ai-value-in-people-ops",
+        "title": "Measuring AI value in People Ops",
+        "score": 13,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 9
+      },
+      {
+        "slug": "workflow-assessment-framework",
+        "title": "A workflow assessment framework for People Ops",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 1
+      },
+      {
+        "slug": "ai-policy-blueprint-for-people-teams",
+        "title": "An AI policy blueprint for People teams",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 1
+      },
+      {
+        "slug": "leading-the-ai-transformation",
+        "title": "Leading the AI transformation in People",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      }
+    ]
+  },
+  "automation-patterns-that-pay-off": {
+    "title": "Automation patterns that pay off",
+    "neighbours": [
+      {
+        "slug": "the-people-ops-ai-domain-map",
+        "title": "The People Ops AI domain map",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 2
+      },
+      {
+        "slug": "designing-the-ai-native-people-team",
+        "title": "Designing the AI-native People team",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 3
+      },
+      {
+        "slug": "workflow-assessment-framework",
+        "title": "A workflow assessment framework for People Ops",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 3
+      },
+      {
+        "slug": "ai-policy-blueprint-for-people-teams",
+        "title": "An AI policy blueprint for People teams",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      }
+    ]
+  },
+  "choosing-ai-models-for-hr-work": {
+    "title": "Choosing AI models for HR work",
+    "neighbours": [
+      {
+        "slug": "automation-patterns-that-pay-off",
+        "title": "Automation patterns that pay off",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "production-agents-for-people-ops",
+        "title": "Production agents for People Ops",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "setting-up-your-ai-workspace",
+        "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "ai-governance-for-people-teams",
+        "title": "AI governance for People teams",
+        "score": 2,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 0
+      }
+    ]
+  },
+  "designing-the-ai-native-people-team": {
+    "title": "Designing the AI-native People team",
+    "neighbours": [
+      {
+        "slug": "workflow-assessment-framework",
+        "title": "A workflow assessment framework for People Ops",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 4
+      },
+      {
+        "slug": "setting-up-your-ai-workspace",
+        "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 5
+      },
+      {
+        "slug": "ai-governance-for-people-teams",
+        "title": "AI governance for People teams",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "diagnosing-ai-readiness-in-people-ops",
+        "title": "Diagnosing AI readiness in People Ops",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
+      }
+    ]
+  },
+  "diagnosing-ai-readiness-in-people-ops": {
+    "title": "Diagnosing AI readiness in People Ops",
+    "neighbours": [
+      {
+        "slug": "designing-the-ai-native-people-team",
+        "title": "Designing the AI-native People team",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "ai-governance-for-people-teams",
+        "title": "AI governance for People teams",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "from-prompts-to-systems",
+        "title": "From prompts to systems",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "production-agents-for-people-ops",
+        "title": "Production agents for People Ops",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      }
+    ]
+  },
+  "from-prompts-to-systems": {
+    "title": "From prompts to systems",
+    "neighbours": [
+      {
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
+        "score": 5,
+        "shared_keywords": [
+          "ai capability building"
+        ],
+        "shared_heading_tokens": 0,
+        "shared_concept_tokens": 2
+      },
+      {
+        "slug": "the-hr-architect-role",
+        "title": "The HR Architect: a new role inside the People function",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 1
+      },
+      {
+        "slug": "ai-governance-for-people-teams",
+        "title": "AI governance for People teams",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "ai-policy-blueprint-for-people-teams",
+        "title": "An AI policy blueprint for People teams",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      }
+    ]
+  },
+  "leading-the-ai-transformation": {
+    "title": "Leading the AI transformation in People",
+    "neighbours": [
+      {
+        "slug": "measuring-ai-value-in-people-ops",
+        "title": "Measuring AI value in People Ops",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 5
+      },
+      {
+        "slug": "workflow-assessment-framework",
+        "title": "A workflow assessment framework for People Ops",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 3
+      },
+      {
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 0,
+        "shared_concept_tokens": 6
+      },
+      {
+        "slug": "setting-up-your-ai-workspace",
+        "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 1
+      }
+    ]
+  },
+  "measuring-ai-value-in-people-ops": {
+    "title": "Measuring AI value in People Ops",
+    "neighbours": [
+      {
+        "slug": "automation-audit-playbook",
+        "title": "The automation audit playbook",
+        "score": 13,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 9
+      },
+      {
+        "slug": "ai-governance-for-people-teams",
+        "title": "AI governance for People teams",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 4,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "setting-up-your-ai-workspace",
+        "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 2
+      },
+      {
+        "slug": "workflow-assessment-framework",
+        "title": "A workflow assessment framework for People Ops",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 6
+      }
+    ]
+  },
+  "production-agents-for-people-ops": {
+    "title": "Production agents for People Ops",
+    "neighbours": [
+      {
+        "slug": "ai-governance-for-people-teams",
+        "title": "AI governance for People teams",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "the-hr-architect-role",
+        "title": "The HR Architect: a new role inside the People function",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "choosing-ai-models-for-hr-work",
+        "title": "Choosing AI models for HR work",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "designing-the-ai-native-people-team",
+        "title": "Designing the AI-native People team",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      }
+    ]
+  },
+  "prompting-patterns-for-people-ops": {
+    "title": "Prompting patterns for People Ops",
+    "neighbours": [
+      {
+        "slug": "designing-the-ai-native-people-team",
+        "title": "Designing the AI-native People team",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 3
+      },
+      {
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      },
+      {
+        "slug": "leading-the-ai-transformation",
+        "title": "Leading the AI transformation in People",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "production-agents-for-people-ops",
+        "title": "Production agents for People Ops",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      }
+    ]
+  },
+  "setting-up-your-ai-workspace": {
+    "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
+    "neighbours": [
+      {
+        "slug": "ai-governance-for-people-teams",
+        "title": "AI governance for People teams",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 4,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "measuring-ai-value-in-people-ops",
+        "title": "Measuring AI value in People Ops",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 2
+      },
+      {
+        "slug": "designing-the-ai-native-people-team",
+        "title": "Designing the AI-native People team",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 5
+      },
+      {
+        "slug": "the-people-ops-ai-domain-map",
+        "title": "The People Ops AI domain map",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 5
+      }
+    ]
+  },
+  "the-champion-model": {
+    "title": "The champion model",
+    "neighbours": [
+      {
+        "slug": "ai-enablement-operating-model",
+        "title": "An AI enablement operating model for People leaders",
+        "score": 5,
+        "shared_keywords": [
+          "ai enablement"
+        ],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "designing-the-ai-native-people-team",
+        "title": "Designing the AI-native People team",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 3
+      },
+      {
+        "slug": "prompting-patterns-for-people-ops",
+        "title": "Prompting patterns for People Ops",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      },
+      {
+        "slug": "the-hr-architect-role",
+        "title": "The HR Architect: a new role inside the People function",
+        "score": 4,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 2
+      }
+    ]
+  },
+  "the-hr-architect-role": {
+    "title": "The HR Architect: a new role inside the People function",
+    "neighbours": [
+      {
+        "slug": "ai-governance-for-people-teams",
+        "title": "AI governance for People teams",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "production-agents-for-people-ops",
+        "title": "Production agents for People Ops",
+        "score": 6,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 0
+      },
+      {
+        "slug": "from-prompts-to-systems",
+        "title": "From prompts to systems",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 1
+      },
+      {
+        "slug": "leading-the-ai-transformation",
+        "title": "Leading the AI transformation in People",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 1
+      }
+    ]
+  },
+  "the-people-ops-ai-domain-map": {
+    "title": "The People Ops AI domain map",
+    "neighbours": [
+      {
+        "slug": "automation-patterns-that-pay-off",
+        "title": "Automation patterns that pay off",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 2
+      },
+      {
+        "slug": "setting-up-your-ai-workspace",
+        "title": "AI workspace setup for People teams (Claude, ChatGPT, Copilot)",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 5
+      },
+      {
+        "slug": "designing-the-ai-native-people-team",
+        "title": "Designing the AI-native People team",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 3
+      },
+      {
+        "slug": "workflow-assessment-framework",
+        "title": "A workflow assessment framework for People Ops",
+        "score": 5,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 3
+      }
+    ]
+  },
+  "workflow-assessment-framework": {
+    "title": "A workflow assessment framework for People Ops",
+    "neighbours": [
+      {
+        "slug": "designing-the-ai-native-people-team",
+        "title": "Designing the AI-native People team",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 4
+      },
+      {
+        "slug": "measuring-ai-value-in-people-ops",
+        "title": "Measuring AI value in People Ops",
+        "score": 8,
+        "shared_keywords": [],
+        "shared_heading_tokens": 1,
+        "shared_concept_tokens": 6
+      },
+      {
+        "slug": "automation-audit-playbook",
+        "title": "The automation audit playbook",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 3,
+        "shared_concept_tokens": 1
+      },
+      {
+        "slug": "leading-the-ai-transformation",
+        "title": "Leading the AI transformation in People",
+        "score": 7,
+        "shared_keywords": [],
+        "shared_heading_tokens": 2,
+        "shared_concept_tokens": 3
+      }
+    ]
+  }
+}
