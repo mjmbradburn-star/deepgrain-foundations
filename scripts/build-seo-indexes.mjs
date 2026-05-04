@@ -266,7 +266,7 @@ Articles within each category below are listed in foundational reading order (ol
 }
 
 function buildLlmsFullTxt(articles) {
-  const head = `# Deepgrain — full Intelligence corpus
+  const head = `# Deepgrain, full Intelligence corpus
 Last updated: ${TODAY}
 Articles: ${articles.length}
 Canonical: ${ORIGIN}/llms-full.txt
