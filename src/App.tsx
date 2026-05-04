@@ -22,6 +22,7 @@ const IntelligenceCompare = lazy(() => import("./pages/IntelligenceCompare"));
 const IntelligencePillars = lazy(() => import("./pages/IntelligencePillars"));
 const IntelligencePillar = lazy(() => import("./pages/IntelligencePillar"));
 const IntelligenceCluster = lazy(() => import("./pages/IntelligenceCluster"));
+const AnswerDetail = lazy(() => import("./pages/AnswerDetail"));
 
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
@@ -60,6 +61,7 @@ const App = () => (
               <Route path="/intelligence/pillars" element={<IntelligencePillars />} />
               <Route path="/intelligence/pillar/:slug" element={<IntelligencePillar />} />
               <Route path="/intelligence/cluster/:slug" element={<IntelligenceCluster />} />
+              <Route path="/answers/:slug" element={<AnswerDetail />} />
               <Route path="/intelligence/ai-operating-system-vs-operating-model" element={<IntelligenceCompare slug="ai-operating-system-vs-operating-model" />} />
               <Route path="/intelligence/ai-os-vs-ai-platform" element={<IntelligenceCompare slug="ai-os-vs-ai-platform" />} />
               <Route path="/intelligence/ai-os-vs-automation" element={<IntelligenceCompare slug="ai-os-vs-automation" />} />
