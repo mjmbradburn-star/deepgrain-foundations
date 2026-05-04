@@ -36,6 +36,8 @@ export const CATEGORIES: Category[] = [
   { slug: "people-ops-governance", name: "Governance & Trust", description: "Working with AI without trading away judgment.", track: "people-ops" },
 ];
 
+import type { ClusterSlug } from "@/lib/clusters";
+
 export interface ArticleFrontmatter {
   title: string;
   slug: string;
@@ -48,6 +50,10 @@ export interface ArticleFrontmatter {
   featured?: boolean;
   track?: Track;
   heroImage?: string;
+  /** Single best topic-cluster home for this article. */
+  primaryCluster?: ClusterSlug;
+  /** Additional clusters this article strongly contributes to. */
+  clusters?: ClusterSlug[];
 }
 
 export interface Article {
