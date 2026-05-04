@@ -2543,6 +2543,12 @@ READ_TIME: 11 min
 DESCRIPTION: From ad-hoc usage to autonomous operations: the five tiers of AI operating maturity, what each one looks like in practice, and what it takes to climb each rung.
 ========================================
 
+- The AI operating ladder is five tiers: ad-hoc, assisted, augmented, autonomous, and self-operating.
+- Each rung describes a different shape of AI operating system underneath, with different demands on data, tools, agents, governance, and cadence.
+- Most companies are between tier 1 and tier 2 but believe they are at tier 3. The gap is where AI budget gets wasted.
+- The ladder is a sequence. Skipping rungs almost always fails because each tier depends on the operating habits the previous one built.
+- Tier 5 is honest, not aspirational. Most useful work for the next several years lives at tiers 3 and 4.
+
 Most companies overestimate where they are on AI by two rungs. Leadership thinks the team is at tier 3. The operators on the ground know they are at tier 1. The gap between those two beliefs is where most AI budgets get spent without producing anything.
 
 The ladder below is the model we use to settle that argument. Five tiers, in order, each describing a different shape of AI operating system (/intelligence/what-is-an-ai-operating-system) underneath. The model is the same across the rungs. The data, tools, agents, governance, and cadence wrapped around it are not.
@@ -2646,6 +2652,11 @@ Whatever you score, the next move is the next rung, not three rungs up. Most ope
 
 For a structured version that works across all eight pillars (the five readiness pillars plus leadership, talent, and intervention readiness), see the AI Operating Index (https://aioi.deepgrain.ai). It scores you, names the rung, and gives you a ranked plan back.
 
+- Score one function honestly. The next move is the next rung, not three rungs up.
+- Tier 3 is where most of the unlock lives: a scoped agent, a real workflow, a real governance check.
+- Climbing the ladder is mostly an operating-habits problem, not a model problem.
+- If you cannot describe what good looks like at tier 3, you are not ready to leave tier 2.
+
 
 ========================================
 TITLE: From AI experiments to AI infrastructure
@@ -2656,6 +2667,12 @@ PUBLISHED: 2026-03-09
 READ_TIME: 8 min
 DESCRIPTION: Experiments are cheap. Infrastructure is expensive. The companies that win the next decade are the ones that know when to switch, and what to switch into.
 ========================================
+
+- Experiments answer "can the model do this?" Infrastructure answers "can we run this on Monday?" Different question, different cost.
+- Switch from experiments to infrastructure when the same workflow has been pilot-built three times, or when value repeats across two functions.
+- Infrastructure is not a platform purchase. It is data pipelines, integrations, governance, runtime, and the operating cadence around them.
+- Build infrastructure smallest-first, in the order real workflows need it. Avoid the temptation to wire everything before running anything.
+- The cost of not switching is usually invisible: the same prompts re-written, the same data re-secured, the same demo re-run.
 
 There is a moment in every AI programme when the experiments need to stop and the infrastructure needs to start. Knowing when, and knowing what to switch into, is the job.
 
@@ -2723,6 +2740,11 @@ If those three things are still tolerated after the switch, you have not actuall
 
 For most companies, the right next step is one experiment fewer and one piece of infrastructure more. Pick the workflow. Build the substrate. Run it on Monday morning. Then do it again.
 
+- Experiments without exit criteria are budget, not learning.
+- The switch is a decision, not a roadmap milestone. Mark it explicitly.
+- The unit of infrastructure is a workflow, not a layer. Build the layer the workflow needs, then the next.
+- A platform purchase is a component, not a strategy. Treat it as such.
+
 
 ========================================
 TITLE: Why AI pilots stall at production
@@ -2733,6 +2755,12 @@ PUBLISHED: 2026-03-02
 READ_TIME: 8 min
 DESCRIPTION: The path from pilot to production is paved with the things nobody wanted to think about during the demo. Here is the recurring pattern, and how to design pilots that actually cross it.
 ========================================
+
+- A pilot proves a model can do a task. Production proves an organisation can absorb the consequences. Almost no pilot is designed for the second question.
+- The recurring stall pattern: manual data pipelines, hacked integrations, Slack-thread governance, no maintenance owner, and pilots that tested the model instead of the operating system.
+- Pilots that ship are designed as the production version at lower volume, with a real owner, real data, real integrations, and a decision at the end.
+- The single most common stall reason is the absence of an operating leader who owns the workflow on Monday morning.
+- The model is rarely the problem. The substrate around it is.
 
 A pilot proves a model can do a task. Production proves an organisation can absorb the consequences. Most can't, yet, and the gap between the two is where AI programmes go to die quietly.
 
@@ -2792,6 +2820,11 @@ For the longer arc, see from AI experiments to AI infrastructure (/intelligence/
 
 > AI pilots stall because the pilot proves the model can do the task and production proves the organisation can absorb the consequences. The model is rarely the problem. The pipeline, the integration, the governance, the maintenance, and the operating ownership are. Pilots that ship are designed as the production version at lower volume, with a named owner, real data, and a decision at the end.
 
+- Design the production version first, then run it as a pilot at lower volume.
+- Name the operating leader who will own the workflow on Monday before the pilot starts.
+- Run pilots on Monday morning data, not curated demos. The dirt is the test.
+- A pilot without a kill criterion is not a pilot. It is a budget line.
+
 
 ========================================
 TITLE: The five pillars of AI readiness
@@ -2802,6 +2835,12 @@ PUBLISHED: 2026-02-23
 READ_TIME: 9 min
 DESCRIPTION: Readiness is not a model selection problem. It is a Data, Tools, Agents, Governance, and Cadence problem, in that order. Here is the diagnostic, with what good and bad look like at each pillar.
 ========================================
+
+- AI readiness has five pillars: data, tools, agents, governance, and operating cadence.
+- The model is the easy part. Switching frontier models rarely changes outcomes. The pillars do.
+- Skip a pillar and the system rots in that exact place. The weakest pillar sets the strength of the whole.
+- Start with whichever pillar is breaking the next workflow you actually need to run, not the one that sounds most strategic.
+- Readiness is the diagnostic. The AI operating system is the runtime. You assess pillar by pillar, then build pillar by pillar.
 
 Most organisations grade themselves on the wrong axis. They ask which model they are using, which platform they have bought, which roadmap they have signed off. None of those questions predict whether AI will produce real output a year from now.
 
@@ -2905,6 +2944,11 @@ If you want a structured version of the same exercise, the AI Operating Index (h
 ## A working summary
 
 > AI readiness is the condition of an organisation's data, tools, agents, governance, and operating cadence such that it can absorb AI as capability rather than as demo. The five pillars are not a sequence. They are a set, and the weakest one decides the strength of the whole.
+
+- Treat the pillars as a checklist tied to a real workflow, not a curriculum to study.
+- Score each pillar honestly out of three for one workflow. Move the lowest pillar to a two, then run the workflow.
+- Build the AI OS pillar by pillar in the order real workflows demand it, not in the order vendors sell it.
+- Readiness moves on its own once two or three workflows are running end to end.
 
 
 ========================================
@@ -3020,6 +3064,12 @@ READ_TIME: 6 min
 DESCRIPTION: An operating model is a slide. An operating system is what runs when nobody is looking. The distinction is the entire point.
 ========================================
 
+- An operating model is a slide. It describes intent.
+- An operating system is what runs when nobody is looking. It describes execution.
+- Every company has both. The gap between them is where most consultancies make their money and where most of the value is lost.
+- The same distinction applies to AI: an AI operating model is a deck about how AI fits, an AI operating system is what actually runs.
+- Most teams have one and call it the other. Naming the difference is the first useful piece of work.
+
 An operating model describes intent. An operating system describes what actually runs.
 
 ## The gap between the two
@@ -3029,6 +3079,10 @@ Every company has both. The gap between them is where consultancies make their m
 The same distinction matters in the AI conversation. An AI operating model is a deck about how AI fits. An AI operating system (/intelligence/what-is-an-ai-operating-system) is what actually runs.
 
 > The operating model is description. The AI operating system is substrate. Most companies have one and call it the other.
+
+- Models describe. Systems execute. Conflating them is the most common consulting failure.
+- The gap between the model and the system is the unit of work for an operating leader.
+- Read the system first. The model on the wall is rarely the system on the floor.
 
 This article is a placeholder scaffold. Full prose to follow.
 
