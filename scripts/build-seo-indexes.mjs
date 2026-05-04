@@ -245,7 +245,7 @@ Articles within each category below are listed in foundational reading order (ol
 
   const sections = [];
   for (const [trackKey, label] of Object.entries(TRACK_LABELS)) {
-    sections.push(`\n## Intelligence — ${label}\n`);
+    sections.push(`\n## Intelligence: ${label}\n`);
     const cats = byTrack[trackKey] || {};
     for (const catSlug of Object.keys(cats)) {
       const catLabel = CATEGORY_LABELS[catSlug] || catSlug;

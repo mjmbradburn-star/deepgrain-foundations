@@ -24,7 +24,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [Intelligence pillars](https://deepgrain.ai/intelligence/pillars): Pillar hubs grouping related articles into deep topic clusters.
 - [Brain](https://deepgrain.ai/brain): The People Ops AI Brain, nine working notes on running People functions with AI. Free with email.
 
-## Intelligence — Deepgrain Foundations
+## Intelligence: Deepgrain Foundations
 
 
 ### Leadership & Craft
@@ -77,7 +77,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [Operating systems vs operating models](https://deepgrain.ai/intelligence/operating-systems-vs-operating-models): An operating model is a slide. An operating system is what runs when nobody is looking. The distinction is the entire point.
 - [The difference between strategy and operating reality](https://deepgrain.ai/intelligence/strategy-vs-operating-reality): Strategy is a story about the future. Operating reality is a description of the present. Most leadership teams confuse the two.
 
-## Intelligence — People Ops AI
+## Intelligence: People Ops AI
 
 
 ### Foundations
