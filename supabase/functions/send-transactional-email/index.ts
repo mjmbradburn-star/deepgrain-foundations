@@ -30,24 +30,21 @@ function generateToken(): string {
     .join("");
 }
 
-// Auth: this function only accepts service_role callers. The Supabase gateway
-// validates the JWT (verify_jwt = true), but anon JWTs would otherwise be
-// accepted — so we additionally check the role claim here. All legitimate
-// transactional sends are dispatched server-side (DB triggers, edge functions,
-// or other server contexts), never directly from the browser.
+// Auth: this function only accepts callers presenting the project's
+// service_role key as a bearer token. We compare in constant time against
+// SUPABASE_SERVICE_ROLE_KEY rather than parsing the JWT payload, because
+// `verify_jwt = false` means the gateway does NOT verify the signature —
+// a payload-only check could be bypassed with a forged unsigned JWT.
+// All legitimate callers (DB triggers via Vault, server-side Edge Functions)
+// already send the real service_role key in the Authorization header.
 
-function parseJwtClaims(token: string): Record<string, unknown> | null {
-  const parts = token.split(".");
-  if (parts.length < 2) return null;
-  try {
-    const payload = parts[1]
-      .replaceAll("-", "+")
-      .replaceAll("_", "/")
-      .padEnd(Math.ceil(parts[1].length / 4) * 4, "=");
-    return JSON.parse(atob(payload)) as Record<string, unknown>;
-  } catch {
-    return null;
-  }
+function timingSafeEqual(a: string, b: string): boolean {
+  const ae = new TextEncoder().encode(a);
+  const be = new TextEncoder().encode(b);
+  if (ae.length !== be.length) return false;
+  let diff = 0;
+  for (let i = 0; i < ae.length; i++) diff |= ae[i] ^ be[i];
+  return diff === 0;
 }
 
 Deno.serve(async (req) => {
