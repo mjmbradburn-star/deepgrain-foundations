@@ -21,6 +21,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [Contact](https://deepgrain.ai/contact): How to start a conversation.
 - [Intelligence](https://deepgrain.ai/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
 - [Brain](https://deepgrain.ai/brain): The People Ops AI Brain — nine working notes on running People functions with AI. Free with email.
+- [AI Operating Index (AIOI)](https://aioi.deepgrain.ai/): Free 8-pillar diagnostic that scores an organisation's AI operating maturity.
 
 ## Intelligence — Deepgrain Foundations
 
@@ -42,7 +43,7 @@ What an AI operating system is — and how to build one.
 
 [Browse category](https://deepgrain.ai/intelligence/category/ai-operating-systems)
 
-- [What is an AI operating system?](https://deepgrain.ai/intelligence/what-is-an-ai-operating-system): An AI operating system is the layer between models and work. It is what turns a clever demo into a compounding capability.
+- [What is an AI operating system? (AI OS, explained)](https://deepgrain.ai/intelligence/what-is-an-ai-operating-system): Pillar definition. AI OS = the live runtime layer between models and work. Covers the five pillars (data, tools, agents, governance, cadence), AI OS vs operating model, and how an AI based / AI powered operating system differs from automation.
 - [The five pillars of AI readiness](https://deepgrain.ai/intelligence/five-pillars-of-ai-readiness): Readiness is not a model selection problem. It is a Data, Tools, Agents, Governance, and Cadence problem — in that order.
 - [Why AI pilots stall at production](https://deepgrain.ai/intelligence/why-ai-pilots-stall-at-production): The path from pilot to production is paved with the things nobody wanted to think about during the demo.
 - [From AI experiments to AI infrastructure](https://deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure): Experiments are cheap. Infrastructure is expensive. The companies that win the next decade are the ones that know when to switch.
@@ -96,7 +97,7 @@ From AI dabbling to systematic People Ops capability.
 
 - [Diagnosing AI readiness in People Ops](https://deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops): Before you build anything, read where the team actually is. A six-axis diagnostic for People functions that wastes none of the early momentum.
 - [From prompts to systems](https://deepgrain.ai/intelligence/from-prompts-to-systems): Most People teams are stuck between dabbling and tool-shopping. Neither produces capability. The third path is building — and it has a grain.
-- [Setting up your AI workspace](https://deepgrain.ai/intelligence/setting-up-your-ai-workspace): Most People teams treat AI like a search bar. The ones getting real leverage treat it like a workspace — projects, context, instructions, shared memory. Here is how to set yours up.
+- [AI workspace setup for People teams (Claude, ChatGPT, Copilot)](https://deepgrain.ai/intelligence/setting-up-your-ai-workspace): How to set up an AI workspace properly for a People function: custom instructions, projects, three-tier reference documents, and what never goes in. Tool-agnostic across Claude, ChatGPT, Copilot and Gemini.
 
 ### People Ops · Systems & Automation
 
