@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Navigate, useParams, Link } from "react-router-dom";
 import { getArticlesByCategory, getCategory } from "@/lib/intelligence";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
+import { RelatedClusterArticles } from "@/components/intelligence/RelatedClusterArticles";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
