@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import { Link } from "react-router-dom";
+import { slugifyHeading } from "@/lib/slugifyHeading";
 
 /**
  * Shared article typography tokens.
@@ -29,16 +30,34 @@ export const mdxComponents: MDXComponents = {
       {...props}
     />
   ),
-  h2: (props) => (
-    <h2
-      className={`${articleTypography.h2} mt-16 mb-6`}
-      style={articleH2Style}
-      {...props}
-    />
-  ),
-  h3: (props) => (
-    <h3 className={`${articleTypography.h3} mt-12 mb-4`} {...props} />
-  ),
+  h2: ({ children, ...rest }) => {
+    // Auto-id every article H2 from its visible text. Enables deep links
+    // like /intelligence/<article>#<heading-slug> from the Answers hub,
+    // related-content rails, and external citations.
+    const id = slugifyHeading(children);
+    return (
+      <h2
+        id={id}
+        className={`${articleTypography.h2} mt-16 mb-6 scroll-mt-32`}
+        style={articleH2Style}
+        {...rest}
+      >
+        {children}
+      </h2>
+    );
+  },
+  h3: ({ children, ...rest }) => {
+    const id = slugifyHeading(children);
+    return (
+      <h3
+        id={id}
+        className={`${articleTypography.h3} mt-12 mb-4 scroll-mt-32`}
+        {...rest}
+      >
+        {children}
+      </h3>
+    );
+  },
   p: (props) => (
     <p className={`${articleTypography.body} mb-6`} {...props} />
   ),
