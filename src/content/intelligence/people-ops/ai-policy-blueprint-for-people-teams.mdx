@@ -1,0 +1,90 @@
+export const frontmatter = {
+  title: "An AI policy blueprint for People teams",
+  slug: "ai-policy-blueprint-for-people-teams",
+  category: "people-ops-governance",
+  track: "people-ops",
+  description: "An AI policy that enables, not strangles. Foundational prep, governance, guardrails, and how to handle shadow AI without driving it deeper underground.",
+  keywords: ["AI policy HR", "AI use policy", "AI governance People Ops", "shadow AI", "AI policy template"],
+  readTime: "11 min",
+  publishedAt: "2026-05-01",
+  author: "Matthew Bradburn",
+};
+
+export const faqs = [
+  {
+    question: "Why do most AI policies fail?",
+    answer: "Two reasons. They are written to ban, not to enable, so employees route around them. And they are written by Legal alone, without People, IT, security, and the actual users in the room, so they describe a world that does not exist. The policies that work make the safe path easier than the unsafe path, name approved tools by name, and treat shadow AI as a signal to address rather than a sin to punish.",
+  },
+  {
+    question: "What about shadow AI? Around 71% of employees use unapproved tools.",
+    answer: "Banning does not solve it. It just hides it. The right response is to find out what employees are using, why, and what legitimate need is driving the behaviour. Build a fast-track approval process for new tools. Audit the gap between what is approved and what is actually needed. Treat shadow AI as product feedback about your enterprise AI offering.",
+  },
+  {
+    question: "Is a DPIA necessary?",
+    answer: "In the UK and EU, almost certainly yes for any People process that uses AI on personal data, and especially for anything that could be considered automated decision-making. In the US, sector and state law varies. The smart default is to run a DPIA-equivalent regardless of jurisdiction, because it forces the right design conversations even when the law does not.",
+  },
+  {
+    question: "What is the minimum viable AI policy?",
+    answer: "One page. Approved tools by name. Approved use cases by category. Forbidden uses (especially anything involving consequential decisions about an individual without human review). Where to log AI use. Where to ask for approval of new tools. Who owns the policy. Date of last review. If you cannot fit it on a page, the team will not read it.",
+  },
+];
+
+Most AI policies in People functions are written like the policy is the deliverable. A long document, comprehensive, defensive, full of "shall not" clauses, and ignored by 80% of the people it is meant to govern. Meanwhile the team uses ChatGPT, Claude, and a handful of unapproved tools because the work has to get done.
+
+The policy that actually works does the opposite. It enables. It makes the safe path easier than the unsafe path. It is short enough to read. And it is built with the people who will live with it, not around them.
+
+This piece walks through the practical structure: foundational prep, governance, guardrails, and the shadow-AI question that most policies pretend does not exist.
+
+## 1. Foundational preparation
+
+Before drafting anything, do three things.
+
+**Identify and validate AI use cases.** What specific People challenges are you solving? Admin load, engagement insights, comms, recruiting? Which workflows could be supported, enhanced, or reimagined? Where are employees or teams already using shadow AI today? What legitimate productivity needs are driving them toward unauthorised tools? Sort each candidate use case as low-risk (drafting comms) or high-risk (performance reviews, hiring decisions).
+
+**Assemble a cross-functional working group.** Voices from People, Legal and Compliance, IT and InfoSec, Data Protection, DEI, and crucially, employee representatives who can speak to real workflow pain. Tech-savvy managers who will use the policy day to day. The group meets regularly during rollout and quarterly once operational. Their job is to enable safe innovation, not block it entirely.
+
+**Map the data landscape.** What personal or sensitive data does HR currently store and process? Demographics, health, pay, performance. Where could that data intersect with AI tools as inputs, outputs, or training data? Which external vendors and platforms have access? Where are the gaps that make employees reach for consumer AI? Slow approval, clunky software, missing capability.
+
+**Assess tool readiness and risks.** For each candidate tool: cloud or on-prem, where is data stored, who owns it, does the tool train on your data and can that be disabled, are usage terms enterprise-grade. Does the tool actually compete with the consumer alternatives employees are already using? If not, you have a shadow AI problem coming whether you write a policy or not.
+
+## 2. Governance and guardrails
+
+Once the foundation is in place, the policy can be drafted. The structure that consistently works:
+
+**A clear, short AI Use Policy.** One page. Defines acceptable and prohibited uses by category, not by listing every possible scenario. Lists approved tools by name. Names a fast-track approval process for new tools. Clarifies responsibilities: fact-checking AI outputs, declaring AI use in sensitive contexts. Reinforces that AI is a support, not a substitute, for human judgment. Addresses shadow AI directly: explains why unapproved tools create risk and how to request alternatives. Enablement-focused, not punishment-focused.
+
+**A Data Protection Impact Assessment.** Particularly essential in the UK and EU for any data-driven automation. Includes purpose and scope of AI use, lawful basis for processing, risks to individuals and mitigations, who has access, how data is stored or deleted, and an honest assessment of whether the approved tools meet user needs (the absence of which fuels shadow AI).
+
+**Employee transparency and choice.** Inform staff how their data might be used in AI-powered tools. Where possible, opt-in or opt-out. Clarify there is no automated decision-making in consequential People processes without human review. The transparency itself is part of the trust contract.
+
+**Bias and quality monitoring.** Especially for hiring, performance, and progression. Regular audits of any AI-influenced decision flow. A clear escalation path when the audit surfaces drift.
+
+## 3. The shadow AI question
+
+Roughly 71% of employees use unapproved AI tools at work. Pretending otherwise is the fastest way to write a policy that fails on day one.
+
+The right posture: assume it is happening, find out what is being used and why, and treat that as design feedback for your enterprise AI offering.
+
+Practical moves:
+
+- **Anonymous survey.** "What AI tools do you use for work, approved or not? What do you use them for? What blocked you from using an approved alternative?"
+- **Fast-track approval.** A two-week SLA for evaluating a new tool a team wants to adopt, with a default-yes for low-risk drafting and research use cases.
+- **Visible alternatives.** When you ban a consumer tool, the next paragraph names the approved alternative and explains how to access it.
+- **No punishment for disclosure.** If an employee admits to using a shadow tool, the response is to evaluate the underlying need, not to reprimand. Punishment drives the behaviour underground, where you can no longer see it.
+
+A policy that pretends shadow AI does not exist will be ignored. A policy that names it, addresses the underlying needs, and offers a fast path to approval becomes a tool the team actually uses.
+
+## 4. Operating cadence
+
+A policy is not a document, it is a system that has to be maintained.
+
+- **Quarterly review by the working group.** Tools change, vendors change, regulation changes, your team changes.
+- **Monthly metrics.** Adoption, incidents, exceptions raised, tools requested, tools approved or rejected.
+- **Public log.** A simple internal page that lists currently approved tools, currently forbidden uses, recent additions, recent removals. Visible to the whole company.
+- **A named owner.** One person who owns the policy. Usually the Head of People Ops or a dedicated AI Lead inside the function. Without an owner, the policy ages.
+
+## What this connects to
+
+The policy is one piece of the wider [AI enablement operating model](/intelligence/ai-enablement-operating-model). It sits underneath the [diagnostic](/intelligence/diagnosing-ai-readiness-in-people-ops), gets used inside the [AI workspace](/intelligence/setting-up-your-ai-workspace), and constrains the [production agents](/intelligence/production-agents-for-people-ops) the team eventually builds.
+
+A good AI policy in a People function does one job: it makes the safe thing the easy thing. Everything else, the rituals, the guardrails, the audits, the escalation paths, exists to support that. Get the policy right, and adoption gets faster, not slower. Get it wrong, and adoption just goes underground.

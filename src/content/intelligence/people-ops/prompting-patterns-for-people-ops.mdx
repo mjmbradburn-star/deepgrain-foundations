@@ -1,0 +1,117 @@
+export const frontmatter = {
+  title: "Prompting patterns for People Ops",
+  slug: "prompting-patterns-for-people-ops",
+  category: "people-ops-foundations",
+  track: "people-ops",
+  description: "A working library of prompt patterns for People teams: the five building blocks, prompt chaining, critical-thinking prompts that stress-test your output, and the model-specific shifts you need for GPT-5 and Claude class models.",
+  keywords: ["HR prompts", "prompt engineering for HR", "People Ops prompts", "prompt chaining", "AI prompts for HR"],
+  readTime: "14 min",
+  publishedAt: "2026-04-22",
+  author: "Matthew Bradburn",
+  featured: true,
+};
+
+export const faqs = [
+  {
+    question: "What are the building blocks of a strong People Ops prompt?",
+    answer: "Five elements: Role (who the model is acting as), Context (background it does not have), Task (what you actually need), Constraints (format, tone, length, what to avoid), and Output spec (the exact shape of what comes back). You do not need all five every time, but knowing they exist lets you choose deliberately. Most weak prompts are weak because three of the five are missing.",
+  },
+  {
+    question: "What is prompt chaining and why does it matter for HR?",
+    answer: "Prompt chaining is breaking a complex task into a sequence of smaller prompts where each output feeds the next. Instead of asking \"design our performance review process,\" you ask the model to first list common failure modes, then critique three patterns, then draft one version, then stress-test it against your constraints. Chaining produces work that is closer to how a senior practitioner thinks. It also makes errors visible at each step, which makes them fixable.",
+  },
+  {
+    question: "How do I stop AI giving confidently wrong answers?",
+    answer: "Critical-thinking prompts. After any first draft, run the output through prompts like: \"What assumptions did you make that I have not verified?\" \"What evidence would change this recommendation?\" \"What would a sceptical Board member ask?\" \"Where is this answer weakest?\" The model is a much better critic of its own work than people realise. The trick is to ask, every time.",
+  },
+  {
+    question: "Does the same prompt work across ChatGPT, Claude and Gemini?",
+    answer: "No. Newer models like GPT-5 follow instructions extremely literally. They handle massive context but need explicit reasoning steps. Claude is more interpretive and tends to surface nuance unprompted. Gemini handles multimodal and large research tasks well. The ROI on writing one good prompt and adapting it per model is much higher than chasing the \"best\" model.",
+  },
+];
+
+Most People Ops folks use AI like a search engine. One question in, one answer out. That is fine for trivia. It produces almost nothing of value for actual work.
+
+The shift is not about discovering magic phrases. It is about learning a small set of patterns that change what AI can do for you. Three patterns matter most: structured prompts, prompt chains, and critical-thinking prompts. This piece goes through all three, with patterns you can use this week.
+
+## The five building blocks
+
+Every strong prompt draws from some combination of five elements.
+
+**Role.** Who is the model acting as? "Act as a senior People Business Partner with experience in regulated environments." This sets the perspective and the implicit expertise level.
+
+**Context.** What does the model not know that you know? "We are a 220-person SaaS company. Two-year tenure average. Recent acquisition of a 40-person team in Berlin. Hybrid policy under review." Context is the single biggest lever on output quality.
+
+**Task.** What do you actually need? Not "help with onboarding," which is a topic. "Draft a 30-60-90 day onboarding plan for a new Engineering Manager joining the Berlin team," which is a task.
+
+**Constraints.** Boundaries. Format, tone, length, what to avoid. "Under 600 words. UK English. No jargon. Do not assume we have a formal levelling framework."
+
+**Output spec.** The exact shape of what comes back. "Return a table with columns: Phase, Goal, Activities, Owner, Success metric." Output specs save more time than any other pattern.
+
+You do not need all five every time. A throwaway question does not need a role and a constraint stack. But the moment you are doing work that matters, the five blocks turn an average answer into a usable one.
+
+A weak prompt: *"Give me ideas for improving onboarding."* You will get generic ideas you have read three times.
+
+A strong prompt: *"Act as a People Ops lead with onboarding redesign experience in 200-person hybrid SaaS companies. Our context: average new-hire ramp is 12 weeks, manager NPS on onboarding is 6.2, we are about to grow the engineering team by 40%. Task: propose three onboarding redesigns we could pilot in Q3, each addressing a different root cause. Constraints: under 800 words, prioritised by impact-to-effort ratio. Output: a markdown table with columns: Pilot name, Hypothesis, Owner, Cost, Risk, Success metric."*
+
+The second prompt produces something you can take to a planning meeting. The first produces a wall of words.
+
+## Prompt chaining
+
+Single prompts have a ceiling. The work that matters in People Ops, redesigning a process, diagnosing a culture issue, drafting a policy that survives legal and the team, is too complex for one prompt. The pattern that breaks the ceiling is chaining.
+
+A prompt chain is a sequence of prompts where each output feeds the next. The chain mimics how a thoughtful practitioner actually approaches the work.
+
+A useful onboarding-redesign chain:
+
+1. *"List the ten most common failure modes in technical onboarding for hybrid SaaS companies between 150 and 300 people. For each, name the root cause and the typical symptom."*
+2. *"Of those ten, which three are most relevant given this context: \[paste your context\]. Justify your selection."*
+3. *"For each of the three, draft a redesign of our current onboarding flow that addresses the root cause without breaking what is working."*
+4. *"Now stress-test each redesign. What would a sceptical engineering lead say? What would a Finance Partner ask about cost? What would a new joiner who lived through it think?"*
+5. *"Synthesise into a one-page proposal: what we are testing, why, how we will measure, what we will stop doing if it does not work."*
+
+Five prompts. Twenty minutes. The output is meaningfully better than anything a single mega-prompt would produce, because the chain forced sequential thinking.
+
+The other reason chains beat mega-prompts: errors are visible. If step 2 picks the wrong three failure modes, you catch it before step 3 builds on a bad foundation. Single prompts hide their reasoning. Chains expose it.
+
+## Critical-thinking prompts
+
+The prompts most teams skip are the ones that catch the costly mistakes. A first draft from any model sounds confident. Confident does not mean correct.
+
+Run any output you are about to act on through one or more of these:
+
+- *"What assumptions did you make in this answer that I have not verified?"*
+- *"What evidence would change your recommendation?"*
+- *"What would a sceptical Board member ask about this?"*
+- *"What is the weakest part of this argument?"*
+- *"Where could this fail in production, and how would I detect it?"*
+- *"List three reasons this is wrong, even if you think it is right."*
+- *"If I implemented this and it failed, what would the post-mortem most likely say?"*
+
+Models are surprisingly good critics of their own work, when asked. The single biggest quality lift available to a People Ops team using AI is making the critique step a habit, not an afterthought.
+
+The pattern is simple: never ship the first draft. Always run a critique pass. Often a second pass to refine. Then ship.
+
+## The model-specific shifts
+
+The same prompt does not produce the same quality across models. The newest generation, GPT-5, Claude 4 class, Gemini 3 class, behaves differently enough that copy-pasting your library across models leaves value on the table.
+
+**GPT-5 and the OpenAI line.** Extremely literal instruction following. Massive context windows but still benefits from structure. Will not reason step-by-step unless you ask it to. Best for: complex multi-document workflows, structured outputs, agentic system prompts.
+
+**Claude.** More interpretive. Surfaces nuance and pushback unprompted. Better at long-form drafting in a particular voice. Best for: writing, sensitive comms, policy drafting, anything where tone and judgment matter.
+
+**Gemini.** Strongest on multimodal and research-heavy tasks. Better default at synthesising large public-web context. Best for: market research, comparative analysis, vendor scans.
+
+**Perplexity.** Not a chat model in the same sense. Best treated as the answer engine for "what does the public web say about this," with citations.
+
+A working pattern: draft with Claude, structure with GPT, research with Gemini or Perplexity, critique with whichever model did not produce the draft. The cost of switching is low. The quality lift is real.
+
+For a deeper read on which model to reach for by HR task type, see [choosing AI models for HR work](/intelligence/choosing-ai-models-for-hr-work).
+
+## Where prompting stops being enough
+
+Prompting is the entry point. A team that masters the patterns above will outperform a team that is still asking single-shot questions, by a large margin, for a long time.
+
+But there is a ceiling. Past a certain point, what holds back a People function is not prompt quality. It is the absence of context the model can reach for, the absence of workflows it sits inside, the absence of guardrails that make it safe to deploy at scale. That is the move from [prompts to systems](/intelligence/from-prompts-to-systems), and it is a different conversation.
+
+Get the prompting right first. The systems work has more leverage when the people building it can prompt well.
