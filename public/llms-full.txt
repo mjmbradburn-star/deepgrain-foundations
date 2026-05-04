@@ -21,6 +21,7 @@ READ_TIME: 7 min
 DESCRIPTION: The best operating leaders are quiet on the outside and rigorous on the inside. The volume is misleading.
 ========================================
 
+TLDR:
 - The best operating leaders are quiet on the outside and rigorous on the inside.
 - Volume is misleading. Loud leadership is easy to spot and easy to imitate. Quiet leadership compounds.
 - Quiet does not mean absent. It means the noise the leader makes is signal, not performance.
@@ -28,6 +29,7 @@ DESCRIPTION: The best operating leaders are quiet on the outside and rigorous on
 
 Loud leadership is easy to spot and easy to imitate. Quiet leadership is what actually compounds.
 
+KEY TAKEAWAYS:
 - Optimise for signal, not volume. The team you trust most is the one that hears you least often, but always for something real.
 - Keep the cadence even when nothing dramatic is happening. The cadence is the discipline.
 - Decisions made and not announced are still decisions. Sometimes the right ones.
@@ -43,6 +45,7 @@ READ_TIME: 8 min
 DESCRIPTION: The best hires don't fight the grain or surrender to it. They read it and add to it.
 ========================================
 
+TLDR:
 - Compounding teams have a shared grain. Coherence, not uniformity.
 - The best hires read the grain quickly and add to it. The worst either fight it or surrender to it.
 - Hiring against the grain because the resume is brilliant is the most expensive mistake operating leaders make.
@@ -50,6 +53,7 @@ DESCRIPTION: The best hires don't fight the grain or surrender to it. They read 
 
 Compounding teams have a shared grain. That doesn't mean uniformity — it means coherence.
 
+KEY TAKEAWAYS:
 - Test grain fit explicitly: how does the candidate describe the last system they joined?
 - A hire who reads the grain in week one outperforms a hire who tries to rewrite it in month one.
 - Coherence compounds. Ten coherent hires beat fifteen brilliant strangers every time.
@@ -65,6 +69,7 @@ READ_TIME: 8 min
 DESCRIPTION: Scale is rarely a technology problem. It is almost always an operating problem dressed up as a technology problem.
 ========================================
 
+TLDR:
 - Scale is rarely a technology problem. It is almost always an operating problem dressed up as a technology problem.
 - The bottleneck is rarely the database. It is the decision graph above it.
 - Re-platforming a system that the organisation cannot operate produces a faster system the organisation still cannot operate.
@@ -72,6 +77,7 @@ DESCRIPTION: Scale is rarely a technology problem. It is almost always an operat
 
 The bottleneck is rarely the database. It's the decision graph above it.
 
+KEY TAKEAWAYS:
 - Map the decision graph before re-platforming. Most scale problems live there.
 - Treat operating habits, on-call rotations, and review cadences as part of the architecture.
 - If the same incident pattern recurs after the rewrite, the technology was not the problem.
@@ -87,6 +93,7 @@ READ_TIME: 8 min
 DESCRIPTION: Founder-mode and operator-mode aren't opposites. They're alternating muscles. Knowing which to use, when, is the executive job.
 ========================================
 
+TLDR:
 - Founder-mode and operator-mode are postures, not identities. Treating them as identities is the source of most executive confusion.
 - Founder-mode is high-context, low-process: chase the anomaly, override the system, push through. Operator-mode is high-process, low-context: trust the system, run the cadence.
 - The job is knowing which posture the moment demands. Wrong posture, right intent, still wrong outcome.
@@ -94,6 +101,7 @@ DESCRIPTION: Founder-mode and operator-mode aren't opposites. They're alternatin
 
 The mistake is treating these as identities. They are postures.
 
+KEY TAKEAWAYS:
 - Pick the posture deliberately. Defaulting is the most common executive failure mode.
 - Founder-mode in a scaling org breaks the system. Operator-mode in an early org starves it of speed.
 - If you cannot describe what good looks like in both postures, you only run one.
@@ -109,6 +117,7 @@ READ_TIME: 7 min
 DESCRIPTION: Operating leadership is a craft. Crafts have masters, apprentices, tools, and standards. Most companies forget all four.
 ========================================
 
+TLDR:
 - Operating leadership is a craft. Crafts have masters, apprentices, tools, and standards.
 - Most companies forget all four and call the result culture.
 - A craft is not a hobby. It is a discipline with standards, taught in apprenticeship, judged by output.
@@ -116,6 +125,7 @@ DESCRIPTION: Operating leadership is a craft. Crafts have masters, apprentices, 
 
 A craft is not a hobby. It is a discipline with standards. Operating is the same.
 
+KEY TAKEAWAYS:
 - Treat operating as a craft to be taught, not a personality to be hired for.
 - Apprentice your operators. Pair them with someone further down the path, on real work.
 - Set the standards explicitly. Implicit standards drift; explicit standards compound.
@@ -131,6 +141,7 @@ READ_TIME: 9 min
 DESCRIPTION: AI-native companies have a different grain. The operating system has to assume agents, not just employees.
 ========================================
 
+TLDR:
 - AI-native companies have a different grain because agents are part of the workforce from day one.
 - The org chart needs a column for non-human operators, with the same clarity of ownership as a human role.
 - AI-native is the cleanest case for an AI operating system by design: no legacy substrate to retrofit.
@@ -140,6 +151,7 @@ When agents are part of the workforce, the org chart needs a new column.
 
 AI-native companies are also the cleanest case for an AI operating system (/intelligence/what-is-an-ai-operating-system) by design. There is no legacy substrate to retrofit. The five pillars are built in from day one or they are not built at all.
 
+KEY TAKEAWAYS:
 - Treat agents as roles, not features. They have owners, KPIs, and review cadences.
 - Governance is not a constraint on speed. It is the grammar that makes speed safe.
 - Build the AI OS before the company can afford not to. Retrofitting it costs an order of magnitude more.
@@ -155,6 +167,7 @@ READ_TIME: 9 min
 DESCRIPTION: Climate ventures need to compound on a planetary timeline and a venture-fund clock at the same time.
 ========================================
 
+TLDR:
 - Climate ventures run on two clocks: the planetary timeline and the venture-fund clock.
 - Both are non-negotiable, neither is patient. The operating challenge is holding them both.
 - Most climate failures are operating failures dressed as scientific or market failures.
@@ -162,6 +175,7 @@ DESCRIPTION: Climate ventures need to compound on a planetary timeline and a ven
 
 The hardest operating problem in climate is time. Two clocks, both demanding, neither negotiable.
 
+KEY TAKEAWAYS:
 - Build a cadence that reports on planetary metrics and fund metrics in the same review, not separate ones.
 - Operators who can hold mission and margin in the same sentence are the rarest hire in the sector.
 - Pacing is the strategy. Slower than the planet allows is irresponsible. Faster than the unit economics allow is fatal.
@@ -177,6 +191,7 @@ READ_TIME: 8 min
 DESCRIPTION: Transit organisations operate on the seam between hardware, software, and public trust. The grain runs in three directions at once.
 ========================================
 
+TLDR:
 - Transit lives at the intersection of physical, digital, and civic. Three grains, one organisation.
 - Hardware cadence is years. Software cadence is weeks. Public trust cadence is generations.
 - The operating system has to hold all three rhythms without forcing one into another's tempo.
@@ -184,6 +199,7 @@ DESCRIPTION: Transit organisations operate on the seam between hardware, softwar
 
 Transit lives at the intersection of physical, digital, and civic. Three grains, one organisation.
 
+KEY TAKEAWAYS:
 - Design cadences that respect each grain. Forcing software speed into hardware decisions breaks both.
 - Public trust is the slowest, most expensive, and most easily lost of the three. Treat it as the constraint.
 - Operators who have worked across all three domains are the highest-leverage hires in the sector.
@@ -201,6 +217,7 @@ READ_TIME: 12 min
 DESCRIPTION: Five working diagnostics for People leaders: the underperformance early warning, the People-as-a-product checklist, the 90-day roadmap, the workflow heatmap, and the AI-readiness read. Use them together, not in isolation.
 ========================================
 
+TLDR:
 - A small set of repeatable diagnostics will tell you most of what you need to know about a People function.
 - Five lenses: ownership, cadence, data, escalation, capability.
 - Run them before any tool decision. Run them again after.
@@ -281,6 +298,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - Measuring AI value in People Ops (/intelligence/measuring-ai-value-in-people-ops)
 - Production agents for People Ops (/intelligence/production-agents-for-people-ops)
 
+KEY TAKEAWAYS:
 - Run the same five lenses every time. Comparability is the point.
 - Document the diagnostic. A diagnosis nobody can repeat is folklore.
 - Use the toolkit before buying any new capability.
@@ -298,6 +316,7 @@ READ_TIME: 11 min
 DESCRIPTION: GenAI does not create People debt. It exposes it. Inconsistent levelling, undocumented processes, decision rights nobody can name, all become legible the moment you try to automate around them. The audit, and the order to repay.
 ========================================
 
+TLDR:
 - People debt is the accumulated cost of decisions deferred at the people-systems layer.
 - GenAI exposes people debt faster than any prior technology because it removes the slowness that hid it.
 - Roles that were marginally productive become obviously so. Workflows that were quietly broken break loudly.
@@ -370,6 +389,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - The People Ops diagnostic toolkit (/intelligence/people-ops-diagnostic-toolkit)
 - Designing the AI-native People team (/intelligence/designing-the-ai-native-people-team)
 
+KEY TAKEAWAYS:
 - Treat GenAI as a diagnostic. Where it lights up dysfunction, fix the dysfunction first.
 - Pay down people debt before scaling AI capability on top of it.
 - The teams that thrive are the ones who use the moment to clean up, not paper over.
@@ -387,6 +407,7 @@ READ_TIME: 10 min
 DESCRIPTION: Most corporate values projects fail. They produce a poster, not a behaviour. The values that actually shape a company are short, specific, costly to live by, and wired into how decisions get made. Here is the design pattern.
 ========================================
 
+TLDR:
 - Values stick when they are written in the language of decisions, not the language of posters.
 - Most values fail because they are aspirational nouns that do not survive contact with a hard call.
 - The test: can someone use the value to make a contested decision out loud?
@@ -462,6 +483,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - An AI policy blueprint for People teams (/intelligence/ai-policy-blueprint-for-people-teams)
 - Automation patterns that pay off (/intelligence/automation-patterns-that-pay-off)
 
+KEY TAKEAWAYS:
 - Write each value as a decision rule, not a noun.
 - Stress-test values against real recent decisions. If they do not bite, rewrite them.
 - Revisit annually. Values that never change have probably stopped working.
@@ -479,6 +501,7 @@ READ_TIME: 11 min
 DESCRIPTION: Most performance systems run once a quarter and decay between cycles. The systems that compound are weekly, lightweight, evidence-led, and instrumented. Here is the operating shape that works, and where AI fits without flattening the craft.
 ========================================
 
+TLDR:
 - AI is changing the substrate of coaching and feedback faster than most People teams have noticed.
 - Used well, it gives every manager a thinking partner. Used badly, it replaces conversations that should never have been outsourced.
 - The line is judgment. AI for prep, structure, and synthesis. Humans for the moment itself.
@@ -551,6 +574,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - Choosing AI models for HR work (/intelligence/choosing-ai-models-for-hr-work)
 - Leading the AI transformation in People (/intelligence/leading-the-ai-transformation)
 
+KEY TAKEAWAYS:
 - Use AI for the work around the conversation, never the conversation itself.
 - Train managers to use the tool well before scaling it.
 - Audit for cases where AI is replacing a moment that needed a person.
@@ -568,6 +592,7 @@ READ_TIME: 12 min
 DESCRIPTION: How a 280-person fintech People team went from scattered ChatGPT use to nine production workflows in 90 days. The exact sequence, the trade-offs, the metrics, and the two near-misses.
 ========================================
 
+TLDR:
 - FinEdge built an AI roadmap by reading the operating reality of its People function first.
 - The roadmap was not a list of tools. It was a sequence of capability shifts tied to operating outcomes.
 - Six months in, adoption was high because the work was designed around the team, not the tool.
@@ -643,6 +668,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - A workflow assessment framework for People Ops (/intelligence/workflow-assessment-framework)
 - AI workspace setup for People teams (Claude, ChatGPT, Copilot) (/intelligence/setting-up-your-ai-workspace)
 
+KEY TAKEAWAYS:
 - Sequence by absorption capacity, not by tool readiness.
 - Tie every roadmap item to an operating outcome you can name on a Friday.
 - Resist the demo-led roadmap. It optimises the vendor's pipeline, not yours.
@@ -658,6 +684,7 @@ READ_TIME: 8 min
 DESCRIPTION: Financial data businesses are operating systems wearing product clothing. Treat the substrate as the product.
 ========================================
 
+TLDR:
 - In financial data the pipeline is the product. Everything else is interface.
 - Treat the substrate as the product and the operating system maps cleanly. Treat the UI as the product and the substrate rots.
 - Reliability is not a feature. It is the floor the entire business rests on.
@@ -665,6 +692,7 @@ DESCRIPTION: Financial data businesses are operating systems wearing product clo
 
 In financial data, the pipeline is the product. Everything else is interface.
 
+KEY TAKEAWAYS:
 - Reliability metrics belong in the executive review, not the engineering standup.
 - If the pipeline owner cannot describe the business outcome it serves, the substrate will optimise for the wrong thing.
 - Customer trust in financial data is rebuilt slowly and lost quickly. Operate accordingly.
@@ -682,6 +710,7 @@ READ_TIME: 11 min
 DESCRIPTION: Every white-collar job is a sequence of clicks. AI is starting at the click layer and moving up. The roles that survive are the ones that change shape: from operator to architect.
 ========================================
 
+TLDR:
 - The HR Architect is the role most People functions need next and few have hired for yet.
 - Half systems thinker, half builder. Designs the operating system the People function runs on.
 - Not the Head of People. Not the HRBP. A distinct role with distinct deliverables.
@@ -780,6 +809,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - From prompts to systems (/intelligence/from-prompts-to-systems)
 - Leading the AI transformation in People (/intelligence/leading-the-ai-transformation)
 
+KEY TAKEAWAYS:
 - Hire the architect role explicitly. Spreading the work across existing roles does not work.
 - Pair them with builder access: tools, time, mandate.
 - Measure the role on systems shipped and adopted, not on policies written.
@@ -797,6 +827,7 @@ READ_TIME: 11 min
 DESCRIPTION: Most automation efforts fail because they start with "what can I automate?" The right question is "what problems am I trying to solve?" A problem-first audit, with the 6T framework and a prioritisation matrix.
 ========================================
 
+TLDR:
 - An automation audit is a structured read of where work hides, repeats, or breaks.
 - Most People functions have more automation surface than they realise and worse hygiene than they admit.
 - The audit produces three things: a candidate list, a risk register, and a sequencing call.
@@ -918,6 +949,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - An AI policy blueprint for People teams (/intelligence/ai-policy-blueprint-for-people-teams)
 - Leading the AI transformation in People (/intelligence/leading-the-ai-transformation)
 
+KEY TAKEAWAYS:
 - Look for repetition, latency, and rework. The leverage lives at those seams.
 - Audit existing automations as ruthlessly as you audit new candidates.
 - Sequence by value and absorption together. High-value low-absorption is the trap.
@@ -935,6 +967,7 @@ READ_TIME: 11 min
 DESCRIPTION: An AI policy that enables, not strangles. Foundational prep, governance, guardrails, and how to handle shadow AI without driving it deeper underground.
 ========================================
 
+TLDR:
 - A working AI policy is short, specific, and written from the inside of the work.
 - Most policies fail by being generic. They list principles instead of decisions.
 - Cover four things: what is allowed, what is logged, what is escalated, what is forbidden.
@@ -1005,6 +1038,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - An AI enablement operating model for People leaders (/intelligence/ai-enablement-operating-model)
 - AI governance for People teams (/intelligence/ai-governance-for-people-teams)
 
+KEY TAKEAWAYS:
 - Skip the principles section. Lead with concrete decisions.
 - Pair every rule with the workflow it governs. Otherwise it floats.
 - Schedule the next review when you publish the current version.
@@ -1022,6 +1056,7 @@ READ_TIME: 12 min
 DESCRIPTION: Most "agents" in People Ops are demos with ambition. The ones that survive contact with production share a pattern: data first, structured context, exception handling, observability, human escalation.
 ========================================
 
+TLDR:
 - A production agent is not a prompt with ambition. It is a workflow with state, evals, and an owner.
 - Most agents in People Ops are stuck in demo loops because nobody owns the production version.
 - Production demands the boring work: error handling, logging, fallback, review.
@@ -1128,6 +1163,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - An AI enablement operating model for People leaders (/intelligence/ai-enablement-operating-model)
 - Choosing AI models for HR work (/intelligence/choosing-ai-models-for-hr-work)
 
+KEY TAKEAWAYS:
 - Promote an agent only when it has an owner, an eval set, and a fallback.
 - Log everything. Without logs, the agent is a black box you trust on faith.
 - Retire agents that stop earning their keep. Agent sprawl is real.
@@ -1145,6 +1181,7 @@ READ_TIME: 13 min
 DESCRIPTION: Champions are a distribution layer, not a strategy. The operating model that makes AI enablement compound has three connected layers: org-wide, team-wide, individual.
 ========================================
 
+TLDR:
 - AI enablement is not training. It is an operating model with owners, cadences, and budget.
 - The People function is uniquely placed to run it because enablement is half-skills, half-systems.
 - Most enablement programmes stall because they are run as events, not as a function.
@@ -1252,6 +1289,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - The champion model (/intelligence/the-champion-model)
 - Prompting patterns for People Ops (/intelligence/prompting-patterns-for-people-ops)
 
+KEY TAKEAWAYS:
 - Name a single owner. Diffuse ownership is the default failure mode.
 - Run enablement on a quarterly cadence with a published roadmap.
 - Measure adoption and capability separately. Both lag, both matter.
@@ -1267,6 +1305,7 @@ READ_TIME: 9 min
 DESCRIPTION: Defence tech runs on dual mandates: warfighter outcomes and commercial scale. The operating system has to hold both.
 ========================================
 
+TLDR:
 - Defence tech has a dual mandate: warfighter outcomes and commercial scale.
 - Mission and market do not optimise for the same thing. The operating system has to hold both.
 - Procurement timelines and venture timelines are misaligned by design. Operators have to bridge them.
@@ -1274,6 +1313,7 @@ DESCRIPTION: Defence tech runs on dual mandates: warfighter outcomes and commerc
 
 The operating challenge in defence tech is the dual mandate. Mission and market do not optimise for the same thing.
 
+KEY TAKEAWAYS:
 - Stand up two cadences, not one: a programme cadence for the customer and a product cadence for the team.
 - Hire operators who have lived inside the customer organisation. Translation is most of the work.
 - Compliance is not a brake. It is the lane the venture is permitted to drive in.
@@ -1291,6 +1331,7 @@ READ_TIME: 10 min
 DESCRIPTION: A practical guide to which AI model to reach for by HR task type. ChatGPT, Claude, Gemini, Perplexity, and the trade-offs that actually matter when the work is real.
 ========================================
 
+TLDR:
 - Model choice matters less than most teams think and more than most vendors will admit.
 - For the bulk of People work, the frontier general models are fine. Pick by trust, latency, and price.
 - Specialist models earn their place at the edges: long-context document review, sensitive comms, structured extraction.
@@ -1370,6 +1411,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - Designing values that stick (/intelligence/designing-values-that-stick)
 - Production agents for People Ops (/intelligence/production-agents-for-people-ops)
 
+KEY TAKEAWAYS:
 - Default to one general model across the function. Reduce decision overhead.
 - Use specialist models only where the workflow demands it.
 - Bake re-evaluation into the cadence. The market moves whether you do or not.
@@ -1387,6 +1429,7 @@ READ_TIME: 14 min
 DESCRIPTION: A working library of prompt patterns for People teams: the five building blocks, prompt chaining, critical-thinking prompts that stress-test your output, and the model-specific shifts you need for GPT-5 and Claude class models.
 ========================================
 
+TLDR:
 - A small library of reusable prompt patterns covers most of the day-to-day in a People function.
 - Reusable, named, versioned. Treat prompts like code, not like notes.
 - The team that shares prompts compounds faster than the team that hoards them.
@@ -1489,6 +1532,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - Designing values that stick (/intelligence/designing-values-that-stick)
 - Leading the AI transformation in People (/intelligence/leading-the-ai-transformation)
 
+KEY TAKEAWAYS:
 - Build a shared, named prompt library. Versioned, owned, reviewed.
 - Document the pattern, not just the prompt. The pattern is the reusable bit.
 - Audit usage. Patterns that nobody uses should be retired or rewritten.
@@ -1504,6 +1548,7 @@ READ_TIME: 7 min
 DESCRIPTION: Operating health doesn't show up in the dashboard. It shows up in how an org talks about its own mistakes.
 ========================================
 
+TLDR:
 - Operating health does not show up first in the dashboard. It shows up in how an organisation talks about its own mistakes.
 - Leading indicators are conversational, not quantitative. Listen for them.
 - Healthy orgs surface bad news quickly, name it cleanly, and act on it. Unhealthy orgs do the reverse.
@@ -1511,6 +1556,7 @@ DESCRIPTION: Operating health doesn't show up in the dashboard. It shows up in h
 
 The leading indicators are conversational, not quantitative. Listen for them.
 
+KEY TAKEAWAYS:
 - Audit the language used in standups and retros. The vocabulary is the diagnostic.
 - If bad news only travels upward via the formal channel, you are missing most of the signal.
 - Track the mean time from incident to public, honest write-up. It is the single best operating health metric.
@@ -1528,6 +1574,7 @@ READ_TIME: 12 min
 DESCRIPTION: How to set up an AI workspace for a People team: custom instructions, projects, and reference documents that turn AI from a search bar into a colleague. Works for Claude, ChatGPT, Copilot, and Gemini.
 ========================================
 
+TLDR:
 - An AI workspace is the structured layer that turns a generic AI tool into a function-specific colleague.
 - Custom instructions, projects, reference docs, shared prompts. That is the unit of work.
 - The workspace is the first artefact most People teams should build. Most skip it and wonder why outputs are mediocre.
@@ -1652,6 +1699,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - Designing the AI-native People team (/intelligence/designing-the-ai-native-people-team)
 - People debt: what GenAI exposes, and what to do about it (/intelligence/people-debt-and-genai)
 
+KEY TAKEAWAYS:
 - Build the workspace before scaling adoption. Without it, every prompt starts from zero.
 - Treat reference docs as living. Stale context is worse than no context.
 - Share the workspace across the team. Private workspaces do not compound.
@@ -1669,6 +1717,7 @@ READ_TIME: 13 min
 DESCRIPTION: Most People teams are stuck between dabbling and tool-shopping. The third path is building. It has a grain, and it has a mechanic: workflows, automations, agents, in that order.
 ========================================
 
+TLDR:
 - A prompt is a sentence. A system is a workflow with state, ownership, and review.
 - Most People teams are still operating at sentence level and wondering why the value does not compound.
 - The shift is from authoring prompts to designing systems that produce reliable output.
@@ -1762,6 +1811,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - AI governance for People teams (/intelligence/ai-governance-for-people-teams)
 - An AI policy blueprint for People teams (/intelligence/ai-policy-blueprint-for-people-teams)
 
+KEY TAKEAWAYS:
 - Stop optimising prompts in isolation. Optimise the workflow they sit in.
 - Give every system an owner, a review cadence, and a test set.
 - Promote prompts that work into systems. Retire ones that do not.
@@ -1779,6 +1829,7 @@ READ_TIME: 13 min
 DESCRIPTION: Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it — different roles, different ratios, different leverage. Here is what an AI-native People team actually looks like.
 ========================================
 
+TLDR:
 - An AI-native People team has different roles, different ratios, and a different operating cadence.
 - Agents are part of the workforce. Treat them as roles with owners and KPIs.
 - The team is smaller and more senior, with builder DNA in every seat.
@@ -1891,6 +1942,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - AI workspace setup for People teams (Claude, ChatGPT, Copilot) (/intelligence/setting-up-your-ai-workspace)
 - AI governance for People teams (/intelligence/ai-governance-for-people-teams)
 
+KEY TAKEAWAYS:
 - Hire builders, not administrators. The substrate changed.
 - Give agents owners. Without an owner, the agent rots.
 - Design the cadence for a smaller, more senior team. Old rituals will not fit.
@@ -1908,6 +1960,7 @@ READ_TIME: 11 min
 DESCRIPTION: Governance is not the brake. It is the steering. The People teams that stay fast with AI are the ones that decided early what they would never let it decide.
 ========================================
 
+TLDR:
 - AI governance is not the brake. It is the steering.
 - People teams are usually the first asked to write the AI policy and the last given the time to do it well.
 - Good governance is a small set of clear rules, escalation paths, and audit trails. Not a 40-page document nobody reads.
@@ -1987,6 +2040,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - AI workspace setup for People teams (Claude, ChatGPT, Copilot) (/intelligence/setting-up-your-ai-workspace)
 - Designing the AI-native People team (/intelligence/designing-the-ai-native-people-team)
 
+KEY TAKEAWAYS:
 - Write rules people can quote from memory. If they cannot, the rules do not exist.
 - Bake governance into the workspace, not into a separate review step.
 - Audit-trail the high-risk decisions. Trust the rest.
@@ -2004,6 +2058,7 @@ READ_TIME: 9 min
 DESCRIPTION: You don't need engineers to build AI capability inside the People function. You need three or four champions, given air cover and time. Here is how the model actually works.
 ========================================
 
+TLDR:
 - The Champion Model is a staffing pattern for building AI capability inside a function without engineers.
 - Three or four operators, given air cover, time, and a build-first remit, supported by a coaching cadence.
 - It compounds faster than centralised builds because the champions live inside the work.
@@ -2066,6 +2121,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - Prompting patterns for People Ops (/intelligence/prompting-patterns-for-people-ops)
 - The HR Architect: a new role inside the People function (/intelligence/the-hr-architect-role)
 
+KEY TAKEAWAYS:
 - Pick three to four champions. Fewer is fragile, more is unmanageable.
 - Protect their time on the calendar, not just on paper.
 - Pair them with a coaching cadence. Champions without coaching plateau.
@@ -2083,6 +2139,7 @@ READ_TIME: 12 min
 DESCRIPTION: AI in People Ops fails as a change programme more often than as a technology problem. Here is the operating playbook for leading the transformation without losing the team.
 ========================================
 
+TLDR:
 - Leading an AI transformation in a People function is more about cadence and air cover than about technology.
 - The leader's job is to make the right thing easy and the wrong thing visible.
 - Pace matters more than ambition. Compounding beats sprinting.
@@ -2183,6 +2240,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - A workflow assessment framework for People Ops (/intelligence/workflow-assessment-framework)
 - Designing values that stick (/intelligence/designing-values-that-stick)
 
+KEY TAKEAWAYS:
 - Set the cadence and protect it. Cadence is the strategy.
 - Make adoption legible. What gets seen gets repeated.
 - Pace by absorption, not by ambition. The fastest sustainable rate beats any sprint.
@@ -2200,6 +2258,7 @@ READ_TIME: 12 min
 DESCRIPTION: A two-axis maturity read plus a six-axis diagnostic for People functions. Use it before you build anything, so you build the right thing first.
 ========================================
 
+TLDR:
 - AI readiness in People Ops is not a model question. It is an operating question.
 - Five surfaces decide it: data, tools, agents, governance, cadence.
 - Most teams overrate their tools and underrate their data and cadence.
@@ -2303,6 +2362,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - AI governance for People teams (/intelligence/ai-governance-for-people-teams)
 - From prompts to systems (/intelligence/from-prompts-to-systems)
 
+KEY TAKEAWAYS:
 - Score the five surfaces honestly. Vendor demos do not count as evidence.
 - Fix the lowest-scoring surface before adding new capability on top.
 - Re-diagnose every six months. Readiness is a moving target.
@@ -2320,6 +2380,7 @@ READ_TIME: 11 min
 DESCRIPTION: Most People teams pick AI workflows by instinct or by what is loudest. A simple scoring framework — value, frequency, fit, risk — turns a wishlist into a 90-day plan you can actually defend.
 ========================================
 
+TLDR:
 - A workflow assessment framework gives you a defensible way to choose what to automate, redesign, or leave alone.
 - Five lenses: frequency, latency, judgment, risk, ownership.
 - Most People teams automate by feel. Feel optimises for novelty, not value.
@@ -2415,6 +2476,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - The automation audit playbook (/intelligence/automation-audit-playbook)
 - Leading the AI transformation in People (/intelligence/leading-the-ai-transformation)
 
+KEY TAKEAWAYS:
 - Score every candidate workflow on the same five lenses.
 - High-judgment, high-risk workflows stay human-led. AI assists, never decides.
 - Document the call. The framework only compounds if the reasoning is visible later.
@@ -2432,6 +2494,7 @@ READ_TIME: 11 min
 DESCRIPTION: Six concrete workflow patterns we keep seeing work inside People functions. Built with n8n, an LLM, and a champion. Live in weeks, not quarters.
 ========================================
 
+TLDR:
 - A small number of automation patterns recur across People functions and pay back reliably.
 - Drafting, summarisation, structured extraction, and routing. That is most of the value.
 - Bespoke agents are seductive and rarely the right first move.
@@ -2514,6 +2577,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - A workflow assessment framework for People Ops (/intelligence/workflow-assessment-framework)
 - An AI enablement operating model for People leaders (/intelligence/ai-enablement-operating-model)
 
+KEY TAKEAWAYS:
 - Start with the four boring patterns. They cover most of the surface.
 - Design the workflow before you choose the model. Workflow shape determines value.
 - Track time-to-value, not headline savings. Slow wins are still wins.
@@ -2531,6 +2595,7 @@ READ_TIME: 10 min
 DESCRIPTION: A map of where AI fits across the People function — from sourcing to offboarding — so you can see the whole estate before you build any one piece of it.
 ========================================
 
+TLDR:
 - Five domains cover the People Ops AI estate: TA, onboarding and lifecycle, performance and growth, comms and policy, analytics and planning.
 - Each has its own grain. AI leverage looks different in each one.
 - The map is a wall to pin your own work against, not a strategy.
@@ -2615,6 +2680,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - Designing the AI-native People team (/intelligence/designing-the-ai-native-people-team)
 - A workflow assessment framework for People Ops (/intelligence/workflow-assessment-framework)
 
+KEY TAKEAWAYS:
 - Map your own estate before adding capability. You will see redundancy you did not know existed.
 - Match AI patterns to the domain grain. Patterns that work in TA often fail in performance.
 - Consolidate before you build. Two well-run systems beat five half-built ones.
@@ -2632,6 +2698,7 @@ READ_TIME: 12 min
 DESCRIPTION: If the CFO asks what your AI investment has returned, vague time-saving stories are not enough. Here is how to measure People Ops AI value properly — and tell the story to a board that knows the difference.
 ========================================
 
+TLDR:
 - Most AI value measurement in People Ops is theatre. Time saved per task is a vanity metric.
 - Measure what compounds: capability built, decisions improved, latency reduced, work prevented.
 - Pair every quantitative metric with a qualitative read. The numbers lie alone.
@@ -2752,6 +2819,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - People debt: what GenAI exposes, and what to do about it (/intelligence/people-debt-and-genai)
 - AI workspace setup for People teams (Claude, ChatGPT, Copilot) (/intelligence/setting-up-your-ai-workspace)
 
+KEY TAKEAWAYS:
 - Drop time-saved as the headline metric. It hides as much as it reveals.
 - Track capability, decision quality, and latency together.
 - Use a quarterly written narrative alongside the dashboard. The narrative is where the truth lives.
@@ -2767,6 +2835,7 @@ READ_TIME: 9 min
 DESCRIPTION: Most companies break themselves at scale. The ones that don't are the ones that scaled with the grain, not against it.
 ========================================
 
+TLDR:
 - Scale amplifies what you already are. Including the bits you would rather it did not.
 - Companies that scale well are the ones that scaled with the grain, not against it.
 - Most scaling failures are not capacity failures. They are coherence failures.
@@ -2774,6 +2843,7 @@ DESCRIPTION: Most companies break themselves at scale. The ones that don't are t
 
 Scale amplifies what you already are. Including the bits you'd rather it didn't.
 
+KEY TAKEAWAYS:
 - Identify the load-bearing rituals before scaling. They are usually invisible and usually the first thing to break.
 - Add process at the seam where the grain stops carrying the weight, not before.
 - Scaling fast looks heroic in the moment and expensive in the year that follows. Pace is the discipline.
@@ -2789,6 +2859,7 @@ READ_TIME: 8 min
 DESCRIPTION: An intervention is the smallest change that produces the largest second-order effect. The craft is in the smallness.
 ========================================
 
+TLDR:
 - An intervention is the smallest change that produces the largest second-order effect.
 - The craft is in the smallness. Big interventions are usually a sign the diagnosis was wrong.
 - The best interventions look small from the outside and feel enormous from the inside.
@@ -2796,6 +2867,7 @@ DESCRIPTION: An intervention is the smallest change that produces the largest se
 
 The best interventions look small from the outside and feel enormous from the inside.
 
+KEY TAKEAWAYS:
 - Aim for the lightest touch that moves the system. Heavier is rarely better.
 - Test interventions against the grain before scaling. A good intervention amplifies what the organisation already does well.
 - Document the intervention and the diagnosis together. Without the diagnosis, the intervention cannot be repeated.
@@ -2811,6 +2883,7 @@ READ_TIME: 12 min
 DESCRIPTION: A 30-day diagnostic protocol: who to listen to, what to look for, and the trap of premature recommendations.
 ========================================
 
+TLDR:
 - A 30-day diagnostic is the permission to do the work. It is not the work.
 - Listen first. The temptation to recommend in week one is almost always wrong.
 - Talk to the load-bearing people, not just the senior people. They are rarely the same set.
@@ -2819,6 +2892,7 @@ DESCRIPTION: A 30-day diagnostic protocol: who to listen to, what to look for, a
 
 The diagnostic is not the work. The diagnostic is the permission to do the work.
 
+KEY TAKEAWAYS:
 - Spend two thirds of the 30 days listening, one third synthesising, and zero recommending until both are done.
 - Premature recommendations cost you the trust the rest of the engagement runs on.
 - The diagnostic is durable when the people inside the company can repeat it without you in the room.
@@ -2834,6 +2908,7 @@ READ_TIME: 10 min
 DESCRIPTION: Three movements, in order. Skip the first and the rest is theatre. Skip the third and the work doesn't compound.
 ========================================
 
+TLDR:
 - Three movements, in order: Read, Craft, Scale.
 - They are sequential, not parallel. They are also asymmetric in time: most of the work is in the reading.
 - Skip Read and the rest is theatre. Skip Scale and the work does not compound.
@@ -2841,6 +2916,7 @@ DESCRIPTION: Three movements, in order. Skip the first and the rest is theatre. 
 
 Three movements. They are sequential, not parallel. They are also asymmetric in time: most of the work is in the reading.
 
+KEY TAKEAWAYS:
 - Spend more time in Read than feels comfortable. The temptation to start crafting early costs the whole engagement.
 - Craft is small by design. Big interventions are how teams break the grain they just learned to read.
 - Scale is a pacing problem, not a rollout problem. Compound at the rate the organisation can absorb.
@@ -2856,6 +2932,7 @@ READ_TIME: 11 min
 DESCRIPTION: From ad-hoc usage to autonomous operations: the five tiers of AI operating maturity, what each one looks like in practice, and what it takes to climb each rung.
 ========================================
 
+TLDR:
 - The AI operating ladder is five tiers: ad-hoc, assisted, augmented, autonomous, and self-operating.
 - Each rung describes a different shape of AI operating system underneath, with different demands on data, tools, agents, governance, and cadence.
 - Most companies are between tier 1 and tier 2 but believe they are at tier 3. The gap is where AI budget gets wasted.
@@ -2965,6 +3042,7 @@ Whatever you score, the next move is the next rung, not three rungs up. Most ope
 
 For a structured version that works across all eight pillars (the five readiness pillars plus leadership, talent, and intervention readiness), see the AI Operating Index (https://aioi.deepgrain.ai). It scores you, names the rung, and gives you a ranked plan back.
 
+KEY TAKEAWAYS:
 - Score one function honestly. The next move is the next rung, not three rungs up.
 - Tier 3 is where most of the unlock lives: a scoped agent, a real workflow, a real governance check.
 - Climbing the ladder is mostly an operating-habits problem, not a model problem.
@@ -2981,6 +3059,7 @@ READ_TIME: 8 min
 DESCRIPTION: Experiments are cheap. Infrastructure is expensive. The companies that win the next decade are the ones that know when to switch, and what to switch into.
 ========================================
 
+TLDR:
 - Experiments answer "can the model do this?" Infrastructure answers "can we run this on Monday?" Different question, different cost.
 - Switch from experiments to infrastructure when the same workflow has been pilot-built three times, or when value repeats across two functions.
 - Infrastructure is not a platform purchase. It is data pipelines, integrations, governance, runtime, and the operating cadence around them.
@@ -3053,6 +3132,7 @@ If those three things are still tolerated after the switch, you have not actuall
 
 For most companies, the right next step is one experiment fewer and one piece of infrastructure more. Pick the workflow. Build the substrate. Run it on Monday morning. Then do it again.
 
+KEY TAKEAWAYS:
 - Experiments without exit criteria are budget, not learning.
 - The switch is a decision, not a roadmap milestone. Mark it explicitly.
 - The unit of infrastructure is a workflow, not a layer. Build the layer the workflow needs, then the next.
@@ -3069,6 +3149,7 @@ READ_TIME: 8 min
 DESCRIPTION: The path from pilot to production is paved with the things nobody wanted to think about during the demo. Here is the recurring pattern, and how to design pilots that actually cross it.
 ========================================
 
+TLDR:
 - A pilot proves a model can do a task. Production proves an organisation can absorb the consequences. Almost no pilot is designed for the second question.
 - The recurring stall pattern: manual data pipelines, hacked integrations, Slack-thread governance, no maintenance owner, and pilots that tested the model instead of the operating system.
 - Pilots that ship are designed as the production version at lower volume, with a real owner, real data, real integrations, and a decision at the end.
@@ -3133,6 +3214,7 @@ For the longer arc, see from AI experiments to AI infrastructure (/intelligence/
 
 > AI pilots stall because the pilot proves the model can do the task and production proves the organisation can absorb the consequences. The model is rarely the problem. The pipeline, the integration, the governance, the maintenance, and the operating ownership are. Pilots that ship are designed as the production version at lower volume, with a named owner, real data, and a decision at the end.
 
+KEY TAKEAWAYS:
 - Design the production version first, then run it as a pilot at lower volume.
 - Name the operating leader who will own the workflow on Monday before the pilot starts.
 - Run pilots on Monday morning data, not curated demos. The dirt is the test.
@@ -3149,6 +3231,7 @@ READ_TIME: 9 min
 DESCRIPTION: Readiness is not a model selection problem. It is a Data, Tools, Agents, Governance, and Cadence problem, in that order. Here is the diagnostic, with what good and bad look like at each pillar.
 ========================================
 
+TLDR:
 - AI readiness has five pillars: data, tools, agents, governance, and operating cadence.
 - The model is the easy part. Switching frontier models rarely changes outcomes. The pillars do.
 - Skip a pillar and the system rots in that exact place. The weakest pillar sets the strength of the whole.
@@ -3258,6 +3341,7 @@ If you want a structured version of the same exercise, the AI Operating Index (h
 
 > AI readiness is the condition of an organisation's data, tools, agents, governance, and operating cadence such that it can absorb AI as capability rather than as demo. The five pillars are not a sequence. They are a set, and the weakest one decides the strength of the whole.
 
+KEY TAKEAWAYS:
 - Treat the pillars as a checklist tied to a real workflow, not a curriculum to study.
 - Score each pillar honestly out of three for one workflow. Move the lowest pillar to a two, then run the workflow.
 - Build the AI OS pillar by pillar in the order real workflows demand it, not in the order vendors sell it.
@@ -3274,6 +3358,7 @@ READ_TIME: 10 min
 DESCRIPTION: An AI operating system, or AI OS, is the layer between models and work. It is what turns a clever demo into a compounding capability. Here is what it includes, how it differs from an operating model, and how to build one.
 ========================================
 
+TLDR:
 - An AI operating system, or AI OS, is the layer between models and the work a company actually does.
 - It has five pillars: data, tools, agents, governance, and operating cadence. Skip one and the system rots in that exact place.
 - An operating model is a slide. An AI OS is a live runtime. The two are not the same thing.
@@ -3346,6 +3431,7 @@ Why AI pilots stall at production (/intelligence/why-ai-pilots-stall-at-producti
 
 That is the definition we use. Use it, fork it, or write your own. The point is not the words. The point is having one.
 
+KEY TAKEAWAYS:
 - An AI OS is the runtime, not a slide. It is what executes when a person, agent, or workflow has to act.
 - Build the smallest end-to-end version of all five pillars on one workflow before scaling. Reverse that order and you stall.
 - Operating model and AI OS are complements, not substitutes. One describes structure. The other runs the company.
@@ -3362,6 +3448,7 @@ READ_TIME: 7 min
 DESCRIPTION: Strategy is a story about the future. Operating reality is a description of the present. Most leadership teams confuse the two.
 ========================================
 
+TLDR:
 - Strategy is a story about the future. Operating reality is a description of the present.
 - Most leadership teams confuse the two and end up with a wish dressed as a plan.
 - A strategy that contradicts operating reality is not a strategy. It is a wish.
@@ -3369,6 +3456,7 @@ DESCRIPTION: Strategy is a story about the future. Operating reality is a descri
 
 A strategy that contradicts operating reality is not a strategy. It is a wish.
 
+KEY TAKEAWAYS:
 - Read the operating reality first. Strategy that ignores it cannot be executed.
 - If the strategy requires the organisation to be something it is not, fund the change explicitly. Otherwise, change the strategy.
 - Strategy reviews should spend half the time on operating reality, not the future state.
@@ -3384,6 +3472,7 @@ READ_TIME: 6 min
 DESCRIPTION: An operating model is a slide. An operating system is what runs when nobody is looking. The distinction is the entire point.
 ========================================
 
+TLDR:
 - An operating model is a slide. It describes intent.
 - An operating system is what runs when nobody is looking. It describes execution.
 - Every company has both. The gap between them is where most consultancies make their money and where most of the value is lost.
@@ -3400,6 +3489,7 @@ The same distinction matters in the AI conversation. An AI operating model is a 
 
 > The operating model is description. The AI operating system is substrate. Most companies have one and call it the other.
 
+KEY TAKEAWAYS:
 - Models describe. Systems execute. Conflating them is the most common consulting failure.
 - The gap between the model and the system is the unit of work for an operating leader.
 - Read the system first. The model on the wall is rarely the system on the floor.
@@ -3417,6 +3507,7 @@ READ_TIME: 9 min
 DESCRIPTION: Wood has a grain. So does every organisation. Cut with it and the work compounds; cut against it and you spend the rest of the year sanding.
 ========================================
 
+TLDR:
 - Wood has a grain. So does every organisation.
 - The grain is the pattern of how things actually move: which channels carry the real decisions, which meetings are theatre, which people are quietly load-bearing.
 - Cut with the grain and the work compounds. Cut against it and you spend the rest of the year sanding.
@@ -3433,6 +3524,7 @@ The grain is the pattern of how things actually move: which Slack channels carry
 
 Walk the floor. Sit in the standups. Read six months of retro notes. Ask one question and listen to the answer for an hour.
 
+KEY TAKEAWAYS:
 - Walk the floor. Read six months of retros. Sit in the standups. Most of the grain is invisible from the boardroom.
 - Identify the load-bearing people. They are rarely on the org chart in the place you expect.
 - Map the gap between the operating story and the operating reality. The gap is the engagement.
@@ -3448,6 +3540,7 @@ READ_TIME: 8 min
 DESCRIPTION: 70% of change programmes fail. The reason is rarely strategy — it's that the grain was never read before the cut was made.
 ========================================
 
+TLDR:
 - Roughly 70% of large change programmes fail to deliver what they promised.
 - The reasons usually given (resistance, communication, sponsorship) are downstream of one upstream mistake: the change was designed against the operating story, not the operating reality.
 - Three recurring patterns: cut against the grain, scale before craft, strategy as substitute for decision.
@@ -3465,6 +3558,7 @@ Change programmes are designed against the operating story, not the operating re
 - Scale before craft. Rolling out a process that hasn't yet earned its right to exist.
 - Strategy as substitute. Mistaking a deck for a decision.
 
+KEY TAKEAWAYS:
 - Diagnose the operating reality first. Designing a programme against the operating story guarantees rework.
 - Resistance is information. It is usually telling you the programme missed something the operators on the ground know.
 - Sponsorship matters, but no amount of sponsorship rescues a programme that cuts against the grain.
@@ -3480,6 +3574,7 @@ READ_TIME: 7 min
 DESCRIPTION: Organisational consultancy is the practice of reading how a company actually operates — and changing it without breaking what works.
 ========================================
 
+TLDR:
 - Organisational consultancy is the practice of reading how a company actually operates, then changing it without breaking what works.
 - Most consulting sells answers. Organisational consultancy sells better questions and the discipline to live with the answers once they arrive.
 - It is closer to craft than to strategy. You spend weeks listening before you touch anything.
@@ -3508,6 +3603,7 @@ It is closer to craft than to strategy. You spend weeks listening before you tou
 2. Craft. Design interventions that fit the grain.
 3. Scale. Compound the work without breaking it.
 
+KEY TAKEAWAYS:
 - The grain, not the diagram. Every organisation has one. Most leadership teams have never read it.
 - Listen first, recommend later. Premature recommendations break the engagement.
 - Cut with the grain where you can, against it where you must, but always knowingly.

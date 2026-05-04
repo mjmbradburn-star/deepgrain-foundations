@@ -99,6 +99,8 @@ function extractBody(src) {
 /** Strip MDX/markdown to plain text for llms-full.txt. */
 function toPlain(mdx) {
   return mdx
+    .replace(/<TLDR>([\s\S]*?)<\/TLDR>/g, (_, t) => `\nTLDR:\n${t.trim()}\n`)
+    .replace(/<KeyTakeaways>([\s\S]*?)<\/KeyTakeaways>/g, (_, t) => `\nKEY TAKEAWAYS:\n${t.trim()}\n`)
     .replace(/<Takeaway[^>]*>([\s\S]*?)<\/Takeaway>/g, (_, t) => `\n> ${t.trim()}\n`)
     .replace(/<[^>]+>/g, "")
     .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
