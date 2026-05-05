@@ -12,6 +12,7 @@
     "build": "vite build",
     "validate:jsonld": "node scripts/validate-jsonld.mjs",
     "validate:canonicals": "node scripts/validate-canonicals.mjs",
+    "validate:shell": "node scripts/validate-shell.mjs",
     "build:dev": "vite build --mode development",
     "prerender": "node scripts/prerender-intelligence.mjs",
     "build:static": "vite build && node scripts/prerender-intelligence.mjs",
