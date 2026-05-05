@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import { componentTagger } from "lovable-tagger";
 import { deepgrainSeoPlugin } from "./vite-plugins/deepgrain-seo";
 import { intelligenceManifestPlugin } from "./vite-plugins/intelligence-manifest";
+import { deepgrainPrerenderPlugin } from "./vite-plugins/prerender";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -28,6 +29,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     deepgrainSeoPlugin(),
     intelligenceManifestPlugin(),
+    deepgrainPrerenderPlugin(),
     mode === "development" && componentTagger(),
   ].filter(Boolean),
   resolve: {
