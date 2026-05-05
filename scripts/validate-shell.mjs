@@ -44,8 +44,37 @@ if (!existsSync(DIST)) {
 }
 
 const ROOT_RE = /<div id="root">([\s\S]*?)<\/div>\s*<script/i;
-const MIN_ROOT_INNER = 200;
-const MIN_FILE_SIZE = 10_000;
+// The unrendered SPA shell has a single hardcoded canonical pointing at
+// the home, a single Organization+WebSite JSON-LD graph, and an empty root.
+// We treat any file whose canonical matches the home AND is not the home
+// route as a shell leak. Plus content-rendered markers below.
+const SHELL_HOME_CANONICAL = `${ORIGIN}/`;
+const MIN_ROOT_INNER = 500; // a real React tree is far bigger than this
+const MIN_FILE_SIZE = 15_000; // unrendered shell is ~7 KB; rendered pages are 50 KB+
+const REQUIRE_TAGS = [
+  // Rendered pages always emit a <main> landmark via the layout.
+  { name: "main landmark", re: /<main\b/i },
+  // OG title is set per route by Helmet/PageMeta; absent on shell.
+  { name: "og:title", re: /<meta\b[^>]*property=["']og:title["']/i },
+  // Twitter card likewise.
+  { name: "twitter:card", re: /<meta\b[^>]*name=["']twitter:card["']/i },
+];
+// At least one of these structured-data types should appear once the page
+// has actually rendered through React. The shell only has Organization+WebSite.
+const STRUCTURED_TYPES = [
+  "Article",
+  "BlogPosting",
+  "NewsArticle",
+  "FAQPage",
+  "BreadcrumbList",
+  "CollectionPage",
+  "ItemList",
+  "Person",
+  "AboutPage",
+  "ContactPage",
+  "WebPage",
+  "VideoObject",
+];
 
 function routeToFile(route) {
   // "/" -> dist/index.html, "/method" -> dist/method/index.html
@@ -102,13 +131,65 @@ for (const file of files) {
   const canonMatch = html.match(
     /<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i,
   );
+  const title = titleMatch ? titleMatch[1] : null;
+  const canonical = canonMatch ? canonMatch[1] : null;
   const route = fileToRoute(file);
 
+  // Collect every JSON-LD @type present on the page.
+  const ldTypes = new Set();
+  for (const blockMatch of html.matchAll(
+    /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )) {
+    try {
+      const parsed = JSON.parse(blockMatch[1].trim());
+      const collect = (node) => {
+        if (!node || typeof node !== "object") return;
+        if (Array.isArray(node)) return node.forEach(collect);
+        if (node["@type"]) {
+          const types = Array.isArray(node["@type"])
+            ? node["@type"]
+            : [node["@type"]];
+          for (const t of types) ldTypes.add(t);
+        }
+        if (node["@graph"]) collect(node["@graph"]);
+      };
+      collect(parsed);
+    } catch {
+      /* JSON parse handled by validate-jsonld.mjs */
+    }
+  }
+  const hasPageStructuredData = STRUCTURED_TYPES.some((t) => ldTypes.has(t));
+
+  // Tag-presence checks.
+  const missingTags = REQUIRE_TAGS.filter((t) => !t.re.test(html)).map(
+    (t) => t.name,
+  );
+
+  // Canonical-leak check: any non-home route whose canonical equals the home
+  // canonical means the shell HTML was served instead of a prerendered page.
+  const isHomeRoute = route === "/";
+  const canonicalLeak =
+    !isHomeRoute &&
+    canonical &&
+    canonical.replace(/\/+$/, "") === SHELL_HOME_CANONICAL.replace(/\/+$/, "");
+
+  // Title-leak check: shell title is the home title; any non-home page
+  // matching it byte-for-byte is suspicious.
+  const SHELL_TITLE = "Deepgrain | Work with the grain.";
+  const titleLeak = !isHomeRoute && title === SHELL_TITLE;
+
   const reasons = [];
-  if (size < MIN_FILE_SIZE) reasons.push(`size=${size}B`);
+  if (size < MIN_FILE_SIZE) reasons.push(`size=${size}B (< ${MIN_FILE_SIZE})`);
   if (innerLen < MIN_ROOT_INNER)
-    reasons.push(`root inner=${innerLen}chars`);
+    reasons.push(`root inner=${innerLen}chars (< ${MIN_ROOT_INNER})`);
   if (!hasH1) reasons.push("no <h1>");
+  if (missingTags.length) reasons.push(`missing tags: ${missingTags.join(", ")}`);
+  if (canonicalLeak) reasons.push(`canonical leak (points to home: ${canonical})`);
+  if (titleLeak) reasons.push(`title leak (matches shell home title)`);
+  if (!hasPageStructuredData)
+    reasons.push(
+      `no page-level structured data (need one of ${STRUCTURED_TYPES.slice(0, 6).join("/")}/...)`,
+    );
 
   checks.push({
     route,
@@ -116,14 +197,19 @@ for (const file of files) {
     size,
     rootInnerChars: innerLen,
     hasH1,
-    title: titleMatch ? titleMatch[1] : null,
-    canonical: canonMatch ? canonMatch[1] : null,
+    title,
+    canonical,
+    ldTypes: [...ldTypes].sort(),
+    missingTags,
+    canonicalLeak,
+    titleLeak,
+    hasPageStructuredData,
     passed: reasons.length === 0,
     reasons,
   });
 
   if (reasons.length) {
-    errors.push(`${route} (${relative(DIST, file)}): ${reasons.join(", ")}`);
+    errors.push(`${route} (${relative(DIST, file)}): ${reasons.join("; ")}`);
   }
 }
 
