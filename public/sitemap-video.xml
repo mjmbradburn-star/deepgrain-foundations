@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://deepgrain.ai/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://deepgrain.ai/simple-ai-poster.jpg</video:thumbnail_loc>
+      <video:title>Simple AI, a 90-second primer for G&amp;A leaders</video:title>
+      <video:description>Seventeen of the terms cluttering every AI conversation, in plain English. Made for G&amp;A leaders, not engineers.</video:description>
+      <video:content_loc>https://deepgrain.ai/simple-ai.mp4</video:content_loc>
+      <video:duration>90</video:duration>
+      <video:publication_date>2026-05-01T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+      <video:requires_subscription>no</video:requires_subscription>
+    </video:video>
+  </url>
+</urlset>
