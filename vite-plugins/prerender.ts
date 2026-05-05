@@ -52,6 +52,7 @@ export function deepgrainPrerenderPlugin(): Plugin {
       try {
         await run("prerender-intelligence.mjs");
         await run("validate-jsonld.mjs");
+        await run("validate-canonicals.mjs");
       } catch (err) {
         // Surface the failure so Lovable's build log shows it, but don't kill
         // the deploy: the SPA fallback still serves a working site.
