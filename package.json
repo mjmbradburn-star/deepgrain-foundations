@@ -10,7 +10,6 @@
     "seo:verify": "node scripts/inject-verification-codes.mjs",
     "test:seo": "vitest run src/test/people-ops-seo.test.ts",
     "build": "vite build",
-    "postbuild": "node scripts/prerender-intelligence.mjs && node scripts/validate-jsonld.mjs",
     "validate:jsonld": "node scripts/validate-jsonld.mjs",
     "build:dev": "vite build --mode development",
     "prerender": "node scripts/prerender-intelligence.mjs",
