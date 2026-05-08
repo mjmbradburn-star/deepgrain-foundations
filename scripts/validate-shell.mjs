@@ -99,7 +99,9 @@ function walk(dir) {
   return out;
 }
 
-// 1. Determine expected routes from sitemap.
+// 1. Determine expected routes from sitemap. The home route ("/") is
+// ALWAYS required even if the sitemap parser misses it: the home page is
+// the most important crawl target and a missing/shell home is a P0.
 let expectedRoutes = [];
 if (existsSync(SITEMAP)) {
   const xml = readFileSync(SITEMAP, "utf8");
@@ -108,6 +110,7 @@ if (existsSync(SITEMAP)) {
     .filter((u) => u.startsWith(ORIGIN))
     .map((u) => u.slice(ORIGIN.length) || "/");
 }
+if (!expectedRoutes.includes("/")) expectedRoutes.unshift("/");
 
 const errors = [];
 const missing = [];
@@ -116,6 +119,15 @@ const missing = [];
 for (const route of expectedRoutes) {
   const file = routeToFile(route);
   if (!existsSync(file)) missing.push(route);
+}
+
+// 2b. Hard assertion: dist/index.html (the home page) must exist and must
+// be in the crawl set. Without this, a prerender regression that drops "/"
+// would only surface as a generic missing-route warning.
+const HOME_FILE = join(DIST, "index.html");
+if (!existsSync(HOME_FILE)) {
+  console.error("[shell-check] FATAL: dist/index.html is missing — home page was not built/prerendered.");
+  process.exit(1);
 }
 
 // 3. Every dist HTML file must look rendered, not shell.
@@ -323,6 +335,16 @@ if (errors.length) {
   );
   for (const e of errors) console.error("  - " + e);
 }
+
+// Final guard: the home route must have been part of the crawled set.
+const homeChecked = checks.find((c) => c.route === "/");
+if (!homeChecked) {
+  console.error("[shell-check] FATAL: home route '/' was not included in the crawl set.");
+  process.exit(1);
+}
+console.log(
+  `[shell-check] home '/' verified: size=${homeChecked.size}B, root inner=${homeChecked.rootInnerChars} chars, passed=${homeChecked.passed}`,
+);
 
 if (missing.length || errors.length) process.exit(1);
 console.log("[shell-check] all routes rendered ✓");
