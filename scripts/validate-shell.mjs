@@ -336,5 +336,15 @@ if (errors.length) {
   for (const e of errors) console.error("  - " + e);
 }
 
+// Final guard: the home route must have been part of the crawled set.
+const homeChecked = checks.find((c) => c.route === "/");
+if (!homeChecked) {
+  console.error("[shell-check] FATAL: home route '/' was not included in the crawl set.");
+  process.exit(1);
+}
+console.log(
+  `[shell-check] home '/' verified: size=${homeChecked.size}B, root inner=${homeChecked.rootInnerChars} chars, passed=${homeChecked.passed}`,
+);
+
 if (missing.length || errors.length) process.exit(1);
 console.log("[shell-check] all routes rendered ✓");
