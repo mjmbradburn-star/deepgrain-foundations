@@ -49,14 +49,21 @@ export function deepgrainPrerenderPlugin(): Plugin {
           });
         });
 
+      // In CI we want validators to be fatal so a broken build never
+      // ships. Locally (Lovable preview, dev sandboxes) we keep them
+      // non-fatal so a flaky puppeteer step doesn't block iteration.
+      const fatal = process.env.CI === "true" || process.env.DEEPGRAIN_FATAL_VALIDATORS === "1";
       try {
+        await run("audit-routes.mjs");
         await run("prerender-intelligence.mjs");
         await run("validate-jsonld.mjs");
         await run("validate-canonicals.mjs");
         await run("validate-shell.mjs");
       } catch (err) {
-        // Surface the failure so Lovable's build log shows it, but don't kill
-        // the deploy: the SPA fallback still serves a working site.
+        if (fatal) {
+          console.error("[prerender-plugin] FATAL (CI):", err);
+          throw err;
+        }
         console.error("[prerender-plugin] non-fatal failure:", err);
       }
     },
