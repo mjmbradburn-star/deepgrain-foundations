@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
@@ -11,8 +12,24 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
   const hasSubnav =
     pathname.startsWith("/method") || pathname.startsWith("/enablement");
 
+  // Prerender ready marker. The puppeteer-based prerender waits for the
+  // [data-prerender-ready] attribute before snapshotting, which guarantees
+  // React + the route component + Helmet have all flushed. Resets on every
+  // route change so the snapshot reflects the new page, not the prior one.
+  const [renderReady, setRenderReady] = useState(false);
+  useEffect(() => {
+    setRenderReady(false);
+    const id = requestAnimationFrame(() => {
+      requestAnimationFrame(() => setRenderReady(true));
+    });
+    return () => cancelAnimationFrame(id);
+  }, [pathname]);
+
   return (
-    <div className="min-h-screen flex flex-col bg-linen">
+    <div
+      className="min-h-screen flex flex-col bg-linen"
+      data-prerender-ready={renderReady ? "true" : undefined}
+    >
       <SiteEntityLd />
       <Navigation />
       <MethodSubnav />

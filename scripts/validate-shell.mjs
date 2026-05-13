@@ -143,8 +143,21 @@ for (const file of files) {
   const canonMatch = html.match(
     /<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i,
   );
+  const ogUrlMatch = html.match(
+    /<meta\b[^>]*property=["']og:url["'][^>]*content=["']([^"']+)["']/i,
+  );
+  const ogTitleMatch = html.match(
+    /<meta\b[^>]*property=["']og:title["'][^>]*content=["']([^"']+)["']/i,
+  );
+  const robotsMatch = html.match(
+    /<meta\b[^>]*name=["']robots["'][^>]*content=["']([^"']+)["']/i,
+  );
   const title = titleMatch ? titleMatch[1] : null;
   const canonical = canonMatch ? canonMatch[1] : null;
+  const ogUrl = ogUrlMatch ? ogUrlMatch[1] : null;
+  const ogTitle = ogTitleMatch ? ogTitleMatch[1] : null;
+  const robots = robotsMatch ? robotsMatch[1] : null;
+  const isNoindex = !!robots && /noindex/i.test(robots);
   const route = fileToRoute(file);
 
   // Collect every JSON-LD @type present on the page.
@@ -190,18 +203,36 @@ for (const file of files) {
   const SHELL_TITLE = "Deepgrain | Work with the grain.";
   const titleLeak = !isHomeRoute && title === SHELL_TITLE;
 
+  // og:url should match canonical on indexed pages.
+  const ogCanonicalMismatch =
+    !isNoindex &&
+    canonical &&
+    ogUrl &&
+    canonical.replace(/\/+$/, "") !== ogUrl.replace(/\/+$/, "");
+
   const reasons = [];
-  if (size < MIN_FILE_SIZE) reasons.push(`size=${size}B (< ${MIN_FILE_SIZE})`);
-  if (innerLen < MIN_ROOT_INNER)
-    reasons.push(`root inner=${innerLen}chars (< ${MIN_ROOT_INNER})`);
-  if (!hasH1) reasons.push("no <h1>");
-  if (missingTags.length) reasons.push(`missing tags: ${missingTags.join(", ")}`);
-  if (canonicalLeak) reasons.push(`canonical leak (points to home: ${canonical})`);
-  if (titleLeak) reasons.push(`title leak (matches shell home title)`);
-  if (!hasPageStructuredData)
-    reasons.push(
-      `no page-level structured data (need one of ${STRUCTURED_TYPES.slice(0, 6).join("/")}/...)`,
-    );
+  // For noindex routes we still assert the file exists and isn't broken,
+  // but we skip the full SEO/structured-data battery — these pages are
+  // intentionally excluded from the index.
+  if (isNoindex) {
+    if (size < 5_000) reasons.push(`size=${size}B (< 5000, even noindex pages should render)`);
+  } else {
+    if (size < MIN_FILE_SIZE) reasons.push(`size=${size}B (< ${MIN_FILE_SIZE})`);
+    if (innerLen < MIN_ROOT_INNER)
+      reasons.push(`root inner=${innerLen}chars (< ${MIN_ROOT_INNER})`);
+    if (!hasH1) reasons.push("no <h1>");
+    if (missingTags.length) reasons.push(`missing tags: ${missingTags.join(", ")}`);
+    if (canonicalLeak) reasons.push(`canonical leak (points to home: ${canonical})`);
+    if (titleLeak) reasons.push(`title leak (matches shell home title)`);
+    if (ogCanonicalMismatch)
+      reasons.push(`og:url (${ogUrl}) does not match canonical (${canonical})`);
+    if (ogTitle !== null && ogTitle.trim().length === 0)
+      reasons.push("og:title is empty");
+    if (!hasPageStructuredData)
+      reasons.push(
+        `no page-level structured data (need one of ${STRUCTURED_TYPES.slice(0, 6).join("/")}/...)`,
+      );
+  }
 
   checks.push({
     route,
@@ -211,10 +242,14 @@ for (const file of files) {
     hasH1,
     title,
     canonical,
+    ogUrl,
+    robots,
+    isNoindex,
     ldTypes: [...ldTypes].sort(),
     missingTags,
     canonicalLeak,
     titleLeak,
+    ogCanonicalMismatch,
     hasPageStructuredData,
     passed: reasons.length === 0,
     reasons,

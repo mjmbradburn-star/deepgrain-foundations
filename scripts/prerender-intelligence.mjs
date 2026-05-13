@@ -138,15 +138,27 @@ try {
       const url = previewUrl + route;
       await page.goto(url, { waitUntil: "networkidle0", timeout: 30_000 });
 
-      // Wait for a real H1 to ensure React + router have rendered.
+      // Wait for the SiteShell's [data-prerender-ready] marker. This proves
+      // React + the route component + Helmet all flushed, not just that an
+      // <h1> exists somewhere in the shell.
       await page
-        .waitForSelector("h1", { timeout: 10_000 })
+        .waitForSelector("[data-prerender-ready='true']", { timeout: 15_000 })
+        .catch(() => null);
+      // Belt and braces: also confirm an <h1> rendered.
+      await page
+        .waitForSelector("h1", { timeout: 5_000 })
         .catch(() => null);
 
-      // Strip the Vite preview client and any HMR-ish scripts.
+      // Strip the Vite preview client, HMR scripts, and the post-hydration
+      // cookie banner (visual-only, hydrates client-side anyway).
       await page.evaluate(() => {
         document
           .querySelectorAll('script[type="module"][src*="@vite/client"]')
+          .forEach((n) => n.remove());
+        // Cookie banner is mounted client-side; remove from snapshot so it
+        // doesn't appear in JS-disabled previews until consent state loads.
+        document
+          .querySelectorAll('[data-cookie-banner]')
           .forEach((n) => n.remove());
       });
 
@@ -181,5 +193,12 @@ console.log(`[prerender] done. rendered=${ok} failed=${failed}`);
 if (failures.length) {
   for (const f of failures) console.log(`  - ${f.route}: ${f.error}`);
 }
-// Don't fail the build over a few flaky routes; the SPA fallback still works.
+// In CI / fatal-validators mode, any failure must stop the build. Locally
+// we keep the soft-exit so a flaky puppeteer step doesn't block iteration.
+const fatal =
+  process.env.CI === "true" || process.env.DEEPGRAIN_FATAL_VALIDATORS === "1";
+if (failed > 0 && fatal) {
+  console.error(`[prerender] FATAL: ${failed} route(s) failed to prerender.`);
+  process.exit(1);
+}
 process.exit(0);

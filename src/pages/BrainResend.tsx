@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { CheckCircle2, AlertCircle, Mail, UserMinus } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import { PageMeta } from "@/components/seo/PageMeta";
 
 /**
  * BrainResend — diagnostic "resend my Brain link" flow.
@@ -112,6 +113,12 @@ const BrainResend = () => {
 
   return (
     <main className="min-h-screen bg-walnut text-cream">
+      <PageMeta
+        title="Resend my Brain link · Deepgrain"
+        description="Already signed up to the People Ops AI Brain but can't access it? Drop your email below and we'll send a fresh link."
+        path="/brain/resend"
+        noindex
+      />
       <section className="max-w-2xl mx-auto px-6 py-24 md:py-32">
         <p
           className="font-sans uppercase text-[11px] text-brass mb-6"

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/build-seo-indexes.mjs && vitest run src/test/faq-jsonld.test.ts src/test/people-ops-seo.test.ts src/test/intelligence-structure.test.ts",
+    "prebuild": "node scripts/build-seo-indexes.mjs && node scripts/audit-routes.mjs && vitest run src/test/faq-jsonld.test.ts src/test/people-ops-seo.test.ts src/test/intelligence-structure.test.ts",
     "build:seo-indexes": "node scripts/build-seo-indexes.mjs",
     "seo:verify": "node scripts/inject-verification-codes.mjs",
     "test:seo": "vitest run src/test/people-ops-seo.test.ts",
@@ -21,7 +21,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "prepublish:check": "npm run lint && npm run typecheck && npm run test && npm run build"
+    "prepublish:check": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "audit:routes": "node scripts/audit-routes.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
