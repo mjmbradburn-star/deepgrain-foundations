@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { CheckCircle2, AlertCircle, Mail, UserMinus } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import { PageMeta } from "@/components/seo/PageMeta";
 
 /**
  * BrainResend — diagnostic "resend my Brain link" flow.
