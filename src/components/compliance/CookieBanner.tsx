@@ -74,6 +74,7 @@ export const CookieBanner = () => {
 
   return (
     <div
+      data-cookie-banner
       role="dialog"
       aria-live="polite"
       aria-label="Cookie preferences"
