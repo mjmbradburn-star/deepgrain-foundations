@@ -113,6 +113,12 @@ const BrainResend = () => {
 
   return (
     <main className="min-h-screen bg-walnut text-cream">
+      <PageMeta
+        title="Resend my Brain link · Deepgrain"
+        description="Already signed up to the People Ops AI Brain but can't access it? Drop your email below and we'll send a fresh link."
+        path="/brain/resend"
+        noindex
+      />
       <section className="max-w-2xl mx-auto px-6 py-24 md:py-32">
         <p
           className="font-sans uppercase text-[11px] text-brass mb-6"
