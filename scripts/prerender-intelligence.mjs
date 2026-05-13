@@ -193,5 +193,12 @@ console.log(`[prerender] done. rendered=${ok} failed=${failed}`);
 if (failures.length) {
   for (const f of failures) console.log(`  - ${f.route}: ${f.error}`);
 }
-// Don't fail the build over a few flaky routes; the SPA fallback still works.
+// In CI / fatal-validators mode, any failure must stop the build. Locally
+// we keep the soft-exit so a flaky puppeteer step doesn't block iteration.
+const fatal =
+  process.env.CI === "true" || process.env.DEEPGRAIN_FATAL_VALIDATORS === "1";
+if (failed > 0 && fatal) {
+  console.error(`[prerender] FATAL: ${failed} route(s) failed to prerender.`);
+  process.exit(1);
+}
 process.exit(0);
