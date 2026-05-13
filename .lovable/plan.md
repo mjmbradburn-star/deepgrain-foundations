@@ -1,120 +1,88 @@
-ns
+## Reality check
 
-# Growth plan: search + LLM visibility
+Lovable does not offer a "turn on SSR" switch for this project. True SSR is only the default on new TanStack Start scaffolds (post May 2026). This codebase is Vite + React Router with a heavy custom prerender pipeline (`vite-plugins/prerender.ts`, `scripts/prerender-intelligence.mjs`, `scripts/validate-shell.mjs`, `validate-canonicals.mjs`, `validate-jsonld.mjs`).
 
-Goal: more qualified traffic from Google and more citations in ChatGPT, Claude, Perplexity, Gemini answers. Sequenced by leverage, not effort.
+For a fully static-content site like Deepgrain (intelligence MDX, method, about, etc.), **build-time prerender produces the same HTML a crawler sees from SSR**. Migrating to TS Start is a multi-day rewrite (routes, head, MDX pipeline, plugins, tests) and would not move the SEO/AIO needle on its own. Per your answer, we ship hardened prerender now and produce a written migration plan for later.
 
-## Current state (verified)
+On the "dynamic content" question: the only routes that touch per-request data are `/brain` and `/brain/resend` (signed-in flows). These should be `noindex`, not SSR'd. Everything else is build-time-knowable.
 
-- Article pages already ship: per-page title, description, canonical, OG/Twitter, Article + Breadcrumb + FAQ JSON-LD, bespoke OG cards, related articles, cluster chips.
-- `robots.txt` allows GPTBot, ClaudeBot, PerplexityBot, Googlebot, Bingbot.
-- `llms.txt`, `llms-full.txt`, `sitemap.xml`, RSS feeds present and built by `scripts/build-seo-indexes.mjs`.
-- GA4 wired (G-93DFWMX8GP), 25 long-form pillar/article MDX files live, plus People Ops cluster.
-- Gap: site is a Vite SPA. Crawlers without JS rendering see an empty `#root`. No author Person schema. No visible Updated date. No TL;DR blocks. No Search Console / Bing Webmaster verification recorded. No backlink or distribution motion.
+## Goals
 
----
+1. Every route a crawler can reach ships **fully rendered HTML** with correct title, description, canonical, OG, Twitter, and route-specific JSON-LD.
+2. Build **fails loudly** if any route regresses to the SPA shell, so the issue can never silently ship again.
+3. Single source of truth for the route list (sitemap), with parity checks across `App.tsx`, `sitemap.xml`, `llms.txt`, `feed.xml`.
+4. A written, reviewed migration plan to TanStack Start kept in `docs/`.
 
-## Track 1: Technical (engineering)
+## Phase 1: Route-source parity (the silent-gap fixer)
 
-Ordered by impact.
+Today the prerender trusts `public/sitemap.xml`. If a route is added to `App.tsx` and the dev forgets the sitemap, it never gets prerendered. We close that gap.
 
-### 1.1 Static prerendering for all content routes  *(highest leverage)*
+- Add `scripts/audit-routes.mjs`:
+  - Parse `<Route path=...>` from `src/App.tsx` (static + dynamic params).
+  - Expand dynamic params (`:slug`, `:name`) using the same data sources the pages use (`src/lib/intelligence.ts`, `src/data/pillars.ts`, `src/data/answers.ts`, `src/data/compares.ts`, `src/lib/clusters.ts`, `src/data/glossary.ts`).
+  - Skip `*`, redirect-only routes, and explicit-noindex routes (`/brain`, `/brain/resend`, `/unsubscribe`).
+  - Diff against `public/sitemap.xml`. Exit non-zero on drift.
+- Wire it in `vite-plugins/prerender.ts` as the first step, before `prerender-intelligence.mjs`. Build fails if drift.
 
-- Add a `postbuild` step using a small Puppeteer/Playwright script that visits every route in `sitemap.xml`, waits for hydration, and writes the rendered HTML to `dist/<route>/index.html`.
-- Configure Vite/host to serve the prerendered HTML and let React hydrate on top.
-- Result: GPTBot, ClaudeBot, PerplexityBot, CCBot, social scrapers all get full HTML, JSON-LD, and meta tags on first byte.
+## Phase 2: noindex hygiene
 
-### 1.2 Author entity + richer schema
+- Add `noindex` PageMeta to `Brain`, `BrainResend`, `Unsubscribe` (Unsubscribe already has it; verify Brain pages).
+- `validate-shell.mjs`: skip the structured-data / leak checks for routes carrying `<meta name="robots" content="noindex...">`, but still assert the file exists.
 
-- Add Person JSON-LD for Matthew Bradburn on `/about` with `sameAs` (LinkedIn, X, GitHub if any), jobTitle, image, knowsAbout.
-- Reference the same `@id` from every Article's `author`. (Already partially wired.)
-- Add `dateModified` to article frontmatter and Article JSON-LD.
-- Add `WebPage` + `BreadcrumbList` to non-article pages (Home, About, Work, Enablement, Method, Pillars, Category).
+## Phase 3: Per-route head completeness sweep
 
-### 1.3 Performance + Core Web Vitals pass
+- Audit every page component for `<PageMeta>` presence. Currently confirmed on `Home`. Check: `About`, `Work`, `Contact`, `MethodPage`, `Enablement`, `Intelligence`, `IntelligenceArticle`, `IntelligenceCategory`, `IntelligenceCluster`, `IntelligencePillar`, `IntelligencePillars`, `IntelligenceGlossary`, `IntelligenceAnswers`, `AnswerDetail`, `IntelligenceCompare`, `Privacy`, `Terms`, `Cookies`, `SeoChecklist`, `NotFound`.
+- Where missing or thin: add canonical, og:*, twitter:*, and the right JSON-LD type (`Article`/`BlogPosting` for intelligence, `CollectionPage` for index pages, `BreadcrumbList` everywhere deep, `FAQPage` for `/answers/*`, `AboutPage`, `ContactPage`).
+- Add a unit test (`src/test/page-meta-coverage.test.ts`) asserting every non-noindex route has a `<PageMeta>` import.
 
-- Lighthouse audit homepage + one article + one pillar. Track LCP, CLS, INP.
-- Quick wins likely: defer Cormorant font swap, lazy-load below-fold images, audit hero on mobile (430px viewport).
+## Phase 4: Prerender robustness
 
-### 1.4 Search Console + Bing Webmaster
+- `prerender-intelligence.mjs`:
+  - Replace `waitForSelector("h1")` with a stronger ready signal: wait for `<main>` AND a route-specific `[data-prerender-ready]` marker emitted by `SiteShell` once Helmet has flushed.
+  - Block analytics/3rd-party scripts during prerender to keep snapshots clean.
+  - Strip cookie banner from snapshot HTML (visual-only, ships post-hydration anyway).
+  - Snapshot HTML through `prettier`-style minimal normalisation so JSON-LD diffs are stable in CI.
+  - Fail the build on any failure (current script swallows them).
+- `validate-shell.mjs` already has leak/title/structured-data checks. Add: `og:url` matches canonical; `twitter:title` non-empty; `<h1>` text length > 8.
 
-- Add verification meta tags. Submit sitemap. Set up weekly review of Coverage and Performance reports.
+## Phase 5: AIO (LLM crawler) polish
 
-### 1.5 Internal link graph upgrades
+- Verify `public/llms.txt` and `public/llms-full.txt` are regenerated from the same route source as the sitemap (avoid drift). Hook into `audit-routes.mjs`.
+- Ensure each intelligence article ships an `Article` JSON-LD with `author`, `datePublished`, `dateModified`, `headline`, `articleBody` (truncated), and `mainEntityOfPage`.
+- Add `Speakable` schema on `/answers/*` pages (good AIO win, cheap).
 
-- Visible breadcrumbs on every content page (data already in JSON-LD).
-- "Read next" beyond Related articles: prev/next within cluster.
-- Pillar hub pages: list all cluster articles with descriptions + reading time, not just titles.
+## Phase 6: CI gate
 
-### 1.6 Sitemap + feeds hygiene
+- `.github/workflows/ci.yml`: ensure `npm run build` runs prerender + all four validators and fails red on any non-zero exit. Currently the prerender plugin catches and logs failures as non-fatal, change to fatal in CI (gate via `CI=true`).
 
-- Add `lastmod` per URL from frontmatter `updatedAt`.
-- Split sitemap by section (intelligence, pillars, glossary, answers) if >500 URLs eventually.
-- Include `image:image` entries in sitemap for hero images.
+## Phase 7: TanStack Start migration brief (deliverable, not code)
 
----
+Write `docs/ssr-migration-plan.md` covering:
+- Why migrate (true per-request SSR, streaming, server loaders for personalised Brain pages).
+- Scope: routes, head (Helmet → Start head API), MDX pipeline, prerender plugin retirement, validators kept as crawl tests, Supabase edge function compatibility.
+- Risks: design-system regressions, build time, Lovable hosting compatibility for Vite-Start hybrid, current custom plugins (`deepgrainSeoPlugin`, `intelligenceManifestPlugin`, `deepgrainPrerenderPlugin`).
+- Estimate: ~3-5 day rebuild + 1 day QA.
+- Trigger: revisit when Lovable offers in-place migration or when a Brain dashboard or other per-user view needs SSR.
 
-## Track 2: Content (editorial)
+## Files this will touch
 
-LLMs and Google reward sourced, structured, freshly-dated reference material.
+New:
+- `scripts/audit-routes.mjs`
+- `src/test/page-meta-coverage.test.ts`
+- `docs/ssr-migration-plan.md`
 
-### 2.1 Article-level upgrades (apply to every MDX)
+Edited:
+- `vite-plugins/prerender.ts` (add audit step, fail-fast in CI)
+- `scripts/prerender-intelligence.mjs` (ready marker, fail on error, strip noise)
+- `scripts/validate-shell.mjs` (skip noindex routes, extra assertions)
+- `src/components/layout/SiteShell.tsx` (emit `data-prerender-ready` after first paint)
+- `src/components/seo/PageMeta.tsx` (no change expected; verify)
+- Page components missing or thin on `<PageMeta>` (list confirmed in Phase 3)
+- `.github/workflows/ci.yml` (fatal validators in CI)
 
-- **TL;DR block** at top: 3–5 bullets. LLM retrievers chunk and quote these directly.
-- **Key takeaways** at bottom. Same reason.
-- **Visible Published / Updated** dates near title.
-- **Author byline** linking to /about#matthew-bradburn.
-- **Outbound citations** to primary sources (papers, vendor docs, books). LLMs over-weight pages that look like reference material.
-- **FAQ block** at the bottom of every article (already supported via `faqs` frontmatter, audit which articles are missing it).
+## Out of scope (explicit)
 
-### 2.2 Pillar hub depth
-
-- Each pillar page: 200–400 word intro framing the topic, then the cluster article list with descriptions, then a definitions/glossary strip, then a "Start here / Go deeper" pathway.
-- This is the page Google ranks for the head term and LLMs cite for definitions.
-
-### 2.3 Glossary expansion
-
-- One entry per recurring concept (operating system, operating model, grain, AI readiness, operating intervention, etc.).
-- Each glossary entry: definition, 2 sentence elaboration, "see also" links into pillars/articles. DefinedTerm JSON-LD.
-- Glossary entries punch above their weight in LLM citations.
-
-### 2.4 Answers / questions content type
-
-- `IntelligenceAnswers` already exists. Mine "People also ask" and AlsoAsked for the head queries each pillar targets, write a 200–400 word answer per question, link into the relevant article. Mark up as QAPage.
-
-### 2.5 Comparison pages
-
-- `IntelligenceCompare` exists. Build out the obvious "X vs Y" pages (operating system vs operating model, founder vs operator mode, strategy vs operating reality, change programme vs operating intervention). Comparison pages convert well in both Google and LLM answers.
-
-### 2.6 Editorial cadence
-
-- One new long-form per week, one updated piece per week (republish with bumped `updatedAt`). Freshness is a ranking signal and triggers re-crawl.
-
----
-
-## Suggested sequencing (next 8 weeks)
-
-```text
-Week 1   Prerendering + Search Console/Bing verification + Lighthouse baseline
-Week 2   Author Person schema, dateModified, visible dates, breadcrumbs sitewide
-Week 3   TL;DR + Key takeaways across all 25 articles
-Week 4   Pillar hub depth pass + 3 new comparison pages
-Week 5   Glossary build-out (15-20 entries) + QAPage answers
-Week 6   First guest post pitched + LinkedIn cadence live + newsletter weekly
-Week 7   Performance pass + sitemap lastmod + image sitemap
-Week 8   LLM citation tracking dashboard, review what's working, double down
-```
-
----
-
----
-
-## What I'd build first if you approve
-
-1. Prerendering pipeline (unlocks everything else).
-2. Author Person schema + visible Published/Updated dates + sitewide breadcrumbs.
-3. TL;DR + Key takeaways component, applied across every article.
-
-Tell me which tracks to start, or I'll default to those three in that order.  
-  
-I want you to run Track 1 and 2 as Track 3 is VERY human 
+- No migration to TanStack Start in this pass.
+- No changes to design tokens, copy, or visual layout.
+- No changes to Supabase, auth, or edge functions.
+- No new content; only metadata + prerender plumbing.
