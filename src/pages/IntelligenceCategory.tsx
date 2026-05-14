@@ -20,6 +20,29 @@ const IntelligenceCategory = () => {
     { name: cat.name, url },
   ]);
 
+  // CollectionPage JSON-LD: helps Google index article-list pages as a
+  // collection rather than a thin landing page.
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#collection`,
+    url,
+    name: `${cat.name} | Deepgrain Intelligence`,
+    description: cat.description,
+    isPartOf: { "@id": "https://deepgrain.ai/#website" },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListOrder: "https://schema.org/ItemListOrderDescending",
+      numberOfItems: items.length,
+      itemListElement: items.map((a, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://deepgrain.ai/intelligence/${a.frontmatter.slug}`,
+        name: a.frontmatter.title,
+      })),
+    },
+  };
+
   return (
     <>
       <Helmet>
@@ -31,6 +54,7 @@ const IntelligenceCategory = () => {
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
       </Helmet>
 
       <section className="bg-green text-cream pt-40 md:pt-48 pb-20 md:pb-28">
