@@ -37,10 +37,10 @@ const IntelligenceGlossary = () => {
   return (
     <>
       <Helmet>
-        <title>Glossary: AI operating system, operating intervention, the grain | Deepgrain</title>
+        <title>Glossary | Deepgrain Intelligence</title>
         <meta
           name="description"
-          content="Working definitions of the operating, AI, and method terms used across Deepgrain Intelligence: AI operating system, operating intervention, Read · Craft · Scale, the grain, and more."
+          content="Working definitions of the operating, AI, and method terms used across Deepgrain Intelligence: AI OS, operating intervention, the grain, and more."
         />
         <link rel="canonical" href={URL} />
         <meta property="og:title" content="Deepgrain Intelligence Glossary" />

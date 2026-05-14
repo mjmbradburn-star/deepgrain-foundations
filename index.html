@@ -41,7 +41,8 @@
     <meta name="author" content="Deepgrain" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <meta name="googlebot" content="index, follow" />
-    <link rel="canonical" href="https://deepgrain.ai/" />
+    <!-- Canonical removed: per-route <Helmet> in PageMeta owns canonicals so
+         they self-reference each page (avoids duplicate canonical tags). -->
     <link rel="alternate" type="text/plain" title="llms.txt" href="https://deepgrain.ai/llms.txt" />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://deepgrain.ai/sitemap.xml" />
     <link rel="alternate" type="application/rss+xml" title="Deepgrain Intelligence" href="https://deepgrain.ai/feed.xml" />
@@ -83,15 +84,15 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" />
     </noscript>
 
-    <meta property="og:title" content="Deepgrain | Work with the grain." />
-    <meta property="og:description" content="Every organisation has a grain. Most have never read it. Deepgrain reads it first. Then builds." />
+    <!-- Sitewide fallback for non-JS social crawlers (LinkedIn, Slack, Facebook).
+         Per-route <Helmet> in PageMeta replaces og:title/description/url for
+         JS-aware crawlers, so each route gets a unique social preview. We
+         intentionally do NOT ship og:url here — without a self-referencing
+         value the crawler falls back to the request URL, which is correct. -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://deepgrain.ai/" />
     <meta property="og:image" content="https://deepgrain.ai/og-image.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Deepgrain | Work with the grain." />
-    <meta name="twitter:description" content="Organisational consultancy that reads the grain of how your organisation actually works." />
     <meta name="twitter:image" content="https://deepgrain.ai/og-image.png" />
 
     <script type="application/ld+json">
@@ -120,28 +121,8 @@
       }
     </script>
 
-    <!-- VideoObject for the home-page Simple AI primer. Kept in static HTML
-         (not injected by React) so Google's video indexer sees it on the
-         first byte. Mirrored in /sitemap-video.xml. -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "name": "Simple AI, a 90-second primer for G&A leaders",
-        "description": "Seventeen of the terms cluttering every AI conversation, in plain English. Made for G&A leaders, not engineers.",
-        "thumbnailUrl": ["https://deepgrain.ai/simple-ai-poster.jpg"],
-        "uploadDate": "2026-05-01T00:00:00+00:00",
-        "duration": "PT1M30S",
-        "contentUrl": "https://deepgrain.ai/simple-ai.mp4",
-        "embedUrl": "https://deepgrain.ai/simple-ai.mp4",
-        "potentialAction": {
-          "@type": "SeekToAction",
-          "target": "https://deepgrain.ai/#simple-ai-heading?t={seek_to_second_number}",
-          "startOffset-input": "required name=seek_to_second_number"
-        },
-        "publisher": { "@id": "https://deepgrain.ai/#organization" }
-      }
-    </script>
+    <!-- VideoObject moved to src/pages/Home.tsx so the schema only ships on
+         the page that actually contains the video. Mirrored in /sitemap-video.xml. -->
     </head>
 
   <body>

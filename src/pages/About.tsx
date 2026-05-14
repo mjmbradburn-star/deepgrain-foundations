@@ -24,7 +24,7 @@ const About = () => (
   <>
     <PageMeta
       title="About Matthew Bradburn | Deepgrain"
-      description="Matthew Bradburn leads Deepgrain. Background, philosophy, and references from founders and operators across AI-native, defence, fintech, transit, and climate companies."
+      description="Matthew Bradburn leads Deepgrain. Background, philosophy, and references from founders across AI-native, defence, fintech, transit, and climate."
       path="/about"
       jsonLd={[
         {
