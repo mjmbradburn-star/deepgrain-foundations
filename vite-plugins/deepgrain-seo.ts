@@ -105,7 +105,7 @@ function readArticles(root: string): Article[] {
   );
 }
 
-function buildSitemap(articles: Article[]): string {
+function buildSitemap(articles: Article[], pillarSlugs: string[]): string {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
     ...STATIC_PAGES.map(
@@ -115,6 +115,10 @@ function buildSitemap(articles: Article[]): string {
     ...CATEGORIES.map(
       (c) =>
         `  <url>\n    <loc>${SITE}/intelligence/category/${c.slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>`
+    ),
+    ...pillarSlugs.map(
+      (s) =>
+        `  <url>\n    <loc>${SITE}/intelligence/pillar/${s}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
     ),
     ...articles.map(
       (a) =>
