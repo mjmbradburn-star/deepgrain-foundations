@@ -2,602 +2,410 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://deepgrain.ai/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/method</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/work</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/enablement</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/about</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/contact</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://deepgrain.ai/intelligence/glossary</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/answers</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/pillars</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://deepgrain.ai/brain</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/seo-checklist</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/privacy</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/terms</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/cookies</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/terms</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/category/foundations</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/category/ai-operating-systems</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/category/method-and-practice</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/category/sector-lenses</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/category/leadership-and-craft</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/category/people-ops-foundations</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/category/people-ops-systems</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/category/people-ops-builders</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/category/people-ops-governance</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/cluster/readiness-and-diagnosis</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/cluster/enablement-and-change</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/cluster/org-design-and-roles</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/cluster/governance-and-policy</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/cluster/measurement-and-roi</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/cluster/workflows-and-automation</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/cluster/agents-and-systems</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/cluster/workspace-and-tools</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/cluster/prompting-and-craft</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/pillar/ai-operating-system</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/pillar/ai-workspace-for-people-ops</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/pillar/operating-leadership</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/pillar/sector-operating-lenses</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/ai-operating-system-vs-operating-model</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/ai-os-vs-ai-platform</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/ai-os-vs-automation</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/hiring-for-the-grain</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/founder-mode-vs-operator-mode</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/operating-consultancy-for-ai-native-companies</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/operating-consultancy-for-climate-ventures</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/operating-consultancy-for-transit-and-mobility</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/people-ops-diagnostic-toolkit</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/people-debt-and-genai</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/designing-values-that-stick</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/coaching-and-feedback-systems</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/ai-roadmap-case-study-finedge</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/operating-consultancy-for-financial-data</loc>
     <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/intelligence/ai-roadmap-case-study-finedge</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/intelligence/coaching-and-feedback-systems</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/intelligence/designing-values-that-stick</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/intelligence/people-debt-and-genai</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/intelligence/people-ops-diagnostic-toolkit</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/the-hr-architect-role</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/automation-audit-playbook</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/ai-policy-blueprint-for-people-teams</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/production-agents-for-people-ops</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/ai-enablement-operating-model</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/operating-consultancy-for-defence-tech</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/choosing-ai-models-for-hr-work</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/prompting-patterns-for-people-ops</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/signals-of-operating-health</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/setting-up-your-ai-workspace</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/from-prompts-to-systems</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://deepgrain.ai/intelligence/designing-the-ai-native-people-team</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://deepgrain.ai/intelligence/setting-up-your-ai-workspace</loc>
+    <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/ai-governance-for-people-teams</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/intelligence/designing-the-ai-native-people-team</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/the-champion-model</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/intelligence/leading-the-ai-transformation</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://deepgrain.ai/intelligence/workflow-assessment-framework</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://deepgrain.ai/intelligence/leading-the-ai-transformation</loc>
+    <lastmod>2026-04-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/automation-patterns-that-pay-off</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://deepgrain.ai/intelligence/the-people-ops-ai-domain-map</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://deepgrain.ai/intelligence/workflow-assessment-framework</loc>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/measuring-ai-value-in-people-ops</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/intelligence/the-people-ops-ai-domain-map</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/scaling-without-breaking-the-grain</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/the-art-of-the-operating-intervention</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-04-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/ai-operating-ladder-five-tiers</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-03-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/why-ai-pilots-stall-at-production</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/five-pillars-of-ai-readiness</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/what-is-an-ai-operating-system</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/strategy-vs-operating-reality</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/operating-systems-vs-operating-models</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-02-02</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/why-most-change-programmes-fail</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-01-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deepgrain.ai/intelligence/what-is-organisational-consultancy</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/what-is-an-ai-operating-system</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/what-is-an-ai-os</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/what-is-an-ai-based-operating-system</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/what-is-an-ai-powered-operating-system</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/ai-os-vs-operating-model</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/ai-os-vs-ai-platform</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/how-to-build-an-ai-operating-system</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/five-pillars-of-ai-readiness</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/why-ai-pilots-stall-at-production</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/ai-operating-ladder</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/what-is-an-ai-workspace</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://deepgrain.ai/answers/ai-os-vs-automation</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>
