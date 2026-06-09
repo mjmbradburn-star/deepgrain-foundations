@@ -283,8 +283,9 @@ function auditRoutes(root: string, articles: Article[]): void {
 export function deepgrainSeoPlugin(): Plugin {
   const generate = (root: string, outDir: string) => {
     const articles = readArticles(root);
+    const pillarSlugs = readPillarSlugs(root);
     auditRoutes(root, articles);
-    const sitemap = buildSitemap(articles);
+    const sitemap = buildSitemap(articles, pillarSlugs);
     const llms = buildLlmsTxt(articles);
     const llmsFull = buildLlmsFullTxt(articles);
     fs.mkdirSync(outDir, { recursive: true });

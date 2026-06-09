@@ -139,6 +139,30 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://deepgrain.ai/intelligence/pillar/ai-operating-system</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/intelligence/pillar/ai-workspace-for-people-ops</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/intelligence/pillar/operating-leadership</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deepgrain.ai/intelligence/pillar/sector-operating-lenses</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
