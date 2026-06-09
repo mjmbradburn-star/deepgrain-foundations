@@ -26,11 +26,23 @@ const STATIC_PAGES = [
   { url: "/about", priority: "0.7", changefreq: "monthly" },
   { url: "/contact", priority: "0.6", changefreq: "yearly" },
   { url: "/intelligence", priority: "0.9", changefreq: "weekly" },
+  { url: "/intelligence/answers", priority: "0.7", changefreq: "weekly" },
+  { url: "/intelligence/pillars", priority: "0.8", changefreq: "monthly" },
+  { url: "/intelligence/glossary", priority: "0.6", changefreq: "monthly" },
   { url: "/brain", priority: "0.9", changefreq: "monthly" },
   { url: "/privacy", priority: "0.3", changefreq: "yearly" },
   { url: "/cookies", priority: "0.3", changefreq: "yearly" },
   { url: "/terms", priority: "0.3", changefreq: "yearly" },
 ];
+
+function readPillarSlugs(root: string): string[] {
+  const file = path.join(root, "src/data/pillars.ts");
+  if (!fs.existsSync(file)) return [];
+  const src = fs.readFileSync(file, "utf8");
+  const m = src.match(/PILLARS:\s*Pillar\[\]\s*=\s*\[([\s\S]*?)\];/);
+  const block = m ? m[1] : src;
+  return [...block.matchAll(/^\s*slug:\s*"([^"]+)"/gm)].map((mm) => mm[1]);
+}
 
 interface Frontmatter {
   title: string;
