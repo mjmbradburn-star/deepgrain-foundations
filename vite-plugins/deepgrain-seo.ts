@@ -26,11 +26,23 @@ const STATIC_PAGES = [
   { url: "/about", priority: "0.7", changefreq: "monthly" },
   { url: "/contact", priority: "0.6", changefreq: "yearly" },
   { url: "/intelligence", priority: "0.9", changefreq: "weekly" },
+  { url: "/intelligence/answers", priority: "0.7", changefreq: "weekly" },
+  { url: "/intelligence/pillars", priority: "0.8", changefreq: "monthly" },
+  { url: "/intelligence/glossary", priority: "0.6", changefreq: "monthly" },
   { url: "/brain", priority: "0.9", changefreq: "monthly" },
   { url: "/privacy", priority: "0.3", changefreq: "yearly" },
   { url: "/cookies", priority: "0.3", changefreq: "yearly" },
   { url: "/terms", priority: "0.3", changefreq: "yearly" },
 ];
+
+function readPillarSlugs(root: string): string[] {
+  const file = path.join(root, "src/data/pillars.ts");
+  if (!fs.existsSync(file)) return [];
+  const src = fs.readFileSync(file, "utf8");
+  const m = src.match(/PILLARS:\s*Pillar\[\]\s*=\s*\[([\s\S]*?)\];/);
+  const block = m ? m[1] : src;
+  return [...block.matchAll(/^\s*slug:\s*"([^"]+)"/gm)].map((mm) => mm[1]);
+}
 
 interface Frontmatter {
   title: string;
@@ -93,7 +105,7 @@ function readArticles(root: string): Article[] {
   );
 }
 
-function buildSitemap(articles: Article[]): string {
+function buildSitemap(articles: Article[], pillarSlugs: string[]): string {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
     ...STATIC_PAGES.map(
@@ -103,6 +115,10 @@ function buildSitemap(articles: Article[]): string {
     ...CATEGORIES.map(
       (c) =>
         `  <url>\n    <loc>${SITE}/intelligence/category/${c.slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>`
+    ),
+    ...pillarSlugs.map(
+      (s) =>
+        `  <url>\n    <loc>${SITE}/intelligence/pillar/${s}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
     ),
     ...articles.map(
       (a) =>
@@ -267,8 +283,9 @@ function auditRoutes(root: string, articles: Article[]): void {
 export function deepgrainSeoPlugin(): Plugin {
   const generate = (root: string, outDir: string) => {
     const articles = readArticles(root);
+    const pillarSlugs = readPillarSlugs(root);
     auditRoutes(root, articles);
-    const sitemap = buildSitemap(articles);
+    const sitemap = buildSitemap(articles, pillarSlugs);
     const llms = buildLlmsTxt(articles);
     const llmsFull = buildLlmsFullTxt(articles);
     fs.mkdirSync(outDir, { recursive: true });
