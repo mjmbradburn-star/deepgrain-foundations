@@ -1,88 +1,76 @@
-## Reality check
+## What the Semrush report tells us
 
-Lovable does not offer a "turn on SSR" switch for this project. True SSR is only the default on new TanStack Start scaffolds (post May 2026). This codebase is Vite + React Router with a heavy custom prerender pipeline (`vite-plugins/prerender.ts`, `scripts/prerender-intelligence.mjs`, `scripts/validate-shell.mjs`, `validate-canonicals.mjs`, `validate-jsonld.mjs`).
+The umbrella term "AI business efficiency" only does ~40 searches/month, but it sits on a long tail of low-difficulty (KDI 0-9), low-competition operator questions in three clusters:
 
-For a fully static-content site like Deepgrain (intelligence MDX, method, about, etc.), **build-time prerender produces the same HTML a crawler sees from SSR**. Migrating to TS Start is a multi-day rewrite (routes, head, MDX pipeline, plugins, tests) and would not move the SEO/AIO needle on its own. Per your answer, we ship hardened prerender now and produce a written migration plan for later.
+1. **Diagnosis** "how do businesses identify efficiency gaps for AI" (50/mo, the strongest single question), plus 4-5 near-duplicates.
+2. **Operational efficiency via agents** "how businesses use AI agents to improve efficiency" (30/mo), "how does agentic AI improve operational efficiency" (10/mo).
+3. **Team productivity** "how to use AI to improve productivity" (20/mo), employee/sales/chatbot variants (10/mo each).
 
-On the "dynamic content" question: the only routes that touch per-request data are `/brain` and `/brain/resend` (signed-in flows). These should be `noindex`, not SSR'd. Everything else is build-time-knowable.
+deepgrain.ai already publishes adjacent material (workflow assessment framework, 30-day diagnostic, automation patterns, production agents for People Ops) but does not target the literal "efficiency gaps" phrasing anywhere. KDI is effectively zero, so a targeted pillar plus answer-page entries should rank without much fight.
 
-## Goals
+## What to ship
 
-1. Every route a crawler can reach ships **fully rendered HTML** with correct title, description, canonical, OG, Twitter, and route-specific JSON-LD.
-2. Build **fails loudly** if any route regresses to the SPA shell, so the issue can never silently ship again.
-3. Single source of truth for the route list (sitemap), with parity checks across `App.tsx`, `sitemap.xml`, `llms.txt`, `feed.xml`.
-4. A written, reviewed migration plan to TanStack Start kept in `docs/`.
+### 1. New pillar article: "How to identify efficiency gaps AI can fill"
 
-## Phase 1: Route-source parity (the silent-gap fixer)
+File: `src/content/intelligence/identifying-efficiency-gaps-ai-can-fill.mdx`
 
-Today the prerender trusts `public/sitemap.xml`. If a route is added to `App.tsx` and the dev forgets the sitemap, it never gets prerendered. We close that gap.
+Targets cluster 1 directly. Frontmatter keywords lead with the exact GSC phrasings: "how businesses identify efficiency gaps for AI", "efficiency gaps AI can fill", "AI automation efficiency gaps", "where to apply AI in operations".
 
-- Add `scripts/audit-routes.mjs`:
-  - Parse `<Route path=...>` from `src/App.tsx` (static + dynamic params).
-  - Expand dynamic params (`:slug`, `:name`) using the same data sources the pages use (`src/lib/intelligence.ts`, `src/data/pillars.ts`, `src/data/answers.ts`, `src/data/compares.ts`, `src/lib/clusters.ts`, `src/data/glossary.ts`).
-  - Skip `*`, redirect-only routes, and explicit-noindex routes (`/brain`, `/brain/resend`, `/unsubscribe`).
-  - Diff against `public/sitemap.xml`. Exit non-zero on drift.
-- Wire it in `vite-plugins/prerender.ts` as the first step, before `prerender-intelligence.mjs`. Build fails if drift.
+Structure:
+- TLDR (existing component)
+- "What an efficiency gap actually is" - one paragraph defining the term so the page owns the phrase
+- "Four signals that a gap is AI-shaped" - rework of existing workflow-assessment material, sharpened to the question phrasing
+- "A 30-minute audit you can run today" - lightweight checklist, links into the 30-day diagnostic and workflow assessment framework
+- "What to do once you've found one" - links to automation patterns and production-agents pieces
+- FAQ block (existing `faqs` export pattern) with the literal questions: "How do businesses identify efficiency gaps for AI?", "How does AI improve business efficiency?", "How does agentic AI improve operational efficiency?"
+- KeyTakeaways
 
-## Phase 2: noindex hygiene
+Tone follows the project memory: Matt's voice, no em or en dashes.
 
-- Add `noindex` PageMeta to `Brain`, `BrainResend`, `Unsubscribe` (Unsubscribe already has it; verify Brain pages).
-- `validate-shell.mjs`: skip the structured-data / leak checks for routes carrying `<meta name="robots" content="noindex...">`, but still assert the file exists.
+### 2. New answer-page entries
 
-## Phase 3: Per-route head completeness sweep
+File: `src/data/answers.ts`. Append three entries (40-80 words each, mirrored verbatim into the existing QAPage JSON-LD):
 
-- Audit every page component for `<PageMeta>` presence. Currently confirmed on `Home`. Check: `About`, `Work`, `Contact`, `MethodPage`, `Enablement`, `Intelligence`, `IntelligenceArticle`, `IntelligenceCategory`, `IntelligenceCluster`, `IntelligencePillar`, `IntelligencePillars`, `IntelligenceGlossary`, `IntelligenceAnswers`, `AnswerDetail`, `IntelligenceCompare`, `Privacy`, `Terms`, `Cookies`, `SeoChecklist`, `NotFound`.
-- Where missing or thin: add canonical, og:*, twitter:*, and the right JSON-LD type (`Article`/`BlogPosting` for intelligence, `CollectionPage` for index pages, `BreadcrumbList` everywhere deep, `FAQPage` for `/answers/*`, `AboutPage`, `ContactPage`).
-- Add a unit test (`src/test/page-meta-coverage.test.ts`) asserting every non-noindex route has a `<PageMeta>` import.
+- `how-to-identify-efficiency-gaps-ai-can-fill` - the headline cluster-1 question, linking to the new pillar.
+- `how-does-ai-improve-business-efficiency` - links to the new pillar's "what an efficiency gap is" anchor.
+- `how-does-agentic-ai-improve-operational-efficiency` - links to `production-agents-for-people-ops` (and the new pillar as a secondary).
 
-## Phase 4: Prerender robustness
+This is the cheapest win, the answers page already emits QAPage JSON-LD and is well-indexed.
 
-- `prerender-intelligence.mjs`:
-  - Replace `waitForSelector("h1")` with a stronger ready signal: wait for `<main>` AND a route-specific `[data-prerender-ready]` marker emitted by `SiteShell` once Helmet has flushed.
-  - Block analytics/3rd-party scripts during prerender to keep snapshots clean.
-  - Strip cookie banner from snapshot HTML (visual-only, ships post-hydration anyway).
-  - Snapshot HTML through `prettier`-style minimal normalisation so JSON-LD diffs are stable in CI.
-  - Fail the build on any failure (current script swallows them).
-- `validate-shell.mjs` already has leak/title/structured-data checks. Add: `og:url` matches canonical; `twitter:title` non-empty; `<h1>` text length > 8.
+### 3. Wording tweaks on existing pages
 
-## Phase 5: AIO (LLM crawler) polish
+Light, surgical, no rewrites:
 
-- Verify `public/llms.txt` and `public/llms-full.txt` are regenerated from the same route source as the sitemap (avoid drift). Hook into `audit-routes.mjs`.
-- Ensure each intelligence article ships an `Article` JSON-LD with `author`, `datePublished`, `dateModified`, `headline`, `articleBody` (truncated), and `mainEntityOfPage`.
-- Add `Speakable` schema on `/answers/*` pages (good AIO win, cheap).
+- `src/content/intelligence/people-ops/workflow-assessment-framework.mdx` - add "efficiency gaps" and "where AI fits" to keywords; one sentence in the intro that uses the phrase "the efficiency gaps AI can fill" so the existing high-authority page also picks up the query.
+- `src/content/intelligence/people-ops/automation-patterns-that-pay-off.mdx` - add "AI efficiency" and "operational efficiency" to keywords; no body change needed.
+- `src/content/intelligence/why-ai-pilots-stall-at-production.mdx` - add "AI agents efficiency" to keywords (matches the 30/mo "how businesses use AI agents to improve efficiency" query).
 
-## Phase 6: CI gate
+### 4. Internal links
 
-- `.github/workflows/ci.yml`: ensure `npm run build` runs prerender + all four validators and fails red on any non-zero exit. Currently the prerender plugin catches and logs failures as non-fatal, change to fatal in CI (gate via `CI=true`).
+- From the new pillar, link to: workflow-assessment-framework, how-to-diagnose-an-organisation-in-30-days, automation-patterns-that-pay-off, production-agents-for-people-ops, what-is-an-ai-operating-system.
+- From workflow-assessment-framework and automation-patterns-that-pay-off, add a one-line related-reading link to the new pillar (uses the existing related-reads pattern already in those files).
+- The `src/data/internal-link-graph.json` is regenerated by `scripts/build-internal-link-graph.py`, run it as part of the change so the graph picks up the new node.
 
-## Phase 7: TanStack Start migration brief (deliverable, not code)
+### 5. Sitemap and feeds
 
-Write `docs/ssr-migration-plan.md` covering:
-- Why migrate (true per-request SSR, streaming, server loaders for personalised Brain pages).
-- Scope: routes, head (Helmet → Start head API), MDX pipeline, prerender plugin retirement, validators kept as crawl tests, Supabase edge function compatibility.
-- Risks: design-system regressions, build time, Lovable hosting compatibility for Vite-Start hybrid, current custom plugins (`deepgrainSeoPlugin`, `intelligenceManifestPlugin`, `deepgrainPrerenderPlugin`).
-- Estimate: ~3-5 day rebuild + 1 day QA.
-- Trigger: revisit when Lovable offers in-place migration or when a Brain dashboard or other per-user view needs SSR.
+- `public/sitemap.xml` is hand-edited in this project, add `/intelligence/identifying-efficiency-gaps-ai-can-fill` and the three new `/intelligence/answers#<slug>` anchors are already covered by the existing answers route entry, no extra sitemap rows needed for them.
+- `public/llms.txt` and `public/llms-full.txt` are kept in sync with content, add the new pillar's title, slug, and TLDR/summary to both. Follow the existing entry shape.
+- `public/feed.xml` likewise gets one new `<item>` for the pillar.
 
-## Files this will touch
+## Out of scope
 
-New:
-- `scripts/audit-routes.mjs`
-- `src/test/page-meta-coverage.test.ts`
-- `docs/ssr-migration-plan.md`
+- No design or component changes. Uses existing MDX components (TLDR, Takeaway, KeyTakeaways, FAQ).
+- No new routes, the answers page already renders per-entry anchors.
+- No SSR or build-pipeline changes.
+- Cluster 3 (employee/sales productivity variants) is not targeted, it pulls the brand away from operating systems toward generic productivity content and the volumes are tiny.
 
-Edited:
-- `vite-plugins/prerender.ts` (add audit step, fail-fast in CI)
-- `scripts/prerender-intelligence.mjs` (ready marker, fail on error, strip noise)
-- `scripts/validate-shell.mjs` (skip noindex routes, extra assertions)
-- `src/components/layout/SiteShell.tsx` (emit `data-prerender-ready` after first paint)
-- `src/components/seo/PageMeta.tsx` (no change expected; verify)
-- Page components missing or thin on `<PageMeta>` (list confirmed in Phase 3)
-- `.github/workflows/ci.yml` (fatal validators in CI)
+## Technical notes
 
-## Out of scope (explicit)
+- MDX frontmatter and `faqs` export follow the shape used in `what-is-an-ai-operating-system.mdx`, which already drives FAQPage JSON-LD via `src/pages/IntelligenceArticle.tsx`.
+- Answer entries auto-render via `src/pages/IntelligenceAnswers.tsx` and `AnswerDetail.tsx`, no route work needed.
+- After files land, run `scripts/build-internal-link-graph.py` and the existing `scripts/build-seo-indexes.mjs` so the cluster/related-reads surfaces pick up the new article.
+- Trigger an SEO scan after the change so the SEO panel reflects the new pillar.
 
-- No migration to TanStack Start in this pass.
-- No changes to design tokens, copy, or visual layout.
-- No changes to Supabase, auth, or edge functions.
-- No new content; only metadata + prerender plumbing.
+## Expected outcome
+
+Three to six new queries (mostly cluster 1 and cluster 2) start surfacing in GSC within a few weeks. The new pillar should reach page 1 for "efficiency gaps AI can fill" given KDI 0 and the existing site authority. The answers entries should start appearing as AI-overview citations on Perplexity and Google AIO for the literal question strings.

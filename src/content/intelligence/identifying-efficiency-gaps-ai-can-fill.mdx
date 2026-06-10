@@ -1,0 +1,137 @@
+export const frontmatter = {
+  title: "How to identify the efficiency gaps AI can fill",
+  slug: "identifying-efficiency-gaps-ai-can-fill",
+  category: "ai-operating-systems",
+  description: "Most teams pick AI projects by what is loudest, not by where the real efficiency gaps sit. Here is how to find the gaps that are actually AI-shaped, and what to do once you have one.",
+  keywords: [
+    "how businesses identify efficiency gaps for AI",
+    "efficiency gaps AI can fill",
+    "AI automation efficiency gaps",
+    "where to apply AI in operations",
+    "how does AI improve business efficiency",
+    "how businesses use AI agents to improve efficiency",
+    "agentic AI operational efficiency",
+    "AI business efficiency",
+  ],
+  readTime: "9 min",
+  publishedAt: "2026-06-10",
+  updatedAt: "2026-06-10",
+  author: "Matthew Bradburn",
+  featured: true,
+};
+
+export const faqs = [
+  {
+    question: "How do businesses identify efficiency gaps for AI?",
+    answer:
+      "By looking at four signals in the existing work: repetition, latency, judgment shape, and contestability. A workflow that runs often, waits on a human for hours when it should not, has judgment that is pattern-matching rather than novel, and has a clear owner who can sign off changes, is almost always an AI-shaped gap. Most teams skip the diagnosis and pick by enthusiasm instead.",
+  },
+  {
+    question: "How does AI improve business efficiency?",
+    answer:
+      "Not by replacing roles, by collapsing the waiting time inside workflows. The biggest gains come from drafting, triage, summarisation, and structured extraction: work that used to sit in a queue waiting for a human is prepared in seconds, and the human becomes a reviewer rather than a doer. The throughput change is usually larger than the headcount change.",
+  },
+  {
+    question: "How does agentic AI improve operational efficiency in businesses?",
+    answer:
+      "Agents handle the multi-step work that automation alone cannot, because the path changes based on what the agent finds. They earn their keep on workflows where a human used to coordinate across three or four systems. Most companies do not need many agents. Three or four, well-bounded, with logged steps and a human checkpoint, covers the bulk of the value.",
+  },
+  {
+    question: "How do businesses identify processes for AI automation?",
+    answer:
+      "Run a 30-minute audit. List the workflows the team touches in a week. For each, mark frequency, average waiting time, and who owns the decision. Anything that scores high on frequency and latency, and has a clear owner, is a candidate. The list is usually shorter and more obvious than people expect.",
+  },
+];
+
+<TLDR>
+- Efficiency gaps that AI can fill have a shape: repetitive, latency-bound, pattern-matching, owned.
+- Most teams pick AI projects by enthusiasm. Enthusiasm optimises for novelty, not value.
+- A 30-minute audit beats a three-month strategy deck for finding the first real gap.
+- Once you have found one, the next question is workflow design, not model choice.
+</TLDR>
+
+The question we hear most often, in the exact words people use, is some version of: *how do we figure out where AI should actually go?* It comes up on first calls. It comes up halfway through a build, when a team realises they picked the wrong thing. It comes up at board level, dressed up as strategy.
+
+The honest answer is that most companies do not have an AI problem. They have a diagnosis problem. They have not looked carefully enough at where the real efficiency gaps sit, so they pick the work that is loudest or most impressive. Three months later, the build is half-done and the team has lost confidence.
+
+This is a guide to doing the diagnosis properly. It is short on theory and long on signals.
+
+<Takeaway>An efficiency gap AI can fill is repetitive, latency-bound, pattern-matching, and owned. Skip the diagnosis and you build the wrong thing.</Takeaway>
+
+## What an efficiency gap actually is
+
+An efficiency gap is the distance between how long a piece of work currently takes and how long it could take if the right capability sat inside the workflow. Not how long it *should* take in some ideal world. How long it could take, today, with tools the team can deploy this quarter.
+
+That second framing matters. Strategy decks talk about efficiency as a number. Operators experience it as a queue. The gap is the queue.
+
+A useful question to ask the team: *what is the work that piles up between Monday and Friday, that we end up doing on Friday afternoon in a hurry?* That work, almost without exception, is sitting in a gap.
+
+## Four signals that a gap is AI-shaped
+
+Not every gap is AI-shaped. Plenty of efficiency problems are organisational, or process, or a missing hire. The gaps that AI can fill share four signals.
+
+**Repetition.** The workflow runs often. Daily, weekly, several times a day. Anything that runs once a quarter is not a candidate, no matter how painful, because the build cost will not amortise.
+
+**Latency.** The workflow waits on a human for hours when the human contribution is minutes. Triage queues, inbound forms, scorecard synthesis, status updates. The work itself is fast. The waiting is the problem.
+
+**Judgment shape.** The judgment inside the workflow is pattern-matching, not novel reasoning. *Is this candidate a clear no?* is pattern-matching. *Should we acquire this company?* is novel. AI handles the first shape well and the second shape badly.
+
+**Contestability.** There is a clear owner who can sign off changes, and the change does not need committee approval. If three teams have to agree before anything moves, the gap is real but the build is not yet possible. Park it.
+
+A workflow that hits all four is a strong candidate. Three out of four is worth investigating. Two or fewer is not yet ripe, even if it looks tempting.
+
+## A 30-minute audit you can run today
+
+You do not need a consultant for this. You need a whiteboard, an hour, and the operating leader of the function.
+
+1. List the ten workflows the team touches most often. Not the strategic ones. The actual day-to-day.
+2. For each, mark frequency (daily, weekly, monthly), average latency (how long it sits in a queue), judgment shape (pattern or novel), and owner.
+3. Circle the ones that score high on frequency and latency, are pattern-matching, and have a clear owner.
+4. Pick one. Just one. The smallest, most boring, most obviously winnable.
+
+That is the first build. Not the most impressive, the most winnable. Confidence compounds across the team, and the second build is easier because the first one shipped.
+
+For a deeper version of this exercise, the [30-day operating diagnostic](/intelligence/how-to-diagnose-an-organisation-in-30-days) and the [workflow assessment framework](/intelligence/workflow-assessment-framework) give you the full scoring rubric. The 30-minute version is enough to find the first candidate.
+
+<Takeaway>Pick the smallest, most boring, most obviously winnable workflow. Confidence compounds. Ambition does not.</Takeaway>
+
+## What to do once you have found one
+
+Finding the gap is half the work. The other half is designing the workflow that fills it, and that is where most projects quietly go wrong.
+
+Three things to get right before you write any prompts:
+
+**Decide what the AI is allowed to decide.** Drafting, triaging, summarising, surfacing. Almost never deciding. The teams that move fastest are the ones that decided early what they would never let AI sign off on. Governance is steering, not braking.
+
+**Design the human checkpoint.** Someone clicks something. The audit log captures it. The model never ships output to a customer or employee without a human in the loop, at least in the first quarter.
+
+**Pick the smallest viable shape.** One workflow, one team, one model. Not a platform. Not a fleet of agents. The patterns that actually pay off are documented in [automation patterns that pay off](/intelligence/automation-patterns-that-pay-off), and the recurring failure modes are in [why AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production).
+
+If the workflow needs more than one step that AI runs end to end, you are in agent territory. That is fine, but it is a different conversation, and the right starting point is [production agents](/intelligence/production-agents-for-people-ops) rather than another prompt.
+
+## Why most companies skip this
+
+Three reasons recur.
+
+The first is that diagnosis is unglamorous. Nobody wants to be the leader who spent the quarter mapping workflows when a competitor shipped an agent. Resist that. The agent the competitor shipped is almost certainly aimed at the wrong gap.
+
+The second is that the gaps that matter are usually inside the boring functions, not the headline ones. Operations, finance close, onboarding sequences, internal Q&A. Sales-floor AI gets the press. The compounding value is upstream.
+
+The third is that the people who know where the gaps sit are usually too busy filling them by hand to map them. The diagnosis has to be carved out as a deliberate exercise, with the operating leader, away from the queue.
+
+That is the work. Pick one gap. Build the smallest viable thing. Ship it. Then do it again. Six months in, you have a portfolio. Two years in, you have an [AI operating system](/intelligence/what-is-an-ai-operating-system).
+
+## What this connects to
+
+- [A workflow assessment framework for People Ops](/intelligence/workflow-assessment-framework)
+- [Diagnose an organisation in 30 days](/intelligence/how-to-diagnose-an-organisation-in-30-days)
+- [Automation patterns that pay off](/intelligence/automation-patterns-that-pay-off)
+- [Production agents for People Ops](/intelligence/production-agents-for-people-ops)
+- [What is an AI operating system?](/intelligence/what-is-an-ai-operating-system)
+
+<KeyTakeaways>
+- The gaps AI can fill have a shape. Diagnose the shape before you pick a tool.
+- A 30-minute audit beats a three-month strategy. The first build should be the smallest winnable one.
+- Workflow design decides whether the pay-off compounds. Model choice almost never does.
+- The boring functions are where the compounding value sits. The headline ones are where the press sits.
+</KeyTakeaways>
