@@ -1,76 +1,78 @@
-## What the Semrush report tells us
+## Model note
 
-The umbrella term "AI business efficiency" only does ~40 searches/month, but it sits on a long tail of low-difficulty (KDI 0-9), low-competition operator questions in three clusters:
+There is no "Claude Fable" model in the Lovable AI Gateway catalog. The Anthropic family is not currently selectable here, the closest peers are `openai/gpt-5.5` and `google/gemini-3.1-pro-preview`. The site has no live AI feature today (no `useChat`, no edge function calling the gateway), so this is not blocking. If you want a Claude-backed feature added, confirm the exact model ID and where it should run (Brain chat? Intelligence Q&A?).
 
-1. **Diagnosis** "how do businesses identify efficiency gaps for AI" (50/mo, the strongest single question), plus 4-5 near-duplicates.
-2. **Operational efficiency via agents** "how businesses use AI agents to improve efficiency" (30/mo), "how does agentic AI improve operational efficiency" (10/mo).
-3. **Team productivity** "how to use AI to improve productivity" (20/mo), employee/sales/chatbot variants (10/mo each).
+## What the audit found
 
-deepgrain.ai already publishes adjacent material (workflow assessment framework, 30-day diagnostic, automation patterns, production agents for People Ops) but does not target the literal "efficiency gaps" phrasing anywhere. KDI is effectively zero, so a targeted pillar plus answer-page entries should rank without much fight.
+- **Search footprint**: Semrush sees 1 organic keyword, 0 estimated traffic, no backlinks indexed. The site is effectively pre-rank. Upside is large because everything you publish is net-new surface.
+- **Content depth**: Strong, ~50 MDX intelligence articles, answers corpus, pillars, glossary, llms.txt, llms-full.txt, feed.xml, sitemap. The plumbing is already better than 95% of consultancy sites.
+- **Lighthouse findings (last published)**:
+  - LCP slow, hero is a large forest image with no preload, no `fetchpriority="high"`, and the H1 is web-font dependent.
+  - Contrast, some muted text on the dark hero and cream body fails AA.
+- **Design/UX gaps from the homepage capture**:
+  - Hero is 100vh of typography on a dark photo, no proof, no positioning sentence, no answer to "what does deepgrain sell". Mobile users at 430px get one giant word per line.
+  - Cookie banner covers the primary CTA on mobile.
+  - No visible above-the-fold social proof (logos, named clients, named outputs).
+  - Nav has 7 top-level items, no active state, no current-section highlight.
+- **SEO/AEO gaps**:
+  - Per-route meta is via `PageMeta`/Helmet, that is fine, but most intelligence pages share a generic OG image.
+  - No `Person` schema for Matt, no `ProfessionalService` schema, no `WebSite` SearchAction. Organization JSON-LD is present via `SiteEntityLd`.
+  - Answers entries emit QAPage JSON-LD but the page is a single long scroll, each Q is not a dedicated URL, which weakens AEO citations.
+  - Internal links from the homepage to intelligence are thin.
+  - No FAQ on the homepage, no "what we do / who it is for" structured copy, both are AEO-friendly formats.
 
-## What to ship
+## The task list
 
-### 1. New pillar article: "How to identify efficiency gaps AI can fill"
+Ordered by impact-to-effort. Each task is a single shippable unit.
 
-File: `src/content/intelligence/identifying-efficiency-gaps-ai-can-fill.mdx`
+### P0, ship this week (safe wins, no design risk)
 
-Targets cluster 1 directly. Frontmatter keywords lead with the exact GSC phrasings: "how businesses identify efficiency gaps for AI", "efficiency gaps AI can fill", "AI automation efficiency gaps", "where to apply AI in operations".
+1. **Hero LCP fix**. Add `<link rel="preload" as="image" fetchpriority="high">` for the hero forest image in `index.html`. Add explicit width/height. Set `font-display: swap` on the display serif `@font-face`. Target: LCP under 2.5s on 4G.
+2. **Contrast pass**. Replace any `text-muted-foreground/50`, `text-cream/60` etc. that fail AA on the dark hero and cream body. Use semantic tokens at full opacity. Re-test the two flagged surfaces.
+3. **Cookie banner mobile fix**. Move banner to bottom-right with max-width on >=sm, on mobile reduce height and never overlap the primary CTA. Test at 430px.
+4. **Homepage meta tightening**. Title to a benefit-led 55-char string ("Deepgrain, AI operating systems for founder-led companies"). Meta description rewritten to 150 chars with a verb and an outcome.
+5. **JSON-LD additions**:
+   - `Person` for Matthew Bradburn on `/about` with sameAs (LinkedIn, X).
+   - `ProfessionalService` on `/` with serviceType, areaServed, founder.
+   - `WebSite` with `potentialAction` SearchAction pointing at `/intelligence?q=`.
+6. **Mark the two Lighthouse findings fixed and trigger a republish + re-scan** after 1 and 2 land.
 
-Structure:
-- TLDR (existing component)
-- "What an efficiency gap actually is" - one paragraph defining the term so the page owns the phrase
-- "Four signals that a gap is AI-shaped" - rework of existing workflow-assessment material, sharpened to the question phrasing
-- "A 30-minute audit you can run today" - lightweight checklist, links into the 30-day diagnostic and workflow assessment framework
-- "What to do once you've found one" - links to automation patterns and production-agents pieces
-- FAQ block (existing `faqs` export pattern) with the literal questions: "How do businesses identify efficiency gaps for AI?", "How does AI improve business efficiency?", "How does agentic AI improve operational efficiency?"
-- KeyTakeaways
+### P1, next, content + AEO leverage
 
-Tone follows the project memory: Matt's voice, no em or en dashes.
+7. **Per-answer URLs**. Promote `/intelligence/answers#slug` to real routes at `/intelligence/answers/:slug`. Each gets its own `<title>`, meta, QAPage JSON-LD, and a single H1 matching the question verbatim. Old hash links 301 to the new URLs via in-app redirect. This is the single biggest AEO move on the site, Perplexity and Google AIO cite single-question pages, not scroll-anchors.
+8. **Homepage FAQ block**. 5 questions, 40-80 words each, the literal phrasings from GSC and Semrush: "What is an AI operating system", "How do you identify efficiency gaps AI can fill", "How is Deepgrain different from a management consultancy", "Who do you work with", "How long does an engagement take". Wired to FAQPage JSON-LD.
+9. **"What we do" structured strip** on the homepage, three columns: Read, Craft, Scale, each with a one-line outcome and a link to a case study. Replaces nothing, adds above-the-fold meaning.
+10. **Proof strip** under the hero, 5 client/sector logos or named outcomes. If logos are not approved, use named outcomes ("Cut hiring cycle 38% at a Series B defence tech company").
+11. **OG images per intelligence article**. Build a single OG image generator (static, at build time, using `satori` or a templated PNG per slug from frontmatter title + category). Removes the shared generic OG.
+12. **Internal linking from homepage**. Add a 3-card "Latest from Intelligence" section pulling the three most recent MDX entries. Currently the homepage barely links into the corpus.
 
-### 2. New answer-page entries
+### P2, design + UX polish
 
-File: `src/data/answers.ts`. Append three entries (40-80 words each, mirrored verbatim into the existing QAPage JSON-LD):
+13. **Mobile hero rebalance**. At <=430px, drop hero to 70vh, shrink the display type to fit "Work with the grain." on three lines max, move the subhead and CTAs above the fold.
+14. **Nav active state and current-section highlight** on `/method` and `/enablement`, plus a sticky thin progress bar on long intelligence articles.
+15. **Brain page conversion pass**. Above-the-fold preview of one card, clearer single CTA, social proof of subscribers ("Read by heads of People at...").
+16. **Reading experience on intelligence**. Slightly wider measure on `lg+`, drop-cap on the first paragraph, "Save to read later" stub (copy link), reading-time and last-updated visible at the top.
+17. **404 page**. Replace with a useful one, search box plus three recommended reads from intelligence.
 
-- `how-to-identify-efficiency-gaps-ai-can-fill` - the headline cluster-1 question, linking to the new pillar.
-- `how-does-ai-improve-business-efficiency` - links to the new pillar's "what an efficiency gap is" anchor.
-- `how-does-agentic-ai-improve-operational-efficiency` - links to `production-agents-for-people-ops` (and the new pillar as a secondary).
+### P3, ongoing growth + governance
 
-This is the cheapest win, the answers page already emits QAPage JSON-LD and is well-indexed.
+18. **Topic clusters**. Pick the three highest-intent clusters (efficiency gaps, AI operating systems, People Ops champions). For each, audit pillar -> spokes -> answers coverage, fill the gaps, add hub pages where missing.
+19. **GSC + IndexNow ping wired to publish**. On deploy, fire `ping-indexnow` for changed routes (the function already exists). Add a check that sitemap.xml lastmod is bumped on the touched URLs.
+20. **Quarterly SEO scan + Semrush trend check** as part of the release ritual. Snapshot in `docs/seo-reports/YYYY-Qn.md`.
 
-### 3. Wording tweaks on existing pages
+## What I will NOT touch without further sign-off
 
-Light, surgical, no rewrites:
+- Palette, typography pairing, brand voice. They are working and on-memory.
+- Routing structure for non-answers pages.
+- The Brain email funnel mechanics (Supabase functions, Resend integration).
+- The MDX content body of existing articles (only frontmatter and structural wrappers).
 
-- `src/content/intelligence/people-ops/workflow-assessment-framework.mdx` - add "efficiency gaps" and "where AI fits" to keywords; one sentence in the intro that uses the phrase "the efficiency gaps AI can fill" so the existing high-authority page also picks up the query.
-- `src/content/intelligence/people-ops/automation-patterns-that-pay-off.mdx` - add "AI efficiency" and "operational efficiency" to keywords; no body change needed.
-- `src/content/intelligence/why-ai-pilots-stall-at-production.mdx` - add "AI agents efficiency" to keywords (matches the 30/mo "how businesses use AI agents to improve efficiency" query).
+## How I propose to ship
 
-### 4. Internal links
+Three batches, you approve each before I start:
 
-- From the new pillar, link to: workflow-assessment-framework, how-to-diagnose-an-organisation-in-30-days, automation-patterns-that-pay-off, production-agents-for-people-ops, what-is-an-ai-operating-system.
-- From workflow-assessment-framework and automation-patterns-that-pay-off, add a one-line related-reading link to the new pillar (uses the existing related-reads pattern already in those files).
-- The `src/data/internal-link-graph.json` is regenerated by `scripts/build-internal-link-graph.py`, run it as part of the change so the graph picks up the new node.
+- **Batch A (P0, tasks 1-6)**, one round trip. Low risk, mostly meta + CSS + JSON-LD.
+- **Batch B (P1, tasks 7-12)**, two round trips because per-answer routes need redirect + sitemap + test updates.
+- **Batch C (P2-P3, tasks 13-20)**, scoped per task, you pick the order.
 
-### 5. Sitemap and feeds
-
-- `public/sitemap.xml` is hand-edited in this project, add `/intelligence/identifying-efficiency-gaps-ai-can-fill` and the three new `/intelligence/answers#<slug>` anchors are already covered by the existing answers route entry, no extra sitemap rows needed for them.
-- `public/llms.txt` and `public/llms-full.txt` are kept in sync with content, add the new pillar's title, slug, and TLDR/summary to both. Follow the existing entry shape.
-- `public/feed.xml` likewise gets one new `<item>` for the pillar.
-
-## Out of scope
-
-- No design or component changes. Uses existing MDX components (TLDR, Takeaway, KeyTakeaways, FAQ).
-- No new routes, the answers page already renders per-entry anchors.
-- No SSR or build-pipeline changes.
-- Cluster 3 (employee/sales productivity variants) is not targeted, it pulls the brand away from operating systems toward generic productivity content and the volumes are tiny.
-
-## Technical notes
-
-- MDX frontmatter and `faqs` export follow the shape used in `what-is-an-ai-operating-system.mdx`, which already drives FAQPage JSON-LD via `src/pages/IntelligenceArticle.tsx`.
-- Answer entries auto-render via `src/pages/IntelligenceAnswers.tsx` and `AnswerDetail.tsx`, no route work needed.
-- After files land, run `scripts/build-internal-link-graph.py` and the existing `scripts/build-seo-indexes.mjs` so the cluster/related-reads surfaces pick up the new article.
-- Trigger an SEO scan after the change so the SEO panel reflects the new pillar.
-
-## Expected outcome
-
-Three to six new queries (mostly cluster 1 and cluster 2) start surfacing in GSC within a few weeks. The new pillar should reach page 1 for "efficiency gaps AI can fill" given KDI 0 and the existing site authority. The answers entries should start appearing as AI-overview citations on Perplexity and Google AIO for the literal question strings.
+Reply with "go A", "go A and B", or edits to the list and I will start.
