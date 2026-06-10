@@ -102,4 +102,26 @@ export const ANSWERS: AnswerEntry[] = [
       "Automation runs the same path every time. An AI operating system reasons about which path to take. Automation handles the rails. The AI OS handles the decisions. The two layers compound when you build them together, but conflating them produces brittle pilots that look smart in October and break by January.",
     link: "/intelligence/ai-os-vs-automation#in-one-paragraph",
   },
+  {
+    question: "How do businesses identify efficiency gaps that AI can fill?",
+    slug: "how-to-identify-efficiency-gaps-ai-can-fill",
+    answer:
+      "By looking at four signals in the existing work: repetition, latency, judgment shape, and contestability. A workflow that runs often, waits on a human for hours when the human contribution is minutes, has judgment that is pattern-matching rather than novel, and has a clear owner who can sign off changes, is almost always an AI-shaped gap. A 30-minute audit beats a three-month strategy deck for finding the first one.",
+    link: "/intelligence/identifying-efficiency-gaps-ai-can-fill#four-signals-that-a-gap-is-ai-shaped",
+    linkLabel: "Read the full diagnosis",
+  },
+  {
+    question: "How does AI improve business efficiency?",
+    slug: "how-does-ai-improve-business-efficiency",
+    answer:
+      "Not by replacing roles, by collapsing the waiting time inside workflows. The biggest gains come from drafting, triage, summarisation, and structured extraction: work that used to sit in a queue waiting for a human is prepared in seconds, and the human becomes a reviewer rather than a doer. The throughput change is usually larger than the headcount change.",
+    link: "/intelligence/identifying-efficiency-gaps-ai-can-fill#what-an-efficiency-gap-actually-is",
+  },
+  {
+    question: "How does agentic AI improve operational efficiency in businesses?",
+    slug: "how-does-agentic-ai-improve-operational-efficiency",
+    answer:
+      "Agents handle the multi-step work that automation alone cannot, because the path changes based on what the agent finds. They earn their keep on workflows where a human used to coordinate across three or four systems. Most companies do not need many agents. Three or four, well-bounded, with logged steps and a human checkpoint, covers the bulk of the value.",
+    link: "/intelligence/identifying-efficiency-gaps-ai-can-fill#what-to-do-once-you-have-found-one",
+  },
 ];
