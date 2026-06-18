@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Hero } from "@/components/sections/Hero";
 import { ICPStrip } from "@/components/sections/ICPStrip";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { HOME_FAQ_LD } from "@/components/sections/HomeFAQ";
 
 // Below-the-fold sections — lazy-loaded to shrink the initial JS bundle.
 const LogoCarousel = lazy(() =>
@@ -33,6 +34,9 @@ const IntelligenceTeaser = lazy(() =>
 );
 const Invitation = lazy(() =>
   import("@/components/sections/Invitation").then((m) => ({ default: m.Invitation }))
+);
+const HomeFAQ = lazy(() =>
+  import("@/components/sections/HomeFAQ").then((m) => ({ default: m.HomeFAQ }))
 );
 
 // Minimal placeholder preserves vertical rhythm without shifting the page.

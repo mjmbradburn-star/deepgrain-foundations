@@ -56,11 +56,40 @@ export const SiteEntityLd = () => {
     inLanguage: "en-GB",
   };
 
+  // ProfessionalService describes the consultancy as a discoverable
+  // entity. Sitewide because it's an entity descriptor, not page state.
+  const service = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://deepgrain.ai/#service",
+    name: "Deepgrain",
+    url: "https://deepgrain.ai",
+    parentOrganization: { "@id": "https://deepgrain.ai/#organization" },
+    founder: { "@id": "https://deepgrain.ai/about#matthew-bradburn" },
+    serviceType: [
+      "Organisational consultancy",
+      "AI operating systems",
+      "AI enablement",
+      "Operating diagnostics",
+    ],
+    areaServed: [
+      { "@type": "Country", name: "United Kingdom" },
+      { "@type": "Place", name: "Europe" },
+      { "@type": "Place", name: "North America" },
+    ],
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType:
+        "Founder-led companies in AI-native, defence, financial data, transit and climate sectors",
+    },
+  };
+
   return (
     <Helmet>
       <script type="application/ld+json">{JSON.stringify(org)}</script>
       <script type="application/ld+json">{JSON.stringify(person)}</script>
       <script type="application/ld+json">{JSON.stringify(website)}</script>
+      <script type="application/ld+json">{JSON.stringify(service)}</script>
     </Helmet>
   );
 };
