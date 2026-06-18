@@ -11,8 +11,62 @@ import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { BarkSection } from "@/components/ui/BarkSection";
 import { Invitation } from "@/components/sections/Invitation";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+import { BeforeAfterCard, type BeforeAfter } from "@/components/sections/deck/BeforeAfterCard";
+import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
 
 const variants: Array<"linen" | "walnut" | "green"> = ["linen", "walnut", "linen", "green"];
+
+const heroBeforeAfter: BeforeAfter = {
+  eyebrow: "Hero case · Defence tech · Series B · 200 people",
+  headline: "Finance and People Ops, before and after we read the grain.",
+  beforeLabel: "⏱  Before · weekly admin load",
+  beforeValue: "83 hrs",
+  beforeCaption:
+    "of rekeying, chasing and re-answering across Finance and People Ops. The most expensive seats doing the least judgement work.",
+  beforeChips: ["▦ 3 systems out of sync", "⌥ Repeating policy questions", "⚖ No time for the real work"],
+  afterLabel: "◷  After · 12-week engagement",
+  afterValue: "60% / 70%",
+  afterCaption:
+    "of Finance time reclaimed; seventy percent of People Ops queries handled by systems the team owns and modifies itself.",
+  afterChips: ["⚙ Agents wired in", "✦ 5 champions trained", "✓ 0 critical issues, 2 months on"],
+  judgement:
+    "Two months on the champions had shipped five more agents we never scoped. That is the test.",
+};
+
+const beforeAfterGallery: BeforeAfter[] = [
+  {
+    eyebrow: "Financial data and analytics · ~600 people · multi-cohort",
+    headline: "From training programme to production tools.",
+    beforeValue: "15 people",
+    beforeCaption: "across two timezones, fluent on prompts but with nothing shipped end to end.",
+    beforeChips: ["⌥ Training fatigue", "▦ No production agents"],
+    afterValue: "5 tools",
+    afterCaption: "live in seven weeks. Five squads, one production solution each, owned by the function.",
+    afterChips: ["⚙ 5 production tools", "✦ Champions still building"],
+  },
+  {
+    eyebrow: "Transit technology · PE backed · 260 people",
+    headline: "A doing problem, not a training problem.",
+    beforeValue: "£40k",
+    beforeCaption: "in licences and a champions programme producing no outputs outside engineering.",
+    beforeChips: ["⌥ Licences unused", "◌ No internal builders"],
+    afterValue: "1 tool, 2 builders",
+    afterCaption: "one named production tool, two internal builders who can maintain and extend everything.",
+    afterChips: ["✦ 40 enabled in wave one", "✓ £40k cost retired"],
+  },
+  {
+    eyebrow: "Climate consultancy · growth stage · ~60 people",
+    headline: "A new operating model, not a new tool.",
+    beforeValue: "Ad hoc",
+    beforeCaption: "associate lifecycle held together by individuals, breaking quietly under growth.",
+    beforeChips: ["⌥ Onboarding gaps", "▦ Lost institutional knowledge"],
+    afterValue: "1 lifecycle",
+    afterCaption: "redesigned from joiner to leaver, with AI woven through every stage, built to compound.",
+    afterChips: ["⚙ Agents across the lifecycle", "✓ Survives the next hire wave"],
+  },
+];
 
 const FAQ_ITEMS: FAQItem[] = [
   {
@@ -28,7 +82,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How are case studies selected, and what gets anonymised?",
     answer:
-      "We only publish case studies the client has reviewed and approved line by line. Where the work touches sensitive sectors — defence, regulated finance, early-stage climate — we anonymise the company name and any identifying detail of the engagement. The patterns and numbers are real; the brand is held back when the client prefers it that way.",
+      "We only publish case studies the client has reviewed and approved line by line. Where the work touches sensitive sectors (defence, regulated finance, early-stage climate) we anonymise the company name and any identifying detail of the engagement. The patterns and numbers are real; the brand is held back when the client prefers it that way.",
   },
   {
     question: "What are the confidentiality boundaries during and after the work?",
@@ -43,15 +97,15 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Will you put us in touch with a reference client?",
     answer:
-      "Yes. After a first conversation, if the fit looks right, we'll introduce you to one or two operators we've worked with — typically a Chief People Officer or COO — who can speak directly to how the engagement ran and what was left behind. We ask permission before each introduction; we never broker a reference cold.",
+      "Yes. After a first conversation, if the fit looks right, we'll introduce you to one or two operators we've worked with (typically a Chief People Officer or COO) who can speak directly to how the engagement ran and what was left behind. We ask permission before each introduction; we never broker a reference cold.",
   },
 ];
 
 const Work = () => (
   <>
     <PageMeta
-      title="Work · Case studies | Deepgrain"
-      description="Case studies from our consulting work across defence tech, financial data, transit and mobility, climate, and AI-native companies."
+      title="Work · Before and after | Deepgrain"
+      description="Real engagements at click level. Before-and-after on Finance, People Ops, and operating lifecycles across defence, financial data, transit and climate."
       image="https://deepgrain.ai/og-work.png"
       path="/work"
       jsonLd={[
@@ -62,55 +116,84 @@ const Work = () => (
         buildFAQLd(FAQ_ITEMS),
       ]}
     />
-    <section className="bg-green text-cream pt-40 pb-20">
-      <div className="container-grain max-w-4xl">
+
+    {/* Hero — deck shape */}
+    <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
+      <TopoBackdrop variant="ridge" opacity={0.22} />
+      <div className="relative container-grain max-w-5xl">
         <ScrollReveal>
-          <Eyebrow withRule className="text-cream/70 mb-6">The Work</Eyebrow>
-          <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[96px] leading-[1.02] text-balance">
-            Engagements that create lasting change.
+          <SectionEyebrow className="mb-6">The work</SectionEyebrow>
+          <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] text-balance max-w-4xl">
+            Read first. Then the numbers move.
           </h1>
-          <p className="mt-8 text-cream/80 max-w-2xl leading-relaxed text-lg">
-            A small set of organisations who chose to read themselves first.
-            Each engagement built to compound long after we'd left.
+          <p className="mt-8 max-w-2xl text-cream/80 text-lg leading-relaxed">
+            A small set of organisations who chose to map the work at click level before they
+            bought a tool. Each engagement built to compound long after we'd left.
           </p>
         </ScrollReveal>
       </div>
     </section>
 
+    {/* Hero before/after — the strongest case, deck slide 10 styled */}
+    <BeforeAfterCard item={heroBeforeAfter} />
+
+    {/* Sector strip */}
     <LogoCarousel background="walnut" showHeadline={false} />
+
+    {/* Before/after gallery — every case told in the same shape */}
+    <section className="bg-cream text-walnut py-20 md:py-28">
+      <div className="container-grain max-w-5xl">
+        <ScrollReveal>
+          <SectionEyebrow tone="linen" className="mb-6">More engagements</SectionEyebrow>
+          <h2 className="font-display text-walnut text-3xl md:text-5xl leading-[1.05] max-w-3xl">
+            Same shape. Different grain.
+          </h2>
+          <p className="mt-6 max-w-2xl text-walnut/75 leading-relaxed">
+            Every engagement starts with a real workflow and ends with a number the client owns.
+            Here are three more, in the same before-and-after shape.
+          </p>
+        </ScrollReveal>
+      </div>
+    </section>
+
+    {beforeAfterGallery.map((item) => (
+      <BeforeAfterCard key={item.eyebrow} item={item} />
+    ))}
+
+    {/* Long-form case studies retained for clients who want the full narrative */}
+    <section className="bg-walnut text-cream py-20">
+      <div className="container-grain max-w-3xl text-center">
+        <SectionEyebrow className="mb-4 justify-center">In the client's words</SectionEyebrow>
+        <p className="font-display text-cream/85 text-2xl md:text-3xl italic leading-snug">
+          The full readouts below carry the testimonials, the engagement shape, and the outcomes
+          the team carried after we left.
+        </p>
+      </div>
+    </section>
 
     {caseStudies.map((study, i) => (
       <CaseStudyCard key={study.id} study={study} variant={variants[i]} />
     ))}
 
-    <BarkSection
-      className="py-14 md:py-16"
-      contentClassName="container-grain"
-    >
-        <ScrollReveal>
-          <Link
-            to="/enablement"
-            className="group flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
-          >
-            <p className="font-display text-cream text-2xl md:text-3xl leading-snug max-w-3xl">
-              Every engagement leaves a trained team behind.{" "}
-              <span className="text-brass transition-colors group-hover:text-cream">
-                See how →
-              </span>
-            </p>
-            <ArrowUpRight
-              className="hidden md:block h-7 w-7 text-brass transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-              strokeWidth={2}
-            />
-          </Link>
-        </ScrollReveal>
+    <BarkSection className="py-14 md:py-16" contentClassName="container-grain">
+      <ScrollReveal>
+        <Link
+          to="/enablement"
+          className="group flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
+        >
+          <p className="font-display text-cream text-2xl md:text-3xl leading-snug max-w-3xl">
+            Every engagement leaves a trained team behind.{" "}
+            <span className="text-brass transition-colors group-hover:text-cream">See how →</span>
+          </p>
+          <ArrowUpRight
+            className="hidden md:block h-7 w-7 text-brass transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+            strokeWidth={2}
+          />
+        </Link>
+      </ScrollReveal>
     </BarkSection>
 
-    <FAQ
-      eyebrow="Outcomes & proof"
-      heading="What you can expect to take away."
-      items={FAQ_ITEMS}
-    />
+    <FAQ eyebrow="Outcomes & proof" heading="What you can expect to take away." items={FAQ_ITEMS} />
 
     <section className="bg-linen py-20 md:py-28">
       <div className="container-grain max-w-3xl">
@@ -122,6 +205,16 @@ const Work = () => (
             heading="Field notes from the work."
             description="A short dispatch, a few times a quarter. Patterns we keep seeing in how organisations actually run."
           />
+          <div className="mt-12">
+            <AuditPrompt
+              tone="linen"
+              ctaId="audit_work_mid"
+              ctaLocation="work_mid"
+              headline="Want this kind of before and after on your own function?"
+              sub="Thirty minutes. One workflow. We map it together."
+              prefill="I saw the case studies. The function I'd like to map a before and after for is:"
+            />
+          </div>
         </ScrollReveal>
       </div>
     </section>

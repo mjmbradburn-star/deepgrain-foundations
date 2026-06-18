@@ -10,6 +10,11 @@ import { Invitation } from "@/components/sections/Invitation";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { BarkSection } from "@/components/ui/BarkSection";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+import { BuilderVsMiddle } from "@/components/sections/deck/BuilderVsMiddle";
+import { RoleMatrix } from "@/components/sections/deck/RoleMatrix";
+import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
 
 // Each FAQ keeps `answer` as the canonical text mirrored in JSON-LD; `answerNode`
 // adds inline navigation, an optional "Related" link, and a contextual "Ask about
