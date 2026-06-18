@@ -25,10 +25,10 @@ import { promises as fs } from "node:fs";
 import { dirname, join, resolve, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { existsSync, readFileSync } from "node:fs";
+import { ORIGIN } from "./lib/origin.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..");
-const ORIGIN = "https://www.deepgrain.ai";
 
 if (process.env.DEEPGRAIN_SKIP_ROUTE_AUDIT === "1") {
   console.log("[audit-routes] skipped via env flag.");
@@ -152,11 +152,19 @@ if (!existsSync(sitemapPath)) {
   process.exit(1);
 }
 const sitemapXml = await fs.readFile(sitemapPath, "utf8");
+const allSitemapLocs = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+const mismatchedOrigins = allSitemapLocs.filter((u) => !u.startsWith(ORIGIN + "/") && u !== ORIGIN);
+if (mismatchedOrigins.length) {
+  console.error(
+    `\n[audit-routes] FATAL: sitemap contains ${mismatchedOrigins.length} <loc> entries whose origin does not match ORIGIN (${ORIGIN}). ` +
+      `This usually means scripts/build-seo-indexes.mjs and scripts/audit-routes.mjs disagree on www vs non-www. ` +
+      `First mismatch: ${mismatchedOrigins[0]}. ` +
+      `Re-run \`npm run build:seo-indexes\` with the same DEEPGRAIN_ORIGIN.`,
+  );
+  process.exit(1);
+}
 const sitemapPaths = new Set(
-  [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)]
-    .map((m) => m[1])
-    .filter((u) => u.startsWith(ORIGIN))
-    .map((u) => u.slice(ORIGIN.length) || "/"),
+  allSitemapLocs.map((u) => u.slice(ORIGIN.length) || "/"),
 );
 
 const inAppNotSitemap = [...expanded].filter((p) => !sitemapPaths.has(p)).sort();
