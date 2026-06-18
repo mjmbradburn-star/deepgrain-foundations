@@ -68,22 +68,22 @@ const Home = () => (
     <Hero />
     <ICPStrip />
     <Suspense fallback={<SectionFallback />}>
-      <LogoCarousel background="green" />
-      <WhatWeDo />
+      <div className="cv-auto"><LogoCarousel background="green" /></div>
+      <div className="cv-auto"><WhatWeDo /></div>
       {/* Desktop: full OperatingProof + ClientVoice. Mobile: condensed merge. */}
       <div className="hidden md:contents">
-        <OperatingProof />
+        <div className="cv-auto"><OperatingProof /></div>
       </div>
-      <MobileProofVoice />
-      <Method />
-      <SimpleAIPrimer />
-      <WhoThisIsFor />
+      <div className="cv-auto"><MobileProofVoice /></div>
+      <div className="cv-auto"><Method /></div>
+      <div className="cv-auto"><SimpleAIPrimer /></div>
+      <div className="cv-auto"><WhoThisIsFor /></div>
       <div className="hidden md:contents">
-        <ClientVoice />
+        <div className="cv-auto"><ClientVoice /></div>
       </div>
-      <IntelligenceTeaser />
-      <HomeFAQ />
-      <Invitation />
+      <div className="cv-auto"><IntelligenceTeaser /></div>
+      <div className="cv-auto"><HomeFAQ /></div>
+      <div className="cv-auto"><Invitation /></div>
     </Suspense>
   </>
 );
