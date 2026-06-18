@@ -128,6 +128,20 @@
   100% { transform: translate3d(0, 0, 0); }
 }
 .hero-drift { animation: hero-drift 60s linear infinite; will-change: transform; }
+/* Decorative ambient drift is desktop-only. Mobile devices skip it to save CPU
+   and battery, which directly improves INP and scroll smoothness on phones. */
+@media (max-width: 768px) {
+  .hero-drift { animation: none; will-change: auto; }
+}
+
+/* content-visibility lets the browser skip layout/paint for off-screen sections
+   until they scroll near the viewport. Massive boost to initial render and
+   below-the-fold paint cost. contain-intrinsic-size reserves space so the
+   scrollbar doesn't jump when sections "appear". */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
 
 /* Bark grain — slow, living wood-grain motion for dark grey-green surfaces.
    The turbulence texture itself is static SVG; we animate the wrapper with
