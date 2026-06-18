@@ -68,29 +68,11 @@ const AnimatedNumberInner = forwardRef<HTMLSpanElement, AnimatedNumberProps>(({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, live]);
 
-  // Reveal mode: animate once when scrolled into view.
+  // Reveal mode: no count-up. The final value is shown on first paint so the
+  // number is never visibly 0. Visual flourish lives in sibling reveal effects.
   useEffect(() => {
     if (live) return;
-    const node = ref.current;
-    if (!node) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting && !startedRef.current) {
-            startedRef.current = true;
-            animate(0, value);
-            io.unobserve(entry.target);
-          }
-        }
-      },
-      { threshold: 0.4 },
-    );
-    io.observe(node);
-    return () => {
-      io.disconnect();
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setDisplay(value);
   }, [value, live]);
 
   const formatted = formatter
