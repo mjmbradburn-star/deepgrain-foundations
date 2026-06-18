@@ -6,7 +6,7 @@ import { AIOI_URL } from "@/lib/aioi";
 // CSS-only entrance animations (see index.css .fade-in-up). Removing
 // framer-motion from the Hero takes motion-vendor off the critical path.
 export const Hero = () => (
-  <section className="relative min-h-screen flex items-center overflow-hidden" id="hero" data-no-rule>
+  <section className="relative min-h-[70vh] sm:min-h-screen flex items-center overflow-hidden" id="hero" data-no-rule>
     <div className="absolute inset-0">
       <img
         src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=45&fm=webp"
@@ -34,21 +34,21 @@ export const Hero = () => (
       />
     </div>
 
-    <div className="relative container-grain pt-32 pb-32 md:pt-40">
+    <div className="relative container-grain pt-28 pb-20 sm:pt-32 sm:pb-32 md:pt-40">
       <div className="relative max-w-2xl">
         <h1
-          className="font-display font-semibold uppercase text-cream leading-[0.95] text-[2.5rem] sm:text-[80px] md:text-[104px] lg:text-[120px] -mt-8 md:-mt-12"
+          className="font-display font-semibold uppercase text-cream leading-[0.95] text-[2.25rem] xs:text-[2.5rem] sm:text-[80px] md:text-[104px] lg:text-[120px] -mt-4 sm:-mt-8 md:-mt-12"
           style={{ letterSpacing: "0.02em" }}
         >
           Work with<br />the grain.
         </h1>
-        <p className="text-cream mt-10 max-w-[560px] text-xl md:text-2xl leading-snug font-medium">
+        <p className="text-cream mt-6 sm:mt-10 max-w-[560px] text-lg sm:text-xl md:text-2xl leading-snug font-medium">
           Every organisation has a grain. Most leaders are working against theirs without realising it.
         </p>
         <p className="hidden md:block text-cream/75 mt-5 max-w-[520px] text-base md:text-lg leading-relaxed">
           We read yours, then build the strategy, the AI systems, and the people who can keep evolving them.
         </p>
-        <div className="fade-in-up fade-in-up-3 mt-10 flex flex-wrap items-center gap-3 md:gap-4">
+        <div className="fade-in-up fade-in-up-3 mt-6 sm:mt-10 flex flex-wrap items-center gap-3 md:gap-4">
           <PillButton href="/method" variant="filled" cta="how_we_work" ctaLocation="hero">
             How we work →
           </PillButton>
