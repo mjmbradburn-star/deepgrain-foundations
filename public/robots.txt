@@ -22,8 +22,8 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://deepgrain.ai/sitemap.xml
-Sitemap: https://deepgrain.ai/sitemap-video.xml
+Sitemap: https://www.deepgrain.ai/sitemap.xml
+Sitemap: https://www.deepgrain.ai/sitemap-video.xml
 # LLM-friendly indexes (also served as static files):
-# https://deepgrain.ai/llms.txt
-# https://deepgrain.ai/llms-full.txt
+# https://www.deepgrain.ai/llms.txt
+# https://www.deepgrain.ai/llms-full.txt
