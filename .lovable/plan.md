@@ -1,47 +1,43 @@
-# SEO/AEO + CRO delivery plan
+## What changes
 
-I cross-checked both docs against the current site. Most of the SEO/AEO plan is already shipped from earlier batches. The CRO plan is mostly outstanding. Below: what to skip (already done), what to ship, and two questions I need answered before I touch anything.
+Swap the `WhoThisIsFor` section on the homepage for a new **BrainTeaser** section that sells the People Ops AI Brain and drives subscriptions. Same slot in `Home.tsx`, same green/walnut palette, but a far more useful piece of real estate.
 
-## Already done, skip
+## The section, top to bottom
 
-- **Intelligence essays crawlable/indexable** — 40+ MDX articles live under `/intelligence/*` with per-route `<PageMeta>`, canonical, OG, Article JSON-LD.
-- **Problem-led pages** — `/answers/:slug` (15+ questions), `/intelligence/cluster/:slug`, `/intelligence/pillar/:slug`, and three `/intelligence/*-vs-*` compare pages already exist.
-- **JSON-LD** — `SiteEntityLd` emits Organization + Person (Matthew Bradburn) + WebSite + Service globally; Article + FAQ JSON-LD on the relevant routes.
-- **Sitemap + robots.txt** — fixed last turn; 104 entries on `https://www.deepgrain.ai`.
-- **Founder entity signals** — About page already centres on Matthew Bradburn with Person schema, sameAs LinkedIn, bio, and named references.
-- **Hero secondary CTA** — already swapped to "Book an audit → /contact" last turn.
+Walnut curved panel on the green background (matching current treatment, so the page rhythm holds).
 
-## Conflict to resolve before I build
+1. **Eyebrow:** `THE PEOPLE OPS AI BRAIN`
+2. **Headline (display serif, cream):** "The AI brain we wish we'd had." with a second line "Free. Yours in a click."
+3. **Lead paragraph (cream/85):** Short pitch in Matt's voice. 9 worked examples, 27 practical guides, four layers from foundations to leading change. The thing you'd build yourself if you had six months.
+4. **The visual element (the centrepiece):** A "Four Layers" diagram, custom-built in JSX/SVG, not an image. Four stacked horizontal bands inside a rounded brass-bordered frame, each band labelled with a layer and a count, with thin connecting lines down the left edge so it reads as one organism rather than four tiles:
+   ```text
+   ┌─────────────────────────────────────────────┐
+   │ 01  FOUNDATIONS         · workspace, prompts │
+   │ 02  SKILLS              · the daily craft    │
+   │ 03  SYSTEMS             · orchestration      │
+   │ 04  HUMAN LAYER         · leading change     │
+   └─────────────────────────────────────────────┘
+                 9 examples · 27 guides
+   ```
+   Each row uses the existing cream/walnut/brass tokens. A faint vertical brass line ties them together. A small pulsing brass dot on the active row (cycles every few seconds) gives it life without animation noise. No external libs; pure Tailwind + a tiny CSS keyframe reusing existing tokens.
+5. **CTA row:**
+   - Primary `PillButton` → `/brain` "Get the Brain, free →" (analytics: `cta=get_brain`, `ctaLocation=home_brain_teaser`)
+   - Secondary `PillButton` outline → `/brain#whats-inside` "See what's inside →"
 
-The CRO doc wants **"Book an intro"** as the *primary* CTA, with "See the method" as the quieter secondary. We currently have it the other way round (primary = "How we work", secondary = "Book an audit"). Need a call: do I swap them so Book becomes primary (filled) and Method becomes secondary (outline)? See Question 1.
+Inline reassurance under the CTAs: "One email. No drip. Unsubscribe in one click." in cream/60.
 
-## To deliver (CRO-led, single pass)
+## Files
 
-1. **Hero subhead sharpen.** Replace the current subhead with the CRO copy:
-  > "We read how your organisation actually operates, then build the AI systems and team capability to scale it, so the gains compound after we leave."
-  >  Keep "Work with the grain." as H1. House style: no em dashes (use commas/full stops).
-2. **CTA hierarchy (pending Q1).** Either swap primary/secondary in `Hero.tsx`, or keep as-is. If swapping, primary = "Book an audit → /contact" (filled), secondary = "See the method → /method" (outline).
-3. **Stats above the fold render real numbers immediately.** `OperatingProof.tsx` currently uses `<AnimatedNumber>` that animates from 0. Change so the final value is the initial render (SSR/first paint shows "83", "70%", "0"), and the count-up only runs as a progressive enhancement when the section is in view. Preserves the visual flourish, removes the "zeros on first paint" risk.
-4. **Named-ish testimonial attribution.** `ClientVoice.tsx` and `MobileProofVoice.tsx` currently read "Chief People Officer, Defence Technology Company". Per CRO best practice, tighten to a half-named form (see Question 2). I will not invent a real name.
-5. **Reduce mid-page CTA competition on Home.** Audit Home sections (`WhatWeDo`, `BuildVsHire`, `Method`, `IntelligenceTeaser`, `Invitation`, etc.) and ensure only the closing `Invitation` section carries a strong primary "Book an audit" CTA. Demote other mid-page links to discovery-style text links (no filled pill buttons competing with the hero ask). Nav stays unchanged.
+- **New:** `src/components/sections/BrainTeaser.tsx` — the section described above. Reuses `Eyebrow`, `ScrollReveal`, `PillButton`, the existing `who-this-is-for` background images (so we don't ship new assets), and existing semantic tokens.
+- **Edit:** `src/pages/Home.tsx` — replace the lazy `WhoThisIsFor` import + its `<div className="cv-auto">` slot with a lazy `BrainTeaser` in the same position so SEO/order is unchanged.
+- **Keep:** `src/components/sections/WhoThisIsFor.tsx` stays on disk (unused) in case we want to restore it. If you'd rather delete it, say so and I will.
 
-## Out of scope (already covered or non-blocking)
+## Out of scope
 
-- New service/offer pages for "Read · Craft · Scale" — `/method` already covers this. Flag if you want a dedicated `/services` page split, otherwise skip.
-- Case-study pages for Defence Tech / FinEdge — would need real source material from you; logging as a follow-up rather than fabricating.
-- Lighthouse perf audit — noted as a later follow-up in the SEO doc itself.
+- No changes to `/brain` itself, the capture form, or the edge function.
+- No new images generated; the diagram is pure CSS/SVG so it stays sharp and fast.
+- No copy changes elsewhere on the homepage.
 
-## Technical notes (for me, not you)
+## Open question
 
-- `Hero.tsx` lines 45-58: subhead text + CTA order.
-- `OperatingProof.tsx`: change `AnimatedNumber` to accept an `initial` prop or render `value` as text immediately, then animate via `IntersectionObserver`. `MobileProofVoice.tsx` may need parallel treatment.
-- `ClientVoice.tsx` line ~16 + `MobileProofVoice.tsx` `attribution` field: single source of truth would be nice but not required for this pass.
-- Mid-page CTA audit: grep `PillButton variant="filled"` across `src/components/sections/*` and downgrade non-closing ones to outline or plain text links.
-
-## Questions before I build
-
-1. **CTA hierarchy.** Make "Book an audit" the *primary* (filled) hero CTA and demote "How we work / See the method" to secondary? CRO doc says yes; you most recently asked for "Book an audit" only as the secondary. Confirm which wins. YES - SWAP THEM
-2. **Testimonial attribution.** Pick one:
-  - a) "Chief People Officer, defence technology scale-up. Name on request."
-  - b) Use the real name and company (please paste).
-  - c) Leave anonymous as-is. leave anonymous
+The headline I've drafted ("The AI brain we wish we'd had. Free. Yours in a click.") leans punchy. Happy to swap for something quieter, e.g. "Nine examples. Twenty-seven guides. One brain." Tell me if you want a different angle before I build.

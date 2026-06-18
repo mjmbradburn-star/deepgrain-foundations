@@ -20,8 +20,8 @@ const Method = lazy(() =>
 const SimpleAIPrimer = lazy(() =>
   import("@/components/sections/SimpleAIPrimer").then((m) => ({ default: m.SimpleAIPrimer }))
 );
-const WhoThisIsFor = lazy(() =>
-  import("@/components/sections/WhoThisIsFor").then((m) => ({ default: m.WhoThisIsFor }))
+const BrainTeaser = lazy(() =>
+  import("@/components/sections/BrainTeaser").then((m) => ({ default: m.BrainTeaser }))
 );
 const ClientVoice = lazy(() =>
   import("@/components/sections/ClientVoice").then((m) => ({ default: m.ClientVoice }))
@@ -77,7 +77,7 @@ const Home = () => (
       <div className="cv-auto"><MobileProofVoice /></div>
       <div className="cv-auto"><Method /></div>
       <div className="cv-auto"><SimpleAIPrimer /></div>
-      <div className="cv-auto"><WhoThisIsFor /></div>
+      <div className="cv-auto"><BrainTeaser /></div>
       <div className="hidden md:contents">
         <div className="cv-auto"><ClientVoice /></div>
       </div>
