@@ -18,7 +18,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const DIST = join(ROOT, "dist");
-const ORIGIN = "https://deepgrain.ai";
+import { ORIGIN } from "./lib/origin.mjs";
 
 if (process.env.DEEPGRAIN_SKIP_CANONICAL_CHECK === "1") {
   console.log("[canonical] skipped via env flag.");
