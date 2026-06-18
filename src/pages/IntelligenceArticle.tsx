@@ -74,7 +74,14 @@ const IntelligenceArticle = () => {
   return (
     <>
       <Helmet>
-        <title>{f.title} | Deepgrain Intelligence</title>
+        <title>{
+          (() => {
+            const suffix = " | Deepgrain";
+            if (f.title.length + suffix.length <= 60) return f.title + suffix;
+            if (f.title.length <= 60) return f.title;
+            return f.title.slice(0, 57).trimEnd() + "…";
+          })()
+        }</title>
         <meta name="description" content={f.description} />
         <meta name="keywords" content={f.keywords?.join(", ")} />
         <link rel="canonical" href={url} />
