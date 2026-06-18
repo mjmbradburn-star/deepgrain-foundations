@@ -1,22 +1,36 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { PillButton } from "@/components/ui/PillButton";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 
-export const Invitation = () => (
-  <section className="bg-green text-cream section-pad">
-    <div className="container-grain max-w-3xl text-center">
+/**
+ * Page-close invitation. Deck-style green panel with topographic backdrop
+ * and the same single CTA used everywhere on the site.
+ */
+export const Invitation = ({
+  ctaLocation = "invitation",
+  prefill = "I'd like a 30-minute audit. The workflow I'd most like to fix is:",
+  headline = "Map one workflow with me.",
+  sub = "Thirty minutes. Twenty mapping, ten agreeing the first move.",
+}: {
+  ctaLocation?: string;
+  prefill?: string;
+  headline?: string;
+  sub?: string;
+} = {}) => (
+  <section className="relative bg-green text-cream section-pad overflow-hidden">
+    <TopoBackdrop variant="basin" opacity={0.16} />
+    <div className="relative container-grain max-w-3xl">
       <ScrollReveal>
-        <h2 className="font-display text-5xl md:text-7xl lg:text-[96px] leading-[1.05] text-cream text-balance">
-          Ready to read the grain?
-        </h2>
-        <p className="mt-8 text-cream/75 max-w-md mx-auto leading-relaxed">
-          Tell me what you are trying to fix. A paragraph is enough to
-          start.
-        </p>
-        <div className="mt-12">
-          <PillButton href="/contact" variant="filled" cta="book_audit" ctaLocation="invitation">
-            Book an audit →
-          </PillButton>
-        </div>
+        <SectionEyebrow className="mb-6">The first move</SectionEyebrow>
+        <AuditPrompt
+          tone="green"
+          ctaId={`audit_${ctaLocation}`}
+          ctaLocation={ctaLocation}
+          headline={headline}
+          sub={sub}
+          prefill={prefill}
+        />
       </ScrollReveal>
     </div>
   </section>

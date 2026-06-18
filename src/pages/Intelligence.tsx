@@ -8,6 +8,7 @@ import {
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { Invitation } from "@/components/sections/Invitation";
 
 const Intelligence = () => {
   const url = "https://www.deepgrain.ai/intelligence";
@@ -189,6 +190,13 @@ const Intelligence = () => {
           })}
         </div>
       </section>
+
+      <Invitation
+        ctaLocation="intelligence"
+        headline="Reading is one thing. Doing is another."
+        sub="If any of this lands, the next move is thirty minutes on one of your own workflows."
+        prefill="I read the Intelligence essays. The piece that landed and what I'd like to talk through is:"
+      />
     </>
   );
 };

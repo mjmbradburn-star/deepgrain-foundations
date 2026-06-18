@@ -1,84 +1,111 @@
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { BrassRule } from "@/components/ui/BrassRule";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+
+const steps = [
+  {
+    n: "01",
+    title: "Pick a workflow",
+    body: "One you own and wish you never had to touch. Onboarding, case triage, a leaver process.",
+  },
+  {
+    n: "02",
+    title: "Atomise it to the click",
+    body: "We map the first eight steps together. Click, handoff, decision, wait. Honest about the dull ones.",
+  },
+  {
+    n: "03",
+    title: "Agree the first move",
+    body: "One step to redesign. One step that must stay human. Something you can act on by Monday.",
+  },
+];
 
 const Contact = () => (
   <>
     <PageMeta
-      title="Contact | Deepgrain"
-      description="Start a conversation with Deepgrain. If you have an organisation worth getting right, write to Matthew Bradburn directly."
+      title="Book a 30-minute audit | Deepgrain"
+      description="Map one workflow with Matthew Bradburn. Thirty minutes, twenty minutes mapping and ten agreeing the first move. Leave with a plan, not a pitch."
       path="/contact"
       jsonLd={buildBreadcrumbLd([
-        { name: "Home", url: "https://deepgrain.ai/" },
-        { name: "Contact", url: "https://deepgrain.ai/contact" },
+        { name: "Home", url: "https://www.deepgrain.ai/" },
+        { name: "Contact", url: "https://www.deepgrain.ai/contact" },
       ])}
     />
 
-    {/* Hero — green */}
-    <section className="bg-green text-cream pt-40 pb-24 md:pb-32">
-      <div className="container-grain max-w-3xl text-center">
+    {/* Hero — green, deck-style */}
+    <section className="relative bg-green text-cream pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+      <TopoBackdrop variant="basin" opacity={0.16} />
+      <div className="relative container-grain max-w-4xl">
         <ScrollReveal>
-          <Eyebrow className="text-cream/70 mb-6">Contact</Eyebrow>
-          <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[80px] leading-[1.05] text-balance">
-            Let's talk.
+          <SectionEyebrow className="mb-6">The first move</SectionEyebrow>
+          <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02]">
+            Map one workflow with me.
           </h1>
-          <p className="mt-8 text-cream/75 max-w-md mx-auto leading-relaxed">
-            Tell me what you are trying to fix. A paragraph is enough to start.
+          <p className="font-display italic text-cream/80 mt-6 text-xl md:text-2xl max-w-2xl">
+            Twenty minutes mapping. Ten agreeing the first move. You leave with one thing to do on
+            Monday, not a deck.
           </p>
-          <BrassRule className="mx-auto my-12" />
-          <a
-            href="mailto:matt@deepgrain.ai"
-            className="font-display text-cream text-2xl md:text-3xl hover:text-brass transition-colors"
-          >
-            matt@deepgrain.ai
-          </a>
         </ScrollReveal>
       </div>
     </section>
 
-    {/* Booking — cream/linen panel */}
-    <section className="bg-linen text-body py-20 md:py-24 lg:py-28">
+    {/* The three steps, then the calendar */}
+    <section className="bg-linen text-walnut py-20 md:py-28">
       <div className="container-grain">
-        <div className="grid gap-12 md:gap-10 lg:gap-16 md:grid-cols-[5fr_7fr] items-start">
+        <div className="grid lg:grid-cols-[5fr_7fr] gap-12 lg:gap-16 items-start">
           <ScrollReveal>
-            <Eyebrow withRule className="text-walnut/70 mb-6">
-              Booking
-            </Eyebrow>
-            <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
-              Find a time.
+            <SectionEyebrow tone="linen" className="mb-6">
+              What we will cover
+            </SectionEyebrow>
+            <h2 className="font-display text-walnut text-3xl md:text-4xl leading-[1.05] mb-10 max-w-md">
+              Thirty minutes. A workflow. A move.
             </h2>
-            <p className="mt-6 text-body/80 leading-relaxed max-w-md">
-              Find a slot that works. Thirty minutes, lmk whats of interest.
+            <ol className="space-y-8">
+              {steps.map((s) => (
+                <li key={s.n} className="border-t border-walnut/15 pt-5">
+                  <div
+                    className="font-sans uppercase text-brass mb-2"
+                    style={{ fontSize: "10px", letterSpacing: "0.22em", fontWeight: 600 }}
+                  >
+                    {s.n}
+                  </div>
+                  <h3 className="font-display text-walnut text-2xl mb-2">{s.title}</h3>
+                  <p className="text-walnut/75 leading-relaxed">{s.body}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-10 text-walnut/60 text-sm">
+              Or write directly:{" "}
+              <a
+                href="mailto:matt@deepgrain.ai"
+                className="text-brass hover:underline underline-offset-2"
+              >
+                matt@deepgrain.ai
+              </a>
             </p>
-            <BrassRule className="my-8" />
-            <ul className="space-y-3 text-body/75 text-sm">
-              <li className="flex items-baseline gap-3">
-                <span className="text-brass font-display text-base leading-none">—</span>
-                <span>Thirty minutes</span>
-              </li>
-              <li className="flex items-baseline gap-3">
-                <span className="text-brass font-display text-base leading-none">—</span>
-                <span>No agenda required</span>
-              </li>
-              <li className="flex items-baseline gap-3">
-                <span className="text-brass font-display text-base leading-none">—</span>
-                <span>Video or phone</span>
-              </li>
-            </ul>
           </ScrollReveal>
 
           <ScrollReveal delay={120}>
             <div
-              className="rounded-2xl overflow-hidden bg-white border border-linen-dark"
-              style={{ boxShadow: "0 20px 60px -30px hsl(var(--green) / 0.25)" }}
+              className="rounded-2xl overflow-hidden bg-cream border border-walnut/10"
+              style={{ boxShadow: "0 30px 60px -40px hsl(var(--green) / 0.4)" }}
             >
+              <div className="px-6 py-4 border-b border-walnut/10 flex items-center justify-between">
+                <span
+                  className="font-sans uppercase text-brass"
+                  style={{ fontSize: "10px", letterSpacing: "0.22em", fontWeight: 600 }}
+                >
+                  ◷  Find a slot
+                </span>
+                <span className="text-walnut/50 text-xs">30 minutes</span>
+              </div>
               <iframe
                 src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1RAkNriqYTtoBEaOJM92B07HFwq_4dSvaiwERC1mO3XJVbPEf_3dNFAgYI4XxvXomrLtBa2TAW?gv=true"
                 title="Book a call with Matthew Bradburn"
-                className="w-full h-[680px] md:h-[820px] lg:h-[760px] xl:h-[720px] block"
+                className="w-full h-[680px] md:h-[820px] block"
                 style={{ border: 0, colorScheme: "light" }}
                 frameBorder={0}
                 loading="lazy"
@@ -89,14 +116,17 @@ const Contact = () => (
       </div>
     </section>
 
-    {/* Form — green */}
+    {/* Form fallback — green */}
     <section className="bg-green text-cream py-20 md:py-28">
       <div className="container-grain max-w-3xl text-center">
         <ScrollReveal>
-          <p className="font-display italic text-cream/70 text-2xl mb-10">
-            Or send a note here.
+          <p className="font-display italic text-cream/70 text-2xl mb-3">
+            Or send a note. A paragraph is enough.
           </p>
-          <BrassRule className="mx-auto mb-12" />
+          <p className="text-cream/60 max-w-md mx-auto text-sm mb-12">
+            If a calendar slot does not fit, tell me roughly what you are trying to fix and I will
+            come back with a time.
+          </p>
           <ContactForm />
         </ScrollReveal>
       </div>

@@ -4,6 +4,7 @@ import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { BarkSection } from "@/components/ui/BarkSection";
+import { Invitation } from "@/components/sections/Invitation";
 import { Linkedin } from "lucide-react";
 import matthewPortrait from "@/assets/matthew-bradburn.jpg";
 
@@ -270,6 +271,13 @@ const About = () => (
           </div>
         </ScrollReveal>
     </BarkSection>
+
+    <Invitation
+      ctaLocation="about"
+      headline="If this sounds like the kind of thinking you need,"
+      sub="Thirty minutes is enough to know if there's something here for you."
+      prefill="I read the About page. What I'd like to talk through is:"
+    />
   </>
 );
 
