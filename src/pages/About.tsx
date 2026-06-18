@@ -93,54 +93,32 @@ const About = () => (
         ]),
       ]}
     />
-    <section className="relative min-h-[90vh] flex items-end overflow-hidden">
-      <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=1600&q=70&fm=webp"
-          alt=""
-          width={1600}
-          height={1067}
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-green/60" />
-      </div>
-      <div className="relative container-grain pb-20 md:pb-32 pt-40 max-w-5xl">
-        <div className="relative bg-walnut/88 backdrop-blur-sm rounded-[48px] md:rounded-[72px] p-10 md:p-16 border border-brass/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
-          <ScrollReveal>
-            <Eyebrow className="text-brass mb-6">About</Eyebrow>
-            <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[96px] leading-[1.02] max-w-4xl text-balance">
-              The grain is always there. Most have never looked for it.
-            </h1>
-            <div className="mt-10 max-w-xl text-cream/85 space-y-5 leading-relaxed">
-              <p>
-                I&apos;ve spent two decades inside organisations. Building them,
-                fixing them, watching what makes them hold and what makes them
-                come apart.
-              </p>
-              <p>
-                After enough of that,{" "}
-                <strong className="font-semibold text-brass">
-                  you read an organisation before the introductory call is over
-                </strong>
-                . It is{" "}
-                <strong className="font-semibold text-brass">
-                  pattern recognition built from real exposure
-                </strong>
-                , nothing more.
-              </p>
-              <p className="hidden md:block">
-                Deepgrain exists because most consulting work is built to be
-                seen. The carpenter builds furniture that fits the room and
-                survives decades of use. Everyone else is building flat pack.
-              </p>
-            </div>
-          </ScrollReveal>
-        </div>
+    {/* Hero — deck shape, no glossy stock image */}
+    <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
+      <TopoBackdrop variant="ridge" opacity={0.22} />
+      <div className="relative container-grain max-w-5xl">
+        <ScrollReveal>
+          <SectionEyebrow className="mb-6">Who runs this</SectionEyebrow>
+          <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] max-w-4xl text-balance">
+            The grain is always there. Most have never looked for it.
+          </h1>
+          <div className="mt-10 max-w-2xl text-cream/85 space-y-5 leading-relaxed text-lg">
+            <p>
+              I&apos;ve spent two decades inside organisations. Building them, fixing them,
+              watching what makes them hold and what makes them come apart.
+            </p>
+            <p>
+              After enough of that, you read an organisation before the introductory call is
+              over. Pattern recognition built from real exposure, nothing more.
+            </p>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
+
+    {/* Three altitudes — how I work, mirroring the method */}
+    <ThreeLevels levels={ALTITUDES} showMoves={false} />
+
 
     {/* Bio — who Matthew is, in his own grain */}
     <section className="bg-linen text-body section-pad">
