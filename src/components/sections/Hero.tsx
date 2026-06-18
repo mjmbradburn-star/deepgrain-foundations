@@ -43,10 +43,10 @@ export const Hero = () => (
           Work with<br />the grain.
         </h1>
         <p className="text-cream mt-6 sm:mt-10 max-w-[560px] text-lg sm:text-xl md:text-2xl leading-snug font-medium">
-          Every organisation has a grain. Most leaders are working against theirs without realising it.
+          We audit how your organisation actually operates, then build the AI systems and team capability to scale it.
         </p>
         <p className="hidden md:block text-cream/75 mt-5 max-w-[560px] text-base md:text-lg leading-relaxed">
-          We read how your organisation actually operates, then build the AI systems and team capability to scale it, so the gains compound after we leave.
+          Every organisation has a grain. Most leaders are working against theirs without realising it.
         </p>
         <div className="fade-in-up fade-in-up-3 mt-6 sm:mt-10 flex flex-wrap items-center gap-3 md:gap-4">
           <PillButton href="/contact" variant="filled" cta="book_audit" ctaLocation="hero">
