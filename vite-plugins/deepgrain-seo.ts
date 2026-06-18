@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Plugin } from "vite";
 
-const SITE = "https://deepgrain.ai";
+const SITE = (process.env.DEEPGRAIN_ORIGIN || "https://www.deepgrain.ai").replace(/\/+$/, "");
 
 const CATEGORIES = [
   { slug: "foundations", name: "Foundations", description: "First principles of organisational consultancy and the grain.", track: "deepgrain" },
@@ -285,20 +285,29 @@ export function deepgrainSeoPlugin(): Plugin {
     const articles = readArticles(root);
     const pillarSlugs = readPillarSlugs(root);
     auditRoutes(root, articles);
-    const sitemap = buildSitemap(articles, pillarSlugs);
-    const llms = buildLlmsTxt(articles);
-    const llmsFull = buildLlmsFullTxt(articles);
+
+    // The canonical sitemap / llms files are produced by
+    // scripts/build-seo-indexes.mjs in the prebuild hook and live in
+    // public/. Prefer those (they cover dynamic clusters, answers, etc.).
+    // Only fall back to the plugin-generated versions if the canonical
+    // files are missing.
+    const publicDir = path.join(root, "public");
+    const canonical = {
+      sitemap: path.join(publicDir, "sitemap.xml"),
+      llms: path.join(publicDir, "llms.txt"),
+      llmsFull: path.join(publicDir, "llms-full.txt"),
+    };
+    const readOr = (p: string, fallback: () => string) =>
+      fs.existsSync(p) ? fs.readFileSync(p, "utf8") : fallback();
+
+    const sitemap = readOr(canonical.sitemap, () => buildSitemap(articles, pillarSlugs));
+    const llms = readOr(canonical.llms, () => buildLlmsTxt(articles));
+    const llmsFull = readOr(canonical.llmsFull, () => buildLlmsFullTxt(articles));
+
     fs.mkdirSync(outDir, { recursive: true });
     fs.writeFileSync(path.join(outDir, "sitemap.xml"), sitemap);
     fs.writeFileSync(path.join(outDir, "llms.txt"), llms);
     fs.writeFileSync(path.join(outDir, "llms-full.txt"), llmsFull);
-
-    const publicDir = path.join(root, "public");
-    if (fs.existsSync(publicDir)) {
-      fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemap);
-      fs.writeFileSync(path.join(publicDir, "llms.txt"), llms);
-      fs.writeFileSync(path.join(publicDir, "llms-full.txt"), llmsFull);
-    }
   };
 
   let root = process.cwd();
