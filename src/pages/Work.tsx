@@ -10,6 +10,7 @@ import { PageMeta } from "@/components/seo/PageMeta";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { BarkSection } from "@/components/ui/BarkSection";
+import { Invitation } from "@/components/sections/Invitation";
 
 const variants: Array<"linen" | "walnut" | "green"> = ["linen", "walnut", "linen", "green"];
 
@@ -124,6 +125,13 @@ const Work = () => (
         </ScrollReveal>
       </div>
     </section>
+
+    <Invitation
+      ctaLocation="work"
+      headline="Want this kind of before and after on your own function?"
+      sub="Thirty minutes. One workflow. We map it together."
+      prefill="I saw the case studies. The function I'd like to map a before and after for is:"
+    />
   </>
 );
 
