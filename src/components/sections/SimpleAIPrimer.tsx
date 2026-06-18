@@ -56,7 +56,7 @@ export const SimpleAIPrimer = () => {
                 poster="/simple-ai-poster.jpg"
                 muted
                 playsInline
-                preload="metadata"
+                preload="none"
                 controls
                 aria-label="Simple AI: a 90-second primer on the seventeen AI terms every People leader keeps hearing."
                 className="block w-full h-auto aspect-video"
