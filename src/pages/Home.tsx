@@ -46,21 +46,24 @@ const Home = () => (
   <>
     <PageMeta
       title="Deepgrain | Work with the grain."
-      description="Organisational consultancy that reads how your company actually works, then builds the strategy, agentic systems, and people to evolve it."
+      description="Organisational consultancy that reads how your company actually operates, then builds the strategy, agentic systems and people to evolve it."
       path="/"
-      jsonLd={{
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        name: "Simple AI, a 90-second primer for G&A leaders",
-        description:
-          "Seventeen of the terms cluttering every AI conversation, in plain English. Made for G&A leaders, not engineers.",
-        thumbnailUrl: ["https://deepgrain.ai/simple-ai-poster.jpg"],
-        uploadDate: "2026-05-01T00:00:00+00:00",
-        duration: "PT1M30S",
-        contentUrl: "https://deepgrain.ai/simple-ai.mp4",
-        embedUrl: "https://deepgrain.ai/simple-ai.mp4",
-        publisher: { "@id": "https://deepgrain.ai/#organization" },
-      }}
+      jsonLd={[
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          name: "Simple AI, a 90-second primer for G&A leaders",
+          description:
+            "Seventeen of the terms cluttering every AI conversation, in plain English. Made for G&A leaders, not engineers.",
+          thumbnailUrl: ["https://deepgrain.ai/simple-ai-poster.jpg"],
+          uploadDate: "2026-05-01T00:00:00+00:00",
+          duration: "PT1M30S",
+          contentUrl: "https://deepgrain.ai/simple-ai.mp4",
+          embedUrl: "https://deepgrain.ai/simple-ai.mp4",
+          publisher: { "@id": "https://deepgrain.ai/#organization" },
+        },
+        HOME_FAQ_LD,
+      ]}
     />
     <Hero />
     <ICPStrip />
@@ -79,6 +82,7 @@ const Home = () => (
         <ClientVoice />
       </div>
       <IntelligenceTeaser />
+      <HomeFAQ />
       <Invitation />
     </Suspense>
   </>

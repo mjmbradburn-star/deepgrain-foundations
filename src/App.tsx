@@ -62,6 +62,11 @@ const App = () => (
               <Route path="/intelligence/pillar/:slug" element={<IntelligencePillar />} />
               <Route path="/intelligence/cluster/:slug" element={<IntelligenceCluster />} />
               <Route path="/answers/:slug" element={<AnswerDetail />} />
+              {/* Legacy hash-anchor URLs redirected to canonical detail pages. */}
+              <Route
+                path="/intelligence/answers/:slug"
+                element={<LegacyAnswerRedirect />}
+              />
               <Route path="/intelligence/ai-operating-system-vs-operating-model" element={<IntelligenceCompare slug="ai-operating-system-vs-operating-model" />} />
               <Route path="/intelligence/ai-os-vs-ai-platform" element={<IntelligenceCompare slug="ai-os-vs-ai-platform" />} />
               <Route path="/intelligence/ai-os-vs-automation" element={<IntelligenceCompare slug="ai-os-vs-automation" />} />
