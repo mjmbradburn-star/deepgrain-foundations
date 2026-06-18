@@ -7,6 +7,38 @@ import { BarkSection } from "@/components/ui/BarkSection";
 import { Invitation } from "@/components/sections/Invitation";
 import { Linkedin } from "lucide-react";
 import matthewPortrait from "@/assets/matthew-bradburn.jpg";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+import { ThreeLevels, type Level } from "@/components/sections/deck/ThreeLevels";
+import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
+
+const ALTITUDES: Level[] = [
+  {
+    n: "01",
+    label: "Strategic",
+    title: "How I think about an organisation.",
+    question: "Where is this place actually trying to go, and what is in the way of it getting there?",
+    failure: "Reading the strategy deck and believing it.",
+    resilient: "Reading the org from the inside, then deciding where to cut with the grain and where to cut against it.",
+  },
+  {
+    n: "02",
+    label: "Functional",
+    title: "How I work inside one.",
+    question: "Which workflows carry the function, which leak value, and which are theatre?",
+    failure: "Recommending tools at role level. Pilots that never reach a Tuesday afternoon.",
+    resilient: "Mapping at the click level. Building agents where the friction actually is.",
+  },
+  {
+    n: "03",
+    label: "Individual",
+    title: "Who I build alongside.",
+    question: "Which three people in the function will hold this work after I leave?",
+    failure: "Training everyone to the same shallow depth. No-one ships.",
+    resilient: "Three or four champions, air cover, time, and a small starting brief.",
+  },
+];
+
 
 const testimonials = [
   {
