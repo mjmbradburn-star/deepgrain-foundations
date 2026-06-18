@@ -120,7 +120,6 @@ const Contact = () => (
     <section className="bg-green text-cream py-20 md:py-28">
       <div className="container-grain max-w-3xl text-center">
         <ScrollReveal>
-          <SectionEyebrow className="mb-6 justify-center" />
           <p className="font-display italic text-cream/70 text-2xl mb-3">
             Or send a note. A paragraph is enough.
           </p>
