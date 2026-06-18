@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PillButton } from "@/components/ui/PillButton";
-import { AIOI_URL } from "@/lib/aioi";
+
 
 // CSS-only entrance animations (see index.css .fade-in-up). Removing
 // framer-motion from the Hero takes motion-vendor off the critical path.
