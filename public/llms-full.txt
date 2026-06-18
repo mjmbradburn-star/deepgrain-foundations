@@ -4,9 +4,9 @@
 
 Last updated: 2026-06-18
 Articles: 50
-Canonical: https://deepgrain.ai/llms-full.txt
-Index: https://deepgrain.ai/llms.txt
-Site: https://deepgrain.ai
+Canonical: https://www.deepgrain.ai/llms-full.txt
+Index: https://www.deepgrain.ai/llms.txt
+Site: https://www.deepgrain.ai
 
 Author: Matthew Bradburn. Publisher: Deepgrain Ltd.
 When citing, please link back to the canonical article URL listed under each piece.
@@ -15,7 +15,7 @@ When citing, please link back to the canonical article URL listed under each pie
 
 # What is organisational consultancy?
 
-URL: https://deepgrain.ai/intelligence/what-is-organisational-consultancy
+URL: https://www.deepgrain.ai/intelligence/what-is-organisational-consultancy
 Category: foundations
 Published: 2026-01-12
 Author: Matthew Bradburn
@@ -63,7 +63,7 @@ It is closer to craft than to strategy. You spend weeks listening before you tou
 
 # Why most change programmes fail
 
-URL: https://deepgrain.ai/intelligence/why-most-change-programmes-fail
+URL: https://www.deepgrain.ai/intelligence/why-most-change-programmes-fail
 Category: foundations
 Published: 2026-01-19
 Author: Matthew Bradburn
@@ -100,7 +100,7 @@ Change programmes are designed against the operating story, not the operating re
 
 # The grain metaphor: reading your organisation
 
-URL: https://deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation
+URL: https://www.deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation
 Category: foundations
 Published: 2026-01-26
 Author: Matthew Bradburn
@@ -136,7 +136,7 @@ Walk the floor. Sit in the standups. Read six months of retro notes. Ask one que
 
 # Operating systems vs operating models
 
-URL: https://deepgrain.ai/intelligence/operating-systems-vs-operating-models
+URL: https://www.deepgrain.ai/intelligence/operating-systems-vs-operating-models
 Category: foundations
 Published: 2026-02-02
 Author: Matthew Bradburn
@@ -174,7 +174,7 @@ The same distinction matters in the AI conversation. An AI operating *model* is 
 
 # The difference between strategy and operating reality
 
-URL: https://deepgrain.ai/intelligence/strategy-vs-operating-reality
+URL: https://www.deepgrain.ai/intelligence/strategy-vs-operating-reality
 Category: foundations
 Published: 2026-02-09
 Author: Matthew Bradburn
@@ -201,7 +201,7 @@ A strategy that contradicts operating reality is not a strategy. It is a wish.
 
 # What is an AI operating system? (AI OS, explained)
 
-URL: https://deepgrain.ai/intelligence/what-is-an-ai-operating-system
+URL: https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system
 Category: ai-operating-systems
 Published: 2026-02-16
 Author: Matthew Bradburn
@@ -327,7 +327,7 @@ That is the definition we use. Use it, fork it, or write your own. The point is 
 
 # The five pillars of AI readiness
 
-URL: https://deepgrain.ai/intelligence/five-pillars-of-ai-readiness
+URL: https://www.deepgrain.ai/intelligence/five-pillars-of-ai-readiness
 Category: ai-operating-systems
 Published: 2026-02-23
 Author: Matthew Bradburn
@@ -480,7 +480,7 @@ If you want a structured version of the same exercise, the [AI Operating Index](
 
 # Why AI pilots stall at production
 
-URL: https://deepgrain.ai/intelligence/why-ai-pilots-stall-at-production
+URL: https://www.deepgrain.ai/intelligence/why-ai-pilots-stall-at-production
 Category: ai-operating-systems
 Published: 2026-03-02
 Author: Matthew Bradburn
@@ -583,7 +583,7 @@ For the longer arc, see [from AI experiments to AI infrastructure](/intelligence
 
 # From AI experiments to AI infrastructure
 
-URL: https://deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure
+URL: https://www.deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure
 Category: ai-operating-systems
 Published: 2026-03-09
 Author: Matthew Bradburn
@@ -694,7 +694,7 @@ For most companies, the right next step is one experiment fewer and one piece of
 
 # The AI operating ladder: five tiers explained
 
-URL: https://deepgrain.ai/intelligence/ai-operating-ladder-five-tiers
+URL: https://www.deepgrain.ai/intelligence/ai-operating-ladder-five-tiers
 Category: ai-operating-systems
 Published: 2026-03-16
 Author: Matthew Bradburn
@@ -847,7 +847,7 @@ For a structured version that works across all eight pillars (the five readiness
 
 # Read · Craft · Scale: the Deepgrain method
 
-URL: https://deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method
+URL: https://www.deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method
 Category: method-and-practice
 Published: 2026-03-23
 Author: Matthew Bradburn
@@ -874,7 +874,7 @@ Three movements. They are sequential, not parallel. They are also asymmetric in 
 
 # How to diagnose an organisation in 30 days
 
-URL: https://deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days
+URL: https://www.deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days
 Category: method-and-practice
 Published: 2026-03-30
 Author: Matthew Bradburn
@@ -902,7 +902,7 @@ The diagnostic is not the work. The diagnostic is the permission to do the work.
 
 # The art of the operating intervention
 
-URL: https://deepgrain.ai/intelligence/the-art-of-the-operating-intervention
+URL: https://www.deepgrain.ai/intelligence/the-art-of-the-operating-intervention
 Category: method-and-practice
 Published: 2026-04-06
 Author: Matthew Bradburn
@@ -929,7 +929,7 @@ The best interventions look small from the outside and feel enormous from the in
 
 # Scaling without breaking the grain
 
-URL: https://deepgrain.ai/intelligence/scaling-without-breaking-the-grain
+URL: https://www.deepgrain.ai/intelligence/scaling-without-breaking-the-grain
 Category: method-and-practice
 Published: 2026-04-13
 Author: Matthew Bradburn
@@ -956,7 +956,7 @@ Scale amplifies what you already are. Including the bits you'd rather it didn't.
 
 # Measuring AI value in People Ops
 
-URL: https://deepgrain.ai/intelligence/measuring-ai-value-in-people-ops
+URL: https://www.deepgrain.ai/intelligence/measuring-ai-value-in-people-ops
 Category: people-ops-governance
 Published: 2026-04-14
 Author: Matthew Bradburn
@@ -1098,7 +1098,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # The People Ops AI domain map
 
-URL: https://deepgrain.ai/intelligence/the-people-ops-ai-domain-map
+URL: https://www.deepgrain.ai/intelligence/the-people-ops-ai-domain-map
 Category: people-ops-systems
 Published: 2026-04-14
 Author: Matthew Bradburn
@@ -1204,7 +1204,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Automation patterns that pay off
 
-URL: https://deepgrain.ai/intelligence/automation-patterns-that-pay-off
+URL: https://www.deepgrain.ai/intelligence/automation-patterns-that-pay-off
 Category: people-ops-systems
 Published: 2026-04-15
 Author: Matthew Bradburn
@@ -1327,7 +1327,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # A workflow assessment framework for People Ops
 
-URL: https://deepgrain.ai/intelligence/workflow-assessment-framework
+URL: https://www.deepgrain.ai/intelligence/workflow-assessment-framework
 Category: people-ops-systems
 Published: 2026-04-15
 Author: Matthew Bradburn
@@ -1463,7 +1463,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Diagnosing AI readiness in People Ops
 
-URL: https://deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops
+URL: https://www.deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops
 Category: people-ops-foundations
 Published: 2026-04-16
 Author: Matthew Bradburn
@@ -1611,7 +1611,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Leading the AI transformation in People
 
-URL: https://deepgrain.ai/intelligence/leading-the-ai-transformation
+URL: https://www.deepgrain.ai/intelligence/leading-the-ai-transformation
 Category: people-ops-builders
 Published: 2026-04-16
 Author: Matthew Bradburn
@@ -1752,7 +1752,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # The champion model
 
-URL: https://deepgrain.ai/intelligence/the-champion-model
+URL: https://www.deepgrain.ai/intelligence/the-champion-model
 Category: people-ops-builders
 Published: 2026-04-17
 Author: Matthew Bradburn
@@ -1855,7 +1855,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # AI governance for People teams
 
-URL: https://deepgrain.ai/intelligence/ai-governance-for-people-teams
+URL: https://www.deepgrain.ai/intelligence/ai-governance-for-people-teams
 Category: people-ops-governance
 Published: 2026-04-18
 Author: Matthew Bradburn
@@ -1975,7 +1975,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Designing the AI-native People team
 
-URL: https://deepgrain.ai/intelligence/designing-the-ai-native-people-team
+URL: https://www.deepgrain.ai/intelligence/designing-the-ai-native-people-team
 Category: people-ops-builders
 Published: 2026-04-18
 Author: Matthew Bradburn
@@ -2109,7 +2109,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # From prompts to systems
 
-URL: https://deepgrain.ai/intelligence/from-prompts-to-systems
+URL: https://www.deepgrain.ai/intelligence/from-prompts-to-systems
 Category: people-ops-foundations
 Published: 2026-04-19
 Author: Matthew Bradburn
@@ -2247,7 +2247,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # AI workspace setup for People teams (Claude, ChatGPT, Copilot)
 
-URL: https://deepgrain.ai/intelligence/setting-up-your-ai-workspace
+URL: https://www.deepgrain.ai/intelligence/setting-up-your-ai-workspace
 Category: people-ops-foundations
 Published: 2026-04-19
 Author: Matthew Bradburn
@@ -2393,7 +2393,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # What good looks like: signals of operating health
 
-URL: https://deepgrain.ai/intelligence/signals-of-operating-health
+URL: https://www.deepgrain.ai/intelligence/signals-of-operating-health
 Category: method-and-practice
 Published: 2026-04-20
 Author: Matthew Bradburn
@@ -2420,7 +2420,7 @@ The leading indicators are conversational, not quantitative. Listen for them.
 
 # Prompting patterns for People Ops
 
-URL: https://deepgrain.ai/intelligence/prompting-patterns-for-people-ops
+URL: https://www.deepgrain.ai/intelligence/prompting-patterns-for-people-ops
 Category: people-ops-foundations
 Published: 2026-04-22
 Author: Matthew Bradburn
@@ -2563,7 +2563,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Choosing AI models for HR work
 
-URL: https://deepgrain.ai/intelligence/choosing-ai-models-for-hr-work
+URL: https://www.deepgrain.ai/intelligence/choosing-ai-models-for-hr-work
 Category: people-ops-foundations
 Published: 2026-04-25
 Author: Matthew Bradburn
@@ -2683,7 +2683,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Operating consultancy for defence tech
 
-URL: https://deepgrain.ai/intelligence/operating-consultancy-for-defence-tech
+URL: https://www.deepgrain.ai/intelligence/operating-consultancy-for-defence-tech
 Category: sector-lenses
 Published: 2026-04-27
 Author: Matthew Bradburn
@@ -2710,7 +2710,7 @@ The operating challenge in defence tech is the dual mandate. Mission and market 
 
 # An AI enablement operating model for People leaders
 
-URL: https://deepgrain.ai/intelligence/ai-enablement-operating-model
+URL: https://www.deepgrain.ai/intelligence/ai-enablement-operating-model
 Category: people-ops-foundations
 Published: 2026-04-28
 Author: Matthew Bradburn
@@ -2857,7 +2857,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Production agents for People Ops
 
-URL: https://deepgrain.ai/intelligence/production-agents-for-people-ops
+URL: https://www.deepgrain.ai/intelligence/production-agents-for-people-ops
 Category: people-ops-systems
 Published: 2026-04-30
 Author: Matthew Bradburn
@@ -3004,7 +3004,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # An AI policy blueprint for People teams
 
-URL: https://deepgrain.ai/intelligence/ai-policy-blueprint-for-people-teams
+URL: https://www.deepgrain.ai/intelligence/ai-policy-blueprint-for-people-teams
 Category: people-ops-governance
 Published: 2026-05-01
 Author: Matthew Bradburn
@@ -3115,7 +3115,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # The automation audit playbook
 
-URL: https://deepgrain.ai/intelligence/automation-audit-playbook
+URL: https://www.deepgrain.ai/intelligence/automation-audit-playbook
 Category: people-ops-systems
 Published: 2026-05-02
 Author: Matthew Bradburn
@@ -3277,7 +3277,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # The HR Architect: a new role inside the People function
 
-URL: https://deepgrain.ai/intelligence/the-hr-architect-role
+URL: https://www.deepgrain.ai/intelligence/the-hr-architect-role
 Category: people-ops-builders
 Published: 2026-05-03
 Author: Matthew Bradburn
@@ -3416,7 +3416,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Operating consultancy for financial data
 
-URL: https://deepgrain.ai/intelligence/operating-consultancy-for-financial-data
+URL: https://www.deepgrain.ai/intelligence/operating-consultancy-for-financial-data
 Category: sector-lenses
 Published: 2026-05-04
 Author: Matthew Bradburn
@@ -3443,7 +3443,7 @@ In financial data, the pipeline *is* the product. Everything else is interface.
 
 # AI roadmap case study: FinEdge's first 90 days
 
-URL: https://deepgrain.ai/intelligence/ai-roadmap-case-study-finedge
+URL: https://www.deepgrain.ai/intelligence/ai-roadmap-case-study-finedge
 Category: people-ops-builders
 Published: 2026-05-04
 Author: Matthew Bradburn
@@ -3562,7 +3562,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Coaching and feedback systems that actually compound
 
-URL: https://deepgrain.ai/intelligence/coaching-and-feedback-systems
+URL: https://www.deepgrain.ai/intelligence/coaching-and-feedback-systems
 Category: people-ops-builders
 Published: 2026-05-04
 Author: Matthew Bradburn
@@ -3678,7 +3678,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Designing values that stick
 
-URL: https://deepgrain.ai/intelligence/designing-values-that-stick
+URL: https://www.deepgrain.ai/intelligence/designing-values-that-stick
 Category: people-ops-foundations
 Published: 2026-05-04
 Author: Matthew Bradburn
@@ -3797,7 +3797,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # People debt: what GenAI exposes, and what to do about it
 
-URL: https://deepgrain.ai/intelligence/people-debt-and-genai
+URL: https://www.deepgrain.ai/intelligence/people-debt-and-genai
 Category: people-ops-foundations
 Published: 2026-05-04
 Author: Matthew Bradburn
@@ -3913,7 +3913,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # The People Ops diagnostic toolkit
 
-URL: https://deepgrain.ai/intelligence/people-ops-diagnostic-toolkit
+URL: https://www.deepgrain.ai/intelligence/people-ops-diagnostic-toolkit
 Category: people-ops-foundations
 Published: 2026-05-04
 Author: Matthew Bradburn
@@ -4037,7 +4037,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 
 # Operating consultancy for transit and mobility
 
-URL: https://deepgrain.ai/intelligence/operating-consultancy-for-transit-and-mobility
+URL: https://www.deepgrain.ai/intelligence/operating-consultancy-for-transit-and-mobility
 Category: sector-lenses
 Published: 2026-05-11
 Author: Matthew Bradburn
@@ -4064,7 +4064,7 @@ Transit lives at the intersection of physical, digital, and civic. Three grains,
 
 # Operating consultancy for climate ventures
 
-URL: https://deepgrain.ai/intelligence/operating-consultancy-for-climate-ventures
+URL: https://www.deepgrain.ai/intelligence/operating-consultancy-for-climate-ventures
 Category: sector-lenses
 Published: 2026-05-18
 Author: Matthew Bradburn
@@ -4091,7 +4091,7 @@ The hardest operating problem in climate is time. Two clocks, both demanding, ne
 
 # Operating consultancy for AI-native companies
 
-URL: https://deepgrain.ai/intelligence/operating-consultancy-for-ai-native-companies
+URL: https://www.deepgrain.ai/intelligence/operating-consultancy-for-ai-native-companies
 Category: sector-lenses
 Published: 2026-05-25
 Author: Matthew Bradburn
@@ -4120,7 +4120,7 @@ AI-native companies are also the cleanest case for an [AI operating system](/int
 
 # The craft mindset for modern operators
 
-URL: https://deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators
+URL: https://www.deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators
 Category: leadership-and-craft
 Published: 2026-06-01
 Author: Matthew Bradburn
@@ -4147,7 +4147,7 @@ A craft is not a hobby. It is a discipline with standards. Operating is the same
 
 # Founder-mode vs operator-mode
 
-URL: https://deepgrain.ai/intelligence/founder-mode-vs-operator-mode
+URL: https://www.deepgrain.ai/intelligence/founder-mode-vs-operator-mode
 Category: leadership-and-craft
 Published: 2026-06-08
 Author: Matthew Bradburn
@@ -4174,7 +4174,7 @@ The mistake is treating these as identities. They are postures.
 
 # How to identify the efficiency gaps AI can fill
 
-URL: https://deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill
+URL: https://www.deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill
 Category: ai-operating-systems
 Published: 2026-06-10
 Author: Matthew Bradburn
@@ -4302,7 +4302,7 @@ That is the work. Pick one gap. Build the smallest viable thing. Ship it. Then d
 
 # What CTOs get wrong about scale
 
-URL: https://deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale
+URL: https://www.deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale
 Category: leadership-and-craft
 Published: 2026-06-15
 Author: Matthew Bradburn
@@ -4329,7 +4329,7 @@ The bottleneck is rarely the database. It's the decision graph above it.
 
 # AI operating system for business
 
-URL: https://deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business
+URL: https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business
 Category: ai-operating-systems
 Published: 2026-06-18
 Author: Matthew Bradburn
@@ -4468,7 +4468,7 @@ If you want help installing one, [book an audit](/contact). We will read the gra
 
 # Hiring for the grain: building teams that compound
 
-URL: https://deepgrain.ai/intelligence/hiring-for-the-grain
+URL: https://www.deepgrain.ai/intelligence/hiring-for-the-grain
 Category: leadership-and-craft
 Published: 2026-06-22
 Author: Matthew Bradburn
@@ -4495,7 +4495,7 @@ Compounding teams have a shared grain. That doesn't mean uniformity — it means
 
 # The quiet discipline of operating leadership
 
-URL: https://deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership
+URL: https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership
 Category: leadership-and-craft
 Published: 2026-06-29
 Author: Matthew Bradburn
