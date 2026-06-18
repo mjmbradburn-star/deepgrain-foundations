@@ -6,7 +6,7 @@
     <atom:link href="https://deepgrain.ai/feed.xml" rel="self" type="application/rss+xml" />
     <description>Long-form essays on operating systems, AI readiness, and the craft of operating leadership.</description>
     <language>en-GB</language>
-    <lastBuildDate>Fri, 15 May 2026 14:37:58 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2026 21:54:40 GMT</lastBuildDate>
     <item>
       <title>The quiet discipline of operating leadership</title>
       <link>https://deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</link>
@@ -27,6 +27,13 @@
       <guid isPermaLink="true">https://deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale</guid>
       <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
       <description>Scale is rarely a technology problem. It is almost always an operating problem dressed up as a technology problem.</description>
+    </item>
+    <item>
+      <title>How to identify the efficiency gaps AI can fill</title>
+      <link>https://deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill</link>
+      <guid isPermaLink="true">https://deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Most teams pick AI projects by what is loudest, not by where the real efficiency gaps sit. Here is how to find the gaps that are actually AI-shaped, and what to do once you have one.</description>
     </item>
     <item>
       <title>Founder-mode vs operator-mode</title>
@@ -216,13 +223,6 @@
       <guid isPermaLink="true">https://deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops</guid>
       <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
       <description>A two-axis maturity read plus a six-axis diagnostic for People functions. Use it before you build anything, so you build the right thing first.</description>
-    </item>
-    <item>
-      <title>How to identify the efficiency gaps AI can fill</title>
-      <link>https://deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill</link>
-      <guid isPermaLink="true">https://deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill</guid>
-      <pubDate>Wed, 10 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Most teams pick AI projects by what is loudest, not by where the real efficiency gaps sit. Here is how to find the gaps that are actually AI-shaped, and what to do once you have one.</description>
     </item>
     <item>
       <title>A workflow assessment framework for People Ops</title>
