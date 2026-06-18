@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Hero } from "@/components/sections/Hero";
 import { ICPStrip } from "@/components/sections/ICPStrip";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { HOME_FAQ_LD } from "@/components/sections/HomeFAQ";
 
 // Below-the-fold sections — lazy-loaded to shrink the initial JS bundle.
 const LogoCarousel = lazy(() =>
@@ -34,6 +35,9 @@ const IntelligenceTeaser = lazy(() =>
 const Invitation = lazy(() =>
   import("@/components/sections/Invitation").then((m) => ({ default: m.Invitation }))
 );
+const HomeFAQ = lazy(() =>
+  import("@/components/sections/HomeFAQ").then((m) => ({ default: m.HomeFAQ }))
+);
 
 // Minimal placeholder preserves vertical rhythm without shifting the page.
 const SectionFallback = () => <div aria-hidden className="min-h-[60vh]" />;
@@ -42,21 +46,24 @@ const Home = () => (
   <>
     <PageMeta
       title="Deepgrain | Work with the grain."
-      description="Organisational consultancy that reads how your company actually works, then builds the strategy, agentic systems, and people to evolve it."
+      description="Organisational consultancy that reads how your company actually operates, then builds the strategy, agentic systems and people to evolve it."
       path="/"
-      jsonLd={{
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        name: "Simple AI, a 90-second primer for G&A leaders",
-        description:
-          "Seventeen of the terms cluttering every AI conversation, in plain English. Made for G&A leaders, not engineers.",
-        thumbnailUrl: ["https://deepgrain.ai/simple-ai-poster.jpg"],
-        uploadDate: "2026-05-01T00:00:00+00:00",
-        duration: "PT1M30S",
-        contentUrl: "https://deepgrain.ai/simple-ai.mp4",
-        embedUrl: "https://deepgrain.ai/simple-ai.mp4",
-        publisher: { "@id": "https://deepgrain.ai/#organization" },
-      }}
+      jsonLd={[
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          name: "Simple AI, a 90-second primer for G&A leaders",
+          description:
+            "Seventeen of the terms cluttering every AI conversation, in plain English. Made for G&A leaders, not engineers.",
+          thumbnailUrl: ["https://deepgrain.ai/simple-ai-poster.jpg"],
+          uploadDate: "2026-05-01T00:00:00+00:00",
+          duration: "PT1M30S",
+          contentUrl: "https://deepgrain.ai/simple-ai.mp4",
+          embedUrl: "https://deepgrain.ai/simple-ai.mp4",
+          publisher: { "@id": "https://deepgrain.ai/#organization" },
+        },
+        HOME_FAQ_LD,
+      ]}
     />
     <Hero />
     <ICPStrip />
@@ -75,6 +82,7 @@ const Home = () => (
         <ClientVoice />
       </div>
       <IntelligenceTeaser />
+      <HomeFAQ />
       <Invitation />
     </Suspense>
   </>

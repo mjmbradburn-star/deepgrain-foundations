@@ -1,12 +1,22 @@
 import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { Analytics } from "@/components/analytics/Analytics";
 import Home from "./pages/Home";
+
+/**
+ * Hash-anchor answers (legacy: /intelligence/answers#slug, briefly served as
+ * /intelligence/answers/:slug during transition) redirect to the canonical
+ * per-question route at /answers/:slug. `replace` to avoid polluting history.
+ */
+const LegacyAnswerRedirect = () => {
+  const { slug = "" } = useParams();
+  return <Navigate to={`/answers/${slug}`} replace />;
+};
 
 // Route-level code splitting — only Home is in the initial bundle.
 const MethodPage = lazy(() => import("./pages/MethodPage"));
@@ -62,6 +72,11 @@ const App = () => (
               <Route path="/intelligence/pillar/:slug" element={<IntelligencePillar />} />
               <Route path="/intelligence/cluster/:slug" element={<IntelligenceCluster />} />
               <Route path="/answers/:slug" element={<AnswerDetail />} />
+              {/* Legacy hash-anchor URLs redirected to canonical detail pages. */}
+              <Route
+                path="/intelligence/answers/:slug"
+                element={<LegacyAnswerRedirect />}
+              />
               <Route path="/intelligence/ai-operating-system-vs-operating-model" element={<IntelligenceCompare slug="ai-operating-system-vs-operating-model" />} />
               <Route path="/intelligence/ai-os-vs-ai-platform" element={<IntelligenceCompare slug="ai-os-vs-ai-platform" />} />
               <Route path="/intelligence/ai-os-vs-automation" element={<IntelligenceCompare slug="ai-os-vs-automation" />} />

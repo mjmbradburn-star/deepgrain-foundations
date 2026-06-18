@@ -95,20 +95,34 @@ const IntelligenceAnswers = () => {
                   className="font-display text-2xl md:text-3xl text-walnut leading-snug mb-4"
                   style={{ letterSpacing: "-0.005em" }}
                 >
-                  {a.question}
+                  <Link
+                    to={`/answers/${a.slug}`}
+                    className="hover:text-brass transition-colors"
+                  >
+                    {a.question}
+                  </Link>
                 </h2>
                 <p className="font-sans text-[18px] leading-[1.7] text-walnut/85 mb-3">
                   {a.answer}
                 </p>
-                {a.link && (
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
                   <Link
-                    to={a.link}
+                    to={`/answers/${a.slug}`}
                     className="text-[12px] uppercase text-green hover:text-brass transition-colors"
                     style={{ letterSpacing: "0.14em" }}
                   >
-                    {a.linkLabel ?? "Read the article"} →
+                    Open answer page →
                   </Link>
-                )}
+                  {a.link && (
+                    <Link
+                      to={a.link}
+                      className="text-[12px] uppercase text-walnut/60 hover:text-brass transition-colors"
+                      style={{ letterSpacing: "0.14em" }}
+                    >
+                      {a.linkLabel ?? "Read the article"} →
+                    </Link>
+                  )}
+                </div>
               </li>
             ))}
           </ol>

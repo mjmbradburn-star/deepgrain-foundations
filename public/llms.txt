@@ -2,8 +2,8 @@
 
 > Organisational consultancy that reads the grain of how a company actually operates — then changes it without breaking what works. Read · Craft · Scale.
 
-Last updated: 2026-06-10
-Articles: 48
+Last updated: 2026-06-18
+Articles: 49
 Canonical: https://deepgrain.ai/llms.txt
 Sitemap: https://deepgrain.ai/sitemap.xml
 
@@ -43,11 +43,11 @@ What an AI operating system is — and how to build one.
 [Browse category](https://deepgrain.ai/intelligence/category/ai-operating-systems)
 
 - [What is an AI operating system? (AI OS, explained)](https://deepgrain.ai/intelligence/what-is-an-ai-operating-system): An AI operating system, or AI OS, is the layer between models and work. It is what turns a clever demo into a compounding capability. Here is what it includes, how it differs from an operating model, and how to build one.
-- [How to identify the efficiency gaps AI can fill](https://deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill): Most teams pick AI projects by what is loudest, not by where the real efficiency gaps sit. Four signals (repetition, latency, judgment shape, contestability), a 30-minute audit, and what to do once you have found one.
 - [The five pillars of AI readiness](https://deepgrain.ai/intelligence/five-pillars-of-ai-readiness): Readiness is not a model selection problem. It is a Data, Tools, Agents, Governance, and Cadence problem, in that order. Here is the diagnostic, with what good and bad look like at each pillar.
 - [Why AI pilots stall at production](https://deepgrain.ai/intelligence/why-ai-pilots-stall-at-production): The path from pilot to production is paved with the things nobody wanted to think about during the demo. Here is the recurring pattern, and how to design pilots that actually cross it.
 - [From AI experiments to AI infrastructure](https://deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure): Experiments are cheap. Infrastructure is expensive. The companies that win the next decade are the ones that know when to switch, and what to switch into.
 - [The AI operating ladder: five tiers explained](https://deepgrain.ai/intelligence/ai-operating-ladder-five-tiers): From ad-hoc usage to autonomous operations: the five tiers of AI operating maturity, what each one looks like in practice, and what it takes to climb each rung.
+- [How to identify the efficiency gaps AI can fill](https://deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill): Most teams pick AI projects by what is loudest, not by where the real efficiency gaps sit. Here is how to find the gaps that are actually AI-shaped, and what to do once you have one.
 
 ### Method & Practice
 
