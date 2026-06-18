@@ -1,0 +1,170 @@
+export const frontmatter = {
+  title: "Building agentic operating systems: a roadmap from prompts to production",
+  slug: "building-agentic-operating-systems",
+  category: "ai-operating-systems",
+  description: "An agentic operating system is what you build when prompting stops being enough. This is the technical and organisational roadmap for moving from one-off LLM calls to interconnected agents that do real work, reliably, in production.",
+  keywords: [
+    "agentic operating system",
+    "agentic AI services",
+    "agentic AI",
+    "AI agents in production",
+    "agentic architecture",
+    "multi-agent systems",
+    "agentic AI framework",
+    "agentic AI roadmap",
+  ],
+  readTime: "12 min",
+  publishedAt: "2026-06-18",
+  author: "Matthew Bradburn",
+  featured: false,
+};
+
+export const faqs = [
+  {
+    question: "What is an agentic operating system?",
+    answer:
+      "An agentic operating system is the runtime, tooling, and governance that lets multiple AI agents do real work across a company without falling over. It is the layer that turns isolated agent demos into a reliable, interconnected system: shared memory, shared tools, shared policies, and a cadence for keeping the whole thing alive.",
+  },
+  {
+    question: "How is agentic AI different from prompting an LLM?",
+    answer:
+      "Prompting is one shot: a person asks, the model answers. Agentic AI takes a goal, decides on steps, calls tools, observes results, and revises. The shift from prompt to agent is the shift from chat to operator. Most production value sits on the agent side.",
+  },
+  {
+    question: "What are agentic AI services?",
+    answer:
+      "Agentic AI services are the building blocks an agent calls to act on the world: tool APIs, retrieval, memory stores, identity, policy checks, and observability. A useful agent is mostly services. The model is the thinnest layer.",
+  },
+  {
+    question: "Do I need a multi-agent system or one big agent?",
+    answer:
+      "Start with one agent doing one workflow end to end. Add a second only when the first is boring, reliable, and observable. Most multi-agent designs fail because the team skipped the part where one agent had to actually work.",
+  },
+  {
+    question: "How long does it take to build an agentic operating system?",
+    answer:
+      "Four to twelve weeks to get the first agent into real production on one workflow. Six to twelve months to have three to five agents covering a meaningful slice of a function. Anything faster is usually a demo. Anything slower is usually a platform project that forgot it was supposed to do work.",
+  },
+  {
+    question: "What stops agentic systems from reaching production?",
+    answer:
+      "The same things that stop any AI work: unreachable data, missing tools, no human-in-the-loop policy, no observability, and no owner. The model is almost never the blocker. The operating substrate around it is.",
+  },
+];
+
+<TLDR>
+- An agentic operating system is what you need when prompting stops scaling. It is the runtime that lets agents do real work, reliably, across a company.
+- Agentic AI is goal plus steps plus tools, not a single prompt. The value sits in the steps, not the model.
+- Build one agent end to end before you build a swarm. Most multi-agent systems fail because the first agent never worked.
+- Agentic services are mostly plumbing: retrieval, tools, memory, identity, policy, observability. The model is the thinnest layer.
+- Without an agentic operating system, every agent is a demo. With one, agents compound into capability.
+</TLDR>
+
+## In one sentence
+
+An **agentic operating system** is the substrate that lets autonomous AI agents do real work, together, in production: shared tools, shared memory, shared policy, and a maintenance cadence that keeps the whole thing alive.
+
+A prompt is a question. An agent is an operator. An agentic operating system is what stops your operators from tripping over each other.
+
+## From prompts to agents to systems
+
+Three stages, in order. Most teams skip the middle one and wonder why nothing scales.
+
+| Stage | What it is | Where it breaks |
+|---|---|---|
+| Prompting | One person, one model, one question | Doesn't survive contact with real workflows |
+| Agentic | Goal, steps, tools, memory, retries | Doesn't survive contact with other agents |
+| Agentic OS | Shared runtime, shared policy, shared cadence | Doesn't fail. It just rots without a gardener. |
+
+If your company is mostly at stage one and you are pitched a stage three platform, you are about to buy infrastructure for work you do not yet do. Build the agent first.
+
+## The five pillars, in agentic form
+
+The [five pillars of an AI operating system](/intelligence/what-is-an-ai-operating-system) hold here too. Agentic work sharpens them.
+
+**1. Data and retrieval.** An agent without retrieval is a goldfish. You need a way to put the right context into the right step at the right time. That is retrieval, not "a vector database". The vector store is one tool. The retrieval strategy is the pillar.
+
+**2. Tools.** An agent without tools writes essays. An agent with tools books the meeting, files the ticket, updates the record, sends the email. Tool design is the highest leverage code you will write. Make the tools narrow, well-named, and idempotent.
+
+**3. Agents.** Goal plus plan plus loop. Most useful agents are small: one job, three to seven tools, a clear stopping condition. The "general purpose agent" is a research project. The narrow agent is a hire.
+
+**4. Governance and identity.** Who is the agent acting as? What is it allowed to do? What requires a human? Agentic systems collapse the gap between "the model said something" and "the company did something". Identity, scopes, and human-in-the-loop are no longer optional.
+
+**5. Operating cadence and observability.** Agents drift. Tools change. Data shifts. Without traces you can read, evals you trust, and a weekly cadence to look at both, the system bit-rots. The teams that win at agentic work treat observability as a first-class pillar, not a sidecar.
+
+<Takeaway>Agentic operating systems are mostly plumbing. The model is the thinnest layer. Treat the plumbing as the product.</Takeaway>
+
+## A working architecture
+
+There is no canonical stack yet, but the working shape is settling. From the outside in:
+
+- **Interface.** Where the human or upstream system calls the agent. Chat, API, queue, webhook. Keep this thin.
+- **Orchestrator.** The loop that holds the goal, picks the next step, calls a tool, observes, decides. This is your runtime.
+- **Tool layer.** Narrow, typed, idempotent functions. Each one does one thing the company already understands.
+- **Retrieval layer.** Whatever fetches the right context for the current step. Hybrid search, structured queries, graph lookups, plain SQL.
+- **Memory.** Short-term scratchpad inside a run. Long-term store across runs. Most teams need less long-term memory than they think.
+- **Policy and identity.** What the agent is allowed to do, on whose behalf, with what scopes, and which actions trigger a human.
+- **Observability.** Traces of every step, every tool call, every prompt, every output. Plus evals that run on a schedule and tell you when behaviour changes.
+
+You do not need a vendor for each box. You need one of each box, owned by someone, and connected to the others.
+
+## Agentic AI services: the things your agent actually calls
+
+When people say "agentic AI services", they usually mean one of two things: the managed services a provider sells you (hosted agents, hosted tools, hosted memory), or the internal services you build for your own agents to call.
+
+The internal kind is where the work is. A useful catalogue, in roughly the order most companies need them:
+
+1. **Retrieval service.** One way to ask, "what do we know about X?"
+2. **Identity service.** Who is this agent acting as, and what can they do?
+3. **Tool gateway.** A typed, authenticated, logged way to call internal tools.
+4. **Memory service.** Conversation state, run state, and long-term notes, with TTLs.
+5. **Policy service.** Pre-flight checks for risky actions. Post-flight audit for everything.
+6. **Eval service.** Golden tasks, scheduled runs, regression alerts.
+7. **Trace service.** Every step, queryable, with the prompts and outputs intact.
+
+You can buy parts of this. You should own the seams. The seams are where your operating reality lives.
+
+## Where to start: one agent, one workflow
+
+The fastest path to an agentic operating system is to refuse to build one for as long as possible. Build one agent doing one workflow end to end. Make it boring. Make it observable. Make it survive a quarter.
+
+Then build the second agent and notice what the first one needed that you did not yet have. That gap is your platform backlog, written by reality instead of by a slide.
+
+For a deeper walk through the diagnostic that picks the right first workflow, see [how to diagnose an organisation in 30 days](/intelligence/how-to-diagnose-an-organisation-in-30-days) and [identifying efficiency gaps AI can fill](/intelligence/identifying-efficiency-gaps-ai-can-fill).
+
+## Why agentic pilots stall
+
+The same reasons [AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production), plus three agentic-specific failure modes:
+
+- **No tool design.** The agent has access to a sprawling SDK instead of three sharp tools. It picks the wrong one and the loop melts.
+- **No human-in-the-loop.** The first time the agent does something irreversible and wrong, the project is paused for a quarter.
+- **No observability.** You cannot tell whether last week's regression is a model change, a data change, or a tool change. So you change everything, and learn nothing.
+
+Each of these is a pillar problem, not a model problem. Fix the pillar.
+
+<Takeaway>Most agentic failures are tool design, governance, or observability. Almost none are model choice.</Takeaway>
+
+## Organisational shape
+
+Agentic systems do not survive on engineering alone. The operating side needs:
+
+- **An owner.** One person whose job description says "the agentic system works".
+- **Champions in the function.** People in the workflow who can tell you when the agent is wrong, and care that it gets fixed. See [the champion model](/intelligence/the-champion-model).
+- **A weekly cadence.** Look at traces. Look at evals. Look at the queue. Decide what to change.
+- **A clear "never" list.** What the agent will never decide on its own. Write it down before you ship.
+
+Without those, the cleanest architecture rots. With them, an average architecture compounds.
+
+## A working definition you can quote
+
+> An agentic operating system is the runtime, the services, the policy, and the cadence that let multiple AI agents do real work across a company, reliably, in production. It is what stops agentic AI from being a series of demos.
+
+That is the working definition. The point is not the words. The point is having one, and building toward it one agent at a time.
+
+<KeyTakeaways>
+- Agentic AI is goal plus steps plus tools. The value lives in the steps, not the model.
+- An agentic operating system is the shared substrate that lets multiple agents work together without collapsing.
+- Build one agent end to end before you build a platform. The first agent writes the platform backlog for you.
+- Tool design, identity, and observability are first-class pillars. Skip any of them and the system rots there first.
+- The fastest agentic teams are the ones that decided early what they would never let an agent decide.
+</KeyTakeaways>
