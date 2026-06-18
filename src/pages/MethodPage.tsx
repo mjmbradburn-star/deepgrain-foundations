@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { PillButton } from "@/components/ui/PillButton";
-import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { ValueVisualiser } from "@/components/sections/ValueVisualiser";
@@ -11,6 +8,11 @@ import { BuildVsHire } from "@/components/sections/BuildVsHire";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { BarkSection } from "@/components/ui/BarkSection";
 import { Invitation } from "@/components/sections/Invitation";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+import { ThreeLevels } from "@/components/sections/deck/ThreeLevels";
+import { WorkedExample } from "@/components/sections/deck/WorkedExample";
+import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
 
 // Each FAQ keeps `answer` as the canonical text mirrored in JSON-LD; `answerNode`
 // adds inline navigation (where natural) plus a small "Ask about this" CTA that
