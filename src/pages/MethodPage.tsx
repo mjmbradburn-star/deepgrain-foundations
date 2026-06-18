@@ -256,7 +256,7 @@ const MethodPage = () => (
           <ScrollReveal>
             <Eyebrow className="text-brass mb-6">The Method</Eyebrow>
             <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[96px] leading-[1.02] text-balance">
-              Read the grain. Build with it. Leave something that lasts.
+              From Audit through to Agents, we manage the change and ensure it lasts
             </h1>
           </ScrollReveal>
         </div>
