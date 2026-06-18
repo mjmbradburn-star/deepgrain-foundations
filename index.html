@@ -121,8 +121,24 @@
       }
     </script>
 
-    <!-- VideoObject moved to src/pages/Home.tsx so the schema only ships on
-         the page that actually contains the video. Mirrored in /sitemap-video.xml. -->
+    <!-- VideoObject for the homepage hero video. The same schema is also
+         emitted at runtime by src/pages/Home.tsx via Helmet (deduped by
+         crawlers), but it must exist in the static HTML so non-JS
+         crawlers and the build-time JSON-LD validator can see it. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Simple AI, a 90-second primer for G&A leaders",
+        "description": "Seventeen of the terms cluttering every AI conversation, in plain English. Made for G&A leaders, not engineers.",
+        "thumbnailUrl": ["https://www.deepgrain.ai/simple-ai-poster.jpg"],
+        "uploadDate": "2026-05-01T00:00:00+00:00",
+        "duration": "PT1M30S",
+        "contentUrl": "https://www.deepgrain.ai/simple-ai.mp4",
+        "embedUrl": "https://www.deepgrain.ai/simple-ai.mp4",
+        "publisher": { "@id": "https://www.deepgrain.ai/#organization" }
+      }
+    </script>
 
     <meta name="google-site-verification" content="onDuxWPF0zD1JWeKBMzAfi1SEU4NaIumfdwmB156Ctg" />
       <meta property="og:title" content="Deepgrain | Work with the grain.">
