@@ -156,9 +156,10 @@ const Intelligence = () => {
                 <div className="flex flex-wrap items-end justify-between gap-4 mb-10 pb-6 border-b border-walnut/15">
                   <div>
                     <Eyebrow>{cat.name}</Eyebrow>
-                    <p className="font-display text-2xl md:text-3xl text-walnut mt-2 max-w-xl">
+                    <h2 className="font-display text-2xl md:text-3xl text-walnut mt-2 max-w-xl">
+                      <span className="sr-only">{cat.name}: </span>
                       {cat.description}
-                    </p>
+                    </h2>
                   </div>
                   <div className="flex items-center gap-5">
                     <Link
