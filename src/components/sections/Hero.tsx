@@ -45,15 +45,15 @@ export const Hero = () => (
         <p className="text-cream mt-6 sm:mt-10 max-w-[560px] text-lg sm:text-xl md:text-2xl leading-snug font-medium">
           Every organisation has a grain. Most leaders are working against theirs without realising it.
         </p>
-        <p className="hidden md:block text-cream/75 mt-5 max-w-[520px] text-base md:text-lg leading-relaxed">
-          We read yours, then build the strategy, the AI systems, and the people who can keep evolving them.
+        <p className="hidden md:block text-cream/75 mt-5 max-w-[560px] text-base md:text-lg leading-relaxed">
+          We read how your organisation actually operates, then build the AI systems and team capability to scale it, so the gains compound after we leave.
         </p>
         <div className="fade-in-up fade-in-up-3 mt-6 sm:mt-10 flex flex-wrap items-center gap-3 md:gap-4">
-          <PillButton href="/method" variant="filled" cta="how_we_work" ctaLocation="hero">
-            How we work →
-          </PillButton>
-          <PillButton href="/contact" variant="outline" cta="book_audit" ctaLocation="hero">
+          <PillButton href="/contact" variant="filled" cta="book_audit" ctaLocation="hero">
             Book an audit →
+          </PillButton>
+          <PillButton href="/method" variant="outline" cta="see_method" ctaLocation="hero">
+            See the method →
           </PillButton>
         </div>
       </div>

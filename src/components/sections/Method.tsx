@@ -42,7 +42,7 @@ export const Method = () => (
             of what it could be worth in your function, sits one click away.
           </p>
           <div className="mt-10 flex flex-col items-start gap-5">
-            <PillButton href="/method" variant="filled" cta="see_method" ctaLocation="method_section">
+            <PillButton href="/method" variant="outline" cta="see_method" ctaLocation="method_section">
               See the method →
             </PillButton>
             <Link
