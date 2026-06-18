@@ -1,8 +1,8 @@
 # Deepgrain, full Intelligence corpus
 Last updated: 2026-06-18
-Articles: 49
-Canonical: https://deepgrain.ai/llms-full.txt
-Sitemap: https://deepgrain.ai/sitemap.xml
+Articles: 50
+Canonical: https://www.deepgrain.ai/llms-full.txt
+Sitemap: https://www.deepgrain.ai/sitemap.xml
 
 This file contains the full body text of every Deepgrain Intelligence article in
 plain text, separated by article boundaries. Frontmatter precedes each article.
@@ -13,7 +13,7 @@ organisational consultancy, AI operating systems, and People Ops AI.
 
 ========================================
 TITLE: The quiet discipline of operating leadership
-URL: https://deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership
+URL: https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership
 TRACK: deepgrain
 CATEGORY: leadership-and-craft
 PUBLISHED: 2026-06-29
@@ -37,7 +37,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Hiring for the grain: building teams that compound
-URL: https://deepgrain.ai/intelligence/hiring-for-the-grain
+URL: https://www.deepgrain.ai/intelligence/hiring-for-the-grain
 TRACK: deepgrain
 CATEGORY: leadership-and-craft
 PUBLISHED: 2026-06-22
@@ -60,8 +60,121 @@ KEY TAKEAWAYS:
 
 
 ========================================
+TITLE: AI operating system for business
+URL: https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business
+TRACK: deepgrain
+CATEGORY: ai-operating-systems
+PUBLISHED: 2026-06-18
+READ_TIME: 9 min
+DESCRIPTION: How to use AI as an operating system, not just a set of tools. A plain guide for business leaders, built on Deepgrain's Read, Craft, Scale method.
+========================================
+
+TLDR:
+- An AI operating system for business is the shared layer of data, tools, agents, governance, and cadence that turns standalone AI features into a system the whole organisation can run.
+- The shift is from buying AI tools to operating an AI substrate. Tools answer "can the model do this?" An operating system answers "can we run this on Monday, at scale, without losing the plot?"
+- Use Read, Craft, Scale to install it: Read where work actually compounds, Craft the smallest viable operating layer, Scale only once operators trust it.
+- The failure mode is installing the operating system top-down before any workflow has proved it out. Start small, prove value, then make it shared infrastructure.
+- Done well, an AI operating system makes the next workflow take a week instead of a quarter, and the one after that take a day.
+
+Most business leaders already have AI in their organisation. Copilots in inboxes, GPT in browsers, a procurement tool that quietly added "AI" to its name. What they do not have is an AI operating system. The difference is the difference between owning a few power tools and running a workshop.
+
+This guide is for the leaders who can feel that gap. It explains what an AI operating system actually is, why business needs one once AI use moves past dabbling, and how to install it using Deepgrain's Read, Craft, Scale (/method) method.
+
+## What is an AI operating system, in plain English
+
+An AI operating system (/intelligence/what-is-an-ai-operating-system) is the layer of shared substrate that AI work runs on inside a business. Not a product you buy. A small set of capabilities you operate.
+
+It has five components, the same five that show up in every serious deployment:
+
+- Data: identity, permissions, and retrieval. Agents reach the same source of truth a human would, in the same shape, with the same access rules.
+- Tools: a small set of stable interfaces, internal APIs or MCP servers, that any workflow can call without re-negotiating access.
+- Agents: a runtime where new agents are days of work, not months. Logged, reversible, owned.
+- Governance: a written list of what is allowed unattended, what is logged, what needs a human in the loop. Reviewed on a cadence.
+- Cadence: a recurring forum where agents are reviewed, drift is caught, policy is updated, and new workflows are admitted.
+
+If those five exist and are operated together, you have an AI operating system. If they do not, you have a folder of pilots.
+
+> An AI operating system for business is five things operated together: data, tools, agents, governance, cadence. Anything less is a folder of pilots.
+
+## Why business needs one, not just better tools
+
+A standalone AI tool solves one task. An AI operating system solves the joins between tasks. That sounds abstract until the second tool arrives.
+
+The first AI tool a function buys is usually fine. The second tool has to integrate with the first, share permissions, agree on what counts as a customer, and respect the same policies. By the third or fourth tool, every department is rebuilding the same plumbing in slightly different ways, and the cost of changing direction has quietly become very high.
+
+That cost is what an operating system removes. One identity model. One retrieval surface. One governance model. One cadence. Anything new plugs into substrate that already exists, instead of bringing its own.
+
+The economic argument is simple: the marginal cost of each new AI workflow drops sharply once the operating system is in place. The strategic argument is bigger: you stop being a buyer of vendor features and start being an operator of your own AI capability.
+
+For more on when this transition becomes urgent, see from AI experiments to AI infrastructure (/intelligence/from-ai-experiments-to-ai-infrastructure).
+
+## How to use AI as an operating system: Read, Craft, Scale
+
+Deepgrain installs AI operating systems using three sequenced stages. The order matters. Skipping a stage is the most common reason businesses end up with expensive plumbing and no adoption.
+
+### 1. Read the grain
+
+Before you build anything, you read how the organisation actually operates. Where does work pile up. Where do decisions stall. Where is the same answer being typed by twelve different people. Which workflows would compound if AI joined them, and which would not.
+
+Reading is a discipline, not a workshop. It includes shadowing real work, mapping decision rights, inventorying current AI use (sanctioned and shadow), and naming the two or three workflows where an AI operating system would change the economics. Without this, the operating system you install will be technically correct and operationally irrelevant.
+
+Concretely, after Reading you should be able to name:
+
+- The two or three workflows that are clearly worth running on shared infrastructure
+- The data they depend on, and who owns it
+- The decisions inside them, and who is accountable
+- The current cost of running them without an operating system, in hours and risk
+
+### 2. Craft the operating layer
+
+Now you build, but small. The temptation at this stage is to commission a moonshot platform. Resist it. Craft the smallest viable version of each of the five components, sized to the workflows you Read.
+
+What that looks like in practice:
+
+- Data: one trusted retrieval surface for the workflows in scope, with permissions that match the organisation's existing model. Not all data. Not yet.
+- Tools: a handful of stable interfaces the agents in scope need to call. Versioned. Logged.
+- Agents: one runtime, with a clear definition of how an agent is proposed, reviewed, deployed, and retired. Two or three real agents running.
+- Governance: a one-page operating policy. What is allowed unattended, what is logged, what gets a human in the loop, what triggers a review.
+- Cadence: a fortnightly review with the operators and the accountable executive. Real decisions made, written down.
+
+Craft ends when the operators trust the system enough to put real work through it without flinching. Not when the diagram is finished.
+
+> Craft the smallest operating layer that the workflows you Read actually need. The diagram is not the deliverable. Operator trust is.
+
+### 3. Scale to shared infrastructure
+
+Only now do you make the operating system shared. Scale means three things, in order: more workflows on the same substrate, more functions onboarded to the same operating model, and the cadence becoming the way the business talks about AI, not a side meeting.
+
+Scaling too early is the failure mode. Scaling at the right moment is when the operating system stops being a project and starts being a capability. The signal is concrete: a new workflow can be admitted, governed, and running in days, not quarters. People stop asking permission to use AI and start asking which agent to use.
+
+## The four traps to avoid
+
+Most attempts at an AI operating system for business fail in one of four ways. Knowing them in advance is half the defence:
+
+1. Buying a platform and calling it an operating system. A platform is a component. An operating system includes the data, the policies, the operators, and the cadence around it. A platform with no operating model is a powerful piece of software and the same workflow problems you had before.
+2. Installing it top-down before any workflow has proved it out. The operating system has to earn its right to exist by making real work demonstrably better. Start with the workflows, not the architecture.
+3. Treating governance as a brake instead of a substrate. Governance is what lets you go faster safely. Written, light, reviewed often. Heavy policy nobody reads is worse than no policy.
+4. No operating cadence. Without a recurring forum, drift accumulates, policy goes stale, and the operating system quietly becomes shelfware. The cadence is the system.
+
+## Where this leads
+
+A business running on an AI operating system looks different from one running on AI tools. The next workflow takes a week instead of a quarter. The next one after that takes a day. Operators propose agents. The cadence catches drift before it becomes incident. Procurement stops being the integration layer.
+
+You do not get there by buying it. You get there by reading the grain, crafting the smallest operating layer that works, and scaling it only when the operators trust it. That is how an AI operating system actually lands in a business.
+
+KEY TAKEAWAYS:
+- An AI operating system for business is five components operated together: data, tools, agents, governance, cadence. Miss one and you have a folder of pilots, not a system.
+- Tools answer "can the model do this?" An operating system answers "can we run this on Monday, at scale, without losing the plot?" That is the shift business leaders are now being asked to make.
+- Install it with Read, Craft, Scale. Read where work actually compounds, Craft the smallest viable operating layer around those workflows, Scale only once operators trust it.
+- The four traps: buying a platform and calling it an operating system, installing top-down before any workflow proves it out, treating governance as a brake, and skipping the operating cadence.
+- The signal that it is working: the next workflow takes a week instead of a quarter, and operators stop asking permission to use AI and start asking which agent to use.
+
+If you want help installing one, book an audit (/contact). We will read the grain, name the workflows worth running on shared infrastructure, and tell you honestly whether you are ready to craft the operating layer yet.
+
+
+========================================
 TITLE: What CTOs get wrong about scale
-URL: https://deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale
+URL: https://www.deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale
 TRACK: deepgrain
 CATEGORY: leadership-and-craft
 PUBLISHED: 2026-06-15
@@ -85,7 +198,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: How to identify the efficiency gaps AI can fill
-URL: https://deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill
+URL: https://www.deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill
 TRACK: deepgrain
 CATEGORY: ai-operating-systems
 PUBLISHED: 2026-06-10
@@ -187,7 +300,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Founder-mode vs operator-mode
-URL: https://deepgrain.ai/intelligence/founder-mode-vs-operator-mode
+URL: https://www.deepgrain.ai/intelligence/founder-mode-vs-operator-mode
 TRACK: deepgrain
 CATEGORY: leadership-and-craft
 PUBLISHED: 2026-06-08
@@ -211,7 +324,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: The craft mindset for modern operators
-URL: https://deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators
+URL: https://www.deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators
 TRACK: deepgrain
 CATEGORY: leadership-and-craft
 PUBLISHED: 2026-06-01
@@ -235,7 +348,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Operating consultancy for AI-native companies
-URL: https://deepgrain.ai/intelligence/operating-consultancy-for-ai-native-companies
+URL: https://www.deepgrain.ai/intelligence/operating-consultancy-for-ai-native-companies
 TRACK: deepgrain
 CATEGORY: sector-lenses
 PUBLISHED: 2026-05-25
@@ -261,7 +374,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Operating consultancy for climate ventures
-URL: https://deepgrain.ai/intelligence/operating-consultancy-for-climate-ventures
+URL: https://www.deepgrain.ai/intelligence/operating-consultancy-for-climate-ventures
 TRACK: deepgrain
 CATEGORY: sector-lenses
 PUBLISHED: 2026-05-18
@@ -285,7 +398,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Operating consultancy for transit and mobility
-URL: https://deepgrain.ai/intelligence/operating-consultancy-for-transit-and-mobility
+URL: https://www.deepgrain.ai/intelligence/operating-consultancy-for-transit-and-mobility
 TRACK: deepgrain
 CATEGORY: sector-lenses
 PUBLISHED: 2026-05-11
@@ -309,7 +422,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: The People Ops diagnostic toolkit
-URL: https://deepgrain.ai/intelligence/people-ops-diagnostic-toolkit
+URL: https://www.deepgrain.ai/intelligence/people-ops-diagnostic-toolkit
 TRACK: people-ops
 CATEGORY: people-ops-foundations
 PRIMARY_CLUSTER: readiness-and-diagnosis
@@ -408,7 +521,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: People debt: what GenAI exposes, and what to do about it
-URL: https://deepgrain.ai/intelligence/people-debt-and-genai
+URL: https://www.deepgrain.ai/intelligence/people-debt-and-genai
 TRACK: people-ops
 CATEGORY: people-ops-foundations
 PRIMARY_CLUSTER: readiness-and-diagnosis
@@ -499,7 +612,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Designing values that stick
-URL: https://deepgrain.ai/intelligence/designing-values-that-stick
+URL: https://www.deepgrain.ai/intelligence/designing-values-that-stick
 TRACK: people-ops
 CATEGORY: people-ops-foundations
 PRIMARY_CLUSTER: org-design-and-roles
@@ -593,7 +706,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Coaching and feedback systems that actually compound
-URL: https://deepgrain.ai/intelligence/coaching-and-feedback-systems
+URL: https://www.deepgrain.ai/intelligence/coaching-and-feedback-systems
 TRACK: people-ops
 CATEGORY: people-ops-builders
 PRIMARY_CLUSTER: enablement-and-change
@@ -684,7 +797,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: AI roadmap case study: FinEdge's first 90 days
-URL: https://deepgrain.ai/intelligence/ai-roadmap-case-study-finedge
+URL: https://www.deepgrain.ai/intelligence/ai-roadmap-case-study-finedge
 TRACK: people-ops
 CATEGORY: people-ops-builders
 PRIMARY_CLUSTER: enablement-and-change
@@ -778,7 +891,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Operating consultancy for financial data
-URL: https://deepgrain.ai/intelligence/operating-consultancy-for-financial-data
+URL: https://www.deepgrain.ai/intelligence/operating-consultancy-for-financial-data
 TRACK: deepgrain
 CATEGORY: sector-lenses
 PUBLISHED: 2026-05-04
@@ -802,7 +915,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: The HR Architect: a new role inside the People function
-URL: https://deepgrain.ai/intelligence/the-hr-architect-role
+URL: https://www.deepgrain.ai/intelligence/the-hr-architect-role
 TRACK: people-ops
 CATEGORY: people-ops-builders
 PRIMARY_CLUSTER: org-design-and-roles
@@ -919,7 +1032,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: The automation audit playbook
-URL: https://deepgrain.ai/intelligence/automation-audit-playbook
+URL: https://www.deepgrain.ai/intelligence/automation-audit-playbook
 TRACK: people-ops
 CATEGORY: people-ops-systems
 PRIMARY_CLUSTER: workflows-and-automation
@@ -1059,7 +1172,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: An AI policy blueprint for People teams
-URL: https://deepgrain.ai/intelligence/ai-policy-blueprint-for-people-teams
+URL: https://www.deepgrain.ai/intelligence/ai-policy-blueprint-for-people-teams
 TRACK: people-ops
 CATEGORY: people-ops-governance
 PRIMARY_CLUSTER: governance-and-policy
@@ -1148,7 +1261,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Production agents for People Ops
-URL: https://deepgrain.ai/intelligence/production-agents-for-people-ops
+URL: https://www.deepgrain.ai/intelligence/production-agents-for-people-ops
 TRACK: people-ops
 CATEGORY: people-ops-systems
 PRIMARY_CLUSTER: agents-and-systems
@@ -1273,7 +1386,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: An AI enablement operating model for People leaders
-URL: https://deepgrain.ai/intelligence/ai-enablement-operating-model
+URL: https://www.deepgrain.ai/intelligence/ai-enablement-operating-model
 TRACK: people-ops
 CATEGORY: people-ops-foundations
 PRIMARY_CLUSTER: enablement-and-change
@@ -1399,7 +1512,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Operating consultancy for defence tech
-URL: https://deepgrain.ai/intelligence/operating-consultancy-for-defence-tech
+URL: https://www.deepgrain.ai/intelligence/operating-consultancy-for-defence-tech
 TRACK: deepgrain
 CATEGORY: sector-lenses
 PUBLISHED: 2026-04-27
@@ -1423,7 +1536,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Choosing AI models for HR work
-URL: https://deepgrain.ai/intelligence/choosing-ai-models-for-hr-work
+URL: https://www.deepgrain.ai/intelligence/choosing-ai-models-for-hr-work
 TRACK: people-ops
 CATEGORY: people-ops-foundations
 PRIMARY_CLUSTER: workspace-and-tools
@@ -1521,7 +1634,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Prompting patterns for People Ops
-URL: https://deepgrain.ai/intelligence/prompting-patterns-for-people-ops
+URL: https://www.deepgrain.ai/intelligence/prompting-patterns-for-people-ops
 TRACK: people-ops
 CATEGORY: people-ops-foundations
 PRIMARY_CLUSTER: prompting-and-craft
@@ -1642,7 +1755,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: What good looks like: signals of operating health
-URL: https://deepgrain.ai/intelligence/signals-of-operating-health
+URL: https://www.deepgrain.ai/intelligence/signals-of-operating-health
 TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-04-20
@@ -1666,7 +1779,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: AI workspace setup for People teams (Claude, ChatGPT, Copilot)
-URL: https://deepgrain.ai/intelligence/setting-up-your-ai-workspace
+URL: https://www.deepgrain.ai/intelligence/setting-up-your-ai-workspace
 TRACK: people-ops
 CATEGORY: people-ops-foundations
 PRIMARY_CLUSTER: workspace-and-tools
@@ -1809,7 +1922,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: From prompts to systems
-URL: https://deepgrain.ai/intelligence/from-prompts-to-systems
+URL: https://www.deepgrain.ai/intelligence/from-prompts-to-systems
 TRACK: people-ops
 CATEGORY: people-ops-foundations
 PRIMARY_CLUSTER: prompting-and-craft
@@ -1921,7 +2034,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Designing the AI-native People team
-URL: https://deepgrain.ai/intelligence/designing-the-ai-native-people-team
+URL: https://www.deepgrain.ai/intelligence/designing-the-ai-native-people-team
 TRACK: people-ops
 CATEGORY: people-ops-builders
 PRIMARY_CLUSTER: org-design-and-roles
@@ -2052,7 +2165,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: AI governance for People teams
-URL: https://deepgrain.ai/intelligence/ai-governance-for-people-teams
+URL: https://www.deepgrain.ai/intelligence/ai-governance-for-people-teams
 TRACK: people-ops
 CATEGORY: people-ops-governance
 PRIMARY_CLUSTER: governance-and-policy
@@ -2150,7 +2263,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: The champion model
-URL: https://deepgrain.ai/intelligence/the-champion-model
+URL: https://www.deepgrain.ai/intelligence/the-champion-model
 TRACK: people-ops
 CATEGORY: people-ops-builders
 PRIMARY_CLUSTER: enablement-and-change
@@ -2231,7 +2344,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Leading the AI transformation in People
-URL: https://deepgrain.ai/intelligence/leading-the-ai-transformation
+URL: https://www.deepgrain.ai/intelligence/leading-the-ai-transformation
 TRACK: people-ops
 CATEGORY: people-ops-builders
 PRIMARY_CLUSTER: enablement-and-change
@@ -2350,7 +2463,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Diagnosing AI readiness in People Ops
-URL: https://deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops
+URL: https://www.deepgrain.ai/intelligence/diagnosing-ai-readiness-in-people-ops
 TRACK: people-ops
 CATEGORY: people-ops-foundations
 PRIMARY_CLUSTER: readiness-and-diagnosis
@@ -2472,7 +2585,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: A workflow assessment framework for People Ops
-URL: https://deepgrain.ai/intelligence/workflow-assessment-framework
+URL: https://www.deepgrain.ai/intelligence/workflow-assessment-framework
 TRACK: people-ops
 CATEGORY: people-ops-systems
 PRIMARY_CLUSTER: workflows-and-automation
@@ -2587,7 +2700,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Automation patterns that pay off
-URL: https://deepgrain.ai/intelligence/automation-patterns-that-pay-off
+URL: https://www.deepgrain.ai/intelligence/automation-patterns-that-pay-off
 TRACK: people-ops
 CATEGORY: people-ops-systems
 PRIMARY_CLUSTER: workflows-and-automation
@@ -2689,7 +2802,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: The People Ops AI domain map
-URL: https://deepgrain.ai/intelligence/the-people-ops-ai-domain-map
+URL: https://www.deepgrain.ai/intelligence/the-people-ops-ai-domain-map
 TRACK: people-ops
 CATEGORY: people-ops-systems
 PRIMARY_CLUSTER: workflows-and-automation
@@ -2792,7 +2905,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Measuring AI value in People Ops
-URL: https://deepgrain.ai/intelligence/measuring-ai-value-in-people-ops
+URL: https://www.deepgrain.ai/intelligence/measuring-ai-value-in-people-ops
 TRACK: people-ops
 CATEGORY: people-ops-governance
 PRIMARY_CLUSTER: measurement-and-roi
@@ -2931,7 +3044,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Scaling without breaking the grain
-URL: https://deepgrain.ai/intelligence/scaling-without-breaking-the-grain
+URL: https://www.deepgrain.ai/intelligence/scaling-without-breaking-the-grain
 TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-04-13
@@ -2955,7 +3068,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: The art of the operating intervention
-URL: https://deepgrain.ai/intelligence/the-art-of-the-operating-intervention
+URL: https://www.deepgrain.ai/intelligence/the-art-of-the-operating-intervention
 TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-04-06
@@ -2979,7 +3092,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: How to diagnose an organisation in 30 days
-URL: https://deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days
+URL: https://www.deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days
 TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-03-30
@@ -3004,7 +3117,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Read · Craft · Scale: the Deepgrain method
-URL: https://deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method
+URL: https://www.deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method
 TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-03-23
@@ -3028,7 +3141,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: The AI operating ladder: five tiers explained
-URL: https://deepgrain.ai/intelligence/ai-operating-ladder-five-tiers
+URL: https://www.deepgrain.ai/intelligence/ai-operating-ladder-five-tiers
 TRACK: deepgrain
 CATEGORY: ai-operating-systems
 PUBLISHED: 2026-03-16
@@ -3155,7 +3268,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: From AI experiments to AI infrastructure
-URL: https://deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure
+URL: https://www.deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure
 TRACK: deepgrain
 CATEGORY: ai-operating-systems
 PUBLISHED: 2026-03-09
@@ -3245,7 +3358,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Why AI pilots stall at production
-URL: https://deepgrain.ai/intelligence/why-ai-pilots-stall-at-production
+URL: https://www.deepgrain.ai/intelligence/why-ai-pilots-stall-at-production
 TRACK: deepgrain
 CATEGORY: ai-operating-systems
 PUBLISHED: 2026-03-02
@@ -3327,7 +3440,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: The five pillars of AI readiness
-URL: https://deepgrain.ai/intelligence/five-pillars-of-ai-readiness
+URL: https://www.deepgrain.ai/intelligence/five-pillars-of-ai-readiness
 TRACK: deepgrain
 CATEGORY: ai-operating-systems
 PUBLISHED: 2026-02-23
@@ -3454,7 +3567,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: What is an AI operating system? (AI OS, explained)
-URL: https://deepgrain.ai/intelligence/what-is-an-ai-operating-system
+URL: https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system
 TRACK: deepgrain
 CATEGORY: ai-operating-systems
 PUBLISHED: 2026-02-16
@@ -3544,7 +3657,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: The difference between strategy and operating reality
-URL: https://deepgrain.ai/intelligence/strategy-vs-operating-reality
+URL: https://www.deepgrain.ai/intelligence/strategy-vs-operating-reality
 TRACK: deepgrain
 CATEGORY: foundations
 PUBLISHED: 2026-02-09
@@ -3568,7 +3681,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Operating systems vs operating models
-URL: https://deepgrain.ai/intelligence/operating-systems-vs-operating-models
+URL: https://www.deepgrain.ai/intelligence/operating-systems-vs-operating-models
 TRACK: deepgrain
 CATEGORY: foundations
 PUBLISHED: 2026-02-02
@@ -3603,7 +3716,7 @@ This article is a placeholder scaffold. Full prose to follow.
 
 ========================================
 TITLE: The grain metaphor: reading your organisation
-URL: https://deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation
+URL: https://www.deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation
 TRACK: deepgrain
 CATEGORY: foundations
 PUBLISHED: 2026-01-26
@@ -3636,7 +3749,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: Why most change programmes fail
-URL: https://deepgrain.ai/intelligence/why-most-change-programmes-fail
+URL: https://www.deepgrain.ai/intelligence/why-most-change-programmes-fail
 TRACK: deepgrain
 CATEGORY: foundations
 PUBLISHED: 2026-01-19
@@ -3670,7 +3783,7 @@ KEY TAKEAWAYS:
 
 ========================================
 TITLE: What is organisational consultancy?
-URL: https://deepgrain.ai/intelligence/what-is-organisational-consultancy
+URL: https://www.deepgrain.ai/intelligence/what-is-organisational-consultancy
 TRACK: deepgrain
 CATEGORY: foundations
 PUBLISHED: 2026-01-12

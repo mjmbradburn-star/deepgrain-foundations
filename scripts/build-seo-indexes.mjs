@@ -19,7 +19,7 @@ import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..");
-const ORIGIN = "https://deepgrain.ai";
+const ORIGIN = "https://www.deepgrain.ai";
 const TODAY = new Date().toISOString().slice(0, 10);
 
 const CONTENT_DIR = join(ROOT, "src/content/intelligence");
