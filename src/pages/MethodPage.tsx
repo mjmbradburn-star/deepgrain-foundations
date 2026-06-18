@@ -238,34 +238,38 @@ const MethodPage = () => (
         serviceLd,
       ]}
     />
-    {/* Intro */}
-    <section className="relative min-h-[80vh] flex items-end overflow-hidden">
-      <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=55&fm=webp"
-          srcSet="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=640&q=55&fm=webp 640w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=55&fm=webp 1200w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=60&fm=webp 1600w"
-          sizes="100vw"
-          alt=""
-          width={1600}
-          height={1067}
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-green/60" />
-      </div>
-      <div className="relative container-grain pb-20 md:pb-32 pt-40">
-        <div className="relative max-w-4xl bg-walnut/88 backdrop-blur-sm rounded-[48px] md:rounded-[72px] p-10 md:p-16 border border-brass/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
-          <ScrollReveal>
-            <Eyebrow className="text-brass mb-6">The Method</Eyebrow>
-            <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[96px] leading-[1.02] text-balance">
-              From Audit through to Agents, we manage the change and ensure it lasts
-            </h1>
-          </ScrollReveal>
-        </div>
+    {/* Hero — deck shape: eyebrow, single assertion, no glossy image */}
+    <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
+      <TopoBackdrop variant="ridge" opacity={0.22} />
+      <div className="relative container-grain max-w-5xl">
+        <ScrollReveal>
+          <SectionEyebrow className="mb-6">The method</SectionEyebrow>
+          <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] text-balance max-w-4xl">
+            Three levels. You work at all three at once.
+          </h1>
+          <p className="mt-8 max-w-2xl text-cream/80 text-lg leading-relaxed">
+            From audit through to agents. The strategic, the functional and the individual, moved
+            together so the work compounds instead of stalling at a pilot.
+          </p>
+          <div className="mt-10">
+            <AuditPrompt
+              tone="green"
+              ctaId="audit_method_hero"
+              ctaLocation="method_hero"
+              headline="Walk one workflow through it with me."
+              sub="Thirty minutes. Read, atomise, agree the first move."
+              prefill="I'd like to walk one workflow through the method with you. The workflow is:"
+            />
+          </div>
+        </ScrollReveal>
       </div>
     </section>
+
+    {/* Three levels — the page spine, deck slides 5 + 6 */}
+    <ThreeLevels />
+
+    {/* Worked example — sits between the spine and the Read/Craft/Scale narrative */}
+    <WorkedExample />
 
     {/* Read */}
     <section id="read" className="bg-linen text-body section-pad scroll-mt-40">
