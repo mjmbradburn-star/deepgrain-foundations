@@ -22,7 +22,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "prepublish:check": "npm run lint && npm run typecheck && npm run test && npm run build",
-    "audit:routes": "node scripts/audit-routes.mjs"
+    "audit:routes": "node scripts/audit-routes.mjs",
+    "audit:robots": "node scripts/audit-robots.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
