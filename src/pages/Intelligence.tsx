@@ -9,6 +9,8 @@ import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { Invitation } from "@/components/sections/Invitation";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 
 const Intelligence = () => {
   const url = "https://www.deepgrain.ai/intelligence";
@@ -60,20 +62,20 @@ const Intelligence = () => {
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
       </Helmet>
 
-      {/* Hero */}
-      <section className="bg-green text-cream pt-40 md:pt-48 pb-24 md:pb-32">
-        <div className="container-grain max-w-4xl">
-          <Eyebrow className="text-brass">Deepgrain Intelligence</Eyebrow>
+      {/* Hero — deck shape */}
+      <section className="relative bg-green text-cream pt-40 md:pt-48 pb-24 md:pb-32 overflow-hidden">
+        <TopoBackdrop variant="basin" opacity={0.18} />
+        <div className="relative container-grain max-w-4xl">
+          <SectionEyebrow className="mb-6">Intelligence</SectionEyebrow>
           <h1
-            className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mt-6 mb-8"
+            className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-8 max-w-3xl"
             style={{ letterSpacing: "-0.015em" }}
           >
             Reading the grain, in writing.
           </h1>
           <p className="text-lg md:text-xl text-cream/75 leading-relaxed max-w-2xl">
-            Essays on organisational consultancy, AI operating systems, and the
-            quiet discipline of operating leadership. Slow reading for people
-            building things that compound.
+            Essays on organisational consultancy, AI operating systems, and the quiet discipline
+            of operating leadership. Slow reading for people building things that compound.
           </p>
           <div className="mt-10 flex flex-wrap gap-3 text-[12px] uppercase" style={{ letterSpacing: "0.14em" }}>
             <Link to="/intelligence/pillars" className="text-brass hover:text-cream transition-colors">Pillar deep-dives →</Link>
