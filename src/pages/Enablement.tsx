@@ -208,18 +208,18 @@ const Enablement = () => (
       ]}
     />
 
-    {/* Hero */}
-    <section className="bg-green text-cream section-pad pt-40">
-      <div className="container-grain max-w-4xl">
+    {/* Hero — deck shape */}
+    <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
+      <TopoBackdrop variant="ridge" opacity={0.22} />
+      <div className="relative container-grain max-w-5xl">
         <ScrollReveal>
-          <Eyebrow className="text-brass mb-6">Enablement</Eyebrow>
-          <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[96px] leading-[1.02] text-balance">
-            The capability stays with your team.
+          <SectionEyebrow className="mb-6">Enablement</SectionEyebrow>
+          <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] text-balance max-w-4xl">
+            Find your builder. Move your middle layer.
           </h1>
-          <p className="mt-10 max-w-2xl text-cream/80 text-lg leading-relaxed">
-            Every Deepgrain engagement pairs agents with people from day one. Agents take
-            the repeatable work. People learn to design, run, and extend those agents. When
-            we leave, the capability stays in the team, not in a vendor.
+          <p className="mt-8 max-w-2xl text-cream/80 text-lg leading-relaxed">
+            Agents take the repeatable work. People learn to design, run and extend them. When we
+            leave, the capability stays in the team, not in a vendor.
           </p>
 
           <dl className="mt-14 grid gap-10 sm:grid-cols-3 border-t border-cream/15 pt-10 max-w-2xl">
@@ -251,6 +251,12 @@ const Enablement = () => (
         </ScrollReveal>
       </div>
     </section>
+
+    {/* Builder vs middle layer — deck slide 13 */}
+    <BuilderVsMiddle />
+
+    {/* The matrix — deck slide 14 */}
+    <RoleMatrix />
 
     {/* What "people upskilled" means */}
     <section className="bg-linen text-body section-pad">
