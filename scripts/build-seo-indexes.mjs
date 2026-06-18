@@ -13,7 +13,7 @@
  *
  * Run via `bun scripts/build-seo-indexes.mjs` (wired into prebuild).
  */
-import { promises as fs } from "node:fs";
+import { promises as fs, readFileSync } from "node:fs";
 import { dirname, join, basename, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
