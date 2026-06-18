@@ -9,6 +9,8 @@ import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { Invitation } from "@/components/sections/Invitation";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 
 const Intelligence = () => {
   const url = "https://www.deepgrain.ai/intelligence";
