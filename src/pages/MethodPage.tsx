@@ -10,6 +10,7 @@ import { ValueVisualiser } from "@/components/sections/ValueVisualiser";
 import { BuildVsHire } from "@/components/sections/BuildVsHire";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { BarkSection } from "@/components/ui/BarkSection";
+import { Invitation } from "@/components/sections/Invitation";
 
 // Each FAQ keeps `answer` as the canonical text mirrored in JSON-LD; `answerNode`
 // adds inline navigation (where natural) plus a small "Ask about this" CTA that
