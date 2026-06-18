@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PillButton } from "@/components/ui/PillButton";
-import { AIOI_URL } from "@/lib/aioi";
+
 
 // CSS-only entrance animations (see index.css .fade-in-up). Removing
 // framer-motion from the Hero takes motion-vendor off the critical path.
@@ -52,8 +52,8 @@ export const Hero = () => (
           <PillButton href="/method" variant="filled" cta="how_we_work" ctaLocation="hero">
             How we work →
           </PillButton>
-          <PillButton href={AIOI_URL} variant="outline" external cta="aioi" ctaLocation="hero">
-            Review our AI Operating Index →
+          <PillButton href="/contact" variant="outline" cta="book_audit" ctaLocation="hero">
+            Book an audit →
           </PillButton>
         </div>
       </div>
