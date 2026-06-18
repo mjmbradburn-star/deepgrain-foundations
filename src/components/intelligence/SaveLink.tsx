@@ -24,7 +24,7 @@ export const SaveLink = ({ className = "" }: { className?: string }) => {
     <button
       type="button"
       onClick={onCopy}
-      className={`inline-flex items-center gap-2 text-xs font-sans uppercase text-cream/65 hover:text-cream transition-colors ${className}`}
+      className={`inline-flex items-center gap-2 text-xs font-sans uppercase opacity-70 hover:opacity-100 transition-opacity ${className}`}
       style={{ letterSpacing: "0.14em" }}
       aria-live="polite"
     >
