@@ -1,52 +1,46 @@
 import { lazy, Suspense } from "react";
-import { Hero } from "@/components/sections/Hero";
-import { ICPStrip } from "@/components/sections/ICPStrip";
+import { HeroDeck } from "@/components/sections/deck/HeroDeck";
+import { TheShift } from "@/components/sections/deck/TheShift";
+import { WorkedExample } from "@/components/sections/deck/WorkedExample";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { HOME_FAQ_LD } from "@/data/homeFaq";
 
-// Below-the-fold sections — lazy-loaded to shrink the initial JS bundle.
+// Below-the-fold: lazy-loaded to keep the initial JS bundle small.
+const AgentArchitecture = lazy(() =>
+  import("@/components/sections/deck/AgentArchitecture").then((m) => ({
+    default: m.AgentArchitecture,
+  })),
+);
+const TheBridge = lazy(() =>
+  import("@/components/sections/deck/TheBridge").then((m) => ({ default: m.TheBridge })),
+);
+const TheCounterweight = lazy(() =>
+  import("@/components/sections/deck/TheCounterweight").then((m) => ({
+    default: m.TheCounterweight,
+  })),
+);
 const LogoCarousel = lazy(() =>
-  import("@/components/sections/LogoCarousel").then((m) => ({ default: m.LogoCarousel }))
-);
-const WhatWeDo = lazy(() =>
-  import("@/components/sections/WhatWeDo").then((m) => ({ default: m.WhatWeDo }))
-);
-const OperatingProof = lazy(() =>
-  import("@/components/sections/OperatingProof").then((m) => ({ default: m.OperatingProof }))
-);
-const Method = lazy(() =>
-  import("@/components/sections/Method").then((m) => ({ default: m.Method }))
+  import("@/components/sections/LogoCarousel").then((m) => ({ default: m.LogoCarousel })),
 );
 const SimpleAIPrimer = lazy(() =>
-  import("@/components/sections/SimpleAIPrimer").then((m) => ({ default: m.SimpleAIPrimer }))
-);
-const BrainTeaser = lazy(() =>
-  import("@/components/sections/BrainTeaser").then((m) => ({ default: m.BrainTeaser }))
-);
-const ClientVoice = lazy(() =>
-  import("@/components/sections/ClientVoice").then((m) => ({ default: m.ClientVoice }))
-);
-const MobileProofVoice = lazy(() =>
-  import("@/components/sections/MobileProofVoice").then((m) => ({ default: m.MobileProofVoice }))
+  import("@/components/sections/SimpleAIPrimer").then((m) => ({ default: m.SimpleAIPrimer })),
 );
 const IntelligenceTeaser = lazy(() =>
-  import("@/components/sections/IntelligenceTeaser").then((m) => ({ default: m.IntelligenceTeaser }))
-);
-const Invitation = lazy(() =>
-  import("@/components/sections/Invitation").then((m) => ({ default: m.Invitation }))
+  import("@/components/sections/IntelligenceTeaser").then((m) => ({
+    default: m.IntelligenceTeaser,
+  })),
 );
 const HomeFAQ = lazy(() =>
-  import("@/components/sections/HomeFAQ").then((m) => ({ default: m.HomeFAQ }))
+  import("@/components/sections/HomeFAQ").then((m) => ({ default: m.HomeFAQ })),
 );
 
-// Minimal placeholder preserves vertical rhythm without shifting the page.
 const SectionFallback = () => <div aria-hidden className="min-h-[60vh]" />;
 
 const Home = () => (
   <>
     <PageMeta
-      title="Deepgrain | Work with the grain."
-      description="Organisational consultancy that reads how your company actually operates, then builds the strategy, agentic systems and people to evolve it."
+      title="Deepgrain | From the role to the click."
+      description="Organisational consultancy for the AI era. We audit how your function actually operates, then build the agentic systems and team capability to evolve it."
       path="/"
       jsonLd={[
         {
@@ -65,25 +59,31 @@ const Home = () => (
         HOME_FAQ_LD,
       ]}
     />
-    <Hero />
-    <ICPStrip />
+    <HeroDeck />
+    <TheShift />
+    <WorkedExample />
     <Suspense fallback={<SectionFallback />}>
-      <div className="cv-auto"><LogoCarousel background="green" /></div>
-      <div className="cv-auto"><WhatWeDo /></div>
-      {/* Desktop: full OperatingProof + ClientVoice. Mobile: condensed merge. */}
-      <div className="hidden md:contents">
-        <div className="cv-auto"><OperatingProof /></div>
+      <div className="cv-auto">
+        <LogoCarousel background="green" />
       </div>
-      <div className="cv-auto"><MobileProofVoice /></div>
-      <div className="cv-auto"><Method /></div>
-      <div className="cv-auto"><SimpleAIPrimer /></div>
-      <div className="cv-auto"><BrainTeaser /></div>
-      <div className="hidden md:contents">
-        <div className="cv-auto"><ClientVoice /></div>
+      <div className="cv-auto">
+        <AgentArchitecture />
       </div>
-      <div className="cv-auto"><IntelligenceTeaser /></div>
-      <div className="cv-auto"><HomeFAQ /></div>
-      <div className="cv-auto"><Invitation /></div>
+      <div className="cv-auto">
+        <TheBridge />
+      </div>
+      <div className="cv-auto">
+        <SimpleAIPrimer />
+      </div>
+      <div className="cv-auto">
+        <TheCounterweight />
+      </div>
+      <div className="cv-auto">
+        <IntelligenceTeaser />
+      </div>
+      <div className="cv-auto">
+        <HomeFAQ />
+      </div>
     </Suspense>
   </>
 );
