@@ -33,15 +33,19 @@
 - The Brain email funnel mechanics.
 - The MDX content body of existing articles.
 
-## Next: Batch C (P2–P3) when you're ready
+## Shipped in Batch C (this round)
 
-13. Mobile hero rebalance at <=430px
-14. Nav active state + sticky reading progress
-15. Brain page conversion pass
-16. Reading experience polish on /intelligence
-17. Useful 404 page
-18. Topic clusters audit (efficiency gaps, AI OS, People Ops champions)
-19. GSC + IndexNow ping on deploy
-20. Quarterly SEO scan ritual
+13. **Mobile hero rebalance** — Hero drops to 70vh ≤640px, display type scales from 2.25rem on xs, subhead + CTAs lift above the fold. `Hero.tsx`.
+14. **Nav active state + reading progress** — Section-aware highlight (any `/intelligence/*` or `/answers/*` highlights Intelligence; same for Method, Enablement, Brain), `aria-current="page"` on exact match. New `ReadingProgress` sticky brass bar mounted on article, pillar, cluster and answer routes via `SiteShell`.
+15. **Brain page conversion pass** — Added the "Read by heads of People at…" subscriber proof line under the primary CTA. Single primary CTA preserved.
+16. **Reading experience on intelligence** — Wider measure on lg+ (680/720px), drop-cap on the first article paragraph (scoped to `.article-prose`), `SaveLink` ("Save to read later") stub in both the article header and the post-body footer. Reading time + last-updated were already at the top.
+17. **Useful 404** — Replaced with: brass search box that routes to `/intelligence?q=`, three recommended reads (featured, topped up with most recent), single back-to-start CTA. Stays `noindex`.
+18. **Topic cluster audit** — `docs/topic-cluster-audit.md`. Three clusters (efficiency gaps, AI operating systems, People Ops champions) mapped pillar → spokes → answers with explicit gaps and a build backlog.
+19. **IndexNow + lastmod check** — `scripts/check-sitemap-lastmod.mjs` (non-blocking pre-publish sanity check). The actual IndexNow ping already runs from `supabase/functions/ping-indexnow` on a 10-minute pg_cron, detecting sitemap.xml diffs by content hash.
+20. **Quarterly SEO snapshot** — `docs/seo-reports/2026-Q2.md` template ready to fill at end of quarter.
 
-Reply "go C" or pick specific items.
+## Open items
+
+- The `/intelligence?q=` target for the 404 search and the WebSite `SearchAction` still need the `/intelligence` list page to actually consume `?q=`. Cheap follow-up, not in this batch.
+- Run Lighthouse post-publish to confirm hero LCP + contrast pass and clear the two stale Lighthouse findings.
+
