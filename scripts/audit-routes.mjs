@@ -25,10 +25,10 @@ import { promises as fs } from "node:fs";
 import { dirname, join, resolve, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { existsSync, readFileSync } from "node:fs";
+import { ORIGIN } from "./lib/origin.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..");
-const ORIGIN = "https://www.deepgrain.ai";
 
 if (process.env.DEEPGRAIN_SKIP_ROUTE_AUDIT === "1") {
   console.log("[audit-routes] skipped via env flag.");
