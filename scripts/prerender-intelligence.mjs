@@ -32,7 +32,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const DIST = join(ROOT, "dist");
 const SITEMAP = join(ROOT, "public", "sitemap.xml");
-const SITE_ORIGIN = "https://deepgrain.ai";
+import { ORIGIN as SITE_ORIGIN } from "./lib/origin.mjs";
 
 if (process.env.DEEPGRAIN_SKIP_PRERENDER === "1") {
   console.log("[prerender] DEEPGRAIN_SKIP_PRERENDER=1 set, skipping.");

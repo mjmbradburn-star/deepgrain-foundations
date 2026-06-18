@@ -43,7 +43,10 @@ if (!existsSync(DIST)) {
   process.exit(0);
 }
 
-const ROOT_RE = /<div id="root">([\s\S]*?)<\/div>\s*<script/i;
+// Match <div id="root">…</div> where the closing </div> is the last one
+// before </body>. Older builds put a <script> right after it; the prerender
+// strips those, so anchor on </body> instead.
+const ROOT_RE = /<div id="root">([\s\S]*)<\/div>\s*(?:<script|<\/body>)/i;
 // The unrendered SPA shell has a single hardcoded canonical pointing at
 // the home, a single Organization+WebSite JSON-LD graph, and an empty root.
 // We treat any file whose canonical matches the home AND is not the home
