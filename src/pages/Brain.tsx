@@ -148,6 +148,13 @@ const Brain = () => (
             One email. The link is permanent. We don&apos;t share, sell, or
             sync your address anywhere.
           </p>
+
+          {/* Subscriber proof — calibrated, not vanity. Edit the line when the
+              roster shifts; keep it specific (named sectors / company stages). */}
+          <p className="mt-8 text-cream/65 text-xs uppercase tracking-[0.16em] max-w-md leading-relaxed">
+            Read by heads of People at Series B SaaS, defence tech, and
+            founder-led services firms.
+          </p>
         </div>
       </div>
 

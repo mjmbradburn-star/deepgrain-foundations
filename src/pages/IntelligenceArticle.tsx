@@ -19,6 +19,7 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { FAQ, buildFAQLd } from "@/components/sections/FAQ";
 import { BarkSection } from "@/components/ui/BarkSection";
 import { ClusterChips } from "@/components/intelligence/ClusterChips";
+import { SaveLink } from "@/components/intelligence/SaveLink";
 
 const IntelligenceArticle = () => {
   const { slug = "" } = useParams();
@@ -194,13 +195,15 @@ const IntelligenceArticle = () => {
                 </time>
               </>
             )}
+            <span className="text-cream/30 hidden sm:inline">·</span>
+            <SaveLink className="ml-auto sm:ml-0" />
           </div>
         </div>
       </header>
 
-      {/* Body */}
+      {/* Body — slightly wider measure on lg+, drop-cap on the first paragraph. */}
       <article className="bg-linen py-20 md:py-28">
-        <div className="container-grain max-w-2xl">
+        <div className="container-grain max-w-2xl lg:max-w-[680px] xl:max-w-[720px] article-prose">
           <MDXProvider components={mdxComponents}>
             <Suspense fallback={<div aria-hidden className="min-h-[60vh]" />}>
               <Component />
@@ -218,7 +221,13 @@ const IntelligenceArticle = () => {
             />
           )}
 
-          <div className="mt-16 pt-12 border-t border-walnut/15">
+          <div className="mt-16 pt-12 border-t border-walnut/15 flex items-center justify-between flex-wrap gap-4">
+            <SaveLink className="text-walnut/70 hover:text-walnut" />
+            <span className="text-walnut/50 text-xs uppercase" style={{ letterSpacing: "0.14em" }}>
+              {f.readTime}
+            </span>
+          </div>
+          <div className="mt-10">
             <EmailCapture
               source="article"
               articleSlug={f.slug}

@@ -61,11 +61,22 @@ export const Navigation = () => {
 
           <ul className="hidden md:flex items-center gap-10">
             {links.map((link) => {
-              const active = pathname === link.to;
+              // Exact match OR current section (so e.g. /intelligence/answers
+              // and /intelligence/foo both highlight the Intelligence link,
+              // and /answers/:slug highlights Intelligence too).
+              const isExact = pathname === link.to;
+              const isSection =
+                (link.to === "/intelligence" &&
+                  (pathname.startsWith("/intelligence") || pathname.startsWith("/answers"))) ||
+                (link.to === "/method" && pathname.startsWith("/method")) ||
+                (link.to === "/enablement" && pathname.startsWith("/enablement")) ||
+                (link.to === "/brain" && pathname.startsWith("/brain"));
+              const active = isExact || isSection;
               return (
                 <li key={link.to} className="relative">
                   <Link
                     to={link.to}
+                    aria-current={isExact ? "page" : undefined}
                     className={cn(
                       "font-sans uppercase text-[11px] transition-opacity duration-200",
                       active

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { MethodSubnav } from "./MethodSubnav";
+import { ReadingProgress } from "./ReadingProgress";
 import { CookieBanner } from "@/components/compliance/CookieBanner";
 import { SiteEntityLd } from "@/components/seo/SiteEntityLd";
 import { cn } from "@/lib/utils";
@@ -11,6 +12,12 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
   const hasSubnav =
     pathname.startsWith("/method") || pathname.startsWith("/enablement");
+  // Sticky reading progress on long-form pages where it actually helps.
+  const showProgress =
+    /^\/intelligence\/[^/]+$/.test(pathname) ||
+    pathname.startsWith("/intelligence/pillar/") ||
+    pathname.startsWith("/intelligence/cluster/") ||
+    pathname.startsWith("/answers/");
 
   // Prerender ready marker. The puppeteer-based prerender waits for the
   // [data-prerender-ready] attribute before snapshotting, which guarantees
@@ -33,6 +40,7 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
       <SiteEntityLd />
       <Navigation />
       <MethodSubnav />
+      {showProgress && <ReadingProgress />}
       {/* When the sub-nav is mounted, push main down by its 40px height so
           hero copy and section eyebrows clear the fixed sub-nav on every
           viewport. The primary nav is forced opaque on these routes (see
