@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { Hero } from "@/components/sections/Hero";
 import { ICPStrip } from "@/components/sections/ICPStrip";
 import { PageMeta } from "@/components/seo/PageMeta";
-import { HOME_FAQ_LD } from "@/components/sections/HomeFAQ";
+import { HOME_FAQ_LD } from "@/data/homeFaq";
 
 // Below-the-fold sections — lazy-loaded to shrink the initial JS bundle.
 const LogoCarousel = lazy(() =>

@@ -1,6 +1,25 @@
-import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PillButton } from "@/components/ui/PillButton";
+
+// Inline chevron-down SVG. Avoids pulling the lucide-react barrel into the
+// LCP component's chunk; tree-shaking helps in prod, but excluding it from
+// the eager Hero path is a guaranteed win for FCP/LCP everywhere.
+const ChevronDown = ({ size = 28 }: { size?: number }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+  >
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
 
 
 // CSS-only entrance animations (see index.css .fade-in-up). Removing
