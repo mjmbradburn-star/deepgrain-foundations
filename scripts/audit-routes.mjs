@@ -152,11 +152,19 @@ if (!existsSync(sitemapPath)) {
   process.exit(1);
 }
 const sitemapXml = await fs.readFile(sitemapPath, "utf8");
+const allSitemapLocs = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+const mismatchedOrigins = allSitemapLocs.filter((u) => !u.startsWith(ORIGIN + "/") && u !== ORIGIN);
+if (mismatchedOrigins.length) {
+  console.error(
+    `\n[audit-routes] FATAL: sitemap contains ${mismatchedOrigins.length} <loc> entries whose origin does not match ORIGIN (${ORIGIN}). ` +
+      `This usually means scripts/build-seo-indexes.mjs and scripts/audit-routes.mjs disagree on www vs non-www. ` +
+      `First mismatch: ${mismatchedOrigins[0]}. ` +
+      `Re-run \`npm run build:seo-indexes\` with the same DEEPGRAIN_ORIGIN.`,
+  );
+  process.exit(1);
+}
 const sitemapPaths = new Set(
-  [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)]
-    .map((m) => m[1])
-    .filter((u) => u.startsWith(ORIGIN))
-    .map((u) => u.slice(ORIGIN.length) || "/"),
+  allSitemapLocs.map((u) => u.slice(ORIGIN.length) || "/"),
 );
 
 const inAppNotSitemap = [...expanded].filter((p) => !sitemapPaths.has(p)).sort();
