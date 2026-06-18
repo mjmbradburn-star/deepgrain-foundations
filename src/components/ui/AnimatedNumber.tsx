@@ -32,7 +32,9 @@ const AnimatedNumberInner = forwardRef<HTMLSpanElement, AnimatedNumberProps>(({
   className,
   formatter,
 }, forwardedRef) => {
-  const [display, setDisplay] = useState(live ? value : 0);
+  // Render the final value on first paint so the number is never visibly 0.
+  // Reveal mode then re-runs the count-up from 0 once the element scrolls into view.
+  const [display, setDisplay] = useState(value);
   const ref = useRef<HTMLSpanElement>(null);
   const startedRef = useRef(false);
   const fromRef = useRef(0);
