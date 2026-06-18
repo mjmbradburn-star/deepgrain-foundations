@@ -122,11 +122,15 @@ const CATEGORIES = [
   "people-ops-builders", "people-ops-governance",
 ];
 
-const CLUSTERS = [
-  "readiness-and-diagnosis", "enablement-and-change", "org-design-and-roles",
-  "governance-and-policy", "measurement-and-roi", "workflows-and-automation",
-  "agents-and-systems", "workspace-and-tools", "prompting-and-craft",
-];
+// Cluster slugs parsed at build time from the runtime source of truth
+// (src/lib/clusters.ts) so adding a Cluster row automatically creates a
+// matching sitemap entry — no second list to keep in sync.
+const CLUSTERS = (() => {
+  const src = readFileSync(join(ROOT, "src/lib/clusters.ts"), "utf8");
+  const m = src.match(/CLUSTERS:\s*Cluster\[\]\s*=\s*\[([\s\S]*?)\];/);
+  if (!m) throw new Error("build-seo-indexes: could not parse CLUSTERS from src/lib/clusters.ts");
+  return [...m[1].matchAll(/slug:\s*"([^"]+)"/g)].map((mm) => mm[1]);
+})();
 
 const PILLARS = [
   "ai-operating-system",
