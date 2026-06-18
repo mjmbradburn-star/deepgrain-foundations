@@ -157,26 +157,10 @@
   .brain-pulse { animation: none; opacity: 0.85; }
 }
 
-/* Bark grain — slow, living wood-grain motion for dark grey-green surfaces.
-   The turbulence texture itself is static SVG; we animate the wrapper with
-   a tiny translate + breathe so the grain appears to flow rather than scroll.
-   GPU-accelerated via transform only. 120s cycle = barely perceptible. */
-@keyframes grain-flow {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(-3%, 1.5%, 0) scale(1.04); }
-  100% { transform: translate3d(0, 0, 0) scale(1); }
-}
-@keyframes grain-flow-boot {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(-8%, 4%, 0) scale(1.08); }
-  100% { transform: translate3d(0, 0, 0) scale(1); }
-}
-.bark-grain-anim {
-  transform-box: border-box;
-  transform-origin: 50% 50%;
-  animation: grain-flow-boot 6s ease-out 1, grain-flow 90s ease-in-out 6s infinite;
-  will-change: transform;
-}
+/* Bark grain motion removed — bark sections now render a static, CDN-hosted
+   bark photograph via src/components/ui/BarkGrain.tsx. No keyframes needed. */
+
+
 
 /* CSS-only fade-in-up for above-the-fold content (replaces framer-motion on critical path) */
 @keyframes fade-in-up {
@@ -209,7 +193,6 @@
   .fade-in-up,
   [data-reveal],
   .hero-drift,
-  .bark-grain-anim,
   .animate-bob {
     animation: none !important;
     transition: none !important;
