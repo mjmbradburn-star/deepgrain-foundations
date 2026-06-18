@@ -13,8 +13,8 @@ export const Invitation = () => (
           start.
         </p>
         <div className="mt-12">
-          <PillButton href="/contact" variant="filled" cta="contact" ctaLocation="invitation">
-            Get in touch →
+          <PillButton href="/contact" variant="filled" cta="book_audit" ctaLocation="invitation">
+            Book an audit →
           </PillButton>
         </div>
       </ScrollReveal>
