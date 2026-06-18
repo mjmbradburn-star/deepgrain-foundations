@@ -437,20 +437,13 @@ const MethodPage = () => (
     {/* FAQ */}
     <FAQ heading="What clients ask before they engage." items={FAQ_ITEMS} />
 
-    {/* CTA */}
-    <section className="bg-green text-cream section-pad">
-      <div className="container-grain max-w-3xl text-center">
-        <ScrollReveal>
-          <BrassRule className="mx-auto mb-10" />
-          <h2 className="font-display text-cream text-4xl md:text-6xl lg:text-7xl leading-tight text-balance">
-            Want to see what reading your grain might surface?
-          </h2>
-          <div className="mt-12">
-            <PillButton href="/contact" variant="filled">Start the conversation →</PillButton>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
+    {/* CTA — unified audit prompt, deep-linked to contact with prefill */}
+    <Invitation
+      ctaLocation="method"
+      headline="Want to see what reading your grain might surface?"
+      sub="Thirty minutes on a workflow you own. One first move you can make on Monday."
+      prefill="I'd like to walk one workflow through the Read · Craft · Scale method. The workflow is:"
+    />
   </>
 );
 
