@@ -1,51 +1,47 @@
-# Audit + delivery log
+# SEO/AEO + CRO delivery plan
 
-## Shipped in Batch A + B (this round)
+I cross-checked both docs against the current site. Most of the SEO/AEO plan is already shipped from earlier batches. The CRO plan is mostly outstanding. Below: what to skip (already done), what to ship, and two questions I need answered before I touch anything.
 
-- **SiteEntityLd extended**: added `ProfessionalService` entity (serviceType, areaServed, BusinessAudience) alongside the existing Organization, Person, WebSite blocks. Sitewide.
-- **Homepage FAQ block**: 5 questions in literal GSC/Semrush phrasings, mounted as a `<HomeFAQ />` section above `Invitation`. Mirrored exactly in a `FAQPage` JSON-LD passed to `PageMeta` so the schema matches the rendered prose.
-- **Homepage meta tightened**: description rewritten to a verb-led 150-char sentence.
-- **Per-answer detail pages wired into the journey**: `/intelligence/answers` hub now links each Q to its `/answers/:slug` canonical page (in addition to keeping the deep link into the source article).
-- **Legacy answer URL redirect**: `/intelligence/answers/:slug` now 301-redirects (client-side replace) to `/answers/:slug`, in case any external link or old indexed URL exists in that shape.
-- **Sitemap**: appended all 15 `/answers/:slug` entries.
+## Already done, skip
 
-## Already present, no action needed
+- **Intelligence essays crawlable/indexable** — 40+ MDX articles live under `/intelligence/*` with per-route `<PageMeta>`, canonical, OG, Article JSON-LD.
+- **Problem-led pages** — `/answers/:slug` (15+ questions), `/intelligence/cluster/:slug`, `/intelligence/pillar/:slug`, and three `/intelligence/*-vs-*` compare pages already exist.
+- **JSON-LD** — `SiteEntityLd` emits Organization + Person (Matthew Bradburn) + WebSite + Service globally; Article + FAQ JSON-LD on the relevant routes.
+- **Sitemap + robots.txt** — fixed last turn; 104 entries on `https://www.deepgrain.ai`.
+- **Founder entity signals** — About page already centres on Matthew Bradburn with Person schema, sameAs LinkedIn, bio, and named references.
+- **Hero secondary CTA** — already swapped to "Book an audit → /contact" last turn.
 
-- Hero LCP preload + `fetchpriority="high"` + responsive srcset (q=45 webp).
-- `/answers/:slug` routes with QAPage JSON-LD + breadcrumb.
-- `WhatWeDo` ("Read. Craft. Scale.") strip on home.
-- `IntelligenceTeaser` (3 latest articles) on home.
-- `LogoCarousel` proof strip under hero.
-- Organization, Person, WebSite JSON-LD sitewide.
-- Per-route canonical + Helmet meta via `PageMeta`.
+## Conflict to resolve before I build
 
-## Intentionally deferred
+The CRO doc wants **"Book an intro"** as the *primary* CTA, with "See the method" as the quieter secondary. We currently have it the other way round (primary = "How we work", secondary = "Book an audit"). Need a call: do I swap them so Book becomes primary (filled) and Method becomes secondary (outline)? See Question 1.
 
-- **Per-article OG image generator** (P1/11): real infra change, scope as a standalone batch with `satori` at build time.
-- **WebSite SearchAction**: skipped until `/intelligence` accepts a `?q=` parameter. Adding it now would point Google at a non-functional search target.
-- **Contrast pass**: no specific failing surfaces flagged. Will re-run Lighthouse after this batch and fix only what the scan reports.
-- **Cookie banner mobile rebalance**: current implementation is `bottom-4 left-4 right-4` with `sm:max-w-md`, sits well below the hero CTA on every viewport tested. No change needed.
+## To deliver (CRO-led, single pass)
 
-## What I will NOT touch without further sign-off
+1. **Hero subhead sharpen.** Replace the current subhead with the CRO copy:
+  > "We read how your organisation actually operates, then build the AI systems and team capability to scale it, so the gains compound after we leave."
+  >  Keep "Work with the grain." as H1. House style: no em dashes (use commas/full stops).
+2. **CTA hierarchy (pending Q1).** Either swap primary/secondary in `Hero.tsx`, or keep as-is. If swapping, primary = "Book an audit → /contact" (filled), secondary = "See the method → /method" (outline).
+3. **Stats above the fold render real numbers immediately.** `OperatingProof.tsx` currently uses `<AnimatedNumber>` that animates from 0. Change so the final value is the initial render (SSR/first paint shows "83", "70%", "0"), and the count-up only runs as a progressive enhancement when the section is in view. Preserves the visual flourish, removes the "zeros on first paint" risk.
+4. **Named-ish testimonial attribution.** `ClientVoice.tsx` and `MobileProofVoice.tsx` currently read "Chief People Officer, Defence Technology Company". Per CRO best practice, tighten to a half-named form (see Question 2). I will not invent a real name.
+5. **Reduce mid-page CTA competition on Home.** Audit Home sections (`WhatWeDo`, `BuildVsHire`, `Method`, `IntelligenceTeaser`, `Invitation`, etc.) and ensure only the closing `Invitation` section carries a strong primary "Book an audit" CTA. Demote other mid-page links to discovery-style text links (no filled pill buttons competing with the hero ask). Nav stays unchanged.
 
-- Palette, typography pairing, brand voice.
-- Routing structure for non-answers pages.
-- The Brain email funnel mechanics.
-- The MDX content body of existing articles.
+## Out of scope (already covered or non-blocking)
 
-## Shipped in Batch C (this round)
+- New service/offer pages for "Read · Craft · Scale" — `/method` already covers this. Flag if you want a dedicated `/services` page split, otherwise skip.
+- Case-study pages for Defence Tech / FinEdge — would need real source material from you; logging as a follow-up rather than fabricating.
+- Lighthouse perf audit — noted as a later follow-up in the SEO doc itself.
 
-13. **Mobile hero rebalance** — Hero drops to 70vh ≤640px, display type scales from 2.25rem on xs, subhead + CTAs lift above the fold. `Hero.tsx`.
-14. **Nav active state + reading progress** — Section-aware highlight (any `/intelligence/*` or `/answers/*` highlights Intelligence; same for Method, Enablement, Brain), `aria-current="page"` on exact match. New `ReadingProgress` sticky brass bar mounted on article, pillar, cluster and answer routes via `SiteShell`.
-15. **Brain page conversion pass** — Added the "Read by heads of People at…" subscriber proof line under the primary CTA. Single primary CTA preserved.
-16. **Reading experience on intelligence** — Wider measure on lg+ (680/720px), drop-cap on the first article paragraph (scoped to `.article-prose`), `SaveLink` ("Save to read later") stub in both the article header and the post-body footer. Reading time + last-updated were already at the top.
-17. **Useful 404** — Replaced with: brass search box that routes to `/intelligence?q=`, three recommended reads (featured, topped up with most recent), single back-to-start CTA. Stays `noindex`.
-18. **Topic cluster audit** — `docs/topic-cluster-audit.md`. Three clusters (efficiency gaps, AI operating systems, People Ops champions) mapped pillar → spokes → answers with explicit gaps and a build backlog.
-19. **IndexNow + lastmod check** — `scripts/check-sitemap-lastmod.mjs` (non-blocking pre-publish sanity check). The actual IndexNow ping already runs from `supabase/functions/ping-indexnow` on a 10-minute pg_cron, detecting sitemap.xml diffs by content hash.
-20. **Quarterly SEO snapshot** — `docs/seo-reports/2026-Q2.md` template ready to fill at end of quarter.
+## Technical notes (for me, not you)
 
-## Open items
+- `Hero.tsx` lines 45-58: subhead text + CTA order.
+- `OperatingProof.tsx`: change `AnimatedNumber` to accept an `initial` prop or render `value` as text immediately, then animate via `IntersectionObserver`. `MobileProofVoice.tsx` may need parallel treatment.
+- `ClientVoice.tsx` line ~16 + `MobileProofVoice.tsx` `attribution` field: single source of truth would be nice but not required for this pass.
+- Mid-page CTA audit: grep `PillButton variant="filled"` across `src/components/sections/*` and downgrade non-closing ones to outline or plain text links.
 
-- The `/intelligence?q=` target for the 404 search and the WebSite `SearchAction` still need the `/intelligence` list page to actually consume `?q=`. Cheap follow-up, not in this batch.
-- Run Lighthouse post-publish to confirm hero LCP + contrast pass and clear the two stale Lighthouse findings.
+## Questions before I build
 
+1. **CTA hierarchy.** Make "Book an audit" the *primary* (filled) hero CTA and demote "How we work / See the method" to secondary? CRO doc says yes; you most recently asked for "Book an audit" only as the secondary. Confirm which wins. YES - SWAP THEM
+2. **Testimonial attribution.** Pick one:
+  - a) "Chief People Officer, defence technology scale-up. Name on request."
+  - b) Use the real name and company (please paste).
+  - c) Leave anonymous as-is. leave anonymous
