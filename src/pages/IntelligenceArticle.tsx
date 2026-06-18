@@ -30,9 +30,9 @@ const IntelligenceArticle = () => {
   const { frontmatter: f, Component, faqs } = article;
   const cat = getCategory(f.category);
   const related = getRelatedArticles(slug, 3);
-  const url = `https://deepgrain.ai/intelligence/${f.slug}`;
+  const url = `https://www.deepgrain.ai/intelligence/${f.slug}`;
   const heroImage = getHeroImage(f.slug);
-  const ogImage = `https://deepgrain.ai/og/intelligence/${f.slug}.jpg`;
+  const ogImage = `https://www.deepgrain.ai/og/intelligence/${f.slug}.jpg`;
   const dateModified = f.updatedAt || f.publishedAt;
 
   const articleLd = {
@@ -43,19 +43,19 @@ const IntelligenceArticle = () => {
     keywords: f.keywords?.join(", "),
     author: {
       "@type": "Person",
-      "@id": "https://deepgrain.ai/about#matthew-bradburn",
+      "@id": "https://www.deepgrain.ai/about#matthew-bradburn",
       name: f.author,
-      url: "https://deepgrain.ai/about",
+      url: "https://www.deepgrain.ai/about",
     },
     datePublished: f.publishedAt,
     dateModified,
     publisher: {
       "@type": "Organization",
       name: "Deepgrain",
-      url: "https://deepgrain.ai",
+      url: "https://www.deepgrain.ai",
       logo: {
         "@type": "ImageObject",
-        url: "https://deepgrain.ai/og-image.png",
+        url: "https://www.deepgrain.ai/og-image.png",
       },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
@@ -63,10 +63,10 @@ const IntelligenceArticle = () => {
   };
 
   const breadcrumbLd = buildBreadcrumbLd([
-    { name: "Home", url: "https://deepgrain.ai/" },
-    { name: "Intelligence", url: "https://deepgrain.ai/intelligence" },
+    { name: "Home", url: "https://www.deepgrain.ai/" },
+    { name: "Intelligence", url: "https://www.deepgrain.ai/intelligence" },
     ...(cat
-      ? [{ name: cat.name, url: `https://deepgrain.ai/intelligence/category/${cat.slug}` }]
+      ? [{ name: cat.name, url: `https://www.deepgrain.ai/intelligence/category/${cat.slug}` }]
       : []),
     { name: f.title, url },
   ]);

@@ -10,7 +10,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const Intelligence = () => {
-  const url = "https://deepgrain.ai/intelligence";
+  const url = "https://www.deepgrain.ai/intelligence";
   const allCategories = CATEGORIES;
 
   const collectionLd = {
@@ -23,14 +23,14 @@ const Intelligence = () => {
     hasPart: ARTICLES.map((a) => ({
       "@type": "Article",
       headline: a.frontmatter.title,
-      url: `https://deepgrain.ai/intelligence/${a.frontmatter.slug}`,
+      url: `https://www.deepgrain.ai/intelligence/${a.frontmatter.slug}`,
       datePublished: a.frontmatter.publishedAt,
       author: { "@type": "Person", name: a.frontmatter.author },
     })),
   };
 
   const breadcrumbLd = buildBreadcrumbLd([
-    { name: "Home", url: "https://deepgrain.ai/" },
+    { name: "Home", url: "https://www.deepgrain.ai/" },
     { name: "Intelligence", url },
   ]);
 
@@ -49,11 +49,11 @@ const Intelligence = () => {
           content="Field notes from running real organisations. Essays, case detail, and operating intelligence from Deepgrain."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://deepgrain.ai/og-intelligence.png" />
+        <meta property="og:image" content="https://www.deepgrain.ai/og-intelligence.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://deepgrain.ai/og-intelligence.png" />
+        <meta name="twitter:image" content="https://www.deepgrain.ai/og-intelligence.png" />
         <meta property="og:url" content={url} />
         <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
