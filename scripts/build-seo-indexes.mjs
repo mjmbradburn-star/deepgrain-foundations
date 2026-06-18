@@ -16,10 +16,10 @@
 import { promises as fs, readFileSync } from "node:fs";
 import { dirname, join, basename, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { ORIGIN } from "./lib/origin.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..");
-const ORIGIN = "https://www.deepgrain.ai";
 const TODAY = new Date().toISOString().slice(0, 10);
 
 const CONTENT_DIR = join(ROOT, "src/content/intelligence");
