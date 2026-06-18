@@ -179,9 +179,11 @@ async function buildSitemap(articles) {
   for (const a of articles) {
     push(`${ORIGIN}/intelligence/${a.slug}`, a.updatedAt || a.publishedAt, 0.7, "monthly");
   }
-  // /answers/:slug per question (parsed from src/data/answers.ts).
+  // /answers/:slug per question — one entry per ANSWERS row in
+  // src/data/answers.ts, the same source the runtime route reads.
   const answersSrc = await fs.readFile(join(ROOT, "src/data/answers.ts"), "utf8");
   const answerSlugs = Array.from(answersSrc.matchAll(/slug:\s*"([^"]+)"/g)).map((m) => m[1]);
+  if (answerSlugs.length === 0) throw new Error("build-seo-indexes: parsed 0 answer slugs from src/data/answers.ts");
   for (const s of answerSlugs) push(`${ORIGIN}/answers/${s}`, TODAY, 0.6, "monthly");
 
   const body = urls.map((u) => `  <url>
