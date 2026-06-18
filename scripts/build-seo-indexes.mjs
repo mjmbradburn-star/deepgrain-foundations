@@ -13,7 +13,7 @@
  *
  * Run via `bun scripts/build-seo-indexes.mjs` (wired into prebuild).
  */
-import { promises as fs } from "node:fs";
+import { promises as fs, readFileSync } from "node:fs";
 import { dirname, join, basename, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -122,11 +122,15 @@ const CATEGORIES = [
   "people-ops-builders", "people-ops-governance",
 ];
 
-const CLUSTERS = [
-  "readiness-and-diagnosis", "enablement-and-change", "org-design-and-roles",
-  "governance-and-policy", "measurement-and-roi", "workflows-and-automation",
-  "agents-and-systems", "workspace-and-tools", "prompting-and-craft",
-];
+// Cluster slugs parsed at build time from the runtime source of truth
+// (src/lib/clusters.ts) so adding a Cluster row automatically creates a
+// matching sitemap entry — no second list to keep in sync.
+const CLUSTERS = (() => {
+  const src = readFileSync(join(ROOT, "src/lib/clusters.ts"), "utf8");
+  const m = src.match(/CLUSTERS:\s*Cluster\[\]\s*=\s*\[([\s\S]*?)\];/);
+  if (!m) throw new Error("build-seo-indexes: could not parse CLUSTERS from src/lib/clusters.ts");
+  return [...m[1].matchAll(/slug:\s*"([^"]+)"/g)].map((mm) => mm[1]);
+})();
 
 const PILLARS = [
   "ai-operating-system",
@@ -175,9 +179,11 @@ async function buildSitemap(articles) {
   for (const a of articles) {
     push(`${ORIGIN}/intelligence/${a.slug}`, a.updatedAt || a.publishedAt, 0.7, "monthly");
   }
-  // /answers/:slug per question (parsed from src/data/answers.ts).
+  // /answers/:slug per question — one entry per ANSWERS row in
+  // src/data/answers.ts, the same source the runtime route reads.
   const answersSrc = await fs.readFile(join(ROOT, "src/data/answers.ts"), "utf8");
   const answerSlugs = Array.from(answersSrc.matchAll(/slug:\s*"([^"]+)"/g)).map((m) => m[1]);
+  if (answerSlugs.length === 0) throw new Error("build-seo-indexes: parsed 0 answer slugs from src/data/answers.ts");
   for (const s of answerSlugs) push(`${ORIGIN}/answers/${s}`, TODAY, 0.6, "monthly");
 
   const body = urls.map((u) => `  <url>
