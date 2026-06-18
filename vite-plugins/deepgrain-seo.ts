@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Plugin } from "vite";
 
-const SITE = "https://deepgrain.ai";
+const SITE = (process.env.DEEPGRAIN_ORIGIN || "https://www.deepgrain.ai").replace(/\/+$/, "");
 
 const CATEGORIES = [
   { slug: "foundations", name: "Foundations", description: "First principles of organisational consultancy and the grain.", track: "deepgrain" },
