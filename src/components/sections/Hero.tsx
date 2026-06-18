@@ -52,8 +52,8 @@ export const Hero = () => (
           <PillButton href="/method" variant="filled" cta="how_we_work" ctaLocation="hero">
             How we work →
           </PillButton>
-          <PillButton href={AIOI_URL} variant="outline" external cta="aioi" ctaLocation="hero">
-            Review our AI Operating Index →
+          <PillButton href="/contact" variant="outline" cta="book_audit" ctaLocation="hero">
+            Book an audit →
           </PillButton>
         </div>
       </div>
