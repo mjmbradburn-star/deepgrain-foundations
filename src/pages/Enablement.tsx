@@ -190,8 +190,8 @@ const outcomes = [
 const Enablement = () => (
   <>
     <PageMeta
-      title="Enablement | Coaching, champions, lasting capability | Deepgrain"
-      description="What 'people upskilled' means inside a Deepgrain engagement. The coaching curriculum, the champion model, and the capability your team keeps after we leave."
+      title="Enablement | Coaching and champions | Deepgrain"
+      description="What 'people upskilled' means in a Deepgrain engagement: the coaching curriculum, the champion model, and capability your team keeps."
       image="https://deepgrain.ai/og-enablement.png"
       path="/enablement"
       jsonLd={[
