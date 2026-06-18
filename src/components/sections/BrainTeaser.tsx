@@ -1,10 +1,6 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
-import bg800Avif from "@/assets/sections/who-this-is-for-800.avif";
-import bg1200Avif from "@/assets/sections/who-this-is-for-1200.avif";
-import bg800Webp from "@/assets/sections/who-this-is-for-800.webp";
-import bg1200Webp from "@/assets/sections/who-this-is-for-1200.webp";
 
 /**
  * Homepage Brain teaser. Sells The People Ops AI Brain and drives subscriptions.
@@ -35,31 +31,8 @@ const layers = [
 ];
 
 export const BrainTeaser = () => (
-  <section className="relative section-pad overflow-hidden">
-    <div className="absolute inset-0">
-      <picture>
-        <source
-          type="image/avif"
-          srcSet={`${bg800Avif} 800w, ${bg1200Avif} 1200w`}
-          sizes="100vw"
-        />
-        <source
-          type="image/webp"
-          srcSet={`${bg800Webp} 800w, ${bg1200Webp} 1200w`}
-          sizes="100vw"
-        />
-        <img
-          src={bg1200Webp}
-          alt=""
-          width={1200}
-          height={800}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover"
-        />
-      </picture>
-      <div className="absolute inset-0 bg-green/60" />
-    </div>
+  <section className="relative section-pad overflow-hidden bg-green">
+
 
     <div className="relative container-grain max-w-6xl">
       <div className="relative bg-walnut/92 backdrop-blur-sm rounded-[48px] md:rounded-[80px] p-8 sm:p-12 md:p-16 lg:p-20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20">
