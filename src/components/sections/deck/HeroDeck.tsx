@@ -66,7 +66,6 @@ export const HeroDeck = () => {
 
         <div className="max-w-3xl fade-in-up fade-in-up-1">
           <p className="text-cream/70 text-sm md:text-base mb-4">
-            Organisational consultancy, built for the AI era.
           </p>
           <h1
             className="font-display font-medium uppercase text-cream leading-[0.95] text-[2.5rem] sm:text-[64px] md:text-[96px] lg:text-[120px]"
