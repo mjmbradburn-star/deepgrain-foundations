@@ -243,7 +243,7 @@ const MethodPage = () => (
       <TopoBackdrop variant="ridge" opacity={0.22} />
       <div className="relative container-grain max-w-5xl">
         <ScrollReveal>
-          <SectionEyebrow className="mb-6">The method</SectionEyebrow>
+          <SectionEyebrow className="mb-6" />
           <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] text-balance max-w-4xl">
             Three levels. You work at all three at once.
           </h1>

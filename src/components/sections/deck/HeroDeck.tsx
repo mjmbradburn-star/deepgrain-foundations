@@ -55,7 +55,7 @@ export const HeroDeck = () => {
 
       <div className="relative container-grain pt-32 pb-24 md:pt-40 md:pb-32 w-full">
         <div className="flex items-center justify-between mb-10 md:mb-14">
-          <SectionEyebrow>Deepgrain · An operating consultancy</SectionEyebrow>
+          <SectionEyebrow />
           <span
             className="hidden md:inline font-sans uppercase text-cream/40"
             style={{ fontSize: "11px", letterSpacing: "0.25em" }}
@@ -66,7 +66,7 @@ export const HeroDeck = () => {
 
         <div className="max-w-3xl fade-in-up fade-in-up-1">
           <p className="text-cream/70 text-sm md:text-base mb-4">
-            Organisational consultancy, built for the AI era.
+            {"\n"}
           </p>
           <h1
             className="font-display font-medium uppercase text-cream leading-[0.95] text-[2.5rem] sm:text-[64px] md:text-[96px] lg:text-[120px]"
