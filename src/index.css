@@ -201,26 +201,11 @@
   }
 }
 
-/* Intelligence article reading polish — drop-cap on the first paragraph only.
-   Scoped to .article-prose so it doesn't bleed into MDX components that
-   render their own first paragraph (TLDR, KeyTakeaways, etc.). */
-.article-prose > div > p:first-of-type::first-letter,
-.article-prose > p:first-of-type::first-letter {
-  font-family: var(--font-display, "Cormorant Garamond", serif);
-  float: left;
-  font-size: 4.5rem;
-  line-height: 0.9;
-  padding: 0.35rem 0.6rem 0 0;
-  color: hsl(var(--brass));
-  font-weight: 500;
-}
-@media (max-width: 640px) {
-  .article-prose > div > p:first-of-type::first-letter,
-  .article-prose > p:first-of-type::first-letter {
-    font-size: 3.5rem;
-    padding: 0.25rem 0.45rem 0 0;
-  }
-}
+/* Intelligence article reading polish.
+   Drop-cap intentionally removed: the deck pattern opens articles with an
+   eyebrow + headline + italic Cormorant sub-line, so the body's first
+   paragraph carries no decorative weight. */
+
 
 /* BrainCaptureForm — neutralise browser autofill so inputs keep the
    site's transparent/cream styling instead of WebKit's default white+black. */
