@@ -77,7 +77,7 @@ export const HeroDeck = () => {
             to the click.
           </h1>
           <p className="font-display italic text-cream/85 mt-8 max-w-xl text-xl md:text-3xl leading-snug">
-            A resilient function re-architects its own work faster than disruption arrives.
+            We Audit, deepdive into the operating model, workflows, then rebuild for what's coming next.
           </p>
         </div>
 
