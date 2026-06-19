@@ -31,7 +31,7 @@ export const SectionEyebrow = ({
       style={{ fontSize: "11px", letterSpacing: "0.22em", fontWeight: 600 }}
     >
       <span aria-hidden className="inline-block h-px w-8 bg-brass/80" />
-      <span>{children}</span>
+      <span>DEEPGRAIN · AN OPERATING CONSULTANCY BUILT FOR THE AI ERA.</span>
     </p>
   );
 };
