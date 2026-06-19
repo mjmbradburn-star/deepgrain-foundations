@@ -142,7 +142,7 @@ const Brain = () => (
             <BrassRule className="mt-12 mb-10 max-w-2xl" />
 
             {/* Form card — promoted, framed, the real CTA */}
-            <div className="max-w-2xl rounded-3xl border border-walnut/15 bg-cream/70 backdropebackdrop-blur-sm p-7 md:p-10 shadow-[0_1px_0_hsl(var(--walnut)/0.04),0_24px_60px_-30px_hsl(var(--walnut)/0.25)]">
+            <div className="max-w-2xl rounded-3xl border border-walnut/15 bg-cream/70 backdrop-blur-sm p-7 md:p-10 shadow-[0_1px_0_hsl(var(--walnut)/0.04),0_24px_60px_-30px_hsl(var(--walnut)/0.25)]">
               <p
                 className="font-sans uppercase text-[11px] text-walnut/60 mb-6"
                 style={{ letterSpacing: "0.18em" }}
