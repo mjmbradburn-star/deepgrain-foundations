@@ -112,7 +112,7 @@ const Brain = () => (
         className="hidden lg:block absolute top-0 bottom-0 right-[8%] w-px bg-brass/25"
       />
 
-      <div className="container-grain pt-32 pb-20 md:pt-40 md:pb-28 lg:pt-44 lg:pb-32">
+      <div className="container-grain pt-28 pb-12 md:pt-32 md:pb-14 lg:pt-36 lg:pb-16">
         <div className="grid lg:grid-cols-[1fr_auto] gap-14 lg:gap-20 items-start">
           <div className="max-w-4xl">
             <div className="flex items-center gap-5 mb-10">
@@ -127,7 +127,7 @@ const Brain = () => (
             </div>
 
             <h1
-              className="font-display font-semibold text-walnut leading-[0.92] text-[3.25rem] sm:text-7xl md:text-[96px] lg:text-[120px] xl:text-[136px]"
+              className="font-display font-semibold text-walnut leading-[0.92] text-[2.75rem] sm:text-6xl md:text-[80px] lg:text-[96px] xl:text-[112px]"
               style={{ letterSpacing: "-0.01em" }}
             >
               The People<br />Ops AI<br />Brain.
@@ -195,7 +195,7 @@ const Brain = () => (
     </section>
 
     {/* ───────── Section 2 — Sample article (flipbook, lifted) ───────── */}
-    <section className="bg-green text-cream py-24 md:py-32 overflow-hidden">
+    <section className="bg-green text-cream py-16 md:py-20 overflow-hidden">
       <div className="container-grain">
         <div className="max-w-3xl mx-auto text-center">
           <ScrollReveal>
