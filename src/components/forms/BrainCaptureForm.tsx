@@ -19,9 +19,11 @@ import { trackFormSubmit } from "@/lib/analytics";
  */
 
 type Variant = "dark" | "light";
+type Size = "md" | "lg";
 
 interface BrainCaptureFormProps {
   variant?: Variant;
+  size?: Size;
   formId?: string;
   className?: string;
 }
