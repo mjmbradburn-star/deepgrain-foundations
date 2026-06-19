@@ -112,7 +112,7 @@ const Brain = () => (
         className="hidden lg:block absolute top-0 bottom-0 right-[8%] w-px bg-brass/25"
       />
 
-      <div className="container-grain pt-32 pb-20 md:pt-40 md:pb-28 lg:pt-44 lg:pb-32">
+      <div className="container-grain pt-28 pb-12 md:pt-32 md:pb-14 lg:pt-36 lg:pb-16">
         <div className="grid lg:grid-cols-[1fr_auto] gap-14 lg:gap-20 items-start">
           <div className="max-w-4xl">
             <div className="flex items-center gap-5 mb-10">
