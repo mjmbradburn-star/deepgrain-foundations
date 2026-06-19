@@ -101,83 +101,141 @@ const Brain = () => (
       ]}
     />
 
-    {/* ───────── Section 1 — Hero ───────── */}
+    {/* ───────── Section 1 — Hero (editorial, no photo) ───────── */}
     <section
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative bg-linen text-walnut overflow-hidden"
       data-no-rule
     >
-      <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=60&fm=webp"
-          alt=""
-          width={1600}
-          height={1067}
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-green/65" />
-        <div className="absolute inset-0 bg-gradient-to-r from-green/80 via-green/40 to-transparent" />
-      </div>
+      {/* faint vertical brass hairline, right edge, desktop only */}
+      <div
+        aria-hidden
+        className="hidden lg:block absolute top-0 bottom-0 right-[8%] w-px bg-brass/25"
+      />
 
-      <div className="relative container-grain pt-32 pb-32 md:pt-40">
-        <div className="max-w-3xl">
-          <Eyebrow className="text-brass mb-8">The Brain</Eyebrow>
-          <h1
-            className="font-display font-semibold text-cream leading-[0.95] text-[2.75rem] sm:text-7xl md:text-[88px] lg:text-[104px]"
-            style={{ letterSpacing: "0.01em" }}
-          >
-            The People<br />Ops AI<br />Brain.
-          </h1>
-          <p className="mt-10 max-w-xl text-cream text-xl md:text-2xl leading-snug font-medium">
-            The most thorough collection of working notes on running People functions with AI.
-          </p>
-          <p className="mt-5 max-w-lg text-cream/75 text-base md:text-lg leading-relaxed">
-            Free with your email. No drip sequence, no upsell. One link,
-            yours to keep.
-          </p>
+      <div className="container-grain pt-32 pb-20 md:pt-40 md:pb-28 lg:pt-44 lg:pb-32">
+        <div className="grid lg:grid-cols-[1fr_auto] gap-14 lg:gap-20 items-start">
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-5 mb-10">
+              <Eyebrow className="text-brass">The Brain · Issue 01</Eyebrow>
+              <span className="hidden sm:inline-block h-px flex-1 bg-walnut/15" />
+              <span
+                className="hidden sm:inline-flex font-sans uppercase text-[11px] text-walnut/60"
+                style={{ letterSpacing: "0.18em" }}
+              >
+                27 Guides · Free
+              </span>
+            </div>
 
-          <div className="mt-10">
-            <BrainCaptureForm formId={FORM_TARGET_ID} />
+            <h1
+              className="font-display font-semibold text-walnut leading-[0.92] text-[3.25rem] sm:text-7xl md:text-[96px] lg:text-[120px] xl:text-[136px]"
+              style={{ letterSpacing: "-0.01em" }}
+            >
+              The People<br />Ops AI<br />Brain.
+            </h1>
+
+            <p className="mt-10 max-w-2xl text-walnut/85 text-xl md:text-2xl leading-snug font-medium">
+              The most thorough working file on running People functions
+              with AI. Nine examples. Twenty-seven guides. One link, yours
+              to keep.
+            </p>
+
+            <BrassRule className="mt-12 mb-10 max-w-2xl" />
+
+            {/* Form card — promoted, framed, the real CTA */}
+            <div className="max-w-2xl rounded-3xl border border-walnut/15 bg-cream/70 backdropebackdrop-blur-sm p-7 md:p-10 shadow-[0_1px_0_hsl(var(--walnut)/0.04),0_24px_60px_-30px_hsl(var(--walnut)/0.25)]">
+              <p
+                className="font-sans uppercase text-[11px] text-walnut/60 mb-6"
+                style={{ letterSpacing: "0.18em" }}
+              >
+                Send it to me
+              </p>
+              <BrainCaptureForm
+                formId={FORM_TARGET_ID}
+                variant="light"
+                size="lg"
+              />
+              <p className="mt-7 text-walnut/55 text-xs max-w-md leading-relaxed">
+                One email. The link is permanent. We don&apos;t share,
+                sell, or sync your address anywhere.
+              </p>
+            </div>
+
+            <p
+              className="mt-10 text-walnut/65 text-xs uppercase max-w-xl leading-relaxed"
+              style={{ letterSpacing: "0.16em" }}
+            >
+              Read by heads of People at Series B SaaS, defence tech, and
+              founder-led services firms.
+            </p>
           </div>
 
-          <p className="mt-6 text-cream/55 text-xs max-w-md leading-relaxed">
-            One email. The link is permanent. We don&apos;t share, sell, or
-            sync your address anywhere.
-          </p>
-
-          {/* Subscriber proof — calibrated, not vanity. Edit the line when the
-              roster shifts; keep it specific (named sectors / company stages). */}
-          <p className="mt-8 text-cream/65 text-xs uppercase tracking-[0.16em] max-w-md leading-relaxed">
-            Read by heads of People at Series B SaaS, defence tech, and
-            founder-led services firms.
-          </p>
+          {/* Desktop meta rail */}
+          <aside className="hidden lg:flex flex-col gap-8 pt-4 pr-2 text-walnut/70 min-w-[170px]">
+            {[
+              ["Issue", "01"],
+              ["Updated", "Weekly"],
+              ["Examples", "09"],
+              ["Guides", "27"],
+            ].map(([label, value]) => (
+              <div key={label}>
+                <p
+                  className="font-sans uppercase text-[10px] text-walnut/50"
+                  style={{ letterSpacing: "0.2em" }}
+                >
+                  {label}
+                </p>
+                <p className="font-display text-walnut text-2xl mt-1">
+                  {value}
+                </p>
+              </div>
+            ))}
+          </aside>
         </div>
-      </div>
-
-      <div className="absolute inset-x-0 bottom-8 flex justify-center pointer-events-none">
-        <button
-          type="button"
-          onClick={() => {
-            const next = document.getElementById("brain-whats-inside");
-            const prefersReducedMotion =
-              typeof window !== "undefined" &&
-              window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            next?.scrollIntoView({
-              behavior: prefersReducedMotion ? "auto" : "smooth",
-              block: "start",
-            });
-          }}
-          aria-label="Scroll to what's inside"
-          className="pointer-events-auto inline-flex items-center justify-center text-cream/50 hover:text-cream transition-colors animate-bob motion-reduce:animate-none p-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cream/60"
-        >
-          <ChevronDown size={28} />
-        </button>
       </div>
     </section>
 
-    {/* ───────── Section 2 — What's Inside ───────── */}
+    {/* ───────── Section 2 — Sample article (flipbook, lifted) ───────── */}
+    <section className="bg-green text-cream py-24 md:py-32 overflow-hidden">
+      <div className="container-grain">
+        <div className="max-w-3xl mx-auto text-center">
+          <ScrollReveal>
+            <Eyebrow withRule className="text-brass mb-6 justify-center inline-flex">
+              A taste from inside · Piece 05 of 27
+            </Eyebrow>
+            <h2 className="font-display text-cream text-4xl md:text-5xl lg:text-[56px] leading-[1.05] text-balance">
+              Read one of the pieces.
+            </h2>
+            <p className="mt-6 text-cream/80 leading-relaxed max-w-xl mx-auto">
+              <span className="text-brass">Claude Cowork for People Teams.</span>{" "}
+              The desktop AI that does the work while you live your life.
+              Twelve pages, straight from inside the Brain.
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <ScrollReveal delay={120}>
+          <div className="mt-12 md:mt-16 max-w-5xl mx-auto">
+            <CoworkPreview />
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={180}>
+          <p className="mt-12 text-center text-cream/70 max-w-xl mx-auto leading-relaxed">
+            If this is the shape of the thinking, the rest is yours for
+            an email.{" "}
+            <button
+              type="button"
+              onClick={scrollToForm}
+              className="text-brass underline underline-offset-4 hover:text-cream transition-colors"
+            >
+              Send me the Brain →
+            </button>
+          </p>
+        </ScrollReveal>
+      </div>
+    </section>
+
+    {/* ───────── Section 3 — What's Inside ───────── */}
     <section
       id="brain-whats-inside"
       className="bg-linen text-body py-20 md:py-28 lg:py-32"
@@ -191,9 +249,7 @@ const Brain = () => (
             9 examples. 27 deep practical guides.
           </h2>
           <p className="mt-6 max-w-2xl text-body/75 leading-relaxed">
-            Each one starts with a real problem, walks through what we
-            tried, and ends with what we&apos;d keep. No frameworks for
-            the sake of it.
+            Each one starts with a real problem and ends with what we&apos;d keep.
           </p>
         </ScrollReveal>
 
@@ -223,44 +279,6 @@ const Brain = () => (
             </ScrollReveal>
           ))}
         </div>
-      </div>
-    </section>
-
-    {/* ───────── Section 3 — Sample Article Preview (Cowork flipbook) ───────── */}
-    <section className="bg-green text-cream py-24 md:py-32 overflow-hidden">
-      <div className="container-grain">
-        <div className="max-w-3xl mx-auto text-center">
-          <ScrollReveal>
-            <Eyebrow withRule className="text-brass mb-6 justify-center inline-flex">
-              A taste · 05 of 27
-            </Eyebrow>
-            <h2 className="font-display text-cream text-4xl md:text-5xl lg:text-[56px] leading-[1.05] text-balance">
-              Read one of the pieces.
-            </h2>
-            <p className="mt-6 text-cream/80 leading-relaxed max-w-xl mx-auto">
-              <span className="text-brass">Claude Cowork for People Teams.</span>{" "}
-              The desktop AI that does the work while you live your life.
-              Twelve pages, straight from inside the Brain.
-            </p>
-          </ScrollReveal>
-        </div>
-
-        <ScrollReveal delay={120}>
-          <div className="mt-12 md:mt-16 max-w-5xl mx-auto">
-            <CoworkPreview />
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={180}>
-          <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-5 text-center">
-            <PillButton onClick={scrollToForm} variant="outline">
-              Read the full Brain →
-            </PillButton>
-            <span className="text-cream/55 text-sm">
-              20+ more pieces like this. Yours to keep.
-            </span>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
 
