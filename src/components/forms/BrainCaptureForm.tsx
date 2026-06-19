@@ -32,6 +32,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export const BrainCaptureForm = ({
   variant = "dark",
+  size = "md",
   formId,
   className,
 }: BrainCaptureFormProps) => {
