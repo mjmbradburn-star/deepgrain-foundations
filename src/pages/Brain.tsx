@@ -133,7 +133,7 @@ const Brain = () => (
               The People<br />Ops AI<br />Brain.
             </h1>
 
-            <p className="mt-10 max-w-2xl text-cream/85 text-xl md:text-2xl leading-snug font-medium">
+            <p className="mt-10 max-w-2xl text-brass text-3xl md:text-4xl lg:text-5xl leading-snug font-medium">
               The most thorough working file on running People functions
               with AI. Twenty-seven guides. One link, yours
               to keep.
