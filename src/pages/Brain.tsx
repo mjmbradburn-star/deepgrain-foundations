@@ -106,6 +106,11 @@ const Brain = () => (
       className="relative bg-green text-cream overflow-hidden"
       data-no-rule
     >
+      {/* faint vertical brass hairline, right edge, desktop only */}
+      <div
+        aria-hidden
+        className="hidden lg:block absolute top-0 bottom-0 right-[8%] w-px bg-brass/25"
+      />
 
       <div className="container-grain pt-32 pb-14 md:pt-36 md:pb-16 lg:pt-40 lg:pb-20">
         <div className="grid lg:grid-cols-[1fr_auto] gap-14 lg:gap-20 items-start">
@@ -128,7 +133,7 @@ const Brain = () => (
               The People<br />Ops AI<br />Brain.
             </h1>
 
-            <p className="mt-10 max-w-2xl text-brass text-3xl md:text-4xl lg:text-5xl leading-snug font-medium">
+            <p className="mt-10 max-w-2xl text-cream/85 text-xl md:text-2xl leading-snug font-medium">
               The most thorough working file on running People functions
               with AI. Twenty-seven guides. One link, yours
               to keep.
