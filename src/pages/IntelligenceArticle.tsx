@@ -127,7 +127,7 @@ const IntelligenceArticle = () => {
         </div>
       )}
 
-      {/* Header band */}
+      {/* Header band — deck shape: eyebrow rail, headline, italic Cormorant sub-line */}
       <header
         className={`bg-green text-cream pb-20 md:pb-28 ${
           heroImage ? "pt-12 md:pt-16" : "pt-40 md:pt-48"
@@ -146,16 +146,23 @@ const IntelligenceArticle = () => {
               { name: f.title },
             ]}
           />
+          {/* Deck-style eyebrow rail: brass hairline + tracked-caps category */}
           <div className="flex items-center gap-3 mb-8">
+            <span aria-hidden className="inline-block h-px w-8 bg-brass/80" />
             <Link
               to={`/intelligence/category/${f.category}`}
               className="font-sans uppercase text-[11px] text-brass hover:text-cream transition-colors"
-              style={{ letterSpacing: "0.16em" }}
+              style={{ letterSpacing: "0.22em", fontWeight: 600 }}
             >
               {cat?.name}
             </Link>
-            <span className="text-cream/40">·</span>
-            <span className="text-[11px] text-cream/60">{f.readTime}</span>
+            <span className="text-cream/30">·</span>
+            <span
+              className="font-sans uppercase text-[11px] text-cream/55"
+              style={{ letterSpacing: "0.18em" }}
+            >
+              {f.readTime}
+            </span>
           </div>
           <h1
             className="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.0] mb-8"
@@ -163,7 +170,8 @@ const IntelligenceArticle = () => {
           >
             {f.title}
           </h1>
-          <p className="text-lg md:text-xl text-cream/75 leading-relaxed">
+          {/* Italic Cormorant sub-line, deck slide-1 pattern */}
+          <p className="font-display italic text-cream/85 text-xl md:text-2xl leading-snug max-w-2xl">
             {f.description}
           </p>
           {(f.primaryCluster || (f.clusters && f.clusters.length > 0)) && (
@@ -208,7 +216,7 @@ const IntelligenceArticle = () => {
         </div>
       </header>
 
-      {/* Body — slightly wider measure on lg+, drop-cap on the first paragraph. */}
+      {/* Body — measured prose, no drop-cap (eyebrow + headline + italic sub above carry the opening) */}
       <article className="bg-linen py-20 md:py-28">
         <div className="container-grain max-w-2xl lg:max-w-[680px] xl:max-w-[720px] article-prose">
           <MDXProvider components={mdxComponents}>
