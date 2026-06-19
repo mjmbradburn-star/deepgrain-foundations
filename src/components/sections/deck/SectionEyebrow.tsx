@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 interface SectionEyebrowProps {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   /** Tone of the surrounding section — drives the brass/walnut variant. */
   tone?: "green" | "linen";
@@ -31,7 +31,7 @@ export const SectionEyebrow = ({
       style={{ fontSize: "11px", letterSpacing: "0.22em", fontWeight: 600 }}
     >
       <span aria-hidden className="inline-block h-px w-8 bg-brass/80" />
-      <span>DEEPGRAIN · AN OPERATING CONSULTANCY BUILT FOR THE AI ERA.</span>
+      <span>{children || "DEEPGRAIN · AN OPERATING CONSULTANCY BUILT FOR THE AI ERA."}</span>
     </p>
   );
 };
