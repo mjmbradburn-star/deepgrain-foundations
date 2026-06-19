@@ -140,15 +140,20 @@ export const BrainCaptureForm = ({
     );
   }
 
+  const isLg = size === "lg";
+  const inputBase = isLg
+    ? "brain-capture-input flex-1 bg-transparent border-0 border-b py-4 px-1 font-sans text-lg md:text-xl focus:outline-none transition-colors appearance-none"
+    : "brain-capture-input flex-1 bg-transparent border-0 border-b py-3 px-1 font-sans text-base focus:outline-none transition-colors appearance-none";
+
   return (
     <form
       id={formId}
       onSubmit={handleSubmit}
-      className={cn("w-full max-w-xl", className)}
+      className={cn("w-full", isLg ? "max-w-2xl" : "max-w-xl", className)}
       aria-label="Subscribe to The People Ops AI Brain"
       noValidate
     >
-      <div className="flex flex-col sm:flex-row gap-3">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-5">
         <label htmlFor={`${formId ?? "brain"}-firstname`} className="sr-only">
           First name
         </label>
@@ -162,7 +167,7 @@ export const BrainCaptureForm = ({
           placeholder="First name (optional)"
           data-variant={variant}
           className={cn(
-            "brain-capture-input flex-1 bg-transparent border-0 border-b py-3 px-1 font-sans text-base focus:outline-none transition-colors appearance-none",
+            inputBase,
             isDark
               ? "border-cream/30 focus:border-cream/80 text-cream placeholder:text-cream/40"
               : "border-walnut/30 focus:border-walnut/80 text-walnut placeholder:text-walnut/40",
@@ -182,7 +187,8 @@ export const BrainCaptureForm = ({
           placeholder="you@company.com"
           data-variant={variant}
           className={cn(
-            "brain-capture-input flex-[1.3] bg-transparent border-0 border-b py-3 px-1 font-sans text-base focus:outline-none transition-colors appearance-none",
+            inputBase,
+            "flex-[1.3]",
             isDark
               ? "border-cream/30 focus:border-cream/80 text-cream placeholder:text-cream/40"
               : "border-walnut/30 focus:border-walnut/80 text-walnut placeholder:text-walnut/40",
@@ -192,7 +198,7 @@ export const BrainCaptureForm = ({
 
       <label
         className={cn(
-          "mt-5 flex items-start gap-3 text-sm leading-relaxed cursor-pointer",
+          "mt-6 flex items-start gap-3 text-sm leading-relaxed cursor-pointer",
           isDark ? "text-cream/70" : "text-walnut/75",
         )}
       >
@@ -210,15 +216,22 @@ export const BrainCaptureForm = ({
         </span>
       </label>
 
-      <div className="mt-6 flex flex-wrap items-center gap-4">
+      <div className={cn("flex flex-wrap items-center gap-4", isLg ? "mt-8" : "mt-6")}>
         <button
           type="submit"
           disabled={!canSubmit}
           className={cn(
-            "font-sans uppercase text-[11px] px-7 py-3 rounded-full border transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
-            isDark
-              ? "border-brass text-brass hover:bg-brass hover:text-walnut"
-              : "border-walnut text-walnut hover:bg-walnut hover:text-cream",
+            "font-sans uppercase rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
+            isLg
+              ? "text-[13px] px-9 py-4 w-full sm:w-auto"
+              : "text-[11px] px-7 py-3 border",
+            isLg
+              ? isDark
+                ? "bg-brass text-walnut hover:bg-brass/90"
+                : "bg-walnut text-cream hover:bg-walnut/90"
+              : isDark
+                ? "border-brass text-brass hover:bg-brass hover:text-walnut"
+                : "border-walnut text-walnut hover:bg-walnut hover:text-cream",
           )}
           style={{ letterSpacing: "0.16em" }}
         >
