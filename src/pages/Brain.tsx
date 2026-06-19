@@ -245,7 +245,7 @@ const Brain = () => (
           <Eyebrow withRule className="text-body/70 mb-6">
             What&apos;s inside
           </Eyebrow>
-          <h2 className="font-display text-green text-4xl md:text-5xl lg:text-6xl leading-[1.05] max-w-3xl text-balance">
+          <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-6xl leading-[1.05] max-w-3xl text-balance">
             9 examples. 27 deep practical guides.
           </h2>
           <p className="mt-6 max-w-2xl text-body/75 leading-relaxed">
@@ -269,7 +269,7 @@ const Brain = () => (
                   </span>
                 </div>
                 <BrassRule className="mt-4 mb-5" />
-                <h3 className="font-display text-green text-2xl md:text-[28px] leading-[1.15] text-balance">
+                <h3 className="font-display text-walnut text-2xl md:text-[28px] leading-[1.15] text-balance">
                   {card.title}
                 </h3>
                 <p className="mt-4 text-body/75 text-sm leading-relaxed">
