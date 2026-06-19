@@ -103,7 +103,7 @@ const Brain = () => (
 
     {/* ───────── Section 1 — Hero (editorial, no photo) ───────── */}
     <section
-      className="relative bg-linen text-walnut overflow-hidden"
+      className="relative bg-linen text-green overflow-hidden"
       data-no-rule
     >
       {/* faint vertical brass hairline, right edge, desktop only */}
@@ -117,9 +117,9 @@ const Brain = () => (
           <div className="max-w-4xl">
             <div className="flex items-center gap-5 mb-10">
               <Eyebrow className="text-brass">The Brain · Issue 01</Eyebrow>
-              <span className="hidden sm:inline-block h-px flex-1 bg-walnut/15" />
+              <span className="hidden sm:inline-block h-px flex-1 bg-green/15" />
               <span
-                className="hidden sm:inline-flex font-sans uppercase text-[11px] text-walnut/60"
+                className="hidden sm:inline-flex font-sans uppercase text-[11px] text-green/60"
                 style={{ letterSpacing: "0.18em" }}
               >
                 27 Guides · Free
@@ -127,13 +127,13 @@ const Brain = () => (
             </div>
 
             <h1
-              className="font-display font-semibold text-walnut leading-[0.92] text-[2.75rem] sm:text-6xl md:text-[80px] lg:text-[96px] xl:text-[112px]"
+              className="font-display font-semibold text-green leading-[0.92] text-[2.75rem] sm:text-6xl md:text-[80px] lg:text-[96px] xl:text-[112px]"
               style={{ letterSpacing: "-0.01em" }}
             >
               The People<br />Ops AI<br />Brain.
             </h1>
 
-            <p className="mt-10 max-w-2xl text-walnut/85 text-xl md:text-2xl leading-snug font-medium">
+            <p className="mt-10 max-w-2xl text-green/85 text-xl md:text-2xl leading-snug font-medium">
               The most thorough working file on running People functions
               with AI. Nine examples. Twenty-seven guides. One link, yours
               to keep.
@@ -161,7 +161,7 @@ const Brain = () => (
             </div>
 
             <p
-              className="mt-10 text-walnut/65 text-xs uppercase max-w-xl leading-relaxed"
+              className="mt-10 text-green/65 text-xs uppercase max-w-xl leading-relaxed"
               style={{ letterSpacing: "0.16em" }}
             >
               Read by heads of People at Series B SaaS, defence tech, and
@@ -170,7 +170,7 @@ const Brain = () => (
           </div>
 
           {/* Desktop meta rail */}
-          <aside className="hidden lg:flex flex-col gap-8 pt-4 pr-2 text-walnut/70 min-w-[170px]">
+          <aside className="hidden lg:flex flex-col gap-8 pt-4 pr-2 text-green/70 min-w-[170px]">
             {[
               ["Issue", "01"],
               ["Updated", "Weekly"],
@@ -179,12 +179,12 @@ const Brain = () => (
             ].map(([label, value]) => (
               <div key={label}>
                 <p
-                  className="font-sans uppercase text-[10px] text-walnut/50"
+                  className="font-sans uppercase text-[10px] text-green/50"
                   style={{ letterSpacing: "0.2em" }}
                 >
                   {label}
                 </p>
-                <p className="font-display text-walnut text-2xl mt-1">
+                <p className="font-display text-green text-2xl mt-1">
                   {value}
                 </p>
               </div>
@@ -242,10 +242,10 @@ const Brain = () => (
     >
       <div className="container-grain">
         <ScrollReveal>
-          <Eyebrow withRule className="text-walnut/70 mb-6">
+          <Eyebrow withRule className="text-green/70 mb-6">
             What&apos;s inside
           </Eyebrow>
-          <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-6xl leading-[1.05] max-w-3xl text-balance">
+          <h2 className="font-display text-green text-4xl md:text-5xl lg:text-6xl leading-[1.05] max-w-3xl text-balance">
             9 examples. 27 deep practical guides.
           </h2>
           <p className="mt-6 max-w-2xl text-body/75 leading-relaxed">
@@ -262,14 +262,14 @@ const Brain = () => (
                     {card.number}
                   </p>
                   <span
-                    className="font-sans uppercase text-[10px] text-walnut/60 px-2.5 py-1 rounded-full border border-walnut/15"
+                    className="font-sans uppercase text-[10px] text-green/60 px-2.5 py-1 rounded-full border border-walnut/15"
                     style={{ letterSpacing: "0.16em" }}
                   >
                     {card.layer}
                   </span>
                 </div>
                 <BrassRule className="mt-4 mb-5" />
-                <h3 className="font-display text-walnut text-2xl md:text-[28px] leading-[1.15] text-balance">
+                <h3 className="font-display text-green text-2xl md:text-[28px] leading-[1.15] text-balance">
                   {card.title}
                 </h3>
                 <p className="mt-4 text-body/75 text-sm leading-relaxed">
