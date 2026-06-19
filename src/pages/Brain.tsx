@@ -1,8 +1,6 @@
-import { ChevronDown } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
-import { PillButton } from "@/components/ui/PillButton";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { brainCards } from "@/data/brainCards";
