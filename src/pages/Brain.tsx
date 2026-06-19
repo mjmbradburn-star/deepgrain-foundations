@@ -127,7 +127,7 @@ const Brain = () => (
             </div>
 
             <h1
-              className="font-display font-semibold text-walnut leading-[0.92] text-[3.25rem] sm:text-7xl md:text-[96px] lg:text-[120px] xl:text-[136px]"
+              className="font-display font-semibold text-walnut leading-[0.92] text-[2.75rem] sm:text-6xl md:text-[80px] lg:text-[96px] xl:text-[112px]"
               style={{ letterSpacing: "-0.01em" }}
             >
               The People<br />Ops AI<br />Brain.
