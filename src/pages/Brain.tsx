@@ -116,13 +116,13 @@ const Brain = () => (
         <div className="grid lg:grid-cols-[1fr_auto] gap-14 lg:gap-20 items-start">
           <div className="max-w-4xl">
             <div className="flex items-center gap-5 mb-10">
-              <Eyebrow className="text-brass">The Brain · Issue 01</Eyebrow>
+              <Eyebrow className="text-brass">THE BRAIN</Eyebrow>
               <span className="hidden sm:inline-block h-px flex-1 bg-cream/15" />
               <span
                 className="hidden sm:inline-flex font-sans uppercase text-[11px] text-cream/60"
                 style={{ letterSpacing: "0.18em" }}
               >
-                27 Guides · Free
+                A LIVING BOOK
               </span>
             </div>
 
@@ -135,7 +135,7 @@ const Brain = () => (
 
             <p className="mt-10 max-w-2xl text-cream/85 text-xl md:text-2xl leading-snug font-medium">
               The most thorough working file on running People functions
-              with AI. Nine examples. Twenty-seven guides. One link, yours
+              with AI. Twenty-seven guides. One link, yours
               to keep.
             </p>
 
@@ -172,12 +172,12 @@ const Brain = () => (
           {/* Desktop meta rail */}
           <aside className="hidden lg:flex flex-col gap-8 pt-4 pr-2 text-cream/70 min-w-[170px]">
             {[
-              ["Issue", "01"],
-              ["Updated", "Weekly"],
-              ["Examples", "09"],
-              ["Guides", "27"],
-            ].map(([label, value]) => (
-              <div key={label}>
+              ["\n", "\n"],
+              ["Updated", "Monthly"],
+              ["\n", "\n"],
+              ["\n", "\n"],
+            ].map(([label, value], i) => (
+              <div key={i}>
                 <p
                   className="font-sans uppercase text-[10px] text-cream/50"
                   style={{ letterSpacing: "0.2em" }}
