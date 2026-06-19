@@ -195,7 +195,7 @@ const Brain = () => (
     </section>
 
     {/* ───────── Section 2 — Sample article (flipbook, lifted) ───────── */}
-    <section className="bg-green text-cream py-24 md:py-32 overflow-hidden">
+    <section className="bg-green text-cream py-16 md:py-20 overflow-hidden">
       <div className="container-grain">
         <div className="max-w-3xl mx-auto text-center">
           <ScrollReveal>
