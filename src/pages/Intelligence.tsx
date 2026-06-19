@@ -66,7 +66,7 @@ const Intelligence = () => {
       <section className="relative bg-green text-cream pt-40 md:pt-48 pb-24 md:pb-32 overflow-hidden">
         <TopoBackdrop variant="basin" opacity={0.18} />
         <div className="relative container-grain max-w-4xl">
-          <SectionEyebrow className="mb-6">Intelligence</SectionEyebrow>
+          <SectionEyebrow className="mb-6" />
           <h1
             className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-8 max-w-3xl"
             style={{ letterSpacing: "-0.015em" }}

@@ -122,7 +122,7 @@ const Work = () => (
       <TopoBackdrop variant="ridge" opacity={0.22} />
       <div className="relative container-grain max-w-5xl">
         <ScrollReveal>
-          <SectionEyebrow className="mb-6">The work</SectionEyebrow>
+          <SectionEyebrow className="mb-6" />
           <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] text-balance max-w-4xl">
             Read first. Then the numbers move.
           </h1>
@@ -144,7 +144,7 @@ const Work = () => (
     <section className="bg-cream text-walnut py-20 md:py-28">
       <div className="container-grain max-w-5xl">
         <ScrollReveal>
-          <SectionEyebrow tone="linen" className="mb-6">More engagements</SectionEyebrow>
+          <SectionEyebrow tone="linen" className="mb-6" />
           <h2 className="font-display text-walnut text-3xl md:text-5xl leading-[1.05] max-w-3xl">
             Same shape. Different grain.
           </h2>

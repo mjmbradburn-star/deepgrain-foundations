@@ -98,7 +98,7 @@ const About = () => (
       <TopoBackdrop variant="ridge" opacity={0.22} />
       <div className="relative container-grain max-w-5xl">
         <ScrollReveal>
-          <SectionEyebrow className="mb-6">Who runs this</SectionEyebrow>
+          <SectionEyebrow className="mb-6" />
           <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] max-w-4xl text-balance">
             The grain is always there. Most have never looked for it.
           </h1>
