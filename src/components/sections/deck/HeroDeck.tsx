@@ -55,7 +55,7 @@ export const HeroDeck = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-green/40 via-transparent to-green/40 pointer-events-none z-[1]" />
 
       <div className="relative z-10 container-grain pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-16 lg:pb-20 w-full">
-        <div className="flex items-center justify-between mb-6 md:mb-8 lg:mb-6">
+        <div className="hidden md:flex items-center justify-between mb-6 md:mb-8 lg:mb-6">
           <SectionEyebrow />
           <span
             className="hidden md:inline font-sans uppercase text-cream/40"
@@ -74,7 +74,7 @@ export const HeroDeck = () => {
             <br />
             your company runs.
           </h1>
-          <p className="font-display italic text-cream/85 mt-5 max-w-xl text-lg md:text-xl lg:text-[22px] leading-snug">
+          <p className="font-display italic text-cream/85 mt-5 max-w-xl text-base md:text-xl lg:text-[22px] leading-snug">
             Audit the operating model, redesign the workflows, then ship the systems and AI that make the new shape stick.
           </p>
         </div>
