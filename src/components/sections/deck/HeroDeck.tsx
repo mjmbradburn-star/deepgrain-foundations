@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+import { BarkGrain } from "@/components/ui/BarkGrain";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { track } from "@/lib/analytics";
 
