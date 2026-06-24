@@ -35,13 +35,13 @@ export const HeroDeck = () => {
   const auditHref =
     "/contact?subject=" +
     encodeURIComponent(
-      "I'd like a 30-minute audit. The workflow I'd most like to fix is:",
+      "I'd like a free 30-minute workflow audit. The workflow I'd most like to fix is:",
     );
   const onAudit = () =>
     track("cta_click", {
       cta_id: "audit_home_hero",
       cta_location: "hero",
-      cta_label: "Book a 30-minute audit",
+      cta_label: "Book a free 30-minute workflow audit",
       link_url: auditHref,
     });
   return (
@@ -89,10 +89,10 @@ export const HeroDeck = () => {
           <Link
             to={auditHref}
             onClick={onAudit}
-            className="group inline-flex items-center gap-2 rounded-full bg-cream text-green px-9 py-4 font-sans text-sm tracking-wider hover:bg-cream/90 transition-all"
+            className="group inline-flex flex-col items-center gap-1 rounded-full bg-cream text-green px-9 py-4 font-sans text-[13px] tracking-wider hover:bg-cream/90 transition-all text-center"
           >
-            Book a 30-minute audit
-            <span className="transition-transform group-hover:translate-x-0.5">→</span>
+            <span>Book a free 30-minute workflow audit</span>
+            <span className="transition-transform group-hover:translate-y-0.5">→</span>
           </Link>
           <Link
             to="/method"
