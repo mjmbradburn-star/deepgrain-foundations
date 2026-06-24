@@ -46,15 +46,16 @@ export const HeroDeck = () => {
     });
   return (
     <section
-      className="relative bg-green text-cream overflow-hidden min-h-[88vh] md:min-h-screen flex items-center"
+      className="relative bg-bark text-cream overflow-hidden min-h-[640px] md:min-h-[720px] lg:min-h-[760px] flex items-center"
       id="hero"
       data-no-rule
     >
-      <TopoBackdrop variant="ridge" opacity={0.32} />
-      <div className="absolute inset-0 bg-gradient-to-r from-green/95 via-green/70 to-transparent pointer-events-none" />
+      <BarkGrain />
+      <div className="absolute inset-0 bg-gradient-to-r from-green/85 via-green/55 to-green/20 pointer-events-none z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-green/40 via-transparent to-green/40 pointer-events-none z-[1]" />
 
-      <div className="relative container-grain pt-32 pb-24 md:pt-40 md:pb-32 w-full">
-        <div className="flex items-center justify-between mb-10 md:mb-14">
+      <div className="relative z-10 container-grain pt-24 pb-20 md:pt-28 md:pb-24 w-full">
+        <div className="flex items-center justify-between mb-8 md:mb-10">
           <SectionEyebrow />
           <span
             className="hidden md:inline font-sans uppercase text-cream/40"
@@ -65,19 +66,16 @@ export const HeroDeck = () => {
         </div>
 
         <div className="max-w-3xl fade-in-up fade-in-up-1">
-          <p className="text-cream/70 text-sm md:text-base mb-4">
-            {"\n"}
-          </p>
           <h1
-            className="font-display font-medium uppercase text-cream leading-[0.95] text-[2.5rem] sm:text-[64px] md:text-[96px] lg:text-[120px]"
+            className="font-display font-medium uppercase text-cream leading-[0.95] text-[2.25rem] sm:text-[52px] md:text-[72px] lg:text-[88px]"
             style={{ letterSpacing: "0.01em" }}
           >
-            From the role
+            We rebuild how
             <br />
-            to the click.
+            your company runs.
           </h1>
-          <p className="font-display italic text-cream/85 mt-8 max-w-xl text-xl md:text-3xl leading-snug">
-            We Audit, deepdive into the operating model, workflows, then rebuild for what's coming next.
+          <p className="font-display italic text-cream/85 mt-6 max-w-xl text-lg md:text-2xl leading-snug">
+            Audit the operating model, redesign the workflows, then ship the systems and AI that make the new shape stick.
           </p>
         </div>
 
