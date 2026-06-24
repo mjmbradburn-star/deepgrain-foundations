@@ -89,10 +89,10 @@ export const HeroDeck = () => {
           <Link
             to={auditHref}
             onClick={onAudit}
-            className="group inline-flex items-center gap-2 rounded-full bg-cream text-green px-9 py-4 font-sans text-sm tracking-wider hover:bg-cream/90 transition-all"
+            className="group inline-flex flex-col items-center gap-1 rounded-full bg-cream text-green px-9 py-4 font-sans text-[13px] tracking-wider hover:bg-cream/90 transition-all text-center"
           >
-            Book a 30-minute audit
-            <span className="transition-transform group-hover:translate-x-0.5">→</span>
+            <span>Book a free 30-minute workflow audit</span>
+            <span className="transition-transform group-hover:translate-y-0.5">→</span>
           </Link>
           <Link
             to="/method"
