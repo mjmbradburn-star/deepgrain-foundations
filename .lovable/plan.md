@@ -74,3 +74,15 @@ The `BrainCaptureForm` itself stays wired to the same edge function. We only res
 - No new copy beyond the hero deck and the one bridging line under the flipbook.
 - No changes to analytics, edge functions, or the cards data.
 - Mobile gets the same order, hero meta strip collapses, form card goes full width.
+
+---
+
+## Home hero, borrow the plain-English clarity from /method
+
+The /method page intro reads much more clearly than the current home hero ("We rebuild how your company runs."). The "Three levels. You work at all three at once." block, with its plain-English deck and "Walk one workflow through it with me" sub-CTA, explains what we actually do in a way the home page does not.
+
+To do:
+- Pull the /method intro language into the home hero (or a strip directly under it): the "three levels, worked at once" framing, the "from audit through to agents" deck, and the "walk one workflow through it" half-step CTA next to the audit CTA.
+- More broadly, audit the entire /method page for copy and structural moves that belong on the home page. Treat /method as the source of truth for how we describe the work, and lift the strongest beats forward.
+- Keep the bark hero background and current visual treatment, this is a copy and information-architecture change, not a redesign.
+
