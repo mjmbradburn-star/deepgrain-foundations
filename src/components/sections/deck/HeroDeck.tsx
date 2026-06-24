@@ -79,13 +79,13 @@ export const HeroDeck = () => {
           </p>
         </div>
 
-        <div className="fade-in-up fade-in-up-2 mt-10 flex flex-wrap gap-2.5">
+        <div className="fade-in-up fade-in-up-2 mt-8 flex flex-wrap gap-2.5">
           <Pip icon="◎" label="Strategic" />
           <Pip icon="⌥" label="Functional" />
           <Pip icon="◯" label="Individual" />
         </div>
 
-        <div className="fade-in-up fade-in-up-3 mt-12 flex flex-wrap items-center gap-4">
+        <div className="fade-in-up fade-in-up-3 mt-8 flex flex-wrap items-center gap-4">
           <Link
             to={auditHref}
             onClick={onAudit}
@@ -102,7 +102,7 @@ export const HeroDeck = () => {
           </Link>
         </div>
 
-        <div className="hidden md:flex absolute bottom-10 left-0 right-0 container-grain items-center justify-between text-cream/40 font-sans uppercase" style={{ fontSize: "10px", letterSpacing: "0.25em" }}>
+        <div className="hidden md:flex absolute bottom-6 left-0 right-0 container-grain items-center justify-between text-cream/40 font-sans uppercase" style={{ fontSize: "10px", letterSpacing: "0.25em" }}>
           <span>Matt Bradburn · Founder, Deepgrain</span>
           <span>Work with the grain</span>
         </div>
