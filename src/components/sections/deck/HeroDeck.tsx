@@ -46,7 +46,7 @@ export const HeroDeck = () => {
     });
   return (
     <section
-      className="relative bg-bark text-cream overflow-hidden min-h-[640px] md:min-h-[720px] lg:min-h-[760px] flex items-center"
+      className="relative bg-bark text-cream overflow-hidden min-h-[560px] md:min-h-[620px] lg:h-[calc(100svh-4rem)] lg:min-h-[600px] lg:max-h-[820px] flex items-center"
       id="hero"
       data-no-rule
     >
@@ -54,8 +54,8 @@ export const HeroDeck = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-green/85 via-green/55 to-green/20 pointer-events-none z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-b from-green/40 via-transparent to-green/40 pointer-events-none z-[1]" />
 
-      <div className="relative z-10 container-grain pt-24 pb-20 md:pt-28 md:pb-24 w-full">
-        <div className="flex items-center justify-between mb-8 md:mb-10">
+      <div className="relative z-10 container-grain pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-16 lg:pb-20 w-full">
+        <div className="flex items-center justify-between mb-6 md:mb-8 lg:mb-6">
           <SectionEyebrow />
           <span
             className="hidden md:inline font-sans uppercase text-cream/40"
@@ -67,36 +67,36 @@ export const HeroDeck = () => {
 
         <div className="max-w-3xl fade-in-up fade-in-up-1">
           <h1
-            className="font-display font-medium uppercase text-cream leading-[0.95] text-[2.25rem] sm:text-[52px] md:text-[72px] lg:text-[88px]"
+            className="font-display font-medium uppercase text-cream leading-[0.95] text-[2.25rem] sm:text-[48px] md:text-[64px] lg:text-[72px]"
             style={{ letterSpacing: "0.01em" }}
           >
             We rebuild how
             <br />
             your company runs.
           </h1>
-          <p className="font-display italic text-cream/85 mt-6 max-w-xl text-lg md:text-2xl leading-snug">
+          <p className="font-display italic text-cream/85 mt-5 max-w-xl text-lg md:text-xl lg:text-[22px] leading-snug">
             Audit the operating model, redesign the workflows, then ship the systems and AI that make the new shape stick.
           </p>
         </div>
 
-        <div className="fade-in-up fade-in-up-2 mt-8 flex flex-wrap gap-2.5">
+        <div className="fade-in-up fade-in-up-2 mt-6 lg:mt-5 flex flex-wrap gap-2.5">
           <Pip icon="◎" label="Strategic" />
           <Pip icon="⌥" label="Functional" />
           <Pip icon="◯" label="Individual" />
         </div>
 
-        <div className="fade-in-up fade-in-up-3 mt-8 flex flex-wrap items-center gap-4">
+        <div className="fade-in-up fade-in-up-3 mt-6 lg:mt-5 flex flex-wrap items-center gap-4">
           <Link
             to={auditHref}
             onClick={onAudit}
-            className="group inline-flex flex-col items-center gap-1 rounded-full bg-cream text-green px-9 py-4 font-sans text-[13px] tracking-wider hover:bg-cream/90 transition-all text-center"
+            className="group inline-flex flex-col items-center gap-1 rounded-full bg-cream text-green px-9 py-3.5 font-sans text-[13px] tracking-wider hover:bg-cream/90 transition-all text-center"
           >
             <span>Book a free 30-minute audit</span>
             <span className="transition-transform group-hover:translate-y-0.5">→</span>
           </Link>
           <Link
             to="/method"
-            className="inline-flex items-center gap-2 rounded-full border border-cream/40 text-cream px-7 py-4 font-sans text-sm tracking-wider hover:bg-cream/10 transition-all"
+            className="inline-flex items-center gap-2 rounded-full border border-cream/40 text-cream px-7 py-3.5 font-sans text-sm tracking-wider hover:bg-cream/10 transition-all"
           >
             See the method →
           </Link>
