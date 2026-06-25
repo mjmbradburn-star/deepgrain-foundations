@@ -25,8 +25,8 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 import { template as brainWelcomeTemplate } from "../_shared/transactional-email-templates/brain-welcome.tsx";
 
 const SITE_NAME = "deepgrain-foundations";
-const SENDER_DOMAIN = "notify.www.deepgrain.ai";
-const FROM_DOMAIN = "notify.www.deepgrain.ai";
+const SENDER_DOMAIN = "notify.deepgrain.ai";
+const FROM_DOMAIN = "notify.deepgrain.ai";
 const SUPPORT_EMAIL = "matt@peopleleaders.io";
 
 const BRAIN_OPEN_BASE = `${

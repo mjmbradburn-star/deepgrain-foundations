@@ -16,8 +16,8 @@ import { template as brainWelcomeTemplate } from "../_shared/transactional-email
 // Email pipeline constants — must mirror send-transactional-email/index.ts.
 // Re-run the email domain setup flow if these need to change.
 const SITE_NAME = "deepgrain-foundations";
-const SENDER_DOMAIN = "notify.www.deepgrain.ai";
-const FROM_DOMAIN = "notify.www.deepgrain.ai";
+const SENDER_DOMAIN = "notify.deepgrain.ai";
+const FROM_DOMAIN = "notify.deepgrain.ai";
 
 function generateUnsubscribeToken(): string {
   const bytes = new Uint8Array(32);
