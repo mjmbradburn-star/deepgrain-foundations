@@ -1,6 +1,6 @@
 # Deepgrain, full Intelligence corpus
-Last updated: 2026-06-18
-Articles: 50
+Last updated: 2026-06-27
+Articles: 52
 Canonical: https://www.deepgrain.ai/llms-full.txt
 Sitemap: https://www.deepgrain.ai/sitemap.xml
 
@@ -33,6 +33,141 @@ KEY TAKEAWAYS:
 - Optimise for signal, not volume. The team you trust most is the one that hears you least often, but always for something real.
 - Keep the cadence even when nothing dramatic is happening. The cadence is the discipline.
 - Decisions made and not announced are still decisions. Sometimes the right ones.
+
+
+========================================
+TITLE: AI maturity frameworks for G&A leaders
+URL: https://www.deepgrain.ai/intelligence/ai-maturity-frameworks-for-ga-leaders
+TRACK: deepgrain
+CATEGORY: method-and-practice
+PUBLISHED: 2026-06-27
+READ_TIME: 11 min
+DESCRIPTION: A working comparison of AI maturity models for Finance and People Ops leaders, with a practical index for moving from pilots to systemic integration.
+========================================
+
+TLDR:
+- AI maturity is not the same as AI readiness. Readiness is a starting line. Maturity is distance travelled.
+- Most published AI maturity frameworks (Gartner, MIT, BCG, Deepgrain) collapse to the same five tiers: experimenting, piloting, scaling, integrating, operating.
+- For G&A leaders, the only tier that matters is the jump from piloting to integrating. That is where 80% of Finance and People Ops AI work stalls.
+- An AI maturity index is most useful when it tracks the same five workflows quarter over quarter, not when it scores a one-off snapshot.
+- The cheapest way to raise the score is not another pilot. It is owning, reviewing, and improving three existing workflows on a weekly cadence.
+
+## What an AI maturity framework is actually for
+
+An AI maturity framework is a shared scoreboard. Not a strategy, not a roadmap, not a transformation plan. A scoreboard.
+
+Its job is to tell a G&A leader two things they otherwise have to guess at: where the function is today, and whether it has moved since last quarter. Everything else, the colourful diagrams, the radar charts, the named tiers, is presentation.
+
+For Finance and People Ops, this matters more than it does in product or engineering. G&A teams rarely ship visible artefacts. Without a maturity index, the only signal of progress is anecdote, and anecdote favours whoever talks loudest in the leadership meeting.
+
+## The five-tier shape everyone agrees on
+
+The published AI maturity frameworks differ in branding and stop short at different places, but they collapse to the same five tiers. The names below are the ones we use; the substance is shared.
+
+| Tier | What it looks like | Typical G&A signal |
+|---|---|---|
+| 1. Experimenting | Individuals using ChatGPT and Copilot ad hoc | Slack channel full of prompts, no shared library |
+| 2. Piloting | Funded projects, one workflow at a time | A named "AI in Finance" pilot, owned by one person |
+| 3. Scaling | The same workflow used by a whole team | Every recruiter uses the same JD assistant |
+| 4. Integrating | AI step is part of the official workflow, with governance | Month-end close has an AI review step in the SOP |
+| 5. Operating | Workflows are measured, owned, and improved on a cadence | Weekly review of three AI-assisted workflows, with metrics |
+
+The crucial observation: tiers 1 and 2 produce the most internal noise. Tiers 4 and 5 produce the most operating value. The gap between them is where every published framework quietly hides the work.
+
+For the deeper version of this argument see the AI operating ladder (/intelligence/ai-operating-ladder-five-tiers), which is the Deepgrain take on the same shape.
+
+## Comparing the frameworks G&A leaders actually meet
+
+A G&A leader will be handed one of these in the next twelve months. Knowing what each is good for saves a quarter of arguing.
+
+Gartner AI Maturity. Five tiers, useful as a board-level vocabulary. Weakest on the integration tier; treats "scaling" as the finish line. Best when the audience is a CFO or CHRO who wants a familiar diagram.
+
+MIT Sloan stages. Stronger on the organisational side, especially the role of leadership and data literacy. Less prescriptive about the operating cadence that holds maturity in place. Best for a culture-and-capability narrative.
+
+BCG BlueDot / Build-Operate-Transfer variants. Strong on the funding model and the hand-off from consultancy to in-house team. Weakest on what to actually do on a Tuesday morning. Best when the spend is large and the question is governance.
+
+Deepgrain AI Operating Ladder. Built specifically for the integration tier. Names the bridge from pilot to operating as the work, not the gap. Best when the leader has already done the readiness exercise and now needs to move the line.
+
+Internal home-grown frameworks. Often the most accurate for a specific company because they encode local constraints. Almost always missing the operating cadence section, because the people who design them are not the people who run the weekly review.
+
+A working rule: use Gartner or MIT to talk to the board, use the Operating Ladder or an internal framework to run the work, and never mix the two in the same document.
+
+> Frameworks for the board are about legitimacy. Frameworks for the team are about the next move. Use both, separately.
+
+## An AI maturity index that survives a year
+
+A maturity index is only useful if the same number means the same thing in Q1 and Q4. That rules out most of the radar-chart versions, which quietly redefine their axes every time leadership changes.
+
+The shape we use with G&A teams:
+
+- Workflow coverage (0 to 30). Percentage of named G&A workflows with at least one AI step running in production for ninety days.
+- Adoption depth (0 to 20). Percentage of staff with measured weekly use of AI in their core workflow. Self-report does not count.
+- Time-back (0 to 20). Aggregate time saved per quarter against a documented baseline, normalised against headcount.
+- Governance (0 to 15). Percentage of in-production AI steps with a current risk review and a named owner.
+- Operating cadence (0 to 15). Whether a weekly review of the AI-assisted workflow stack actually happens and produces a change log.
+
+Total: 0 to 100. The five categories are designed so that a team cannot fake one by neglecting another. Coverage without governance plateaus at 30. Adoption without cadence plateaus at 50. The score forces the conversation back to the integration tier.
+
+For the underlying capability map this scores against, see the five pillars of AI readiness (/intelligence/five-pillars-of-ai-readiness).
+
+## Where Finance teams stall
+
+Finance teams are usually strong on governance and weak on cadence. The risk function pushes the team to formalise early, which is healthy, but the operating side never gets the same airtime. The result is a team scoring 40 to 55 for two years.
+
+The fix is structural, not motivational. Put the AI-assisted workflow stack on the same weekly agenda as the financial controls review. Give it the same dignity. Within a quarter the cadence score moves, and within two the time-back follows.
+
+The other Finance failure mode is treating month-end close as the only viable target. It is the most visible workflow, so it gets all the pilot energy, and it is the hardest to safely integrate, so it absorbs all the governance overhead. Pick a less glamorous workflow first. Procurement triage, accruals support, vendor onboarding. Maturity rises faster on a quiet workflow that actually moves.
+
+## Where People Ops teams stall
+
+People Ops teams are usually strong on adoption and weak on workflow coverage. Everyone is using AI for something, but no single workflow has been rewired end to end. The score plateaus at 45 to 60.
+
+The fix is to name three workflows and refuse to count anything else this quarter. Candidate sourcing, performance review summarisation, and policy Q&A are the usual three because they have clean inputs, clean outputs, and clear owners. The discipline is not picking the right three. The discipline is not letting a fourth in.
+
+For the operating model that supports this, see designing the AI-native People team (/intelligence/people-ops/designing-the-ai-native-people-team).
+
+## Moving from pilot to systemic integration
+
+Every framework agrees that the pilot-to-integration jump is the hard one. None of them are very specific about how. The integration tier needs four things that pilots usually lack:
+
+1. An owner with a job, not a project. Pilots have project managers. Integrated workflows have a permanent owner whose performance review includes the workflow's metrics.
+2. A change log. Every change to the AI step, the prompt, the tool, the model, the data, is logged with the date and the reason. Without it, you cannot tell whether last week's regression is a model change or a data change.
+3. A weekly fifteen-minute review. Three workflows, one slide each, three numbers each, one decision. Anything longer collapses under its own weight within a quarter.
+4. A protected funding line. Operating-and-improving is funded the same way the workflow itself is funded. Not as discretionary overhead.
+
+A team with those four things will move from tier 3 to tier 4 within two quarters, regardless of which published framework they cite. A team without them will stay at tier 3 forever, regardless of how much pilot funding arrives.
+
+> Maturity is held in place by cadence and ownership, not by tooling. The score moves when the calendar moves.
+
+## The honest limits of any maturity index
+
+Three things every G&A leader should know before they commission a maturity assessment.
+
+First, the index is a lagging indicator. By the time the score moves, the work has been happening for a quarter. Use it to confirm direction, not to choose direction.
+
+Second, the index rewards the workflows you can name. If a category of work is invisible to the framework, it will be invisible to the score, and over time invisible to the strategy. Audit the named-workflow list every six months.
+
+Third, the index does not score quality of judgement. A team can have an AI step in every workflow and still make worse decisions than the team next to it. Maturity is necessary, not sufficient. Pair it with a quality bar for the underlying judgement.
+
+## What to do with this on Monday
+
+If you are a G&A leader and you want a maturity exercise to be more than a slide:
+
+- Pick one published framework as your external vocabulary. Gartner if your board is conservative, MIT if it is academic.
+- Pick the five-category index above as your internal scoring. Run it once, baseline honestly, do not publish the score outside the team for two quarters.
+- Name three workflows you will move from tier 3 to tier 4 this quarter. Put them on a weekly fifteen-minute review.
+- In ninety days, score again. The number will tell you whether the cadence is real or theatrical.
+
+That is the entire programme. Anyone offering more in the first quarter is selling you transformation theatre.
+
+For a 30-day version of the same diagnostic exercise, see how to diagnose an organisation in 30 days (/intelligence/how-to-diagnose-an-organisation-in-30-days). For the broader operating-system context this maturity work sits inside, start at what is an AI operating system for business (/intelligence/what-is-an-ai-operating-system-for-business).
+
+KEY TAKEAWAYS:
+- AI maturity frameworks all collapse to the same five tiers. Pick the one whose vocabulary fits your audience.
+- The only tier that matters for G&A is the jump from piloting to integrating. Score yourself honestly there.
+- A useful AI maturity index has five categories with hard caps so you cannot fake one by neglecting another.
+- Finance stalls on cadence. People Ops stalls on coverage. Both fixes are structural, not motivational.
+- Maturity is held in place by ownership, change logs, weekly reviews, and protected funding. Tooling is the easy part.
 
 
 ========================================
@@ -170,6 +305,132 @@ KEY TAKEAWAYS:
 - The signal that it is working: the next workflow takes a week instead of a quarter, and operators stop asking permission to use AI and start asking which agent to use.
 
 If you want help installing one, book an audit (/contact). We will read the grain, name the workflows worth running on shared infrastructure, and tell you honestly whether you are ready to craft the operating layer yet.
+
+
+========================================
+TITLE: Building agentic operating systems: a roadmap
+URL: https://www.deepgrain.ai/intelligence/building-agentic-operating-systems
+TRACK: deepgrain
+CATEGORY: ai-operating-systems
+PUBLISHED: 2026-06-18
+READ_TIME: 12 min
+DESCRIPTION: A technical and organisational roadmap from one-off LLM prompts to agentic operating systems: agents that do real work, in production.
+========================================
+
+TLDR:
+- An agentic operating system is what you need when prompting stops scaling. It is the runtime that lets agents do real work, reliably, across a company.
+- Agentic AI is goal plus steps plus tools, not a single prompt. The value sits in the steps, not the model.
+- Build one agent end to end before you build a swarm. Most multi-agent systems fail because the first agent never worked.
+- Agentic services are mostly plumbing: retrieval, tools, memory, identity, policy, observability. The model is the thinnest layer.
+- Without an agentic operating system, every agent is a demo. With one, agents compound into capability.
+
+## In one sentence
+
+An agentic operating system is the substrate that lets autonomous AI agents do real work, together, in production: shared tools, shared memory, shared policy, and a maintenance cadence that keeps the whole thing alive.
+
+A prompt is a question. An agent is an operator. An agentic operating system is what stops your operators from tripping over each other.
+
+## From prompts to agents to systems
+
+Three stages, in order. Most teams skip the middle one and wonder why nothing scales.
+
+| Stage | What it is | Where it breaks |
+|---|---|---|
+| Prompting | One person, one model, one question | Doesn't survive contact with real workflows |
+| Agentic | Goal, steps, tools, memory, retries | Doesn't survive contact with other agents |
+| Agentic OS | Shared runtime, shared policy, shared cadence | Doesn't fail. It just rots without a gardener. |
+
+If your company is mostly at stage one and you are pitched a stage three platform, you are about to buy infrastructure for work you do not yet do. Build the agent first.
+
+## The five pillars, in agentic form
+
+The five pillars of an AI operating system (/intelligence/what-is-an-ai-operating-system) hold here too. Agentic work sharpens them.
+
+1. Data and retrieval. An agent without retrieval is a goldfish. You need a way to put the right context into the right step at the right time. That is retrieval, not "a vector database". The vector store is one tool. The retrieval strategy is the pillar.
+
+2. Tools. An agent without tools writes essays. An agent with tools books the meeting, files the ticket, updates the record, sends the email. Tool design is the highest leverage code you will write. Make the tools narrow, well-named, and idempotent.
+
+3. Agents. Goal plus plan plus loop. Most useful agents are small: one job, three to seven tools, a clear stopping condition. The "general purpose agent" is a research project. The narrow agent is a hire.
+
+4. Governance and identity. Who is the agent acting as? What is it allowed to do? What requires a human? Agentic systems collapse the gap between "the model said something" and "the company did something". Identity, scopes, and human-in-the-loop are no longer optional.
+
+5. Operating cadence and observability. Agents drift. Tools change. Data shifts. Without traces you can read, evals you trust, and a weekly cadence to look at both, the system bit-rots. The teams that win at agentic work treat observability as a first-class pillar, not a sidecar.
+
+> Agentic operating systems are mostly plumbing. The model is the thinnest layer. Treat the plumbing as the product.
+
+## A working architecture
+
+There is no canonical stack yet, but the working shape is settling. From the outside in:
+
+- Interface. Where the human or upstream system calls the agent. Chat, API, queue, webhook. Keep this thin.
+- Orchestrator. The loop that holds the goal, picks the next step, calls a tool, observes, decides. This is your runtime.
+- Tool layer. Narrow, typed, idempotent functions. Each one does one thing the company already understands.
+- Retrieval layer. Whatever fetches the right context for the current step. Hybrid search, structured queries, graph lookups, plain SQL.
+- Memory. Short-term scratchpad inside a run. Long-term store across runs. Most teams need less long-term memory than they think.
+- Policy and identity. What the agent is allowed to do, on whose behalf, with what scopes, and which actions trigger a human.
+- Observability. Traces of every step, every tool call, every prompt, every output. Plus evals that run on a schedule and tell you when behaviour changes.
+
+You do not need a vendor for each box. You need one of each box, owned by someone, and connected to the others.
+
+## Agentic AI services: the things your agent actually calls
+
+When people say "agentic AI services", they usually mean one of two things: the managed services a provider sells you (hosted agents, hosted tools, hosted memory), or the internal services you build for your own agents to call.
+
+The internal kind is where the work is. A useful catalogue, in roughly the order most companies need them:
+
+1. Retrieval service. One way to ask, "what do we know about X?"
+2. Identity service. Who is this agent acting as, and what can they do?
+3. Tool gateway. A typed, authenticated, logged way to call internal tools.
+4. Memory service. Conversation state, run state, and long-term notes, with TTLs.
+5. Policy service. Pre-flight checks for risky actions. Post-flight audit for everything.
+6. Eval service. Golden tasks, scheduled runs, regression alerts.
+7. Trace service. Every step, queryable, with the prompts and outputs intact.
+
+You can buy parts of this. You should own the seams. The seams are where your operating reality lives.
+
+## Where to start: one agent, one workflow
+
+The fastest path to an agentic operating system is to refuse to build one for as long as possible. Build one agent doing one workflow end to end. Make it boring. Make it observable. Make it survive a quarter.
+
+Then build the second agent and notice what the first one needed that you did not yet have. That gap is your platform backlog, written by reality instead of by a slide.
+
+For a deeper walk through the diagnostic that picks the right first workflow, see how to diagnose an organisation in 30 days (/intelligence/how-to-diagnose-an-organisation-in-30-days) and identifying efficiency gaps AI can fill (/intelligence/identifying-efficiency-gaps-ai-can-fill).
+
+## Why agentic pilots stall
+
+The same reasons AI pilots stall at production (/intelligence/why-ai-pilots-stall-at-production), plus three agentic-specific failure modes:
+
+- No tool design. The agent has access to a sprawling SDK instead of three sharp tools. It picks the wrong one and the loop melts.
+- No human-in-the-loop. The first time the agent does something irreversible and wrong, the project is paused for a quarter.
+- No observability. You cannot tell whether last week's regression is a model change, a data change, or a tool change. So you change everything, and learn nothing.
+
+Each of these is a pillar problem, not a model problem. Fix the pillar.
+
+> Most agentic failures are tool design, governance, or observability. Almost none are model choice.
+
+## Organisational shape
+
+Agentic systems do not survive on engineering alone. The operating side needs:
+
+- An owner. One person whose job description says "the agentic system works".
+- Champions in the function. People in the workflow who can tell you when the agent is wrong, and care that it gets fixed. See the champion model (/intelligence/the-champion-model).
+- A weekly cadence. Look at traces. Look at evals. Look at the queue. Decide what to change.
+- A clear "never" list. What the agent will never decide on its own. Write it down before you ship.
+
+Without those, the cleanest architecture rots. With them, an average architecture compounds.
+
+## A working definition you can quote
+
+> An agentic operating system is the runtime, the services, the policy, and the cadence that let multiple AI agents do real work across a company, reliably, in production. It is what stops agentic AI from being a series of demos.
+
+That is the working definition. The point is not the words. The point is having one, and building toward it one agent at a time.
+
+KEY TAKEAWAYS:
+- Agentic AI is goal plus steps plus tools. The value lives in the steps, not the model.
+- An agentic operating system is the shared substrate that lets multiple agents work together without collapsing.
+- Build one agent end to end before you build a platform. The first agent writes the platform backlog for you.
+- Tool design, identity, and observability are first-class pillars. Skip any of them and the system rots there first.
+- The fastest agentic teams are the ones that decided early what they would never let an agent decide.
 
 
 ========================================

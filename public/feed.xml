@@ -6,13 +6,20 @@
     <atom:link href="https://www.deepgrain.ai/feed.xml" rel="self" type="application/rss+xml" />
     <description>Long-form essays on operating systems, AI readiness, and the craft of operating leadership.</description>
     <language>en-GB</language>
-    <lastBuildDate>Thu, 18 Jun 2026 22:55:44 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jun 2026 18:57:45 GMT</lastBuildDate>
     <item>
       <title>The quiet discipline of operating leadership</title>
       <link>https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</guid>
       <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
       <description>The best operating leaders are quiet on the outside and rigorous on the inside. The volume is misleading.</description>
+    </item>
+    <item>
+      <title>AI maturity frameworks for G&amp;A leaders</title>
+      <link>https://www.deepgrain.ai/intelligence/ai-maturity-frameworks-for-ga-leaders</link>
+      <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/ai-maturity-frameworks-for-ga-leaders</guid>
+      <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
+      <description>A working comparison of AI maturity models for Finance and People Ops leaders, with a practical index for moving from pilots to systemic integration.</description>
     </item>
     <item>
       <title>Hiring for the grain: building teams that compound</title>
@@ -27,6 +34,13 @@
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business</guid>
       <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
       <description>How to use AI as an operating system, not just a set of tools. A plain guide for business leaders, built on Deepgrain's Read, Craft, Scale method.</description>
+    </item>
+    <item>
+      <title>Building agentic operating systems: a roadmap</title>
+      <link>https://www.deepgrain.ai/intelligence/building-agentic-operating-systems</link>
+      <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/building-agentic-operating-systems</guid>
+      <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
+      <description>A technical and organisational roadmap from one-off LLM prompts to agentic operating systems: agents that do real work, in production.</description>
     </item>
     <item>
       <title>What CTOs get wrong about scale</title>
@@ -342,20 +356,6 @@
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation</guid>
       <pubDate>Mon, 26 Jan 2026 00:00:00 GMT</pubDate>
       <description>Wood has a grain. So does every organisation. Cut with it and the work compounds; cut against it and you spend the rest of the year sanding.</description>
-    </item>
-    <item>
-      <title>Why most change programmes fail</title>
-      <link>https://www.deepgrain.ai/intelligence/why-most-change-programmes-fail</link>
-      <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/why-most-change-programmes-fail</guid>
-      <pubDate>Mon, 19 Jan 2026 00:00:00 GMT</pubDate>
-      <description>70% of change programmes fail. The reason is rarely strategy — it's that the grain was never read before the cut was made.</description>
-    </item>
-    <item>
-      <title>What is organisational consultancy?</title>
-      <link>https://www.deepgrain.ai/intelligence/what-is-organisational-consultancy</link>
-      <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/what-is-organisational-consultancy</guid>
-      <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-      <description>Organisational consultancy is the practice of reading how a company actually operates — and changing it without breaking what works.</description>
     </item>
   </channel>
 </rss>

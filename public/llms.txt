@@ -2,8 +2,8 @@
 
 > Organisational consultancy that reads the grain of how a company actually operates, then changes it without breaking what works. Read, Craft, Scale.
 
-Last updated: 2026-06-18
-Articles: 50
+Last updated: 2026-06-27
+Articles: 52
 Canonical: https://www.deepgrain.ai/llms.txt
 Sitemap: https://www.deepgrain.ai/sitemap.xml
 
@@ -37,6 +37,17 @@ Articles within each category below are listed in foundational reading order (ol
 - [Hiring for the grain: building teams that compound](https://www.deepgrain.ai/intelligence/hiring-for-the-grain): The best hires don't fight the grain or surrender to it. They read it and add to it.
 - [The quiet discipline of operating leadership](https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership): The best operating leaders are quiet on the outside and rigorous on the inside. The volume is misleading.
 
+### Method & Practice
+
+[Browse category](https://www.deepgrain.ai/intelligence/category/method-and-practice)
+
+- [Read · Craft · Scale: the Deepgrain method](https://www.deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method): Three movements, in order. Skip the first and the rest is theatre. Skip the third and the work doesn't compound.
+- [How to diagnose an organisation in 30 days](https://www.deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days): A 30-day diagnostic protocol: who to listen to, what to look for, and the trap of premature recommendations.
+- [The art of the operating intervention](https://www.deepgrain.ai/intelligence/the-art-of-the-operating-intervention): An intervention is the smallest change that produces the largest second-order effect. The craft is in the smallness.
+- [Scaling without breaking the grain](https://www.deepgrain.ai/intelligence/scaling-without-breaking-the-grain): Most companies break themselves at scale. The ones that don't are the ones that scaled with the grain, not against it.
+- [What good looks like: signals of operating health](https://www.deepgrain.ai/intelligence/signals-of-operating-health): Operating health doesn't show up in the dashboard. It shows up in how an org talks about its own mistakes.
+- [AI maturity frameworks for G&A leaders](https://www.deepgrain.ai/intelligence/ai-maturity-frameworks-for-ga-leaders): A working comparison of AI maturity models for Finance and People Ops leaders, with a practical index for moving from pilots to systemic integration.
+
 ### AI & Operating Systems
 
 [Browse category](https://www.deepgrain.ai/intelligence/category/ai-operating-systems)
@@ -48,6 +59,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [The AI operating ladder: five tiers explained](https://www.deepgrain.ai/intelligence/ai-operating-ladder-five-tiers): From ad-hoc usage to autonomous operations: the five tiers of AI operating maturity, what each one looks like in practice, and what it takes to climb each rung.
 - [How to identify the efficiency gaps AI can fill](https://www.deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill): Most teams pick AI projects by what is loudest, not by where the real efficiency gaps sit. Here is how to find the gaps that are actually AI-shaped, and what to do once you have one.
 - [AI operating system for business](https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business): How to use AI as an operating system, not just a set of tools. A plain guide for business leaders, built on Deepgrain's Read, Craft, Scale method.
+- [Building agentic operating systems: a roadmap](https://www.deepgrain.ai/intelligence/building-agentic-operating-systems): A technical and organisational roadmap from one-off LLM prompts to agentic operating systems: agents that do real work, in production.
 
 ### Sector Lenses
 
@@ -58,16 +70,6 @@ Articles within each category below are listed in foundational reading order (ol
 - [Operating consultancy for transit and mobility](https://www.deepgrain.ai/intelligence/operating-consultancy-for-transit-and-mobility): Transit organisations operate on the seam between hardware, software, and public trust. The grain runs in three directions at once.
 - [Operating consultancy for climate ventures](https://www.deepgrain.ai/intelligence/operating-consultancy-for-climate-ventures): Climate ventures need to compound on a planetary timeline and a venture-fund clock at the same time.
 - [Operating consultancy for AI-native companies](https://www.deepgrain.ai/intelligence/operating-consultancy-for-ai-native-companies): AI-native companies have a different grain. The operating system has to assume agents, not just employees.
-
-### Method & Practice
-
-[Browse category](https://www.deepgrain.ai/intelligence/category/method-and-practice)
-
-- [Read · Craft · Scale: the Deepgrain method](https://www.deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method): Three movements, in order. Skip the first and the rest is theatre. Skip the third and the work doesn't compound.
-- [How to diagnose an organisation in 30 days](https://www.deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days): A 30-day diagnostic protocol: who to listen to, what to look for, and the trap of premature recommendations.
-- [The art of the operating intervention](https://www.deepgrain.ai/intelligence/the-art-of-the-operating-intervention): An intervention is the smallest change that produces the largest second-order effect. The craft is in the smallness.
-- [Scaling without breaking the grain](https://www.deepgrain.ai/intelligence/scaling-without-breaking-the-grain): Most companies break themselves at scale. The ones that don't are the ones that scaled with the grain, not against it.
-- [What good looks like: signals of operating health](https://www.deepgrain.ai/intelligence/signals-of-operating-health): Operating health doesn't show up in the dashboard. It shows up in how an org talks about its own mistakes.
 
 ### Foundations
 
