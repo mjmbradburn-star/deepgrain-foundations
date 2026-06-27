@@ -1,0 +1,179 @@
+export const frontmatter = {
+  title: "AI maturity frameworks for G&A leaders",
+  slug: "ai-maturity-frameworks-for-ga-leaders",
+  category: "method-and-practice",
+  description: "A working comparison of AI maturity models for Finance and People Ops leaders, with a practical index for moving from pilots to systemic integration.",
+  keywords: [
+    "ai maturity index",
+    "ai readiness framework",
+    "organizational ai maturity",
+    "ai maturity model",
+    "ai maturity for finance",
+    "ai maturity for people ops",
+    "g&a ai maturity",
+    "ai maturity assessment",
+  ],
+  readTime: "11 min",
+  publishedAt: "2026-06-27",
+  author: "Matthew Bradburn",
+  featured: false,
+};
+
+export const faqs = [
+  {
+    question: "What is an AI maturity index?",
+    answer:
+      "An AI maturity index is a structured score that captures how far a function has moved from one-off AI experiments to systemic, governed integration. For G&A leaders it tracks five things in parallel: data readiness, tool adoption, workflow rewiring, governance, and operating cadence. A good index is comparable across quarters, not just a snapshot.",
+  },
+  {
+    question: "Which AI maturity framework is best for Finance and People Ops?",
+    answer:
+      "There is no single best framework. The Gartner AI Maturity model, the MIT Sloan stages, and the Deepgrain AI Operating Ladder all map roughly onto the same five-tier shape: experimenting, piloting, scaling, integrating, and operating. For G&A teams the most useful framework is the one that names the gap between pilot and integration, because that is where 80% of Finance and People Ops work stalls.",
+  },
+  {
+    question: "How is AI maturity different from AI readiness?",
+    answer:
+      "Readiness is a precondition. Maturity is an outcome. Readiness asks 'do we have the data, skills, and tools to start?'. Maturity asks 'how much of the real work has actually moved?'. A team can be highly ready and barely mature. The bridge between the two is operating cadence: weekly reviews, owned workflows, and a clear next bet.",
+  },
+  {
+    question: "How do you measure organisational AI maturity?",
+    answer:
+      "Measure four things, every quarter: percentage of named workflows with an AI step in production, percentage of staff using AI in a measured way, time saved per workflow against a baseline, and number of governance reviews completed. Aggregate into a single 0 to 100 index. The absolute number matters less than the trajectory.",
+  },
+  {
+    question: "What is the fastest way to raise an AI maturity score?",
+    answer:
+      "Stop counting pilots. Pick three workflows in Finance or People Ops, rewire them end to end, give each one an owner, and put them on a weekly review cadence. Maturity rises when the same workflow is still working, supported, and improving three months later. Not when a new pilot launches.",
+  },
+  {
+    question: "Why do G&A teams stall between pilot and integration?",
+    answer:
+      "Pilots are funded as projects and integration is funded as overhead. The economics quietly punish the work that actually moves maturity. The fix is to fund three months of operate-and-improve at the same time as the pilot, with the same owner. Without that, every pilot becomes a one-off.",
+  },
+];
+
+<TLDR>
+- AI maturity is not the same as AI readiness. Readiness is a starting line. Maturity is distance travelled.
+- Most published AI maturity frameworks (Gartner, MIT, BCG, Deepgrain) collapse to the same five tiers: experimenting, piloting, scaling, integrating, operating.
+- For G&A leaders, the only tier that matters is the jump from piloting to integrating. That is where 80% of Finance and People Ops AI work stalls.
+- An AI maturity index is most useful when it tracks the same five workflows quarter over quarter, not when it scores a one-off snapshot.
+- The cheapest way to raise the score is not another pilot. It is owning, reviewing, and improving three existing workflows on a weekly cadence.
+</TLDR>
+
+## What an AI maturity framework is actually for
+
+An AI maturity framework is a shared scoreboard. Not a strategy, not a roadmap, not a transformation plan. A scoreboard.
+
+Its job is to tell a G&A leader two things they otherwise have to guess at: where the function is today, and whether it has moved since last quarter. Everything else, the colourful diagrams, the radar charts, the named tiers, is presentation.
+
+For Finance and People Ops, this matters more than it does in product or engineering. G&A teams rarely ship visible artefacts. Without a maturity index, the only signal of progress is anecdote, and anecdote favours whoever talks loudest in the leadership meeting.
+
+## The five-tier shape everyone agrees on
+
+The published AI maturity frameworks differ in branding and stop short at different places, but they collapse to the same five tiers. The names below are the ones we use; the substance is shared.
+
+| Tier | What it looks like | Typical G&A signal |
+|---|---|---|
+| 1. Experimenting | Individuals using ChatGPT and Copilot ad hoc | Slack channel full of prompts, no shared library |
+| 2. Piloting | Funded projects, one workflow at a time | A named "AI in Finance" pilot, owned by one person |
+| 3. Scaling | The same workflow used by a whole team | Every recruiter uses the same JD assistant |
+| 4. Integrating | AI step is part of the official workflow, with governance | Month-end close has an AI review step in the SOP |
+| 5. Operating | Workflows are measured, owned, and improved on a cadence | Weekly review of three AI-assisted workflows, with metrics |
+
+The crucial observation: tiers 1 and 2 produce the most internal noise. Tiers 4 and 5 produce the most operating value. The gap between them is where every published framework quietly hides the work.
+
+For the deeper version of this argument see the [AI operating ladder](/intelligence/ai-operating-ladder-five-tiers), which is the Deepgrain take on the same shape.
+
+## Comparing the frameworks G&A leaders actually meet
+
+A G&A leader will be handed one of these in the next twelve months. Knowing what each is good for saves a quarter of arguing.
+
+**Gartner AI Maturity.** Five tiers, useful as a board-level vocabulary. Weakest on the integration tier; treats "scaling" as the finish line. Best when the audience is a CFO or CHRO who wants a familiar diagram.
+
+**MIT Sloan stages.** Stronger on the organisational side, especially the role of leadership and data literacy. Less prescriptive about the operating cadence that holds maturity in place. Best for a culture-and-capability narrative.
+
+**BCG BlueDot / Build-Operate-Transfer variants.** Strong on the funding model and the hand-off from consultancy to in-house team. Weakest on what to actually do on a Tuesday morning. Best when the spend is large and the question is governance.
+
+**Deepgrain AI Operating Ladder.** Built specifically for the integration tier. Names the bridge from pilot to operating as the work, not the gap. Best when the leader has already done the readiness exercise and now needs to move the line.
+
+**Internal home-grown frameworks.** Often the most accurate for a specific company because they encode local constraints. Almost always missing the operating cadence section, because the people who design them are not the people who run the weekly review.
+
+A working rule: use Gartner or MIT to talk to the board, use the Operating Ladder or an internal framework to run the work, and never mix the two in the same document.
+
+<Takeaway>Frameworks for the board are about legitimacy. Frameworks for the team are about the next move. Use both, separately.</Takeaway>
+
+## An AI maturity index that survives a year
+
+A maturity index is only useful if the same number means the same thing in Q1 and Q4. That rules out most of the radar-chart versions, which quietly redefine their axes every time leadership changes.
+
+The shape we use with G&A teams:
+
+- **Workflow coverage (0 to 30).** Percentage of named G&A workflows with at least one AI step running in production for ninety days.
+- **Adoption depth (0 to 20).** Percentage of staff with measured weekly use of AI in their core workflow. Self-report does not count.
+- **Time-back (0 to 20).** Aggregate time saved per quarter against a documented baseline, normalised against headcount.
+- **Governance (0 to 15).** Percentage of in-production AI steps with a current risk review and a named owner.
+- **Operating cadence (0 to 15).** Whether a weekly review of the AI-assisted workflow stack actually happens and produces a change log.
+
+Total: 0 to 100. The five categories are designed so that a team cannot fake one by neglecting another. Coverage without governance plateaus at 30. Adoption without cadence plateaus at 50. The score forces the conversation back to the integration tier.
+
+For the underlying capability map this scores against, see the [five pillars of AI readiness](/intelligence/five-pillars-of-ai-readiness).
+
+## Where Finance teams stall
+
+Finance teams are usually strong on governance and weak on cadence. The risk function pushes the team to formalise early, which is healthy, but the operating side never gets the same airtime. The result is a team scoring 40 to 55 for two years.
+
+The fix is structural, not motivational. Put the AI-assisted workflow stack on the same weekly agenda as the financial controls review. Give it the same dignity. Within a quarter the cadence score moves, and within two the time-back follows.
+
+The other Finance failure mode is treating month-end close as the only viable target. It is the most visible workflow, so it gets all the pilot energy, and it is the hardest to safely integrate, so it absorbs all the governance overhead. Pick a less glamorous workflow first. Procurement triage, accruals support, vendor onboarding. Maturity rises faster on a quiet workflow that actually moves.
+
+## Where People Ops teams stall
+
+People Ops teams are usually strong on adoption and weak on workflow coverage. Everyone is using AI for something, but no single workflow has been rewired end to end. The score plateaus at 45 to 60.
+
+The fix is to name three workflows and refuse to count anything else this quarter. Candidate sourcing, performance review summarisation, and policy Q&A are the usual three because they have clean inputs, clean outputs, and clear owners. The discipline is not picking the right three. The discipline is not letting a fourth in.
+
+For the operating model that supports this, see [designing the AI-native People team](/intelligence/people-ops/designing-the-ai-native-people-team).
+
+## Moving from pilot to systemic integration
+
+Every framework agrees that the pilot-to-integration jump is the hard one. None of them are very specific about how. The integration tier needs four things that pilots usually lack:
+
+1. **An owner with a job, not a project.** Pilots have project managers. Integrated workflows have a permanent owner whose performance review includes the workflow's metrics.
+2. **A change log.** Every change to the AI step, the prompt, the tool, the model, the data, is logged with the date and the reason. Without it, you cannot tell whether last week's regression is a model change or a data change.
+3. **A weekly fifteen-minute review.** Three workflows, one slide each, three numbers each, one decision. Anything longer collapses under its own weight within a quarter.
+4. **A protected funding line.** Operating-and-improving is funded the same way the workflow itself is funded. Not as discretionary overhead.
+
+A team with those four things will move from tier 3 to tier 4 within two quarters, regardless of which published framework they cite. A team without them will stay at tier 3 forever, regardless of how much pilot funding arrives.
+
+<Takeaway>Maturity is held in place by cadence and ownership, not by tooling. The score moves when the calendar moves.</Takeaway>
+
+## The honest limits of any maturity index
+
+Three things every G&A leader should know before they commission a maturity assessment.
+
+First, the index is a lagging indicator. By the time the score moves, the work has been happening for a quarter. Use it to confirm direction, not to choose direction.
+
+Second, the index rewards the workflows you can name. If a category of work is invisible to the framework, it will be invisible to the score, and over time invisible to the strategy. Audit the named-workflow list every six months.
+
+Third, the index does not score quality of judgement. A team can have an AI step in every workflow and still make worse decisions than the team next to it. Maturity is necessary, not sufficient. Pair it with a quality bar for the underlying judgement.
+
+## What to do with this on Monday
+
+If you are a G&A leader and you want a maturity exercise to be more than a slide:
+
+- Pick one published framework as your external vocabulary. Gartner if your board is conservative, MIT if it is academic.
+- Pick the five-category index above as your internal scoring. Run it once, baseline honestly, do not publish the score outside the team for two quarters.
+- Name three workflows you will move from tier 3 to tier 4 this quarter. Put them on a weekly fifteen-minute review.
+- In ninety days, score again. The number will tell you whether the cadence is real or theatrical.
+
+That is the entire programme. Anyone offering more in the first quarter is selling you transformation theatre.
+
+For a 30-day version of the same diagnostic exercise, see [how to diagnose an organisation in 30 days](/intelligence/how-to-diagnose-an-organisation-in-30-days). For the broader operating-system context this maturity work sits inside, start at [what is an AI operating system for business](/intelligence/what-is-an-ai-operating-system-for-business).
+
+<KeyTakeaways>
+- AI maturity frameworks all collapse to the same five tiers. Pick the one whose vocabulary fits your audience.
+- The only tier that matters for G&A is the jump from piloting to integrating. Score yourself honestly there.
+- A useful AI maturity index has five categories with hard caps so you cannot fake one by neglecting another.
+- Finance stalls on cadence. People Ops stalls on coverage. Both fixes are structural, not motivational.
+- Maturity is held in place by ownership, change logs, weekly reviews, and protected funding. Tooling is the easy part.
+</KeyTakeaways>
