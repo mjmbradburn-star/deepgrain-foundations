@@ -171,25 +171,19 @@ const Brain = () => (
 
           {/* Desktop meta rail */}
           <aside className="hidden lg:flex flex-col gap-8 pt-4 pr-2 text-cream/70 min-w-[170px]">
-            {[
-              ["\n", "\n"],
-              ["Updated", "Monthly"],
-              ["\n", "\n"],
-              ["\n", "\n"],
-            ].map(([label, value], i) => (
-              <div key={i}>
-                <p
-                  className="font-sans uppercase text-[10px] text-cream/50"
-                  style={{ letterSpacing: "0.2em" }}
-                >
-                  {label}
-                </p>
-                <p className="font-display text-cream text-2xl mt-1">
-                  {value}
-                </p>
-              </div>
-            ))}
+            <div>
+              <p
+                className="font-sans uppercase text-[10px] text-cream/50"
+                style={{ letterSpacing: "0.2em" }}
+              >
+                Updated
+              </p>
+              <p className="font-display text-cream text-2xl mt-1">
+                Monthly
+              </p>
+            </div>
           </aside>
+
         </div>
       </div>
     </section>
