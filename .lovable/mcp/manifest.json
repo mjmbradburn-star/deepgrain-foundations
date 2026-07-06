@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.0",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "deepgrain-mcp",
+      "version": "0.1.0",
+      "title": "Deepgrain Intelligence"
+    },
+    "tools": [
+      {
+        "name": "search_intelligence",
+        "title": "Search Deepgrain Intelligence",
+        "description": "Search the Deepgrain Intelligence library (essays, guides, glossary, answers) for a keyword or phrase. Returns matching article slugs with a short snippet around the first hit.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 2,
+              "description": "Keyword or short phrase to search for."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20,
+              "description": "Maximum number of matching articles to return. Default 8."
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "fetch_article",
+        "title": "Fetch a Deepgrain article",
+        "description": "Fetch a Deepgrain page by URL or an Intelligence article by slug. Returns the raw HTML so the caller can parse or cite it.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "urlOrSlug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A full https://deepgrain.ai URL, or an Intelligence article slug like 'ai-operating-ladder-five-tiers'."
+            }
+          },
+          "required": [
+            "urlOrSlug"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_pillars",
+        "title": "List Deepgrain pillar essays",
+        "description": "List the canonical Deepgrain pillar essays. Use this as the entry point when a caller wants an overview of the Deepgrain point of view before drilling into specific articles.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
