@@ -7,6 +7,7 @@ import { componentTagger } from "lovable-tagger";
 import { deepgrainSeoPlugin } from "./vite-plugins/deepgrain-seo";
 import { intelligenceManifestPlugin } from "./vite-plugins/intelligence-manifest";
 import { deepgrainPrerenderPlugin } from "./vite-plugins/prerender";
+import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/supabase/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -30,6 +31,7 @@ export default defineConfig(({ mode }) => ({
     deepgrainSeoPlugin(),
     intelligenceManifestPlugin(),
     deepgrainPrerenderPlugin(),
+    mcpPlugin(),
     mode === "development" && componentTagger(),
   ].filter(Boolean),
   resolve: {
