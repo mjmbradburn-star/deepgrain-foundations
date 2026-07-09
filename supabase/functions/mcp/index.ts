@@ -3,7 +3,7 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { defineMcp } from "npm:@lovable.dev/mcp-js@0.20.0";
+import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@0.20.0";
 
 // src/lib/mcp/tools/search-intelligence.ts
 import { defineTool } from "npm:@lovable.dev/mcp-js@0.20.0";
@@ -150,11 +150,16 @@ var list_pillars_default = defineTool3({
 });
 
 // src/lib/mcp/index.ts
+var projectRef = "todgunffzlopbenewfnp";
 var mcp_default = defineMcp({
   name: "deepgrain-mcp",
   title: "Deepgrain Intelligence",
   version: "0.1.0",
-  instructions: "Tools for searching and reading the Deepgrain Intelligence library at deepgrain.ai. Use `list_pillars` for orientation, `search_intelligence` to find articles by keyword, and `fetch_article` to read a specific page.",
+  instructions: "Tools for searching and reading the Deepgrain Intelligence library at deepgrain.ai. Sign in with your Deepgrain account to connect. Use `list_pillars` for orientation, `search_intelligence` to find articles by keyword, and `fetch_article` to read a specific page.",
+  auth: auth.oauth.issuer({
+    issuer: `https://${projectRef}.supabase.co/auth/v1`,
+    acceptedAudiences: "authenticated"
+  }),
   tools: [search_intelligence_default, fetch_article_default, list_pillars_default]
 });
 
