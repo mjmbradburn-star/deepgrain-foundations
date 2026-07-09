@@ -1,5 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  BarChart3,
+  Compass,
+  GraduationCap,
+  Handshake,
+  Megaphone,
+  Scale,
+  Search,
+  Settings,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { BarkGrain } from "@/components/ui/BarkGrain";
 import { GrainFlow } from "@/components/ui/GrainFlow";
@@ -24,6 +36,62 @@ const EXPOSURE_LD = {
   creator: { "@id": "https://deepgrain.ai/#organization" },
   license: "https://deepgrain.ai/terms",
 };
+
+const ROLE_ICONS: LucideIcon[] = [
+  Handshake, // HR Business Partner
+  Search, // Talent Acquisition
+  GraduationCap, // Learning & Development
+  Settings, // People Operations
+  Scale, // Reward, Comp & Benefits
+  Users, // Employee Relations
+  BarChart3, // People Analytics
+  Megaphone, // Internal Comms
+  Compass, // People Leadership
+];
+
+/** The surveyor's grid behind the role chart: mixed cream and brass hairlines
+ *  at slightly irregular spacing, per the Montagu map slide. Decorative. */
+const ChartGrid = () => (
+  <svg
+    aria-hidden
+    className="absolute inset-0 w-full h-full pointer-events-none"
+    viewBox="0 0 1600 900"
+    preserveAspectRatio="xMidYMid slice"
+  >
+    <g strokeWidth="1">
+      {Array.from({ length: 19 }, (_, i) => {
+        const x = 40 + i * 84 + (i % 3) * 9;
+        const brass = i % 4 === 2;
+        return (
+          <line
+            key={`v${i}`}
+            x1={x}
+            y1="0"
+            x2={x}
+            y2="900"
+            stroke={brass ? "hsl(var(--brass))" : "hsl(var(--cream))"}
+            opacity={brass ? 0.22 : 0.09}
+          />
+        );
+      })}
+      {Array.from({ length: 12 }, (_, i) => {
+        const y = 30 + i * 78 + (i % 2) * 7;
+        const brass = i % 4 === 1;
+        return (
+          <line
+            key={`h${i}`}
+            x1="0"
+            y1={y}
+            x2="1600"
+            y2={y}
+            stroke={brass ? "hsl(var(--brass))" : "hsl(var(--cream))"}
+            opacity={brass ? 0.22 : 0.09}
+          />
+        );
+      })}
+    </g>
+  </svg>
+);
 
 const INSIGHTS = [
   {
@@ -100,48 +168,74 @@ const ExposureMap = () => {
       <section className="bg-linen text-walnut" data-no-rule>
         <div className="container-grain pt-10 pb-24 md:pb-36">
           <ScrollReveal>
-            <div className="grid gap-3 grid-cols-2 md:grid-cols-3 xl:grid-cols-9">
-              {EXPOSURE_ROLES.map((r, i) => {
-                const avg = roleAverage(r);
-                const active = i === selected;
-                return (
-                  <button
-                    key={r.role}
-                    type="button"
-                    onClick={() => selectRole(i)}
-                    aria-pressed={active}
-                    className={`rounded-2xl px-5 py-6 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
-                      active
-                        ? "bg-green text-cream ring-1 ring-brass/30 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.55)]"
-                        : "bg-linen ring-1 ring-walnut/15 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.35)]"
-                    }`}
-                    style={{ transitionTimingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)" }}
-                  >
-                    <span
-                      className={`font-display font-semibold text-3xl block leading-none ${
-                        active ? "text-brass" : "text-walnut"
-                      }`}
-                      style={{ fontVariantNumeric: "tabular-nums" }}
-                    >
-                      {avg.toFixed(1)}
-                    </span>
-                    <span
-                      className={`font-sans font-semibold uppercase block mt-3.5 leading-snug ${
-                        active ? "text-cream" : "text-walnut/75"
-                      }`}
-                      style={{ fontSize: "11px", letterSpacing: "0.14em" }}
-                    >
-                      {r.role}
-                    </span>
-                    <span
-                      className={`font-sans block mt-1.5 ${active ? "text-cream/50" : "text-walnut/45"}`}
-                      style={{ fontSize: "10px", letterSpacing: "0.1em" }}
-                    >
-                      ~{Math.round((r.hours / TOTAL_HOURS) * 100)}% OF HOURS
-                    </span>
-                  </button>
-                );
-              })}
+            <div className="relative bg-green rounded-[48px] md:rounded-[80px] overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20">
+              <ChartGrid />
+              <TopoBackdrop variant="basin" opacity={0.16} />
+              <div className="relative p-8 md:p-14 lg:p-16">
+                <div
+                  className="flex items-baseline justify-between font-sans font-semibold uppercase text-cream/50 mb-8 md:mb-10"
+                  style={{ fontSize: "11px", letterSpacing: "0.22em" }}
+                >
+                  <span>The chart · nine roles</span>
+                  <span className="hidden md:inline">Exposure 0-10 · Weighted by hours</span>
+                </div>
+                <div className="grid gap-3.5 md:gap-4 grid-cols-2 md:grid-cols-3">
+                  {EXPOSURE_ROLES.map((r, i) => {
+                    const avg = roleAverage(r);
+                    const active = i === selected;
+                    const Icon = ROLE_ICONS[i];
+                    return (
+                      <button
+                        key={r.role}
+                        type="button"
+                        onClick={() => selectRole(i)}
+                        aria-pressed={active}
+                        className={`group rounded-2xl px-5 py-5 md:px-6 md:py-6 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                          active
+                            ? "bg-cream ring-1 ring-brass/60 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]"
+                            : "bg-linen/90 ring-1 ring-walnut/10 hover:-translate-y-1 hover:bg-cream hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]"
+                        }`}
+                        style={{ transitionTimingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)" }}
+                      >
+                        <span className="flex items-start justify-between gap-3">
+                          <span
+                            className={`inline-flex items-center justify-center w-11 h-11 rounded-full border transition-colors duration-300 ${
+                              active
+                                ? "border-brass/70 text-brass bg-brass/10"
+                                : "border-walnut/20 text-walnut/60 group-hover:border-brass/50 group-hover:text-brass"
+                            }`}
+                          >
+                            <Icon size={19} strokeWidth={1.8} aria-hidden />
+                          </span>
+                          <span
+                            className={`font-display font-semibold text-3xl leading-none ${
+                              active ? "text-brass" : "text-walnut/85"
+                            }`}
+                            style={{ fontVariantNumeric: "tabular-nums" }}
+                          >
+                            {avg.toFixed(1)}
+                          </span>
+                        </span>
+                        <span
+                          className="font-sans font-semibold uppercase block mt-5 leading-snug text-walnut/60"
+                          style={{ fontSize: "10px", letterSpacing: "0.18em" }}
+                        >
+                          ~{Math.round((r.hours / TOTAL_HOURS) * 100)}% of hours
+                        </span>
+                        <span className="font-display text-walnut text-xl md:text-[22px] block mt-1 leading-tight">
+                          {r.role}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <p
+                  className="font-display italic text-brass/90 text-center mt-10 md:mt-12"
+                  style={{ fontSize: "clamp(19px, 2.2vw, 26px)" }}
+                >
+                  The map asks the question. The task layer answers it.
+                </p>
+              </div>
             </div>
           </ScrollReveal>
 

@@ -514,6 +514,15 @@ const Readiness = () => {
                       </div>
                     ))}
                   </div>
+                  <div className="mt-10 border-l-2 border-brass/60 bg-cream/[0.05] px-7 py-5 max-w-4xl">
+                    <p className="text-cream/80 text-[17px] leading-relaxed">
+                      The first move is {GAPS[result.weakestLayers[0]].fix.replace("Fix: ", "")}
+                      .{" "}
+                      <span className="text-brass font-medium">
+                        That is a two-week teardown, not a transformation programme.
+                      </span>
+                    </p>
+                  </div>
                 </div>
               </ScrollReveal>
 
