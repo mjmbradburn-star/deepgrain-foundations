@@ -43,6 +43,8 @@ const Terms = lazy(() => import("./pages/Terms"));
 const SeoChecklist = lazy(() => import("./pages/SeoChecklist"));
 const Brain = lazy(() => import("./pages/Brain"));
 const BrainResend = lazy(() => import("./pages/BrainResend"));
+const Login = lazy(() => import("./pages/Login"));
+const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
 
 const queryClient = new QueryClient();
 
@@ -89,6 +91,8 @@ const App = () => (
               <Route path="/seo-checklist" element={<SeoChecklist />} />
               <Route path="/brain" element={<Brain />} />
               <Route path="/brain/resend" element={<BrainResend />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
