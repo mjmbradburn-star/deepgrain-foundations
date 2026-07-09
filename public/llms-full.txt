@@ -1,5 +1,5 @@
 # Deepgrain, full Intelligence corpus
-Last updated: 2026-06-27
+Last updated: 2026-07-09
 Articles: 52
 Canonical: https://www.deepgrain.ai/llms-full.txt
 Sitemap: https://www.deepgrain.ai/sitemap.xml
@@ -2819,7 +2819,7 @@ A simple frame, borrowed from capability maturity work in adjacent fields:
 - Adaptive. Embeds AI into core workflows with human-in-the-loop checkpoints.
 - Transformative. AI changes the operating model, not just the tasks.
 
-You do not need every function at "transformative." You need to know where each one is, and to set the right next step for each, this quarter.
+You do not need every function at "transformative." You need to know where each one is, and to set the right next step for each, this quarter. For the cross-function vocabulary that connects this maturity ladder to the named industry models (Gartner, MIT, BCG), see AI maturity frameworks for G&A leaders (/intelligence/ai-maturity-frameworks-for-ga-leaders).
 
 ## The trap of skipping
 
@@ -3518,6 +3518,8 @@ Pick one function. Score it honestly:
 
 Whatever you score, the next move is the next rung, not three rungs up. Most operating debt in AI programmes is from teams trying to skip.
 
+For the broader landscape of named maturity models (Gartner, MIT, BCG) and how the ladder maps onto them, see AI maturity frameworks for G&A leaders (/intelligence/ai-maturity-frameworks-for-ga-leaders).
+
 For a structured version that works across all eight pillars (the five readiness pillars plus leadership, talent, and intervention readiness), see the AI Operating Index (https://aioi.deepgrain.ai). It scores you, names the rung, and gives you a ranked plan back.
 
 KEY TAKEAWAYS:
@@ -3592,7 +3594,7 @@ Build the smallest possible version of each pillar:
 - Governance: a written list of what is allowed, what is logged, what gets a human in the loop. Reviewed on a cadence.
 - Cadence: a recurring forum where agents are reviewed, drift is caught, and policy is updated.
 
-What you are not building: a moonshot platform that takes 18 months to ship. Infrastructure here means the smallest reusable substrate that makes the next workflow take a week instead of a quarter. The five pillars of AI readiness (/intelligence/five-pillars-of-ai-readiness) is the diagnostic that tells you which pillar to build first.
+What you are not building: a moonshot platform that takes 18 months to ship. Infrastructure here means the smallest reusable substrate that makes the next workflow take a week instead of a quarter. The five pillars of AI readiness (/intelligence/five-pillars-of-ai-readiness) is the diagnostic that tells you which pillar to build first, and the AI maturity frameworks for G&A leaders (/intelligence/ai-maturity-frameworks-for-ga-leaders) guide is how you translate that pillar work into a maturity score Finance and People Ops leaders can defend at the board.
 
 ## What to stop doing
 
@@ -3811,7 +3813,7 @@ Cadence is the cheapest pillar to build and the most expensive to skip.
 
 Read them as a checklist, not a curriculum. Pick one workflow you actually need to run. For that workflow alone, score yourself out of three on each pillar. The pillar with the lowest score is the one stopping the workflow from going to production. Build the smallest possible thing that gets that pillar to a two, then run the workflow.
 
-Repeat with the second workflow, and the third. Within a quarter, you will have a usable AI operating system (/intelligence/what-is-an-ai-operating-system) and the readiness scoring will move on its own.
+Repeat with the second workflow, and the third. Within a quarter, you will have a usable AI operating system (/intelligence/what-is-an-ai-operating-system) and the readiness scoring will move on its own. If you also need to translate that progress into a board-ready maturity number, the AI maturity frameworks for G&A leaders (/intelligence/ai-maturity-frameworks-for-ga-leaders) guide compares the major models (Gartner, MIT, BCG) and proposes a five-category maturity index aligned to the pillars above.
 
 If you want a structured version of the same exercise, the AI Operating Index (https://aioi.deepgrain.ai) runs the diagnostic across all eight axes (the five pillars plus leadership, talent, and intervention readiness) and gives you a ranked plan back.
 

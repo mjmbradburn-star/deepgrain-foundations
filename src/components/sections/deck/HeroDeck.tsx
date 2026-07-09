@@ -44,6 +44,13 @@ export const HeroDeck = () => {
       cta_label: "Book a free 30-minute audit",
       link_url: auditHref,
     });
+  const onReadiness = () =>
+    track("cta_click", {
+      cta_id: "readiness_home_hero",
+      cta_location: "hero",
+      cta_label: "Score your People function",
+      link_url: "/readiness",
+    });
   return (
     <section
       className="relative bg-bark text-cream overflow-hidden min-h-[560px] md:min-h-[620px] lg:h-[calc(100svh-4rem)] lg:min-h-[600px] lg:max-h-[820px] flex items-center"
@@ -87,18 +94,19 @@ export const HeroDeck = () => {
 
         <div className="fade-in-up fade-in-up-3 mt-6 lg:mt-5 flex flex-wrap items-center gap-4">
           <Link
-            to={auditHref}
-            onClick={onAudit}
+            to="/readiness"
+            onClick={onReadiness}
             className="group inline-flex items-center gap-2 rounded-full bg-cream text-green px-7 py-3.5 font-sans text-sm tracking-wider hover:bg-cream/90 transition-all"
           >
-            Book a free 30-minute audit
+            Score your People function in 8 minutes
             <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </Link>
           <Link
-            to="/method"
+            to={auditHref}
+            onClick={onAudit}
             className="inline-flex items-center gap-2 rounded-full border border-cream/40 text-cream px-7 py-3.5 font-sans text-sm tracking-wider hover:bg-cream/10 transition-all"
           >
-            See the method →
+            Book a free 30-minute audit →
           </Link>
         </div>
 

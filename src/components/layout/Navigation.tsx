@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
+  { to: "/readiness", label: "Readiness" },
   { to: "/method", label: "Method" },
   { to: "/work", label: "Work" },
   { to: "/enablement", label: "Enablement" },

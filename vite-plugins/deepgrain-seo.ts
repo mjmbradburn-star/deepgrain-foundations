@@ -30,6 +30,8 @@ const STATIC_PAGES = [
   { url: "/intelligence/pillars", priority: "0.8", changefreq: "monthly" },
   { url: "/intelligence/glossary", priority: "0.6", changefreq: "monthly" },
   { url: "/brain", priority: "0.9", changefreq: "monthly" },
+  { url: "/readiness", priority: "0.9", changefreq: "monthly" },
+  { url: "/exposure-map", priority: "0.8", changefreq: "monthly" },
   { url: "/privacy", priority: "0.3", changefreq: "yearly" },
   { url: "/cookies", priority: "0.3", changefreq: "yearly" },
   { url: "/terms", priority: "0.3", changefreq: "yearly" },

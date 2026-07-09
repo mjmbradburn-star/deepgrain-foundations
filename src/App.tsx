@@ -45,6 +45,8 @@ const Brain = lazy(() => import("./pages/Brain"));
 const BrainResend = lazy(() => import("./pages/BrainResend"));
 const Login = lazy(() => import("./pages/Login"));
 const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
+const Readiness = lazy(() => import("./pages/Readiness"));
+const ExposureMap = lazy(() => import("./pages/ExposureMap"));
 
 const queryClient = new QueryClient();
 
@@ -93,6 +95,8 @@ const App = () => (
               <Route path="/brain/resend" element={<BrainResend />} />
               <Route path="/login" element={<Login />} />
               <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
+              <Route path="/readiness" element={<Readiness />} />
+              <Route path="/exposure-map" element={<ExposureMap />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
