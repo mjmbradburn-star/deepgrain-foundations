@@ -1,7 +1,13 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { BarkGrain } from "@/components/ui/BarkGrain";
+import { GrainFlow } from "@/components/ui/GrainFlow";
+import { GrowthRings } from "@/components/ui/GrowthRings";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { track, trackFormSubmit } from "@/lib/analytics";
@@ -31,8 +37,35 @@ const READINESS_LD = {
     "Sixteen questions scoring a People function across four capability layers. One honest number, the gaps, and what fixes each.",
 };
 
-/** Lead form shown alongside the result. Posts to the enquiries table so the
- *  score context arrives with the lead instead of a bare email address. */
+/** Count-up for the headline numeral: 0 → value over 1600ms, once, honouring
+ *  prefers-reduced-motion. */
+const useCountUp = (value: number, duration = 1600) => {
+  const [display, setDisplay] = useState(0);
+  const done = useRef(false);
+  useEffect(() => {
+    if (done.current) return;
+    done.current = true;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplay(value);
+      return;
+    }
+    const startAt = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min((now - startAt) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setDisplay(Math.round(eased * value));
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [value, duration]);
+  return display;
+};
+
+const underlineInput =
+  "w-full bg-transparent border-0 border-b border-cream/25 rounded-none px-0 py-3.5 text-cream text-[17px] placeholder:text-cream/40 focus:outline-none focus:ring-0 focus:border-brass transition-colors duration-300";
+
+/** The lead capture, set in the site's curved bronze panel. Posts to
+ *  enquiries so the score context arrives with the lead. */
 const ResultLeadForm = ({ result }: { result: AssessmentResult }) => {
   const [form, setForm] = useState({ name: "", email: "", organisation: "" });
   const [submitting, setSubmitting] = useState(false);
@@ -77,68 +110,148 @@ const ResultLeadForm = ({ result }: { result: AssessmentResult }) => {
     setDone(true);
   };
 
-  if (done) {
-    return (
-      <div className="rounded-lg border border-brass/40 bg-green/40 p-6 md:p-8">
-        <p className="font-display italic text-cream text-2xl">Done. It is on its way.</p>
-        <p className="text-cream/70 mt-2 text-sm leading-relaxed">
-          Matt reads every one of these personally. If your gaps raise a question worth a
-          conversation, you will hear from him, a human, not a sequence.
+  return (
+    <div className="relative bg-walnut/92 backdrop-blur-sm rounded-[48px] md:rounded-[80px] p-10 md:p-16 lg:p-20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20 overflow-hidden">
+      <GrainFlow className="absolute inset-x-0 -top-6 h-40" opacity={0.1} />
+      {done ? (
+        <div className="relative max-w-2xl">
+          <p className="font-display italic text-cream text-3xl md:text-4xl">
+            Done. It is on its way.
+          </p>
+          <p className="text-cream/75 mt-5 text-[17px] leading-relaxed">
+            Matt reads every one of these personally. If your gaps raise a question worth a
+            conversation, you will hear from him, a human, not a sequence.
+          </p>
+        </div>
+      ) : (
+        <form onSubmit={submit} className="relative grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          <div>
+            <h3
+              className="font-display font-semibold text-cream leading-[1.05]"
+              style={{ fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-0.01em" }}
+            >
+              Want the board-ready version?
+            </h3>
+            <p className="text-cream/75 mt-6 text-[17px] leading-relaxed max-w-md">
+              Your score, the four layers, your two gaps and the recommended first move, written
+              up to be forwarded to your CEO as it stands.
+            </p>
+            <p className="text-cream/50 mt-5 text-sm">
+              One email with your readout. Nothing else unless you ask.{" "}
+              <Link to="/privacy" className="underline underline-offset-2 hover:text-cream/80">
+                Privacy
+              </Link>
+            </p>
+          </div>
+          <div className="grid gap-6">
+            <input
+              type="text"
+              placeholder="Your name"
+              autoComplete="name"
+              value={form.name}
+              onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+              className={underlineInput}
+            />
+            <input
+              type="email"
+              placeholder="Work email"
+              autoComplete="email"
+              value={form.email}
+              onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+              className={underlineInput}
+            />
+            <input
+              type="text"
+              placeholder="Organisation (optional)"
+              autoComplete="organization"
+              value={form.organisation}
+              onChange={(e) => setForm((f) => ({ ...f, organisation: e.target.value }))}
+              className={underlineInput}
+            />
+            <div className="mt-4">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="group inline-flex items-center gap-2 rounded-full bg-cream text-green px-8 py-4 font-sans text-sm tracking-wider transition-all duration-300 hover:bg-cream/90 disabled:opacity-60"
+              >
+                {submitting ? "Sending…" : "Send me the readout"}
+                <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                  →
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+      )}
+    </div>
+  );
+};
+
+const ResultScore = ({ result }: { result: AssessmentResult }) => {
+  const shown = useCountUp(result.score);
+  return (
+    <div className="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-16 lg:gap-24 items-center">
+      <div>
+        <div
+          className="font-display font-semibold text-brass leading-none"
+          style={{ fontSize: "clamp(100px, 13vw, 180px)", fontVariantNumeric: "tabular-nums" }}
+        >
+          {shown}
+          <span className="text-cream/30" style={{ fontSize: "0.3em" }}>
+            {" "}
+            / 100
+          </span>
+        </div>
+        <p
+          className="font-display italic text-cream mt-5"
+          style={{ fontSize: "clamp(30px, 4vw, 48px)" }}
+        >
+          {result.stage.name}
+        </p>
+        <p className="text-cream/80 mt-8 max-w-xl text-lg leading-relaxed">{result.stage.read}</p>
+
+        <div className="mt-14 grid gap-7 max-w-lg">
+          {LAYERS.map((layer, i) => (
+            <div key={layer}>
+              <div className="flex items-baseline justify-between mb-2.5">
+                <span
+                  className="font-sans font-semibold uppercase text-cream/70"
+                  style={{ fontSize: "12px", letterSpacing: "0.2em" }}
+                >
+                  {layer}
+                </span>
+                <span
+                  className="font-display font-semibold text-cream text-2xl"
+                  style={{ fontVariantNumeric: "tabular-nums" }}
+                >
+                  {result.layerScores[i]}
+                </span>
+              </div>
+              <div className="h-px bg-cream/15 relative">
+                <div
+                  className="absolute left-0 -top-px h-[3px] bg-brass/70"
+                  style={{ width: `${result.layerScores[i]}%` }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="hidden lg:block">
+        <GrowthRings
+          values={[...result.layerScores]}
+          labels={[...LAYERS]}
+          className="w-full max-w-[440px] mx-auto"
+        />
+        <p
+          className="text-center font-sans uppercase text-cream/40 mt-6"
+          style={{ fontSize: "11px", letterSpacing: "0.25em" }}
+        >
+          Four layers, read like growth rings
         </p>
       </div>
-    );
-  }
-
-  return (
-    <form onSubmit={submit} className="rounded-lg border border-brass/40 bg-green/40 p-6 md:p-8">
-      <h3 className="font-display text-cream text-2xl md:text-[1.7rem] leading-tight">
-        Want the board-ready version?
-      </h3>
-      <p className="text-cream/70 mt-2 text-sm leading-relaxed">
-        Your score, the four layers, your two gaps and the recommended first move, written up
-        to be forwarded to your CEO as it stands. No sequence, no chaser emails.
-      </p>
-      <div className="mt-5 grid gap-3">
-        <input
-          type="text"
-          placeholder="Your name"
-          autoComplete="name"
-          value={form.name}
-          onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-          className="w-full rounded-md border border-cream/25 bg-transparent px-4 py-3 text-cream placeholder:text-cream/40 focus:outline-none focus:border-brass"
-        />
-        <input
-          type="email"
-          placeholder="Work email"
-          autoComplete="email"
-          value={form.email}
-          onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-          className="w-full rounded-md border border-cream/25 bg-transparent px-4 py-3 text-cream placeholder:text-cream/40 focus:outline-none focus:border-brass"
-        />
-        <input
-          type="text"
-          placeholder="Organisation (optional)"
-          autoComplete="organization"
-          value={form.organisation}
-          onChange={(e) => setForm((f) => ({ ...f, organisation: e.target.value }))}
-          className="w-full rounded-md border border-cream/25 bg-transparent px-4 py-3 text-cream placeholder:text-cream/40 focus:outline-none focus:border-brass"
-        />
-      </div>
-      <button
-        type="submit"
-        disabled={submitting}
-        className="mt-4 inline-flex items-center gap-2 rounded-full bg-cream text-green px-7 py-3 font-sans text-sm tracking-wider hover:bg-cream/90 transition-all disabled:opacity-60"
-      >
-        {submitting ? "Sending…" : "Send me the readout"}
-        <span>→</span>
-      </button>
-      <p className="text-cream/40 mt-3 text-xs">
-        One email with your readout. Nothing else unless you ask.{" "}
-        <Link to="/privacy" className="underline hover:text-cream/70">
-          Privacy
-        </Link>
-      </p>
-    </form>
+    </div>
   );
 };
 
@@ -189,187 +302,252 @@ const Readiness = () => {
         path="/readiness"
         jsonLd={READINESS_LD}
       />
-      <section className="relative bg-bark text-cream min-h-[calc(100svh-4rem)]" data-no-rule>
-        <div className="absolute inset-0 bg-gradient-to-b from-green/50 via-transparent to-green/50 pointer-events-none" />
-        <div className="relative container-grain py-16 md:py-24 max-w-3xl">
-          {!started && !result && (
-            <div className="fade-in-up">
-              <span
-                className="font-sans uppercase text-brass"
-                style={{ fontSize: "11px", letterSpacing: "0.25em" }}
-              >
-                The readiness assessment
-              </span>
-              <h1 className="font-display font-medium text-cream leading-[1.02] mt-4 text-[2.2rem] sm:text-5xl md:text-[3.6rem]">
-                How AI-ready is your People function, honestly?
-              </h1>
-              <p className="font-display italic text-cream/85 mt-5 max-w-xl text-lg md:text-xl leading-snug">
-                Sixteen questions, eight minutes. One honest number, not a vanity score: where
-                your team sits across the four capability layers, the specific gaps, and what
-                fixes each one.
-              </p>
-              <p className="text-cream/60 mt-4 text-sm">
-                No email gate on the score. The number is yours either way.
-              </p>
-              <button
-                type="button"
-                onClick={start}
-                className="group mt-8 inline-flex items-center gap-2 rounded-full bg-cream text-green px-7 py-3.5 font-sans text-sm tracking-wider hover:bg-cream/90 transition-all"
-              >
-                Start the assessment
-                <span className="transition-transform group-hover:translate-x-0.5">→</span>
-              </button>
-            </div>
-          )}
+      <section
+        className="relative bg-bark text-cream overflow-hidden min-h-[calc(100svh-4rem)]"
+        data-no-rule
+      >
+        <BarkGrain />
+        <div className="absolute inset-0 bg-gradient-to-b from-bark/70 via-transparent to-bark/70 pointer-events-none z-[1]" />
 
-          {started && !result && (
-            <div>
-              <div
-                className="flex items-center justify-between font-sans uppercase text-cream/50"
-                style={{ fontSize: "11px", letterSpacing: "0.2em" }}
-              >
-                <span>
-                  Question {index + 1} of {QUESTIONS.length}
-                </span>
-                <span className="text-brass">
-                  Layer {question.layer + 1} · {LAYERS[question.layer]}
-                </span>
+        {/* ---------------------------------------------- intro ---------- */}
+        {!started && !result && (
+          <>
+            <TopoBackdrop variant="ridge" opacity={0.22} className="z-[1]" />
+            <div className="relative z-10 container-grain pt-24 pb-28 md:pt-36 md:pb-40">
+              <div className="fade-in-up">
+                <SectionEyebrow className="mb-10">The readiness assessment</SectionEyebrow>
+                <h1
+                  className="font-display font-semibold text-cream max-w-4xl"
+                  style={{
+                    fontSize: "clamp(40px, 6vw, 84px)",
+                    lineHeight: 1.03,
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  How AI-ready is your People function, honestly?
+                </h1>
               </div>
-              <div className="mt-3 h-1 rounded-full bg-cream/15">
-                <div
-                  className="h-full rounded-full bg-brass transition-all duration-200"
-                  style={{ width: `${progress}%` }}
-                />
+              <div className="fade-in-up fade-in-up-2">
+                <p
+                  className="font-display italic text-cream/85 mt-10 max-w-2xl"
+                  style={{ fontSize: "clamp(22px, 2.8vw, 32px)", lineHeight: 1.3 }}
+                >
+                  Sixteen questions, eight minutes. One honest number, not a vanity score.
+                </p>
+                <p className="mt-7 text-cream/75 max-w-xl text-lg leading-relaxed">
+                  Where your team sits across the four capability layers, the specific gaps, and
+                  what fixes each one. No email gate on the score. The number is yours either
+                  way.
+                </p>
               </div>
-              <h2 className="font-display font-medium text-cream leading-tight mt-8 text-2xl md:text-[2.1rem]">
-                {question.question}
-              </h2>
-              <div className="mt-7 grid gap-3">
-                {question.options.map((opt) => (
-                  <button
-                    key={opt.label}
-                    type="button"
-                    onClick={() => answer(opt.points)}
-                    className="w-full rounded-md border border-cream/25 bg-green/30 px-5 py-4 text-left text-cream/90 text-[0.95rem] leading-snug hover:border-brass hover:bg-green/50 transition-colors"
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
-              {index > 0 && (
+              <div className="fade-in-up fade-in-up-3 mt-14 flex flex-wrap items-center gap-5">
                 <button
                   type="button"
-                  onClick={() => setIndex(index - 1)}
-                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-cream/30 text-cream/70 px-5 py-2.5 font-sans text-xs tracking-wider hover:bg-cream/10 transition-all"
+                  onClick={start}
+                  className="group inline-flex items-center gap-2 rounded-full bg-cream text-green px-8 py-4 font-sans text-sm tracking-wider transition-all duration-300 hover:bg-cream/90"
                 >
-                  ← Back
+                  Start the assessment
+                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                    →
+                  </span>
                 </button>
-              )}
-            </div>
-          )}
+                <span className="text-cream/50 text-sm">Free · no sign-up</span>
+              </div>
 
-          {result && (
-            <div className="fade-in-up">
-              <span
-                className="font-sans uppercase text-brass"
-                style={{ fontSize: "11px", letterSpacing: "0.25em" }}
-              >
-                Your result · unvarnished
-              </span>
-              <div className="mt-5 rounded-lg border border-cream/15 bg-green/40 p-7 md:p-10">
-                <div
-                  className="font-sans uppercase text-cream/50"
-                  style={{ fontSize: "10px", letterSpacing: "0.25em" }}
-                >
-                  Deepgrain · People Ops AI Readiness
-                </div>
-                <div className="font-display font-medium text-cream leading-none mt-3 text-[4.2rem] md:text-[5.2rem]">
-                  {result.score}
-                  <span className="text-cream/45 text-[1.8rem] md:text-[2.2rem]"> / 100</span>
-                </div>
-                <div className="font-display italic text-brass text-2xl md:text-[1.8rem] mt-1">
-                  {result.stage.name}
-                </div>
-                <p className="text-cream/75 mt-3 text-[0.95rem] leading-relaxed max-w-xl">
-                  {result.stage.read}
-                </p>
-                <div className="mt-7 grid gap-2.5">
-                  {LAYERS.map((layer, i) => (
-                    <div key={layer} className="grid grid-cols-[8.5rem_1fr_2.5rem] md:grid-cols-[11rem_1fr_3rem] items-center gap-3">
-                      <span
-                        className="font-sans uppercase text-cream/60"
-                        style={{ fontSize: "10px", letterSpacing: "0.12em" }}
-                      >
-                        {layer}
-                      </span>
-                      <div className="h-2 rounded-full bg-cream/10 overflow-hidden">
-                        <div
-                          className="h-full rounded-full bg-brass"
-                          style={{ width: `${result.layerScores[i]}%` }}
-                        />
+              <ScrollReveal delay={150}>
+                <div className="mt-28 md:mt-36 max-w-4xl">
+                  <div className="h-px w-10 bg-brass/30 mb-10" />
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-8">
+                    {LAYERS.map((layer, i) => (
+                      <div key={layer}>
+                        <span
+                          className="font-display font-semibold text-brass/60 text-2xl block"
+                          style={{ fontVariantNumeric: "tabular-nums" }}
+                        >
+                          0{i + 1}
+                        </span>
+                        <span
+                          className="font-sans font-semibold uppercase text-cream/70 block mt-2"
+                          style={{ fontSize: "12px", letterSpacing: "0.2em" }}
+                        >
+                          {layer}
+                        </span>
                       </div>
-                      <span className="font-sans text-cream/80 text-xs text-right">
-                        {result.layerScores[i]}
-                      </span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+            <GrainFlow className="absolute inset-x-0 bottom-0 h-44 z-[2]" opacity={0.16} />
+          </>
+        )}
+
+        {/* ---------------------------------------------- quiz ----------- */}
+        {started && !result && (
+          <>
+            <TopoBackdrop variant="basin" opacity={0.1} className="z-[1]" />
+            <div className="relative z-10 container-grain py-24 md:py-32">
+              <div className="max-w-3xl mx-auto">
+                <div
+                  className="flex items-baseline justify-between font-sans font-semibold uppercase text-cream/50"
+                  style={{ fontSize: "12px", letterSpacing: "0.2em" }}
+                >
+                  <span>
+                    Question {index + 1}{" "}
+                    <span className="text-cream/25">of {QUESTIONS.length}</span>
+                  </span>
+                  <span>{LAYERS[question.layer]}</span>
+                </div>
+                <div className="mt-5 h-px bg-cream/15 relative">
+                  <div
+                    className="absolute left-0 -top-px h-[3px] bg-brass/70 transition-all duration-500"
+                    style={{
+                      width: `${progress}%`,
+                      transitionTimingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+                    }}
+                  />
+                </div>
+
+                <div key={index} className="fade-in-up">
+                  <h2
+                    className="font-display font-semibold text-cream text-balance mt-16 md:mt-20"
+                    style={{
+                      fontSize: "clamp(28px, 3.8vw, 48px)",
+                      lineHeight: 1.1,
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {question.question}
+                  </h2>
+
+                  <div className="mt-14 grid gap-4">
+                    {question.options.map((opt) => (
+                      <button
+                        key={opt.label}
+                        type="button"
+                        onClick={() => answer(opt.points)}
+                        className="group w-full rounded-2xl ring-1 ring-cream/20 bg-bark/40 px-8 py-6 text-left transition-all duration-300 hover:ring-brass/60 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+                        style={{ transitionTimingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)" }}
+                      >
+                        <span className="flex items-center justify-between gap-6">
+                          <span className="text-cream/90 text-[17px] leading-snug">
+                            {opt.label}
+                          </span>
+                          <span
+                            aria-hidden
+                            className="text-cream/0 transition-colors duration-300 group-hover:text-cream/80"
+                          >
+                            →
+                          </span>
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-14 flex items-center justify-between">
+                  {index > 0 ? (
+                    <button
+                      type="button"
+                      onClick={() => setIndex(index - 1)}
+                      className="font-sans font-semibold uppercase text-cream/50 hover:text-cream transition-colors duration-300"
+                      style={{ fontSize: "12px", letterSpacing: "0.2em" }}
+                    >
+                      ← Previous
+                    </button>
+                  ) : (
+                    <span aria-hidden />
+                  )}
+                  <span
+                    className="font-sans uppercase text-cream/30"
+                    style={{ fontSize: "11px", letterSpacing: "0.2em" }}
+                  >
+                    Honest answers, honest number
+                  </span>
                 </div>
               </div>
+            </div>
+          </>
+        )}
 
-              <h3 className="font-display text-cream text-2xl md:text-3xl mt-10">
-                Your two biggest gaps
-              </h3>
-              <div className="mt-4 grid gap-4">
-                {result.weakestLayers.map((layer) => (
-                  <div
-                    key={layer}
-                    className="rounded-md border-l-4 border-brass bg-green/30 px-5 py-4"
+        {/* ---------------------------------------------- result --------- */}
+        {result && (
+          <div className="relative z-10">
+            <div className="container-grain pt-24 pb-8 md:pt-32">
+              <SectionEyebrow className="mb-14">Your result · unvarnished</SectionEyebrow>
+              <ResultScore result={result} />
+            </div>
+
+            <GrainFlow className="h-40 md:h-52 mt-8" opacity={0.18} />
+
+            <div className="container-grain pb-28 md:pb-40">
+              <ScrollReveal>
+                <div className="mt-8 md:mt-12">
+                  <h3
+                    className="font-display font-semibold text-cream"
+                    style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" }}
                   >
-                    <h4 className="text-cream font-medium text-[1.02rem]">
-                      {GAPS[layer].title}{" "}
-                      <span className="text-cream/50 font-normal">
-                        ({LAYERS[layer]}: {result.layerScores[layer]}/100)
-                      </span>
-                    </h4>
-                    <p className="text-cream/70 mt-1.5 text-sm leading-relaxed">
-                      {GAPS[layer].detail}
-                    </p>
-                    <p
-                      className="font-sans uppercase text-brass mt-2"
-                      style={{ fontSize: "10px", letterSpacing: "0.15em" }}
-                    >
-                      {GAPS[layer].fix}
-                    </p>
+                    Your two biggest gaps
+                  </h3>
+                  <div className="mt-12 grid md:grid-cols-2 gap-8">
+                    {result.weakestLayers.map((layer) => (
+                      <div
+                        key={layer}
+                        className="rounded-2xl ring-1 ring-cream/20 bg-bark/40 p-9 md:p-12"
+                      >
+                        <p
+                          className="font-sans font-semibold uppercase text-cream/50"
+                          style={{ fontSize: "12px", letterSpacing: "0.2em" }}
+                        >
+                          {LAYERS[layer]} ·{" "}
+                          <span style={{ fontVariantNumeric: "tabular-nums" }}>
+                            {result.layerScores[layer]}
+                          </span>
+                          /100
+                        </p>
+                        <h4 className="font-display font-semibold text-cream text-2xl md:text-3xl mt-5">
+                          {GAPS[layer].title}
+                        </h4>
+                        <p className="text-cream/75 mt-5 text-[17px] leading-relaxed">
+                          {GAPS[layer].detail}
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              </ScrollReveal>
 
-              <div className="mt-10">
-                <ResultLeadForm result={result} />
-              </div>
+              <ScrollReveal delay={120}>
+                <div className="mt-24 md:mt-32">
+                  <ResultLeadForm result={result} />
+                </div>
+              </ScrollReveal>
 
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="mt-16 flex flex-wrap items-center gap-x-10 gap-y-5">
                 <Link
                   to="/exposure-map"
-                  className="inline-flex items-center gap-2 rounded-full border border-cream/40 text-cream px-6 py-3 font-sans text-sm tracking-wider hover:bg-cream/10 transition-all"
+                  className="group inline-flex items-center gap-2 rounded-full border border-cream/80 text-cream px-7 py-3.5 font-sans text-sm tracking-wider transition-all duration-300 hover:bg-cream hover:text-green"
                 >
-                  See which tasks drive this →
+                  See which tasks drive this
+                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                    →
+                  </span>
                 </Link>
                 <button
                   type="button"
                   onClick={restart}
-                  className="inline-flex items-center gap-2 rounded-full border border-cream/25 text-cream/60 px-6 py-3 font-sans text-sm tracking-wider hover:bg-cream/10 transition-all"
+                  className="font-sans text-sm tracking-wider text-cream/50 hover:text-cream transition-colors duration-300"
                 >
-                  Retake
+                  Retake the assessment
                 </button>
               </div>
-              <p className="text-cream/40 mt-8 text-xs leading-relaxed">
+              <p className="mt-16 text-cream/40 text-sm max-w-2xl leading-relaxed">
                 Scoring: sixteen questions, four per layer, equal weight. Your answers never
                 leave this page unless you request the readout.
               </p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </section>
     </>
   );

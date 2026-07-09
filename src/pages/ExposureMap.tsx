@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { BarkGrain } from "@/components/ui/BarkGrain";
+import { GrainFlow } from "@/components/ui/GrainFlow";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { track } from "@/lib/analytics";
 import {
   EXPOSURE_ROLES,
@@ -19,6 +24,21 @@ const EXPOSURE_LD = {
   creator: { "@id": "https://deepgrain.ai/#organization" },
   license: "https://deepgrain.ai/terms",
 };
+
+const INSIGHTS = [
+  {
+    title: "Read the low scores first",
+    body: "Tasks scoring 0 to 3 are where the human value concentrates: judgment calls, trust, hard conversations. These grow in value as everything around them speeds up.",
+  },
+  {
+    title: "The high scores are capacity",
+    body: "Tasks scoring 7 and above are not headcount cuts. They are the hours a team gets back to spend on the low-scoring column. Cutting the people who hold the judgment is how AI adoption fails.",
+  },
+  {
+    title: "Exposure is not adoption",
+    body: "These scores are what current tooling can reliably do with proper setup and verification, not what your team does today. Most teams capture a fraction of this. That gap is the readiness question.",
+  },
+];
 
 const ExposureMap = () => {
   const [selected, setSelected] = useState(0);
@@ -40,174 +60,217 @@ const ExposureMap = () => {
         path="/exposure-map"
         jsonLd={EXPOSURE_LD}
       />
-      <section className="bg-cream text-walnut" data-no-rule>
-        <div className="container-grain py-16 md:py-24">
-          <span
-            className="font-sans uppercase text-walnut/50"
-            style={{ fontSize: "11px", letterSpacing: "0.25em" }}
-          >
-            Interactive reference
-          </span>
-          <h1 className="font-display font-medium leading-[1.02] mt-4 text-[2.2rem] sm:text-5xl md:text-[3.6rem] max-w-3xl">
-            The People Ops AI Exposure Map
-          </h1>
-          <p className="font-display italic text-walnut/75 mt-5 max-w-2xl text-lg md:text-xl leading-snug">
-            Every chart you have seen scores whole jobs. Jobs are the wrong unit. Exposure
-            lives at task level: every People role splits into work that automates and
-            judgment that compounds. Select a role to see its tasks.
-          </p>
 
-          <div
-            className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-sans uppercase text-walnut/50"
-            style={{ fontSize: "10px", letterSpacing: "0.15em" }}
-          >
-            <span className="inline-flex items-center gap-2">
-              0 · judgment
-              <span
-                aria-hidden
-                className="inline-block h-2.5 w-32 rounded-full"
-                style={{
-                  background:
-                    "linear-gradient(90deg, hsl(140 20% 62%), hsl(85 30% 66%), hsl(42 55% 52%), hsl(28 60% 40%))",
-                }}
-              />
-              10 · automates
-            </span>
-            <span>Tile shows the role's average · width reflects share of team hours</span>
+      {/* ------------------------------------------------ intro ---------- */}
+      <section className="relative bg-linen text-walnut overflow-hidden" data-no-rule>
+        <TopoBackdrop variant="ridge" opacity={0.14} />
+        <div className="relative container-grain pt-24 pb-16 md:pt-36 md:pb-24">
+          <div className="fade-in-up">
+            <SectionEyebrow tone="linen" className="mb-10">
+              Interactive reference
+            </SectionEyebrow>
+            <h1
+              className="font-display font-semibold max-w-4xl"
+              style={{
+                fontSize: "clamp(40px, 6vw, 84px)",
+                lineHeight: 1.03,
+                letterSpacing: "-0.01em",
+              }}
+            >
+              The People Ops AI Exposure Map
+            </h1>
           </div>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            {EXPOSURE_ROLES.map((r, i) => {
-              const avg = roleAverage(r);
-              const active = i === selected;
-              return (
-                <button
-                  key={r.role}
-                  type="button"
-                  onClick={() => selectRole(i)}
-                  className={`grow rounded-md border px-4 py-3 text-left transition-all ${
-                    active
-                      ? "border-walnut bg-walnut text-cream"
-                      : "border-walnut/20 bg-white/60 hover:border-walnut/50"
-                  }`}
-                  style={{ flexBasis: `${r.hours * 22}px` }}
-                >
-                  <span className="font-display block text-lg leading-tight">{r.role}</span>
-                  <span
-                    className={`font-sans block mt-0.5 ${active ? "text-cream/60" : "text-walnut/50"}`}
-                    style={{ fontSize: "10px", letterSpacing: "0.1em" }}
-                  >
-                    {r.tasks.length} TASKS · ~{Math.round((r.hours / TOTAL_HOURS) * 100)}% OF HOURS
-                  </span>
-                  <span
-                    className="mt-2 inline-block rounded px-2 py-0.5 font-sans text-xs font-semibold text-white"
-                    style={{ background: scoreColour(avg) }}
-                  >
-                    {avg.toFixed(1)} / 10
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="mt-10 border-t-2 border-walnut/80 pt-6">
-            <h2 className="font-display font-medium text-3xl md:text-4xl">{role.role}</h2>
-            <p className="text-walnut/60 mt-1 text-sm">
-              {automates} task{automates === 1 ? "" : "s"} ready to automate · {judgment} where
-              human judgment compounds · tags show which capability layer unlocks each
+          <div className="fade-in-up fade-in-up-2 grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 lg:gap-24 items-end mt-10">
+            <p
+              className="font-display italic text-walnut/75"
+              style={{ fontSize: "clamp(22px, 2.8vw, 32px)", lineHeight: 1.3 }}
+            >
+              Every chart you have seen scores whole jobs. Jobs are the wrong unit.
             </p>
-            <div className="mt-4">
+            <p className="text-body text-lg leading-relaxed">
+              Exposure lives at task level: every People role splits into work that automates
+              and judgment that compounds. Select a role to see its tasks.
+            </p>
+          </div>
+        </div>
+        <GrainFlow className="absolute inset-x-0 -bottom-4 h-36" tone="walnut" opacity={0.12} />
+      </section>
+
+      {/* ------------------------------------------------ map ------------ */}
+      <section className="bg-linen text-walnut" data-no-rule>
+        <div className="container-grain pt-10 pb-24 md:pb-36">
+          <ScrollReveal>
+            <div className="grid gap-3 grid-cols-2 md:grid-cols-3 xl:grid-cols-9">
+              {EXPOSURE_ROLES.map((r, i) => {
+                const avg = roleAverage(r);
+                const active = i === selected;
+                return (
+                  <button
+                    key={r.role}
+                    type="button"
+                    onClick={() => selectRole(i)}
+                    aria-pressed={active}
+                    className={`rounded-2xl px-5 py-6 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                      active
+                        ? "bg-green text-cream ring-1 ring-brass/30 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.55)]"
+                        : "bg-linen ring-1 ring-walnut/15 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.35)]"
+                    }`}
+                    style={{ transitionTimingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)" }}
+                  >
+                    <span
+                      className={`font-display font-semibold text-3xl block leading-none ${
+                        active ? "text-brass" : "text-walnut"
+                      }`}
+                      style={{ fontVariantNumeric: "tabular-nums" }}
+                    >
+                      {avg.toFixed(1)}
+                    </span>
+                    <span
+                      className={`font-sans font-semibold uppercase block mt-3.5 leading-snug ${
+                        active ? "text-cream" : "text-walnut/75"
+                      }`}
+                      style={{ fontSize: "11px", letterSpacing: "0.14em" }}
+                    >
+                      {r.role}
+                    </span>
+                    <span
+                      className={`font-sans block mt-1.5 ${active ? "text-cream/50" : "text-walnut/45"}`}
+                      style={{ fontSize: "10px", letterSpacing: "0.1em" }}
+                    >
+                      ~{Math.round((r.hours / TOTAL_HOURS) * 100)}% OF HOURS
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </ScrollReveal>
+
+          <div className="mt-20 md:mt-28">
+            <div className="h-px w-10 bg-brass/30 mb-10" />
+            <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3">
+              <h2
+                className="font-display font-semibold"
+                style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" }}
+              >
+                {role.role}
+              </h2>
+              <p
+                className="font-sans font-semibold uppercase text-walnut/55"
+                style={{ fontSize: "12px", letterSpacing: "0.2em" }}
+              >
+                {automates} automate · {judgment} compound
+              </p>
+            </div>
+
+            <div className="mt-10">
               {sortedTasks.map((t) => (
                 <div
                   key={t.name}
-                  className="grid grid-cols-1 md:grid-cols-[minmax(14rem,20rem)_1fr_4.5rem] items-center gap-x-4 gap-y-1 border-b border-walnut/15 py-3"
+                  className="grid grid-cols-1 md:grid-cols-[minmax(0,2.2fr)_minmax(0,2fr)_5rem] items-center gap-x-12 gap-y-2 border-b border-walnut/15 py-6"
                 >
                   <div>
-                    <span className="font-medium text-[0.94rem]">{t.name}</span>
-                    <span
-                      className="ml-2 inline-block rounded-full border border-walnut/30 px-2 py-px font-sans align-[1px] text-walnut/55"
-                      style={{ fontSize: "9px", letterSpacing: "0.08em" }}
-                    >
-                      {LAYER_LABELS[t.layer].toUpperCase()}
-                    </span>
-                    <p className="text-walnut/55 text-[0.82rem] leading-snug mt-0.5">{t.note}</p>
+                    <p className="text-walnut font-medium text-[17px] leading-snug">
+                      {t.name}
+                      <span
+                        className="ml-3 inline-block rounded-full border border-walnut/25 px-2.5 py-0.5 font-sans font-semibold uppercase text-walnut/55 align-[2px]"
+                        style={{ fontSize: "9px", letterSpacing: "0.12em" }}
+                      >
+                        {LAYER_LABELS[t.layer]}
+                      </span>
+                    </p>
+                    <p className="text-body/70 text-[15px] leading-snug mt-1.5">{t.note}</p>
                   </div>
-                  <div className="h-2 rounded-full bg-walnut/10 overflow-hidden">
+                  <div className="h-px bg-walnut/15 relative" aria-hidden>
                     <div
-                      className="h-full rounded-full"
+                      className="absolute left-0 -top-px h-[3px]"
                       style={{ width: `${t.score * 10}%`, background: scoreColour(t.score) }}
                     />
                   </div>
-                  <span className="font-sans text-walnut/70 text-xs md:text-right">
-                    {t.score} / 10
-                  </span>
+                  <p
+                    className="font-display font-semibold text-walnut text-xl md:text-right"
+                    style={{ fontVariantNumeric: "tabular-nums" }}
+                  >
+                    {t.score}
+                    <span className="text-walnut/40 text-sm"> /10</span>
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            <div className="rounded-md bg-white/70 border border-walnut/15 p-5">
-              <h3 className="font-medium text-[0.98rem]">Read the low scores first</h3>
-              <p className="text-walnut/65 mt-1.5 text-sm leading-relaxed">
-                Tasks scoring 0 to 3 are where the human value concentrates: judgment calls,
-                trust, hard conversations. These grow in value as everything around them speeds
-                up.
-              </p>
+          <ScrollReveal delay={100}>
+            <div className="relative mt-24 md:mt-32 bg-walnut/92 backdrop-blur-sm rounded-[48px] md:rounded-[80px] p-10 md:p-16 lg:p-20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20 overflow-hidden">
+              <GrainFlow className="absolute inset-x-0 -top-8 h-44" opacity={0.1} />
+              <div className="relative grid gap-12 md:grid-cols-3 md:gap-14">
+                {INSIGHTS.map((card, i) => (
+                  <div key={card.title}>
+                    <span
+                      className="font-display font-semibold text-brass/60 text-2xl block"
+                      style={{ fontVariantNumeric: "tabular-nums" }}
+                    >
+                      0{i + 1}
+                    </span>
+                    <h3 className="font-display font-semibold text-cream text-2xl leading-tight mt-4">
+                      {card.title}
+                    </h3>
+                    <p className="text-cream/70 mt-4 text-[15px] leading-relaxed">{card.body}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="rounded-md bg-white/70 border border-walnut/15 p-5">
-              <h3 className="font-medium text-[0.98rem]">The high scores are capacity</h3>
-              <p className="text-walnut/65 mt-1.5 text-sm leading-relaxed">
-                Tasks scoring 7 and above are not headcount cuts. They are the hours a team
-                gets back to spend on the low-scoring column. Cutting the people who hold the
-                judgment is how AI adoption fails.
-              </p>
-            </div>
-            <div className="rounded-md bg-white/70 border border-walnut/15 p-5">
-              <h3 className="font-medium text-[0.98rem]">Exposure is not adoption</h3>
-              <p className="text-walnut/65 mt-1.5 text-sm leading-relaxed">
-                These scores are what current tooling can reliably do with proper setup and
-                verification, not what your team does today. Most teams capture a fraction of
-                this. That gap is the readiness question.
-              </p>
-            </div>
-          </div>
+          </ScrollReveal>
+
+          <p className="mt-20 text-walnut/50 text-sm max-w-3xl leading-relaxed">
+            Methodology: task inventories from twenty years inside People functions across seven
+            sectors. Scores rate what frontier models plus workflow tooling reliably produce
+            with proper context and a verification step, judged per task rather than per role.
+            Argue with them, that is what they are for.
+          </p>
         </div>
       </section>
 
-      <section className="bg-bark text-cream" data-no-rule>
-        <div className="container-grain py-14 md:py-20">
-          <h2 className="font-display font-medium text-3xl md:text-4xl max-w-2xl">
-            Where is your team on this map?
-          </h2>
-          <p className="text-cream/70 mt-3 max-w-xl text-[0.95rem] leading-relaxed">
-            The readiness assessment scores your function in eight minutes: one honest number,
-            the gaps, and what to do about each. Built to be forwarded to your CEO.
-          </p>
-          <Link
-            to="/readiness"
-            onClick={() =>
-              track("cta_click", {
-                cta_id: "readiness_from_exposure_map",
-                cta_location: "exposure_map_footer",
-                cta_label: "Take the readiness assessment",
-                link_url: "/readiness",
-              })
-            }
-            className="group mt-6 inline-flex items-center gap-2 rounded-full bg-cream text-green px-7 py-3.5 font-sans text-sm tracking-wider hover:bg-cream/90 transition-all"
-          >
-            Take the readiness assessment
-            <span className="transition-transform group-hover:translate-x-0.5">→</span>
-          </Link>
-          <p
-            className="mt-10 font-sans uppercase text-cream/35"
-            style={{ fontSize: "10px", letterSpacing: "0.2em" }}
-          >
-            Methodology: task inventories from twenty years inside People functions across
-            seven sectors. Scores rate what frontier models plus workflow tooling reliably
-            produce with proper context and verification, judged per task. Argue with them,
-            that is what they are for.
-          </p>
+      {/* ------------------------------------------------ cta ------------ */}
+      <section className="relative bg-bark text-cream overflow-hidden" data-no-rule>
+        <BarkGrain />
+        <TopoBackdrop variant="ridge" opacity={0.18} className="z-[1]" />
+        <GrainFlow className="absolute inset-x-0 -top-6 h-40 z-[2]" opacity={0.14} />
+        <div className="relative z-10 container-grain section-pad">
+          <ScrollReveal>
+            <SectionEyebrow className="mb-10">The next question</SectionEyebrow>
+            <h2
+              className="font-display font-semibold max-w-3xl"
+              style={{
+                fontSize: "clamp(32px, 4.5vw, 64px)",
+                letterSpacing: "-0.01em",
+                lineHeight: 1.05,
+              }}
+            >
+              Where is your team on this map?
+            </h2>
+            <p className="text-cream/75 mt-8 max-w-xl text-lg leading-relaxed">
+              The readiness assessment scores your function in eight minutes: one honest number,
+              the gaps, and what to do about each. Built to be forwarded to your CEO.
+            </p>
+            <div className="mt-12">
+              <Link
+                to="/readiness"
+                onClick={() =>
+                  track("cta_click", {
+                    cta_id: "readiness_from_exposure_map",
+                    cta_location: "exposure_map_footer",
+                    cta_label: "Take the readiness assessment",
+                    link_url: "/readiness",
+                  })
+                }
+                className="group inline-flex items-center gap-2 rounded-full bg-cream text-green px-8 py-4 font-sans text-sm tracking-wider transition-all duration-300 hover:bg-cream/90"
+              >
+                Take the readiness assessment
+                <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                  →
+                </span>
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </>

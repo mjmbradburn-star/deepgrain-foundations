@@ -232,3 +232,16 @@
   -webkit-text-fill-color: hsl(var(--walnut));
   caret-color: hsl(var(--walnut));
 }
+
+/* Grain-flow drift: one GPU translate loop, matching the bark surface cadence. */
+@keyframes grain-drift-x {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+.grain-drift {
+  animation: grain-drift-x 90s linear infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .grain-drift { animation: none; }
+}
