@@ -303,7 +303,7 @@ const Readiness = () => {
         jsonLd={READINESS_LD}
       />
       <section
-        className="relative bg-bark text-cream overflow-hidden min-h-[calc(100svh-4rem)]"
+        className="relative bg-bark text-cream overflow-hidden"
         data-no-rule
       >
         <BarkGrain />
