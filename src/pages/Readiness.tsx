@@ -357,7 +357,7 @@ const Readiness = () => {
             </div>
 
             <ScrollReveal delay={150}>
-              <div className="relative bg-linen text-walnut border-t border-walnut/10">
+              <div className="relative z-10 isolate bg-linen text-walnut border-t border-walnut/10">
                 <div className="container-grain py-14 md:py-20">
                   <div className="flex items-baseline justify-between mb-10 md:mb-14">
                     <span
