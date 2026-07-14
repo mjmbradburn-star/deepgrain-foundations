@@ -355,8 +355,8 @@ const Readiness = () => {
               </div>
 
               <ScrollReveal delay={150}>
-                <div className="mt-28 md:mt-36 max-w-4xl">
-                  <div className="h-px w-10 bg-brass/30 mb-10" />
+                <div className="mt-28 md:mt-36 max-w-4xl mx-auto">
+                  <div className="h-px w-10 bg-brass/30 mb-10 mx-auto" />
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-8">
                     {LAYERS.map((layer, i) => (
                       <div key={layer}>
