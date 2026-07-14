@@ -160,6 +160,37 @@ try {
         document
           .querySelectorAll('[data-cookie-banner]')
           .forEach((n) => n.remove());
+
+        // De-duplicate SEO meta tags. index.html ships generic fallbacks for
+        // non-prerendered pages and JS-less social scrapers; PageMeta (Helmet)
+        // emits the correct per-page versions, tagged with data-rh. When both
+        // exist, crawlers read the first (static, generic) one — which made
+        // every prerendered page look identically templated to Google. Drop
+        // the static duplicate wherever a Helmet version is present.
+        const managed = [
+          ["name", "description"],
+          ["property", "og:title"],
+          ["property", "og:description"],
+          ["property", "og:url"],
+          ["property", "og:type"],
+          ["property", "og:image"],
+          ["name", "twitter:card"],
+          ["name", "twitter:title"],
+          ["name", "twitter:description"],
+          ["name", "twitter:image"],
+        ];
+        for (const [attr, val] of managed) {
+          const nodes = [
+            ...document.querySelectorAll(`meta[${attr}="${val}"]`),
+          ];
+          if (nodes.length < 2) continue;
+          const helmet = nodes.find((n) => n.hasAttribute("data-rh"));
+          if (helmet) {
+            nodes.forEach((n) => {
+              if (n !== helmet) n.remove();
+            });
+          }
+        }
       });
 
       let html = await page.content();
