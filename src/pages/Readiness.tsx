@@ -303,7 +303,7 @@ const Readiness = () => {
         jsonLd={READINESS_LD}
       />
       <section
-        className="relative bg-bark text-cream overflow-hidden min-h-[calc(100svh-4rem)]"
+        className="relative bg-bark text-cream overflow-hidden"
         data-no-rule
       >
         <BarkGrain />
@@ -354,31 +354,59 @@ const Readiness = () => {
                 <span className="text-cream/50 text-sm">Free · no sign-up</span>
               </div>
 
-              <ScrollReveal delay={150}>
-                <div className="mt-28 md:mt-36 max-w-4xl mx-auto">
-                  <div className="h-px w-10 bg-brass/30 mb-10 mx-auto" />
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-8">
-                    {LAYERS.map((layer, i) => (
-                      <div key={layer}>
-                        <span
-                          className="font-display font-semibold text-brass/60 text-2xl block"
-                          style={{ fontVariantNumeric: "tabular-nums" }}
+            </div>
+
+            <ScrollReveal delay={150}>
+              <div className="relative bg-linen text-walnut border-t border-walnut/10">
+                <div className="container-grain py-14 md:py-20">
+                  <div className="flex items-baseline justify-between mb-10 md:mb-14">
+                    <span
+                      className="font-sans font-semibold uppercase text-walnut/55"
+                      style={{ fontSize: "11px", letterSpacing: "0.25em" }}
+                    >
+                      The four layers
+                    </span>
+                    <span className="font-display italic text-walnut/50 text-sm md:text-base">
+                      Read like growth rings
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-walnut/15">
+                    {LAYERS.map((layer, i) => {
+                      const hints = [
+                        "Where the hours actually go.",
+                        "Confidence and craft, not just training.",
+                        "The stack that earns its keep.",
+                        "Habits that survive the rollout.",
+                      ];
+                      return (
+                        <div
+                          key={layer}
+                          className="flex items-baseline gap-5 py-7 sm:py-2 sm:px-6 lg:px-8 first:sm:pl-0 last:sm:pr-0 sm:[&:nth-child(3)]:pl-0 lg:[&:nth-child(3)]:pl-8"
                         >
-                          0{i + 1}
-                        </span>
-                        <span
-                          className="font-sans font-semibold uppercase text-cream/70 block mt-2"
-                          style={{ fontSize: "12px", letterSpacing: "0.2em" }}
-                        >
-                          {layer}
-                        </span>
-                      </div>
-                    ))}
+                          <span
+                            className="font-display font-semibold text-brass text-4xl md:text-5xl leading-none"
+                            style={{ fontVariantNumeric: "tabular-nums" }}
+                          >
+                            0{i + 1}
+                          </span>
+                          <div className="min-w-0">
+                            <div
+                              className="font-sans font-semibold uppercase text-walnut"
+                              style={{ fontSize: "12px", letterSpacing: "0.2em" }}
+                            >
+                              {layer}
+                            </div>
+                            <p className="text-walnut/65 text-sm mt-2 leading-snug">
+                              {hints[i]}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
-              </ScrollReveal>
-            </div>
-            <GrainFlow className="absolute inset-x-0 bottom-0 h-44 z-[2]" opacity={0.16} />
+              </div>
+            </ScrollReveal>
           </>
         )}
 
