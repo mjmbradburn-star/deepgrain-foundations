@@ -59,7 +59,7 @@ export const AgentArchitecture = () => (
       <ScrollReveal>
         <SectionEyebrow className="mb-6">Behind the scenes · how I run my own practice</SectionEyebrow>
         <h2 className="font-display text-cream text-4xl md:text-6xl leading-[1.05] max-w-3xl">
-          I ran this on my own desk first.
+          I ran this from my own desk first.
         </h2>
         <div className="mt-6 h-px w-full bg-brass/30 max-w-4xl" />
         <p className="mt-8 text-cream/80 max-w-3xl text-lg leading-relaxed">
