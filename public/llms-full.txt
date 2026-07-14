@@ -1,5 +1,5 @@
 # Deepgrain, full Intelligence corpus
-Last updated: 2026-07-09
+Last updated: 2026-07-14
 Articles: 52
 Canonical: https://www.deepgrain.ai/llms-full.txt
 Sitemap: https://www.deepgrain.ai/sitemap.xml

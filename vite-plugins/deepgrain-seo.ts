@@ -251,6 +251,8 @@ const EXCLUDED_ROUTES = new Set([
   "/brain/resend",
   "/seo-checklist",
   "/intelligence/people-ops", // 301 redirect → /intelligence
+  "/login", // auth, noindex
+  "/.lovable/oauth/consent", // OAuth gate, noindex
 ]);
 
 /**

@@ -40,6 +40,8 @@ if (process.env.DEEPGRAIN_SKIP_ROUTE_AUDIT === "1") {
 const NOINDEX_PATHS = new Set([
   "/unsubscribe",
   "/brain/resend",
+  "/login",
+  "/.lovable/oauth/consent",
   "*",
 ]);
 // Routes that App.tsx serves only as redirects (Navigate elements). Their
