@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { to: "/readiness", label: "Readiness" },
+  { to: "/grain-audit", label: "Grain Audit" },
+  { to: "/exposure-map", label: "Exposure Map" },
   { to: "/method", label: "Method" },
   { to: "/work", label: "Work" },
   { to: "/enablement", label: "Enablement" },
@@ -111,7 +113,7 @@ export const Navigation = () => {
         </div>
       </nav>
 
-      {/* Mobile slide-in panel — CSS transition, no JS animation lib. */}
+      {/* Mobile slide-in panel - CSS transition, no JS animation lib. */}
       <div
         className={cn(
           "fixed inset-0 z-40 bg-green flex flex-col items-center justify-center gap-10 md:hidden transition-transform duration-[400ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]",

@@ -23,12 +23,12 @@ export const faqs = [
   {
     question: "What is an AI maturity index?",
     answer:
-      "An AI maturity index is a structured score that captures how far a function has moved from one-off AI experiments to systemic, governed integration. For G&A leaders it tracks five things in parallel: data readiness, tool adoption, workflow rewiring, governance, and operating cadence. A good index is comparable across quarters, not just a snapshot.",
+      "An AI maturity index is a number, not a description. The model tells you the tiers; the index tells you where you sit on a 0 to 100 scale and whether that number moved since last quarter. Most companies confuse the two: they can recite the five tiers from a slide deck but have never actually scored themselves. If you cannot produce last quarter's number from memory, you have a maturity model, not a maturity index.",
   },
   {
     question: "Which AI maturity framework is best for Finance and People Ops?",
     answer:
-      "There is no single best framework. The Gartner AI Maturity model, the MIT Sloan stages, and the Deepgrain AI Operating Ladder all map roughly onto the same five-tier shape: experimenting, piloting, scaling, integrating, and operating. For G&A teams the most useful framework is the one that names the gap between pilot and integration, because that is where 80% of Finance and People Ops work stalls.",
+      "Watch for one signal: who published it. Frameworks from companies selling AI tooling over-index on adoption metrics, tiers 1 and 2, because that is what their product moves. Frameworks from advisory firms with nothing to sell are more likely to be honest about the pilot-to-integration gap. Check who wrote it before you check what it says.",
   },
   {
     question: "How is AI maturity different from AI readiness?",
@@ -38,12 +38,12 @@ export const faqs = [
   {
     question: "How do you measure organisational AI maturity?",
     answer:
-      "Measure four things, every quarter: percentage of named workflows with an AI step in production, percentage of staff using AI in a measured way, time saved per workflow against a baseline, and number of governance reviews completed. Aggregate into a single 0 to 100 index. The absolute number matters less than the trajectory.",
+      "In practice, most G&A teams pull the numbers from three places: usage logs from the tool vendor, never self-report, a quarterly survey capped at five questions, and the workflow owner's own change log. Anything that takes longer than an afternoon to compile will not survive a second quarter, because whoever owns the measurement will quietly stop doing it.",
   },
   {
     question: "What is the fastest way to raise an AI maturity score?",
     answer:
-      "Stop counting pilots. Pick three workflows in Finance or People Ops, rewire them end to end, give each one an owner, and put them on a weekly review cadence. Maturity rises when the same workflow is still working, supported, and improving three months later. Not when a new pilot launches.",
+      "Subtraction, not addition. Kill any pilot that has not moved tiers in two review cycles and hand that owner's time to the workflows you are actually rewiring. Score movement almost always shows up first in adoption depth, four to six weeks before workflow coverage catches up, so that is the number to watch for early proof the cadence is real.",
   },
   {
     question: "Why do G&A teams stall between pilot and integration?",
@@ -53,7 +53,7 @@ export const faqs = [
 ];
 
 <TLDR>
-- AI maturity is not the same as AI readiness. Readiness is a starting line. Maturity is distance travelled.
+- AI maturity and AI readiness are different things. Readiness is a starting line. Maturity is distance travelled.
 - Most published AI maturity frameworks (Gartner, MIT, BCG, Deepgrain) collapse to the same five tiers: experimenting, piloting, scaling, integrating, operating.
 - For G&A leaders, the only tier that matters is the jump from piloting to integrating. That is where 80% of Finance and People Ops AI work stalls.
 - An AI maturity index is most useful when it tracks the same five workflows quarter over quarter, not when it scores a one-off snapshot.
@@ -62,7 +62,7 @@ export const faqs = [
 
 ## What an AI maturity framework is actually for
 
-An AI maturity framework is a shared scoreboard. Not a strategy, not a roadmap, not a transformation plan. A scoreboard.
+An AI maturity framework is a shared scoreboard: not a strategy, a roadmap, or a transformation plan.
 
 Its job is to tell a G&A leader two things they otherwise have to guess at: where the function is today, and whether it has moved since last quarter. Everything else, the colourful diagrams, the radar charts, the named tiers, is presentation.
 
@@ -80,7 +80,7 @@ The published AI maturity frameworks differ in branding and stop short at differ
 | 4. Integrating | AI step is part of the official workflow, with governance | Month-end close has an AI review step in the SOP |
 | 5. Operating | Workflows are measured, owned, and improved on a cadence | Weekly review of three AI-assisted workflows, with metrics |
 
-The crucial observation: tiers 1 and 2 produce the most internal noise. Tiers 4 and 5 produce the most operating value. The gap between them is where every published framework quietly hides the work.
+Tiers 1 and 2 produce the most internal noise. Tiers 4 and 5 produce the most operating value. The gap between them is where every published framework quietly hides the work.
 
 For the deeper version of this argument see the [AI operating ladder](/intelligence/ai-operating-ladder-five-tiers), which is the Deepgrain take on the same shape.
 

@@ -7,7 +7,7 @@ import { AIOI_URL } from "@/lib/aioi";
 import { trackFormSubmit } from "@/lib/analytics";
 
 /**
- * BrainCaptureForm — lead-capture form rendered in two places on /brain
+ * BrainCaptureForm - lead-capture form rendered in two places on /brain
  * (Hero and the second CTA section). Submits to the `send-brain-welcome`
  * edge function which:
  *   1. validates + rate-limits

@@ -2,7 +2,7 @@
 
 > Organisational consultancy that reads the grain of how a company actually operates, then changes it without breaking what works. Read, Craft, Scale.
 
-Last updated: 2026-07-14
+Last updated: 2026-07-15
 Articles: 52
 Canonical: https://www.deepgrain.ai/llms.txt
 Sitemap: https://www.deepgrain.ai/sitemap.xml
@@ -33,7 +33,7 @@ Articles within each category below are listed in foundational reading order (ol
 
 - [The craft mindset for modern operators](https://www.deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators): Operating leadership is a craft. Crafts have masters, apprentices, tools, and standards. Most companies forget all four.
 - [Founder-mode vs operator-mode](https://www.deepgrain.ai/intelligence/founder-mode-vs-operator-mode): Founder-mode and operator-mode aren't opposites. They're alternating muscles. Knowing which to use, when, is the executive job.
-- [What CTOs get wrong about scale](https://www.deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale): Scale is rarely a technology problem. It is almost always an operating problem dressed up as a technology problem.
+- [What CTOs get wrong about scale](https://www.deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale): Scale problems almost always show up as operating problems wearing a technology disguise.
 - [Hiring for the grain: building teams that compound](https://www.deepgrain.ai/intelligence/hiring-for-the-grain): The best hires don't fight the grain or surrender to it. They read it and add to it.
 - [The quiet discipline of operating leadership](https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership): The best operating leaders are quiet on the outside and rigorous on the inside. The volume is misleading.
 
@@ -45,7 +45,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [How to diagnose an organisation in 30 days](https://www.deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days): A 30-day diagnostic protocol: who to listen to, what to look for, and the trap of premature recommendations.
 - [The art of the operating intervention](https://www.deepgrain.ai/intelligence/the-art-of-the-operating-intervention): An intervention is the smallest change that produces the largest second-order effect. The craft is in the smallness.
 - [Scaling without breaking the grain](https://www.deepgrain.ai/intelligence/scaling-without-breaking-the-grain): Most companies break themselves at scale. The ones that don't are the ones that scaled with the grain, not against it.
-- [What good looks like: signals of operating health](https://www.deepgrain.ai/intelligence/signals-of-operating-health): Operating health doesn't show up in the dashboard. It shows up in how an org talks about its own mistakes.
+- [What good looks like: signals of operating health](https://www.deepgrain.ai/intelligence/signals-of-operating-health): Why the real signal of organisational health is conversational, not a line on a dashboard, and how to listen for it before the numbers move.
 - [AI maturity frameworks for G&A leaders](https://www.deepgrain.ai/intelligence/ai-maturity-frameworks-for-ga-leaders): A working comparison of AI maturity models for Finance and People Ops leaders, with a practical index for moving from pilots to systemic integration.
 
 ### AI & Operating Systems
@@ -75,8 +75,8 @@ Articles within each category below are listed in foundational reading order (ol
 
 [Browse category](https://www.deepgrain.ai/intelligence/category/foundations)
 
-- [What is organisational consultancy?](https://www.deepgrain.ai/intelligence/what-is-organisational-consultancy): Organisational consultancy is the practice of reading how a company actually operates — and changing it without breaking what works.
-- [Why most change programmes fail](https://www.deepgrain.ai/intelligence/why-most-change-programmes-fail): 70% of change programmes fail. The reason is rarely strategy — it's that the grain was never read before the cut was made.
+- [What is organisational consultancy?](https://www.deepgrain.ai/intelligence/what-is-organisational-consultancy): Organisational consultancy is the practice of reading how a company actually operates, then changing it without breaking what works.
+- [Why most change programmes fail](https://www.deepgrain.ai/intelligence/why-most-change-programmes-fail): 70% of change programmes fail. The reason is rarely strategy. It's that the grain was never read before the cut was made.
 - [The grain metaphor: reading your organisation](https://www.deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation): Wood has a grain. So does every organisation. Cut with it and the work compounds; cut against it and you spend the rest of the year sanding.
 - [Operating systems vs operating models](https://www.deepgrain.ai/intelligence/operating-systems-vs-operating-models): An operating model is a slide. An operating system is what runs when nobody is looking. The distinction is the entire point.
 - [The difference between strategy and operating reality](https://www.deepgrain.ai/intelligence/strategy-vs-operating-reality): Strategy is a story about the future. Operating reality is a description of the present. Most leadership teams confuse the two.
@@ -104,7 +104,7 @@ Articles within each category below are listed in foundational reading order (ol
 
 - [Leading the AI transformation in People](https://www.deepgrain.ai/intelligence/leading-the-ai-transformation): AI in People Ops fails as a change programme more often than as a technology problem. Here is the operating playbook for leading the transformation without losing the team.
 - [The champion model](https://www.deepgrain.ai/intelligence/the-champion-model): You don't need engineers to build AI capability inside the People function. You need three or four champions, given air cover and time. Here is how the model actually works.
-- [Designing the AI-native People team](https://www.deepgrain.ai/intelligence/designing-the-ai-native-people-team): Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it — different roles, different ratios, different leverage. Here is what an AI-native People team actually looks like.
+- [Designing the AI-native People team](https://www.deepgrain.ai/intelligence/designing-the-ai-native-people-team): Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it - different roles, different ratios, different leverage. Here is what an AI-native People team actually looks like.
 - [The HR Architect: a new role inside the People function](https://www.deepgrain.ai/intelligence/the-hr-architect-role): Every white-collar job is a sequence of clicks. AI is starting at the click layer and moving up. The roles that survive are the ones that change shape: from operator to architect.
 - [Coaching and feedback systems that actually compound](https://www.deepgrain.ai/intelligence/coaching-and-feedback-systems): Most performance systems run once a quarter and decay between cycles. The systems that compound are weekly, lightweight, evidence-led, and instrumented. Here is the operating shape that works, and where AI fits without flattening the craft.
 - [AI roadmap case study: FinEdge's first 90 days](https://www.deepgrain.ai/intelligence/ai-roadmap-case-study-finedge): How a 280-person fintech People team went from scattered ChatGPT use to nine production workflows in 90 days. The exact sequence, the trade-offs, the metrics, and the two near-misses.
@@ -113,8 +113,8 @@ Articles within each category below are listed in foundational reading order (ol
 
 [Browse category](https://www.deepgrain.ai/intelligence/category/people-ops-systems)
 
-- [The People Ops AI domain map](https://www.deepgrain.ai/intelligence/the-people-ops-ai-domain-map): A map of where AI fits across the People function — from sourcing to offboarding — so you can see the whole estate before you build any one piece of it.
-- [A workflow assessment framework for People Ops](https://www.deepgrain.ai/intelligence/workflow-assessment-framework): Most People teams pick AI workflows by instinct or by what is loudest. A simple scoring framework — value, frequency, fit, risk — turns a wishlist into a 90-day plan you can actually defend.
+- [The People Ops AI domain map](https://www.deepgrain.ai/intelligence/the-people-ops-ai-domain-map): A map of where AI fits across the People function - from sourcing to offboarding - so you can see the whole estate before you build any one piece of it.
+- [A workflow assessment framework for People Ops](https://www.deepgrain.ai/intelligence/workflow-assessment-framework): Most People teams pick AI workflows by instinct or by what is loudest. A simple scoring framework - value, frequency, fit, risk - turns a wishlist into a 90-day plan you can actually defend.
 - [Automation patterns that pay off](https://www.deepgrain.ai/intelligence/automation-patterns-that-pay-off): Six concrete workflow patterns we keep seeing work inside People functions. Built with n8n, an LLM, and a champion. Live in weeks, not quarters.
 - [Production agents for People Ops](https://www.deepgrain.ai/intelligence/production-agents-for-people-ops): Most "agents" in People Ops are demos with ambition. The ones that survive contact with production share a pattern: data first, structured context, exception handling, observability, human escalation.
 - [The automation audit playbook](https://www.deepgrain.ai/intelligence/automation-audit-playbook): Most automation efforts fail because they start with "what can I automate?" The right question is "what problems am I trying to solve?" A problem-first audit, with the 6T framework and a prioritisation matrix.
@@ -123,7 +123,7 @@ Articles within each category below are listed in foundational reading order (ol
 
 [Browse category](https://www.deepgrain.ai/intelligence/category/people-ops-governance)
 
-- [Measuring AI value in People Ops](https://www.deepgrain.ai/intelligence/measuring-ai-value-in-people-ops): If the CFO asks what your AI investment has returned, vague time-saving stories are not enough. Here is how to measure People Ops AI value properly — and tell the story to a board that knows the difference.
+- [Measuring AI value in People Ops](https://www.deepgrain.ai/intelligence/measuring-ai-value-in-people-ops): If the CFO asks what your AI investment has returned, vague time-saving stories are not enough. Here is how to measure People Ops AI value properly - and tell the story to a board that knows the difference.
 - [AI governance for People teams](https://www.deepgrain.ai/intelligence/ai-governance-for-people-teams): Governance is not the brake. It is the steering. The People teams that stay fast with AI are the ones that decided early what they would never let it decide.
 - [An AI policy blueprint for People teams](https://www.deepgrain.ai/intelligence/ai-policy-blueprint-for-people-teams): An AI policy that enables, not strangles. Foundational prep, governance, guardrails, and how to handle shadow AI without driving it deeper underground.
 

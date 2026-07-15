@@ -3,8 +3,8 @@ import { cn } from "@/lib/utils";
 interface TopoBackdropProps {
   className?: string;
   /**
-   * `ridge` — brass contour ridge, right-aligned. Mirrors the deck title slide.
-   * `basin` — soft centered contour basin. Mirrors the "Stop auditing roles" slide.
+   * `ridge` - brass contour ridge, right-aligned. Mirrors the deck title slide.
+   * `basin` - soft centered contour basin. Mirrors the "Stop auditing roles" slide.
    */
   variant?: "ridge" | "basin";
   /** 0–1, default 0.28. */
@@ -13,7 +13,7 @@ interface TopoBackdropProps {
 
 /**
  * Brass topographic contour layer. Inline SVG so it ships with no extra
- * network round-trip and adds ~2kb gzipped. Decorative — aria-hidden.
+ * network round-trip and adds ~2kb gzipped. Decorative - aria-hidden.
  */
 export const TopoBackdrop = ({
   className,

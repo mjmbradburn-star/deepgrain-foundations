@@ -6,7 +6,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { BarkSection } from "@/components/ui/BarkSection";
 
 // Homepage Method teaser. The full Read · Craft · Scale story and the live
-// Value Visualiser both live on /method — here we tease the visualiser as the
+// Value Visualiser both live on /method - here we tease the visualiser as the
 // magnet to click through.
 const sliders = [
   { label: "Team size", display: "25 people", fill: 11 },
@@ -25,7 +25,7 @@ export const Method = () => (
     contentClassName="container-grain"
   >
       <div className="grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20 items-center">
-        {/* Left — copy */}
+        {/* Left - copy */}
         <ScrollReveal>
           <Eyebrow className="text-brass mb-6">The Method</Eyebrow>
           <h2
@@ -55,7 +55,7 @@ export const Method = () => (
           </div>
         </ScrollReveal>
 
-        {/* Right — static visualiser teaser card */}
+        {/* Right - static visualiser teaser card */}
         <ScrollReveal delay={120}>
           <Link
             to="/method"
@@ -101,7 +101,7 @@ export const Method = () => (
               ))}
             </div>
 
-            {/* Headline outputs — empowerment first */}
+            {/* Headline outputs - empowerment first */}
             <div className="mt-9 pt-7 border-t border-walnut/10">
               <div className="grid grid-cols-2 gap-6">
                 {stats.map((s) => (

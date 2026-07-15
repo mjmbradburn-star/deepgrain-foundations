@@ -24,27 +24,27 @@ export const faqs = [
   {
     question: "What is an AI operating system?",
     answer:
-      "An AI operating system, often shortened to AI OS, is the connective layer between AI models and the work a company actually does. It coordinates data, tools, agents, governance, and the operating cadence around them so that AI capability turns into compounding output rather than isolated demos.",
+      "An AI operating system, often shortened to AI OS, is the connective layer between AI models and the work a company actually does. Most companies already have one, whether they built it on purpose or not: an unplanned mix of ad hoc prompts, one-off scripts, and someone checking outputs by hand. The difference between that and a real AI OS is whether the five pillars were designed or just accumulated.",
   },
   {
     question: "What is an AI OS?",
     answer:
-      "AI OS is short for AI operating system. It is the runtime, the policies, and the human cadence that decide which model handles which task, with what data, under what guardrails. The model is the engine. The AI OS is the rest of the car.",
+      "AI OS is just the shorthand. People search both terms and mean the same thing. One-line way to hold the concept: the model is the engine, the AI OS is the rest of the car. Note that this has nothing to do with an operating system in the Windows or macOS sense. No AI vendor is shipping a kernel.",
   },
   {
     question: "Is an AI operating system the same as an operating model?",
     answer:
-      "No. An operating model is a slide that describes how a company is organised. An AI operating system is what actually runs when a person, an agent, or a workflow needs to make a decision. One is a description. The other is the substrate.",
+      "No, though they get confused constantly. A company can have a sharp operating model on a slide and zero AI operating system underneath it, that is the normal starting state before an audit, not the exception. An operating model tells you who owns what. It says nothing about what the AI actually does at 11pm when nobody is watching.",
   },
   {
     question: "What is an AI based operating system made of?",
     answer:
-      "Five pillars: data that is reachable and trustworthy, tools that the models can call, agents that handle multi-step work, governance that says what is allowed, and an operating cadence that keeps the whole system maintained. Skip a pillar and the system rots in that exact place.",
+      "Five pillars: data that is reachable and trustworthy, tools that the models can call, agents that handle multi-step work, governance that says what is allowed, and an operating cadence that keeps the whole system maintained. In audits, the two pillars missing most often are governance and cadence, the parts that never show up in a demo but decide whether the system survives contact with a live quarter.",
   },
   {
     question: "How is an AI powered operating system different from automation?",
     answer:
-      "Automation runs the same path every time. An AI powered operating system reasons about the path and chooses one. That difference shows up most in work that used to require judgment: triage, drafting, analysis, escalation. Automation handles the rails. The AI OS handles the decisions.",
+      "Automation is not replaced by an AI OS, it becomes one pillar of it. The workflow tool, n8n, Zapier, whatever runs your rails, sits inside the tools pillar and handles the parts that genuinely are the same every time: send the email, update the record, fire the webhook. The AI OS decides when to hand a step to automation versus when it needs a model to judge the situation first.",
   },
   {
     question: "How do you build an AI operating system?",
@@ -101,11 +101,11 @@ For a deeper read on the readiness side, see [the five pillars of AI readiness](
 
 ## What an AI OS is *not*
 
-It is not a tool. It is not Claude or ChatGPT or Copilot. Those are engines. The AI OS is the chassis around them.
+Claude, ChatGPT, and Copilot are engines. The AI OS is the chassis around them.
 
-It is not a single platform purchase. Vendors will sell you something called an "AI platform" and call it an OS. It is not. A platform without your data, your tools, your governance, and your cadence is a feature.
+A single platform purchase does not make an AI OS either, whatever a vendor's sales deck calls it. Without your data, your tools, your governance, and your cadence built in, a platform is just a feature.
 
-It is not the same as automation. Automation runs the same path every time. An AI OS reasons about which path to take. The two layers compound when you build them together.
+Automation and an AI OS are not the same thing. Automation runs the same path every time; an AI OS reasons about which path to take. The two layers compound when you build them together.
 
 ## Where to start
 

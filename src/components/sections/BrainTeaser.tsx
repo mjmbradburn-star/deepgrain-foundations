@@ -4,7 +4,7 @@ import { PillButton } from "@/components/ui/PillButton";
 
 /**
  * Homepage Brain teaser. Sells The People Ops AI Brain and drives subscriptions.
- * Replaces the old WhoThisIsFor slot — same green/walnut treatment so the page
+ * Replaces the old WhoThisIsFor slot - same green/walnut treatment so the page
  * rhythm holds, but a far more useful piece of real estate.
  */
 const layers = [

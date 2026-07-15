@@ -62,7 +62,7 @@ export const QUESTIONS: AssessmentQuestion[] = [
     options: [
       { label: "Yes, we keep a list of exactly that work", points: 3 },
       { label: "We have discussed it informally", points: 2 },
-      { label: "Interesting question, no answer", points: 1 },
+      { label: "We have never worked out an answer", points: 1 },
       { label: "We are too busy to think about it", points: 0 },
     ],
   },
@@ -143,7 +143,7 @@ export const QUESTIONS: AssessmentQuestion[] = [
       { label: "Grounded in our own sources, with citations", points: 3 },
       { label: "Partially, for some tools", points: 2 },
       { label: "No, people paste things in ad hoc", points: 1 },
-      { label: "Not applicable, no real tools", points: 0 },
+      { label: "We have not adopted any AI tools yet", points: 0 },
     ],
   },
   {
@@ -213,7 +213,7 @@ export const STAGES: Stage[] = [
   {
     min: 0,
     name: "Pre-audit",
-    read: "You are not behind because you lack tools. You are behind because nobody has measured where the time goes. Start with the map, not the software.",
+    read: "Nobody has measured where the hours go. That is the actual constraint, not the tooling. Start with the map, not the software.",
   },
   {
     min: 30,
@@ -223,7 +223,7 @@ export const STAGES: Stage[] = [
   {
     min: 55,
     name: "Building",
-    read: "Real capability forming, unevenly. The risk now is silent quality drift: adoption is outrunning verification. Governance is the unlock, not more tools.",
+    read: "Real capability forming, unevenly. Adoption is outrunning verification, and that is where quality drifts without anyone noticing. Fix governance before you buy another tool.",
   },
   {
     min: 75,
@@ -260,13 +260,13 @@ export const GAPS: Record<LayerIndex, GapCopy> = {
     title: "The Tooling gap",
     detail:
       "Chat is not a workflow. The value is in systems that run a process with your data, your policies, and a check that does not depend on a tired reviewer.",
-    fix: "Fix: tooling build",
+    fix: "Fix: a tooling build",
   },
   3: {
     title: "The Embed gap",
     detail:
       "Capability that lives in one person's head is a resignation letter away from zero. Written standards, owners and judgment gates make it permanent.",
-    fix: "Fix: embed",
+    fix: "Fix: embedding what you have",
   },
 };
 

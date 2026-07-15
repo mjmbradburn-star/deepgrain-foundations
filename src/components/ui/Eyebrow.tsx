@@ -7,7 +7,7 @@ interface EyebrowProps {
   /**
    * When true, renders a thin brass rule beside the eyebrow that animates
    * scaleX 0→1 when the closest scroll-revealed ancestor enters view.
-   * Hooks into the existing `[data-reveal="in"]` selector — no extra JS.
+   * Hooks into the existing `[data-reveal="in"]` selector - no extra JS.
    */
   withRule?: boolean;
 }

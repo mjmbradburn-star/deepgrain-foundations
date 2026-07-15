@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 interface PageMetaProps {
   title: string;
   description: string;
-  /** Path beginning with "/" — combined with the canonical site origin. */
+  /** Path beginning with "/" - combined with the canonical site origin. */
   path: string;
   /** Absolute URL to a 1200×630 OG/Twitter image. Defaults to the site OG. */
   image?: string;

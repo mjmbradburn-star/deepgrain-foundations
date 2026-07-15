@@ -489,11 +489,11 @@ const Readiness = () => {
                   >
                     Your two biggest gaps
                   </h3>
-                  <div className="mt-12 grid md:grid-cols-2 gap-8">
-                    {result.weakestLayers.map((layer) => (
+                  <div className="mt-12 grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-cream/15">
+                    {result.weakestLayers.map((layer, i) => (
                       <div
                         key={layer}
-                        className="rounded-2xl ring-1 ring-cream/20 bg-bark/40 p-9 md:p-12"
+                        className={`py-8 md:py-2 ${i === 0 ? "md:pr-12" : "md:pl-12 pt-8 md:pt-2"}`}
                       >
                         <p
                           className="font-sans font-semibold uppercase text-cream/50"
@@ -522,6 +522,28 @@ const Readiness = () => {
                         That is a two-week teardown, not a transformation programme.
                       </span>
                     </p>
+                  </div>
+                  <div className="mt-8 flex flex-wrap items-center gap-5">
+                    <Link
+                      to="/grain-audit"
+                      onClick={() =>
+                        track("cta_click", {
+                          cta_id: "audit_readiness_result",
+                          cta_location: "readiness_result",
+                          cta_label: "Book a Grain Audit",
+                          link_url: "/grain-audit",
+                        })
+                      }
+                      className="group inline-flex items-center gap-2 rounded-full bg-cream text-green px-8 py-4 font-sans text-sm tracking-wider transition-all duration-300 hover:bg-cream/90"
+                    >
+                      Book a Grain Audit
+                      <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                        →
+                      </span>
+                    </Link>
+                    <span className="text-cream/50 text-sm">
+                      Two weeks. GBP 2,000, credited in full if you go further.
+                    </span>
                   </div>
                 </div>
               </ScrollReveal>

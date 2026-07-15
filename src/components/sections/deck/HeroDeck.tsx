@@ -32,16 +32,12 @@ const Pip = ({ icon, label }: { icon: string; label: string }) => (
  * ridge on the right, single dominant CTA.
  */
 export const HeroDeck = () => {
-  const auditHref =
-    "/contact?subject=" +
-    encodeURIComponent(
-      "I'd like a free 30-minute audit. The workflow I'd most like to fix is:",
-    );
+  const auditHref = "/grain-audit";
   const onAudit = () =>
     track("cta_click", {
       cta_id: "audit_home_hero",
       cta_location: "hero",
-      cta_label: "Book a free 30-minute audit",
+      cta_label: "Book a Grain Audit",
       link_url: auditHref,
     });
   const onReadiness = () =>
@@ -106,7 +102,7 @@ export const HeroDeck = () => {
             onClick={onAudit}
             className="inline-flex items-center gap-2 rounded-full border border-cream/40 text-cream px-7 py-3.5 font-sans text-sm tracking-wider hover:bg-cream/10 transition-all"
           >
-            Book a free 30-minute audit →
+            Book a Grain Audit →
           </Link>
         </div>
 

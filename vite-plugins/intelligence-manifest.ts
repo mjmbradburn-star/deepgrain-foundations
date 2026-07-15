@@ -36,7 +36,7 @@ function validateFaqsLiteral(file: string, raw: string): void {
   try {
     // The raw source is a JS array literal containing JSX expressions for
     // `answerNode`. JSX won't eval here, but `answer` (plain string) and
-    // `question` will — and those are the only fields we ship in JSON-LD.
+    // `question` will - and those are the only fields we ship in JSON-LD.
     // We strip `answerNode: ( ... ),` blocks (balanced parens) before eval.
     const stripped = raw.replace(
       /answerNode\s*:\s*\([\s\S]*?\)\s*,?/g,
@@ -70,7 +70,7 @@ function validateFaqsLiteral(file: string, raw: string): void {
     if (typeof answer !== "string" || answer.trim() === "") {
       throw new Error(
         `[intelligence-manifest] ${file} faqs[${i}].\`answer\` must be a non-empty string ` +
-          `— it's the canonical text shipped in FAQPage JSON-LD.`,
+          `,  it's the canonical text shipped in FAQPage JSON-LD.`,
       );
     }
   });
@@ -89,7 +89,7 @@ async function buildManifest(): Promise<string> {
     // rather than waiting for the lazy MDX module to resolve.
     const fm = src.match(/export\s+const\s+faqs\s*=\s*(\[[\s\S]*?\n\]);/);
     if (fm) {
-      // Validate before emitting — bad schema aborts the build with a precise
+      // Validate before emitting - bad schema aborts the build with a precise
       // error pointing at the offending file and item index.
       validateFaqsLiteral(file, fm[1]);
     }

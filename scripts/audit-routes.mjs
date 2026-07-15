@@ -12,7 +12,7 @@
  *   1. Parses every <Route path="..."> from src/App.tsx.
  *   2. Expands dynamic params (:slug, :name) using the same data
  *      sources the runtime uses (MDX frontmatter, ANSWERS, PILLARS,
- *      CLUSTERS, COMPARES, CATEGORIES, GLOSSARY) — mirrored from the
+ *      CLUSTERS, COMPARES, CATEGORIES, GLOSSARY) - mirrored from the
  *      generator in scripts/build-seo-indexes.mjs.
  *   3. Reads public/sitemap.xml.
  *   4. Diffs the two sets, ignoring known noindex/internal routes.
@@ -127,7 +127,7 @@ for (const path of routePaths) {
     continue;
   }
 
-  // Dynamic param routes — expand based on the param.
+  // Dynamic param routes - expand based on the param.
   if (path === "/intelligence/category/:name") {
     for (const s of categorySlugs) expanded.add(`/intelligence/category/${s}`);
   } else if (path === "/intelligence/pillar/:slug") {
@@ -142,7 +142,7 @@ for (const path of routePaths) {
     for (const s of articleSlugs) expanded.add(`/intelligence/${s}`);
     for (const s of compareSlugs) expanded.add(`/intelligence/${s}`);
   } else {
-    console.warn(`[audit-routes] WARN: unhandled dynamic path "${path}" — extend audit-routes.mjs`);
+    console.warn(`[audit-routes] WARN: unhandled dynamic path "${path}" - extend audit-routes.mjs`);
   }
 }
 
@@ -178,7 +178,7 @@ console.log(
   `[audit-routes] App routes: ${expanded.size}, sitemap routes: ${sitemapPaths.size}`,
 );
 console.log(
-  `[audit-routes] sources — articles=${articleSlugs.length}, answers=${answerSlugs.length}, pillars=${pillarSlugs.length}, clusters=${clusterSlugs.length}, compares=${compareSlugs.length}, categories=${categorySlugs.length}`,
+  `[audit-routes] sources - articles=${articleSlugs.length}, answers=${answerSlugs.length}, pillars=${pillarSlugs.length}, clusters=${clusterSlugs.length}, compares=${compareSlugs.length}, categories=${categorySlugs.length}`,
 );
 
 let failed = false;
@@ -204,7 +204,7 @@ if (inSitemapNotApp.length) {
 }
 
 if (failed) {
-  console.error("\n[audit-routes] FAILED — sitemap and App.tsx are out of sync.");
+  console.error("\n[audit-routes] FAILED - sitemap and App.tsx are out of sync.");
   process.exit(1);
 }
 console.log("[audit-routes] sitemap and App.tsx are in sync ✓");

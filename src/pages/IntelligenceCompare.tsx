@@ -10,7 +10,7 @@ const SITE = "https://deepgrain.ai";
  * Shared template for /intelligence/<x>-vs-<y> pages.
  *
  * These pages target zero-competition long-tail comparisons that sit one
- * search step downstream of the AI OS pillar. Each is short on purpose —
+ * search step downstream of the AI OS pillar. Each is short on purpose , 
  * a comparison table, a tight summary, an FAQ, and a "read deeper" rail
  * back into the article cluster. The point is to rank, not to lecture.
  */

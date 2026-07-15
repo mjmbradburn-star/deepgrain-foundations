@@ -15,6 +15,7 @@ import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 import { BeforeAfterCard, type BeforeAfter } from "@/components/sections/deck/BeforeAfterCard";
 import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
+import { track } from "@/lib/analytics";
 
 const variants: Array<"linen" | "walnut" | "green"> = ["linen", "walnut", "linen", "green"];
 
@@ -72,7 +73,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How do you measure whether the work actually compounded?",
     answer:
-      "We define two or three operating metrics with you at the start of an engagement — usually a mix of throughput (hours reclaimed, cycle time on a named workflow) and durability (number of internal champions still extending the system 60 and 120 days after we leave). We come back at the 90-day mark to read those numbers with you, on the record. If they didn't move, we say so.",
+      "We define two or three operating metrics with you at the start of an engagement: usually a mix of throughput (hours reclaimed, cycle time on a named workflow) and durability (number of internal champions still extending the system 60 and 120 days after we leave). We come back at the 90-day mark to read those numbers with you, on the record. If they didn't move, we say so.",
   },
   {
     question: "What does 'lasting change' look like in practice?",
@@ -117,7 +118,7 @@ const Work = () => (
       ]}
     />
 
-    {/* Hero — deck shape */}
+    {/* Hero: deck shape */}
     <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
       <TopoBackdrop variant="ridge" opacity={0.22} />
       <div className="relative container-grain max-w-5xl">
@@ -134,13 +135,13 @@ const Work = () => (
       </div>
     </section>
 
-    {/* Hero before/after — the strongest case, deck slide 10 styled */}
+    {/* Hero before/after: the strongest case, deck slide 10 styled */}
     <BeforeAfterCard item={heroBeforeAfter} />
 
     {/* Sector strip */}
     <LogoCarousel background="walnut" showHeadline={false} />
 
-    {/* Before/after gallery — every case told in the same shape */}
+    {/* Before/after gallery: every case told in the same shape */}
     <section className="bg-cream text-walnut py-20 md:py-28">
       <div className="container-grain max-w-5xl">
         <ScrollReveal>
@@ -175,18 +176,33 @@ const Work = () => (
       <CaseStudyCard key={study.id} study={study} variant={variants[i]} />
     ))}
 
-    <BarkSection className="py-14 md:py-16" contentClassName="container-grain">
+    {/* Proof sits next to the offer: every case above started as a Grain Audit. */}
+    <BarkSection className="section-pad" contentClassName="container-grain max-w-3xl">
       <ScrollReveal>
+        <Eyebrow withRule className="text-brass mb-6">The next move</Eyebrow>
+        <h2 className="font-display text-cream text-3xl md:text-5xl leading-[1.08] max-w-2xl">
+          Every case above started the same way.
+        </h2>
+        <p className="mt-6 max-w-xl text-cream/75 leading-relaxed">
+          The Grain Audit maps one People Ops process end to end, ranks the highest-return
+          automations, and hands you a 90-day plan you keep whether or not we work together. Two
+          weeks. GBP 2,000, credited in full against a programme. Three slots a month.
+        </p>
         <Link
-          to="/enablement"
-          className="group flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
+          to="/grain-audit"
+          onClick={() =>
+            track("cta_click", {
+              cta_id: "audit_work_proof",
+              cta_location: "work_proof",
+              cta_label: "Book a Grain Audit",
+              link_url: "/grain-audit",
+            })
+          }
+          className="group mt-8 inline-flex items-center gap-2 rounded-full bg-cream px-7 py-3.5 font-sans text-sm tracking-wider text-green transition-all duration-300 hover:bg-cream/90"
         >
-          <p className="font-display text-cream text-2xl md:text-3xl leading-snug max-w-3xl">
-            Every engagement leaves a trained team behind.{" "}
-            <span className="text-brass transition-colors group-hover:text-cream">See how →</span>
-          </p>
+          Book a Grain Audit
           <ArrowUpRight
-            className="hidden md:block h-7 w-7 text-brass transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+            className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             strokeWidth={2}
           />
         </Link>

@@ -9,7 +9,7 @@ import { BrainCaptureForm } from "@/components/forms/BrainCaptureForm";
 import CoworkPreview from "@/components/brain/CoworkPreview";
 
 /**
- * /brain — The People Ops AI Brain (lead capture).
+ * /brain - The People Ops AI Brain (lead capture).
  *
  * Phase 3: form is wired to the `send-brain-welcome` edge function.
  */
@@ -101,7 +101,7 @@ const Brain = () => (
       ]}
     />
 
-    {/* ───────── Section 1 — Hero (editorial, no photo) ───────── */}
+    {/* ───────── Section 1 - Hero (editorial, no photo) ───────── */}
     <section
       className="relative bg-green text-cream overflow-hidden"
       data-no-rule
@@ -141,7 +141,7 @@ const Brain = () => (
 
             <BrassRule className="mt-12 mb-10 max-w-2xl" />
 
-            {/* Form card — cream artefact sitting on the dark ground */}
+            {/* Form card - cream artefact sitting on the dark ground */}
             <div className="max-w-2xl rounded-3xl border border-brass/30 bg-cream/[0.06] backdrop-blur-sm p-7 md:p-10">
               <p
                 className="font-sans uppercase text-[11px] text-brass mb-6"
@@ -188,7 +188,7 @@ const Brain = () => (
       </div>
     </section>
 
-    {/* ───────── Section 2 — Sample article (flipbook, lifted) ───────── */}
+    {/* ───────── Section 2 - Sample article (flipbook, lifted) ───────── */}
     <section className="bg-green text-cream py-16 md:py-20 overflow-hidden">
       <div className="container-grain">
         <div className="max-w-3xl mx-auto text-center">
@@ -229,7 +229,7 @@ const Brain = () => (
       </div>
     </section>
 
-    {/* ───────── Section 3 — What's Inside ───────── */}
+    {/* ───────── Section 3 - What's Inside ───────── */}
     <section
       id="brain-whats-inside"
       className="bg-linen text-body py-20 md:py-28 lg:py-32"
@@ -276,7 +276,7 @@ const Brain = () => (
       </div>
     </section>
 
-    {/* ───────── Section 4 — Author ───────── */}
+    {/* ───────── Section 4 - Author ───────── */}
     <section className="bg-walnut text-cream py-20 md:py-28">
       <div className="container-grain">
         <div className="grid gap-12 md:gap-16 md:grid-cols-[5fr_7fr] items-start">
@@ -334,7 +334,7 @@ const Brain = () => (
       </div>
     </section>
 
-    {/* ───────── Section 5 — Second CTA ───────── */}
+    {/* ───────── Section 5 - Second CTA ───────── */}
     <section className="relative bg-green text-cream py-24 md:py-32 overflow-hidden">
       <div
         aria-hidden

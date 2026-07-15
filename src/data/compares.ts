@@ -2,7 +2,7 @@
  * Comparison pages: short, structured, long-tail SEO bait.
  *
  * Each entry powers a `/intelligence/<slug>` route via IntelligenceCompare.
- * Comparison rows are deliberately tight — these pages exist to rank for
+ * Comparison rows are deliberately tight - these pages exist to rank for
  * "X vs Y" queries and funnel readers into the pillar.
  */
 export interface CompareEntry {

@@ -1,6 +1,7 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { PillButton } from "@/components/ui/PillButton";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
@@ -9,25 +10,25 @@ const steps = [
   {
     n: "01",
     title: "Pick a workflow",
-    body: "One you own and wish you never had to touch. Onboarding, case triage, a leaver process.",
+    body: "The one you'd want inside the Audit. Onboarding, case triage, a leaver process.",
   },
   {
     n: "02",
-    title: "Atomise it to the click",
-    body: "We map the first eight steps together. Click, handoff, decision, wait. Honest about the dull ones.",
+    title: "Check it's a fit",
+    body: "Two weeks of mapping only pays off on a process with real volume behind it. We work out if yours qualifies.",
   },
   {
     n: "03",
-    title: "Agree the first move",
-    body: "One step to redesign. One step that must stay human. Something you can act on by Monday.",
+    title: "Lock a slot",
+    body: "Three Audit slots a month. If it fits, we book one before the call ends.",
   },
 ];
 
 const Contact = () => (
   <>
     <PageMeta
-      title="Book a 30-minute audit | Deepgrain"
-      description="Map one workflow with Matthew Bradburn. Thirty minutes, twenty minutes mapping and ten agreeing the first move. Leave with a plan, not a pitch."
+      title="Book a Grain Audit | Deepgrain"
+      description="Two weeks. One People Ops process mapped end to end, the highest-return automations ranked, and a 90-day plan you keep. GBP 2,000, credited in full against a programme."
       path="/contact"
       jsonLd={buildBreadcrumbLd([
         { name: "Home", url: "https://www.deepgrain.ai/" },
@@ -35,18 +36,34 @@ const Contact = () => (
       ])}
     />
 
-    {/* Hero — green, deck-style */}
+    {/* Hero - green, deck-style */}
     <section className="relative bg-green text-cream pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
       <TopoBackdrop variant="basin" opacity={0.16} />
       <div className="relative container-grain max-w-4xl">
         <ScrollReveal>
-          <SectionEyebrow className="mb-6">The first move</SectionEyebrow>
+          <SectionEyebrow className="mb-6">Three slots a month</SectionEyebrow>
           <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02]">
-            Map one workflow with me.
+            Book a Grain Audit.
           </h1>
-          <p className="font-display italic text-cream/80 mt-6 text-xl md:text-2xl max-w-2xl">
-            Twenty minutes mapping. Ten agreeing the first move. You leave with one thing to do on
-            Monday, not a deck.
+          <p className="mt-8 max-w-2xl text-cream/80 text-lg leading-relaxed">
+            One People Ops process, mapped end to end. The highest-return automations ranked. A
+            90-day plan you keep, whether or not we work together after.
+          </p>
+          <p className="mt-4 max-w-2xl text-cream/60 text-base">
+            Two weeks. GBP 2,000, credited in full against a programme.
+          </p>
+          <div className="mt-10">
+            <PillButton
+              href="/grain-audit"
+              variant="filled"
+              cta="grain_audit_hero"
+              ctaLocation="contact_hero"
+            >
+              Book a Grain Audit
+            </PillButton>
+          </div>
+          <p className="mt-6 text-cream/50 text-sm">
+            Want to talk it through first? Thirty minutes, below.
           </p>
         </ScrollReveal>
       </div>
@@ -58,10 +75,10 @@ const Contact = () => (
         <div className="grid lg:grid-cols-[5fr_7fr] gap-12 lg:gap-16 items-start">
           <ScrollReveal>
             <SectionEyebrow tone="linen" className="mb-6">
-              What we will cover
+              Not ready yet
             </SectionEyebrow>
             <h2 className="font-display text-walnut text-3xl md:text-4xl leading-[1.05] mb-10 max-w-md">
-              Thirty minutes. A workflow. A move.
+              Thirty minutes. No pitch. We work out if it fits.
             </h2>
             <ol className="space-y-8">
               {steps.map((s) => (
@@ -78,7 +95,7 @@ const Contact = () => (
               ))}
             </ol>
             <p className="mt-10 text-walnut/60 text-sm">
-              Or write directly:{" "}
+              Or skip the call. Email me directly:{" "}
               <a
                 href="mailto:matt@deepgrain.ai"
                 className="text-brass hover:underline underline-offset-2"
@@ -98,9 +115,9 @@ const Contact = () => (
                   className="font-sans uppercase text-brass"
                   style={{ fontSize: "10px", letterSpacing: "0.22em", fontWeight: 600 }}
                 >
-                  ◷  Find a slot
+                  ◷  Grab 30 minutes
                 </span>
-                <span className="text-walnut/50 text-xs">30 minutes</span>
+                <span className="text-walnut/50 text-xs">Free, no pitch</span>
               </div>
               <iframe
                 src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1RAkNriqYTtoBEaOJM92B07HFwq_4dSvaiwERC1mO3XJVbPEf_3dNFAgYI4XxvXomrLtBa2TAW?gv=true"
@@ -116,16 +133,16 @@ const Contact = () => (
       </div>
     </section>
 
-    {/* Form fallback — green */}
+    {/* Form fallback - green */}
     <section className="bg-green text-cream py-20 md:py-28">
       <div className="container-grain max-w-3xl text-center">
         <ScrollReveal>
           <p className="font-display italic text-cream/70 text-2xl mb-3">
-            Or send a note. A paragraph is enough.
+            Prefer to write first? A paragraph is enough.
           </p>
           <p className="text-cream/60 max-w-md mx-auto text-sm mb-12">
-            If a calendar slot does not fit, tell me roughly what you are trying to fix and I will
-            come back with a time.
+            Tell me what you're trying to fix. If the Grain Audit is the right first move, I'll
+            say so. If it isn't, I'll say that too.
           </p>
           <ContactForm />
         </ScrollReveal>

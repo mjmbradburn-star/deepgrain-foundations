@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { PillButton } from "@/components/ui/PillButton";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { ValueVisualiser } from "@/components/sections/ValueVisualiser";
 import { BuildVsHire } from "@/components/sections/BuildVsHire";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { BarkSection } from "@/components/ui/BarkSection";
-import { Invitation } from "@/components/sections/Invitation";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 import { ThreeLevels } from "@/components/sections/deck/ThreeLevels";
@@ -64,10 +63,10 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What does the first 30 days actually look like?",
     answer:
-      "The Read phase. Matt sits inside your operating cadence — standups, one-to-ones, leadership reviews — and runs structured interviews across the org. The output is a written diagnostic: where the operating story diverges from the operating reality, which interventions would compound, and which would break the grain. No slideware, no benchmarks. A document leadership can act on.",
+      "The Read phase. Matt sits inside your operating cadence: standups, one-to-ones, leadership reviews. He runs structured interviews across the org. The output is a written diagnostic: where the operating story diverges from the operating reality, which interventions would compound, and which would break the grain. No slideware, no benchmarks. A document leadership can act on.",
     answerNode: (
       <>
-        The <Link to="/method#read" className={linkCls}>Read</Link> phase. Matt sits inside your operating cadence — standups, one-to-ones, leadership reviews — and runs structured interviews across the org. The output is a written diagnostic: where the operating story diverges from the operating reality, which interventions would compound, and which would break the grain. No slideware, no benchmarks. A document leadership can act on.
+        The <Link to="/method#read" className={linkCls}>Read</Link> phase. Matt sits inside your operating cadence: standups, one-to-ones, leadership reviews. He runs structured interviews across the org. The output is a written diagnostic: where the operating story diverges from the operating reality, which interventions would compound, and which would break the grain. No slideware, no benchmarks. A document leadership can act on.
         <FaqFooter ask="I'd like to talk about what a Read phase would surface in our organisation. A bit about us: " />
       </>
     ),
@@ -75,11 +74,11 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What deliverables do we walk away with?",
     answer:
-      "Three things. First, the diagnostic document from the Read phase. Second, the interventions themselves — usually a small set of agentic systems and operating rituals built and shipped during Craft. Third, three or four trained champions inside the team who can extend, debug, and govern the work after we leave. The capability stays with you, not in a vendor.",
+      "Three things. First, the diagnostic document from the Read phase. Second, the interventions themselves: usually a small set of agentic systems and operating rituals built and shipped during Craft. Third, three or four trained champions inside the team who can extend, debug, and govern the work after we leave. The capability stays with you, not in a vendor.",
     answerNode: (
       <>
         Three things. First, the diagnostic document from the{" "}
-        <Link to="/method#read" className={linkCls}>Read</Link> phase. Second, the interventions themselves — usually a small set of agentic systems and operating rituals built and shipped during{" "}
+        <Link to="/method#read" className={linkCls}>Read</Link> phase. Second, the interventions themselves: usually a small set of agentic systems and operating rituals built and shipped during{" "}
         <Link to="/method#craft" className={linkCls}>Craft</Link>. Third, three or four trained champions inside the team who can extend, debug, and govern the work after we leave. The capability stays with you, not in a vendor.
         <FaqFooter
           related={{ to: "/enablement", label: "See how champions are trained →" }}
@@ -91,10 +90,10 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Who is the right fit for this work?",
     answer:
-      "Founders and operating leaders inside organisations worth getting right — typically AI-native, defence tech, financial data, transit and mobility, or climate. The common thread: leadership willing to look at the operating reality honestly, and a team capable of holding the practice once we hand it over.",
+      "Founders and operating leaders inside organisations worth getting right: typically AI-native, defence tech, financial data, transit and mobility, or climate. The common thread: leadership willing to look at the operating reality honestly, and a team capable of holding the practice once we hand it over.",
     answerNode: (
       <>
-        Founders and operating leaders inside organisations worth getting right — typically AI-native, defence tech, financial data, transit and mobility, or climate. The common thread: leadership willing to look at the operating reality honestly, and a team capable of holding the practice once we hand it over.
+        Founders and operating leaders inside organisations worth getting right: typically AI-native, defence tech, financial data, transit and mobility, or climate. The common thread: leadership willing to look at the operating reality honestly, and a team capable of holding the practice once we hand it over.
         <FaqFooter
           related={{ to: "/work", label: "See who we work with →" }}
           ask="I'd like to know whether we're a fit for Deepgrain. A bit about our organisation: "
@@ -105,10 +104,10 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Do I need a technical team to make this work?",
     answer:
-      "No. The champion model is built around non-engineers — heads of People, ops leads, chiefs of staff, domain operators. They learn to design and run agents inside their own function. We bring the engineering muscle when something needs to be built deeper, but the day-to-day capability lives with operators, not coders.",
+      "No. The champion model is built around non-engineers: heads of People, ops leads, chiefs of staff, domain operators. They learn to design and run agents inside their own function. We bring the engineering muscle when something needs to be built deeper, but the day-to-day capability lives with operators, not coders.",
     answerNode: (
       <>
-        No. The champion model is built around non-engineers — heads of People, ops leads, chiefs of staff, domain operators. They learn to design and run agents inside their own function. We bring the engineering muscle when something needs to be built deeper, but the day-to-day capability lives with operators, not coders.
+        No. The champion model is built around non-engineers: heads of People, ops leads, chiefs of staff, domain operators. They learn to design and run agents inside their own function. We bring the engineering muscle when something needs to be built deeper, but the day-to-day capability lives with operators, not coders.
         <FaqFooter
           related={{ to: "/enablement", label: "How the champion model works →" }}
           ask="I'd like to talk about who in our team could become champions. A bit about our function: "
@@ -119,11 +118,15 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How does pricing work?",
     answer:
-      "Engagements are scoped per phase, not by retainer or day rate. We share indicative ranges in the first conversation once we understand the shape of the work — write to matt@deepgrain.ai to start there.",
+      "Engagements are scoped per phase, not by retainer or day rate. If you want a fixed number before that conversation, start with the Grain Audit: two weeks, £2,000, one process mapped end to end. It's credited in full against a programme if you go further.",
     answerNode: (
       <>
-        Engagements are scoped per phase, not by retainer or day rate. We share indicative ranges in the first conversation once we understand the shape of the work — write to matt@deepgrain.ai to start there.
-        <FaqFooter ask="I'd like an indicative range for an engagement. A bit about what we're trying to fix: " />
+        Engagements are scoped per phase, not by retainer or day rate. If you want a fixed number before that conversation, start with the{" "}
+        <Link to="/grain-audit" className={linkCls}>Grain Audit</Link>: two weeks, £2,000, one process mapped end to end. It's credited in full against a programme if you go further.
+        <FaqFooter
+          related={{ to: "/grain-audit", label: "Book a Grain Audit →" }}
+          ask="I'd like an indicative range for a full engagement, beyond the Grain Audit. A bit about what we're trying to fix: "
+        />
       </>
     ),
   },
@@ -145,7 +148,7 @@ const howToLd = {
       position: 1,
       name: "Read the grain",
       url: "https://deepgrain.ai/method#read",
-      text: "A 30-day operating diagnostic. Sit inside the operating cadence, run structured interviews, and surface where the operating story diverges from the operating reality. Output is a written diagnostic leadership can act on — not slideware.",
+      text: "A 30-day operating diagnostic. Sit inside the operating cadence, run structured interviews, and surface where the operating story diverges from the operating reality. Output is a written diagnostic leadership can act on, not slideware.",
     },
     {
       "@type": "HowToStep",
@@ -238,7 +241,7 @@ const MethodPage = () => (
         serviceLd,
       ]}
     />
-    {/* Hero — deck shape: eyebrow, single assertion, no glossy image */}
+    {/* Hero: deck shape, eyebrow, single assertion, no glossy image */}
     <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
       <TopoBackdrop variant="ridge" opacity={0.22} />
       <div className="relative container-grain max-w-5xl">
@@ -265,10 +268,10 @@ const MethodPage = () => (
       </div>
     </section>
 
-    {/* Three levels — the page spine, deck slides 5 + 6 */}
+    {/* Three levels: the page spine, deck slides 5 + 6 */}
     <ThreeLevels />
 
-    {/* Worked example — sits between the spine and the Read/Craft/Scale narrative */}
+    {/* Worked example: sits between the spine and the Read/Craft/Scale narrative */}
     <WorkedExample />
 
     {/* Read */}
@@ -384,7 +387,7 @@ const MethodPage = () => (
       </div>
     </section>
 
-    {/* Build vs Hire — sits between Craft and Scale */}
+    {/* Build vs Hire: sits between Craft and Scale */}
     <BuildVsHire />
 
     {/* Scale */}
@@ -401,11 +404,11 @@ const MethodPage = () => (
               and structures that hold as you grow.
             </p>
             <p className="hidden md:block">
-              Two months after the engagement ends, our champions are still
-              building. They have extended the work into places we never
-              touched. That is the test. What you still have, and what you
-              have added, six months on. The guardrails that keep it trustworthy
-              live with the team too —{" "}
+              Months after we leave, the champions are still building. They
+              have extended the work into places we never touched. That is
+              the test: what you still have, and what you have added, long
+              after the invoices stop. The guardrails that keep it
+              trustworthy live with the team too, through{" "}
               <Link to="/intelligence/ai-governance-for-people-teams" className={linkCls}>
                 governance designed for the people doing the work
               </Link>
@@ -413,28 +416,19 @@ const MethodPage = () => (
             </p>
           </div>
 
-          {/* Champions trained — pull-quote callout linking to the essay */}
-          <Link
-            to="/intelligence/the-champion-model"
-            className="group mt-12 block rounded-2xl border-l-4 border-brass bg-walnut/[0.04] p-7 md:p-9 transition-colors hover:bg-walnut/[0.07]"
-          >
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <div className="text-[11px] uppercase tracking-[0.2em] text-brass font-semibold">
-                  Champions trained
-                </div>
-                <p className="mt-3 font-display text-walnut text-2xl md:text-3xl leading-snug text-balance">
-                  &ldquo;You don&apos;t need engineers to build AI capability inside
-                  the function. You need three or four champions, given air cover
-                  and time.&rdquo;
-                </p>
-                <div className="mt-4 inline-flex items-center gap-1 text-sm text-brass font-medium transition-colors group-hover:text-walnut">
-                  Read &middot; The champion model
-                  <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
-                </div>
-              </div>
-            </div>
-          </Link>
+          {/* Champions trained: same pull-quote treatment as the Read/Craft/Empowerment quotes above */}
+          <figure className="mt-12 border-l-2 border-brass/60 pl-6">
+            <blockquote className="font-display text-walnut text-2xl md:text-3xl leading-snug italic text-balance">
+              “You don't need engineers to build AI capability inside the
+              function. You need three or four champions, given air cover
+              and time.”
+            </blockquote>
+            <figcaption className="mt-3 text-sm text-body/70">
+              <Link to="/intelligence/the-champion-model" className={linkCls}>
+                Read: The champion model →
+              </Link>
+            </figcaption>
+          </figure>
         </ScrollReveal>
       </div>
     </section>
@@ -445,13 +439,34 @@ const MethodPage = () => (
     {/* FAQ */}
     <FAQ heading="What clients ask before they engage." items={FAQ_ITEMS} />
 
-    {/* CTA — unified audit prompt, deep-linked to contact with prefill */}
-    <Invitation
-      ctaLocation="method"
-      headline="Want to see what reading your grain might surface?"
-      sub="Thirty minutes on a workflow you own. One first move you can make on Monday."
-      prefill="I'd like to walk one workflow through the Read · Craft · Scale method. The workflow is:"
-    />
+    {/* CTA: Grain Audit, the paid bridge offer for a reader who just read the whole method */}
+    <section className="relative bg-green text-cream section-pad overflow-hidden">
+      <TopoBackdrop variant="basin" opacity={0.16} />
+      <div className="relative container-grain max-w-3xl">
+        <ScrollReveal>
+          <SectionEyebrow className="mb-6">The Grain Audit</SectionEyebrow>
+          <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight text-balance">
+            Don't take the method on faith. Run it on one process.
+          </h2>
+          <p className="mt-6 max-w-2xl text-cream/80 text-lg leading-relaxed">
+            The Grain Audit maps one People Ops process end to end, ranks the
+            highest-return automations, and hands you a 90-day plan you keep
+            whether or not we work together. Two weeks. £2,000, credited in
+            full against a programme. Three slots a month.
+          </p>
+          <div className="mt-10">
+            <PillButton
+              href="/grain-audit"
+              variant="filled"
+              cta="grain_audit_method_close"
+              ctaLocation="method_close"
+            >
+              Book a Grain Audit →
+            </PillButton>
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
   </>
 );
 

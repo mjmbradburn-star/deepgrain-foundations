@@ -25,7 +25,7 @@ export interface Category {
 export const CATEGORIES: Category[] = [
   // Deepgrain
   { slug: "foundations", name: "Foundations", description: "First principles of organisational consultancy and the grain.", track: "deepgrain" },
-  { slug: "ai-operating-systems", name: "AI & Operating Systems", description: "What an AI operating system is — and how to build one.", track: "deepgrain" },
+  { slug: "ai-operating-systems", name: "AI & Operating Systems", description: "What an AI operating system is - and how to build one.", track: "deepgrain" },
   { slug: "method-and-practice", name: "Method & Practice", description: "Read · Craft · Scale: how the work is done.", track: "deepgrain" },
   { slug: "sector-lenses", name: "Sector Lenses", description: "Operating consultancy applied to specific industries.", track: "deepgrain" },
   { slug: "leadership-and-craft", name: "Leadership & Craft", description: "The disciplines of operating leadership.", track: "deepgrain" },
@@ -62,7 +62,7 @@ export interface ArticleFrontmatter {
 
 export interface Article {
   frontmatter: ArticleFrontmatter;
-  /** Lazy-loaded MDX component — only fetched when an article page renders. */
+  /** Lazy-loaded MDX component - only fetched when an article page renders. */
   Component: LazyExoticComponent<ComponentType>;
   /** Optional Common questions, extracted from `export const faqs` in the MDX
    *  at build time. Present only when the article actually defines them. */
@@ -73,7 +73,7 @@ import { FRONTMATTERS, LOADERS, FAQS } from "virtual:intelligence-manifest";
 import type { FAQItem } from "@/components/sections/FAQ";
 
 // Eager-load all Intelligence hero images (both tracks) and key them by slug.
-// Vite resolves these to hashed asset URLs at build time — only the URL string
+// Vite resolves these to hashed asset URLs at build time - only the URL string
 // ships in the bundle, not the image bytes themselves.
 // We load JPG (fallback), WebP (~53% of JPG), and AVIF (~32% of JPG) so the
 // browser can pick the smallest format it supports via a <picture> element.
@@ -83,7 +83,7 @@ const heroImageModules = import.meta.glob<{ default: string }>(
 );
 
 export interface HeroImageSet {
-  /** JPG/PNG fallback — always present. */
+  /** JPG/PNG fallback - always present. */
   src: string;
   webp?: string;
   avif?: string;
@@ -156,7 +156,7 @@ export const getFeaturedArticles = (limit = 3) =>
  *
  * Score = (shared keywords × 3) + (same category × 2) + (same track × 1).
  * Sort: score desc, then most recent. Articles with score 0 are excluded
- * unless we'd otherwise return fewer than `limit` — in which case we top up
+ * unless we'd otherwise return fewer than `limit` - in which case we top up
  * with same-track, then site-wide recency, so the section is never empty.
  */
 export const getRelatedArticles = (slug: string, limit = 3) => {

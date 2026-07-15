@@ -12,7 +12,7 @@ import { ARTICLES, getFeaturedArticles } from "@/lib/intelligence";
  *   - three recommended reads (featured if available, otherwise the most
  *     recent published intelligence pieces)
  *
- * Keeps the noindex tag — we don't want this page in the index.
+ * Keeps the noindex tag - we don't want this page in the index.
  */
 const NotFound = () => {
   const navigate = useNavigate();

@@ -14,12 +14,12 @@ export const faqs = [
   {
     question: "What is the AI operating ladder?",
     answer:
-      "The AI operating ladder is a five-tier model of AI operating maturity used at Deepgrain: ad-hoc, assisted, augmented, autonomous, and self-operating. Each rung describes a different shape of AI operating system underneath, with different demands on data, tools, agents, governance, and cadence.",
+      "The AI operating ladder is a five-tier model of AI operating maturity used at Deepgrain: ad-hoc, assisted, augmented, autonomous, and self-operating. It came out of running the same 'where are we, really' conversation with enough leadership teams that a single maturity score stopped being useful. Naming the rung per function, rather than an aggregate number, is what the AI Operating Index scores against.",
   },
   {
     question: "Which tier is most companies on?",
     answer:
-      "Most companies are between tier 1 (ad-hoc) and tier 2 (assisted). They overestimate by two: leadership thinks they are on tier 3, the operators on the ground know they are on tier 1. Closing that perception gap is usually the first useful piece of work.",
+      "It varies sharply by function. Customer support and marketing tend to move fastest because the cost of a bad output is low and reversible. Finance and legal lag hardest because the stakes of an error are higher, so governance has to catch up before the tooling does. Scoring function by function, rather than the org as a whole, is what usually breaks the leadership-versus-operator standoff.",
   },
   {
     question: "Do you have to climb the ladder in order?",
@@ -29,7 +29,7 @@ export const faqs = [
   {
     question: "Is tier 5 (self-operating) realistic?",
     answer:
-      "Rarely, and not yet for most use cases. We include it because some narrow workflows do reach it (price updates, log triage, low-stakes routing), but it is not a target tier for whole functions. The interesting work is happening at tiers 3 and 4.",
+      "Only for workflows with three properties: low blast radius if the agent gets it wrong, high enough volume that removing the human is worth the risk, and a clean rule for escalating the edge cases. Most candidate workflows fail on the first property alone. That is the real reason tier 5 stays rare, not a lack of capable models.",
   },
 ];
 
@@ -43,7 +43,7 @@ export const faqs = [
 
 Most companies overestimate where they are on AI by two rungs. Leadership thinks the team is at tier 3. The operators on the ground know they are at tier 1. The gap between those two beliefs is where most AI budgets get spent without producing anything.
 
-The ladder below is the model we use to settle that argument. Five tiers, in order, each describing a different shape of [AI operating system](/intelligence/what-is-an-ai-operating-system) underneath. The model is the same across the rungs. The data, tools, agents, governance, and cadence wrapped around it are not.
+The ladder below is the model we use to settle that argument. Five tiers, in order, each describing a different shape of [AI operating system](/intelligence/what-is-an-ai-operating-system) underneath. The model itself stays constant across the rungs, but the data, tools, agents, governance, and cadence wrapped around it change at every one.
 
 ## Tier 1: Ad-hoc
 
@@ -108,7 +108,7 @@ Tier 3 is where AI starts compounding. Tier 3 is also where the operating debt o
 
 Agents owning outcomes.
 
-Specific outcomes, not just specific tasks. An agent does not just draft the customer reply, it owns the customer-reply backlog, escalates the unclear ones, and reports on the rest. A human reviews the policy and the exceptions, not the volume.
+Specific outcomes, not just specific tasks. An agent owns the customer-reply backlog: it drafts the first-pass reply, escalates the unclear ones, and reports on the rest. A human reviews the policy and the exceptions, not the volume.
 
 What it looks like:
 - A small number of workflows are run end-to-end by agents on a target SLA

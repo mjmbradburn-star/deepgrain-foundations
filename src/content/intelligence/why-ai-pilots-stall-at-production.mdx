@@ -14,17 +14,17 @@ export const faqs = [
   {
     question: "Why do most AI pilots fail to reach production?",
     answer:
-      "Because a pilot proves a model can do a task and production proves an organisation can absorb the consequences. Most pilots stall on data pipelines that were manual, integrations that were hacks, governance that lived in a Slack thread, and the absence of an owner who maintains the workflow once it is live.",
+      "Because the people building the pilot are usually the people incentivised to declare it a win, not to fund what comes after. A vendor closes when the demo lands. An internal champion moves to the next priority. Nobody in the room is paid to ask whether the pipeline, the integration, or the governance will survive real volume, so those questions get asked in January instead of October, once the budget and the sponsor have both moved on.",
   },
   {
     question: "How do you design an AI pilot that actually ships?",
     answer:
-      "Define the production version before the pilot starts. Pick a workflow with a real owner, a real data source, a real integration, and a real governance check. Run the pilot on Monday morning data, not curated demos. The pilot is the production system at lower volume, not a separate prototype.",
+      "Get the production infrastructure costed and approved in principle before the pilot starts, not after it demos well. Put that budget on the same approval as the pilot budget. If the answer to 'what would this cost to run properly' is still open once the pilot succeeds, you have built a demo with good PR, not a pilot.",
   },
   {
     question: "What is the most common single reason pilots stall?",
     answer:
-      "Lack of an owner for the workflow once it is live. The pilot has a project manager. Production needs an operating leader. If you cannot name the person who will own the workflow on the Monday after launch, the pilot will not become production.",
+      "It usually isn't a hiring gap, it's a misassignment. Boards default to handing the ownerless workflow to IT, because IT owns the infrastructure it runs on. But IT doesn't own the business decision the workflow makes, so it can keep the lights on without anyone actually watching whether the agent is still making good calls. The fix is naming an operating leader from the business side, not adding headcount to IT.",
   },
 ];
 
@@ -80,7 +80,7 @@ Before you sign off on the next AI pilot, ask:
 4. What is the written policy on what the agent must not decide?
 5. What forum reviews this workflow's drift, and how often?
 
-If any of those answers is "we'll figure it out later", the pilot has not been designed. It has been wished into existence.
+If any of those answers is "we'll figure it out later", the pilot was wished into existence rather than designed.
 
 ## Where pilots fit in the larger arc
 

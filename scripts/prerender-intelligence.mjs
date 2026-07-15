@@ -164,7 +164,7 @@ try {
         // De-duplicate SEO meta tags. index.html ships generic fallbacks for
         // non-prerendered pages and JS-less social scrapers; PageMeta (Helmet)
         // emits the correct per-page versions, tagged with data-rh. When both
-        // exist, crawlers read the first (static, generic) one — which made
+        // exist, crawlers read the first (static, generic) one - which made
         // every prerendered page look identically templated to Google. Drop
         // the static duplicate wherever a Helmet version is present.
         const managed = [

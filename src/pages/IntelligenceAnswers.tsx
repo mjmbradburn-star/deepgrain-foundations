@@ -32,7 +32,7 @@ const IntelligenceAnswers = () => {
 
   // Mirror the same Q/A as a FAQPage. Belt-and-braces; both schemas are
   // legitimately applicable to a hub page like this and Google has ingested
-  // both for years. We're not stuffing — every answer is unique, sourced.
+  // both for years. We're not stuffing - every answer is unique, sourced.
   const faqPageLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",

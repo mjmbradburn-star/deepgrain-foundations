@@ -5,7 +5,7 @@ import { CATEGORIES, getHeroImage } from "@/lib/intelligence";
 
 interface ArticleCardProps {
   article: Article;
-  variant?: "linen" | "green";
+  variant?: "linen" | "green" | "row";
 }
 
 /**
@@ -19,7 +19,7 @@ const trimDescription = (text: string, max = 130): string => {
   const slice = text.slice(0, max);
   const lastSpace = slice.lastIndexOf(" ");
   const cut = lastSpace > max * 0.6 ? slice.slice(0, lastSpace) : slice;
-  return cut.replace(/[\s,;:.\-—–]+$/, "") + "…";
+  return cut.replace(/[\s,;:.\-, –]+$/, "") + "…";
 };
 
 export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
@@ -28,6 +28,51 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
     const cat = CATEGORIES.find((c) => c.slug === f.category);
     const hero = getHeroImage(f.slug);
     const description = trimDescription(f.description);
+
+    // Editorial index row, used on the Intelligence hub in place of the
+    // card grid. Rule-separated, text-forward, no border/radius/background:
+    // deliberately distinct from the `linen`/`green` card used everywhere
+    // else articles surface (teasers, related-reading, category grids).
+    if (variant === "row") {
+      return (
+        <Link
+          ref={ref}
+          to={`/intelligence/${f.slug}`}
+          className="group flex items-start gap-6 md:gap-10 py-7 md:py-9 border-b border-walnut/15 last:border-b-0 transition-colors hover:bg-walnut/[0.03]"
+        >
+          <span
+            className="hidden md:block w-16 shrink-0 pt-1 font-sans text-[11px] uppercase text-walnut/40 tabular-nums"
+            style={{ letterSpacing: "0.1em" }}
+            aria-hidden
+          >
+            {f.readTime}
+          </span>
+          <div className="min-w-0 flex-1">
+            <h3
+              className="font-display text-xl md:text-3xl leading-[1.15] text-walnut transition-colors group-hover:text-green"
+              style={{ letterSpacing: "-0.005em" }}
+            >
+              {f.title}
+            </h3>
+            <p className="mt-2 max-w-2xl text-[13px] md:text-[15px] leading-relaxed text-walnut/70">
+              {description}
+            </p>
+            <div
+              className="mt-3 flex items-center gap-1.5 text-[10px] uppercase text-walnut/45 md:hidden"
+              style={{ letterSpacing: "0.12em" }}
+            >
+              <span>{f.readTime}</span>
+            </div>
+          </div>
+          <span
+            className="mt-1 shrink-0 font-display text-2xl text-brass transition-transform group-hover:translate-x-1"
+            aria-hidden
+          >
+            →
+          </span>
+        </Link>
+      );
+    }
 
     const isGreen = variant === "green";
 

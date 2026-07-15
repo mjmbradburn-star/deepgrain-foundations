@@ -19,7 +19,65 @@ export const frontmatter = {
 
 When agents are part of the workforce, the org chart needs a new column.
 
-AI-native companies are also the cleanest case for an [AI operating system](/intelligence/what-is-an-ai-operating-system) by design. There is no legacy substrate to retrofit. The five pillars are built in from day one or they are not built at all.
+AI-native companies are also the cleanest case for an [AI operating system](/intelligence/what-is-an-ai-operating-system) by design. There is no legacy substrate to retrofit. The five pillars have to be there from the start, not retrofitted once the business is already running on agents.
+
+## Agents belong in the headcount plan
+
+At a normal company, software sits under a tools line and agents get bolted on later, usually after someone in ops gets tired of copy-pasting between systems. At an AI-native company, agents are in the first hiring plan alongside the humans. A 14-person AI-native SaaS business might already have three agents running tier-1 support, one doing first-pass lead qualification, and one drafting weekly board reporting before the company has a Head of People.
+
+That changes the questions a founder has to answer, and changes when they have to answer them. "Who owns escalation from the support agent" lands in month one now, asked in the same breath as "who's our first support hire," not at month eighteen. Get this wrong early and you are debugging it at Series A, in front of a board that has started asking pointed questions about headcount efficiency.
+
+## The org chart needs a column, not a footnote
+
+Most companies that use agents treat them as a footnote: "we've got an AI thing running in the background for X." No owner, no review cadence, no defined scope. Nobody notices when it drifts because nobody was ever assigned to notice.
+
+An AI-native operating model treats each agent as a role, with the same rigour a human role gets:
+
+- A name and a defined scope (Support Tier-1 Agent, not "the support bot")
+- An owner (Head of Support, not "IT" or "whoever set it up")
+- KPIs it is measured against (CSAT, escalation rate, resolution time)
+- A review cadence (weekly, folded into the same rhythm as team stand-ups, not a quarterly audit nobody has time for)
+- A retrain or retire trigger (escalation rate crosses 15% for two weeks running, the role gets rebuilt or pulled)
+
+Write that down for every agent in the business and you have turned a background process into a role with accountability attached. Skip it and you have an orphan that nobody will catch until a customer complains loudly enough.
+
+## AI-native is the easy case for this
+
+Legacy companies carry decades of process built on an assumption that every unit of work has a human attached to it: performance review cycles, headcount planning models, tool contracts negotiated for human seat counts, org charts with a box for every person and nothing else. None of it was built with a non-human operator in mind. Retrofitting means going back through every one of those systems and rebuilding it for a workforce that includes agents, usually while the business is still running.
+
+AI-native companies skip that tax entirely. There is no legacy performance review cycle to unpick, no seat-based tool contract to renegotiate, no org chart template built for humans-only that needs surgery. The five pillars can be built into the operating model from the cap table conversation onward, because there is nothing older in the way.
+
+## How the five pillars actually get built in
+
+For an AI-native company, "built in from day one" means something concrete for each pillar, not a slogan.
+
+**Data.** Instrumented from the first customer. Not "we'll clean it up before the audit." If an agent is going to act on the data, the data has to be trustworthy from the first row, because there's no human in the loop double-checking every output.
+
+**Tools.** Chosen for API access and agent-operability first, human UX second. A tool with a beautiful dashboard and no API is a tool your agents can't touch, which means a human has to sit in the middle of every workflow that tool is part of.
+
+**Agents.** Role-scoped, named, owned, reviewed, as above. Not "we're experimenting with AI in ops."
+
+**Governance.** Written down before the first agent goes live, not after the first incident. What can an agent act on unsupervised, what needs a human sign-off, and where does the line sit. This is the pillar most AI-native founders skip because it feels like paperwork slowing down a fast-moving team. It's the opposite.
+
+**Cadence.** Agent performance gets reviewed on the same rhythm as human performance. Weekly, not quarterly. An agent that's drifted for three months before anyone checks has cost you three months of bad output, not three months of nothing happening.
+
+Skip any one of these and the other four don't hold. A company with brilliant data and no governance is one bad prompt away from an incident. A company with governance and no cadence has rules nobody's checking compliance against.
+
+## Governance is the grammar that lets speed run
+
+The instinct when agents start doing real work is to either lock them down completely, which kills the speed you built them for, or let them run loose, which is how you end up explaining an incident to a customer. Neither is necessary if the governance is specific enough to be operational rather than aspirational.
+
+"The agent can auto-refund up to £50 without approval; above that, it escalates to a human" is a governance rule that lets the agent move fast within a boundary and lets the team stop reviewing every transaction by hand. That boundary is what lets the business outrun a fully-human team, because the humans stop being the bottleneck on every routine decision. Vague governance ("the agent should use good judgment") gives you neither speed nor safety. It just gives you an incident report six months out that starts with "we assumed it would."
+
+## The retrofit tax is real, and it compounds
+
+Build this after the fact and the bill is bigger than most founders expect, because it's not one bill, it's several stacked on top of each other: renegotiating tool contracts that were priced for human seats, rewriting performance review cycles that never accounted for a non-human operator, writing the governance rules retroactively after an incident has already forced the question, and untangling however many orphaned agents accumulated while nobody was assigned to own them.
+
+None of that is optional once agents are doing real work in the business. The only choice a founder actually has is whether to pay for it upfront, as part of building the company, or later, as an emergency project competing for attention with everything else that's on fire that quarter.
+
+## What this looks like in month one
+
+If you're building an AI-native company right now, the practical version of all of this is short. For every agent you stand up, before it goes live, write down its name, its owner, its KPIs, its review cadence, and the line between what it can do unsupervised and what needs a human. That's the org chart column. That's the governance. Do it for one agent and the pattern is set for the next fifty.
 
 <KeyTakeaways>
 - Treat agents as roles, not features. They have owners, KPIs, and review cadences.

@@ -12,7 +12,7 @@ const bullets: Bullet[] = [
   },
   {
     lead: "Ninety seconds.",
-    rest: " The plumbing in one watch. The leverage is in what you build with it.",
+    rest: " The plumbing in one watch. What you build on it is the point.",
   },
 ];
 
@@ -47,7 +47,7 @@ export const SimpleAIPrimer = () => {
     <section className="bg-linen pt-16 pb-10 md:pt-24 md:pb-12" aria-labelledby="simple-ai-heading">
       <div className="container-grain">
         <div className="grid gap-10 md:gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-          {/* Left — video */}
+          {/* Left - video */}
           <ScrollReveal>
             <figure className="relative overflow-hidden rounded-2xl ring-1 ring-walnut/15 bg-bark shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]">
               <video
@@ -62,12 +62,12 @@ export const SimpleAIPrimer = () => {
                 className="block w-full h-auto aspect-video"
               />
               <figcaption className="sr-only">
-                Simple AI — a 90-second primer for People leaders.
+                Simple AI, a 90-second primer for People leaders.
               </figcaption>
             </figure>
           </ScrollReveal>
 
-          {/* Right — copy */}
+          {/* Right - copy */}
           <ScrollReveal delay={120}>
             <Eyebrow withRule className="text-walnut/70 mb-4 md:mb-6">
               Watch · 90 seconds

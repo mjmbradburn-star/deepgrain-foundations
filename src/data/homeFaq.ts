@@ -1,7 +1,7 @@
 import type { FAQItem } from "@/components/sections/FAQ";
 
 /**
- * Homepage FAQ data — pure data, no React/MDX imports. Kept in its own
+ * Homepage FAQ data - pure data, no React/MDX imports. Kept in its own
  * module so the homepage critical path can read HOME_FAQ_LD for JSON-LD
  * without pulling FAQ.tsx + mdxComponents (TLDR/KeyTakeaways/Takeaway)
  * into the initial bundle. The HomeFAQ component (lazy) re-imports from
@@ -16,7 +16,7 @@ export const HOME_FAQ: FAQItem[] = [
   {
     question: "How do you identify efficiency gaps AI can fill?",
     answer:
-      "We look at four signals in the existing work: repetition, latency, judgment shape, and contestability. A workflow that runs often, waits hours on a human whose contribution is minutes, has judgment that is pattern-matching rather than novel, and has a clear owner who can sign off changes, is almost always an AI-shaped gap. A 30-minute audit beats a three-month strategy deck for finding the first one.",
+      "We look at four signals in the existing work: repetition, latency, judgement shape, and contestability. A workflow that runs often, waits hours on a human whose contribution is minutes, has judgement that is pattern-matching rather than novel, and has a clear owner who can sign off changes, is almost always an AI-shaped gap. A Grain Audit beats a three-month strategy deck for finding the first one.",
   },
   {
     question: "How is Deepgrain different from a management consultancy?",

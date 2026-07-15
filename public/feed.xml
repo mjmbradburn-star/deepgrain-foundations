@@ -6,7 +6,7 @@
     <atom:link href="https://www.deepgrain.ai/feed.xml" rel="self" type="application/rss+xml" />
     <description>Long-form essays on operating systems, AI readiness, and the craft of operating leadership.</description>
     <language>en-GB</language>
-    <lastBuildDate>Tue, 14 Jul 2026 20:14:26 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jul 2026 18:59:46 GMT</lastBuildDate>
     <item>
       <title>The quiet discipline of operating leadership</title>
       <link>https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</link>
@@ -47,7 +47,7 @@
       <link>https://www.deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale</guid>
       <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Scale is rarely a technology problem. It is almost always an operating problem dressed up as a technology problem.</description>
+      <description>Scale problems almost always show up as operating problems wearing a technology disguise.</description>
     </item>
     <item>
       <title>How to identify the efficiency gaps AI can fill</title>
@@ -194,7 +194,7 @@
       <link>https://www.deepgrain.ai/intelligence/signals-of-operating-health</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/signals-of-operating-health</guid>
       <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Operating health doesn't show up in the dashboard. It shows up in how an org talks about its own mistakes.</description>
+      <description>Why the real signal of organisational health is conversational, not a line on a dashboard, and how to listen for it before the numbers move.</description>
     </item>
     <item>
       <title>AI workspace setup for People teams (Claude, ChatGPT, Copilot)</title>
@@ -215,7 +215,7 @@
       <link>https://www.deepgrain.ai/intelligence/designing-the-ai-native-people-team</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/designing-the-ai-native-people-team</guid>
       <pubDate>Sat, 18 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it — different roles, different ratios, different leverage. Here is what an AI-native People team actually looks like.</description>
+      <description>Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it - different roles, different ratios, different leverage. Here is what an AI-native People team actually looks like.</description>
     </item>
     <item>
       <title>AI governance for People teams</title>
@@ -250,7 +250,7 @@
       <link>https://www.deepgrain.ai/intelligence/workflow-assessment-framework</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/workflow-assessment-framework</guid>
       <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Most People teams pick AI workflows by instinct or by what is loudest. A simple scoring framework — value, frequency, fit, risk — turns a wishlist into a 90-day plan you can actually defend.</description>
+      <description>Most People teams pick AI workflows by instinct or by what is loudest. A simple scoring framework - value, frequency, fit, risk - turns a wishlist into a 90-day plan you can actually defend.</description>
     </item>
     <item>
       <title>Automation patterns that pay off</title>
@@ -264,14 +264,14 @@
       <link>https://www.deepgrain.ai/intelligence/the-people-ops-ai-domain-map</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/the-people-ops-ai-domain-map</guid>
       <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
-      <description>A map of where AI fits across the People function — from sourcing to offboarding — so you can see the whole estate before you build any one piece of it.</description>
+      <description>A map of where AI fits across the People function - from sourcing to offboarding - so you can see the whole estate before you build any one piece of it.</description>
     </item>
     <item>
       <title>Measuring AI value in People Ops</title>
       <link>https://www.deepgrain.ai/intelligence/measuring-ai-value-in-people-ops</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/measuring-ai-value-in-people-ops</guid>
       <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
-      <description>If the CFO asks what your AI investment has returned, vague time-saving stories are not enough. Here is how to measure People Ops AI value properly — and tell the story to a board that knows the difference.</description>
+      <description>If the CFO asks what your AI investment has returned, vague time-saving stories are not enough. Here is how to measure People Ops AI value properly - and tell the story to a board that knows the difference.</description>
     </item>
     <item>
       <title>Scaling without breaking the grain</title>

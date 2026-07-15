@@ -56,7 +56,7 @@ const ScrollRevealInner = forwardRef<HTMLElement, ScrollRevealProps>(({
     transitionDuration: duration !== 0.7 ? `${duration}s` : undefined,
   };
 
-  // Cast to any — Tag union is erased at runtime; React handles the element fine.
+  // Cast to any - Tag union is erased at runtime; React handles the element fine.
   const Element = Tag as unknown as "div";
 
   const setRefs = (node: HTMLElement | null) => {

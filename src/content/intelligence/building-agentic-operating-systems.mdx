@@ -23,22 +23,22 @@ export const faqs = [
   {
     question: "What is an agentic operating system?",
     answer:
-      "An agentic operating system is the runtime, tooling, and governance that lets multiple AI agents do real work across a company without falling over. It is the layer that turns isolated agent demos into a reliable, interconnected system: shared memory, shared tools, shared policies, and a cadence for keeping the whole thing alive.",
+      "You'll know you need one the first time a second agent breaks something the first agent quietly depended on. That's the signal: shared tools, shared memory, and shared policy stop being nice-to-haves and start being the only thing standing between you and a production incident. Most companies build the definition after the incident, not before.",
   },
   {
     question: "How is agentic AI different from prompting an LLM?",
     answer:
-      "Prompting is one shot: a person asks, the model answers. Agentic AI takes a goal, decides on steps, calls tools, observes results, and revises. The shift from prompt to agent is the shift from chat to operator. Most production value sits on the agent side.",
+      "Cost and blast radius are the practical difference. A bad prompt wastes one model call and a person's patience. A bad agent can call ten tools, write to three systems, and be three steps into a mistake before anyone notices. Budget and monitor agents like a junior hire with API keys, not like a chatbot.",
   },
   {
     question: "What are agentic AI services?",
     answer:
-      "Agentic AI services are the building blocks an agent calls to act on the world: tool APIs, retrieval, memory stores, identity, policy checks, and observability. A useful agent is mostly services. The model is the thinnest layer.",
+      "Most teams buy the wrong end of the list first: a hosted agent framework, before they have a tool gateway or a policy service to plug it into. The framework then has nothing safe to call. Build the boring internal services, retrieval, identity, tool gateway, before you shop for the exciting orchestrator on top.",
   },
   {
     question: "Do I need a multi-agent system or one big agent?",
     answer:
-      "Start with one agent doing one workflow end to end. Add a second only when the first is boring, reliable, and observable. Most multi-agent designs fail because the team skipped the part where one agent had to actually work.",
+      "Multi-agent earns its complexity once you have two workflows that are each independently boring and reliable, and the handoff between them mirrors a split that already exists in your org chart. If humans don't already divide the work that way, a multi-agent system won't invent the division for you. It'll just add a second thing that can fail.",
   },
   {
     question: "How long does it take to build an agentic operating system?",
@@ -48,7 +48,7 @@ export const faqs = [
   {
     question: "What stops agentic systems from reaching production?",
     answer:
-      "The same things that stop any AI work: unreachable data, missing tools, no human-in-the-loop policy, no observability, and no owner. The model is almost never the blocker. The operating substrate around it is.",
+      "In the order they actually bite, not the order a vendor deck presents them: no observability first, because you ship blind and can't tell what broke. No tool design second, because the agent flails with too many options. No human-in-the-loop third, because that flailing eventually costs something real. Fix them in that order.",
   },
 ];
 

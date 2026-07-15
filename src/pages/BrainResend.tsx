@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { PageMeta } from "@/components/seo/PageMeta";
 
 /**
- * BrainResend — diagnostic "resend my Brain link" flow.
+ * BrainResend - diagnostic "resend my Brain link" flow.
  *
  * Unlike the original /brain capture form (which deliberately hides whether
  * an email is on file), this page is *intentionally* enumerable. Its whole
@@ -34,9 +34,9 @@ interface ResendResult {
 }
 
 const reasonCopyMap: Record<string, string> = {
-  revoked: "Your previous Brain link was revoked. Drop your email below and we'll send a fresh one — or tell you why we can't.",
+  revoked: "Your previous Brain link was revoked. Drop your email below and we'll send a fresh one - or tell you why we can't.",
   expired: "Your previous Brain link has expired. Drop your email below and we'll send a fresh one.",
-  not_found: "We couldn't match your previous Brain link. Drop your email below and we'll send a fresh one — or tell you why we can't.",
+  not_found: "We couldn't match your previous Brain link. Drop your email below and we'll send a fresh one - or tell you why we can't.",
   malformed: "That Brain link looked malformed. Drop your email below and we'll send a fresh one.",
 };
 
@@ -45,7 +45,7 @@ const BrainResend = () => {
   const reason = params.get("reason") ?? null;
 
   const [email, setEmail] = useState("");
-  // Honeypot — hidden from users, bots will fill it.
+  // Honeypot - hidden from users, bots will fill it.
   const [website, setWebsite] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<ResendResult | null>(null);
@@ -63,7 +63,7 @@ const BrainResend = () => {
     () =>
       reason && reasonCopyMap[reason]
         ? reasonCopyMap[reason]
-        : "Already signed up but can't access the Brain? Drop your email below — we'll send a fresh link, or tell you exactly why we can't.",
+        : "Already signed up but can't access the Brain? Drop your email below - we'll send a fresh link, or tell you exactly why we can't.",
     [reason],
   );
 
@@ -155,7 +155,7 @@ const BrainResend = () => {
               className="w-full bg-transparent border-0 border-b border-cream/30 focus:border-cream/80 py-3 px-1 font-sans text-base text-cream placeholder:text-cream/40 focus:outline-none transition-colors"
             />
 
-            {/* Honeypot — visually hidden, off-screen, no autofill. */}
+            {/* Honeypot - visually hidden, off-screen, no autofill. */}
             <div
               aria-hidden="true"
               style={{
@@ -229,7 +229,7 @@ const ResultBlock = ({ result }: { result: ResendResult }) => {
           </p>
           <p className="mt-3 text-sm leading-relaxed text-cream/70">
             We've emailed a new Brain link to your address. It should arrive
-            within a minute. The new link replaces any earlier ones — older
+            within a minute. The new link replaces any earlier ones - older
             links from us no longer work.
           </p>
         </div>
@@ -253,7 +253,7 @@ const ResultBlock = ({ result }: { result: ResendResult }) => {
             This address unsubscribed{since ? ` on ${since}` : ""}.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-cream/70">
-            We can't send Brain links to unsubscribed addresses — that's the
+            We can't send Brain links to unsubscribed addresses - that's the
             whole point of unsubscribing. If you want back in, reply to{" "}
             <a
               href={`mailto:${supportEmail}`}
@@ -281,7 +281,7 @@ const ResultBlock = ({ result }: { result: ResendResult }) => {
             spam, so our email provider is blocking further sends to this
             address
             {result.reason ? ` (reason on file: ${result.reason})` : ""}.
-            Try a different email — or reply to{" "}
+            Try a different email - or reply to{" "}
             <a
               href={`mailto:${supportEmail}`}
               className="underline underline-offset-2 text-brass hover:text-cream"
@@ -304,7 +304,7 @@ const ResultBlock = ({ result }: { result: ResendResult }) => {
             We don't have a record of this address.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-cream/70">
-            You may have signed up with a different email — try that one. Or,
+            You may have signed up with a different email - try that one. Or,
             if this is your first time, sign up below.
           </p>
           <Link

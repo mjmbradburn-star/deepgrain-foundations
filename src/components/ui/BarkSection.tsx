@@ -10,7 +10,7 @@ import { BarkGrain } from "@/components/ui/BarkGrain";
  * `<BarkGrain />` texture layer, and a `relative z-10` content wrapper so
  * children sit above the grain.
  *
- * `as` is narrowed to a small set of valid block-level element names — this
+ * `as` is narrowed to a small set of valid block-level element names - this
  * avoids the HMR-time "Component is not a function" failure that can happen
  * when an arbitrary `ElementType` is mid-edit. Defaults to `<section>`, with
  * a runtime fallback to `<section>` if anything falsy slips through.

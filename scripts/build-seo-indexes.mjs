@@ -124,7 +124,7 @@ const CATEGORIES = [
 
 // Cluster slugs parsed at build time from the runtime source of truth
 // (src/lib/clusters.ts) so adding a Cluster row automatically creates a
-// matching sitemap entry — no second list to keep in sync.
+// matching sitemap entry - no second list to keep in sync.
 const CLUSTERS = (() => {
   const src = readFileSync(join(ROOT, "src/lib/clusters.ts"), "utf8");
   const m = src.match(/CLUSTERS:\s*Cluster\[\]\s*=\s*\[([\s\S]*?)\];/);
@@ -159,6 +159,7 @@ const STATIC_ROUTES = [
   { path: "/brain", priority: 0.7, changefreq: "monthly" },
   { path: "/readiness", priority: 0.9, changefreq: "monthly" },
   { path: "/exposure-map", priority: 0.8, changefreq: "monthly" },
+  { path: "/grain-audit", priority: 0.9, changefreq: "monthly" },
   { path: "/seo-checklist", priority: 0.4, changefreq: "yearly" },
   { path: "/privacy", priority: 0.3, changefreq: "yearly" },
   { path: "/terms", priority: 0.3, changefreq: "yearly" },
@@ -181,7 +182,7 @@ async function buildSitemap(articles) {
   for (const a of articles) {
     push(`${ORIGIN}/intelligence/${a.slug}`, a.updatedAt || a.publishedAt, 0.7, "monthly");
   }
-  // /answers/:slug per question — one entry per ANSWERS row in
+  // /answers/:slug per question - one entry per ANSWERS row in
   // src/data/answers.ts, the same source the runtime route reads.
   const answersSrc = await fs.readFile(join(ROOT, "src/data/answers.ts"), "utf8");
   const answerSlugs = Array.from(answersSrc.matchAll(/slug:\s*"([^"]+)"/g)).map((m) => m[1]);

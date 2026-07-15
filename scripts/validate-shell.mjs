@@ -129,7 +129,7 @@ for (const route of expectedRoutes) {
 // would only surface as a generic missing-route warning.
 const HOME_FILE = join(DIST, "index.html");
 if (!existsSync(HOME_FILE)) {
-  console.error("[shell-check] FATAL: dist/index.html is missing — home page was not built/prerendered.");
+  console.error("[shell-check] FATAL: dist/index.html is missing - home page was not built/prerendered.");
   process.exit(1);
 }
 
@@ -215,7 +215,7 @@ for (const file of files) {
 
   const reasons = [];
   // For noindex routes we still assert the file exists and isn't broken,
-  // but we skip the full SEO/structured-data battery — these pages are
+  // but we skip the full SEO/structured-data battery - these pages are
   // intentionally excluded from the index.
   if (isNoindex) {
     if (size < 5_000) reasons.push(`size=${size}B (< 5000, even noindex pages should render)`);

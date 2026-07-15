@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  * primary nav. Tracks the document scroll position as a 0–100% fill so
  * readers can see how far into an article they are.
  *
- * Render conditionally — only on routes where it adds value (intelligence
+ * Render conditionally - only on routes where it adds value (intelligence
  * articles, pillars, clusters).
  */
 export const ReadingProgress = () => {

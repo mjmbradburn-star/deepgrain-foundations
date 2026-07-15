@@ -14,12 +14,12 @@ import { KeyTakeaways } from "@/components/intelligence/KeyTakeaways";
  * MDX-rendered content. Update here, propagate everywhere.
  */
 export const articleTypography = {
-  /** Article H2 — section break inside an article. */
+  /** Article H2: section break inside an article. */
   h2: "font-display text-3xl md:text-4xl text-walnut leading-tight",
-  /** Article H3 — used for question-weight headings inside the FAQ. */
+  /** Article H3: used for question-weight headings inside the FAQ. */
   h3: "font-display text-2xl md:text-3xl text-walnut leading-snug",
   /** Article body paragraph. */
-  body: "font-sans text-[18px] leading-[1.7] text-walnut/85",
+  body: "font-sans text-[19px] leading-[1.75] text-walnut/85",
 } as const;
 
 /** Inline style applied alongside the H2 class for tracking. */
@@ -64,9 +64,9 @@ export const mdxComponents: MDXComponents = {
   p: (props) => (
     <p className={`${articleTypography.body} mb-6`} {...props} />
   ),
-  ul: (props) => <ul className="list-disc pl-6 mb-6 space-y-2 text-[18px] text-walnut/85" {...props} />,
-  ol: (props) => <ol className="list-decimal pl-6 mb-6 space-y-2 text-[18px] text-walnut/85" {...props} />,
-  li: (props) => <li className="leading-[1.7]" {...props} />,
+  ul: (props) => <ul className="list-disc pl-6 mb-6 space-y-2 text-[19px] text-walnut/85 marker:text-brass/70" {...props} />,
+  ol: (props) => <ol className="list-decimal pl-6 mb-6 space-y-2 text-[19px] text-walnut/85 marker:text-walnut/40" {...props} />,
+  li: (props) => <li className="leading-[1.75]" {...props} />,
   blockquote: (props) => (
     <blockquote
       className="border-l-4 border-brass pl-6 py-2 my-10 font-display italic text-2xl md:text-3xl text-walnut leading-snug"

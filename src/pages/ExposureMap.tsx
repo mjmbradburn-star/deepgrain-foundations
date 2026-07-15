@@ -433,6 +433,23 @@ const ExposureMap = () => {
               <MapLeadForm viewedFunction={role.role} />
             </div>
             <p className="text-cream/50 mt-8 text-sm">
+              Want this done properly, on your own process?{" "}
+              <Link
+                to="/grain-audit"
+                onClick={() =>
+                  track("cta_click", {
+                    cta_id: "grain_audit_from_exposure_map",
+                    cta_location: "exposure_map_footer",
+                    cta_label: "Book a Grain Audit",
+                    link_url: "/grain-audit",
+                  })
+                }
+                className="text-cream underline underline-offset-4 decoration-brass hover:text-brass transition-colors"
+              >
+                Book a Grain Audit →
+              </Link>
+            </p>
+            <p className="text-cream/50 mt-3 text-sm">
               Prefer a number first?{" "}
               <Link
                 to="/readiness"

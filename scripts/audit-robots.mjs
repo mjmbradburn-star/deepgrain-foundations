@@ -138,7 +138,7 @@ if (!star) {
       // intends it private. Surface as a warning, not a fail, because we
       // can't tell from robots.txt alone whether a route actually exists.
       console.warn(
-        `audit-robots: NOTE — ${prefix} is crawlable by *; add a Disallow if these routes exist.`,
+        `audit-robots: NOTE - ${prefix} is crawlable by *; add a Disallow if these routes exist.`,
       );
     }
   }

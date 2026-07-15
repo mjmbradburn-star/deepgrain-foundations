@@ -6,7 +6,7 @@ const SITE = (process.env.DEEPGRAIN_ORIGIN || "https://www.deepgrain.ai").replac
 
 const CATEGORIES = [
   { slug: "foundations", name: "Foundations", description: "First principles of organisational consultancy and the grain.", track: "deepgrain" },
-  { slug: "ai-operating-systems", name: "AI & Operating Systems", description: "What an AI operating system is — and how to build one.", track: "deepgrain" },
+  { slug: "ai-operating-systems", name: "AI & Operating Systems", description: "What an AI operating system is - and how to build one.", track: "deepgrain" },
   { slug: "method-and-practice", name: "Method & Practice", description: "Read · Craft · Scale: how the work is done.", track: "deepgrain" },
   { slug: "sector-lenses", name: "Sector Lenses", description: "Operating consultancy applied to specific industries.", track: "deepgrain" },
   { slug: "leadership-and-craft", name: "Leadership & Craft", description: "The disciplines of operating leadership.", track: "deepgrain" },
@@ -32,6 +32,7 @@ const STATIC_PAGES = [
   { url: "/brain", priority: "0.9", changefreq: "monthly" },
   { url: "/readiness", priority: "0.9", changefreq: "monthly" },
   { url: "/exposure-map", priority: "0.8", changefreq: "monthly" },
+  { url: "/grain-audit", priority: "0.9", changefreq: "monthly" },
   { url: "/privacy", priority: "0.3", changefreq: "yearly" },
   { url: "/cookies", priority: "0.3", changefreq: "yearly" },
   { url: "/terms", priority: "0.3", changefreq: "yearly" },
@@ -153,7 +154,7 @@ ${byCat(c.slug)
 
   return `# Deepgrain
 
-> Organisational consultancy that reads the grain of how a company actually operates — then changes it without breaking what works. Read · Craft · Scale.
+> Organisational consultancy that reads the grain of how a company actually operates - then changes it without breaking what works. Read · Craft · Scale.
 
 Last updated: ${today}
 Articles: ${articles.length}
@@ -173,12 +174,12 @@ Articles within each category below are listed in foundational reading order (ol
 - [About](${SITE}/about): Matthew Bradburn's background, philosophy, and references.
 - [Contact](${SITE}/contact): How to start a conversation.
 - [Intelligence](${SITE}/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
-- [Brain](${SITE}/brain): The People Ops AI Brain — nine working notes on running People functions with AI. Free with email.
+- [Brain](${SITE}/brain): The People Ops AI Brain - nine working notes on running People functions with AI. Free with email.
 
-## Intelligence — Deepgrain Foundations
+## Intelligence - Deepgrain Foundations
 
 ${deepgrainCats.map(renderCat).join("\n")}
-## Intelligence — The People Ops AI Brain
+## Intelligence - The People Ops AI Brain
 
 A track for Heads of People, CPOs, HRBPs and TA leaders moving from individual AI experiments to systematic operating capability.
 
@@ -228,7 +229,7 @@ ${a.body}
 `;
   };
 
-  return `# Deepgrain — Full Intelligence Corpus
+  return `# Deepgrain - Full Intelligence Corpus
 
 > Full text of every Deepgrain Intelligence article, in foundational reading order. Optimised for LLM ingestion.
 

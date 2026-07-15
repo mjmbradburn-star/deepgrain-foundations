@@ -16,7 +16,7 @@ import type { ReactNode } from "react";
  * Optional `label` overrides the default eyebrow ("AI OS takeaway") for
  * articles where a different framing reads more naturally (e.g. "Pillar
  * takeaway", "Operator takeaway"). Defaults are correct in the vast majority
- * of cases — only override deliberately.
+ * of cases - only override deliberately.
  */
 export interface TakeawayProps {
   children: ReactNode;

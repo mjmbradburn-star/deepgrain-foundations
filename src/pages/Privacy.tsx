@@ -69,7 +69,7 @@ const Privacy = () => (
             /brain/resend
           </Link>
           , we'll tell you whether your address is on file, has unsubscribed,
-          or has been blocked due to bounces or spam complaints — so you know
+          or has been blocked due to bounces or spam complaints - so you know
           why access isn't working. This is a deliberate, scoped exception to
           our usual practice of not disclosing whether an email is on file.
         </P>

@@ -11,7 +11,7 @@ const schema = z.object({
   email: z.string().trim().email("Please add a valid email").max(320),
   organisation: z.string().trim().max(200).optional().or(z.literal("")),
   size: z.string().trim().max(50).optional().or(z.literal("")),
-  message: z.string().trim().min(1, "Tell us a little about what's going on").max(5000),
+  message: z.string().trim().min(1, "Tell me what's going on").max(5000),
 });
 
 type FormState = z.infer<typeof schema>;
@@ -20,14 +20,14 @@ const inputClass =
   "w-full bg-transparent border-0 border-b border-cream/30 focus:border-cream/80 focus:outline-none py-3 text-cream placeholder:text-cream/40 font-sans text-base transition-colors";
 const labelClass = "block text-cream/70 text-[11px] uppercase tracking-[0.15em] mb-1";
 
-/** Hard cap on prefill length — generous, but stops anyone using ?subject= as
+/** Hard cap on prefill length - generous, but stops anyone using ?subject= as
  *  a stuffing vector for arbitrary content into our enquiries table. */
 const PREFILL_MAX = 500;
 
 export const ContactForm = () => {
   const [params] = useSearchParams();
   // Read `?subject=` once on mount. We deliberately don't react to later changes
-  // — once the user is in the form, they own the textarea.
+  // - once the user is in the form, they own the textarea.
   const initialMessage = useRef(
     (params.get("subject") ?? "").slice(0, PREFILL_MAX),
   ).current;
@@ -98,7 +98,7 @@ export const ContactForm = () => {
     return (
       <div className="text-center py-12">
         <p className="font-display italic text-cream text-3xl md:text-4xl">
-          Thank you. We'll be in touch.
+          Got it. I'll reply directly.
         </p>
       </div>
     );
@@ -127,7 +127,7 @@ export const ContactForm = () => {
         </div>
       </div>
       <div>
-        <label className={labelClass} htmlFor="message">What's on your mind?</label>
+        <label className={labelClass} htmlFor="message">What are you trying to fix?</label>
         <textarea
           id="message"
           ref={messageRef}
@@ -141,14 +141,14 @@ export const ContactForm = () => {
       </div>
       <div className="pt-4 space-y-4">
         <p className="text-xs text-cream/50 leading-relaxed">
-          By sending this you agree to our{" "}
+          By sending this you agree to the{" "}
           <Link to="/privacy" className="underline underline-offset-2 hover:text-cream transition-colors">
             Privacy Policy
           </Link>
-          . We will only use your details to reply.
+          . I'll only use your details to reply.
         </p>
         <PillButton type="submit" variant="filled" disabled={submitting}>
-          {submitting ? "Sending…" : "Send →"}
+          {submitting ? "Sending…" : "Send note →"}
         </PillButton>
       </div>
     </form>

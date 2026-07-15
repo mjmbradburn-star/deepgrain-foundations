@@ -20,6 +20,8 @@ import { FAQ, buildFAQLd } from "@/components/sections/FAQ";
 import { BarkSection } from "@/components/ui/BarkSection";
 import { ClusterChips } from "@/components/intelligence/ClusterChips";
 import { SaveLink } from "@/components/intelligence/SaveLink";
+import { track } from "@/lib/analytics";
+import { ArrowUpRight } from "lucide-react";
 
 const IntelligenceArticle = () => {
   const { slug = "" } = useParams();
@@ -105,11 +107,12 @@ const IntelligenceArticle = () => {
         )}
       </Helmet>
 
-      {/* Hero image band (16:9, full-width) */}
-      {heroImage && (
-        <div className="bg-green pt-24 md:pt-28">
-          <div className="container-grain max-w-5xl">
-            <div className="aspect-[16/9] w-full overflow-hidden rounded-sm shadow-2xl">
+      {/* Masthead: one continuous dark surface. Full-bleed hero image melts
+          into the headline block below it: no card, no shadow, no seam. */}
+      <div className="bg-green text-cream">
+        {heroImage && (
+          <div className="relative w-full">
+            <div className="aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden">
               <picture>
                 {heroImage.avif && <source srcSet={heroImage.avif} type="image/avif" />}
                 {heroImage.webp && <source srcSet={heroImage.webp} type="image/webp" />}
@@ -123,17 +126,22 @@ const IntelligenceArticle = () => {
                 />
               </picture>
             </div>
+            {/* Top scrim keeps the fixed nav legible; bottom scrim dissolves the
+                image into the green headline block for one continuous surface. */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-gradient-to-b from-green/75 via-green/10 to-green"
+            />
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Header band — deck shape: eyebrow rail, headline, italic Cormorant sub-line */}
-      <header
-        className={`bg-green text-cream pb-20 md:pb-28 ${
-          heroImage ? "pt-12 md:pt-16" : "pt-40 md:pt-48"
-        }`}
-      >
-        <div className="container-grain max-w-3xl">
+        {/* Headline block: eyebrow rail, headline, italic Cormorant sub-line */}
+        <header
+          className={`pb-16 md:pb-24 ${
+            heroImage ? "pt-8 md:pt-10" : "pt-40 md:pt-48"
+          }`}
+        >
+          <div className="container-grain max-w-[720px]">
           <Breadcrumbs
             variant="dark"
             className="mb-6"
@@ -213,19 +221,20 @@ const IntelligenceArticle = () => {
             <span className="text-cream/30 hidden sm:inline">·</span>
             <SaveLink className="ml-auto sm:ml-0" />
           </div>
-        </div>
-      </header>
+          </div>
+        </header>
+      </div>
 
-      {/* Body — measured prose, no drop-cap (eyebrow + headline + italic sub above carry the opening) */}
-      <article className="bg-linen py-20 md:py-28">
-        <div className="container-grain max-w-2xl lg:max-w-[680px] xl:max-w-[720px] article-prose">
+      {/* Body , one continuous linen reading surface, a single considered measure */}
+      <article className="bg-linen pt-14 md:pt-20 pb-20 md:pb-28">
+        <div className="container-grain max-w-[680px] article-prose">
           <MDXProvider components={mdxComponents}>
             <Suspense fallback={<div aria-hidden className="min-h-[60vh]" />}>
               <Component />
             </Suspense>
           </MDXProvider>
 
-          {/* Common questions — only rendered when the article exports `faqs`.
+          {/* Common questions , only rendered when the article exports `faqs`.
               Inline variant: no own container, inherits article body's measure. */}
           {faqs && faqs.length > 0 && (
             <FAQ
@@ -242,13 +251,45 @@ const IntelligenceArticle = () => {
               {f.readTime}
             </span>
           </div>
-          <div className="mt-10">
+
+          {/* Warm CTA: reader finished the piece. Point at the paid bridge offer. */}
+          <div className="mt-14">
+            <p className="font-display italic text-walnut/55 text-lg mb-3">
+              When reading turns into doing
+            </p>
+            <p className="font-display text-walnut text-2xl md:text-[28px] leading-snug mb-5 max-w-xl">
+              The Grain Audit maps one People Ops process end to end, ranks the highest-return automations, and hands you a 90-day plan you keep whether or not we work together.
+            </p>
+            <p className="font-sans text-walnut/70 leading-relaxed mb-7 max-w-xl">
+              Two weeks. GBP 2,000, credited in full against a programme. Three slots a month.
+            </p>
+            <Link
+              to="/grain-audit"
+              onClick={() =>
+                track("cta_click", {
+                  cta_id: "audit_article_footer",
+                  cta_location: "article_footer",
+                  cta_label: "Book a Grain Audit",
+                  link_url: "/grain-audit",
+                })
+              }
+              className="group inline-flex items-center gap-2 rounded-full bg-green px-7 py-3.5 font-sans text-sm tracking-wider text-cream transition-all duration-300 hover:bg-green/90"
+            >
+              Book a Grain Audit
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                strokeWidth={2}
+              />
+            </Link>
+          </div>
+
+          <div className="mt-14 pt-12 border-t border-walnut/15">
             <EmailCapture
               source="article"
               articleSlug={f.slug}
               variant="light"
               heading="If this resonated, there's more."
-              description="Subscribe to receive new Intelligence pieces as they're published. No noise — just the work."
+              description="Subscribe to receive new Intelligence pieces as they're published. No noise, just the work."
             />
           </div>
         </div>
@@ -265,7 +306,7 @@ const IntelligenceArticle = () => {
             Where does your operating system stand?
           </h2>
           <p className="text-cream/75 max-w-xl mx-auto mb-10 leading-relaxed">
-            Take the AI Operating Index — a free 8-pillar diagnostic.
+            Take the AI Operating Index, a free 8-pillar diagnostic.
           </p>
           <PillButton href={AIOI_URL} variant="filled" external cta="aioi" ctaLocation="article_footer">
             Begin the index →

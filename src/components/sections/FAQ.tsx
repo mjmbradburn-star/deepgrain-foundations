@@ -33,7 +33,7 @@ export const faqIdFromQuestion = (question: string): string =>
 export interface FAQItem {
   question: string;
   /**
-   * Plain-text answer — required, and what gets emitted into FAQPage JSON-LD.
+   * Plain-text answer - required, and what gets emitted into FAQPage JSON-LD.
    * Google requires the schema's `answer.text` to mirror visible wording, so
    * this string MUST contain the full readable answer (no link markup).
    */
@@ -42,7 +42,7 @@ export interface FAQItem {
    * Optional rich rendering for the answer (e.g. inline <Link> elements or a
    * trailing "Related" link). When present, this is what users see; `answer`
    * remains the canonical text shipped in JSON-LD. Keep the prose identical
-   * to `answer` — only add navigational affordances, never new claims.
+   * to `answer` - only add navigational affordances, never new claims.
    */
   answerNode?: ReactNode;
 }
@@ -51,7 +51,7 @@ export interface FAQItem {
  * Visual treatment for the FAQ block.
  *
  * - `section` (default): full-bleed section used on /method, /people-ops,
- *   /enablement — own background, large display heading, BrassRule, eyebrow.
+ *   /enablement - own background, large display heading, BrassRule, eyebrow.
  * - `inline`: composes inside an existing article body. No background of its
  *   own, no eyebrow, heading drops to article-h2 scale (`text-3xl md:text-4xl`)
  *   so it reads as a section *within* the prose rather than a new page chapter.
@@ -68,9 +68,9 @@ interface FAQProps {
 
 /**
  * Keyboard nav across <summary> elements within a single FAQ list:
- *   ArrowDown / ArrowUp  — move focus to next/previous question
- *   Home / End           — jump to first / last question
- * Native Space/Enter (toggle) is preserved — we don't intercept those.
+ *   ArrowDown / ArrowUp  - move focus to next/previous question
+ *   Home / End           - jump to first / last question
+ * Native Space/Enter (toggle) is preserved - we don't intercept those.
  *
  * We resolve siblings at keydown time by querying the parent <dl>, so the
  * handler is index-free and works regardless of how items were rendered.
@@ -147,7 +147,7 @@ const FaqDetails = ({
 
   // Restore persisted open state on mount. Runs before the hash-open effect's
   // scroll, but if the hash matches this id, that effect will also flip `open`
-  // — both are idempotent so ordering doesn't matter.
+  // - both are idempotent so ordering doesn't matter.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -172,7 +172,7 @@ const FaqDetails = ({
 
     // Analytics: fire a GA4 event on every user toggle. Guarded so SSR /
     // ad-blocked / pre-consent loads silently no-op. We deliberately send
-    // only the stable id + action + path — no question text, no PII.
+    // only the stable id + action + path - no question text, no PII.
     if (typeof window !== "undefined" && typeof window.gtag === "function") {
       window.gtag("event", "faq_toggle", {
         faq_id: id,
@@ -189,13 +189,13 @@ const FaqDetails = ({
       else set.delete(id);
       window.localStorage.setItem(key, JSON.stringify(Array.from(set)));
     } catch {
-      // localStorage can throw in private mode / quota — silently ignore;
+      // localStorage can throw in private mode / quota - silently ignore;
       // the FAQ remains fully functional, it just won't persist.
     }
   }, [id, readOpenSet, storageKey]);
 
   // Deep linking: open the matching <details> when the URL hash points at it
-  // (on first paint AND on subsequent hashchange events — e.g. user pastes a
+  // (on first paint AND on subsequent hashchange events - e.g. user pastes a
   // share link into the address bar of an already-loaded page). We scroll
   // after a tick so the panel has a chance to expand to its real height.
   useEffect(() => {
@@ -228,7 +228,7 @@ const FaqDetails = ({
       try {
         await navigator.clipboard.writeText(url);
       } catch {
-        // Clipboard API can reject in insecure contexts / older browsers —
+        // Clipboard API can reject in insecure contexts / older browsers , 
         // fall back to updating the URL hash so the user can copy from the bar.
       }
       // Always reflect the anchor in the address bar so back/forward + manual
@@ -289,7 +289,7 @@ const FaqDetails = ({
 
 /**
  * Visible FAQ block. Pair with buildFAQLd in the same page so the schema
- * mirrors the rendered Q&A — Google requires the markup to match what
+ * mirrors the rendered Q&A - Google requires the markup to match what
  * users actually see, otherwise it's grounds for a manual action.
  */
 export const FAQ = ({
@@ -328,7 +328,7 @@ export const FAQ = ({
     );
   }
 
-  // Default: full-bleed section — used on /method, /people-ops, /enablement.
+  // Default: full-bleed section - used on /method, /people-ops, /enablement.
   return (
     <section className="bg-linen text-walnut section-pad">
       <div className="container-grain max-w-3xl">

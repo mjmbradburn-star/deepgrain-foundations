@@ -43,7 +43,7 @@ const STEPS: Step[] = [
       label: "Open Search Console",
     },
     copies: [{ label: "Domain", value: "deepgrain.ai" }],
-    note: "DNS propagation can take a few minutes to a few hours. If Verify fails, wait and retry — don't delete the property.",
+    note: "DNS propagation can take a few minutes to a few hours. If Verify fails, wait and retry - don't delete the property.",
   },
   {
     id: "step2",
@@ -64,7 +64,7 @@ const STEPS: Step[] = [
       { label: "Full URL", value: "https://deepgrain.ai/sitemap.xml" },
       { label: "Path only", value: "sitemap.xml" },
     ],
-    note: "The sitemap is generated at build time and already served from /sitemap.xml — nothing to deploy, just submit.",
+    note: "The sitemap is generated at build time and already served from /sitemap.xml - nothing to deploy, just submit.",
   },
   {
     id: "step3",
@@ -82,7 +82,7 @@ const STEPS: Step[] = [
       label: "Open URL Inspection",
     },
     copies: [{ label: "Homepage URL", value: "https://deepgrain.ai/" }],
-    note: "The rendered HTML preview in URL Inspection is exactly what Google indexes — this is the definitive check that the site is crawlable.",
+    note: "The rendered HTML preview in URL Inspection is exactly what Google indexes - this is the definitive check that the site is crawlable.",
   },
 ];
 
@@ -94,7 +94,7 @@ const CopyButton = ({ value }: { value: string }) => {
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
     } catch {
-      /* clipboard blocked — silent */
+      /* clipboard blocked - silent */
     }
   };
   return (
@@ -178,7 +178,7 @@ const SeoChecklist = () => {
   return (
     <>
       <PageMeta
-        title="SEO Checklist — Deepgrain"
+        title="SEO Checklist - Deepgrain"
         description="Internal checklist for verifying deepgrain.ai in Google Search Console."
         path="/seo-checklist"
         noindex

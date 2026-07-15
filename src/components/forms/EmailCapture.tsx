@@ -55,7 +55,7 @@ export const EmailCapture = ({
       article_slug: articleSlug ?? null,
     });
 
-    // Treat duplicate (unique violation) as success — quiet idempotent UX,
+    // Treat duplicate (unique violation) as success - quiet idempotent UX,
     // but skip sending the welcome email so existing subscribers aren't re-emailed.
     const isDuplicate = error?.code === "23505";
 
@@ -70,7 +70,7 @@ export const EmailCapture = ({
     }
 
     // Welcome email is dispatched server-side by a Postgres trigger on
-    // `subscribers` INSERT — no client invocation needed (and not allowed,
+    // `subscribers` INSERT - no client invocation needed (and not allowed,
     // to prevent abuse of the transactional email function).
 
     trackFormSubmit("email_capture", {

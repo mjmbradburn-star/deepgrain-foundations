@@ -2,7 +2,7 @@ import { BarkSection } from "@/components/ui/BarkSection";
 
 /**
  * ICP qualifier section. Sits directly under the Hero so the right person
- * thinks "yes, this is me" — and the wrong fit moves on.
+ * thinks "yes, this is me" - and the wrong fit moves on.
  *
  * Three lines: who → where → the problem we partner on.
  */
@@ -10,7 +10,7 @@ export const ICPStrip = () => (
   <BarkSection
     contentClassName="container-grain py-10 md:py-14 text-center"
   >
-      {/* Line 1 — Who: roles + company types as two simple columns */}
+      {/* Line 1 - Who: roles + company types as two simple columns */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 max-w-3xl mx-auto items-start">
         <div>
           <p
@@ -42,7 +42,7 @@ export const ICPStrip = () => (
         className="mx-auto mt-6 md:mt-7 h-px w-12 bg-brass/30"
       />
 
-      {/* Line 2 — Where */}
+      {/* Line 2 - Where */}
       <p
         className="mt-5 font-sans text-[12px] md:text-[13px] uppercase text-cream/65 max-w-2xl mx-auto leading-relaxed"
         style={{ letterSpacing: "0.18em" }}
@@ -51,7 +51,7 @@ export const ICPStrip = () => (
         and the long tail of real businesses in between.
       </p>
 
-      {/* Line 3 — Problem + partnership */}
+      {/* Line 3 - Problem + partnership */}
       <p className="mt-8 md:mt-10 text-base md:text-lg leading-relaxed text-cream/85 max-w-2xl mx-auto text-balance">
         Your workflows are messy. The AI conversation has outpaced your
         operating reality. Deepgrain partners with you across{" "}
@@ -61,7 +61,7 @@ export const ICPStrip = () => (
         : organisation, function, and individual capability.
       </p>
 
-      {/* Four pillars — what we actually deliver across those levels.
+      {/* Four pillars - what we actually deliver across those levels.
           Force one line per pillar (whitespace-nowrap) and equal heights via
           flex centering so the row reads as a clean, uniform set. */}
       <ul className="mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 max-w-3xl mx-auto list-none">

@@ -93,7 +93,7 @@ const About = () => (
         ]),
       ]}
     />
-    {/* Hero — deck shape, no glossy stock image */}
+    {/* Hero - deck shape, no glossy stock image */}
     <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
       <TopoBackdrop variant="ridge" opacity={0.22} />
       <div className="relative container-grain max-w-5xl">
@@ -116,11 +116,11 @@ const About = () => (
       </div>
     </section>
 
-    {/* Three altitudes — how I work, mirroring the method */}
+    {/* Three altitudes - how I work, mirroring the method */}
     <ThreeLevels levels={ALTITUDES} showMoves={false} />
 
 
-    {/* Bio — who Matthew is, in his own grain */}
+    {/* Bio - who Matthew is, in his own grain */}
     <section className="bg-linen text-body section-pad">
       <div className="container-grain max-w-6xl">
         <div className="grid gap-12 md:gap-16 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-start">
@@ -153,30 +153,30 @@ const About = () => (
           <ScrollReveal>
             <Eyebrow className="text-walnut/60 mb-6">Who runs this</Eyebrow>
             <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-[60px] leading-[1.05] text-balance">
-              Matthew Bradburn - Founder, Operator, Builder
+              Matthew Bradburn. Founder. Still doing the work myself.
             </h2>
             <div className="mt-8 space-y-5 text-body/85 leading-relaxed text-lg">
               <p>
-                I&apos;ve built and rebuilt people ops and operating approaches,
-                across companies from fifty to six hundred. Defence, climate,
-                fintech, transit, health, legal, e-commerce. Different sectors,
-                same underlying craft.
+                I&apos;ve built and rebuilt people functions across companies
+                of fifty to six hundred people. Defence, climate, fintech,
+                transit, health, legal, e-commerce. Different sectors, same
+                underlying craft.
               </p>
               <p>
                 I founded and exited People Collective, trained{" "}
                 <strong className="font-semibold text-walnut">
                   1,000+ managers across 100+ cohorts
                 </strong>
-                , and have led PE and M&amp;A advisory work through to
-                exit-ready outcomes. The work that travels best is the work
+                , and led PE and M&amp;A advisory work that got portfolio
+                companies exit-ready. The work that travels best is the work
                 that survives the carpenter leaving the room.
               </p>
               <p>
                 Deepgrain is the consolidation of that practice. Strategy at
-                the top, enablement and training across the team, agents and
-                automations in the workflow;  built function by function,
-                top to bottom. We run the model on ourselves first, then bring
-                it to clients who want something built to last.
+                the top. Enablement and training across the team. Agents and
+                automations in the workflow. Built function by function, top
+                to bottom. We run the model on ourselves first, then bring it
+                to clients who want something built to last.
               </p>
             </div>
 
@@ -201,7 +201,7 @@ const About = () => (
       </div>
     </section>
 
-    {/* The belief — moved here from the homepage so the line still lives somewhere */}
+    {/* The belief - moved here from the homepage so the line still lives somewhere */}
     <section className="bg-cream text-walnut py-24 md:py-32 border-y border-walnut/10">
       <div className="container-grain max-w-4xl text-center">
         <ScrollReveal>
@@ -226,10 +226,9 @@ const About = () => (
           </h2>
           <div className="mt-10 space-y-5 text-body/85 leading-relaxed text-lg">
             <p>
-              Deepgrain runs on agents we built for this work. Things that used
-              to need a team of consultants now happen faster, with less
-              overhead, and with the kind of precision people rarely get from a
-              deck.
+              Deepgrain runs on agents I built for this exact work. Jobs that
+              used to need a full consulting team now move faster, lighter,
+              and sharper than anything a deck ever delivered.
             </p>
             <p className="hidden md:block">
               We ran the model on our own operations first. Everything we
@@ -284,8 +283,8 @@ const About = () => (
 
     <Invitation
       ctaLocation="about"
-      headline="If this sounds like the kind of thinking you need,"
-      sub="Thirty minutes is enough to know if there's something here for you."
+      headline="If any of that's true of your organisation, say so."
+      sub="Thirty minutes tells us both if there's a fit."
       prefill="I read the About page. What I'd like to talk through is:"
     />
   </>

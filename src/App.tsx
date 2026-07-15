@@ -18,7 +18,7 @@ const LegacyAnswerRedirect = () => {
   return <Navigate to={`/answers/${slug}`} replace />;
 };
 
-// Route-level code splitting — only Home is in the initial bundle.
+// Route-level code splitting - only Home is in the initial bundle.
 const MethodPage = lazy(() => import("./pages/MethodPage"));
 const Work = lazy(() => import("./pages/Work"));
 const About = lazy(() => import("./pages/About"));
@@ -47,6 +47,7 @@ const Login = lazy(() => import("./pages/Login"));
 const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
 const Readiness = lazy(() => import("./pages/Readiness"));
 const ExposureMap = lazy(() => import("./pages/ExposureMap"));
+const GrainAudit = lazy(() => import("./pages/GrainAudit"));
 
 const queryClient = new QueryClient();
 
@@ -97,6 +98,7 @@ const App = () => (
               <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
               <Route path="/readiness" element={<Readiness />} />
               <Route path="/exposure-map" element={<ExposureMap />} />
+              <Route path="/grain-audit" element={<GrainAudit />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

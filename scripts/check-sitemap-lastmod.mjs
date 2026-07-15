@@ -15,7 +15,7 @@
  * IndexNow notification for those URLs.
  *
  * Wire-up: add to package.json as `"prepublish:check": "node scripts/check-sitemap-lastmod.mjs"`
- * and reference from docs/prepublish-checklist.md. Non-blocking — exits 0
+ * and reference from docs/prepublish-checklist.md. Non-blocking - exits 0
  * with a warning rather than failing the deploy, so a docs-only release
  * still ships.
  */

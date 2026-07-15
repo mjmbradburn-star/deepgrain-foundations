@@ -77,7 +77,7 @@ describe("buildFAQLd", () => {
 
   /**
    * Negative-path guards. These assert that our shape validator (used below
-   * against every shipping FAQ) actually rejects malformed structures —
+   * against every shipping FAQ) actually rejects malformed structures , 
    * otherwise a regression in `buildFAQLd` could silently slip through.
    */
   describe("rejects malformed FAQPage shapes", () => {

@@ -51,10 +51,10 @@ const faqItems: FAQItem[] = [
   {
     question: "How does onboarding work in the first two weeks?",
     answer:
-      "We name an exec sponsor, identify three or four champions inside the function, and pick one bounded, painful workflow to build first. No procurement marathon, no tooling debate — we use what you already have where we can, and stand up the missing pieces (an LLM provider, one workflow tool) on the right terms in week one.",
+      "We name an exec sponsor, identify three or four champions inside the function, and pick one bounded, painful workflow to build first. No procurement marathon, no tooling debate. We use what you already have where we can, and stand up the missing pieces (an LLM provider, one workflow tool) on the right terms in week one.",
     answerNode: (
       <>
-        We name an exec sponsor, identify three or four champions inside the function, and pick one bounded, painful workflow to build first. No procurement marathon, no tooling debate — we use what you already have where we can, and stand up the missing pieces (an LLM provider, one workflow tool) on the right terms in week one.
+        We name an exec sponsor, identify three or four champions inside the function, and pick one bounded, painful workflow to build first. No procurement marathon, no tooling debate. We use what you already have where we can, and stand up the missing pieces (an LLM provider, one workflow tool) on the right terms in week one.
         <FaqFooter
           related={{ to: "/method#read", label: "01 Read · Before we touch a thing, we understand →" }}
           ask="I'd like to understand what onboarding would look like for our team. A bit about us: "
@@ -65,11 +65,11 @@ const faqItems: FAQItem[] = [
   {
     question: "Who from our team needs to be involved, and how much of their time?",
     answer:
-      "An exec sponsor for air cover (a few hours a month), and three or four champions giving roughly a fifth of their week. Champions are existing senior coordinators, People Partners, or Ops leads — people you already pay, given a different mandate. We do not need engineers.",
+      "An exec sponsor for air cover (a few hours a month), and three or four champions giving roughly a fifth of their week. Champions are existing senior coordinators, People Partners, or Ops leads: people you already pay, given a different mandate. We do not need engineers.",
     answerNode: (
       <>
         An exec sponsor for air cover (a few hours a month), and three or four{" "}
-        <Link to="/intelligence/the-champion-model" className={linkCls}>champions</Link> giving roughly a fifth of their week. Champions are existing senior coordinators, People Partners, or Ops leads — people you already pay, given a different mandate. We do not need engineers.
+        <Link to="/intelligence/the-champion-model" className={linkCls}>champions</Link> giving roughly a fifth of their week. Champions are existing senior coordinators, People Partners, or Ops leads: people you already pay, given a different mandate. We do not need engineers.
         <FaqFooter ask="I'd like to talk about who in our team could become champions. A bit about our function: " />
       </>
     ),
@@ -77,10 +77,10 @@ const faqItems: FAQItem[] = [
   {
     question: "What does the coaching curriculum actually cover?",
     answer:
-      "Six modules run alongside live builds: reading the grain, briefing agents, wiring workflows, governance and trust, measuring value, and sustaining the practice. There is no classroom phase — champions learn the craft on their own systems, with their own data, on problems they already wanted to solve.",
+      "Six modules run alongside live builds: reading the grain, briefing agents, wiring workflows, governance and trust, measuring value, and sustaining the practice. There is no classroom phase. Champions learn the craft on their own systems, with their own data, on problems they already wanted to solve.",
     answerNode: (
       <>
-        Six modules run alongside live builds: reading the grain, briefing agents, wiring workflows, governance and trust, measuring value, and sustaining the practice. There is no classroom phase — champions learn the{" "}
+        Six modules run alongside live builds: reading the grain, briefing agents, wiring workflows, governance and trust, measuring value, and sustaining the practice. There is no classroom phase. Champions learn the{" "}
         <Link to="/method#craft" className={linkCls}>craft</Link> on their own systems, with their own data, on problems they already wanted to solve.
         <FaqFooter ask="I'd like to know more about the coaching curriculum and how it would map to our team. A bit about our context: " />
       </>
@@ -89,10 +89,10 @@ const faqItems: FAQItem[] = [
   {
     question: "What happens after the engagement ends?",
     answer:
-      "Champions keep building. They extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team — not parked with a vendor on a retainer.",
+      "Champions keep building. They extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team, not parked with a vendor on a retainer.",
     answerNode: (
       <>
-        Champions keep building. They extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team — not parked with a vendor on a retainer.
+        Champions keep building. They extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team, not parked with a vendor on a retainer.
         <FaqFooter
           related={{ to: "/method#scale", label: "03 Scale · We leave something that compounds →" }}
           ask="I'd like to understand what life looks like after the engagement ends. A bit about us: "
@@ -103,10 +103,10 @@ const faqItems: FAQItem[] = [
   {
     question: "How do you measure that the capability has actually transferred?",
     answer:
-      "Three signals. Champions ship a workflow we did not scope, end-to-end, without us. A new joiner is brought up to speed by a colleague rather than a deck. And six months on, the workflow count has grown — not flatlined. If those are not true, the engagement did not land, regardless of hours saved.",
+      "Three signals. Champions ship a workflow we did not scope, end-to-end, without us. A new joiner is brought up to speed by a colleague rather than a deck. And six months on, the workflow count has grown, not flatlined. If those are not true, the engagement did not land, regardless of hours saved.",
     answerNode: (
       <>
-        Three signals. Champions ship a workflow we did not scope, end-to-end, without us. A new joiner is brought up to speed by a colleague rather than a deck. And six months on, the workflow count has grown — not flatlined. If those are not true, the engagement did not land, regardless of hours saved.
+        Three signals. Champions ship a workflow we did not scope, end-to-end, without us. A new joiner is brought up to speed by a colleague rather than a deck. And six months on, the workflow count has grown, not flatlined. If those are not true, the engagement did not land, regardless of hours saved.
         <FaqFooter
           related={{ to: "/work", label: "See where it has landed →" }}
           ask="I'd like to talk about how we'd measure capability transfer in our context. A bit about us: "
@@ -208,7 +208,7 @@ const Enablement = () => (
       ]}
     />
 
-    {/* Hero — deck shape */}
+    {/* Hero: deck shape */}
     <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
       <TopoBackdrop variant="ridge" opacity={0.22} />
       <div className="relative container-grain max-w-5xl">
@@ -252,10 +252,10 @@ const Enablement = () => (
       </div>
     </section>
 
-    {/* Builder vs middle layer — deck slide 13 */}
+    {/* Builder vs middle layer: deck slide 13 */}
     <BuilderVsMiddle />
 
-    {/* The matrix — deck slide 14 */}
+    {/* The matrix: deck slide 14 */}
     <RoleMatrix />
 
     {/* What "people upskilled" means */}
@@ -326,13 +326,11 @@ const Enablement = () => (
               </Link>
             </div>
 
-            <div className="rounded-2xl border-l-4 border-brass bg-walnut/[0.04] p-8 md:p-10">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-brass font-semibold">
-                What a champion needs
-              </div>
-              <ul className="mt-6 space-y-7">
+            <div className="border-t border-walnut/15 pt-8 lg:pt-0 lg:border-t-0 lg:border-l lg:border-walnut/15 lg:pl-16">
+              <Eyebrow>What a champion needs</Eyebrow>
+              <ul className="mt-6 divide-y divide-walnut/15">
                 {championNeeds.map((c) => (
-                  <li key={c.label}>
+                  <li key={c.label} className="py-6 first:pt-0 last:pb-0">
                     <div className="font-display text-walnut text-xl">{c.label}</div>
                     <p className="mt-2 text-body/80 leading-relaxed">{c.body}</p>
                   </li>
@@ -408,10 +406,28 @@ const Enablement = () => (
           into places nobody asked them to touch, and they are training the next champion.
           That is what capability looks like.
         </p>
-        <div className="mt-12">
-          <PillButton href="/intelligence/the-champion-model" variant="outline">
-            Read the champion model →
+        <p className="mt-6 max-w-2xl text-cream/85 text-lg leading-relaxed">
+          Not ready for the full programme? The Grain Audit maps one People Ops process
+          end to end, ranks the highest-return automations, and hands you a 90-day plan
+          you keep whether or not we work together. Two weeks. GBP 2,000, credited in
+          full against a programme. Three slots a month.
+        </p>
+        <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <PillButton
+            href="/grain-audit"
+            variant="filled"
+            cta="grain_audit_enablement_outcomes"
+            ctaLocation="enablement_outcomes"
+          >
+            Book a Grain Audit →
           </PillButton>
+          <Link
+            to="/intelligence/the-champion-model"
+            className="group inline-flex items-center gap-1 text-sm text-cream/70 font-medium transition-colors hover:text-cream"
+          >
+            Read the champion model
+            <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
+          </Link>
         </div>
       </ScrollReveal>
     </BarkSection>

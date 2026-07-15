@@ -41,7 +41,7 @@ export const Hero = () => (
       />
       <div className="absolute inset-0 bg-green/55" />
       <div className="absolute inset-0 bg-gradient-to-r from-green/70 via-green/30 to-transparent" />
-      {/* Ambient wood-grain drift — purely decorative, GPU transform only. */}
+      {/* Ambient wood-grain drift - purely decorative, GPU transform only. */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none opacity-[0.05] hero-drift mix-blend-overlay"

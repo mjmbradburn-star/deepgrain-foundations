@@ -3,7 +3,7 @@ import { Check, Link2 } from "lucide-react";
 
 /**
  * "Save to read later" stub. Copies the current page URL to the clipboard.
- * A pragmatic v1 — no auth, no list, just a frictionless way to stash a piece
+ * A pragmatic v1 - no auth, no list, just a frictionless way to stash a piece
  * (email it to yourself, paste it into Notion, drop it in Slack).
  */
 export const SaveLink = ({ className = "" }: { className?: string }) => {
@@ -15,7 +15,7 @@ export const SaveLink = ({ className = "" }: { className?: string }) => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Older browsers / iOS Safari without clipboard permission — no-op,
+      // Older browsers / iOS Safari without clipboard permission - no-op,
       // the link is already in the address bar.
     }
   };

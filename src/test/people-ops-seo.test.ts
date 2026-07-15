@@ -93,7 +93,7 @@ describe("People Ops SEO checklist", () => {
     "%s",
     (slug, article) => {
       const body = readBody(slug);
-      // Strip frontmatter `export const` blocks — only validate prose.
+      // Strip frontmatter `export const` blocks - only validate prose.
       const proseStart = body.indexOf("\n## ");
       const prose = proseStart === -1 ? body : body.slice(proseStart);
 
@@ -102,7 +102,7 @@ describe("People Ops SEO checklist", () => {
         expect(article.frontmatter.title.trim().length).toBeGreaterThan(0);
         // MDX body must not introduce a second H1.
         const h1InBody = /^# [^#\n]/m.test(prose);
-        expect(h1InBody, `${slug} has a "# heading" in MDX body — would create a second H1`).toBe(false);
+        expect(h1InBody, `${slug} has a "# heading" in MDX body - would create a second H1`).toBe(false);
       });
 
       it("uses a consistent heading hierarchy (starts at H2, never skips a level)", () => {

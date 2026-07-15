@@ -8,13 +8,16 @@ import {
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
-import { Invitation } from "@/components/sections/Invitation";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+import { track } from "@/lib/analytics";
 
 const Intelligence = () => {
   const url = "https://www.deepgrain.ai/intelligence";
-  const allCategories = CATEGORIES;
+  const populatedCategories = CATEGORIES.map((cat) => ({
+    cat,
+    items: getArticlesByCategory(cat.slug),
+  })).filter(({ items }) => items.length > 0);
 
   const collectionLd = {
     "@context": "https://schema.org",
@@ -62,7 +65,7 @@ const Intelligence = () => {
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
       </Helmet>
 
-      {/* Hero — deck shape */}
+      {/* Hero: deck shape */}
       <section className="relative bg-green text-cream pt-40 md:pt-48 pb-24 md:pb-32 overflow-hidden">
         <TopoBackdrop variant="basin" opacity={0.18} />
         <div className="relative container-grain max-w-4xl">
@@ -74,8 +77,8 @@ const Intelligence = () => {
             Reading the grain, in writing.
           </h1>
           <p className="text-lg md:text-xl text-cream/75 leading-relaxed max-w-2xl">
-            Essays on organisational consultancy, AI operating systems, and the quiet discipline
-            of operating leadership. Slow reading for people building things that compound.
+            Essays on organisational consultancy, AI operating systems, and operating leadership.
+            Slow reading for people building things that compound.
           </p>
           <div className="mt-10 flex flex-wrap gap-3 text-[12px] uppercase" style={{ letterSpacing: "0.14em" }}>
             <Link to="/intelligence/pillars" className="text-brass hover:text-cream transition-colors">Pillar deep-dives →</Link>
@@ -87,118 +90,112 @@ const Intelligence = () => {
         </div>
       </section>
 
-      {/* Section index — mirrors breadcrumb hierarchy with deep anchor links.
-          Reinforces the BreadcrumbList JSON-LD with on-page navigation that
-          search engines can follow as named-fragment URLs. */}
+      {/* Contents: the single overview. One index, not two, this is both the
+          section list and the jump nav. The per-category detail below is the
+          content itself, not a second copy of the index. */}
       <section
-        id="sections"
-        aria-labelledby="sections-heading"
-        className="bg-cream/40 border-y border-walnut/10 py-16 md:py-20"
+        id="contents"
+        aria-labelledby="contents-heading"
+        className="bg-cream/40 border-y border-walnut/10 py-14 md:py-16"
       >
         <div className="container-grain">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
-            <div>
-              <Eyebrow>On this page</Eyebrow>
-              <h2
-                id="sections-heading"
-                className="font-display text-2xl md:text-3xl text-walnut mt-2"
-                style={{ letterSpacing: "-0.005em" }}
-              >
-                Sections
-              </h2>
-            </div>
-          </div>
-          <nav aria-label="Intelligence sections">
-            <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 list-none counter-reset-[section]">
-              {allCategories.map((cat, i) => {
-                const items = getArticlesByCategory(cat.slug);
-                if (items.length === 0) return null;
-                return (
-                  <li key={cat.slug}>
-                    <a
-                      href={`#${cat.slug}`}
-                      className="group flex items-baseline gap-4 rounded-lg border border-walnut/10 bg-cream/60 hover:bg-cream hover:border-brass/40 px-5 py-4 transition-colors"
-                    >
-                      <span
-                        className="font-display text-brass text-sm tabular-nums shrink-0"
-                        aria-hidden
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="flex-1">
-                        <span className="block font-display text-walnut text-base md:text-lg leading-tight group-hover:text-green transition-colors">
-                          {cat.name}
-                        </span>
-                        <span className="block text-walnut/60 text-xs mt-1">
-                          {items.length} {items.length === 1 ? "article" : "articles"}
-                        </span>
-                      </span>
-                      <span
-                        className="text-brass text-sm group-hover:translate-x-1 transition-transform"
-                        aria-hidden
-                      >
-                        ↓
-                      </span>
-                    </a>
-                  </li>
-                );
-              })}
+          <Eyebrow>Contents</Eyebrow>
+          <nav aria-label="Intelligence contents" className="mt-6">
+            <ol className="flex flex-wrap gap-x-10 gap-y-4 list-none">
+              {populatedCategories.map(({ cat, items }, i) => (
+                <li key={cat.slug}>
+                  <a
+                    href={`#${cat.slug}`}
+                    className="group inline-flex items-baseline gap-2.5 font-display text-lg md:text-xl text-walnut transition-colors hover:text-brass"
+                    style={{ letterSpacing: "-0.005em" }}
+                  >
+                    <span className="font-sans text-xs text-walnut/40 tabular-nums" aria-hidden>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {cat.name}
+                    <span className="font-sans text-sm text-walnut/40">
+                      {items.length}
+                    </span>
+                  </a>
+                </li>
+              ))}
             </ol>
           </nav>
         </div>
       </section>
 
-      {/* Categories — all tracks, one stream */}
+      {/* Categories: all tracks, one stream, one rule language throughout */}
       <section className="bg-linen py-24 md:py-32">
         <div className="container-grain space-y-24">
-          {allCategories.map((cat) => {
-            const items = getArticlesByCategory(cat.slug);
-            if (items.length === 0) return null;
-            return (
-              <div key={cat.slug} id={cat.slug} className="scroll-mt-32">
-                <div className="flex flex-wrap items-end justify-between gap-4 mb-10 pb-6 border-b border-walnut/15">
-                  <div>
-                    <Eyebrow>{cat.name}</Eyebrow>
-                    <h2 className="font-display text-2xl md:text-3xl text-walnut mt-2 max-w-xl">
-                      <span className="sr-only">{cat.name}: </span>
-                      {cat.description}
-                    </h2>
-                  </div>
-                  <div className="flex items-center gap-5">
-                    <Link
-                      to={`/intelligence/category/${cat.slug}`}
-                      className="text-[11px] uppercase text-green hover:text-brass transition-colors"
-                      style={{ letterSpacing: "0.14em" }}
-                    >
-                      View all {items.length} →
-                    </Link>
-                    <a
-                      href="#sections"
-                      className="text-[11px] uppercase text-walnut/50 hover:text-brass transition-colors"
-                      style={{ letterSpacing: "0.14em" }}
-                      aria-label="Back to section index"
-                    >
-                      ↑ Index
-                    </a>
-                  </div>
+          {populatedCategories.map(({ cat, items }) => (
+            <div key={cat.slug} id={cat.slug} className="scroll-mt-32">
+              <div className="flex flex-wrap items-end justify-between gap-4 mb-4 pb-6 border-b border-walnut/15">
+                <div>
+                  <Eyebrow>{cat.name}</Eyebrow>
+                  <h2 className="font-display text-2xl md:text-3xl text-walnut mt-2 max-w-xl">
+                    <span className="sr-only">{cat.name}: </span>
+                    {cat.description}
+                  </h2>
                 </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-                  {items.map((a) => (
-                    <ArticleCard key={a.frontmatter.slug} article={a} />
-                  ))}
-                </div>
+                <Link
+                  to={`/intelligence/category/${cat.slug}`}
+                  className="text-[11px] uppercase text-green hover:text-brass transition-colors shrink-0"
+                  style={{ letterSpacing: "0.14em" }}
+                >
+                  All {items.length} →
+                </Link>
               </div>
-            );
-          })}
+              <div>
+                {items.map((a) => (
+                  <ArticleCard key={a.frontmatter.slug} article={a} variant="row" />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      <Invitation
-        ctaLocation="intelligence"
-        headline="Reading is one thing. Doing is another."
-        sub="If any of this lands, the next move is thirty minutes on one of your own workflows."
-        prefill="I read the Intelligence essays. The piece that landed and what I'd like to talk through is:"
-      />
+      {/* Close: the paid bridge offer, not a soft "book a call". Readers who
+          have made it this far through the essays are warm; point them at the
+          Grain Audit, not a generic contact form. */}
+      <section className="relative bg-green text-cream section-pad overflow-hidden">
+        <TopoBackdrop variant="basin" opacity={0.16} />
+        <div className="relative container-grain max-w-2xl">
+          <Eyebrow withRule className="text-brass mb-6">
+            The next move
+          </Eyebrow>
+          <h2 className="font-display text-3xl md:text-5xl leading-[1.08] max-w-xl">
+            Reading is one thing. Doing is another.
+          </h2>
+          <p className="mt-6 max-w-xl text-cream/75 leading-relaxed">
+            The Grain Audit maps one People Ops process end to end, ranks the highest-return
+            automations, and hands you a 90-day plan you keep whether or not we work together.
+            Two weeks. GBP 2,000, credited in full against a programme. Three slots a month.
+          </p>
+          <Link
+            to="/grain-audit"
+            onClick={() =>
+              track("cta_click", {
+                cta_id: "audit_intelligence_close",
+                cta_location: "intelligence",
+                cta_label: "Book a Grain Audit",
+                link_url: "/grain-audit",
+              })
+            }
+            className="group mt-8 inline-flex items-center gap-2 rounded-full bg-cream px-7 py-3.5 font-sans text-sm tracking-wider text-green transition-all duration-300 hover:bg-cream/90"
+          >
+            Book a Grain Audit
+            <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
+          </Link>
+          <p className="mt-6 text-cream/50 text-sm">
+            Not ready to commit? Take the{" "}
+            <Link to="/readiness" className="underline hover:text-cream">
+              readiness assessment
+            </Link>{" "}
+            first.
+          </p>
+        </div>
+      </section>
     </>
   );
 };

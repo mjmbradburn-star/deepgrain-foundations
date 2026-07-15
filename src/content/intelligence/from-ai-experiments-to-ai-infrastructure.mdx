@@ -14,12 +14,12 @@ export const faqs = [
   {
     question: "When should a company stop running AI experiments and build AI infrastructure?",
     answer:
-      "When the same workflow has been pilot-built three times, or when an experiment has produced repeated value across at least two functions. At that point the cost of not building infrastructure (re-doing the pilot, re-securing the data, re-writing the prompts) overtakes the cost of building it.",
+      "In practice, the switch usually gets forced by whoever owns the third rebuild, not by a strategy team sitting above the work. If nobody named is losing sleep over rebuilding the same plumbing again, the pressure is not real yet, and any infrastructure you build now will be built for the wrong workflow.",
   },
   {
     question: "What counts as AI infrastructure?",
     answer:
-      "Persistent, owned layers of data pipelines, tool integrations, governance, and runtime that a workflow can plug into without being rebuilt. Concretely: identity and permissions, retrieval, tool calling, evaluation, audit logs, and an operating cadence around all of it. The point at which an AI programme becomes an AI operating system.",
+      "Run a simple test: pull the component out and see what breaks. If three separate workflows would have to rebuild the same plumbing, it was infrastructure. If only one demo dies, it was an experiment wearing infrastructure's clothes.",
   },
   {
     question: "Is AI infrastructure the same as buying an AI platform?",
@@ -56,7 +56,7 @@ A bad experiment looks like:
 - A demo that nobody can run on a real day's work
 - A repeating cycle of "let's try this with the new model"
 
-If your experiments do not end in decisions, they are not experiments. They are budget.
+Experiments that never end in a decision are just spend, dressed up as R&D.
 
 ## When to switch
 
@@ -84,7 +84,7 @@ Build the smallest possible version of each pillar:
 - **Governance**: a written list of what is allowed, what is logged, what gets a human in the loop. Reviewed on a cadence.
 - **Cadence**: a recurring forum where agents are reviewed, drift is caught, and policy is updated.
 
-What you are not building: a moonshot platform that takes 18 months to ship. Infrastructure here means the smallest reusable substrate that makes the next workflow take a week instead of a quarter. The [five pillars of AI readiness](/intelligence/five-pillars-of-ai-readiness) is the diagnostic that tells you which pillar to build first, and the [AI maturity frameworks for G&A leaders](/intelligence/ai-maturity-frameworks-for-ga-leaders) guide is how you translate that pillar work into a maturity score Finance and People Ops leaders can defend at the board.
+Skip the moonshot platform that takes 18 months to ship. Infrastructure here means the smallest reusable substrate that makes the next workflow take a week instead of a quarter. The [five pillars of AI readiness](/intelligence/five-pillars-of-ai-readiness) is the diagnostic that tells you which pillar to build first, and the [AI maturity frameworks for G&A leaders](/intelligence/ai-maturity-frameworks-for-ga-leaders) guide is how you translate that pillar work into a maturity score Finance and People Ops leaders can defend at the board.
 
 ## What to stop doing
 
@@ -94,7 +94,7 @@ When you make the switch, three things stop being acceptable:
 - Agents that are owned by "the AI team" rather than a specific operating leader
 - Experiments that run forever without a decision
 
-If those three things are still tolerated after the switch, you have not actually made the switch. You have just spent more money.
+If those three things are still tolerated after the switch, you have spent more money without actually making the switch.
 
 ## A working summary
 
@@ -103,8 +103,8 @@ If those three things are still tolerated after the switch, you have not actuall
 For most companies, the right next step is one experiment fewer and one piece of infrastructure more. Pick the workflow. Build the substrate. Run it on Monday morning. Then do it again.
 
 <KeyTakeaways>
-- Experiments without exit criteria are budget, not learning.
+- Experiments without exit criteria burn budget and teach nothing.
 - The switch is a decision, not a roadmap milestone. Mark it explicitly.
 - The unit of infrastructure is a workflow, not a layer. Build the layer the workflow needs, then the next.
-- A platform purchase is a component, not a strategy. Treat it as such.
+- A platform purchase is one component. It never substitutes for the strategy built around it.
 </KeyTakeaways>
