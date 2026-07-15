@@ -21,6 +21,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
