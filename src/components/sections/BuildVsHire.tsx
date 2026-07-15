@@ -1,7 +1,9 @@
 import { forwardRef, useEffect, useState } from "react";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
+import { cn } from "@/lib/utils";
 
 /**
  * Fixed-scenario comparison: a mid-level Ops hire vs an in-house agent
@@ -47,8 +49,8 @@ export const BuildVsHire = () => {
   return (
     <section className="bg-linen text-body section-pad">
       <div className="container-grain max-w-5xl">
-        <ScrollReveal>
-          <Eyebrow className="text-brass mb-4">Build or hire</Eyebrow>
+        <Reveal>
+          <SectionEyebrow tone="linen" pill className="mb-6">Build or hire</SectionEyebrow>
           <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
             One mid-level hire. Or one well-built agent.
           </h2>
@@ -57,9 +59,9 @@ export const BuildVsHire = () => {
             salary on one side, build plus run on the other. The gap widens
             every year you keep the agent running.
           </p>
-        </ScrollReveal>
+        </Reveal>
 
-        <ScrollReveal delay={120}>
+        <Reveal delay={120}>
           {/* Year toggle */}
           <div className="mt-12 inline-flex rounded-full border border-walnut/15 bg-cream p-1">
             {YEARS.map((y) => (
@@ -68,12 +70,10 @@ export const BuildVsHire = () => {
                 type="button"
                 onClick={() => setYear(y)}
                 aria-pressed={year === y}
-                className={
-                  "px-6 py-2.5 rounded-full text-sm uppercase tracking-[0.18em] transition-colors " +
-                  (year === y
-                    ? "bg-walnut text-cream"
-                    : "text-walnut/60 hover:text-walnut")
-                }
+                className={cn(
+                  "px-6 py-2.5 rounded-full text-sm uppercase tracking-[0.18em] transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]",
+                  year === y ? "bg-walnut text-cream" : "text-walnut/60 hover:text-walnut",
+                )}
               >
                 {y} {y === 1 ? "year" : "years"}
               </button>
@@ -121,9 +121,9 @@ export const BuildVsHire = () => {
               </p>
             </div>
           </div>
-        </ScrollReveal>
+        </Reveal>
 
-        <ScrollReveal delay={200}>
+        <Reveal delay={200}>
           <p className="mt-12 max-w-2xl text-sm text-body/60 italic leading-relaxed">
             Indicative only. Hire assumes a mid-level London Ops salary
             (~£80k base) loaded with NI, pension, tooling and amortised
@@ -132,7 +132,7 @@ export const BuildVsHire = () => {
             improvement. The agent removes a hire that would otherwise have
             been needed for the same workload.
           </p>
-        </ScrollReveal>
+        </Reveal>
       </div>
     </section>
   );
@@ -146,6 +146,11 @@ interface CostCardProps {
   tone: "muted" | "brass";
 }
 
+/**
+ * Double-bezel cost card: outer machined tray + inner core with concentric
+ * radii and an inset highlight, so hire vs agent reads as physical hardware
+ * rather than a flat panel. Page-local to /method.
+ */
 const CostCard = forwardRef<HTMLDivElement, CostCardProps>(({ label, sub, amount, barPct, tone }, forwardedRef) => {
   // Bar animates width on amount change.
   const [shown, setShown] = useState(0);
@@ -157,30 +162,35 @@ const CostCard = forwardRef<HTMLDivElement, CostCardProps>(({ label, sub, amount
   return (
     <div
       ref={forwardedRef}
-      className={
-        "rounded-2xl border p-8 " +
-        (tone === "brass"
-          ? "border-brass/40 bg-cream"
-          : "border-walnut/15 bg-cream/60")
-      }
+      className={cn(
+        "rounded-[1.75rem] p-1.5 ring-1",
+        tone === "brass" ? "bg-brass/[0.06] ring-brass/25" : "bg-walnut/[0.04] ring-walnut/10",
+      )}
     >
-      <div className="flex items-baseline justify-between mb-1">
-        <Eyebrow className={tone === "brass" ? "text-brass" : "text-walnut/60"}>
-          {label}
-        </Eyebrow>
-        <span className="text-xs text-walnut/50">{sub}</span>
-      </div>
-      <div className="mt-4 font-display font-semibold text-walnut text-5xl md:text-6xl leading-none tabular-nums">
-        <AnimatedNumber value={amount} live prefix="£" />
-      </div>
-      <div className="mt-6 h-2 w-full overflow-hidden rounded-full bg-walnut/10">
-        <div
-          className={
-            "h-full transition-[width] duration-700 ease-out " +
-            (tone === "brass" ? "bg-brass" : "bg-walnut/40")
-          }
-          style={{ width: `${shown}%` }}
-        />
+      <div
+        className={cn(
+          "h-full rounded-[1.375rem] border p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]",
+          tone === "brass" ? "border-brass/30 bg-cream" : "border-walnut/10 bg-cream/70",
+        )}
+      >
+        <div className="flex items-baseline justify-between mb-1">
+          <Eyebrow className={tone === "brass" ? "text-brass" : "text-walnut/60"}>
+            {label}
+          </Eyebrow>
+          <span className="text-xs text-walnut/50">{sub}</span>
+        </div>
+        <div className="mt-4 font-display font-semibold text-walnut text-5xl md:text-6xl leading-none tabular-nums">
+          <AnimatedNumber value={amount} live prefix="£" />
+        </div>
+        <div className="mt-6 h-2 w-full overflow-hidden rounded-full bg-walnut/10">
+          <div
+            className={cn(
+              "h-full transition-[width] duration-700 ease-out",
+              tone === "brass" ? "bg-brass" : "bg-walnut/40",
+            )}
+            style={{ width: `${shown}%` }}
+          />
+        </div>
       </div>
     </div>
   );

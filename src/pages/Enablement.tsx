@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Reveal } from "@/components/ui/Reveal";
+import { Parallax } from "@/components/ui/Parallax";
 import { PillButton } from "@/components/ui/PillButton";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
@@ -16,12 +18,29 @@ import { BuilderVsMiddle } from "@/components/sections/deck/BuilderVsMiddle";
 import { RoleMatrix } from "@/components/sections/deck/RoleMatrix";
 import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
 
+/** Trailing arrow nested in its own circular wrapper, magnetic on hover. Mirrors
+ * the button-in-button treatment on HeroDeck / IntelligenceTeaser. */
+const ArrowGlyph = ({ tone = "brass" }: { tone?: "brass" | "cream" | "green" }) => (
+  <span
+    aria-hidden
+    className={[
+      "ml-1 inline-flex h-6 w-6 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
+      "group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105",
+      tone === "cream" ? "bg-cream/10 text-cream" : tone === "green" ? "bg-green/10 text-green" : "bg-brass/10 text-brass",
+    ].join(" ")}
+  >
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  </span>
+);
+
 // Each FAQ keeps `answer` as the canonical text mirrored in JSON-LD; `answerNode`
 // adds inline navigation, an optional "Related" link, and a contextual "Ask about
 // this" CTA that deep-links to /contact with a question-specific ?subject= prefill.
 const linkCls = "text-brass underline-offset-4 hover:underline";
-const trailingCls = "inline-flex items-center gap-1 text-sm text-brass font-medium hover:text-walnut transition-colors";
-const ctaCls = "inline-flex items-center gap-1.5 rounded-full border border-brass/40 bg-brass/5 hover:bg-brass hover:text-cream text-brass text-xs font-semibold uppercase tracking-[0.12em] px-4 py-2 transition-colors";
+const trailingCls = "group inline-flex items-center gap-1 text-sm text-brass font-medium hover:text-walnut transition-colors";
+const ctaCls = "group inline-flex items-center rounded-full border border-brass/40 bg-brass/5 hover:bg-brass/10 text-brass text-xs font-semibold uppercase tracking-[0.12em] pl-4 pr-1.5 py-1.5 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]";
 
 /** Build a /contact link with a polite, conversational prefill quoting the FAQ. */
 const askLink = (prompt: string) =>
@@ -42,7 +61,8 @@ const FaqFooter = ({
       </Link>
     )}
     <Link to={askLink(ask)} className={ctaCls}>
-      Ask about this →
+      Ask about this
+      <ArrowGlyph />
     </Link>
   </div>
 );
@@ -131,6 +151,10 @@ const upskilled = [
   },
 ];
 
+/** Decorative brass glyphs paired with `upskilled` by index. Presentation only,
+ * no copy change: mirrors the nested-circle icon treatment on TheCounterweight. */
+const upskilledIcons = ["✦", "◈", "◌"];
+
 const championNeeds = [
   {
     label: "Air cover",
@@ -174,7 +198,7 @@ const curriculum = [
   {
     n: "05",
     title: "Measuring value",
-    body: "Hours saved, judgment freed, capability gained. A real story about what changed.",
+    body: "Hours saved, judgment freed, capability gained. Numbers you can say out loud in the boardroom, not vibes.",
     duration: "Half day",
   },
   {
@@ -188,7 +212,7 @@ const curriculum = [
 const outcomes = [
   "Three or four trained champions inside the function.",
   "Eight to twelve production workflows, owned by the teams that use them.",
-  "A governance pattern your team understands and can defend.",
+  "A governance pattern your team understands, not one they take on faith.",
   "Capability that keeps growing into corners we never touched.",
 ];
 
@@ -209,23 +233,25 @@ const Enablement = () => (
     />
 
     {/* Hero: deck shape */}
-    <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
-      <TopoBackdrop variant="ridge" opacity={0.22} />
-      <div className="relative container-grain max-w-5xl">
-        <ScrollReveal>
+    <section className="relative bg-green text-cream pt-40 pb-28 md:pb-40 overflow-hidden">
+      <Parallax speed={0.12} max={80} className="absolute inset-y-[-15%] inset-x-0 z-[1] pointer-events-none">
+        <TopoBackdrop variant="ridge" opacity={0.22} />
+      </Parallax>
+      <div className="relative z-10 container-grain max-w-5xl">
+        <Reveal>
           <SectionEyebrow className="mb-6" />
           <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] text-balance max-w-4xl">
             Find your builder. Move your middle layer.
           </h1>
           <p className="mt-8 max-w-2xl text-cream/80 text-lg leading-relaxed">
-            Agents take the repeatable work. People learn to design, run and extend them. When we
-            leave, the capability stays in the team, not in a vendor.
+            Agents take the repeatable work. People learn to run it, extend it, own it. When we
+            leave, the capability stays in the team, not in us.
           </p>
 
           <dl className="mt-14 grid gap-10 sm:grid-cols-3 border-t border-cream/15 pt-10 max-w-2xl">
             <div>
               <dt className="font-display font-semibold text-brass text-5xl md:text-6xl leading-none tabular-nums">
-                <AnimatedNumber value={37} />
+                <AnimatedNumber value={37} countUp />
               </dt>
               <dd className="mt-3 text-[11px] uppercase tracking-[0.2em] text-cream/70 font-semibold">
                 Champions trained
@@ -233,7 +259,7 @@ const Enablement = () => (
             </div>
             <div>
               <dt className="font-display font-semibold text-brass text-5xl md:text-6xl leading-none tabular-nums">
-                <AnimatedNumber value={11} />
+                <AnimatedNumber value={11} countUp />
               </dt>
               <dd className="mt-3 text-[11px] uppercase tracking-[0.2em] text-cream/70 font-semibold">
                 Functions reshaped
@@ -241,14 +267,14 @@ const Enablement = () => (
             </div>
             <div>
               <dt className="font-display font-semibold text-brass text-5xl md:text-6xl leading-none tabular-nums">
-                <AnimatedNumber value={0} />
+                <AnimatedNumber value={0} countUp />
               </dt>
               <dd className="mt-3 text-[11px] uppercase tracking-[0.2em] text-cream/70 font-semibold">
                 Vendor lock-in
               </dd>
             </div>
           </dl>
-        </ScrollReveal>
+        </Reveal>
       </div>
     </section>
 
@@ -261,10 +287,10 @@ const Enablement = () => (
     {/* What "people upskilled" means */}
     <section className="bg-linen text-body section-pad">
       <div className="container-grain">
-        <ScrollReveal>
+        <Reveal>
           <div className="max-w-3xl">
-            <Eyebrow className="text-brass mb-4">People upskilled</Eyebrow>
-            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
+            <SectionEyebrow pill tone="linen" className="mb-6">People upskilled</SectionEyebrow>
+            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight mt-6">
               What the metric means.
             </h2>
             <p className="mt-8 text-body/85 text-lg leading-relaxed">
@@ -273,60 +299,70 @@ const Enablement = () => (
               team can do without us in the room.
             </p>
           </div>
+        </Reveal>
 
-          <div className="mt-16 grid gap-10 md:grid-cols-3">
-            {upskilled.map((u) => (
-              <div key={u.title} className="border-t border-walnut/15 pt-6">
+        <div className="mt-16 grid gap-10 md:grid-cols-3">
+          {upskilled.map((u, i) => (
+            <Reveal key={u.title} delay={i * 90}>
+              <div className="border-t border-walnut/20 pt-6">
+                <div className="mb-5 rounded-full bg-brass/10 p-1 ring-1 ring-brass/20 w-11 h-11 flex items-center justify-center">
+                  <span className="flex h-full w-full items-center justify-center rounded-full text-brass text-lg shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]">
+                    {upskilledIcons[i]}
+                  </span>
+                </div>
                 <div className="font-display text-walnut text-2xl mb-3">
                   {u.title}
                 </div>
                 <p className="text-body/80 leading-relaxed">{u.body}</p>
               </div>
-            ))}
-          </div>
-        </ScrollReveal>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
 
     {/* Champion model */}
     <section className="bg-cream text-body section-pad">
       <div className="container-grain">
-        <ScrollReveal>
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
-            <div>
-              <Eyebrow className="text-brass mb-4">The champion model</Eyebrow>
-              <h2 className="font-display text-walnut text-4xl md:text-5xl leading-tight">
-                You need three or four champions, not engineers.
-              </h2>
-              <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
-                <p>
-                  A champion is someone already inside the team. A senior coordinator, a
-                  People Partner, an Ops lead. Someone with deep tacit knowledge of how the
-                  work flows, and curiosity about wiring things together. People you already
-                  pay, given a different mandate.
-                </p>
-                <p>
-                  This works because of grain. Champions know where the friction is, because
-                  they live in it. They know which approvals are theatre and which handoffs
-                  drop information. An engineer would have to discover all of that. The
-                  champion starts with it.
-                </p>
-                <p>
-                  Three or four champions, spread across the function, give you something a
-                  single builder cannot. Review. Shared patterns. Cover when one is buried.
-                  The nucleus of a real practice.
-                </p>
-              </div>
-              <Link
-                to="/intelligence/the-champion-model"
-                className="group mt-10 inline-flex items-center gap-1 text-sm text-brass font-medium transition-colors hover:text-walnut"
-              >
-                Read the full essay
-                <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
-              </Link>
+        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+          <Reveal>
+            <SectionEyebrow pill tone="linen" className="mb-6">The champion model</SectionEyebrow>
+            <h2 className="font-display text-walnut text-4xl md:text-5xl leading-tight mt-6">
+              You need three or four champions, not engineers.
+            </h2>
+            <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
+              <p>
+                A champion is someone already inside the team. A senior coordinator, a
+                People Partner, an Ops lead. Someone who knows how the work actually flows,
+                and wants to wire things together. People you already pay, given a
+                different mandate.
+              </p>
+              <p>
+                This works because of grain. Champions know where the friction is, because
+                they live in it. They know which approvals are theatre and which handoffs
+                drop information. An engineer would have to discover all of that. The
+                champion starts with it.
+              </p>
+              <p>
+                Three or four champions, spread across the function, give you something a
+                single builder cannot. Review. Shared patterns. Cover when one is buried.
+                That&rsquo;s the start of a real practice.
+              </p>
             </div>
+            <Link
+              to="/intelligence/the-champion-model"
+              className="group mt-10 inline-flex items-center gap-1 text-sm text-brass font-medium transition-colors hover:text-walnut"
+            >
+              Read the full essay
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px"
+                strokeWidth={2.25}
+              />
+            </Link>
+          </Reveal>
 
-            <div className="border-t border-walnut/15 pt-8 lg:pt-0 lg:border-t-0 lg:border-l lg:border-walnut/15 lg:pl-16">
+          <Reveal delay={120}>
+            <div className="border-t border-walnut/15 pt-8 lg:pt-0 lg:border-t-0 lg:border-l lg:border-walnut/15 lg:pl-16 h-full">
               <Eyebrow>What a champion needs</Eyebrow>
               <ul className="mt-6 divide-y divide-walnut/15">
                 {championNeeds.map((c) => (
@@ -337,18 +373,18 @@ const Enablement = () => (
                 ))}
               </ul>
             </div>
-          </div>
-        </ScrollReveal>
+          </Reveal>
+        </div>
       </div>
     </section>
 
     {/* Curriculum */}
     <section className="bg-linen text-body section-pad">
       <div className="container-grain">
-        <ScrollReveal>
+        <Reveal>
           <div className="max-w-3xl">
-            <Eyebrow className="text-brass mb-4">The coaching curriculum</Eyebrow>
-            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
+            <SectionEyebrow pill tone="linen" className="mb-6">The coaching curriculum</SectionEyebrow>
+            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight mt-6">
               Six modules, run alongside the build.
             </h2>
             <p className="mt-8 text-body/85 text-lg leading-relaxed">
@@ -357,14 +393,17 @@ const Enablement = () => (
               problems they already wanted to solve.
             </p>
           </div>
+        </Reveal>
 
-          <div className="mt-16 divide-y divide-walnut/15 border-t border-walnut/15">
-            {curriculum.map((m) => (
-              <div
-                key={m.n}
-                className="grid gap-4 py-8 md:grid-cols-[80px_1fr_140px] md:items-baseline md:gap-10"
-              >
-                <div className="font-display text-brass text-2xl">{m.n}</div>
+        <div className="mt-16 divide-y divide-walnut/15 border-t border-walnut/15">
+          {curriculum.map((m, i) => (
+            <Reveal key={m.n} delay={i * 70}>
+              <div className="grid gap-4 py-8 md:grid-cols-[80px_1fr_140px] md:items-baseline md:gap-10">
+                <div className="flex md:block">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brass/10 ring-1 ring-brass/20 font-display text-brass text-lg shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]">
+                    {m.n}
+                  </span>
+                </div>
                 <div>
                   <div className="font-display text-walnut text-2xl md:text-3xl">
                     {m.title}
@@ -375,36 +414,40 @@ const Enablement = () => (
                   {m.duration}
                 </div>
               </div>
-            ))}
-          </div>
-        </ScrollReveal>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
 
     {/* Outcomes */}
     <BarkSection className="section-pad" contentClassName="container-grain">
-      <ScrollReveal>
+      <Reveal>
         <div className="max-w-3xl">
-          <Eyebrow className="text-brass mb-4">What you walk away with</Eyebrow>
-          <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight">
+          <SectionEyebrow pill className="mb-6">What you walk away with</SectionEyebrow>
+          <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight mt-6">
             A practice the team holds.
           </h2>
         </div>
-        <ul className="mt-14 grid gap-8 md:grid-cols-2">
-          {outcomes.map((o) => (
-            <li
-              key={o}
-              className="border-t border-brass/40 pt-6 text-cream/85 text-lg leading-relaxed"
-            >
-              {o}
-            </li>
-          ))}
-        </ul>
+      </Reveal>
+      <ul className="mt-14 grid gap-8 md:grid-cols-2">
+        {outcomes.map((o, i) => (
+          <Reveal
+            key={o}
+            delay={i * 80}
+            as="li"
+            className="border-t border-brass/40 pt-6 text-cream/85 text-lg leading-relaxed"
+          >
+            {o}
+          </Reveal>
+        ))}
+      </ul>
+      <Reveal delay={160}>
         <BrassRule className="mt-16" />
         <p className="mt-10 max-w-2xl text-cream/70 leading-relaxed">
           Six months on, the champions are still building. They have extended the work
           into places nobody asked them to touch, and they are training the next champion.
-          That is what capability looks like.
+          That&rsquo;s what capability looks like.
         </p>
         <p className="mt-6 max-w-2xl text-cream/85 text-lg leading-relaxed">
           Not ready for the full programme? The Grain Audit maps one People Ops process
@@ -418,18 +461,23 @@ const Enablement = () => (
             variant="filled"
             cta="grain_audit_enablement_outcomes"
             ctaLocation="enablement_outcomes"
+            className="group active:scale-[0.98]"
           >
-            Book a Grain Audit →
+            Book a Grain Audit
+            <ArrowGlyph tone="green" />
           </PillButton>
           <Link
             to="/intelligence/the-champion-model"
             className="group inline-flex items-center gap-1 text-sm text-cream/70 font-medium transition-colors hover:text-cream"
           >
             Read the champion model
-            <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
+            <ArrowUpRight
+              className="h-4 w-4 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px"
+              strokeWidth={2.25}
+            />
           </Link>
         </div>
-      </ScrollReveal>
+      </Reveal>
     </BarkSection>
 
     <FAQ

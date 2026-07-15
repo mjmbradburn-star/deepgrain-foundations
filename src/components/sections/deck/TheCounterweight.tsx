@@ -1,4 +1,4 @@
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { SectionLocator } from "@/components/sections/deck/SectionLocator";
 import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
@@ -29,36 +29,40 @@ const pillars = [
 export const TheCounterweight = () => (
   <section className="bg-linen text-walnut section-pad">
     <div className="container-grain">
-      <ScrollReveal>
-        <SectionEyebrow tone="linen" className="mb-6">The counterweight</SectionEyebrow>
-        <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-3xl">
+      <Reveal>
+        <SectionEyebrow pill tone="linen" className="mb-6">The counterweight</SectionEyebrow>
+        <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-3xl mt-6">
           What we will not automate.
         </h2>
         <div className="mt-6 h-px w-full bg-brass/40 max-w-3xl" />
-      </ScrollReveal>
+      </Reveal>
 
       <div className="mt-14 md:mt-20 grid md:grid-cols-3 gap-8 md:gap-10">
         {pillars.map((p, i) => (
-          <ScrollReveal key={p.title} delay={i * 100}>
+          <Reveal key={p.title} delay={i * 100}>
             <div className="border-t border-walnut/20 pt-6">
-              <div className="text-brass text-2xl mb-4">{p.icon}</div>
+              <div className="mb-5 rounded-full bg-brass/10 p-1 ring-1 ring-brass/20 w-11 h-11 flex items-center justify-center">
+                <span className="flex h-full w-full items-center justify-center rounded-full text-brass text-lg shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]">
+                  {p.icon}
+                </span>
+              </div>
               <h3 className="font-display text-walnut text-2xl md:text-3xl mb-3">
                 {p.title}
               </h3>
               <p className="text-walnut/75 leading-relaxed">{p.body}</p>
             </div>
-          </ScrollReveal>
+          </Reveal>
         ))}
       </div>
 
-      <ScrollReveal delay={200}>
+      <Reveal delay={200}>
         <p className="mt-14 font-display italic text-walnut/70 text-xl md:text-2xl max-w-2xl">
           A function that automates its judgement has not become resilient. It has become brittle
           and deniable.
         </p>
-      </ScrollReveal>
+      </Reveal>
 
-      <ScrollReveal delay={280}>
+      <Reveal delay={280}>
         <div className="mt-16 md:mt-20 grid md:grid-cols-[1fr_auto] gap-8 items-end">
           <SectionLocator index={5} total={5} right="The counterweight" tone="linen" />
           <AuditPrompt
@@ -70,7 +74,7 @@ export const TheCounterweight = () => (
             prefill="I'd like a 30-minute audit. The workflow I'd most like to fix is:"
           />
         </div>
-      </ScrollReveal>
+      </Reveal>
     </div>
   </section>
 );

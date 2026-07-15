@@ -2,6 +2,7 @@ import { useState } from "react";
 import { clients, type Client } from "@/data/clients";
 import { LogoFallback } from "@/components/ui/LogoFallback";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Marquee } from "@/components/ui/Marquee";
 import { cn } from "@/lib/utils";
 import { BarkGrain } from "@/components/ui/BarkGrain";
 
@@ -93,7 +94,6 @@ export const LogoCarousel = ({
 }: LogoCarouselProps) => {
   const isWalnut = background !== "green";
   const bgClass = background === "green" ? "bg-green" : "bg-bark";
-  const doubled = [...clients, ...clients];
 
   return (
     <section
@@ -110,15 +110,15 @@ export const LogoCarousel = ({
         </div>
       )}
       <div className="relative w-full">
-        <div className="flex w-max logo-track gap-6 md:gap-8">
-          {doubled.map((c, i) => (
+        <Marquee speed={75} gapClassName="gap-6 md:gap-8">
+          {clients.map((c, i) => (
             <div
               key={`${c.domain}-${i}`}
               className={cn(
                 "group flex flex-col items-center justify-center gap-3",
                 "h-32 w-44 md:h-36 md:w-52 shrink-0",
-                "rounded-2xl border border-cream/10 bg-cream/[0.04] backdrop-blur-sm",
-                "px-6 py-4 transition-all duration-500",
+                "rounded-2xl border border-cream/10 bg-cream/[0.04]",
+                "px-6 py-4 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
                 "hover:bg-cream/[0.08] hover:border-brass/30 hover:-translate-y-0.5",
               )}
               title={c.name}
@@ -131,7 +131,7 @@ export const LogoCarousel = ({
               </span>
             </div>
           ))}
-        </div>
+        </Marquee>
         {/* Fade edges */}
         <div
           className={cn(

@@ -9,7 +9,7 @@ import { HOME_FAQ } from "@/data/homeFaq";
 export const HomeFAQ = () => (
   <FAQ
     eyebrow="Common questions"
-    heading="What people ask before they engage."
+    heading="What people ask before they hire me."
     items={HOME_FAQ}
   />
 );

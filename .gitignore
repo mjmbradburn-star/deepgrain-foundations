@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Installed design skills (tooling, not site code)
+.agents/
+.claude/skills/
+skills-lock.json

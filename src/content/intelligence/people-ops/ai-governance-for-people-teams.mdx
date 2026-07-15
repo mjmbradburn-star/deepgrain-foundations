@@ -17,19 +17,19 @@ export const frontmatter = {
 export const faqs = [
   {
     question: "Why does most People-function AI governance fail?",
-    answer: "It starts with a fear and ends with a policy nobody reads. The fear is real - bias, leakage, EU AI Act, candidate complaints, employment tribunals. The policy is real too, sitting in a Notion page nobody opens after the day it was written. The gap is not \"do we have a policy\" but \"does the policy meet the work.\" Treated as a brake, governance gets routed around - people still use AI, they just stop telling you about it.",
+    answer: "Because it gets written once and never checked against the work. Fast way to test it: ask the team when anyone last opened the policy doc. If nobody can answer, that's your diagnosis. The fix isn't a better document, it's a habit: a short recurring review (see the fourth boundary below) that keeps the rules attached to what people are actually doing with AI, not what someone imagined they'd do six months ago.",
   },
   {
     question: "What decisions should an AI model never make alone in a People function?",
-    answer: "Hiring decisions. Termination decisions. Performance ratings. Compensation calls. Reasonable adjustments and accommodations. Discipline outcomes. These are the places where the consequence of a wrong call is high, the data is messy, and the bias risk is concentrated. The model can prepare, summarise, suggest, draft. The model never decides. A named human does. Always.",
+    answer: "Six: hiring, termination, performance ratings, compensation, reasonable adjustments and accommodations, discipline outcomes. The model can draft, summarise and suggest on all six. It never gets the final call, a named human does, every time. The way you actually catch a slip isn't a policy re-read, it's the workflow log from the fourth boundary: if a call came out of one of these six workflows with no named human sign-off next to it, that's the violation, and it should show up in minutes, not get found in an audit six months later.",
   },
   {
     question: "What data should the model never see?",
-    answer: "Health information. Disability status. Salary detail tied to identity. Grievance content. Anything covered by special category data under GDPR, anything covered by an NDA, anything that - if it leaked - would damage trust permanently. Enforcement is rarely \"we trust people not to paste it.\" It is configuration: approved tools that route to enterprise endpoints with no training, workflows that strip identifiers before the model sees them, and a short list of providers rather than a long one.",
+    answer: "Health information, disability status, salary tied to identity, grievance content, anything under GDPR special category, anything under an NDA. The quick test before switching a tool on: does it need to see any of that to do the job? If not, it doesn't get access, whatever the vendor promises about training data. That's a configuration decision made once per tool, not a trust exercise repeated every time someone opens a chat window.",
   },
   {
     question: "How do you tell if you actually have governance, not just aspirations?",
-    answer: "You should be able to answer four questions in under five minutes. Which workflows use a model? Which model, and where does it run? Where is the prompt and output history? Who is accountable for each workflow? If you can't, you don't have governance. Good practice usually looks the same from inside: a one-pager listing every AI workflow, a regular short review by the owners, a named person whose job includes \"the AI is in good order,\" and a culture where surfacing a near-miss is a gift to the team, not a confession.",
+    answer: "Time yourself answering four questions: which workflows use a model, which model and where it runs, where the prompt and output history lives, who owns each workflow. Most teams fail on the third one. They can name the workflows and the model fine, but nobody can actually produce a log when asked. That gap, not the absence of a policy document, is what a tribunal or an external audit finds first.",
   },
 ];
 
@@ -40,27 +40,25 @@ export const faqs = [
 - The work is making the right thing the easy thing.
 </TLDR>
 
-Most AI governance work in People functions starts with a fear and ends with a policy nobody reads. The fear is real - bias, leakage, EU AI Act, candidate complaints, employment tribunals. The policy is real too. It exists in a Notion page nobody opens after the day it was written. In between, the actual decisions about what AI does inside the People function are being made by individuals, in private, one prompt at a time.
+Most AI governance work in People functions starts with a fear and ends with a policy nobody reads. The fear is real - bias, leakage, EU AI Act, candidate complaints, employment tribunals. The policy is real too. It exists in a Notion page nobody opens after the day it was written. In between, individuals make the actual calls about what AI does in the function, alone, one prompt at a time.
 
 That is the gap. Not "do we have a policy" but "does the policy meet the work." For the policy document itself, see [the AI policy blueprint](/intelligence/ai-policy-blueprint-for-people-teams). This piece is about the operating posture underneath it.
 
 <Takeaway>Governance is steering, not braking. The People teams that move fastest with AI decided early what they would never let it decide.</Takeaway>
 
-## Governance is steering, not braking
+## Steer, don't brake
 
 The instinct, especially under regulatory pressure, is to treat governance as a brake. Slow things down. Add approvals. Require sign-off. The result is predictable: the work routes around the policy. People still use AI. They just stop telling you about it.
 
-A governance system that works treats the question differently. It asks: where, in this function, does AI need to be in the loop? Where does it need to be **only** in the loop, with a human deciding? Where is it forbidden? Where is the line, and who holds it?
-
-Steering. Not braking.
+Good governance asks a different question. Where, in this function, does AI need to be in the loop? Where does it need to be **only** in the loop, with a human deciding? Where is the line, and who holds it?
 
 ## The four boundaries that matter
 
-For a People function, there are four boundaries worth setting before anything else. They are not the whole policy. They are the spine that the rest hangs on.
+Four boundaries matter more than anything else in a People-function AI policy. Get these right and the rest of the document is just paperwork.
 
 ### 1. Decisions a model never makes alone
 
-Hiring decisions. Termination decisions. Performance ratings. Compensation calls. Reasonable adjustments and accommodations. Discipline outcomes. These are the four or five places where the consequence of a wrong call is high, the data is messy, and the bias risk is concentrated. The model can prepare, summarise, suggest, draft. The model never decides. A named human does. Always.
+Hiring decisions. Termination decisions. Performance ratings. Compensation calls. Reasonable adjustments and accommodations. Discipline outcomes. These are the six places where the consequence of a wrong call is high, the data is messy, and the bias risk is concentrated. The model can prepare, summarise, suggest, draft. The model never decides. A named human does. Always.
 
 Write that list down. Put it at the top of the policy. Everything else is detail.
 
@@ -72,7 +70,7 @@ The way this gets enforced is rarely "we trust people not to paste it." It is co
 
 ### 3. Outputs the human must always check
 
-Anything that goes to a candidate. Anything that goes to a regulator. Anything that goes into an employment record. Anything that becomes a written commitment. Generated content is not the artefact. The reviewed artefact is. The discipline of the review is what makes the speedup safe.
+Anything that goes to a candidate. Anything that goes to a regulator. Anything that goes into an employment record. Anything that becomes a written commitment. A model's draft only becomes the deliverable once a human has reviewed and signed off on it. That review is what makes the speedup safe.
 
 ### 4. Logging that actually exists
 
@@ -87,7 +85,7 @@ If you can't, you don't have governance. You have aspirations.
 
 ## What good looks like inside the team
 
-Governance lives or dies in the daily texture, not the policy doc. The People functions that get this right tend to look the same from inside.
+Governance shows up in the daily texture of the team, long before anyone rereads the policy doc. The People functions that get this right tend to look the same from inside.
 
 There is a single page - usually a one-pager, not a deck - that lists every AI workflow the team uses. The owner. The model. The data it touches. Whether it is in pilot, live, or retired. It is updated by the people who run the workflows, not by a central function.
 
@@ -99,11 +97,11 @@ And there is a culture, slowly built, where surfacing a near-miss is a gift to t
 
 ## The trade you are making
 
-Governance done well is a small tax on speed in exchange for a large reduction in tail risk. That trade is almost always worth it inside a People function, because the tail risk is not financial - it is trust. A People team that loses the trust of the company because the model said something it shouldn't have, or saw something it shouldn't have, takes years to recover.
+Governance done well is a small tax on speed in exchange for a large reduction in tail risk. That trade is almost always worth it inside a People function. The risk here isn't cash, it's trust, and a People team that loses the company's trust because the model said something it shouldn't, or saw something it shouldn't, takes years to rebuild.
 
-The teams that move fastest with AI are not the ones with the loosest policies. They are the ones who decided early, in writing, what they would never let the model do - and then went hard on everything else.
+The teams that move fastest with AI decided early, in writing, what they would never let the model do. Then they went hard on everything else.
 
-Governance is the steering wheel. With it, you can drive at speed. Without it, the question of how fast you go becomes academic.
+Write your four boundaries down this week. That's the whole first move.
 
 
 

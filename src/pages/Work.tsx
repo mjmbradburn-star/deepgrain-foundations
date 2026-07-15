@@ -128,8 +128,8 @@ const Work = () => (
             Read first. Then the numbers move.
           </h1>
           <p className="mt-8 max-w-2xl text-cream/80 text-lg leading-relaxed">
-            A small set of organisations who chose to map the work at click level before they
-            bought a tool. Each engagement built to compound long after we'd left.
+            Not many. The ones who read the work at click level before they bought a tool.
+            Every engagement built to keep compounding long after we've gone.
           </p>
         </ScrollReveal>
       </div>
@@ -166,8 +166,8 @@ const Work = () => (
       <div className="container-grain max-w-3xl text-center">
         <SectionEyebrow className="mb-4 justify-center">In the client's words</SectionEyebrow>
         <p className="font-display text-cream/85 text-2xl md:text-3xl italic leading-snug">
-          The full readouts below carry the testimonials, the engagement shape, and the outcomes
-          the team carried after we left.
+          Below: the testimonials, the shape of each engagement, what the team still has now
+          we've gone. Not our words. Theirs.
         </p>
       </div>
     </section>

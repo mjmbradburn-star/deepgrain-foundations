@@ -114,6 +114,15 @@
   animation-play-state: paused;
 }
 
+/* Reusable Marquee primitive (src/components/ui/Marquee.tsx). Shares the
+   scroll-left keyframe; hover-pause is opt-in per track via data-pause. */
+.dg-marquee:hover .dg-marquee-track[data-pause="true"] {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dg-marquee-track { animation: none !important; transform: none !important; }
+}
+
 @keyframes bob {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(8px); }

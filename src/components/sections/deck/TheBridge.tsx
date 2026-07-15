@@ -1,4 +1,5 @@
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Reveal } from "@/components/ui/Reveal";
+import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { MetricBlock } from "@/components/sections/deck/MetricBlock";
 import { SectionLocator } from "@/components/sections/deck/SectionLocator";
@@ -16,16 +17,16 @@ const ways = [
 export const TheBridge = () => (
   <section className="relative bg-green text-cream section-pad overflow-hidden">
     <div className="relative container-grain">
-      <ScrollReveal>
-        <SectionEyebrow className="mb-6">The bridge</SectionEyebrow>
-        <h2 className="font-display text-cream text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">
+      <Reveal>
+        <SectionEyebrow pill className="mb-6">The bridge</SectionEyebrow>
+        <h2 className="font-display text-cream text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl mt-6">
           Reclaimed capacity is not value until you spend it.
         </h2>
         <div className="mt-6 h-px w-full bg-brass/30 max-w-3xl" />
-      </ScrollReveal>
+      </Reveal>
 
       <div className="mt-16 md:mt-20 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16">
-        <ScrollReveal>
+        <Reveal>
           <div
             className="font-sans uppercase text-brass mb-6"
             style={{ fontSize: "11px", letterSpacing: "0.2em", fontWeight: 600 }}
@@ -48,24 +49,30 @@ export const TheBridge = () => (
               ◌ Operational improvement
             </span>
           </div>
-        </ScrollReveal>
+        </Reveal>
 
-        <ScrollReveal delay={120}>
-          <div className="rounded-2xl border border-brass/40 p-8 md:p-10 bg-gradient-to-br from-brass/5 to-transparent">
-            <div
-              className="font-sans uppercase text-brass mb-5"
-              style={{ fontSize: "11px", letterSpacing: "0.2em", fontWeight: 600 }}
-            >
-              ◯ Illustrative
+        <Reveal delay={120}>
+          <div className="rounded-[2rem] bg-brass/[0.06] p-1.5 ring-1 ring-brass/20">
+            <div className="rounded-[1.625rem] border border-brass/40 p-8 md:p-10 bg-gradient-to-br from-brass/10 to-transparent shadow-[inset_0_1px_0_hsl(var(--cream)/0.12)]">
+              <div
+                className="font-sans uppercase text-brass mb-5"
+                style={{ fontSize: "11px", letterSpacing: "0.2em", fontWeight: 600 }}
+              >
+                ◯ Illustrative
+              </div>
+              <MetricBlock
+                tone="green"
+                size="lg"
+                value={<AnimatedNumber value={1} countUp suffix=" FTE" />}
+              />
+              <p className="mt-6 text-cream/80 leading-relaxed">
+                A 40-person function, thirty minutes back each week, is roughly one full-time role.
+                Take it off the cost line, or hand those hours to your best people. And the map you
+                build is the kind of evidence a buyer credits at exit.
+              </p>
             </div>
-            <MetricBlock tone="green" size="lg" value="1 FTE" />
-            <p className="mt-6 text-cream/80 leading-relaxed">
-              A 40-person function, thirty minutes a week each, is roughly one full-time role you
-              take off the cost line or redeploy to a value lever. The map you build is
-              exit-diligence a buyer credits.
-            </p>
           </div>
-        </ScrollReveal>
+        </Reveal>
       </div>
 
       <SectionLocator index={4} total={5} right="The bridge" tone="green" className="mt-20" />

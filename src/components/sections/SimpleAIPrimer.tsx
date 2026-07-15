@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { PillButton } from "@/components/ui/PillButton";
 
 type Bullet = { lead: string; rest: string };
@@ -44,31 +44,33 @@ export const SimpleAIPrimer = () => {
   }, []);
 
   return (
-    <section className="bg-linen pt-16 pb-10 md:pt-24 md:pb-12" aria-labelledby="simple-ai-heading">
+    <section className="bg-linen pt-16 pb-10 md:pt-28 md:pb-16" aria-labelledby="simple-ai-heading">
       <div className="container-grain">
         <div className="grid gap-10 md:gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-          {/* Left - video */}
-          <ScrollReveal>
-            <figure className="relative overflow-hidden rounded-2xl ring-1 ring-walnut/15 bg-bark shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]">
-              <video
-                ref={videoRef}
-                src="/simple-ai.mp4"
-                poster="/simple-ai-poster.jpg"
-                muted
-                playsInline
-                preload="none"
-                controls
-                aria-label="Simple AI: a 90-second primer on the seventeen AI terms every People leader keeps hearing."
-                className="block w-full h-auto aspect-video"
-              />
-              <figcaption className="sr-only">
-                Simple AI, a 90-second primer for People leaders.
-              </figcaption>
-            </figure>
-          </ScrollReveal>
+          {/* Left - video, seated in a machined double-bezel tray */}
+          <Reveal>
+            <div className="rounded-[2rem] bg-walnut/[0.05] p-1.5 ring-1 ring-walnut/10 shadow-[0_50px_90px_-50px_rgba(0,0,0,0.55)]">
+              <figure className="relative overflow-hidden rounded-[1.625rem] ring-1 ring-walnut/15 bg-bark shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]">
+                <video
+                  ref={videoRef}
+                  src="/simple-ai.mp4"
+                  poster="/simple-ai-poster.jpg"
+                  muted
+                  playsInline
+                  preload="none"
+                  controls
+                  aria-label="Simple AI: a 90-second primer on the seventeen AI terms every People leader keeps hearing."
+                  className="block w-full h-auto aspect-video"
+                />
+                <figcaption className="sr-only">
+                  Simple AI, a 90-second primer for People leaders.
+                </figcaption>
+              </figure>
+            </div>
+          </Reveal>
 
           {/* Right - copy */}
-          <ScrollReveal delay={120}>
+          <Reveal delay={120}>
             <Eyebrow withRule className="text-walnut/70 mb-4 md:mb-6">
               Watch · 90 seconds
             </Eyebrow>
@@ -100,7 +102,7 @@ export const SimpleAIPrimer = () => {
                 Go deeper · The Brain →
               </PillButton>
             </div>
-          </ScrollReveal>
+          </Reveal>
         </div>
       </div>
     </section>

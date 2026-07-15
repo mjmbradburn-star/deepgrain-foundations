@@ -102,7 +102,7 @@ const ChartGrid = () => (
 const INSIGHTS = [
   {
     title: "Read the low scores first",
-    body: "Tasks scoring 0 to 3 are where the human value concentrates: judgment calls, trust, hard conversations. These grow in value as everything around them speeds up.",
+    body: "Tasks scoring 0 to 3 are where the human value sits: judgment calls, trust, hard conversations. They get more valuable as everything around them speeds up.",
   },
   {
     title: "The high scores are capacity",
@@ -207,7 +207,7 @@ const ExposureMap = () => {
     <>
       <PageMeta
         title="The AI Exposure Map | Deepgrain"
-        description="Every operating function scored for AI exposure at task level, not job level. From People and Finance to Legal, Revenue Ops and IT: see which work automates, which judgment compounds, and which capability layer unlocks each."
+        description="Every operating function scored for AI exposure at task level, not job level. From People and Finance to Legal, Revenue Ops and IT: see which work automates, which judgment compounds, and which capability layer each one needs."
         path="/exposure-map"
         jsonLd={EXPOSURE_LD}
       />
@@ -426,8 +426,8 @@ const ExposureMap = () => {
               Where is your company on this map?
             </h2>
             <p className="text-cream/75 mt-8 max-w-xl text-lg leading-relaxed">
-              This is the generic version. Get one built for your actual functions and team,
-              with the tasks that matter to you scored and mapped to a plan. No cost.
+              This is the generic version. Get one built for your actual functions and team:
+              your tasks scored, mapped to a plan. No cost.
             </p>
             <div className="mt-10">
               <MapLeadForm viewedFunction={role.role} />

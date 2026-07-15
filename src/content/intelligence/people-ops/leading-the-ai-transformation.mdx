@@ -17,19 +17,19 @@ export const frontmatter = {
 export const faqs = [
   {
     question: "Why do most AI initiatives in People Ops fail?",
-    answer: "Almost every AI failure inside a People function is, on closer inspection, a change failure. The tools work. The workflows are sound. The capability could be built. What broke is the human side - fear that was never named, sequencing that asked too much too soon, leaders who confused announcing change with leading it. The hardest part is not technology. It is leading a meaningful transformation while the rest of the business is also changing, with a team that is rightly anxious about what this means for them.",
+    answer: "Nearly every AI failure inside a People function turns out, on the postmortem, to be a change failure rather than a technology one. The tools worked, the workflow was sound. What actually broke is always the same three things: a fear that was never named out loud, a rollout paced faster than the team could absorb, and a leader who announced the change instead of running it. Ask any CPO who has been through a failed rollout what they would do differently, and none of them mention the tool stack.",
   },
   {
     question: "How should a CPO open the conversation about AI with the team?",
-    answer: "By naming the fear before anyone else has to. Treating AI as a productivity story - \"this will free us up to do more strategic work\" - invites the obvious counter-thought: or to do the same work with fewer of us. Leaders who get the next twelve months right say openly that AI will change what the team does, that some roles will look meaningfully different, that the team will grow capability faster than the work shrinks, and that nobody will be surprised by a change to their role. Said with the lights on, that does more for adoption than any tool rollout.",
+    answer: "Name the fear before the team gets there themselves. \"This will free us up for more strategic work\" invites the silent rebuttal: or to do the same work with fewer of us. Say instead that AI will change what the team does, that some roles will look different, that capability will grow faster than the work shrinks, and that nobody will be blindsided by a change to their own role. It has to come from the CPO directly, in person, not a slide a comms team wrote, and it has to happen before a single tool gets rolled out, not after.",
   },
   {
     question: "What is the sequence that actually works?",
-    answer: "Five phases, in order. Personal capability (months 1–2): the CPO and leadership build their own working knowledge through real reps before asking anyone else to. A small visible win (months 2–4): pick one bounded, painful, visible workflow and ship it. Champions and shared workspace (months 3–6): three or four named champions, the workspace set up properly, capability begins to compound. Function-wide rollout (months 6–12): the patterns get rolled out across the function. Redesign (months 12+): roles evolve, some shrink, some appear. The phases overlap, but the order matters - skipping Phase 1 produces the most expensive failures.",
+    answer: "Five phases, in order: personal capability first (months 1-2, the CPO's own reps before anyone else's), one small visible win (months 2-4), champions plus a shared workspace (months 3-6), function-wide rollout (months 6-12), then redesign (months 12+). The phases overlap but skipping one always costs more later - skip Phase 1 and the failures get expensive fast. Functions that have tried compressing this into ten weeks have not pulled it off yet, not once.",
   },
   {
     question: "What should we measure to know the transformation is working?",
-    answer: "Resist the urge to measure usage - prompts, users, training hours are vanity numbers that tell you who is busy, not who is getting leverage. Three things are worth measuring. Workflow count and depth: how many workflows the team actually runs on AI infrastructure end to end, and how many survived their original builder leaving. Time reallocation: has the percentage of time spent on coordination and drafting actually fallen, and the percentage spent on judgment and partnering actually risen? Confidence and capability: ask the team twice a year whether they can confidently use AI in their daily work and teach a new joiner how the team uses AI.",
+    answer: "Not usage. Prompts, active users, training hours logged - none of it tells you who is actually faster because of the work, only who is busy. Three numbers are worth tracking: workflow count and depth (how many workflows run end to end on AI infrastructure, and how many survive the original builder leaving), time reallocation (has coordination and drafting time actually fallen, has judgment and partnering time actually risen), and confidence (can the team teach a new joiner how it uses AI). If workflow count has not moved by month nine, the transformation has stalled - full stop.",
   },
 ];
 
@@ -42,9 +42,9 @@ export const faqs = [
 
 Almost every AI failure inside a People function is, on closer inspection, a change failure. The tools work. The workflows are sound. The capability could be built. What broke is the human side - fear that was never named, sequencing that asked too much too soon, leaders who confused announcing change with leading it.
 
-This is the part of the work most CPOs find hardest, because it is not about AI at all. It is about leading a meaningful transformation while the rest of the business is also changing, with a team that is rightly anxious about what this means for them.
+This is the part most CPOs find hardest. Not the AI - the leadership: a transformation run while the rest of the business is also changing, with a team that is rightly anxious about what it means for them.
 
-The good news is that there is a sequence that works. It is not novel. It is the same sequence that works for any serious change. It just has to be done - properly, and in order.
+There is a sequence that works, though. Nothing novel about it, the same sequence that works for any serious change. It just has to be done - properly, and in order.
 
 <Takeaway>AI in People Ops fails as a change programme more often than as a technology problem. Name the fear, sequence the moves, address resistance honestly.</Takeaway>
 
@@ -68,7 +68,7 @@ Five phases. None can be skipped without paying for it later.
 
 **Phase 1: Personal capability (months 1–2).** The CPO and the leadership team build their own working knowledge. Not a one-day course. Real reps. They use AI in their actual work - board prep, calibration, comms - for two months before asking anyone else to. This is non-negotiable. A leader who cannot describe what they have personally built with AI has no standing to lead this change.
 
-**Phase 2: A small visible win (months 2–4).** Pick one workflow. Bounded. Painful. Visible. Build it. Ship it. Tell the story of what changed and why. Not a pilot deck. An actual thing the team is using on a Wednesday. The point is not the workflow. The point is to demonstrate, concretely, that this works inside *our* team, with *our* tools, on *our* problems.
+**Phase 2: A small visible win (months 2–4).** Pick one workflow. Bounded. Painful. Visible. Build it. Ship it. Tell the story of what changed and why. Not a pilot deck. An actual thing the team is using on a Wednesday. The point: proof, concrete, that this works inside *our* team, with *our* tools, on *our* problems.
 
 **Phase 3: Champions and shared workspace (months 3–6).** Three or four [champions](/intelligence/the-champion-model) named. The shared [workspace](/intelligence/setting-up-your-ai-workspace) set up properly. The first batch of people start using it for daily work. Capability begins to compound.
 
@@ -80,9 +80,9 @@ The phases overlap. They are not crisp gates. But the order matters. Skipping Ph
 
 ## The four resistance patterns and what to do about them
 
-Resistance is not a problem to be eliminated. It is information. Four patterns recur, and each has a response that works.
+Resistance is information, not a problem to eliminate. Four patterns recur, and each has a response that works.
 
-**The Sceptic.** *"I tried it once, it was wrong, this is overhyped."* Usually a senior, experienced operator who is not wrong about much. The response is not a deck. It is a one-on-one demonstration of a real workflow that solves a problem they actually have. Sceptics convert when they see leverage in their own hands; they never convert from a presentation.
+**The Sceptic.** *"I tried it once, it was wrong, this is overhyped."* Usually a senior, experienced operator who is not wrong about much. The response is a one-on-one demonstration of a real workflow that solves a problem they actually have, not a deck. Sceptics convert when they see the workflow solve their own problem, in their own hands; they never convert from a presentation.
 
 **The Worrier.** *"What about bias? What about confidentiality? What about quality?"* These are the right questions. The response is to take the worries seriously and answer them with substance - show the [governance work](/intelligence/ai-governance-for-people-teams), the data classification, the human-in-the-loop checkpoints. Worriers, treated well, become some of the strongest advocates because they have stress-tested the work.
 
@@ -108,7 +108,7 @@ A short list, in rough order of frequency.
 
 ## What to measure
 
-Resist the urge to measure usage. Number of prompts, number of users, hours of training delivered - these are vanity numbers. They tell you who is busy, not who is getting leverage.
+Resist the urge to measure usage. Number of prompts, number of users, hours of training delivered - these are vanity numbers. They tell you who is busy, not who is actually faster because of it.
 
 Three things are worth measuring, all qualitative-leaning.
 

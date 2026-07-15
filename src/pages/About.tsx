@@ -172,11 +172,12 @@ const About = () => (
                 that survives the carpenter leaving the room.
               </p>
               <p>
-                Deepgrain is the consolidation of that practice. Strategy at
-                the top. Enablement and training across the team. Agents and
-                automations in the workflow. Built function by function, top
-                to bottom. We run the model on ourselves first, then bring it
-                to clients who want something built to last.
+                Deepgrain is that practice, rebuilt so one person can run it
+                properly. Strategy at the top. Enablement and training across
+                the team. Agents and automations in the workflow. Built
+                function by function, top to bottom. We run the model on
+                ourselves first, then bring it to clients who want something
+                built to last.
               </p>
             </div>
 
@@ -186,7 +187,7 @@ const About = () => (
               {[
                 { v: "20+", l: "Years inside operating teams" },
                 { v: "100+", l: "Manager cohorts trained" },
-                { v: "7", l: "Sectors of operating exposure" },
+                { v: "7", l: "Sectors worked in" },
               ].map((s) => (
                 <div key={s.l}>
                   <dt className="font-display font-semibold text-brass text-4xl md:text-5xl leading-none">

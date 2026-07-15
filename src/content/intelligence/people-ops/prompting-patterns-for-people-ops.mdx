@@ -17,15 +17,15 @@ export const frontmatter = {
 export const faqs = [
   {
     question: "What are the building blocks of a strong People Ops prompt?",
-    answer: "Five elements: Role (who the model is acting as), Context (background it does not have), Task (what you actually need), Constraints (format, tone, length, what to avoid), and Output spec (the exact shape of what comes back). You do not need all five every time, but knowing they exist lets you choose deliberately. Most weak prompts are weak because three of the five are missing.",
+    answer: "Five elements: Role (who the model is acting as), Context (background it does not have), Task (what you actually need), Constraints (format, tone, length, what to avoid), and Output spec (the exact shape of what comes back). You do not need all five every time, but knowing they exist lets you choose deliberately. If you only have time to fix one thing in a prompt, fix the Output spec, it does more work than any other block. Context and Output spec are also the two people skip first under time pressure, which is exactly when they matter most.",
   },
   {
     question: "What is prompt chaining and why does it matter for HR?",
-    answer: "Prompt chaining is breaking a complex task into a sequence of smaller prompts where each output feeds the next. Instead of asking \"design our performance review process,\" you ask the model to first list common failure modes, then critique three patterns, then draft one version, then stress-test it against your constraints. Chaining produces work that is closer to how a senior practitioner thinks. It also makes errors visible at each step, which makes them fixable.",
+    answer: "Prompt chaining is breaking a complex task into a sequence of smaller prompts where each output feeds the next. Instead of asking \"design our performance review process,\" you ask the model to first list common failure modes, then critique three patterns, then draft one version, then stress-test it against your constraints. Chaining produces work that is closer to how a senior practitioner thinks. It also makes errors visible at each step, which makes them fixable. Three to five prompts is the useful range: fewer and you have not actually broken the task down, more and you are burning time a single sharp prompt would have saved.",
   },
   {
     question: "How do I stop AI giving confidently wrong answers?",
-    answer: "Critical-thinking prompts. After any first draft, run the output through prompts like: \"What assumptions did you make that I have not verified?\" \"What evidence would change this recommendation?\" \"What would a sceptical Board member ask?\" \"Where is this answer weakest?\" The model is a much better critic of its own work than people realise. The trick is to ask, every time.",
+    answer: "Critical-thinking prompts, run every time, not just on the big decisions. After any first draft, ask the model what it assumed and has not verified, what would change its recommendation, and where the answer is weakest. The upgrade most teams miss: run the critique in a different model to the one that drafted. Claude will not catch its own blind spots as reliably as GPT-5 or Gemini will, because the blind spots come from how that specific model reasons.",
   },
   {
     question: "Does the same prompt work across ChatGPT, Claude and Gemini?",
@@ -70,7 +70,7 @@ The second prompt produces something you can take to a planning meeting. The fir
 
 ## Prompt chaining
 
-Single prompts have a ceiling. The work that matters in People Ops, redesigning a process, diagnosing a culture issue, drafting a policy that survives legal and the team, is too complex for one prompt. The pattern that breaks the ceiling is chaining.
+Single prompts have a ceiling. The work that matters in People Ops - redesigning a process, diagnosing a culture issue, drafting a policy that survives legal and the team - is too complex for one prompt. The pattern that breaks the ceiling is chaining.
 
 A prompt chain is a sequence of prompts where each output feeds the next. The chain mimics how a thoughtful practitioner actually approaches the work.
 
@@ -106,7 +106,7 @@ The pattern is simple: never ship the first draft. Always run a critique pass. O
 
 ## The model-specific shifts
 
-The same prompt does not produce the same quality across models. The newest generation, GPT-5, Claude 4 class, Gemini 3 class, behaves differently enough that copy-pasting your library across models leaves value on the table.
+The same prompt does not produce the same quality across models. The newest generation - GPT-5, Claude 4 class, Gemini 3 class - behaves differently enough that copy-pasting your library across models leaves value on the table.
 
 **GPT-5 and the OpenAI line.** Extremely literal instruction following. Massive context windows but still benefits from structure. Will not reason step-by-step unless you ask it to. Best for: complex multi-document workflows, structured outputs, agentic system prompts.
 
@@ -122,9 +122,9 @@ For a deeper read on which model to reach for by HR task type, see [choosing AI 
 
 ## Where prompting stops being enough
 
-Prompting is the entry point. A team that masters the patterns above will outperform a team that is still asking single-shot questions, by a large margin, for a long time.
+Prompting is the entry point. A team that masters the patterns above will outperform a team still asking single-shot questions.
 
-But there is a ceiling. Past a certain point, what holds back a People function is not prompt quality. It is the absence of context the model can reach for, the absence of workflows it sits inside, the absence of guardrails that make it safe to deploy at scale. That is the move from [prompts to systems](/intelligence/from-prompts-to-systems), and it is a different conversation.
+But there is a ceiling. Past a certain point, prompt quality stops being the constraint. The real gap is the absence of context the model can reach for, the absence of workflows it sits inside, the absence of guardrails that make it safe to deploy at scale. That is the move from [prompts to systems](/intelligence/from-prompts-to-systems), and it is a different conversation.
 
 Get the prompting right first. The systems work has more leverage when the people building it can prompt well.
 

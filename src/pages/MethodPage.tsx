@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { PillButton } from "@/components/ui/PillButton";
+import { Reveal } from "@/components/ui/Reveal";
+import { Parallax } from "@/components/ui/Parallax";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { track } from "@/lib/analytics";
+import { cn } from "@/lib/utils";
 import { ValueVisualiser } from "@/components/sections/ValueVisualiser";
 import { BuildVsHire } from "@/components/sections/BuildVsHire";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
@@ -17,9 +18,9 @@ import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
 // Each FAQ keeps `answer` as the canonical text mirrored in JSON-LD; `answerNode`
 // adds inline navigation (where natural) plus a small "Ask about this" CTA that
 // deep-links to /contact with a question-specific prefill in ?subject=.
-const linkCls = "text-brass underline-offset-4 hover:underline";
-const trailingCls = "inline-flex items-center gap-1 text-sm text-brass font-medium hover:text-walnut transition-colors";
-const ctaCls = "inline-flex items-center gap-1.5 rounded-full border border-brass/40 bg-brass/5 hover:bg-brass hover:text-cream text-brass text-xs font-semibold uppercase tracking-[0.12em] px-4 py-2 transition-colors";
+const linkCls = "text-brass underline-offset-4 hover:underline transition-colors duration-300";
+const trailingCls = "inline-flex items-center gap-1 text-sm text-brass font-medium hover:text-walnut transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]";
+const ctaCls = "inline-flex items-center gap-1.5 rounded-full border border-brass/40 bg-brass/5 hover:bg-brass hover:text-cream text-brass text-xs font-semibold uppercase tracking-[0.12em] px-4 py-2 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]";
 
 /** Build a /contact link with a polite, conversational prefill quoting the FAQ. */
 const askLink = (prompt: string) =>
@@ -155,7 +156,7 @@ const howToLd = {
       position: 2,
       name: "Craft with the grain",
       url: "https://deepgrain.ai/method#craft",
-      text: "Build a small set of agentic systems and operating rituals alongside three or four internal champions. Human judgment and machine precision working together, designed around how this specific organisation actually moves.",
+      text: "Build a small set of agentic systems and operating rituals alongside three or four internal champions. Human judgement and machine precision working together, designed around how this specific organisation actually moves.",
     },
     {
       "@type": "HowToStep",
@@ -224,250 +225,342 @@ const serviceLd = {
   },
 };
 
-const MethodPage = () => (
-  <>
-    <PageMeta
-      title="Method · Read · Craft · Scale | Deepgrain"
-      description="The Deepgrain method in full. Read the operating reality, craft the smallest interventions that compound, then scale without breaking the grain."
-      image="https://deepgrain.ai/og-method.png"
-      path="/method"
-      jsonLd={[
-        buildBreadcrumbLd([
-          { name: "Home", url: "https://deepgrain.ai/" },
-          { name: "Method", url: "https://deepgrain.ai/method" },
-        ]),
-        buildFAQLd(FAQ_ITEMS),
-        howToLd,
-        serviceLd,
-      ]}
-    />
-    {/* Hero: deck shape, eyebrow, single assertion, no glossy image */}
-    <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
-      <TopoBackdrop variant="ridge" opacity={0.22} />
-      <div className="relative container-grain max-w-5xl">
-        <ScrollReveal>
-          <SectionEyebrow className="mb-6" />
-          <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] text-balance max-w-4xl">
-            Three levels. You work at all three at once.
-          </h1>
-          <p className="mt-8 max-w-2xl text-cream/80 text-lg leading-relaxed">
-            From audit through to agents. The strategic, the functional and the individual, moved
-            together so the work compounds instead of stalling at a pilot.
-          </p>
-          <div className="mt-10">
-            <AuditPrompt
-              tone="green"
-              ctaId="audit_method_hero"
-              ctaLocation="method_hero"
-              headline="Walk one workflow through it with me."
-              sub="Thirty minutes. Read, atomise, agree the first move."
-              prefill="I'd like to walk one workflow through the method with you. The workflow is:"
-            />
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
+// Film-grain: a fixed, pointer-events-none SVG-noise plate for a physical-paper
+// feel, matching the treatment on Home. Static (no animation), GPU-composited,
+// and scoped to this page only.
+const NOISE_URL = `url("data:image/svg+xml,${encodeURIComponent(
+  "<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>",
+)}")`;
 
-    {/* Three levels: the page spine, deck slides 5 + 6 */}
-    <ThreeLevels />
+const FilmGrain = () => (
+  <div
+    aria-hidden
+    className="pointer-events-none fixed inset-0 z-[1] opacity-[0.035] mix-blend-multiply motion-reduce:opacity-[0.025]"
+    style={{ backgroundImage: NOISE_URL, backgroundSize: "140px 140px" }}
+  />
+);
 
-    {/* Worked example: sits between the spine and the Read/Craft/Scale narrative */}
-    <WorkedExample />
+/** Trailing arrow nested in its own circular wrapper, with magnetic hover. Mirrors the Home hero CTA treatment. */
+const ArrowCircle = ({ tone = "green" }: { tone?: "green" | "cream" }) => (
+  <span
+    aria-hidden
+    className={cn(
+      "ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
+      "group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105",
+      tone === "green" ? "bg-green/10 text-green" : "bg-cream/10 text-cream",
+    )}
+  >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  </span>
+);
 
-    {/* Read */}
-    <section id="read" className="bg-linen text-body section-pad scroll-mt-40">
-      <div className="container-grain max-w-3xl">
-        <ScrollReveal>
-          <Eyebrow className="text-brass mb-4">01 Read</Eyebrow>
-          <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
-            Before we touch a thing, we understand.
-          </h2>
-          <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
-            <p>
-              Most consulting starts with the org chart. We start somewhere
-              else. The org chart is rarely how decisions actually get made,
-              and the strategy deck is rarely what drives the outcome.
+/**
+ * Double-bezel pull-quote: outer machined tray + inner core with concentric
+ * radii and an inset highlight, replacing the plain border-l callout so the
+ * four proof-quotes read as physical artefacts rather than flat text.
+ * Page-local to /method.
+ */
+const QuoteBezel = ({
+  tone = "linen",
+  className,
+  children,
+}: {
+  tone?: "linen" | "green";
+  className?: string;
+  children: React.ReactNode;
+}) => (
+  <div
+    className={cn(
+      "rounded-[1.75rem] p-1.5 ring-1",
+      tone === "linen" ? "bg-brass/[0.05] ring-brass/20" : "bg-cream/[0.05] ring-cream/15",
+      className,
+    )}
+  >
+    <div
+      className={cn(
+        "rounded-[1.375rem] border px-7 py-7 md:px-9 md:py-8",
+        tone === "linen"
+          ? "bg-cream border-brass/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]"
+          : "bg-bark/40 border-cream/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]",
+      )}
+    >
+      {children}
+    </div>
+  </div>
+);
+
+const MethodPage = () => {
+  const grainAuditHref = "/grain-audit";
+  const onGrainAudit = () =>
+    track("cta_click", {
+      cta_id: "grain_audit_method_close",
+      cta_location: "method_close",
+      cta_label: "Book a Grain Audit",
+      link_url: grainAuditHref,
+    });
+
+  return (
+    <>
+      <FilmGrain />
+      <PageMeta
+        title="Method · Read · Craft · Scale | Deepgrain"
+        description="The Deepgrain method in full. Read the operating reality, craft the smallest interventions that compound, then scale without breaking the grain."
+        image="https://deepgrain.ai/og-method.png"
+        path="/method"
+        jsonLd={[
+          buildBreadcrumbLd([
+            { name: "Home", url: "https://deepgrain.ai/" },
+            { name: "Method", url: "https://deepgrain.ai/method" },
+          ]),
+          buildFAQLd(FAQ_ITEMS),
+          howToLd,
+          serviceLd,
+        ]}
+      />
+      {/* Hero: deck shape, eyebrow, single assertion, no glossy image */}
+      <section className="relative bg-green text-cream pt-40 pb-24 md:pb-32 overflow-hidden">
+        <Parallax speed={0.12} max={80} className="absolute inset-0">
+          <TopoBackdrop variant="ridge" opacity={0.22} />
+        </Parallax>
+        <div className="relative container-grain max-w-5xl">
+          <Reveal>
+            <SectionEyebrow className="mb-6" />
+            <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] text-balance max-w-4xl">
+              Read. Craft. Scale. In that order, always.
+            </h1>
+            <p className="mt-8 max-w-2xl text-cream/80 text-lg leading-relaxed">
+              The strategic, the functional and the individual move together, or the work stalls
+              at a pilot like every other AI rollout you've watched.
             </p>
-            <p className="hidden md:block">
-              Underneath all of it is a grain. The real pattern of how this
-              organisation moves and decides. We read it first. We talk to
-              the people doing the work. We watch where energy flows and
-              where it stalls. We find the fractures forming before anyone
-              has named them. Only then do we build.
-            </p>
-            <figure className="mt-10 border-l-2 border-brass/60 pl-6">
+            <div className="mt-10">
+              <AuditPrompt
+                tone="green"
+                ctaId="audit_method_hero"
+                ctaLocation="method_hero"
+                headline="Walk one workflow through it with me."
+                sub="Thirty minutes. Read, atomise, agree the first move."
+                prefill="I'd like to walk one workflow through the method with you. The workflow is:"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Three levels: the page spine, deck slides 5 + 6. Shared with About - not
+          restyled here, only rendered; any edits belong in the component's own file. */}
+      <ThreeLevels />
+
+      {/* Worked example: sits between the spine and the Read/Craft/Scale narrative.
+          Shared with Home, already carries the double-bezel treatment from there. */}
+      <WorkedExample />
+
+      {/* Read */}
+      <section id="read" className="bg-linen text-body section-pad scroll-mt-40">
+        <div className="container-grain max-w-3xl">
+          <Reveal>
+            <SectionEyebrow tone="linen" pill className="mb-6">01 Read</SectionEyebrow>
+            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
+              Before we touch a thing, we understand.
+            </h2>
+            <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
+              <p>
+                Most consulting starts with the org chart. We start somewhere
+                else. The org chart is rarely how decisions actually get made,
+                and the strategy deck is rarely what drives the outcome.
+              </p>
+              <p className="hidden md:block">
+                Underneath all of it is a grain. The real pattern of how this
+                organisation moves and decides. We read it first. We talk to
+                the people doing the work. We watch where energy flows and
+                where it stalls. We find the fractures forming before anyone
+                has named them. Only then do we build.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={140}>
+            <QuoteBezel tone="linen" className="mt-10">
               <blockquote className="font-display text-walnut text-xl md:text-2xl leading-snug italic">
                 “If you can't name where the work is actually getting stuck, every tool you buy will land in the wrong place.”
               </blockquote>
-              <figcaption className="mt-3 text-sm text-body/70">
+              <figcaption className="mt-4 text-sm text-body/70">
                 From{" "}
                 <Link to="/intelligence/diagnosing-ai-readiness-in-people-ops" className={linkCls}>
                   Diagnosing AI readiness in People Ops →
                 </Link>
               </figcaption>
-            </figure>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
+            </QuoteBezel>
+          </Reveal>
+        </div>
+      </section>
 
-    {/* Craft */}
-    <BarkSection
-      id="craft"
-      className="section-pad scroll-mt-40"
-      contentClassName="container-grain max-w-3xl"
-    >
-      <ScrollReveal>
-        <Eyebrow className="text-brass mb-4">02 Craft</Eyebrow>
-        <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight">
-          We build with the grain, not against it.
-        </h2>
-        <div className="mt-10 space-y-6 text-cream/80 leading-relaxed text-lg">
-          <p>
-            Human judgment and machine precision, working together from day
-            one. Agents that remove friction without removing thought.
-            Systems designed around how this specific place actually works,
-            rather than borrowed from a playbook that worked somewhere else.
-          </p>
-          <p className="hidden md:block">
-            The carpenter knows the wood will split if you cut against the
-            grain. So do we. We build alongside your people, in your tools,
-            with your context. Then we hand it over.
-          </p>
-          <figure className="mt-10 border-l-2 border-brass/60 pl-6">
+      {/* Craft */}
+      <BarkSection
+        id="craft"
+        className="section-pad scroll-mt-40"
+        contentClassName="container-grain max-w-3xl"
+      >
+        <Reveal>
+          <SectionEyebrow pill className="mb-6">02 Craft</SectionEyebrow>
+          <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight">
+            We build with the grain, not against it.
+          </h2>
+          <div className="mt-10 space-y-6 text-cream/80 leading-relaxed text-lg">
+            <p>
+              Human judgement. Machine precision. In the room together from
+              day one. Agents that remove friction without removing thought.
+              Systems designed around how this specific place actually works,
+              not borrowed from a playbook that worked somewhere else.
+            </p>
+            <p className="hidden md:block">
+              The carpenter knows the wood will split if you cut against the
+              grain. So do we. We build alongside your people, in your tools,
+              with your context. Then we hand it over.
+            </p>
+          </div>
+        </Reveal>
+        <Reveal delay={140}>
+          <QuoteBezel tone="green" className="mt-10">
             <blockquote className="font-display text-cream text-xl md:text-2xl leading-snug italic">
               “A prompt is a moment of cleverness. A system is what makes the cleverness reliable on a Tuesday afternoon when nobody's watching.”
             </blockquote>
-            <figcaption className="mt-3 text-sm text-cream/60">
+            <figcaption className="mt-4 text-sm text-cream/60">
               From{" "}
               <Link to="/intelligence/from-prompts-to-systems" className={linkCls}>
                 From prompts to systems →
               </Link>
             </figcaption>
-          </figure>
-        </div>
-      </ScrollReveal>
-    </BarkSection>
+          </QuoteBezel>
+        </Reveal>
+      </BarkSection>
 
-    {/* Empowerment beat */}
-    <section className="bg-linen text-body section-pad">
-      <div className="container-grain max-w-3xl">
-        <ScrollReveal>
-          <Eyebrow className="text-brass mb-4">The partnership</Eyebrow>
-          <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
-            Agents that partner. People who grow.
-          </h2>
-          <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
-            <p>
-              Agents take the repeatable, low-judgment work. Your champions
-              learn to design, run, and extend them. The capability stays in
-              the team, not in a vendor.{" "}
-              <Link to="/enablement" className="text-brass underline-offset-4 hover:underline">
-                See how enablement works →
-              </Link>
-            </p>
-            <p className="hidden md:block">
-              This is a training programme that happens to ship working
-              systems alongside it. The hours we reclaim go back to your
-              people for the work only they can do.
-            </p>
-            <figure className="mt-10 border-l-2 border-brass/60 pl-6">
+      {/* Empowerment beat */}
+      <section className="bg-linen text-body section-pad">
+        <div className="container-grain max-w-3xl">
+          <Reveal>
+            <SectionEyebrow tone="linen" pill className="mb-6">The partnership</SectionEyebrow>
+            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
+              Agents that partner. People who grow.
+            </h2>
+            <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
+              <p>
+                Agents take the repeatable, low-judgement work. Your champions
+                learn to design, run, and extend them. The capability stays in
+                the team, not in a vendor.{" "}
+                <Link to="/enablement" className={linkCls}>
+                  See how enablement works →
+                </Link>
+              </p>
+              <p className="hidden md:block">
+                It's a training programme first. The systems ship as a side
+                effect, and the hours we reclaim go straight back to your
+                people, for the work only they can do.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={140}>
+            <QuoteBezel tone="linen" className="mt-10">
               <blockquote className="font-display text-walnut text-xl md:text-2xl leading-snug italic">
                 “The leaders who get this right don't lead the rollout. They lead the conditions that make the rollout inevitable.”
               </blockquote>
-              <figcaption className="mt-3 text-sm text-body/70">
+              <figcaption className="mt-4 text-sm text-body/70">
                 From{" "}
                 <Link to="/intelligence/leading-the-ai-transformation" className={linkCls}>
                   Leading the AI transformation →
                 </Link>
               </figcaption>
-            </figure>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
+            </QuoteBezel>
+          </Reveal>
+        </div>
+      </section>
 
-    {/* Build vs Hire: sits between Craft and Scale */}
-    <BuildVsHire />
+      {/* Build vs Hire: sits between Craft and Scale. Page-specific to /method. */}
+      <BuildVsHire />
 
-    {/* Scale */}
-    <section id="scale" className="bg-linen text-body section-pad scroll-mt-40">
-      <div className="container-grain max-w-3xl">
-        <ScrollReveal>
-          <Eyebrow className="text-brass mb-4">03 Scale</Eyebrow>
-          <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
-            We leave something that compounds.
-          </h2>
-          <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
-            <p>
-              Not a deck. A genuine capability. Teams who think well with AI,
-              and structures that hold as you grow.
+      {/* Scale */}
+      <section id="scale" className="bg-linen text-body section-pad scroll-mt-40">
+        <div className="container-grain max-w-3xl">
+          <Reveal>
+            <SectionEyebrow tone="linen" pill className="mb-6">03 Scale</SectionEyebrow>
+            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
+              We leave something that compounds.
+            </h2>
+            <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
+              <p>
+                Not a deck. A genuine capability. Teams who think well with AI.
+                Structures that hold as you scale.
+              </p>
+              <p className="hidden md:block">
+                Months after we leave, the champions are still building. They
+                have extended the work into places we never touched. That is
+                the test: what you still have, and what you have added, long
+                after the invoices stop. The guardrails that keep it
+                trustworthy live with the team too, through{" "}
+                <Link to="/intelligence/ai-governance-for-people-teams" className={linkCls}>
+                  governance designed for the people doing the work
+                </Link>
+                , not bolted on after the fact.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Champions trained: same double-bezel pull-quote treatment as Read/Craft/Empowerment, at a larger anchor weight for the closing beat. */}
+          <Reveal delay={160}>
+            <QuoteBezel tone="linen" className="mt-12">
+              <blockquote className="font-display text-walnut text-2xl md:text-3xl leading-snug italic text-balance">
+                “You don't need engineers to build AI capability inside the
+                function. You need three or four champions, given air cover
+                and time.”
+              </blockquote>
+              <figcaption className="mt-4 text-sm text-body/70">
+                <Link to="/intelligence/the-champion-model" className={linkCls}>
+                  Read: The champion model →
+                </Link>
+              </figcaption>
+            </QuoteBezel>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Value visualiser: page-specific to /method. */}
+      <ValueVisualiser />
+
+      {/* FAQ: shared with Enablement, Work, IntelligenceArticle - not restyled here. */}
+      <FAQ heading="What clients ask before they engage." items={FAQ_ITEMS} />
+
+      {/* CTA: Grain Audit, the paid bridge offer for a reader who just read the whole method */}
+      <section className="relative bg-green text-cream section-pad overflow-hidden">
+        <Parallax speed={0.14} max={90} className="absolute inset-0">
+          <TopoBackdrop variant="basin" opacity={0.16} />
+        </Parallax>
+        <div className="relative container-grain max-w-3xl">
+          <Reveal>
+            <SectionEyebrow pill className="mb-6">The Grain Audit</SectionEyebrow>
+            <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight text-balance">
+              Don't take the method on faith. Run it on one process.
+            </h2>
+            <p className="mt-6 max-w-2xl text-cream/80 text-lg leading-relaxed">
+              The Grain Audit maps one People Ops process end to end, ranks the
+              highest-return automations, and hands you a 90-day plan you keep
+              whether or not we work together. Two weeks. £2,000, credited in
+              full against a programme. Three slots a month.
             </p>
-            <p className="hidden md:block">
-              Months after we leave, the champions are still building. They
-              have extended the work into places we never touched. That is
-              the test: what you still have, and what you have added, long
-              after the invoices stop. The guardrails that keep it
-              trustworthy live with the team too, through{" "}
-              <Link to="/intelligence/ai-governance-for-people-teams" className={linkCls}>
-                governance designed for the people doing the work
+            <div className="mt-10">
+              <Link
+                to={grainAuditHref}
+                onClick={onGrainAudit}
+                className="group inline-flex items-center gap-1 rounded-full bg-cream text-green pl-7 pr-3 py-3 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/90 active:scale-[0.98] shadow-[0_1px_0_hsl(var(--cream)/0.6)_inset]"
+              >
+                Book a Grain Audit
+                <ArrowCircle tone="green" />
               </Link>
-              , not bolted on after the fact.
-            </p>
-          </div>
-
-          {/* Champions trained: same pull-quote treatment as the Read/Craft/Empowerment quotes above */}
-          <figure className="mt-12 border-l-2 border-brass/60 pl-6">
-            <blockquote className="font-display text-walnut text-2xl md:text-3xl leading-snug italic text-balance">
-              “You don't need engineers to build AI capability inside the
-              function. You need three or four champions, given air cover
-              and time.”
-            </blockquote>
-            <figcaption className="mt-3 text-sm text-body/70">
-              <Link to="/intelligence/the-champion-model" className={linkCls}>
-                Read: The champion model →
-              </Link>
-            </figcaption>
-          </figure>
-        </ScrollReveal>
-      </div>
-    </section>
-
-    {/* Value visualiser */}
-    <ValueVisualiser />
-
-    {/* FAQ */}
-    <FAQ heading="What clients ask before they engage." items={FAQ_ITEMS} />
-
-    {/* CTA: Grain Audit, the paid bridge offer for a reader who just read the whole method */}
-    <section className="relative bg-green text-cream section-pad overflow-hidden">
-      <TopoBackdrop variant="basin" opacity={0.16} />
-      <div className="relative container-grain max-w-3xl">
-        <ScrollReveal>
-          <SectionEyebrow className="mb-6">The Grain Audit</SectionEyebrow>
-          <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight text-balance">
-            Don't take the method on faith. Run it on one process.
-          </h2>
-          <p className="mt-6 max-w-2xl text-cream/80 text-lg leading-relaxed">
-            The Grain Audit maps one People Ops process end to end, ranks the
-            highest-return automations, and hands you a 90-day plan you keep
-            whether or not we work together. Two weeks. £2,000, credited in
-            full against a programme. Three slots a month.
-          </p>
-          <div className="mt-10">
-            <PillButton
-              href="/grain-audit"
-              variant="filled"
-              cta="grain_audit_method_close"
-              ctaLocation="method_close"
-            >
-              Book a Grain Audit →
-            </PillButton>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
-  </>
-);
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+};
 
 export default MethodPage;

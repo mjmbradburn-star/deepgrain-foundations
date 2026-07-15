@@ -17,23 +17,23 @@ export const frontmatter = {
 export const faqs = [
   {
     question: "Why hasn't anything changed six months after we started \"doing AI\"?",
-    answer: "Because most teams fall into one of two traps. Dabblers ask ChatGPT once, get a generic answer, and quietly stop using it. Tool shoppers book a strategy day, evaluate vendors, run pilots, write a deck, and six months later the team has produced nothing they actually use. Dabblers produce individual tricks. Tool shoppers produce decks. Neither produces team capability.",
+    answer: "Because most teams fall into one of two traps, dabbling or tool-shopping, and both look like progress from the outside. The tell is simpler than either trap: ask who owns the workflow that was supposed to change. If nobody can answer in one sentence, nothing has actually moved, whatever the deck says.",
   },
   {
     question: "What is the difference between a workflow, an automation and an agent?",
-    answer: "A workflow is a structured, step-by-step process with humans in the loop at decision points. Use it when judgment matters. An automation is rule-based and runs without intervention: \"if this, then that.\" Use it when the rules are stable. An agent is an AI system that can interpret context, make decisions inside guardrails, and act. Use it only when the problem requires interpretation and the volume justifies the build cost.",
+    answer: "A workflow has humans deciding at the hard points. An automation runs the same rule every time with nobody watching. An agent decides what to do next on its own, inside guardrails you set. Quick test: if you can finish the sentence \"if X happens, do Y\" without adding \"it depends,\" you've got an automation, not an agent. Most teams reach for an agent when they haven't actually finished that sentence yet.",
   },
   {
     question: "Which one should we start with?",
-    answer: "Workflows. Almost always. Document the workflow first. Then automate the rule-based parts. Only deploy an agent once your data is clean, your process is legible, and you have a clear use case where ambiguity is the bottleneck. Most People teams jump straight to agents and produce a confident, expensive mess.",
+    answer: "Workflows, almost always. And it doesn't take long. Documenting one properly, start to finish, decision points marked, is usually a single working session, not a project. Automate the rule-based parts inside it. Only reach for an agent once the process is stable enough that a new starter could follow it from the doc alone.",
   },
   {
     question: "What does a real AI capability inside a People function actually look like?",
-    answer: "Four things together. Connected context: the system holds what your company is, who your people are, what your policies say. Repeatable workflows: the work that used to consume an afternoon now happens in a chain of steps the team can re-run, refine, and trust. Internal builders: a small number of people inside the team who can wire two tools together. Clear governance: where the human stays in the loop, what is logged, what is forbidden.",
+    answer: "Four things, held together: context the system actually holds rather than context you retype every time, workflows the team can re-run and trust, a handful of internal builders who can wire tools together, and governance that says where the human stays in the loop. In practice the piece missing most often is the builders. Teams collect context and sketch workflows just fine. They stall because nobody inside the team can actually build the thing.",
   },
   {
     question: "What is the third path?",
-    answer: "A small group inside the team takes one painful, well-bounded workflow and rebuilds it with AI in the loop. They run it, watch where it breaks, fix it, then take a second workflow. After six months the team has not \"done AI.\" It has changed how four pieces of its work get done. The change compounds. It is not a strategy. It is a practice.",
+    answer: "A small group inside the team rebuilds one painful, well-bounded workflow with AI in the loop, watches where it breaks, fixes it, then moves to the next. It stalls in one predictable way: picking a first workflow that's too big or too political to fail safely on. Pick something where a bad first attempt costs an afternoon, not a quarter, and the rest of the pattern takes care of itself.",
   },
 ];
 
@@ -41,10 +41,10 @@ export const faqs = [
 - A prompt is a sentence. A system is a workflow with state, ownership, and review.
 - Most People teams are still operating at sentence level and wondering why the value does not compound.
 - The shift is from authoring prompts to designing systems that produce reliable output.
-- Systems thinking is the unlock. The prompt is a small part of it.
+- Systems thinking is the shift that matters. The prompt is a small part of it.
 </TLDR>
 
-The People function is in a strange position with AI. The technology is cheap, the curiosity is high, the leadership pressure is real, and yet, six months in, almost nothing has changed in how the work actually gets done. Recruiters still triage manually. Onboarding still depends on a single person's calendar. Performance reviews still consume entire weeks every cycle. The dashboard says "AI initiative in progress." The grain says otherwise.
+The technology is cheap. The curiosity is high. The leadership pressure is real. And six months in, almost nothing has changed in how the work actually gets done. Recruiters still triage manually. Onboarding still depends on a single person's calendar. Performance reviews still consume entire weeks every cycle. The dashboard says "AI initiative in progress." The grain says otherwise.
 
 There are two traps that catch nearly every team, and they look like opposites.
 
@@ -70,7 +70,7 @@ Tool shoppers produce decks. They do not produce capability either.
 
 Both traps share the same fault: they treat AI as a *thing you procure*, a tool, a model, a feature, rather than as *something you build with*. They mistake the answer for the system that produces the answer.
 
-A real AI capability inside a People function is not a tool. It is:
+A real AI capability inside a People function looks like four things, running together:
 
 - **Connected context.** The model knows what your company is, who your people are, what your policies say, what last quarter looked like. Not because you pasted it in, but because the system holds it for you.
 - **Repeatable workflows.** The work that used to consume an afternoon now happens in a chain of steps the team can re-run, refine, and trust.
@@ -81,7 +81,7 @@ None of that comes from a prompt, and none of it comes from a procurement cycle.
 
 ## The mechanic: workflows, automations, agents
 
-The third path has a shape. It is not "use more AI." It is a sequence: workflows first, automations second, agents only when both are in place.
+The third path has a shape. Not "use more AI." A sequence: workflows first, automations second, agents only when both are in place.
 
 **Workflows** are the foundation layer. A workflow is a structured, step-by-step process: hiring manager creates requisition, recruiter posts job, candidates apply, interviews scheduled, offer extended, background check, first day. Humans make decisions at the right points. The workflow is visible, documented, and easy to teach. Most People teams are missing this layer entirely. They have habits, not workflows.
 
@@ -89,7 +89,7 @@ If you cannot draw the workflow on a whiteboard, you cannot improve it. And you 
 
 **Automations** are the efficiency layer. Once a workflow is stable and the rules are clear, you automate the boring parts. Time-off request triggers a balance check, manager notification, calendar update, payroll sync. No interpretation needed. The system runs. Errors drop. Hours come back.
 
-Automations are appropriate when the rules are stable, the inputs are clean, and human judgment is not adding value. They are inappropriate when the situation needs context, when policies vary, or when the rules change every quarter.
+Automations work when the rules are stable, the inputs are clean, and judgment adds nothing. They fall apart when the situation needs context, when policies vary, or when the rules change every quarter.
 
 **Agents** are the autonomy layer. An agent is an AI system that can take a goal, decide a next action, use tools, and move work forward. A benefits agent that fields employee questions, pulls relevant policy, interprets edge cases, and escalates when it should. Useful, powerful, and almost always built too early.
 
@@ -107,7 +107,7 @@ A traditional task list says "schedule interviews," "send offer letters," "proce
 
 An outcome-shaped workflow says "shorten time-to-hire from 28 days to 14 without dropping quality." Now AI has a target. You can design a chain of steps, decide where humans add judgment, decide where automation removes friction, decide where a small agent could absorb the long tail of candidate questions, and you can measure whether the workflow moved the outcome.
 
-The shift from tasks to outcomes is the shift from doing AI to building with AI. It is also the thing that finally makes the work measurable, which is the thing that finally makes it survive a budget conversation.
+The shift from tasks to outcomes is the shift from doing AI to building with AI. It also makes the work measurable, and measurable is what survives a budget conversation.
 
 ## The third path
 
@@ -115,7 +115,7 @@ The third path is the one we keep seeing work. It looks unglamorous from the out
 
 A small group inside the People team takes one workflow, usually a painful, well-bounded one, and rebuilds it with AI in the loop. Inbound applications, or first-week onboarding, or the manager check-in cycle. They build it together, with one person who understands the work and one who has learned to wire things up. They run it. They watch where it breaks. They fix it. Then they take a second workflow.
 
-After six months, the team has not "done AI." It has changed how four pieces of its work get done. The change compounds. People outside the team start asking how. The People function, quietly, has become the part of the company most fluent in building with AI.
+After six months, the team hasn't ticked a box marked "done AI." Four pieces of its work now run differently. The change compounds. People outside the team start asking how. The People function, quietly, becomes the part of the company most fluent in building with AI.
 
 That is what this track is about. Not which model to use. Not which vendor to back. The slow, stubborn discipline of moving from prompts to systems, and the patterns that make it stick.
 

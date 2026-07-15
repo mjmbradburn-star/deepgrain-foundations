@@ -1052,7 +1052,7 @@ TLDR:
 - A small set of repeatable diagnostics will tell you most of what you need to know about a People function.
 - Five lenses: ownership, cadence, data, escalation, capability.
 - Run them before any tool decision. Run them again after.
-- The toolkit is a discipline, not a deliverable.
+- A deliverable gathers dust. The toolkit runs every quarter.
 
 Most People leaders inherit a function shaped by whoever ran it last, sized for a company that no longer exists, and measured by metrics nobody asked for. The first job is not to fix it. The first job is to read it. This toolkit is the read.
 
@@ -1074,7 +1074,7 @@ A weekly five-minute read of five signals across the function. Cheap, fast, and 
 - Response latency. Median time-to-first-reply on internal Slack and shared inboxes.
 - Scope ambiguity. Number of tickets reopened or reclassified in the last week.
 
-None of these is decisive alone. Two together is yellow. Three is a conversation owed inside the week. The point is not to catch failure. The point is to make the cost of letting it slide visible before it compounds.
+None of these is decisive alone. Two together is yellow. Three is a conversation owed inside the week. Catch it here and the fix costs a conversation. Miss it and it costs a quarter.
 
 ## 2. The People-as-a-product checklist
 
@@ -1108,7 +1108,7 @@ Heatmap colours fall out of the multiplication. The hottest cells are where the 
 
 ## 5. The AI readiness read
 
-Score the six axes from the AI readiness diagnostic (/intelligence/diagnosing-ai-readiness-in-people-ops) honestly. Most teams overestimate readiness on tooling and underestimate readiness on data. The score is not the point. The conversation about why each axis is where it is, that is the point.
+Score the six axes from the AI readiness diagnostic (/intelligence/diagnosing-ai-readiness-in-people-ops) honestly. Most teams overestimate readiness on tooling and underestimate readiness on data. Nobody scores a clean 9 across all six first try. What matters is why tooling comes back a 7 and data comes back a 3.
 
 Pair this read with the heatmap and you get a defensible answer to the question every CFO will ask: of all the things we could build with AI, why this one first?
 
@@ -1157,7 +1157,7 @@ There is a moment, usually about three weeks into the first AI workflow build, w
 
 This is people debt becoming visible.
 
-> GenAI does not create people debt. It exposes it. The good news: it also gives you the leverage and the deadline to repay it.
+> GenAI does not create people debt. It exposes it, and it hands you the deadline to fix it before anyone else notices.
 
 ## What people debt is
 
@@ -1194,7 +1194,7 @@ The temptation is to clean everything. Resist. Pay down debt by blast radius:
 
 1. Definitions first. What does "senior" mean here. What counts as a high-performer. What is the actual hiring loop, step by step. These show up in every workflow downstream. Cleaning them once pays interest on every later piece of work.
 2. Decision rights. Written down. Who approves what, with what limits, and what the escalation looks like. Without this, every automated workflow eventually hits a step where it does not know who to route to.
-3. Processes you are about to automate. Not all processes. Just the ones touched by the next two or three workflows. Document them as they should run, not as they currently run. Use the build as the forcing function.
+3. Processes you are about to automate. Not all processes. Just the ones touched by the next two or three workflows. Document how they should run. Not how they limp along today. Use the build as the forcing function.
 4. Artefacts. Templates, scorecards, handbooks. The cleanup falls out of the work. Almost never worth doing in advance.
 
 Skipping definitions is the most common mistake. Teams jump straight to processes, automate ambiguity, and produce confidently wrong outputs at scale. The model amplifies whatever ambiguity it inherits.
@@ -1207,7 +1207,7 @@ The pattern repeats. AI work creates the deadline. The deadline creates the clea
 
 ## The asset hidden inside the debt
 
-Pay down people debt while building AI workflows and you end up with two things instead of one. You have the workflow. You also have a documented, current, defensible version of the underlying process, with named owners, written rules, and clean inputs. That second thing is the more valuable of the two. It is the foundation every later workflow stands on.
+Pay down people debt while building AI workflows and you end up with two things instead of one. You have the workflow. You also have a documented, current, defensible version of the underlying process, with named owners, written rules, and clean inputs. That second thing is worth more than the workflow. It is the foundation every later workflow stands on.
 
 Skip the cleanup and you build castles on sand. Do it as you build, and each new workflow makes the next one easier.
 
@@ -1275,17 +1275,17 @@ That is the unit. Five of those, written by the exec team in the room, argued th
 
 ## Wiring the values into the operating system
 
-Once the values exist, the work is operationalising them. Four insertion points:
+Once the values exist, the work is wiring them into how the company actually runs. Four places to do it:
 
 Hiring loops. One interview in every loop explicitly probes a value with a scenario from real work. Not "tell me about a time you showed integrity." A specific situation where the value would have forced a trade-off. The signal is whether the candidate has ever had to make that trade-off, and what they chose.
 
-Promotion criteria. Each level expectation is rewritten through the values lens. Senior IC at this company means specific things this company values, not generic things every senior IC role values. Promotions reinforce the values or they undermine them. There is no neutral.
+Promotion criteria. Each level expectation gets rewritten through the values lens. If one of the values is "ship in public," senior IC at this company means posting the rough version in the open channel two weeks before the polished one, not after. Promotions reinforce the values or they undermine them. There is no neutral.
 
 Weekly rituals. Demos, retros, decision logs all reference the values explicitly. "We made this trade-off because of \[value\]." The reference is the practice. Without it, the values fade.
 
 Performance feedback. Specific praise and specific challenge, both grounded in a named value. The same evidence-led shape as the coaching system (/intelligence/coaching-and-feedback-systems). "This decision lived our value of X. This other decision did not, and here is why."
 
-If a value is not present in at least three of these four insertion points within ninety days of being adopted, it will not survive the year.
+If a value is not present in at least three of these four places within ninety days of being adopted, it will not survive the year.
 
 ## Where AI helps, and where it should not
 
@@ -1340,7 +1340,7 @@ TLDR:
 
 Performance review season comes around. The team writes self-assessments under duress. Managers spend a weekend writing reviews that say roughly what they would have said three months ago. The calibration meeting argues about ratings. Letters go out. Six weeks later, no one can name a thing that changed. This is the loop most companies are stuck in.
 
-The teams that escape it are not running better quarterly cycles. They have a different system.
+The teams that escape it run cadence, not a cycle: weekly evidence, monthly retro, quarterly calibration.
 
 > Coaching and feedback are not events. They are operating systems. The cadence does the work.
 
@@ -1425,9 +1425,9 @@ DESCRIPTION: How a 280-person fintech People team went from scattered ChatGPT us
 
 TLDR:
 - FinEdge built an AI roadmap by reading the operating reality of its People function first.
-- The roadmap was not a list of tools. It was a sequence of capability shifts tied to operating outcomes.
+- The roadmap sequenced capability shifts against operating outcomes: diagnose, prove, harden, scale.
 - Six months in, adoption was high because the work was designed around the team, not the tool.
-- The case is a pattern, not a template. Read your own grain before borrowing the shape.
+- Read your own grain before you borrow this shape.
 
 This is one case study, lightly anonymised, told in enough detail that another team could run the same play. Names, numbers, and one sequencing detail have been changed. The shape of the work is exact.
 
@@ -1437,7 +1437,7 @@ This is one case study, lightly anonymised, told in enough detail that another t
 
 FinEdge is a 280-person fintech, Series B, payments infrastructure for mid-market merchants. The People team is seven: a CPO, two HRBPs, two TA partners, a People Ops lead, and a learning lead. The CEO had approved a six-figure People AI budget at the previous board meeting. The CPO had a budget and no plan.
 
-Pre-engagement state: scattered individual ChatGPT use across the team, no shared workspace, no policy, no measurement. Two of the seven were heavy users, three were occasional, two were avoiding it. Classic uneven adoption.
+Before we started: scattered individual ChatGPT use across the team, no shared workspace, no policy, no measurement. Two of the seven were heavy users, three were occasional, two were avoiding it. Classic uneven adoption.
 
 ## Days 1 to 14: diagnose
 
@@ -1445,7 +1445,7 @@ We ran the People Ops diagnostic toolkit (/intelligence/people-ops-diagnostic-to
 
 The two findings that shaped everything that followed:
 
-1. The hottest cells on the workflow heatmap were not in TA, where the team expected. They were in onboarding (high frequency, high pain, high AI fit on the document and Q&A steps) and in HRBP request triage (medium frequency, very high pain, very high AI fit on the routing and first-response steps).
+1. The team expected the hottest cells on the workflow heatmap to be in TA. The heatmap put them in onboarding (high frequency, high pain, high AI fit on the document and Q&A steps) and in HRBP request triage (medium frequency, very high pain, very high AI fit on the routing and first-response steps).
 2. The AI readiness score was 6 out of 10 on tooling, 3 on data, 2 on governance. The team had been planning to spend month one on tools. The diagnostic redirected month one to data and governance, with a single tooling decision.
 
 ## Days 15 to 60: prove value
@@ -1462,7 +1462,7 @@ A weekly Friday demo cadence started in week three and never stopped. Fifteen mi
 
 Six more workflows, smaller and more specialised, owned by individual team members rather than dedicated champions. The pattern from the first six weeks was now legible enough that the rest of the team could replicate it.
 
-The harder work in this phase was not the workflows. It was three pieces of infrastructure:
+The harder work in this phase sat outside the workflows, in three pieces of infrastructure:
 
 - A published one-page AI policy (/intelligence/ai-policy-blueprint-for-people-teams) covering data, vendors, evaluation, and what is forbidden.
 - A shared workspace with reusable context and standardised prompts, following the workspace setup pattern (/intelligence/setting-up-your-ai-workspace).
@@ -1488,7 +1488,7 @@ Resist demoing every new workflow company-wide too early. Once the wider company
 
 ## What this case is and is not
 
-This is one team's 90 days. The sequence is the part worth copying: diagnose, then prove, then harden and scale. The specific workflows are not. Every team's hot cells are different. Use the diagnostic toolkit (/intelligence/people-ops-diagnostic-toolkit) to find yours, then run this same shape against them.
+This is one team's 90 days. Copy the sequence: diagnose, then prove, then harden and scale. Don't copy the workflows, your hot cells will be different. Use the diagnostic toolkit (/intelligence/people-ops-diagnostic-toolkit) to find yours, then run this same shape against them.
 
 ## What this connects to
 
@@ -1588,7 +1588,7 @@ DESCRIPTION: Every white-collar job is a sequence of clicks. AI is starting at t
 TLDR:
 - The HR Architect is the role most People functions need next and few have hired for yet.
 - Half systems thinker, half builder. Designs the operating system the People function runs on.
-- Not the Head of People. Not the HRBP. A distinct role with distinct deliverables.
+- Distinct from the Head of People and the HRBP, with its own deliverables.
 - Where the role is staffed well, AI capability compounds. Where it is missing, AI work stays in pilot.
 
 Every white-collar job is a sequence of clicks. Open document. Duplicate. Rename. Reformat. Send. Repeat.
@@ -1597,7 +1597,7 @@ Some of those clicks carry enormous judgment behind them, years of experience, c
 
 AI started there. At the atomic click layer. Because that is the easiest target: minimal context needed, minimal relationships to understand, minimal company politics to navigate. Just pattern recognition applied to high-frequency, low-stakes tasks.
 
-This is why AI landed so visibly in white-collar work before it touched manual trades. It is not moving through a job hierarchy from the bottom up. It is targeting the low-judgment layer that exists inside every job, regardless of seniority. Your most senior hire still duplicates documents. A partner at a law firm still reformats slides. A CPO still writes first drafts of things that could have been templated years ago. The click layer is universal. AI hit it first.
+This is why AI landed so visibly in white-collar work before it touched manual trades. It targets the low-judgment layer that exists inside every job, regardless of seniority. Your most senior hire still duplicates documents. A partner at a law firm still reformats slides. A CPO still writes first drafts of things that could have been templated years ago. The click layer is universal. AI hit it first.
 
 But it is not stopping there.
 
@@ -1611,9 +1611,9 @@ From workflows, it is moving to tasks. Not just the low-judgment ones. Drafting 
 
 The next frontier is strategic thinking, decision-making, and the contextual understanding of how a specific business operates: how relationships function, where power sits, what the history is. Still a human frontier. For now.
 
-Most people picture this wrong. They imagine a rising tide. AI starting at the bottom, slowly working upward, plenty of warning, plenty of time. It is not a rising tide. It is Swiss cheese. Holes are forming at every level simultaneously, more at the bottom, but holes everywhere. The gap between "AI does this inconsistently" and "AI does this reliably" is closing faster than most leaders are pricing in.
+Most people picture this wrong. They imagine a rising tide: AI starting at the bottom, working slowly upward, plenty of warning, plenty of time. Picture Swiss cheese instead. Holes forming at every level simultaneously, more at the bottom, but holes everywhere. The gap between "AI does this inconsistently" and "AI does this reliably" is closing faster than most leaders are pricing in.
 
-Which means the question for People functions is not "will this affect us?" but "what shape do our roles need to take so they still make sense in eighteen months?"
+Which means the real question for People functions is: what shape do our roles need to take so they still make sense in eighteen months?
 
 ## Why the HR Architect role is emerging
 
@@ -1629,7 +1629,7 @@ That someone is the HR Architect.
 
 ## What the role actually does
 
-An HR Architect is not a champion (who advocates for AI in their team) and not an analyst (who reports on people data). They build. Their week looks like this:
+Champions advocate for AI in their team. Analysts report on people data. Architects build. Their week looks like this:
 
 - Design. They map a workflow, identify the friction, decide where AI fits, where automation fits, where a human stays in the loop.
 - Build. They wire the workflow in n8n or similar. They draft the prompts. They specify the integrations.
@@ -1639,7 +1639,7 @@ An HR Architect is not a champion (who advocates for AI in their team) and not a
 
 They sit between IT and HR. Owned by HR, with a working relationship with IT for security review, identity, and infrastructure.
 
-In a 50-person People function, you might have one HR Architect for every 15 to 20 operators. In a 10-person People team, you might have one. In a 200-person function, three to five. The ratio is not the point. The pattern is: the architect role is permanent, named, and grows in scope as the function builds out its operating system.
+In a 50-person People function, you might have one HR Architect for every 15 to 20 operators. In a 10-person People team, you might have one. In a 200-person function, three to five. The pattern matters more than the ratio: the architect role is permanent, named, and grows in scope as the function builds out its operating system.
 
 ## Who becomes one
 
@@ -1653,13 +1653,13 @@ Most functions end up with one of each. A generalist who became an architect, pa
 
 ## Why this matters now
 
-The compression between layers is accelerating. Clicks to workflows took a few years. Workflows to decisions might take eighteen months. The window for People functions to architect themselves into the next era is shorter than most leaders are pricing in.
+The compression between layers is accelerating. Clicks to workflows took a few years. Workflows to decisions might take eighteen months. The window for People functions to architect themselves into the next era is closing faster than most leaders have budgeted for.
 
 The functions that do this well will look very different in two years. Fewer pure operators. More architects. More decision-makers. The work that survives is the work humans still do better: judgement, relationships, strategy, the things that depend on context the model cannot fully access.
 
 The functions that do not adapt will look the same in two years and feel slower, smaller, and more expensive relative to peers who built the architect role into their structure.
 
-This is not a "future of work" abstraction. It is a hiring decision and an internal-development decision a CHRO is making right now, whether they have named it or not.
+It is a hiring decision and an internal-development decision a CHRO is making right now, whether they have named it or not.
 
 ## Where to start
 
@@ -1669,7 +1669,7 @@ Three moves, this quarter.
 2. Pick one person. From inside the team, ideally. Someone curious, someone bored of the click work, someone who has already built a Custom GPT or two on their own time.
 3. Give them air cover. A named sponsor who will defend the time. A clear remit. The infrastructure they need (workspace, accounts, sandbox).
 
-That is how the role takes hold. Not via a job advert. Via the first deliberate build, owned by a named architect, supported by a named sponsor.
+That is how the role takes hold: the first deliberate build, owned by a named architect, supported by a named sponsor.
 
 The wider context for the role sits inside the enablement operating model (/intelligence/ai-enablement-operating-model) and the move from prompts to systems (/intelligence/from-prompts-to-systems). The infrastructure they build sits on top of an AI workspace (/intelligence/setting-up-your-ai-workspace) and inside the domain map (/intelligence/the-people-ops-ai-domain-map) that tells them where to point the work.
 
@@ -1724,8 +1724,6 @@ Tool-first thinking optimises for the wrong outcome. You end up automating low-v
 
 Problem-first thinking flips it. Start by mapping the pain. Where is the team losing time? Money? Quality? Where are you creating business risk? For each candidate, calculate the true cost: direct time, error cost, opportunity cost, scaling cost. Then design the smallest solution that addresses the highest-impact problem.
 
-The audit playbook below makes this concrete.
-
 ## Step 1: Map the pain
 
 Spend a week observing the team's actual work. Not the work as documented. The work as it happens.
@@ -1755,7 +1753,7 @@ For every candidate workflow, score on six dimensions, 1 to 5.
 
 A workflow scoring 4 or 5 across most dimensions is a strong candidate. A workflow scoring 1 or 2 either does not need automating or will not benefit from it.
 
-The 6T scores also tell you what kind of solution fits. High touchpoints + low transparency suggests a workflow tool first (n8n, Make), not an agent. High tedium + high triggers + low touchpoints suggests a clean automation. High touchpoints + ambiguity in the work suggests an AI-augmented workflow with humans in the loop.
+The 6T scores also tell you what kind of solution fits. High touchpoints + low transparency means a workflow tool first (n8n, Make), not an agent. High tedium + high triggers + low touchpoints means a clean automation. High touchpoints + ambiguity in the work needs an AI-augmented workflow with humans in the loop.
 
 ## Step 3: Spot the Swiss cheese
 
@@ -1785,7 +1783,7 @@ Two honesty tests:
 - Maintenance cost. Add 30% of build cost as ongoing annual maintenance. Most teams forget this and the ROI evaporates.
 - Soft savings vs hard savings. Time saved is only a real saving if the time goes somewhere valuable. If saving Sarah three hours a week means Sarah spends three more hours on Slack, the saving is fictional.
 
-ROI calculations that survive these two tests are usually the only ones worth pursuing.
+ROI calculations that survive these two tests are the ones worth pursuing.
 
 ## Step 5: Prioritise with the matrix
 
@@ -1825,7 +1823,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - Leading the AI transformation in People (/intelligence/leading-the-ai-transformation)
 
 KEY TAKEAWAYS:
-- Look for repetition, latency, and rework. The leverage lives at those seams.
+- Look for repetition, latency, and rework. That's where the savings hide.
 - Audit existing automations as ruthlessly as you audit new candidates.
 - Sequence by value and absorption together. High-value low-absorption is the trap.
 
@@ -1862,7 +1860,7 @@ Before drafting anything, do three things.
 
 Identify and validate AI use cases. What specific People challenges are you solving? Admin load, engagement insights, comms, recruiting? Which workflows could be supported, enhanced, or reimagined? Where are employees or teams already using shadow AI today? What legitimate productivity needs are driving them toward unauthorised tools? Sort each candidate use case as low-risk (drafting comms) or high-risk (performance reviews, hiring decisions).
 
-Assemble a cross-functional working group. Voices from People, Legal and Compliance, IT and InfoSec, Data Protection, DEI, and crucially, employee representatives who can speak to real workflow pain. Tech-savvy managers who will use the policy day to day. The group meets regularly during rollout and quarterly once operational. Their job is to enable safe innovation, not block it entirely.
+Assemble a cross-functional working group. Voices from People, Legal and Compliance, IT and InfoSec, Data Protection, DEI, and crucially, employee representatives who can speak to real workflow pain, plus the tech-savvy managers who will actually use the policy day to day. The group meets regularly during rollout and quarterly once operational. Their job is to enable safe innovation, not block it entirely.
 
 Map the data landscape. What personal or sensitive data does HR currently store and process? Demographics, health, pay, performance. Where could that data intersect with AI tools as inputs, outputs, or training data? Which external vendors and platforms have access? Where are the gaps that make employees reach for consumer AI? Slow approval, clunky software, missing capability.
 
@@ -1870,7 +1868,7 @@ Assess tool readiness and risks. For each candidate tool: cloud or on-prem, wher
 
 ## 2. Governance and guardrails
 
-Once the foundation is in place, the policy can be drafted. The structure that consistently works:
+Foundation done, draft the policy. The structure that consistently works:
 
 A clear, short AI Use Policy. One page. Defines acceptable and prohibited uses by category, not by listing every possible scenario. Lists approved tools by name. Names a fast-track approval process for new tools. Clarifies responsibilities: fact-checking AI outputs, declaring AI use in sensitive contexts. Reinforces that AI is a support, not a substitute, for human judgment. Addresses shadow AI directly: explains why unapproved tools create risk and how to request alternatives. Enablement-focused, not punishment-focused.
 
@@ -1932,14 +1930,14 @@ DESCRIPTION: Most "agents" in People Ops are demos with ambition. The ones that 
 ========================================
 
 TLDR:
-- A production agent is not a prompt with ambition. It is a workflow with state, evals, and an owner.
+- A production agent has state, evals, and an owner. A prompt with ambition has none of those.
 - Most agents in People Ops are stuck in demo loops because nobody owns the production version.
 - Production demands the boring work: error handling, logging, fallback, review.
 - Two well-run production agents beat ten experimental ones every time.
 
 Most "agents" in People Ops today are demos with ambition. They work on a clean test case and fall over the moment they meet a real employee, a real policy edge, a real Friday afternoon.
 
-This is fixable. The agents that survive contact with production share a pattern. The ones that fail share an opposite pattern. Knowing the difference is the difference between an automation programme that compounds and one that quietly gets retired.
+This is fixable. The agents that survive production share a pattern. The ones that fail share the opposite one. Get it right and the automation programme compounds. Get it wrong and it quietly gets retired.
 
 > Most People Ops "agents" are demos with ambition. The ones that ship share a pattern: data first, structured context, exception handling, observability, human escalation.
 
@@ -1947,13 +1945,13 @@ This is fixable. The agents that survive contact with production share a pattern
 
 A common reflex in People Ops: there is a problem, so buy a tool. The market is happy to oblige. There is now an AI tool for every workflow on the org chart.
 
-The reflex is wrong. Most People functions are not held back by missing features. They are held back by the fact that the data sits in silos. The HRIS knows the employee. The ATS knows the candidate. Payroll knows the comp. Performance knows the rating. Engagement knows the sentiment. None of them know each other.
+The reflex is wrong. The data sits in silos, not the features. The HRIS knows the employee. The ATS knows the candidate. Payroll knows the comp. Performance knows the rating. Engagement knows the sentiment. None of them know each other.
 
-Buying a tenth tool adds a tenth silo. The leverage is in the integration and orchestration layer.
+Buying a tenth tool adds a tenth silo. The real value sits in the integration and orchestration layer.
 
 This is why a workflow tool like n8n, or Make, or Zapier at the lower end, often produces more value than the latest specialised HR app. It connects what you already have. It lets a small AI step run inside a workflow that touches the systems where the truth actually lives. It is auditable, fixable, and visible.
 
-A useful test: when something breaks, can you see which step failed? With a connected workflow built in n8n, the answer is yes. With a black-box vendor product, often no. Visibility is the price of being able to fix things at speed, which is the price of being able to scale.
+A useful test: when something breaks, can you see which step failed? With a connected workflow built in n8n, the answer is yes. With a black-box vendor product, often no. Visibility is what lets you fix things fast. Speed is what lets you scale.
 
 ## What an agent actually is
 
@@ -1970,7 +1968,7 @@ That is more than a chatbot. More than a workflow with an LLM step. It is closer
 - A way to recover when something breaks.
 - A human escalation path.
 
-If any of those are missing, you do not have an agent. You have a roulette wheel with a UI.
+Miss any of those and what you have built is a roulette wheel with a UI.
 
 ## The context stack
 
@@ -2025,9 +2023,9 @@ Then pick one well-bounded use case. A few that work in practice:
 
 Each of these has the same structure: bounded scope, clear escalation, observable trace, real exception handling. Each one earns the right to expand. None of them try to be the agent that does everything.
 
-The pattern across all of them is the move from prompts to systems (/intelligence/from-prompts-to-systems), via the domain map (/intelligence/the-people-ops-ai-domain-map) that tells you where to point the work, supported by the operating model (/intelligence/ai-enablement-operating-model) that makes the work survive a quarter.
+The pattern across all of them is the same: move from prompts to systems (/intelligence/from-prompts-to-systems), use the domain map (/intelligence/the-people-ops-ai-domain-map) to point the work at the right target, and lean on the operating model (/intelligence/ai-enablement-operating-model) to make it survive a quarter.
 
-Production agents are not magicians. They are operators. Build them like operators, and they will work like operators.
+Production agents are not magicians. They are operators. Build them like operators and they work like operators.
 
 ## What this connects to
 
@@ -2066,7 +2064,7 @@ Most organisations have invested in generative AI tools and run an "AI champions
 
 A small group becomes power users. The majority dabble, then plateau. Risk behaviours vary by team. Leaders cannot confidently quantify impact or explain what "great" looks like.
 
-This is not a tooling issue. It is an enablement system issue. AI enablement needs to be treated as a company capability, comparable to leadership development, security awareness, or management fundamentals. That means three connected layers, not one.
+The gap sits one level up from the tools. AI enablement needs to be treated as a company capability, comparable to leadership development, security awareness, or management fundamentals: three connected layers, not one.
 
 > Champions distribute capability. They cannot replace the operating backbone underneath: standards, guardrails, capability expectations, governance, measurement, and incentives.
 
@@ -2076,7 +2074,7 @@ Champions are useful. They translate generic guidance into examples that make se
 
 What a champions programme cannot do, on its own, is produce sustained capability. Champions rotate. Their priorities shift. The teams around them go back to old habits the moment the champion is occupied with something else. Without an underlying system, the wins evaporate.
 
-Champions are a distribution layer. The system underneath them is what makes the wins compound.
+Champions are a distribution layer, not a strategy. Build the backbone underneath them and the same champions stop restarting from zero every time someone rotates off the programme.
 
 ## The three layers
 
@@ -2097,7 +2095,7 @@ Org-wide enablement is the layer most companies skip. It is unglamorous. It does
 
 This is where the operating model meets the work. The unit is the team, not the individual.
 
-- Workflow transformation. Each team identifies its top three workflows and rebuilds them with AI in the loop. Not "use AI in onboarding." Rebuild onboarding so AI sits at the right points. The before-and-after is visible.
+- Workflow transformation. Each team picks its top three workflows and rebuilds them with AI in the loop. Take onboarding: redesign the whole flow so AI sits at the moments that actually slow people down, day one, week two, first review, rather than being bolted onto induction as an add-on. The before-and-after is visible enough that new hires notice it themselves.
 - Shared assets. Prompts, Custom GPTs, automations, agents. Owned by the team, versioned, shared.
 - Cross-functional process ownership. Workflows that cross teams (offer-to-onboard, hire-to-pay) get an explicit owner who is accountable for the AI-enabled version.
 - Operating cadence. Weekly demos. Monthly retros. Quarterly outcome reviews. The rituals make adoption visible and create the feedback loop that drives improvement.
@@ -2149,7 +2147,7 @@ The signal a leader is living it: they can explain any People decision in two se
 
 ## Where this lands
 
-The CHRO who owns this work is doing something specific. They are not buying licenses. They are not running a training programme. They are building a system that turns AI into a sustained capability of the function and, eventually, the company.
+The CHRO who owns this work is doing something specific: building a system that turns AI into a sustained capability of the function, then the company. Licenses and training programmes are inputs to that, not the deliverable.
 
 That work has the same shape as any other operating system work, which is why it sits inside the broader frame of an AI operating system (/intelligence/what-is-an-ai-operating-system) and a wider People Ops domain map (/intelligence/the-people-ops-ai-domain-map). The diagnosis comes first, see diagnosing AI readiness (/intelligence/diagnosing-ai-readiness-in-people-ops), and the practice underneath is the move from prompts to systems (/intelligence/from-prompts-to-systems).
 
@@ -2256,7 +2254,7 @@ The "best AI for HR" question gets asked all the time. The honest answer is that
 
 Here is a practical breakdown.
 
-> One model is a habit, not a strategy. A reasonable People Ops stack: ChatGPT for structured drafting, Claude for nuanced writing and policy, Perplexity or Gemini for sourced research.
+> Most teams run one model because nobody decided otherwise. A reasonable People Ops stack: ChatGPT for structured drafting, Claude for nuanced writing and policy, Perplexity or Gemini for sourced research.
 
 ## ChatGPT (GPT-5 class)
 
@@ -2307,13 +2305,13 @@ A working default stack for a People team:
 | Workflow automation scaffolding | GPT-5 | n/a |
 | Vendor research | Perplexity | Gemini |
 
-Two reliable habits sit underneath this stack: never ship a first draft, and always cross-check important outputs with a second model. The cost of those two habits is small. The quality lift is enormous.
+Two reliable habits sit underneath this stack: never ship a first draft, and always cross-check important outputs with a second model. The cost is one extra prompt, one extra pass. The pay-off is work that doesn't need redoing.
 
 ## What this means in practice
 
-A People team that uses one model is not making a strategy decision. It is following a habit. The friction of switching between Claude, ChatGPT, Gemini and Perplexity is now small enough that the right answer for almost every team is "use the right one for the task."
+Most teams that run one model never chose to. They signed up for one in year one and never revisited it. Four tabs open, four logins, that is the actual friction cost of switching between Claude, ChatGPT, Gemini and Perplexity now, and it is close to zero. The right answer for almost every team is "use the right one for the task."
 
-That is also one of the easier early wins for the champion model (/intelligence/the-champion-model). Champions can document, by task type, which model the team should reach for, and embed that into the AI workspace (/intelligence/setting-up-your-ai-workspace). It is a small piece of operating discipline that produces a disproportionate quality lift.
+That is also one of the easier early wins for the champion model (/intelligence/the-champion-model). Champions can document, by task type, which model the team should reach for, and embed that into the AI workspace (/intelligence/setting-up-your-ai-workspace). It's a one-page doc. Most teams never write it, and pay for that every time someone drafts a redundancy letter in the wrong model.
 
 The model is not the bottleneck for most teams. The bottleneck is knowing which one to pick, when. Solve that, then move on to the more interesting question: how to wire any of them into the workflows that actually matter, which is where the move from prompts to systems (/intelligence/from-prompts-to-systems) begins.
 
@@ -2380,7 +2378,7 @@ The second prompt produces something you can take to a planning meeting. The fir
 
 ## Prompt chaining
 
-Single prompts have a ceiling. The work that matters in People Ops, redesigning a process, diagnosing a culture issue, drafting a policy that survives legal and the team, is too complex for one prompt. The pattern that breaks the ceiling is chaining.
+Single prompts have a ceiling. The work that matters in People Ops - redesigning a process, diagnosing a culture issue, drafting a policy that survives legal and the team - is too complex for one prompt. The pattern that breaks the ceiling is chaining.
 
 A prompt chain is a sequence of prompts where each output feeds the next. The chain mimics how a thoughtful practitioner actually approaches the work.
 
@@ -2416,7 +2414,7 @@ The pattern is simple: never ship the first draft. Always run a critique pass. O
 
 ## The model-specific shifts
 
-The same prompt does not produce the same quality across models. The newest generation, GPT-5, Claude 4 class, Gemini 3 class, behaves differently enough that copy-pasting your library across models leaves value on the table.
+The same prompt does not produce the same quality across models. The newest generation - GPT-5, Claude 4 class, Gemini 3 class - behaves differently enough that copy-pasting your library across models leaves value on the table.
 
 GPT-5 and the OpenAI line. Extremely literal instruction following. Massive context windows but still benefits from structure. Will not reason step-by-step unless you ask it to. Best for: complex multi-document workflows, structured outputs, agentic system prompts.
 
@@ -2432,9 +2430,9 @@ For a deeper read on which model to reach for by HR task type, see choosing AI m
 
 ## Where prompting stops being enough
 
-Prompting is the entry point. A team that masters the patterns above will outperform a team that is still asking single-shot questions, by a large margin, for a long time.
+Prompting is the entry point. A team that masters the patterns above will outperform a team still asking single-shot questions.
 
-But there is a ceiling. Past a certain point, what holds back a People function is not prompt quality. It is the absence of context the model can reach for, the absence of workflows it sits inside, the absence of guardrails that make it safe to deploy at scale. That is the move from prompts to systems (/intelligence/from-prompts-to-systems), and it is a different conversation.
+But there is a ceiling. Past a certain point, prompt quality stops being the constraint. The real gap is the absence of context the model can reach for, the absence of workflows it sits inside, the absence of guardrails that make it safe to deploy at scale. That is the move from prompts to systems (/intelligence/from-prompts-to-systems), and it is a different conversation.
 
 Get the prompting right first. The systems work has more leverage when the people building it can prompt well.
 
@@ -2535,7 +2533,7 @@ TLDR:
 - An AI workspace is the structured layer that turns a generic AI tool into a function-specific colleague.
 - Custom instructions, projects, reference docs, shared prompts. That is the unit of work.
 - The workspace is the first artefact most People teams should build. Most skip it and wonder why outputs are mediocre.
-- It is operating infrastructure, not a productivity hack.
+- It is operating infrastructure. Set it up once and it keeps paying out.
 
 The single biggest reason People teams say AI feels generic is that they are using it generically. They open a fresh chat, paste a question, get a fresh-from-the-internet answer, and conclude the tool is shallow. The tool is not shallow. The setup is.
 
@@ -2561,9 +2559,9 @@ That is the whole setup. Everything else is variation on these three.
 
 ## Custom instructions: write them like a brief, not a personality
 
-The mistake people make is treating custom instructions as a vibe. "Be friendly. Be concise. Use British English." That is not useless, but it is not where the leverage sits.
+The mistake people make is treating custom instructions as a vibe. "Be friendly. Be concise. Use British English." Fine, but it barely moves the output.
 
-The leverage sits in telling the model what you actually do, what you actually care about, and what you have already decided.
+What moves it: telling the model what you actually do, what you actually care about, and what you have already decided.
 
 A real custom instruction for a Head of People at a 250-person scale-up reads more like this:
 
@@ -2614,7 +2612,7 @@ No raw individual data. Do not load full employee records, performance ratings t
 
 No legal or contractual surfaces without review. Employment law varies, contracts have teeth, and confident-sounding generic answers are dangerous. Legal documents can be summarised, compared, or drafted - but the workspace's standing instruction should be: flag this for legal review before sending.
 
-These are not ceiling rules. They are the floor. Your governance work, when you get to it, will sharpen them. (For more on that, the governance piece (/intelligence/ai-governance-for-people-teams) is the next read.)
+This is the floor. Governance work, when you get to it, sharpens it further. (For more on that, the governance piece (/intelligence/ai-governance-for-people-teams) is the next read.)
 
 ## The team move: shared, not personal
 
@@ -2643,7 +2641,7 @@ A team with a working AI workspace looks different in three quiet ways.
 
 Drafts come back in the team's voice on the first attempt. Nobody pastes the handbook into a prompt any more. New joiners get up to operating speed faster, because the context they need lives in shared projects rather than in the heads of long-tenured colleagues.
 
-None of these are exciting. They are infrastructure. They are also the precondition for everything in Layer 2 and Layer 3 (/intelligence/from-prompts-to-systems) of the People Ops AI stack - skills, automations, agents. You cannot build those on top of a generic chat history.
+Quiet, unglamorous, infrastructure work. But it is the precondition for everything in Layer 2 and Layer 3 (/intelligence/from-prompts-to-systems) of the People Ops AI stack - skills, automations, agents. You cannot build those on top of a generic chat history.
 
 Set the workspace up. Then build.
 
@@ -2678,9 +2676,9 @@ TLDR:
 - A prompt is a sentence. A system is a workflow with state, ownership, and review.
 - Most People teams are still operating at sentence level and wondering why the value does not compound.
 - The shift is from authoring prompts to designing systems that produce reliable output.
-- Systems thinking is the unlock. The prompt is a small part of it.
+- Systems thinking is the shift that matters. The prompt is a small part of it.
 
-The People function is in a strange position with AI. The technology is cheap, the curiosity is high, the leadership pressure is real, and yet, six months in, almost nothing has changed in how the work actually gets done. Recruiters still triage manually. Onboarding still depends on a single person's calendar. Performance reviews still consume entire weeks every cycle. The dashboard says "AI initiative in progress." The grain says otherwise.
+The technology is cheap. The curiosity is high. The leadership pressure is real. And six months in, almost nothing has changed in how the work actually gets done. Recruiters still triage manually. Onboarding still depends on a single person's calendar. Performance reviews still consume entire weeks every cycle. The dashboard says "AI initiative in progress." The grain says otherwise.
 
 There are two traps that catch nearly every team, and they look like opposites.
 
@@ -2706,7 +2704,7 @@ Tool shoppers produce decks. They do not produce capability either.
 
 Both traps share the same fault: they treat AI as a thing you procure, a tool, a model, a feature, rather than as something you build with. They mistake the answer for the system that produces the answer.
 
-A real AI capability inside a People function is not a tool. It is:
+A real AI capability inside a People function looks like four things, running together:
 
 - Connected context. The model knows what your company is, who your people are, what your policies say, what last quarter looked like. Not because you pasted it in, but because the system holds it for you.
 - Repeatable workflows. The work that used to consume an afternoon now happens in a chain of steps the team can re-run, refine, and trust.
@@ -2717,7 +2715,7 @@ None of that comes from a prompt, and none of it comes from a procurement cycle.
 
 ## The mechanic: workflows, automations, agents
 
-The third path has a shape. It is not "use more AI." It is a sequence: workflows first, automations second, agents only when both are in place.
+The third path has a shape. Not "use more AI." A sequence: workflows first, automations second, agents only when both are in place.
 
 Workflows are the foundation layer. A workflow is a structured, step-by-step process: hiring manager creates requisition, recruiter posts job, candidates apply, interviews scheduled, offer extended, background check, first day. Humans make decisions at the right points. The workflow is visible, documented, and easy to teach. Most People teams are missing this layer entirely. They have habits, not workflows.
 
@@ -2725,7 +2723,7 @@ If you cannot draw the workflow on a whiteboard, you cannot improve it. And you 
 
 Automations are the efficiency layer. Once a workflow is stable and the rules are clear, you automate the boring parts. Time-off request triggers a balance check, manager notification, calendar update, payroll sync. No interpretation needed. The system runs. Errors drop. Hours come back.
 
-Automations are appropriate when the rules are stable, the inputs are clean, and human judgment is not adding value. They are inappropriate when the situation needs context, when policies vary, or when the rules change every quarter.
+Automations work when the rules are stable, the inputs are clean, and judgment adds nothing. They fall apart when the situation needs context, when policies vary, or when the rules change every quarter.
 
 Agents are the autonomy layer. An agent is an AI system that can take a goal, decide a next action, use tools, and move work forward. A benefits agent that fields employee questions, pulls relevant policy, interprets edge cases, and escalates when it should. Useful, powerful, and almost always built too early.
 
@@ -2743,7 +2741,7 @@ A traditional task list says "schedule interviews," "send offer letters," "proce
 
 An outcome-shaped workflow says "shorten time-to-hire from 28 days to 14 without dropping quality." Now AI has a target. You can design a chain of steps, decide where humans add judgment, decide where automation removes friction, decide where a small agent could absorb the long tail of candidate questions, and you can measure whether the workflow moved the outcome.
 
-The shift from tasks to outcomes is the shift from doing AI to building with AI. It is also the thing that finally makes the work measurable, which is the thing that finally makes it survive a budget conversation.
+The shift from tasks to outcomes is the shift from doing AI to building with AI. It also makes the work measurable, and measurable is what survives a budget conversation.
 
 ## The third path
 
@@ -2751,7 +2749,7 @@ The third path is the one we keep seeing work. It looks unglamorous from the out
 
 A small group inside the People team takes one workflow, usually a painful, well-bounded one, and rebuilds it with AI in the loop. Inbound applications, or first-week onboarding, or the manager check-in cycle. They build it together, with one person who understands the work and one who has learned to wire things up. They run it. They watch where it breaks. They fix it. Then they take a second workflow.
 
-After six months, the team has not "done AI." It has changed how four pieces of its work get done. The change compounds. People outside the team start asking how. The People function, quietly, has become the part of the company most fluent in building with AI.
+After six months, the team hasn't ticked a box marked "done AI." Four pieces of its work now run differently. The change compounds. People outside the team start asking how. The People function, quietly, becomes the part of the company most fluent in building with AI.
 
 That is what this track is about. Not which model to use. Not which vendor to back. The slow, stubborn discipline of moving from prompts to systems, and the patterns that make it stick.
 
@@ -2794,21 +2792,21 @@ TLDR:
 
 Most People functions, when they think about AI, think about tools. The next layer up thinks about workflows. The layer above that - the one almost nobody is at yet - thinks about org design. Not which AI do we buy, but what does the team look like when AI is infrastructure rather than a side project?
 
-That is the shift this piece is about. It is the conversation a CPO needs to have once and then act on, because once AI is genuinely embedded, the old shape of the team stops fitting.
+It is the conversation a CPO needs to have once, then act on: once AI is genuinely embedded, the old shape of the team stops fitting.
 
 > Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it: different roles, different ratios, different leverage.
 
 ## Three maturity levels, plainly
 
-There are roughly three states a People function can be in. They are not stages on a roadmap - some teams skip - but they describe meaningfully different operating modes.
+There are roughly three states a People function can be in. Some teams skip one entirely. Each describes a genuinely different operating mode.
 
 AI-Enabled. Individuals on the team use AI tools to be faster at their existing work. The org chart is unchanged. The capability lives in a few enthusiasts. When they leave, it leaves with them. Most People functions are here, whether they say so or not.
 
 AI-Augmented. The team has shared workspaces, a few real automations, and named champions building things. The work has shifted: less drafting, more reviewing; less reporting, more interpreting. The org chart is mostly the same, but the time allocation inside roles has changed. A People Partner spends less time wrangling documents and more time on the conversations the documents enable.
 
-AI-Native. The function has been redesigned around the new ratios. There are roles that did not exist three years ago. There are fewer of some roles that used to dominate. The leverage is structural, not heroic. New joiners learn to work this way from week one.
+AI-Native. The function has been redesigned around the new ratios. There are roles that did not exist three years ago. There are fewer of some roles that used to dominate. If a champion leaves, the systems they built stay behind - nobody has to relearn it from scratch. New joiners learn to work this way from week one.
 
-The question is not which one is "best." It is: which one matches the leverage you actually need? A 60-person company can run a great AI-Enabled team. A 600-person company that stays AI-Enabled is leaving an obscene amount on the table.
+There's no "best" here. The right level is whichever matches the leverage you actually need. A 60-person company can run a great AI-Enabled team. A 600-person company that stays AI-Enabled is leaving an obscene amount on the table.
 
 ## What changes inside roles before titles change
 
@@ -2828,15 +2826,15 @@ Once the function tips into AI-Native, three roles tend to emerge. They do not a
 
 The People Systems Lead. Owns the workflow architecture across the function. Decides which work gets automated, in what order, with what guardrails. Holds the integrations between the HRIS, the ATS, the LMS, the survey tool, and the AI layer that ties them together. Reports to the Head of People Ops or, increasingly, directly to the CPO. This person used to be called a "People Ops Manager" but the job is genuinely different: less coordination, more design.
 
-The People AI Champion(s). Three or four people, distributed across the team, who build things. Not a separate function. A practice woven through the existing one - a People Partner who builds, a Talent Partner who builds, an Ops specialist who builds. Twenty per cent of their week, protected. They are the difference between a team that uses AI and a team that makes things with it. (More on the model in the champion piece (/intelligence/the-champion-model).)
+The People AI Champion(s). Three or four people, distributed across the team, who build things: a People Partner who builds, a Talent Partner who builds, an Ops specialist who builds. Woven through the existing roles, not split off into a new function. Twenty per cent of their week, protected. They are the difference between a team that uses AI and a team that makes things with it. (More on the model in the champion piece (/intelligence/the-champion-model).)
 
-The People Data Lead. Not a new role in title - analytics has existed in big functions for years - but the shape changes. Less time on dashboard maintenance, more time on signal design: deciding what to measure, what counts as a real shift, what to surface to whom. AI does the heavy lifting on the queries and the visualisations; the human work is in framing the questions and interpreting the answers.
+The People Data Lead. The title usually stays the same - analytics has existed in big functions for years - but the shape changes. Less time on dashboard maintenance, more time on signal design: deciding what to measure, what counts as a real shift, what to surface to whom. AI does the heavy lifting on the queries and the visualisations; the human work is in framing the questions and interpreting the answers.
 
 Three roles. Maybe five FTE depending on your size. They do not replace your existing structure. They sit inside it and change what it is capable of.
 
 ## What gets smaller
 
-This is the part most CPOs find harder to say aloud, so we will say it. In an AI-Native People function, some categories of work shrink dramatically. That has implications.
+This is the part most CPOs find hardest to say out loud. In an AI-Native People function, some categories of work shrink dramatically. That has implications.
 
 The pure coordination layer shrinks. Scheduling, status-chasing, document-prep work that used to occupy a meaningful slice of a People Coordinator's week largely goes away. The role does not disappear - there is still real work in joining a team, in sensing how it is doing, in being the human face of the function - but the shape of it changes from administrator to relationship-builder.
 
@@ -2866,7 +2864,7 @@ The AI-Native version of the same function tends toward something like:
 - 50% partnering and judgment
 - 25% strategy, design, and leadership
 
-That is not a productivity uplift. That is a different job. The team is doing more of what people came into People to do - judgment, relationships, design - and less of what nobody enjoyed in the first place.
+That's a different job. The team spends its time on what people actually came into People to do - judgment, relationships, design - and less of what nobody enjoyed in the first place.
 
 If the ratios in your head do not look something like this when you imagine three years out, you are still designing an AI-Enabled function and calling it transformed.
 
@@ -2884,9 +2882,9 @@ Be honest about the shape. When the ratios shift, when some roles shrink and oth
 
 It is not a justification for cutting headcount as the first move. Teams that lead with that get the worst possible outcome - fear, hoarding of work, no actual capability building, and eventually the same headcount because the systems were never built. The leverage comes from doing the redesign well, not from doing the redundancies first.
 
-It is not a one-off project. The shape of an AI-Native People function will keep moving for years as the underlying tooling shifts. The point is to build a team that can keep redesigning itself, not to land on a final org chart.
+This does not land once and stay fixed. The shape of an AI-Native People function keeps moving for years as the underlying tooling shifts. The point is to build a team that can keep redesigning itself, not land on a final org chart.
 
-And it is not optional. Within three to five years, the gap between an AI-Native People function and an AI-Enabled one will be the difference between a function the CEO leans on and one the CEO works around. The companies that have started already know this. The ones that have not are about to find out.
+None of this is optional either. Within three to five years, the gap between an AI-Native People function and an AI-Enabled one will be the difference between a function the CEO leans on and one the CEO works around. The companies that have started already know this. The ones that have not are about to find out.
 
 The work begins with one decision: what does our team actually look like, designed from scratch, knowing what we now know? Answer that honestly and the rest is execution.
 
@@ -2923,27 +2921,25 @@ TLDR:
 - Good governance is a small set of clear rules, escalation paths, and audit trails. Not a 40-page document nobody reads.
 - The work is making the right thing the easy thing.
 
-Most AI governance work in People functions starts with a fear and ends with a policy nobody reads. The fear is real - bias, leakage, EU AI Act, candidate complaints, employment tribunals. The policy is real too. It exists in a Notion page nobody opens after the day it was written. In between, the actual decisions about what AI does inside the People function are being made by individuals, in private, one prompt at a time.
+Most AI governance work in People functions starts with a fear and ends with a policy nobody reads. The fear is real - bias, leakage, EU AI Act, candidate complaints, employment tribunals. The policy is real too. It exists in a Notion page nobody opens after the day it was written. In between, individuals make the actual calls about what AI does in the function, alone, one prompt at a time.
 
 That is the gap. Not "do we have a policy" but "does the policy meet the work." For the policy document itself, see the AI policy blueprint (/intelligence/ai-policy-blueprint-for-people-teams). This piece is about the operating posture underneath it.
 
 > Governance is steering, not braking. The People teams that move fastest with AI decided early what they would never let it decide.
 
-## Governance is steering, not braking
+## Steer, don't brake
 
 The instinct, especially under regulatory pressure, is to treat governance as a brake. Slow things down. Add approvals. Require sign-off. The result is predictable: the work routes around the policy. People still use AI. They just stop telling you about it.
 
-A governance system that works treats the question differently. It asks: where, in this function, does AI need to be in the loop? Where does it need to be only in the loop, with a human deciding? Where is it forbidden? Where is the line, and who holds it?
-
-Steering. Not braking.
+Good governance asks a different question. Where, in this function, does AI need to be in the loop? Where does it need to be only in the loop, with a human deciding? Where is the line, and who holds it?
 
 ## The four boundaries that matter
 
-For a People function, there are four boundaries worth setting before anything else. They are not the whole policy. They are the spine that the rest hangs on.
+Four boundaries matter more than anything else in a People-function AI policy. Get these right and the rest of the document is just paperwork.
 
 ### 1. Decisions a model never makes alone
 
-Hiring decisions. Termination decisions. Performance ratings. Compensation calls. Reasonable adjustments and accommodations. Discipline outcomes. These are the four or five places where the consequence of a wrong call is high, the data is messy, and the bias risk is concentrated. The model can prepare, summarise, suggest, draft. The model never decides. A named human does. Always.
+Hiring decisions. Termination decisions. Performance ratings. Compensation calls. Reasonable adjustments and accommodations. Discipline outcomes. These are the six places where the consequence of a wrong call is high, the data is messy, and the bias risk is concentrated. The model can prepare, summarise, suggest, draft. The model never decides. A named human does. Always.
 
 Write that list down. Put it at the top of the policy. Everything else is detail.
 
@@ -2955,7 +2951,7 @@ The way this gets enforced is rarely "we trust people not to paste it." It is co
 
 ### 3. Outputs the human must always check
 
-Anything that goes to a candidate. Anything that goes to a regulator. Anything that goes into an employment record. Anything that becomes a written commitment. Generated content is not the artefact. The reviewed artefact is. The discipline of the review is what makes the speedup safe.
+Anything that goes to a candidate. Anything that goes to a regulator. Anything that goes into an employment record. Anything that becomes a written commitment. A model's draft only becomes the deliverable once a human has reviewed and signed off on it. That review is what makes the speedup safe.
 
 ### 4. Logging that actually exists
 
@@ -2970,7 +2966,7 @@ If you can't, you don't have governance. You have aspirations.
 
 ## What good looks like inside the team
 
-Governance lives or dies in the daily texture, not the policy doc. The People functions that get this right tend to look the same from inside.
+Governance shows up in the daily texture of the team, long before anyone rereads the policy doc. The People functions that get this right tend to look the same from inside.
 
 There is a single page - usually a one-pager, not a deck - that lists every AI workflow the team uses. The owner. The model. The data it touches. Whether it is in pilot, live, or retired. It is updated by the people who run the workflows, not by a central function.
 
@@ -2982,11 +2978,11 @@ And there is a culture, slowly built, where surfacing a near-miss is a gift to t
 
 ## The trade you are making
 
-Governance done well is a small tax on speed in exchange for a large reduction in tail risk. That trade is almost always worth it inside a People function, because the tail risk is not financial - it is trust. A People team that loses the trust of the company because the model said something it shouldn't have, or saw something it shouldn't have, takes years to recover.
+Governance done well is a small tax on speed in exchange for a large reduction in tail risk. That trade is almost always worth it inside a People function. The risk here isn't cash, it's trust, and a People team that loses the company's trust because the model said something it shouldn't, or saw something it shouldn't, takes years to rebuild.
 
-The teams that move fastest with AI are not the ones with the loosest policies. They are the ones who decided early, in writing, what they would never let the model do - and then went hard on everything else.
+The teams that move fastest with AI decided early, in writing, what they would never let the model do. Then they went hard on everything else.
 
-Governance is the steering wheel. With it, you can drive at speed. Without it, the question of how fast you go becomes academic.
+Write your four boundaries down this week. That's the whole first move.
 
 ## What this connects to
 
@@ -3021,15 +3017,15 @@ TLDR:
 - It compounds faster than centralised builds because the champions live inside the work.
 - The risk is starvation: if the champions do not get protected time, the model collapses inside a quarter.
 
-The most common question we get from People leaders is some version of: do I need to hire technical people to do this? The honest answer is no - and the more interesting answer is that hiring engineers into a People function to "do AI" usually backfires. Engineers solve the problem they understand, which is rarely the problem the team has.
+The most common question I hear from People leaders is some version of: do I need to hire technical people to do this? The honest answer is no. Hiring engineers into a People function to "do AI" usually backfires: they solve the problem they understand, which is rarely the problem the team has.
 
-What works, almost everywhere we have seen it work, is the champion model.
+What works, in engagement after engagement, is the champion model.
 
 > You do not need engineers to build AI capability inside the People function. You need three or four champions, given air cover and time.
 
 ## What a champion is
 
-A champion is someone already inside the team - usually a senior coordinator, a People Partner, an Ops lead, a Talent Partner - who has two things at once: deep tacit knowledge of how the work actually flows, and genuine curiosity about wiring things together. They are not engineers. They are not hires. They are people you already pay, given a different mandate.
+A champion is someone already inside the team - usually a senior coordinator, a People Partner, an Ops lead, a Talent Partner - who has two things at once: deep tacit knowledge of how the work actually flows, and genuine curiosity about wiring things together. Same person already on the payroll. Different mandate.
 
 The reason this works is grain. The champion already knows where the friction is, because they live in it. They know which steps everyone hates, which approvals are theatre, which handoffs drop information. An engineer would have to discover all of that before they could build anything. The champion starts with it.
 
@@ -3055,19 +3051,19 @@ Four is roughly the number where you start to see emergent behaviour: workflows 
 
 ## What champions are not
 
-They are not a committee. They do not write strategy. They do not run an "AI taskforce." They build things. The moment the role becomes governance or planning, the model has failed. There are other people for that. Champions ship.
+A champion's job is shipping, not governance. The moment the role turns into a committee, a strategy deck, or an "AI taskforce," the model has failed. There are other people for that. Champions ship.
 
 They are also not the eventual owners of every workflow. A good champion builds something, hands it to the team that uses it, and moves on. The workflow lives inside its function. The champion's job is to build the next one.
 
 ## The compounding effect
 
-Six months in, a healthy champion model produces something that looks unimpressive on a slide and is genuinely transformative inside the team. There are eight or twelve workflows running. Each saves a few hours a week. Together they have changed what the People function spends its time on.
+Six months in, a healthy champion model produces something that looks unimpressive on a slide and changes almost everything about how the team spends its week. There are eight or twelve workflows running. Each saves a few hours a week. Together they have changed what the People function spends its time on.
 
 More importantly, the team's relationship with AI has shifted. It is no longer a thing they read about. It is a thing they make. New joiners learn the craft from the champions, not from an enablement deck. The capability lives in the people, not the policy.
 
 This is the test. Two months after the engagement ends - if there was an engagement - the champions are still building. They have extended the work into corners nobody asked them to touch. They are training the next champion already.
 
-That is what we mean by capability. Not a tool you bought. A practice the team holds.
+That is what we mean by capability: a practice the team owns long after the invoice is paid.
 
 ## What this connects to
 
@@ -3104,9 +3100,9 @@ TLDR:
 
 Almost every AI failure inside a People function is, on closer inspection, a change failure. The tools work. The workflows are sound. The capability could be built. What broke is the human side - fear that was never named, sequencing that asked too much too soon, leaders who confused announcing change with leading it.
 
-This is the part of the work most CPOs find hardest, because it is not about AI at all. It is about leading a meaningful transformation while the rest of the business is also changing, with a team that is rightly anxious about what this means for them.
+This is the part most CPOs find hardest. Not the AI - the leadership: a transformation run while the rest of the business is also changing, with a team that is rightly anxious about what it means for them.
 
-The good news is that there is a sequence that works. It is not novel. It is the same sequence that works for any serious change. It just has to be done - properly, and in order.
+There is a sequence that works, though. Nothing novel about it, the same sequence that works for any serious change. It just has to be done - properly, and in order.
 
 > AI in People Ops fails as a change programme more often than as a technology problem. Name the fear, sequence the moves, address resistance honestly.
 
@@ -3130,7 +3126,7 @@ Five phases. None can be skipped without paying for it later.
 
 Phase 1: Personal capability (months 1–2). The CPO and the leadership team build their own working knowledge. Not a one-day course. Real reps. They use AI in their actual work - board prep, calibration, comms - for two months before asking anyone else to. This is non-negotiable. A leader who cannot describe what they have personally built with AI has no standing to lead this change.
 
-Phase 2: A small visible win (months 2–4). Pick one workflow. Bounded. Painful. Visible. Build it. Ship it. Tell the story of what changed and why. Not a pilot deck. An actual thing the team is using on a Wednesday. The point is not the workflow. The point is to demonstrate, concretely, that this works inside our team, with our tools, on our problems.
+Phase 2: A small visible win (months 2–4). Pick one workflow. Bounded. Painful. Visible. Build it. Ship it. Tell the story of what changed and why. Not a pilot deck. An actual thing the team is using on a Wednesday. The point: proof, concrete, that this works inside our team, with our tools, on our problems.
 
 Phase 3: Champions and shared workspace (months 3–6). Three or four champions (/intelligence/the-champion-model) named. The shared workspace (/intelligence/setting-up-your-ai-workspace) set up properly. The first batch of people start using it for daily work. Capability begins to compound.
 
@@ -3142,9 +3138,9 @@ The phases overlap. They are not crisp gates. But the order matters. Skipping Ph
 
 ## The four resistance patterns and what to do about them
 
-Resistance is not a problem to be eliminated. It is information. Four patterns recur, and each has a response that works.
+Resistance is information, not a problem to eliminate. Four patterns recur, and each has a response that works.
 
-The Sceptic. "I tried it once, it was wrong, this is overhyped." Usually a senior, experienced operator who is not wrong about much. The response is not a deck. It is a one-on-one demonstration of a real workflow that solves a problem they actually have. Sceptics convert when they see leverage in their own hands; they never convert from a presentation.
+The Sceptic. "I tried it once, it was wrong, this is overhyped." Usually a senior, experienced operator who is not wrong about much. The response is a one-on-one demonstration of a real workflow that solves a problem they actually have, not a deck. Sceptics convert when they see the workflow solve their own problem, in their own hands; they never convert from a presentation.
 
 The Worrier. "What about bias? What about confidentiality? What about quality?" These are the right questions. The response is to take the worries seriously and answer them with substance - show the governance work (/intelligence/ai-governance-for-people-teams), the data classification, the human-in-the-loop checkpoints. Worriers, treated well, become some of the strongest advocates because they have stress-tested the work.
 
@@ -3170,7 +3166,7 @@ Treating it as a project with an end date. AI in the People function is not a pr
 
 ## What to measure
 
-Resist the urge to measure usage. Number of prompts, number of users, hours of training delivered - these are vanity numbers. They tell you who is busy, not who is getting leverage.
+Resist the urge to measure usage. Number of prompts, number of users, hours of training delivered - these are vanity numbers. They tell you who is busy, not who is actually faster because of it.
 
 Three things are worth measuring, all qualitative-leaning.
 
@@ -3231,13 +3227,13 @@ Reading first. Building second. Always.
 
 ## Two axes before six
 
-Before the six-axis diagnostic, there is a faster read worth doing. Score the team on two axes from 0 to 10.
+Before the six-axis diagnostic, run a faster read first. Score the team on two axes from 0 to 10.
 
 Tooling. What can your team physically do with AI today? At zero, they have heard of ChatGPT. At three, they paste in context and use Custom GPTs. At five, they are building light automations in Zapier or Make. At seven, they can debug API calls and build self-updating dashboards. At nine, they are deploying small internal agents wired to your stack. At ten, they probably should not be in HR any more.
 
-Strategy. What is the AI actually doing inside the function? At zero, nothing. At two, low-stakes time savers like rewording job ads. At five, AI use is encouraged, a champion has built playbooks, KPIs are starting to attach. At seven, AI is the default in some core areas: performance, onboarding, internal comms. At nine, your AI-enabled People workflows are influencing other departments. At ten, AI is not an add-on, it is how the function delivers.
+Strategy. What is the AI actually doing inside the function? At zero, nothing. At two, low-stakes time savers like rewording job ads. At five, AI use is encouraged, a champion has built playbooks, KPIs are starting to attach. At seven, AI is the default in some core areas: performance, onboarding, internal comms. At nine, your AI-enabled People workflows are influencing other departments. At ten, AI is how the function delivers.
 
-The point is not the number. The point is the gap. Tooling at six and strategy at two means the team can build but is building the wrong things. Strategy at five and tooling at two means leadership has bought the story but the team cannot ship. Both look like progress on a slide and feel like nothing on a Tuesday.
+Forget the number. Look at the gap. Tooling at six and strategy at two means the team can build but is building the wrong things. Strategy at five and tooling at two means leadership has bought the story but the team cannot ship. Both look like progress on a slide and feel like nothing on a Tuesday.
 
 Once you know roughly where you are on the two axes, the six-axis diagnostic tells you what to actually do about it.
 
@@ -3253,7 +3249,7 @@ A function with one clean source of truth can build retrieval-grounded workflows
 
 ### 2. Process clarity
 
-For each major workflow, sourcing, screening, interviewing, onboarding, performance, comp review, can the team draw it on a whiteboard in five minutes? If yes, that workflow is buildable. If no, the workflow has to be made legible before it can be augmented. Often the diagnostic conversation alone produces this clarity, and the building gets easier as a side effect.
+For each major workflow, sourcing, screening, interviewing, onboarding, performance, comp review, can the team draw it on a whiteboard in five minutes? If yes, that workflow is buildable. If no, the workflow needs to get simple and mapped before AI touches it. Often the diagnostic conversation alone produces this clarity, and the building gets easier as a side effect.
 
 ### 3. Tool fragmentation
 
@@ -3263,7 +3259,7 @@ How many tools does the average workflow touch? Three is workable. Seven is not.
 
 Who in the team has, on their own time, played with AI? Who has not? A function with three or four already-curious people across different sub-teams can stand up the champion model (/intelligence/the-champion-model) in a quarter. A function with one curious person and twelve sceptics needs a different approach, usually a ground-up enablement programme before any building starts.
 
-This is not about training. It is about who is ready to build now versus who needs to see it work first. Both groups exist in every team. The diagnostic finds them.
+Some people are ready to build now. Others need to see it work first. Both groups exist in every team. The diagnostic finds them.
 
 ### 5. Sponsor presence
 
@@ -3279,7 +3275,7 @@ A regulated company moves differently from a 60-person scaleup. Both can build. 
 
 ## Reading the result
 
-The diagnostic produces a six-line summary. Not a score out of ten. Not a maturity model. A short, honest description of where the function actually stands on each axis, and what that implies about the order of the work.
+The diagnostic produces a six-line summary: a short, honest description of where the function actually stands on each axis, and what that implies about the order of the work.
 
 A typical reading might look like:
 
@@ -3287,7 +3283,7 @@ A typical reading might look like:
 
 From that, the build order writes itself. Start with TA workflows where the data is good and the process is clear. Use the four curious people as initial champions. Set up governance early because the risk posture demands it. Leave performance work for phase two, after the process gets cleaned up.
 
-The diagnostic is not the strategy. It is the thing that makes the strategy obvious.
+The diagnostic makes the strategy obvious. That's the whole job.
 
 ## Capability maturity, by function
 
@@ -3308,7 +3304,7 @@ Skipping the diagnostic feels like speed. It is the most expensive form of slow.
 
 Read first. The building is faster afterwards, every time. The first concrete build, in almost every case we have seen, is setting up the team's AI workspace (/intelligence/setting-up-your-ai-workspace) so that subsequent workflows have somewhere to live. From there, the domain map (/intelligence/the-people-ops-ai-domain-map) tells you where to point the build effort, and the move from prompts to systems (/intelligence/from-prompts-to-systems) tells you what the work looks like once you start.
 
-The point of the diagnostic is not to grade the team. It is to make the next move obvious.
+Grading the team was never the point. Knowing what to build next was.
 
 ## What this connects to
 
@@ -3339,7 +3335,7 @@ DESCRIPTION: Most People teams pick AI workflows by instinct or by what is loude
 
 TLDR:
 - A workflow assessment framework gives you a defensible way to choose what to automate, redesign, or leave alone.
-- Five lenses: frequency, latency, judgment, risk, ownership.
+- Four dimensions: value, frequency, fit, risk.
 - Most People teams automate by feel. Feel optimises for novelty, not value.
 - Use the framework once and it changes how the next ten decisions get made.
 
@@ -3347,7 +3343,7 @@ The question we get asked more than any other is some version of: we know there 
 
 The honest answer is that most teams choose badly. They pick the workflow someone is loudest about, or the one that sounds most impressive on a slide, or the one a vendor demoed last week. Three months later, the build is half-finished, the team is sceptical, and the next workflow gets harder to fund.
 
-There is a better way. It is not complicated. It is a scoring exercise that takes an afternoon, properly done, and turns a wishlist into a sequenced plan you can defend to the CFO.
+There is a better way, and it is not complicated: a scoring exercise that takes an afternoon, properly done, and turns a wishlist into a sequenced plan you can defend to the CFO.
 
 > Score each candidate workflow on four dimensions: value, frequency, fit, risk. A wishlist becomes a 90-day plan you can defend.
 
@@ -3380,7 +3376,7 @@ Take a real People Ops backlog from a 250-person company. Six candidate workflow
 
 Three workflows separate from the pack: kickoff doc generation, interview scorecard summarisation, and the onboarding sequence. All three are weekly or near-weekly, score well on fit, and carry manageable risk.
 
-The performance calibration workflow - which was, predictably, the one most loudly requested - scores poorly. Not because it has no value (it does), but because it is annual, a poor fit for current AI, and high-risk. That does not mean never. It means later, with much more guardrail design, after the team has built confidence on simpler work.
+The performance calibration workflow - which was, predictably, the one most loudly requested - scores poorly. It has real value. It is also annual, a poor fit for current AI, and high-risk, so it waits, and comes back later with proper guardrail design, once the team has built confidence on simpler work.
 
 This is the conversation the framework forces. The loudest request is rarely the best first workflow. The data lets you have that conversation without it being personal.
 
@@ -3406,7 +3402,7 @@ Group workflows by shared infrastructure. If three of your top scorers all need 
 
 Reserve 20% of build capacity for the unscoreable. Some of the highest-leverage work in a year comes from things that did not exist when you scored. A regulatory change, a reorg, a tool deprecation, an opportunistic experiment a champion brings back from a course. If 100% of build time is committed to the scored backlog, none of these get done. Reserve a fifth of the time and the team retains the ability to respond.
 
-A 90-day roadmap that emerges from this exercise typically looks like: one cluster of three workflows shipped, one harder solo workflow underway, and one opportunistic build that surprised everyone. Not glamorous. Genuinely transformative if you do it three quarters in a row.
+A 90-day roadmap that emerges from this exercise typically looks like: one cluster of three workflows shipped, one harder solo workflow underway, and one opportunistic build that surprised everyone. Not glamorous. It compounds, quarter after quarter.
 
 ## When to re-score
 
@@ -3416,11 +3412,11 @@ Re-scoring is also the moment to retire workflows that have not been built. If s
 
 ## The framework's real job
 
-The framework is not really about prioritisation. It is about giving the team a shared language for talking about which AI work is worth doing. Without it, every conversation about a new workflow turns into either enthusiasm or doubt - both of which are exhausting and neither of which scales.
+The real job of the framework has nothing to do with prioritisation. It gives the team a shared language for talking about which AI work is worth doing. Without it, every conversation about a new workflow turns into either enthusiasm or doubt - both of which are exhausting and neither of which scales.
 
 With it, the conversation gets shorter and better. Someone proposes a workflow. The team scores it together. The score either confirms what everyone suspected, or it surfaces a disagreement worth having. Either outcome moves the work forward.
 
-That is the test of a good framework. Not that it produces perfect rankings. That it makes the next conversation easier than the last one. Score the backlog. Sequence the build. Ship the first cluster. Then re-score, and do it again. Three quarters in, you will have an automation portfolio that the team understands, the CFO can defend, and the function genuinely depends on.
+That is the test of a good framework: not perfect rankings, a conversation that gets easier every time. Score the backlog. Sequence the build. Ship the first cluster. Then re-score, and do it again. Three quarters in, you will have an automation portfolio that the team understands, the CFO can defend, and the function genuinely depends on.
 
 That is what a working People Ops automation roadmap looks like. It is built from a spreadsheet, not a strategy deck.
 
@@ -3435,7 +3431,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - Leading the AI transformation in People (/intelligence/leading-the-ai-transformation)
 
 KEY TAKEAWAYS:
-- Score every candidate workflow on the same five lenses.
+- Score every candidate workflow on the same four dimensions.
 - High-judgment, high-risk workflows stay human-led. AI assists, never decides.
 - Document the call. The framework only compounds if the reasoning is visible later.
 
@@ -3458,9 +3454,9 @@ TLDR:
 - Bespoke agents are seductive and rarely the right first move.
 - Pay-off is a function of how cleanly the workflow was designed, not how clever the model was.
 
-Theory only goes so far. At some point a team needs to see what an AI-augmented People workflow actually looks like - what gets built, in what order, with what tools - before the abstract advice lands. So this piece is concrete. Six patterns we keep seeing work, in roughly the order most teams should approach them.
+Six patterns. That's most of what AI actually does inside a People function, once you strip away the roadmap decks and the agent hype. Here they are, in the order most teams should build them, with the tools that make them work.
 
-The stack we usually recommend, for what it's worth: a workflow tool (n8n if you want self-hosted, Make if you want managed, Zapier if you want zero learning curve), an LLM provider with enterprise terms, the company's HRIS as source of truth, and Slack or email as the surface where humans interact. That is enough.
+The stack we recommend: a workflow tool (n8n if you want self-hosted, Make if you want managed, Zapier if you want zero learning curve), an LLM provider with enterprise terms, the company's HRIS as source of truth, and Slack or email as the surface where humans interact. That is enough.
 
 > Six concrete People Ops automation patterns. Built with n8n, an LLM, and a champion. Live in weeks, not quarters.
 
@@ -3470,7 +3466,7 @@ The painful version: 200 applications come in for a role. A recruiter spends a d
 
 The augmented version: every application runs through a workflow that pulls the JD requirements, summarises the candidate against them, flags the obvious passes (with rationale), surfaces the obvious progresses (with rationale), and routes the genuinely ambiguous middle to a recruiter with a one-paragraph précis. The recruiter spends their day on the 30 per cent that needed a human. The other 70 per cent is dispatched in an hour with a logged rationale.
 
-Critical detail: the workflow never decides. It surfaces and prepares. The recruiter clicks. The audit log captures everything.
+Critical detail: the workflow surfaces and prepares, nothing more. The recruiter clicks. The audit log captures everything.
 
 ## Pattern 2 - Interview scorecard summarisation
 
@@ -3478,7 +3474,7 @@ The painful version: four interviewers run four panels. Four scorecards arrive i
 
 The augmented version: scorecards land in a structured form. The workflow assembles them, identifies points of disagreement, surfaces direct quotes that matter, and produces a synthesised brief with the contradictions made explicit. The hiring manager arrives at the debrief with the disagreements visible, not buried. The conversation is sharper.
 
-This is where AI earns its keep - not by producing the answer, but by making the disagreement legible.
+This is where AI earns its keep - making the disagreement legible before the room ever sits down.
 
 ## Pattern 3 - First-week onboarding sequencing
 
@@ -3494,7 +3490,7 @@ The painful version: every manager is supposed to do monthly 1:1 retrospectives 
 
 The augmented version: the workflow tracks who has had a check-in in the last 30 days, drafts a personalised reminder for the manager (with last cycle's themes pulled in if the manager opted into memory), and gives the HRBP a weekly one-page heatmap. The manager spends 30 seconds turning the draft into a sent message. The HRBP can see the function rather than guessing at it.
 
-This is the workflow that, in our experience, most directly changes the culture. Visibility is its own intervention.
+This is the workflow that most directly changes the culture. Visibility is its own intervention.
 
 ## Pattern 5 - Policy and handbook Q&A
 
@@ -3502,13 +3498,13 @@ The painful version: the People team gets the same fifteen questions every week.
 
 The augmented version: a Slack-integrated assistant grounded on the actual handbook (and only the handbook) answers the standard questions with citations. Anything outside scope gets routed to a human. The answers improve as edge cases get added. The People team gets back to the work that needs them.
 
-The hard part here is not the model. It is keeping the handbook actually current. AI surfaces the documentation hygiene problem you already had.
+The hard part is keeping the handbook actually current. Get that wrong and the assistant answers confidently from stale policy. AI surfaces the documentation hygiene problem you already had.
 
 ## Pattern 6 - Performance cycle preparation
 
 The painful version: performance review week. Managers stare at a blank page trying to remember the last six months for each report. The result is a review weighted heavily toward the last three weeks of work.
 
-The augmented version: the workflow assembles a personalised pre-read for each manager - significant project moments pulled from where work actually happens (Linear, GitHub, sales records, project tools), the report's own self-reflection, peer feedback if collected, last cycle's commitments. The manager arrives at the blank page with material. The review is grounded in the year, not the week.
+The augmented version: the workflow assembles a personalised pre-read for each manager - concrete project moments pulled from where work actually happens (Linear, GitHub, sales records, project tools), the report's own self-reflection, peer feedback if collected, last cycle's commitments. The manager arrives at the blank page with a full year already assembled, project moments and all.
 
 The model never writes the review. It prepares the table.
 
@@ -3562,7 +3558,7 @@ TLDR:
 
 It is hard to think clearly about AI in a People function while you are inside any one workflow. The detail of should this prompt include the JD or just the requirements list swallows the larger question of where, across the whole function, is AI worth investing in at all.
 
-So this piece is a map. Not a strategy. A picture of the estate. Five domains, each with the patterns that tend to work, the patterns that tend to disappoint, and a sense of where the leverage actually sits.
+So this piece is a map: five domains, each with the patterns that tend to work, the patterns that tend to disappoint, and where the leverage actually sits.
 
 Use it as a wall to pin your own work against. Anywhere a domain is empty in your function is a place to look. Anywhere it is crowded is a place to consolidate.
 
@@ -3586,7 +3582,7 @@ Where AI consistently helps: first-week sequencing and nudging; manager prompts 
 
 Where AI consistently disappoints: "AI buddy" chatbots that try to replace human connection in the first week; anything that automates a moment where the new joiner needed a person.
 
-The grain: lifecycle work has clear handoffs and templates already. AI is mostly making the templates living, not replacing the humans in the moments that matter. The bar for adoption is low because the alternative is "a coordinator forgot."
+The grain: lifecycle work has clear handoffs and templates already. AI's job is to keep the templates alive. The moments that need a person still get one. The bar for adoption is low because the alternative is "a coordinator forgot."
 
 ## Domain 3 - Performance & Development
 
@@ -3628,7 +3624,7 @@ Second, walk across again and ask: where is the data clean enough to build now? 
 
 Third, leave the rest alone. The domains where you are not yet building are not failures - they are the next quarters' work. Trying to move on all five at once produces five half-built things and one exhausted champion. The map exists so you can see the whole picture and still pick.
 
-The function that has built across all five domains in eighteen months looks unrecognisable. The function that tried to build across all five domains at once looks unchanged. Same map. Different sequencing. The shared substrate underneath every domain is the team's AI workspace (/intelligence/setting-up-your-ai-workspace), and the shared scaffold underneath that is an AI operating system (/intelligence/what-is-an-ai-operating-system) shaped to People.
+The function that has built across all five domains in eighteen months looks unrecognisable. The function that tried to build across all five domains at once looks unchanged. Same map. Different sequencing. Every domain runs on the same base: the team's AI workspace (/intelligence/setting-up-your-ai-workspace), and underneath that, an AI operating system (/intelligence/what-is-an-ai-operating-system) shaped to People.
 
 ## What this connects to
 
@@ -3663,7 +3659,7 @@ TLDR:
 - Pair every quantitative metric with a qualitative read. The numbers lie alone.
 - Reporting AI value is a craft. Treat it like one.
 
-Sooner than most CPOs expect, the CFO will ask a version of: what has this AI work returned? The wrong answer is a story about how everyone feels more productive. The right answer is a small set of numbers, defended honestly, that show where the leverage actually came from and where it did not.
+Sooner than most CPOs expect, the CFO will ask a version of: what has this AI work returned? The wrong answer is a story about how everyone feels more productive. The right answer is a small set of numbers, defended honestly, that show where the gains actually came from and where they did not.
 
 This piece is about how to build that answer. It is not about gaming a measurement framework to make AI look good. It is about measuring properly so the work that earns its keep gets continued investment, and the work that does not gets retired.
 
@@ -3765,7 +3761,7 @@ A function that gets both stories right - the hard numbers for the board, the li
 
 ROI matters most in the first eighteen months, when the work needs justifying. After that, AI in the People function should be like the HRIS - you do not calculate the ROI of having one, because not having one is not on the table.
 
-The signal that you have got there is when the CFO stops asking the question. Not because they have lost interest, but because the answer has become obvious. The function ships work. The work compounds. The numbers, when looked at, hold up. The conversation has moved on to what the team does next, not whether the investment was worth it.
+The signal that you have got there is when the CFO stops asking the question. Not because they have lost interest, but because the answer has become obvious. The function ships work. The work compounds. The numbers, when looked at, hold up. The conversation has moved on to what the team does next.
 
 That is the destination. The measurement work above is how you get there without losing the room on the way.
 

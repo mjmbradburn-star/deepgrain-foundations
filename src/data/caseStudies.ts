@@ -14,7 +14,7 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "Defence Technology · Series B · ~200 employees · 12 week engagement",
     headline: "83 hours reclaimed.\nEvery week.",
     body: [
-      "A rapidly scaling defence technology company had hit the classic post Series B bottleneck. Manual processes couldn't keep pace with growth. Finance was buried in AP and AR admin. People Ops was fielding the same policy questions every day.",
+      "A defence technology company scaling fast had hit the post Series B bottleneck. Manual processes couldn't keep pace with growth. Finance was buried in AP and AR admin. People Ops was fielding the same policy questions every day.",
       "The effort was there. What had never been done was a proper read of how the work actually happened, so nothing built on top of it ever quite fit.",
     ],
     metrics: [
@@ -38,7 +38,7 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "Financial Data and Analytics · ~600 employees · Multi cohort programme",
     headline: "15 people. 5 squads.\n5 deployed solutions.",
     body: [
-      "A sophisticated financial data business needed its People function to operate differently. Not just to use AI, but to build with it. The capability was there. The work was to move the whole team up the maturity curve together, building real tools rather than running generic training.",
+      "A financial data business needed its People function to operate differently. Not just to use AI, but to build with it. The capability was there. The work was to move the whole team up the maturity curve together, building real tools rather than running generic training.",
       "Five cross functional workstreams. Each squad owned a specific problem and shipped a live solution. Discovery to delivery in seven weeks.",
     ],
     metrics: [
@@ -71,7 +71,7 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "Climate Consultancy · Growth stage · ~60 employees",
     headline: "The right systems\nfor the next phase.",
     body: [
-      "A specialist climate consultancy scaling through significant growth needed its Associate Lifecycle redesigned from scratch. Onboarding through to offboarding, with AI woven through every stage.",
+      "A specialist climate consultancy scaling fast needed its Associate Lifecycle redesigned from scratch. Onboarding through to offboarding, with AI woven through every stage.",
       "A new operating model rather than a new tool. Built to compound as the organisation continued to grow.",
     ],
     metrics: [],

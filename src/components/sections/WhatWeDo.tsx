@@ -8,8 +8,8 @@ const items: { number: string; title: string; body: Segment[] }[] = [
     number: "01",
     title: "Read",
     body: [
-      { text: "A 30-day operating diagnostic. We read where work actually flows, where decisions get made, and where " },
-      { text: "AI leverage is sitting unused", highlight: true },
+      { text: "A 30-day operating diagnostic. We read where the work actually flows, where the decisions get made, and where " },
+      { text: "AI should be doing the work and isn't", highlight: true },
       { text: "." },
     ],
   },
@@ -21,7 +21,7 @@ const items: { number: string; title: string; body: Segment[] }[] = [
       { text: "Agents and automations built into the workflow, function by function.", highlight: true },
       { text: " Plus the " },
       { text: "enablement and training", highlight: true },
-      { text: " so the team can run them." },
+      { text: " so your team runs them without me." },
     ],
   },
   {

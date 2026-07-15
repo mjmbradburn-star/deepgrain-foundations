@@ -8,6 +8,11 @@ interface AnimatedNumberProps {
   prefix?: string;
   /** If true, animate every time `value` changes (not just on first reveal). Useful for live calculators. */
   live?: boolean;
+  /**
+   * If true, count up from 0 to `value` once, the first time the element
+   * scrolls into view. Opt-in ticker for stat anchors. Ignored when `live`.
+   */
+  countUp?: boolean;
   className?: string;
   formatter?: (n: number) => string;
 }
@@ -29,12 +34,14 @@ const AnimatedNumberInner = forwardRef<HTMLSpanElement, AnimatedNumberProps>(({
   suffix = "",
   prefix = "",
   live = false,
+  countUp = false,
   className,
   formatter,
 }, forwardedRef) => {
   // Render the final value on first paint so the number is never visibly 0.
   // Reveal mode then re-runs the count-up from 0 once the element scrolls into view.
-  const [display, setDisplay] = useState(value);
+  // countUp mode deliberately starts at 0 and tickers up on scroll-into-view.
+  const [display, setDisplay] = useState(countUp && !live ? 0 : value);
   const ref = useRef<HTMLSpanElement>(null);
   const startedRef = useRef(false);
   const fromRef = useRef(0);
@@ -68,12 +75,38 @@ const AnimatedNumberInner = forwardRef<HTMLSpanElement, AnimatedNumberProps>(({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, live]);
 
-  // Reveal mode: no count-up. The final value is shown on first paint so the
-  // number is never visibly 0. Visual flourish lives in sibling reveal effects.
+  // countUp mode: ticker from 0 → value once, the first time we scroll in.
   useEffect(() => {
-    if (live) return;
+    if (live || !countUp) return;
+    const node = ref.current;
+    if (!node) return;
+    if (prefersReducedMotion()) {
+      setDisplay(value);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !startedRef.current) {
+            startedRef.current = true;
+            animate(0, value);
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(node);
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, live, countUp]);
+
+  // Reveal mode (default): no count-up. The final value is shown on first paint
+  // so the number is never visibly 0. Flourish lives in sibling reveal effects.
+  useEffect(() => {
+    if (live || countUp) return;
     setDisplay(value);
-  }, [value, live]);
+  }, [value, live, countUp]);
 
   const formatted = formatter
     ? formatter(display)

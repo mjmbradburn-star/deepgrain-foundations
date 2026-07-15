@@ -1,7 +1,25 @@
 import { Link } from "react-router-dom";
 import { BarkGrain } from "@/components/ui/BarkGrain";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+import { Parallax } from "@/components/ui/Parallax";
 import { track } from "@/lib/analytics";
+
+/** Trailing arrow nested in its own circular wrapper, with magnetic hover. */
+const ArrowCircle = ({ tone = "green" }: { tone?: "green" | "cream" }) => (
+  <span
+    aria-hidden
+    className={[
+      "ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
+      "group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105",
+      tone === "green" ? "bg-green/10 text-green" : "bg-cream/10 text-cream",
+    ].join(" ")}
+  >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  </span>
+);
 
 const ChevronDown = ({ size = 28 }: { size?: number }) => (
   <svg
@@ -56,6 +74,10 @@ export const HeroDeck = () => {
       <BarkGrain />
       <div className="absolute inset-0 bg-gradient-to-r from-green/85 via-green/55 to-green/20 pointer-events-none z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-b from-green/40 via-transparent to-green/40 pointer-events-none z-[1]" />
+      {/* Brass topographic ridge on a deeper plane, drifting on scroll. */}
+      <Parallax speed={0.12} max={80} className="absolute inset-y-[-15%] right-0 w-[65%] z-[2] pointer-events-none hidden md:block">
+        <TopoBackdrop variant="ridge" opacity={0.22} />
+      </Parallax>
 
       <div className="relative z-10 container-grain pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-16 lg:pb-20 w-full">
         <div className="hidden md:flex items-center justify-between mb-6 md:mb-8 lg:mb-6">
@@ -92,17 +114,18 @@ export const HeroDeck = () => {
           <Link
             to="/readiness"
             onClick={onReadiness}
-            className="group inline-flex items-center gap-2 rounded-full bg-cream text-green px-7 py-3.5 font-sans text-sm tracking-wider hover:bg-cream/90 transition-all"
+            className="group inline-flex items-center gap-1 rounded-full bg-cream text-green pl-7 pr-3 py-2.5 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/90 active:scale-[0.98] shadow-[0_1px_0_hsl(var(--cream)/0.6)_inset]"
           >
             Score your People function in 8 minutes
-            <span className="transition-transform group-hover:translate-x-0.5">→</span>
+            <ArrowCircle tone="green" />
           </Link>
           <Link
             to={auditHref}
             onClick={onAudit}
-            className="inline-flex items-center gap-2 rounded-full border border-cream/40 text-cream px-7 py-3.5 font-sans text-sm tracking-wider hover:bg-cream/10 transition-all"
+            className="group inline-flex items-center gap-1 rounded-full border border-cream/40 text-cream pl-7 pr-3 py-2.5 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/10 active:scale-[0.98]"
           >
-            Book a Grain Audit →
+            Book a Grain Audit
+            <ArrowCircle tone="cream" />
           </Link>
         </div>
 

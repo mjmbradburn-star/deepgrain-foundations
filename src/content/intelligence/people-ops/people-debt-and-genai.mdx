@@ -16,23 +16,23 @@ export const frontmatter = {
 export const faqs = [
   {
     question: "What is people debt?",
-    answer: "The accumulated cost of decisions the People function has deferred or fudged: inconsistent levelling, undocumented processes, decision rights nobody can name, comp bands that drifted, performance criteria that mean different things in different teams. Like technical debt, it compounds invisibly until you try to build on top of it.",
+    answer: "The accumulated cost of decisions the People function deferred rather than made: levelling that varies by manager, decision rights nobody wrote down, processes that only run because one person remembers the exceptions. It compounds like technical debt, quietly, until someone tries to build on top of it. The tell is simple: ask two people the same policy question and get two different answers, both delivered with total confidence.",
   },
   {
     question: "How does GenAI expose people debt?",
-    answer: "Every AI workflow needs structured inputs and clear rules. The moment you try to automate a People process, you discover which steps were never written down, which approvals were political rather than logical, and which definitions vary by team. AI is unforgiving of ambiguity. People debt is mostly ambiguity.",
+    answer: "Speed. A new hire can take six months to notice your promotion criteria contradict themselves, and even then they usually just quietly work around it. A model tries to apply those criteria on day one, to every case at once, and fails immediately and visibly. AI does not tolerate the same ambiguity a human absorbs without comment.",
   },
   {
     question: "Should we pay down people debt before adopting AI?",
-    answer: "No. You will never pay it all down, and waiting means losing the AI window. The right move is concurrent: pick the workflows you want to automate first, pay down the specific debt those workflows surface, and let the AI work create the forcing function for the cleanup.",
+    answer: "No. Do it concurrently, inside the same sprint as the build, not as a separate cleanup project that has to finish first. Pick the workflow, pay down only the debt that workflow surfaces, build. If the cleanup is taking longer than the build, you picked the wrong workflow to start with, drop to a smaller one.",
   },
   {
     question: "What is the order to repay people debt?",
-    answer: "By blast radius. Definitions first (what does \"senior\" mean here, what counts as a high-performer, what is the actual hiring loop). Then decision rights (who approves what, in writing). Then processes (the ones you are about to automate). Then artefacts (templates, scorecards, handbooks). Skipping definitions leads to automating ambiguity, which produces confidently wrong outputs at scale.",
+    answer: "By blast radius, not comfort. Definitions first: what \"senior\" means, what counts as a high performer, what the hiring loop actually is step by step. Every later workflow inherits these. Then decision rights, written down, one meeting is usually enough once someone is willing to own the call. Then the processes you are about to automate, documented as they should run, not as they currently limp through. Artefacts last: templates and scorecards fall out of the work for free. Skip the order and you get a fast, confident, wrong model.",
   },
   {
     question: "Where does this fit in a 90-day plan?",
-    answer: "The first 30 days. The diagnostic phase identifies the highest-debt workflows, and the data and definitions cleanup happens before any meaningful build. Then prove value on the cleaned-up workflows in days 31 to 60, harden and scale in days 61 to 90.",
+    answer: "The first 30 days, no more. The diagnostic phase finds the highest-debt workflows, and the definitions and data cleanup happens before any meaningful build starts. Days 31 to 60 prove value on the cleaned-up workflows. Days 61 to 90 harden and scale. If the cleanup is still running past day 30, the workflow you picked has too much debt under it, switch to a smaller one.",
   },
 ];
 
@@ -47,7 +47,7 @@ There is a moment, usually about three weeks into the first AI workflow build, w
 
 This is people debt becoming visible.
 
-<Takeaway>GenAI does not create people debt. It exposes it. The good news: it also gives you the leverage and the deadline to repay it.</Takeaway>
+<Takeaway>GenAI does not create people debt. It exposes it, and it hands you the deadline to fix it before anyone else notices.</Takeaway>
 
 ## What people debt is
 
@@ -84,7 +84,7 @@ The temptation is to clean everything. Resist. Pay down debt by blast radius:
 
 1. **Definitions first.** What does "senior" mean here. What counts as a high-performer. What is the actual hiring loop, step by step. These show up in every workflow downstream. Cleaning them once pays interest on every later piece of work.
 2. **Decision rights.** Written down. Who approves what, with what limits, and what the escalation looks like. Without this, every automated workflow eventually hits a step where it does not know who to route to.
-3. **Processes you are about to automate.** Not all processes. Just the ones touched by the next two or three workflows. Document them as they should run, not as they currently run. Use the build as the forcing function.
+3. **Processes you are about to automate.** Not all processes. Just the ones touched by the next two or three workflows. Document how they should run. Not how they limp along today. Use the build as the forcing function.
 4. **Artefacts.** Templates, scorecards, handbooks. The cleanup falls out of the work. Almost never worth doing in advance.
 
 Skipping definitions is the most common mistake. Teams jump straight to processes, automate ambiguity, and produce confidently wrong outputs at scale. The model amplifies whatever ambiguity it inherits.
@@ -97,7 +97,7 @@ The pattern repeats. AI work creates the deadline. The deadline creates the clea
 
 ## The asset hidden inside the debt
 
-Pay down people debt while building AI workflows and you end up with two things instead of one. You have the workflow. You also have a documented, current, defensible version of the underlying process, with named owners, written rules, and clean inputs. That second thing is the more valuable of the two. It is the foundation every later workflow stands on.
+Pay down people debt while building AI workflows and you end up with two things instead of one. You have the workflow. You also have a documented, current, defensible version of the underlying process, with named owners, written rules, and clean inputs. That second thing is worth more than the workflow. It is the foundation every later workflow stands on.
 
 Skip the cleanup and you build castles on sand. Do it as you build, and each new workflow makes the next one easier.
 

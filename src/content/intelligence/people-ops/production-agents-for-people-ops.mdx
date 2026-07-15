@@ -16,24 +16,24 @@ export const frontmatter = {
 export const faqs = [
   {
     question: "What is the actual definition of an AI agent in a business context?",
-    answer: "A system that can take a goal, decide a next action, use tools, persist state, and move work forward with auditability. Not a chatbot that browses the web. Not a workflow with an LLM step. Closer to a junior operator with superpowers, who needs a clear job, access to the right systems, rules about what it can and cannot do, memory, a way to recover when things go wrong, and a human escalation path.",
+    answer: "A system that takes a goal, decides the next action, calls tools, keeps state, and leaves an audit trail. A Zendesk macro that fires back canned text isn't one. A Zapier zap that forwards an email isn't one either. The test: can it decide what to do next on its own, and can you see why afterwards? Miss either and it's automation wearing an agent costume, not a junior operator with superpowers.",
   },
   {
     question: "Why do most agents fail in production?",
-    answer: "Lack of context, lack of state, lack of guardrails. Most teams spend 80% of their time choosing the model and 20% on what the agent actually needs to succeed. The ratio should be reversed. The model is a tuning decision. Context, state, tooling contracts, exception handling, observability, and human escalation are the difference between an agent worth real money and one worth nothing.",
+    answer: "Lack of context, lack of state, lack of guardrails. Most teams spend 80% of their time choosing the model and 20% on what the agent actually needs to succeed. The ratio should be reversed. The model is a tuning decision. Context, state, tooling contracts, exception handling, observability, and human escalation are what separate an agent worth real money from one worth nothing.",
   },
   {
     question: "Why does data matter more than apps for HR automation?",
-    answer: "Buying another HR app adds another silo. The bottleneck for most People functions is not features, it is the fact that data lives across HRIS, ATS, payroll, performance, and engagement systems that do not talk to each other. Building the integration and orchestration layer (often with n8n or similar) creates more leverage than buying a tenth tool. Apps add more layers. Data and orchestration remove them.",
+    answer: "Because features don't fix a discovery problem. HRIS, ATS, payroll, performance, and engagement systems don't share a language, so nobody has one clean view of an employee. Wire that up with n8n or similar and you get more capability than the tenth SaaS tool ever ships. Rule of thumb: if you can't pull the data through an API today, don't build an agent on top of it tomorrow.",
   },
   {
     question: "Where should we start with agents in People Ops?",
-    answer: "Not with agents. Start with workflows you can document, automations you can stabilise, and clean data the agent can rely on. Then pick one well-bounded use case, an FAQ agent on policy, an onboarding orchestrator, a comp benchmarking research agent, with explicit guardrails and a clear escalation path. Build small, audit hard, expand only when the small thing has earned trust.",
+    answer: "Not with agents. Start with workflows you can document and automations that already run clean. Once the data feeding them is trustworthy, pick one bounded use case, a policy FAQ bot, an onboarding step-trigger, a comp research assistant, and give it a real escalation path from day one. Don't expand scope until it has handled real cases for a few weeks without you babysitting it.",
   },
 ];
 
 <TLDR>
-- A production agent is not a prompt with ambition. It is a workflow with state, evals, and an owner.
+- A production agent has state, evals, and an owner. A prompt with ambition has none of those.
 - Most agents in People Ops are stuck in demo loops because nobody owns the production version.
 - Production demands the boring work: error handling, logging, fallback, review.
 - Two well-run production agents beat ten experimental ones every time.
@@ -41,7 +41,7 @@ export const faqs = [
 
 Most "agents" in People Ops today are demos with ambition. They work on a clean test case and fall over the moment they meet a real employee, a real policy edge, a real Friday afternoon.
 
-This is fixable. The agents that survive contact with production share a pattern. The ones that fail share an opposite pattern. Knowing the difference is the difference between an automation programme that compounds and one that quietly gets retired.
+This is fixable. The agents that survive production share a pattern. The ones that fail share the opposite one. Get it right and the automation programme compounds. Get it wrong and it quietly gets retired.
 
 <Takeaway>Most People Ops "agents" are demos with ambition. The ones that ship share a pattern: data first, structured context, exception handling, observability, human escalation.</Takeaway>
 
@@ -49,13 +49,13 @@ This is fixable. The agents that survive contact with production share a pattern
 
 A common reflex in People Ops: there is a problem, so buy a tool. The market is happy to oblige. There is now an AI tool for every workflow on the org chart.
 
-The reflex is wrong. Most People functions are not held back by missing features. They are held back by the fact that the data sits in silos. The HRIS knows the employee. The ATS knows the candidate. Payroll knows the comp. Performance knows the rating. Engagement knows the sentiment. None of them know each other.
+The reflex is wrong. The data sits in silos, not the features. The HRIS knows the employee. The ATS knows the candidate. Payroll knows the comp. Performance knows the rating. Engagement knows the sentiment. None of them know each other.
 
-Buying a tenth tool adds a tenth silo. The leverage is in the integration and orchestration layer.
+Buying a tenth tool adds a tenth silo. The real value sits in the integration and orchestration layer.
 
 This is why a workflow tool like n8n, or Make, or Zapier at the lower end, often produces more value than the latest specialised HR app. It connects what you already have. It lets a small AI step run inside a workflow that touches the systems where the truth actually lives. It is auditable, fixable, and visible.
 
-A useful test: when something breaks, can you see which step failed? With a connected workflow built in n8n, the answer is yes. With a black-box vendor product, often no. Visibility is the price of being able to fix things at speed, which is the price of being able to scale.
+A useful test: when something breaks, can you see which step failed? With a connected workflow built in n8n, the answer is yes. With a black-box vendor product, often no. Visibility is what lets you fix things fast. Speed is what lets you scale.
 
 ## What an agent actually is
 
@@ -72,7 +72,7 @@ That is more than a chatbot. More than a workflow with an LLM step. It is closer
 - A way to recover when something breaks.
 - A human escalation path.
 
-If any of those are missing, you do not have an agent. You have a roulette wheel with a UI.
+Miss any of those and what you have built is a roulette wheel with a UI.
 
 ## The context stack
 
@@ -127,9 +127,9 @@ Then pick one well-bounded use case. A few that work in practice:
 
 Each of these has the same structure: bounded scope, clear escalation, observable trace, real exception handling. Each one earns the right to expand. None of them try to be the agent that does everything.
 
-The pattern across all of them is the move from [prompts to systems](/intelligence/from-prompts-to-systems), via the [domain map](/intelligence/the-people-ops-ai-domain-map) that tells you where to point the work, supported by the [operating model](/intelligence/ai-enablement-operating-model) that makes the work survive a quarter.
+The pattern across all of them is the same: move from [prompts to systems](/intelligence/from-prompts-to-systems), use the [domain map](/intelligence/the-people-ops-ai-domain-map) to point the work at the right target, and lean on the [operating model](/intelligence/ai-enablement-operating-model) to make it survive a quarter.
 
-Production agents are not magicians. They are operators. Build them like operators, and they will work like operators.
+Production agents are not magicians. They are operators. Build them like operators and they work like operators.
 
 
 

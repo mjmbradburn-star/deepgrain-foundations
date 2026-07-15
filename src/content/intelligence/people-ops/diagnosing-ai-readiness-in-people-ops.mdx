@@ -17,23 +17,23 @@ export const frontmatter = {
 export const faqs = [
   {
     question: "Why diagnose readiness before building anything?",
-    answer: "Because the cost of skipping the diagnostic is not subtle. It shows up four months later as a half-built workflow nobody adopted, a tool the team works around, a champion who burned out trying to drag the function somewhere it was not ready to go. Reading first, building second. Always. The building is faster afterwards, every time.",
+    answer: "Because the cost doesn't disappear if you skip it, it just moves downstream and grows. Four months out it shows up as a rebuild, a tool nobody opens past week three, a champion who quietly stops pushing. Read first. It's cheaper every single time.",
   },
   {
     question: "What is the difference between tooling maturity and strategy maturity?",
-    answer: "Tooling maturity is what your team can physically do with AI today: prompt well, build a Custom GPT, wire an automation, design an end-to-end workflow in n8n, deploy a small agent. Strategy maturity is whether AI is doing anything that matters: tactical drafting, embedded in core processes, or transforming how strategic People work happens. Most teams are mismatched. Tooling outruns strategy, or strategy outruns tooling. The first job of the diagnostic is to see the gap honestly.",
+    answer: "Tooling maturity is what your team can physically do with AI: prompt well, build a Custom GPT, wire an automation, deploy a small agent. Strategy maturity is whether any of that is doing something that matters. Most teams are mismatched, and it rarely shows up on a dashboard. A team at six on tooling and two on strategy can build a beautifully slick Zapier chain that automates the wrong process end to end.",
   },
   {
     question: "What axes should we actually assess?",
-    answer: "Six. None of them about the model. Data hygiene: is there one source of truth or three? Process clarity: can the team draw each major workflow on a whiteboard in five minutes? Tool fragmentation: how many tools does the average workflow touch? Curiosity distribution: who has already played with AI and who has not? Sponsor presence: is there a named senior leader who will defend the champions' time? Risk posture: how does the company think about AI risk?",
+    answer: "Six, and none of them about the model. Data hygiene: one source of truth or three. Process clarity: can the team draw the workflow on a whiteboard in five minutes. Tool fragmentation: three tools per workflow or thirteen. Curiosity distribution: who has played with AI on their own time and who hasn't. Sponsor presence: a named leader who'll defend the champions' hours. Risk posture: cautious culture or move fast. Score all six honestly before you touch a single workflow. Skip one and the diagnostic just tells you a comfortable half-truth.",
   },
   {
     question: "Which axis matters most?",
-    answer: "Sponsor presence. Without a named senior leader who will publicly say \"this is part of how we work now\" and defend the time the champions take, every workflow build will be the first thing dropped when a quarter gets hot. Better predictor than budget, tooling, or capability.",
+    answer: "Sponsor presence, and it isn't close. Everyone assumes it's budget or tooling. Watch what actually happens: a Head of People says out loud, in a leadership meeting, that this is how the team works now, and protects an hour a week for the champions. That one sentence outlasts three quarters of budget cuts. No sponsor, and the whole thing dies at the first bad quarter.",
   },
   {
     question: "What does the diagnostic actually produce?",
-    answer: "A short, honest description of where the function stands on each axis, and what that implies about the order of the work. Not a score out of ten. Not a rolled-up maturity badge. A six-line summary that makes the build order obvious: start where the data is good and the process is clear, use the curious people as initial champions, set up governance early if the risk posture demands it, leave the murky areas for phase two.",
+    answer: "Six lines, plain language, no score attached: HRIS clean or scattered, process mapped or murky, three tools in play or thirteen, two curious people or none, a named sponsor or nobody, cautious culture or move fast. That's it. No slide, no maturity badge, just six honest lines you could read out loud in a stand-up in under a minute.",
   },
 ];
 
@@ -54,13 +54,13 @@ Reading first. Building second. Always.
 
 ## Two axes before six
 
-Before the six-axis diagnostic, there is a faster read worth doing. Score the team on two axes from 0 to 10.
+Before the six-axis diagnostic, run a faster read first. Score the team on two axes from 0 to 10.
 
 **Tooling.** What can your team physically do with AI today? At zero, they have heard of ChatGPT. At three, they paste in context and use Custom GPTs. At five, they are building light automations in Zapier or Make. At seven, they can debug API calls and build self-updating dashboards. At nine, they are deploying small internal agents wired to your stack. At ten, they probably should not be in HR any more.
 
-**Strategy.** What is the AI actually doing inside the function? At zero, nothing. At two, low-stakes time savers like rewording job ads. At five, AI use is encouraged, a champion has built playbooks, KPIs are starting to attach. At seven, AI is the default in some core areas: performance, onboarding, internal comms. At nine, your AI-enabled People workflows are influencing other departments. At ten, AI is not an add-on, it is how the function delivers.
+**Strategy.** What is the AI actually doing inside the function? At zero, nothing. At two, low-stakes time savers like rewording job ads. At five, AI use is encouraged, a champion has built playbooks, KPIs are starting to attach. At seven, AI is the default in some core areas: performance, onboarding, internal comms. At nine, your AI-enabled People workflows are influencing other departments. At ten, AI is how the function delivers.
 
-The point is not the number. The point is the gap. Tooling at six and strategy at two means the team can build but is building the wrong things. Strategy at five and tooling at two means leadership has bought the story but the team cannot ship. Both look like progress on a slide and feel like nothing on a Tuesday.
+Forget the number. Look at the gap. Tooling at six and strategy at two means the team can build but is building the wrong things. Strategy at five and tooling at two means leadership has bought the story but the team cannot ship. Both look like progress on a slide and feel like nothing on a Tuesday.
 
 Once you know roughly where you are on the two axes, the six-axis diagnostic tells you what to actually do about it.
 
@@ -76,7 +76,7 @@ A function with one clean source of truth can build retrieval-grounded workflows
 
 ### 2. Process clarity
 
-For each major workflow, sourcing, screening, interviewing, onboarding, performance, comp review, can the team draw it on a whiteboard in five minutes? If yes, that workflow is buildable. If no, the workflow has to be made legible before it can be augmented. Often the diagnostic conversation alone produces this clarity, and the building gets easier as a side effect.
+For each major workflow, sourcing, screening, interviewing, onboarding, performance, comp review, can the team draw it on a whiteboard in five minutes? If yes, that workflow is buildable. If no, the workflow needs to get simple and mapped before AI touches it. Often the diagnostic conversation alone produces this clarity, and the building gets easier as a side effect.
 
 ### 3. Tool fragmentation
 
@@ -86,7 +86,7 @@ How many tools does the average workflow touch? Three is workable. Seven is not.
 
 Who in the team has, on their own time, played with AI? Who has not? A function with three or four already-curious people across different sub-teams can stand up the [champion model](/intelligence/the-champion-model) in a quarter. A function with one curious person and twelve sceptics needs a different approach, usually a ground-up enablement programme before any building starts.
 
-This is not about training. It is about who is ready to build now versus who needs to see it work first. Both groups exist in every team. The diagnostic finds them.
+Some people are ready to build now. Others need to see it work first. Both groups exist in every team. The diagnostic finds them.
 
 ### 5. Sponsor presence
 
@@ -102,7 +102,7 @@ A regulated company moves differently from a 60-person scaleup. Both can build. 
 
 ## Reading the result
 
-The diagnostic produces a six-line summary. Not a score out of ten. Not a maturity model. A short, honest description of where the function actually stands on each axis, and what that implies about the order of the work.
+The diagnostic produces a six-line summary: a short, honest description of where the function actually stands on each axis, and what that implies about the order of the work.
 
 A typical reading might look like:
 
@@ -110,7 +110,7 @@ A typical reading might look like:
 
 From that, the build order writes itself. Start with TA workflows where the data is good and the process is clear. Use the four curious people as initial champions. Set up governance early because the risk posture demands it. Leave performance work for phase two, after the process gets cleaned up.
 
-The diagnostic is not the strategy. It is the thing that makes the strategy obvious.
+The diagnostic makes the strategy obvious. That's the whole job.
 
 ## Capability maturity, by function
 
@@ -131,7 +131,7 @@ Skipping the diagnostic feels like speed. It is the most expensive form of slow.
 
 Read first. The building is faster afterwards, every time. The first concrete build, in almost every case we have seen, is [setting up the team's AI workspace](/intelligence/setting-up-your-ai-workspace) so that subsequent workflows have somewhere to live. From there, the [domain map](/intelligence/the-people-ops-ai-domain-map) tells you where to point the build effort, and the move from [prompts to systems](/intelligence/from-prompts-to-systems) tells you what the work looks like once you start.
 
-The point of the diagnostic is not to grade the team. It is to make the next move obvious.
+Grading the team was never the point. Knowing what to build next was.
 
 
 

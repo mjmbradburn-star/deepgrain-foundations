@@ -1,4 +1,4 @@
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 
 const builders = [
@@ -14,6 +14,37 @@ const middle = [
 ];
 
 /**
+ * Double-bezel shell: outer machined tray + inner core with concentric radii
+ * and a hairline inset highlight. Mirrors the Bezel used on WorkedExample /
+ * TheBridge so feature cards read as physical hardware, not flat panels.
+ */
+const Bezel = ({
+  children,
+  accent,
+}: {
+  children: React.ReactNode;
+  accent?: boolean;
+}) => (
+  <div
+    className={
+      accent
+        ? "h-full rounded-[2rem] bg-brass/[0.08] p-1.5 ring-1 ring-brass/25 shadow-[0_30px_70px_-45px_hsl(var(--brass)/0.5)]"
+        : "h-full rounded-[2rem] bg-walnut/[0.04] p-1.5 ring-1 ring-walnut/10 shadow-[0_30px_70px_-45px_hsl(var(--walnut)/0.4)]"
+    }
+  >
+    <div
+      className={
+        accent
+          ? "h-full rounded-[1.625rem] bg-brass/[0.05] border border-brass/30 p-8 md:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)]"
+          : "h-full rounded-[1.625rem] bg-cream border border-walnut/10 p-8 md:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.65)]"
+      }
+    >
+      {children}
+    </div>
+  </div>
+);
+
+/**
  * Enablement spine, ported from deck slide 13. The two-column argument:
  * find your builder (where the upside is), then move your middle layer
  * (where the value leaks).
@@ -21,17 +52,17 @@ const middle = [
 export const BuilderVsMiddle = () => (
   <section className="bg-linen text-walnut section-pad">
     <div className="container-grain">
-      <ScrollReveal>
-        <SectionEyebrow tone="linen" className="mb-6">Where the value is</SectionEyebrow>
-        <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">
+      <Reveal>
+        <SectionEyebrow pill tone="linen" className="mb-6">Where the value is</SectionEyebrow>
+        <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl mt-6">
           Find your builder. Move your middle layer.
         </h2>
         <div className="mt-6 h-px w-full bg-brass/40 max-w-4xl" />
-      </ScrollReveal>
+      </Reveal>
 
-      <div className="mt-16 grid lg:grid-cols-2 gap-10 lg:gap-16">
-        <ScrollReveal>
-          <div className="rounded-2xl border border-brass/40 bg-brass/[0.06] p-8 md:p-10 h-full">
+      <div className="mt-14 md:mt-20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
+        <Reveal className="h-full">
+          <Bezel accent>
             <div
               className="font-sans uppercase text-brass mb-3"
               style={{ fontSize: "10px", letterSpacing: "0.22em", fontWeight: 600 }}
@@ -53,11 +84,11 @@ export const BuilderVsMiddle = () => (
                 </li>
               ))}
             </ul>
-          </div>
-        </ScrollReveal>
+          </Bezel>
+        </Reveal>
 
-        <ScrollReveal delay={120}>
-          <div className="rounded-2xl border border-walnut/15 bg-cream/50 p-8 md:p-10 h-full">
+        <Reveal delay={120} className="h-full">
+          <Bezel>
             <div
               className="font-sans uppercase text-walnut/55 mb-3"
               style={{ fontSize: "10px", letterSpacing: "0.22em", fontWeight: 600 }}
@@ -84,8 +115,8 @@ export const BuilderVsMiddle = () => (
                 </li>
               ))}
             </ul>
-          </div>
-        </ScrollReveal>
+          </Bezel>
+        </Reveal>
       </div>
     </div>
   </section>

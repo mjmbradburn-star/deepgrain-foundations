@@ -1,12 +1,45 @@
 import { useState, useMemo } from "react";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { Reveal } from "@/components/ui/Reveal";
 import { Slider } from "@/components/ui/slider";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
+import { cn } from "@/lib/utils";
 
 const WORKING_WEEKS = 48;
 const FTE_HOURS = 1800;
 const RECLAIM_RATE = 0.6;
+
+/**
+ * Double-bezel shell for the visualiser's two panels (inputs + outputs).
+ * Outer machined tray + inner core with concentric radii and a hairline
+ * inset highlight, matching the deck-section treatment used on Home.
+ * Page-local to /method - not shared, so safe to iterate on here.
+ */
+const Bezel = ({
+  className,
+  contentClassName,
+  children,
+}: {
+  className?: string;
+  contentClassName?: string;
+  children: React.ReactNode;
+}) => (
+  <div
+    className={cn(
+      "rounded-[2rem] bg-walnut/[0.04] p-1.5 ring-1 ring-walnut/10 shadow-[0_30px_60px_-40px_hsl(var(--walnut)/0.4)]",
+      className,
+    )}
+  >
+    <div
+      className={cn(
+        "h-full rounded-[1.625rem] bg-cream border border-walnut/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.65)] overflow-hidden",
+        contentClassName,
+      )}
+    >
+      {children}
+    </div>
+  </div>
+);
 
 export const ValueVisualiser = () => {
   const [team, setTeam] = useState(25);
@@ -31,8 +64,8 @@ export const ValueVisualiser = () => {
   return (
     <section className="bg-linen text-body section-pad">
       <div className="container-grain max-w-5xl">
-        <ScrollReveal>
-          <Eyebrow className="text-brass mb-4">A directional model</Eyebrow>
+        <Reveal>
+          <SectionEyebrow tone="linen" pill className="mb-6">A directional model</SectionEyebrow>
           <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
             What might this be worth in your function?
           </h2>
@@ -42,12 +75,12 @@ export const ValueVisualiser = () => {
             them. Move the sliders to see what that shift could be worth in
             your function.
           </p>
-        </ScrollReveal>
+        </Reveal>
 
-        <ScrollReveal delay={120}>
-          <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+        <Reveal delay={120}>
+          <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-10 items-stretch">
             {/* Sliders */}
-            <div className="space-y-10">
+            <Bezel className="h-full" contentClassName="p-8 md:p-9 space-y-10">
               <SliderRow
                 label="Team size"
                 hint="People in the function"
@@ -97,27 +130,29 @@ export const ValueVisualiser = () => {
                   {totalHours.toLocaleString("en-GB")} total hrs/week across the team
                 </div>
               </div>
-            </div>
+            </Bezel>
 
             {/* Outputs */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-walnut/15 border border-walnut/15 rounded-2xl overflow-hidden">
-              <Output label="People upskilled">
-                <AnimatedNumber value={peopleUpskilled} live />
-              </Output>
-              <Output label="Hours/week reclaimed">
-                <AnimatedNumber value={hoursReclaimed} live />
-              </Output>
-              <Output label="FTE freed for higher-judgment work">
-                <AnimatedNumber value={fteFreed} live decimals={1} />
-              </Output>
-              <Output label="Annual value created">
-                <AnimatedNumber value={annualValue} live prefix="£" />
-              </Output>
-            </div>
+            <Bezel className="h-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-walnut/10 h-full">
+                <Output label="People upskilled">
+                  <AnimatedNumber value={peopleUpskilled} live />
+                </Output>
+                <Output label="Hours/week reclaimed">
+                  <AnimatedNumber value={hoursReclaimed} live />
+                </Output>
+                <Output label="FTE freed for higher-judgment work">
+                  <AnimatedNumber value={fteFreed} live decimals={1} />
+                </Output>
+                <Output label="Annual value created">
+                  <AnimatedNumber value={annualValue} live prefix="£" />
+                </Output>
+              </div>
+            </Bezel>
           </div>
-        </ScrollReveal>
+        </Reveal>
 
-        <ScrollReveal delay={200}>
+        <Reveal delay={200}>
           <p className="mt-12 max-w-2xl text-sm text-body/60 italic leading-relaxed">
             Reclaimed hours go back to your people for higher-judgment work.
             This is a partnership model. Assumes ~60% of identified
@@ -125,7 +160,7 @@ export const ValueVisualiser = () => {
             year. A directional model, not a quote. The actual number comes
             out of the diagnostic, usually within ten percent of this.
           </p>
-        </ScrollReveal>
+        </Reveal>
       </div>
     </section>
   );
@@ -161,7 +196,7 @@ const SliderRow = ({ label, hint, value, min, max, step, onChange, display }: Sl
 );
 
 const Output = ({ label, children }: { label: string; children: React.ReactNode }) => (
-  <div className="bg-linen p-8">
+  <div className="bg-cream p-8">
     <div className="text-xs uppercase tracking-[0.18em] text-walnut/60 mb-3">{label}</div>
     <div className="font-display font-semibold text-walnut text-5xl md:text-6xl leading-none tabular-nums">
       {children}

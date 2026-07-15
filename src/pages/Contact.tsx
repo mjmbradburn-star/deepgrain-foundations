@@ -15,7 +15,7 @@ const steps = [
   {
     n: "02",
     title: "Check it's a fit",
-    body: "Two weeks of mapping only pays off on a process with real volume behind it. We work out if yours qualifies.",
+    body: "Two weeks of mapping only pays off on a process with real volume behind it. We check that on the call, before anyone books.",
   },
   {
     n: "03",

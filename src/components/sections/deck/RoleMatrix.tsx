@@ -1,4 +1,4 @@
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 
 const cells = [
@@ -13,7 +13,7 @@ const cells = [
     row: "Value creator",
     col: "Low",
     title: "Protect",
-    body: "Senior judgement, founder relationships. Leave alone. The leverage is human.",
+    body: "Senior judgement, founder relationships. Leave alone. That call stays human.",
   },
   {
     row: "Enabler",
@@ -51,9 +51,9 @@ const cells = [
 export const RoleMatrix = () => (
   <section className="bg-cream text-walnut section-pad">
     <div className="container-grain">
-      <ScrollReveal>
-        <SectionEyebrow tone="linen" className="mb-6">The matrix</SectionEyebrow>
-        <h2 className="font-display text-walnut text-4xl md:text-6xl leading-[1.05] max-w-3xl">
+      <Reveal>
+        <SectionEyebrow pill tone="linen" className="mb-6">The matrix</SectionEyebrow>
+        <h2 className="font-display text-walnut text-4xl md:text-6xl leading-[1.05] max-w-3xl mt-6">
           Not every role automates. Most have a piece that should.
         </h2>
         <p className="mt-6 max-w-2xl text-walnut/75 text-lg leading-relaxed">
@@ -61,9 +61,9 @@ export const RoleMatrix = () => (
           answers, no slogans.
         </p>
         <div className="mt-6 h-px w-full bg-brass/40 max-w-3xl" />
-      </ScrollReveal>
+      </Reveal>
 
-      <ScrollReveal delay={120}>
+      <Reveal delay={120}>
         <div className="mt-14 overflow-x-auto">
           <div className="min-w-[720px] grid grid-cols-[180px_1fr_1fr] gap-3">
             <div />
@@ -92,7 +92,7 @@ export const RoleMatrix = () => (
                       key={`${c.row}-${c.col}`}
                       className={
                         c.accent
-                          ? "rounded-xl border border-brass/40 bg-brass/[0.08] p-5"
+                          ? "rounded-xl border border-brass/40 bg-brass/[0.08] p-5 ring-1 ring-brass/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]"
                           : "rounded-xl border border-walnut/15 bg-cream p-5"
                       }
                     >
@@ -109,7 +109,7 @@ export const RoleMatrix = () => (
             ))}
           </div>
         </div>
-      </ScrollReveal>
+      </Reveal>
     </div>
   </section>
 );

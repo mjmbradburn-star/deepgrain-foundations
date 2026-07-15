@@ -23,12 +23,12 @@ export const faqs = [
   {
     question: "What AI automation patterns actually pay off?",
     answer:
-      "Six recur across People functions: inbound triage, interview scorecard summarisation, first-week onboarding sequencing, manager check-in cycles, policy and handbook Q&A, and performance cycle preparation. Each is a single workflow with a human checkpoint, logged steps, and a champion who maintains it.",
+      "Six recur across People functions: inbound triage, interview scorecard summarisation, first-week onboarding sequencing, manager check-in cycles, policy and handbook Q&A, and performance cycle preparation. Start with triage and onboarding, they're the easiest to scope and the fastest to show visible value. Each is a single workflow with one human checkpoint, not a bespoke agent.",
   },
   {
     question: "How does AI improve operational efficiency in businesses?",
     answer:
-      "By making the boring repeatable work faster and the disagreement inside the work legible. The biggest gains are not headline savings, they are smoother weeks: fewer dropped onboardings, sharper interview debriefs, manager check-ins that actually happen. The pattern compounds across hires and cycles.",
+      "It makes the boring repeatable work faster and makes the disagreement inside that work visible. Smoother weeks matter more than headline savings: fewer dropped onboardings, sharper interview debriefs, manager check-ins that actually happen. The pattern compounds across hires and cycles.",
   },
 ];
 
@@ -39,9 +39,9 @@ export const faqs = [
 - Pay-off is a function of how cleanly the workflow was designed, not how clever the model was.
 </TLDR>
 
-Theory only goes so far. At some point a team needs to see what an AI-augmented People workflow actually looks like - what gets built, in what order, with what tools - before the abstract advice lands. So this piece is concrete. Six patterns we keep seeing work, in roughly the order most teams should approach them.
+Six patterns. That's most of what AI actually does inside a People function, once you strip away the roadmap decks and the agent hype. Here they are, in the order most teams should build them, with the tools that make them work.
 
-The stack we usually recommend, for what it's worth: a workflow tool (n8n if you want self-hosted, Make if you want managed, Zapier if you want zero learning curve), an LLM provider with enterprise terms, the company's HRIS as source of truth, and Slack or email as the surface where humans interact. That is enough.
+The stack we recommend: a workflow tool (n8n if you want self-hosted, Make if you want managed, Zapier if you want zero learning curve), an LLM provider with enterprise terms, the company's HRIS as source of truth, and Slack or email as the surface where humans interact. That is enough.
 
 <Takeaway>Six concrete People Ops automation patterns. Built with n8n, an LLM, and a champion. Live in weeks, not quarters.</Takeaway>
 
@@ -51,7 +51,7 @@ The painful version: 200 applications come in for a role. A recruiter spends a d
 
 The augmented version: every application runs through a workflow that pulls the JD requirements, summarises the candidate against them, flags the obvious passes (with rationale), surfaces the obvious progresses (with rationale), and routes the genuinely ambiguous middle to a recruiter with a one-paragraph précis. The recruiter spends their day on the 30 per cent that needed a human. The other 70 per cent is dispatched in an hour with a logged rationale.
 
-Critical detail: the workflow never *decides*. It surfaces and prepares. The recruiter clicks. The audit log captures everything.
+Critical detail: the workflow surfaces and prepares, nothing more. The recruiter clicks. The audit log captures everything.
 
 ## Pattern 2 - Interview scorecard summarisation
 
@@ -59,7 +59,7 @@ The painful version: four interviewers run four panels. Four scorecards arrive i
 
 The augmented version: scorecards land in a structured form. The workflow assembles them, identifies points of disagreement, surfaces direct quotes that matter, and produces a synthesised brief with the contradictions made explicit. The hiring manager arrives at the debrief with the disagreements visible, not buried. The conversation is sharper.
 
-This is where AI earns its keep - not by producing the answer, but by making the disagreement legible.
+This is where AI earns its keep - making the disagreement legible before the room ever sits down.
 
 ## Pattern 3 - First-week onboarding sequencing
 
@@ -75,7 +75,7 @@ The painful version: every manager is supposed to do monthly 1:1 retrospectives 
 
 The augmented version: the workflow tracks who has had a check-in in the last 30 days, drafts a personalised reminder for the manager (with last cycle's themes pulled in if the manager opted into memory), and gives the HRBP a weekly one-page heatmap. The manager spends 30 seconds turning the draft into a sent message. The HRBP can see the function rather than guessing at it.
 
-This is the workflow that, in our experience, most directly changes the culture. Visibility is its own intervention.
+This is the workflow that most directly changes the culture. Visibility is its own intervention.
 
 ## Pattern 5 - Policy and handbook Q&A
 
@@ -83,13 +83,13 @@ The painful version: the People team gets the same fifteen questions every week.
 
 The augmented version: a Slack-integrated assistant grounded on the actual handbook (and only the handbook) answers the standard questions with citations. Anything outside scope gets routed to a human. The answers improve as edge cases get added. The People team gets back to the work that needs them.
 
-The hard part here is not the model. It is keeping the handbook actually current. AI surfaces the documentation hygiene problem you already had.
+The hard part is keeping the handbook actually current. Get that wrong and the assistant answers confidently from stale policy. AI surfaces the documentation hygiene problem you already had.
 
 ## Pattern 6 - Performance cycle preparation
 
 The painful version: performance review week. Managers stare at a blank page trying to remember the last six months for each report. The result is a review weighted heavily toward the last three weeks of work.
 
-The augmented version: the workflow assembles a personalised pre-read for each manager - significant project moments pulled from where work actually happens (Linear, GitHub, sales records, project tools), the report's own self-reflection, peer feedback if collected, last cycle's commitments. The manager arrives at the blank page with material. The review is grounded in the year, not the week.
+The augmented version: the workflow assembles a personalised pre-read for each manager - concrete project moments pulled from where work actually happens (Linear, GitHub, sales records, project tools), the report's own self-reflection, peer feedback if collected, last cycle's commitments. The manager arrives at the blank page with a full year already assembled, project moments and all.
 
 The model never writes the review. It prepares the table.
 

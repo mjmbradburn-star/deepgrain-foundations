@@ -15,20 +15,20 @@ export const frontmatter = {
 
 export const faqs = [
   {
-    question: "Why do 90% of automation efforts fail to deliver expected ROI?",
-    answer: "Because they start with \"what can I automate?\" instead of \"what problems am I trying to solve?\" Tool-first thinking optimises for the wrong outcome. You end up automating low-value work because it is easy to automate, while the painful, expensive workflows stay manual. Problem-first thinking flips it: identify the cost of the pain in time, errors, opportunity cost, and risk. Then design the solution.",
+    question: "Why do most automation efforts fail to deliver ROI?",
+    answer: "Because they start with \"what can I automate?\" instead of \"what problems am I trying to solve?\" Tool-first thinking automates the easy, low-value work while the painful, expensive workflows stay manual. Put a number in pounds on the workflow's cost before you build anything. No number, no business case.",
   },
   {
     question: "What is the 6T framework for evaluating a process for automation?",
-    answer: "Time (how much does this consume?), Touchpoints (how many handoffs?), Tedium (how repetitive?), Trips (how many systems does it cross?), Triggers (what kicks it off, how predictable?), and Transparency (can you see what is happening at each step?). Score each from 1 to 5. High scores mean strong candidates. Low scores mean either it is fine as it is or automating it will not move the needle.",
+    answer: "Time (how much does this consume?), Touchpoints (how many handoffs?), Tedium (how repetitive?), Trips (how many systems does it cross?), Triggers (what kicks it off, how predictable?), and Transparency (can you see what is happening at each step?). Score each from 1 to 5. High scores mean strong candidates. Low scores mean either it is fine as it is or automating it will not move the needle. In practice, one or two dimensions carry most workflows, the rest just confirm the call.",
   },
   {
     question: "What is \"Swiss cheese\" risk?",
-    answer: "Borrowed from accident analysis. A process that has many small holes, missed checks, ambiguous handoffs, undocumented exceptions, eventually has the holes line up and a serious failure goes through. Automation can either reduce the holes (good) or paper over them so they become invisible (bad). The audit should surface the Swiss cheese before the automation hides it.",
+    answer: "Borrowed from accident analysis. A process that has many small holes, missed checks, ambiguous handoffs, undocumented exceptions, eventually has the holes line up and a serious failure goes through. Automate before you find those holes and the exception does not get caught by whoever normally spots it. It just fails silently at 2am instead.",
   },
   {
     question: "How do you prioritise once you have the audit data?",
-    answer: "A 2x2: business impact on one axis, implementation complexity on the other. Top-left (high impact, low complexity) ships first. Top-right (high impact, high complexity) is the strategic backlog. Bottom-left (low impact, low complexity) is filler. Bottom-right (low impact, high complexity) is the backlog you ignore. Most teams skip the matrix and just build the thing that sounded coolest in the meeting.",
+    answer: "A 2x2: business impact on one axis, implementation complexity on the other. Top-left (high impact, low complexity) ships first. Top-right (high impact, high complexity) is the strategic backlog. Bottom-left is filler, bottom-right is the backlog you ignore. Revisit the matrix every quarter, not just once. What counted as high complexity six months ago is usually a commodity build now.",
   },
 ];
 
@@ -54,8 +54,6 @@ The right question: *"What problems am I trying to solve?"*
 Tool-first thinking optimises for the wrong outcome. You end up automating low-value work because it is easy to automate, while the painful, expensive workflows stay manual. Worse, you generate technical debt that future you will inherit.
 
 Problem-first thinking flips it. Start by mapping the pain. Where is the team losing time? Money? Quality? Where are you creating business risk? For each candidate, calculate the true cost: direct time, error cost, opportunity cost, scaling cost. Then design the smallest solution that addresses the highest-impact problem.
-
-The audit playbook below makes this concrete.
 
 ## Step 1: Map the pain
 
@@ -86,7 +84,7 @@ For every candidate workflow, score on six dimensions, 1 to 5.
 
 A workflow scoring 4 or 5 across most dimensions is a strong candidate. A workflow scoring 1 or 2 either does not need automating or will not benefit from it.
 
-The 6T scores also tell you what kind of solution fits. High touchpoints + low transparency suggests a workflow tool first (n8n, Make), not an agent. High tedium + high triggers + low touchpoints suggests a clean automation. High touchpoints + ambiguity in the work suggests an AI-augmented workflow with humans in the loop.
+The 6T scores also tell you what kind of solution fits. High touchpoints + low transparency means a workflow tool first (n8n, Make), not an agent. High tedium + high triggers + low touchpoints means a clean automation. High touchpoints + ambiguity in the work needs an AI-augmented workflow with humans in the loop.
 
 ## Step 3: Spot the Swiss cheese
 
@@ -116,7 +114,7 @@ Two honesty tests:
 - **Maintenance cost.** Add 30% of build cost as ongoing annual maintenance. Most teams forget this and the ROI evaporates.
 - **Soft savings vs hard savings.** Time saved is only a real saving if the time goes somewhere valuable. If saving Sarah three hours a week means Sarah spends three more hours on Slack, the saving is fictional.
 
-ROI calculations that survive these two tests are usually the only ones worth pursuing.
+ROI calculations that survive these two tests are the ones worth pursuing.
 
 ## Step 5: Prioritise with the matrix
 
@@ -158,7 +156,7 @@ Auto-recommended next reads in the People Ops cluster, ranked by shared concepts
 - [Leading the AI transformation in People](/intelligence/leading-the-ai-transformation)
 
 <KeyTakeaways>
-- Look for repetition, latency, and rework. The leverage lives at those seams.
+- Look for repetition, latency, and rework. That's where the savings hide.
 - Audit existing automations as ruthlessly as you audit new candidates.
 - Sequence by value and absorption together. High-value low-absorption is the trap.
 </KeyTakeaways>

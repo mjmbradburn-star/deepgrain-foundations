@@ -36,8 +36,24 @@ const HomeFAQ = lazy(() =>
 
 const SectionFallback = () => <div aria-hidden className="min-h-[60vh]" />;
 
+// Film-grain: a fixed, pointer-events-none SVG-noise plate for a physical-paper
+// feel. Static (no animation), GPU-composited, and scoped to Home so it never
+// bleeds onto other routes. Very low opacity so it reads as texture, not noise.
+const NOISE_URL = `url("data:image/svg+xml,${encodeURIComponent(
+  "<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>",
+)}")`;
+
+const FilmGrain = () => (
+  <div
+    aria-hidden
+    className="pointer-events-none fixed inset-0 z-[1] opacity-[0.035] mix-blend-multiply motion-reduce:opacity-[0.025]"
+    style={{ backgroundImage: NOISE_URL, backgroundSize: "140px 140px" }}
+  />
+);
+
 const Home = () => (
   <>
+    <FilmGrain />
     <PageMeta
       title="Deepgrain | From the role to the click."
       description="Organisational consultancy for the AI era. We audit how your function actually operates, then build the agentic systems and team capability to evolve it."
