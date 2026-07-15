@@ -35,18 +35,31 @@ export default function Login() {
     e.preventDefault();
     setBusy(true);
     setError(null);
-    const fn = mode === "signin" ? supabase.auth.signInWithPassword : supabase.auth.signUp;
-    const { error } = await fn.call(supabase.auth, {
-      email,
-      password,
-      options: mode === "signup"
-        ? { emailRedirectTo: `${window.location.origin}${next}` }
-        : undefined,
-    } as any);
+    setInfo(null);
+    if (mode === "signup") {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: { emailRedirectTo: `${window.location.origin}${next}` },
+      });
+      setBusy(false);
+      if (error) return setError(error.message);
+      if (!data.session) {
+        setInfo(
+          "Check your inbox to confirm your email address. Once confirmed, you can sign in and continue.",
+        );
+        setMode("signin");
+        return;
+      }
+      window.location.replace(next);
+      return;
+    }
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
     setBusy(false);
     if (error) return setError(error.message);
     window.location.replace(next);
   }
+
 
   async function withGoogle() {
     setBusy(true);
