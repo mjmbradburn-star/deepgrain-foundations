@@ -11,6 +11,7 @@ import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { track, trackFormSubmit } from "@/lib/analytics";
+import { recordAssessment } from "@/lib/assessmentCapture";
 import {
   GAPS,
   LAYERS,
@@ -107,6 +108,19 @@ const ResultLeadForm = ({ result }: { result: AssessmentResult }) => {
       return;
     }
     trackFormSubmit("readiness_lead", { score: result.score, stage: result.stage.name });
+    // Record the lead against the same session as the anonymous completion,
+    // so the email joins back to the score they actually saw.
+    void recordAssessment({
+      assessment: "readiness",
+      score: result.score,
+      stage: result.stage.name,
+      layerScores: Object.fromEntries(LAYERS.map((l, i) => [l, result.layerScores[i]])),
+      detail: { weakestLayers: result.weakestLayers.map((l) => LAYERS[l]) },
+      email: parsed.data.email,
+      name: parsed.data.name,
+      organisation: parsed.data.organisation || null,
+      source: "readiness_readout",
+    });
     setDone(true);
   };
 
@@ -282,6 +296,16 @@ const Readiness = () => {
         assessment: "readiness",
         score: r.score,
         stage: r.stage.name,
+      });
+      // Record every completion anonymously (no email needed) so the full
+      // score distribution is queryable and benchmarkable.
+      void recordAssessment({
+        assessment: "readiness",
+        score: r.score,
+        stage: r.stage.name,
+        layerScores: Object.fromEntries(LAYERS.map((l, i) => [l, r.layerScores[i]])),
+        detail: { weakestLayers: r.weakestLayers.map((l) => LAYERS[l]) },
+        source: "readiness_complete",
       });
       window.scrollTo({ top: 0, behavior: "smooth" });
     }

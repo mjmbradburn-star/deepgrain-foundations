@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { z } from "zod";
 import {
-  BarChart3,
+  Calculator,
   Compass,
-  GraduationCap,
-  Handshake,
-  Megaphone,
+  Headphones,
+  Package,
   Scale,
-  Search,
-  Settings,
+  ShieldCheck,
+  TrendingUp,
   Users,
   type LucideIcon,
 } from "lucide-react";
@@ -18,7 +18,10 @@ import { GrainFlow } from "@/components/ui/GrainFlow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
-import { track } from "@/lib/analytics";
+import { track, trackFormSubmit } from "@/lib/analytics";
+import { recordAssessment } from "@/lib/assessmentCapture";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import {
   EXPOSURE_ROLES,
   LAYER_LABELS,
@@ -27,26 +30,29 @@ import {
   scoreColour,
 } from "@/data/exposureMap";
 
+const leadSchema = z.object({
+  email: z.string().trim().email("Please enter a valid work email").max(320),
+});
+
 const EXPOSURE_LD = {
   "@context": "https://schema.org",
   "@type": "Dataset",
-  name: "The People Ops AI Exposure Map",
+  name: "The AI Exposure Map",
   description:
-    "People Ops roles and their component tasks scored 0-10 for AI exposure. Exposure is judged at task level: every role splits into work that automates and judgment that compounds.",
+    "Every operating function and its component tasks scored 0-10 for AI exposure. Exposure is judged at task level: every function splits into work that automates and judgment that compounds.",
   creator: { "@id": "https://deepgrain.ai/#organization" },
   license: "https://deepgrain.ai/terms",
 };
 
 const ROLE_ICONS: LucideIcon[] = [
-  Handshake, // HR Business Partner
-  Search, // Talent Acquisition
-  GraduationCap, // Learning & Development
-  Settings, // People Operations
-  Scale, // Reward, Comp & Benefits
-  Users, // Employee Relations
-  BarChart3, // People Analytics
-  Megaphone, // Internal Comms
-  Compass, // People Leadership
+  Users, // People & HR
+  Calculator, // Finance & Accounting
+  Scale, // Legal & Compliance
+  TrendingUp, // Revenue & Sales Ops
+  ShieldCheck, // IT & Security
+  Headphones, // Customer Support & Success
+  Package, // Procurement & Vendor
+  Compass, // Executive & Chief of Staff
 ];
 
 /** The surveyor's grid behind the role chart: mixed cream and brass hairlines
@@ -108,6 +114,83 @@ const INSIGHTS = [
   },
 ];
 
+/** Direct lead capture on the exposure map: email + the function they were
+ *  looking at, recorded to both the lead inbox (enquiries) and the structured
+ *  capture table. The map used to capture nothing at all. */
+const MapLeadForm = ({ viewedFunction }: { viewedFunction: string }) => {
+  const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+  const { toast } = useToast();
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const parsed = leadSchema.safeParse({ email });
+    if (!parsed.success) {
+      toast({
+        title: "Check your email",
+        description: parsed.error.issues[0]?.message ?? "Invalid email",
+        variant: "destructive",
+      });
+      return;
+    }
+    setSubmitting(true);
+    const { error } = await supabase.from("enquiries").insert({
+      name: "Exposure Map request",
+      email: parsed.data.email,
+      organisation: null,
+      size: null,
+      message: `Requested a tailored AI exposure map. Was viewing the ${viewedFunction} function.`,
+    });
+    setSubmitting(false);
+    if (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again, or email matt@deepgrain.ai directly.",
+        variant: "destructive",
+      });
+      return;
+    }
+    void recordAssessment({
+      assessment: "exposure-map",
+      email: parsed.data.email,
+      detail: { viewedFunction },
+      source: "exposure_map_capture",
+    });
+    trackFormSubmit("exposure_map_lead", { viewed_function: viewedFunction });
+    setDone(true);
+  };
+
+  if (done) {
+    return (
+      <p className="font-display italic text-cream text-2xl md:text-3xl max-w-xl">
+        Done. Matt will send your tailored map shortly.
+      </p>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="flex flex-col sm:flex-row gap-3 max-w-xl">
+      <input
+        type="email"
+        placeholder="Work email"
+        autoComplete="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="flex-1 bg-transparent border-0 border-b border-cream/25 rounded-none px-0 py-3.5 text-cream text-[17px] placeholder:text-cream/40 focus:outline-none focus:ring-0 focus:border-brass transition-colors duration-300"
+      />
+      <button
+        type="submit"
+        disabled={submitting}
+        className="group inline-flex items-center justify-center gap-2 rounded-full bg-cream text-green px-7 py-3.5 font-sans text-sm tracking-wider transition-all duration-300 hover:bg-cream/90 disabled:opacity-60 shrink-0"
+      >
+        {submitting ? "Sending…" : "Send me the tailored map"}
+        <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+      </button>
+    </form>
+  );
+};
+
 const ExposureMap = () => {
   const [selected, setSelected] = useState(0);
   const role = EXPOSURE_ROLES[selected];
@@ -123,8 +206,8 @@ const ExposureMap = () => {
   return (
     <>
       <PageMeta
-        title="The People Ops AI Exposure Map | Deepgrain"
-        description="Every People role scored for AI exposure at task level, not job level. See which work automates, which judgment compounds, and which capability layer unlocks each."
+        title="The AI Exposure Map | Deepgrain"
+        description="Every operating function scored for AI exposure at task level, not job level. From People and Finance to Legal, Revenue Ops and IT: see which work automates, which judgment compounds, and which capability layer unlocks each."
         path="/exposure-map"
         jsonLd={EXPOSURE_LD}
       />
@@ -145,7 +228,7 @@ const ExposureMap = () => {
                 letterSpacing: "-0.01em",
               }}
             >
-              The People Ops AI Exposure Map
+              The AI Exposure Map
             </h1>
           </div>
           <div className="fade-in-up fade-in-up-2 grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 lg:gap-24 items-end mt-10">
@@ -156,8 +239,9 @@ const ExposureMap = () => {
               Every chart you have seen scores whole jobs. Jobs are the wrong unit.
             </p>
             <p className="text-body text-lg leading-relaxed">
-              Exposure lives at task level: every People role splits into work that automates
-              and judgment that compounds. Select a role to see its tasks.
+              Exposure lives at task level. Every operating function, from People and Finance to
+              Legal, Revenue Ops and IT, splits into work that automates and judgment that
+              compounds. Select a function to see its tasks.
             </p>
           </div>
         </div>
@@ -176,7 +260,7 @@ const ExposureMap = () => {
                   className="flex items-baseline justify-between font-sans font-semibold uppercase text-cream/50 mb-8 md:mb-10"
                   style={{ fontSize: "11px", letterSpacing: "0.22em" }}
                 >
-                  <span>The chart · nine roles</span>
+                  <span>The chart · eight functions</span>
                   <span className="hidden md:inline">Exposure 0-10 · Weighted by hours</span>
                 </div>
                 <div className="grid gap-3.5 md:gap-4 grid-cols-2 md:grid-cols-3">
@@ -315,10 +399,10 @@ const ExposureMap = () => {
           </ScrollReveal>
 
           <p className="mt-20 text-walnut/50 text-sm max-w-3xl leading-relaxed">
-            Methodology: task inventories from twenty years inside People functions across seven
-            sectors. Scores rate what frontier models plus workflow tooling reliably produce
-            with proper context and a verification step, judged per task rather than per role.
-            Argue with them, that is what they are for.
+            Methodology: task inventories from operating engagements across seven sectors. Scores
+            rate what frontier models plus workflow tooling reliably produce with proper context
+            and a verification step, judged per task rather than per function. Argue with them,
+            that is what they are for.
           </p>
         </div>
       </section>
@@ -339,13 +423,17 @@ const ExposureMap = () => {
                 lineHeight: 1.05,
               }}
             >
-              Where is your team on this map?
+              Where is your company on this map?
             </h2>
             <p className="text-cream/75 mt-8 max-w-xl text-lg leading-relaxed">
-              The readiness assessment scores your function in eight minutes: one honest number,
-              the gaps, and what to do about each. Built to be forwarded to your CEO.
+              This is the generic version. Get one built for your actual functions and team,
+              with the tasks that matter to you scored and mapped to a plan. No cost.
             </p>
-            <div className="mt-12">
+            <div className="mt-10">
+              <MapLeadForm viewedFunction={role.role} />
+            </div>
+            <p className="text-cream/50 mt-8 text-sm">
+              Prefer a number first?{" "}
               <Link
                 to="/readiness"
                 onClick={() =>
@@ -356,14 +444,11 @@ const ExposureMap = () => {
                     link_url: "/readiness",
                   })
                 }
-                className="group inline-flex items-center gap-2 rounded-full bg-cream text-green px-8 py-4 font-sans text-sm tracking-wider transition-all duration-300 hover:bg-cream/90"
+                className="text-cream underline underline-offset-4 decoration-brass hover:text-brass transition-colors"
               >
-                Take the readiness assessment
-                <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-                  →
-                </span>
+                Take the 8-minute readiness assessment →
               </Link>
-            </div>
+            </p>
           </ScrollReveal>
         </div>
       </section>
