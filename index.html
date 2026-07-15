@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
-    <!-- Google tag (gtag.js) — SPA: pageviews fired manually per route in src/components/analytics/Analytics.tsx
+    <!-- Google tag (gtag.js) - SPA: pageviews fired manually per route in src/components/analytics/Analytics.tsx
          Loaded after window 'load' to keep ~156KB of analytics JS off the critical path (FCP/LCP).
          dataLayer + gtag shim are defined synchronously so route-change events queued before the
          script loads are buffered and replayed by gtag.js once it initializes. -->
@@ -56,7 +56,7 @@
     <meta name="apple-mobile-web-app-title" content="Deepgrain" />
 
     <!-- Hero LCP image. Quality lowered to q=40 because the image sits under
-         a green/55 overlay + gradient — detail is invisible, bytes are not.
+         a green/55 overlay + gradient - detail is invisible, bytes are not.
          Cuts ~30% transfer vs q=55/60 with no perceptible visual change. -->
     <link
       rel="preload"
@@ -87,7 +87,7 @@
     <!-- Sitewide fallback for non-JS social crawlers (LinkedIn, Slack, Facebook).
          Per-route <Helmet> in PageMeta replaces og:title/description/url for
          JS-aware crawlers, so each route gets a unique social preview. We
-         intentionally do NOT ship og:url here — without a self-referencing
+         intentionally do NOT ship og:url here - without a self-referencing
          value the crawler falls back to the request URL, which is correct. -->
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/oMHB1Lizpsb4AmTRki8gQlUCXtq1/social-images/social-1782592776349-share-square.webp">
@@ -107,7 +107,7 @@
             "logo": "https://deepgrain.ai/og-image.png",
             "founder": { "@type": "Person", "name": "Matthew Bradburn" },
             "email": "matt@deepgrain.ai",
-            "description": "Organisational consultancy that reads the grain of how a company actually operates — then changes it without breaking what works."
+            "description": "Organisational consultancy that reads the grain of how a company actually operates - then changes it without breaking what works."
           },
           {
             "@type": "WebSite",
