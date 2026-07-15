@@ -115,6 +115,7 @@ export default function Login() {
           className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm"
         />
         {error && <p className="text-sm text-destructive">{error}</p>}
+        {info && <p className="text-sm text-foreground">{info}</p>}
         <button
           type="submit"
           disabled={busy}
