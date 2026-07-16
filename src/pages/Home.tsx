@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { HeroDeck } from "@/components/sections/deck/HeroDeck";
 import { TheShift } from "@/components/sections/deck/TheShift";
 import { WorkedExample } from "@/components/sections/deck/WorkedExample";
+import { StickyBookingPill } from "@/components/layout/StickyBookingPill";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { HOME_FAQ_LD } from "@/data/homeFaq";
 
@@ -32,6 +33,11 @@ const IntelligenceTeaser = lazy(() =>
 );
 const HomeFAQ = lazy(() =>
   import("@/components/sections/HomeFAQ").then((m) => ({ default: m.HomeFAQ })),
+);
+const ClosingInvitation = lazy(() =>
+  import("@/components/sections/deck/ClosingInvitation").then((m) => ({
+    default: m.ClosingInvitation,
+  })),
 );
 
 const SectionFallback = () => <div aria-hidden className="min-h-[60vh]" />;
@@ -100,7 +106,11 @@ const Home = () => (
       <div className="cv-auto">
         <HomeFAQ />
       </div>
+      <div className="cv-auto">
+        <ClosingInvitation />
+      </div>
     </Suspense>
+    <StickyBookingPill />
   </>
 );
 

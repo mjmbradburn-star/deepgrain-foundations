@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import { BarkGrain } from "@/components/ui/BarkGrain";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { Parallax } from "@/components/ui/Parallax";
-import { getHeroImage } from "@/lib/intelligence";
+import { GrainRings } from "@/components/sections/deck/GrainRings";
 import { track } from "@/lib/analytics";
-
-const grain = getHeroImage("the-grain-metaphor-reading-your-organisation");
 
 /** Trailing arrow nested in its own circular wrapper, with magnetic hover. */
 const ArrowCircle = ({ tone = "green" }: { tone?: "green" | "cream" }) => (
@@ -131,43 +129,14 @@ export const HeroDeck = () => {
             </div>
           </div>
 
-          {/* RIGHT: framed artwork */}
-          {grain && (
-            <div className="lg:col-span-5 xl:col-span-5 fade-in-up fade-in-up-2">
-              <Parallax speed={0.1} max={60} className="w-full">
-                <figure className="relative mx-auto w-full max-w-[420px] sm:max-w-[480px] lg:ml-auto lg:mr-0 lg:max-w-[500px]">
-                  <div className="rounded-[16px] p-2.5 bg-cream/[0.05] ring-1 ring-brass/30 shadow-[0_50px_100px_-30px_rgba(0,0,0,0.65)]">
-                    <div className="relative overflow-hidden rounded-[10px] ring-1 ring-brass/20">
-                      <picture>
-                        {grain.avif && <source srcSet={grain.avif} type="image/avif" />}
-                        {grain.webp && <source srcSet={grain.webp} type="image/webp" />}
-                        <img
-                          src={grain.src}
-                          alt="Concentric brass and forest-green growth rings, the grain of an organisation revealed"
-                          width={1400}
-                          height={1120}
-                          loading="eager"
-                          fetchPriority="high"
-                          decoding="async"
-                          className="w-full aspect-[5/4] object-cover object-left"
-                        />
-                      </picture>
-                      {/* Tie the linen render into the palette. */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-bark/35 via-transparent to-transparent mix-blend-multiply pointer-events-none" />
-                      <div className="absolute inset-0 ring-1 ring-inset ring-cream/10 rounded-[10px] pointer-events-none" />
-                    </div>
-                  </div>
-                  <figcaption
-                    className="mt-4 flex items-center gap-2.5 font-sans uppercase text-cream/45"
-                    style={{ fontSize: "10px", letterSpacing: "0.25em" }}
-                  >
-                    <span className="h-px w-8 bg-brass/60" aria-hidden />
-                    Read the grain before you cut
-                  </figcaption>
-                </figure>
-              </Parallax>
-            </div>
-          )}
+          {/* RIGHT: the living grain artifact */}
+          <div className="lg:col-span-5 xl:col-span-5 fade-in-up fade-in-up-2">
+            <Parallax speed={0.08} max={40} className="w-full">
+              <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[420px] lg:ml-auto lg:mr-0 lg:max-w-[520px]">
+                <GrainRings />
+              </div>
+            </Parallax>
+          </div>
         </div>
 
         <div
