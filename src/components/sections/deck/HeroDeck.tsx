@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { BarkGrain } from "@/components/ui/BarkGrain";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
-import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 import { Parallax } from "@/components/ui/Parallax";
+import { getHeroImage } from "@/lib/intelligence";
 import { track } from "@/lib/analytics";
+
+const grain = getHeroImage("the-grain-metaphor-reading-your-organisation");
 
 /** Trailing arrow nested in its own circular wrapper, with magnetic hover. */
 const ArrowCircle = ({ tone = "green" }: { tone?: "green" | "cream" }) => (
@@ -45,9 +47,11 @@ const Pip = ({ icon, label }: { icon: string; label: string }) => (
 );
 
 /**
- * Deck-style hero. Mirrors the Montagu title slide composition: tracked-caps
- * eyebrow rail, italic Cormorant sub, three altitude chips, brass topographic
- * ridge on the right, single dominant CTA.
+ * Two-column deck hero. Left rail carries the tracked-caps eyebrow, the
+ * Cormorant headline, three altitude chips and the dominant CTA pair. The
+ * right rail hangs the grain-rings render as framed artwork on the dark
+ * ground, lifted on a soft shadow and drifting on scroll. On tablet and
+ * mobile the frame drops below the copy so the message always leads.
  */
 export const HeroDeck = () => {
   const auditHref = "/grain-audit";
@@ -65,71 +69,111 @@ export const HeroDeck = () => {
       cta_label: "Score your People function",
       link_url: "/readiness",
     });
+
   return (
     <section
-      className="relative bg-bark text-cream overflow-hidden min-h-[560px] md:min-h-[620px] lg:h-[calc(100svh-4rem)] lg:min-h-[600px] lg:max-h-[820px] flex items-center"
+      className="relative bg-bark text-cream overflow-hidden min-h-[620px] lg:h-[calc(100svh-4rem)] lg:min-h-[640px] lg:max-h-[880px] flex items-center"
       id="hero"
       data-no-rule
     >
       <BarkGrain />
-      <div className="absolute inset-0 bg-gradient-to-r from-green/85 via-green/55 to-green/20 pointer-events-none z-[1]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-green/40 via-transparent to-green/40 pointer-events-none z-[1]" />
-      {/* Brass topographic ridge on a deeper plane, drifting on scroll. */}
-      <Parallax speed={0.12} max={80} className="absolute inset-y-[-15%] right-0 w-[65%] z-[2] pointer-events-none hidden md:block">
-        <TopoBackdrop variant="ridge" opacity={0.22} />
-      </Parallax>
+      {/* Directional wash: solid green under the copy, opening toward the art. */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green/92 via-green/70 to-bark/85 pointer-events-none z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-green/30 via-transparent to-green/45 pointer-events-none z-[1]" />
+      {/* Warm brass glow seated behind the artwork. */}
+      <div className="hidden lg:block absolute right-[-6%] top-1/2 -translate-y-1/2 w-[46%] aspect-square rounded-full bg-brass/[0.14] blur-[120px] pointer-events-none z-[1]" />
 
-      <div className="relative z-10 container-grain pt-20 pb-16 md:pt-24 md:pb-20 lg:pt-16 lg:pb-20 w-full">
-        <div className="hidden md:flex items-center justify-between mb-6 md:mb-8 lg:mb-6">
-          <SectionEyebrow />
-          <span
-            className="hidden md:inline font-sans uppercase text-cream/40"
-            style={{ fontSize: "11px", letterSpacing: "0.25em" }}
-          >
-            For G&amp;A leaders
-          </span>
+      <div className="relative z-10 container-grain w-full pt-24 pb-16 md:pt-28 md:pb-20 lg:py-0">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-12">
+          {/* LEFT: copy */}
+          <div className="lg:col-span-7 xl:col-span-7">
+            <div className="mb-7">
+              <SectionEyebrow pill>Built for the AI era</SectionEyebrow>
+            </div>
+
+            <div className="max-w-2xl fade-in-up fade-in-up-1">
+              <h1
+                className="font-display font-medium uppercase text-cream leading-[0.98] text-[2.25rem] sm:text-[46px] md:text-[58px] lg:text-[58px] xl:text-[66px]"
+                style={{ letterSpacing: "0.01em" }}
+              >
+                We rebuild how
+                <br />
+                your company runs.
+              </h1>
+              <p className="font-display italic text-cream/85 mt-5 max-w-xl text-lg md:text-xl lg:text-[22px] leading-snug">
+                Audit the operating model, redesign the workflows, then ship the systems and AI that make the new shape stick.
+              </p>
+            </div>
+
+            <div className="fade-in-up fade-in-up-2 mt-6 flex flex-wrap gap-2.5">
+              <Pip icon="◎" label="Strategic" />
+              <Pip icon="⌥" label="Functional" />
+              <Pip icon="◯" label="Individual" />
+            </div>
+
+            <div className="fade-in-up fade-in-up-3 mt-8 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
+              <Link
+                to="/readiness"
+                onClick={onReadiness}
+                className="group inline-flex items-center justify-center gap-1 rounded-full bg-cream text-green pl-7 pr-3 py-3 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/90 active:scale-[0.98] shadow-[0_1px_0_hsl(var(--cream)/0.6)_inset]"
+              >
+                Score your People function
+                <ArrowCircle tone="green" />
+              </Link>
+              <Link
+                to={auditHref}
+                onClick={onAudit}
+                className="group inline-flex items-center justify-center gap-1 rounded-full border border-cream/40 text-cream pl-7 pr-3 py-3 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/10 active:scale-[0.98]"
+              >
+                Book a Grain Audit
+                <ArrowCircle tone="cream" />
+              </Link>
+            </div>
+          </div>
+
+          {/* RIGHT: framed artwork */}
+          {grain && (
+            <div className="lg:col-span-5 xl:col-span-5 fade-in-up fade-in-up-2">
+              <Parallax speed={0.1} max={60} className="w-full">
+                <figure className="relative mx-auto w-full max-w-[420px] sm:max-w-[480px] lg:ml-auto lg:mr-0 lg:max-w-[500px]">
+                  <div className="rounded-[16px] p-2.5 bg-cream/[0.05] ring-1 ring-brass/30 shadow-[0_50px_100px_-30px_rgba(0,0,0,0.65)]">
+                    <div className="relative overflow-hidden rounded-[10px] ring-1 ring-brass/20">
+                      <picture>
+                        {grain.avif && <source srcSet={grain.avif} type="image/avif" />}
+                        {grain.webp && <source srcSet={grain.webp} type="image/webp" />}
+                        <img
+                          src={grain.src}
+                          alt="Concentric brass and forest-green growth rings, the grain of an organisation revealed"
+                          width={1400}
+                          height={1120}
+                          loading="eager"
+                          fetchPriority="high"
+                          decoding="async"
+                          className="w-full aspect-[5/4] object-cover object-left"
+                        />
+                      </picture>
+                      {/* Tie the linen render into the palette. */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-bark/35 via-transparent to-transparent mix-blend-multiply pointer-events-none" />
+                      <div className="absolute inset-0 ring-1 ring-inset ring-cream/10 rounded-[10px] pointer-events-none" />
+                    </div>
+                  </div>
+                  <figcaption
+                    className="mt-4 flex items-center gap-2.5 font-sans uppercase text-cream/45"
+                    style={{ fontSize: "10px", letterSpacing: "0.25em" }}
+                  >
+                    <span className="h-px w-8 bg-brass/60" aria-hidden />
+                    Read the grain before you cut
+                  </figcaption>
+                </figure>
+              </Parallax>
+            </div>
+          )}
         </div>
 
-        <div className="max-w-3xl fade-in-up fade-in-up-1">
-          <h1
-            className="font-display font-medium uppercase text-cream leading-[0.95] text-[2.25rem] sm:text-[48px] md:text-[64px] lg:text-[72px]"
-            style={{ letterSpacing: "0.01em" }}
-          >
-            We rebuild how
-            <br />
-            your company runs.
-          </h1>
-          <p className="font-display italic text-cream/85 mt-5 max-w-xl text-base md:text-xl lg:text-[22px] leading-snug">
-            Audit the operating model, redesign the workflows, then ship the systems and AI that make the new shape stick.
-          </p>
-        </div>
-
-        <div className="fade-in-up fade-in-up-2 mt-6 lg:mt-5 flex flex-wrap gap-2.5">
-          <Pip icon="◎" label="Strategic" />
-          <Pip icon="⌥" label="Functional" />
-          <Pip icon="◯" label="Individual" />
-        </div>
-
-        <div className="fade-in-up fade-in-up-3 mt-6 lg:mt-5 flex flex-wrap items-center gap-4">
-          <Link
-            to="/readiness"
-            onClick={onReadiness}
-            className="group inline-flex items-center gap-1 rounded-full bg-cream text-green pl-7 pr-3 py-2.5 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/90 active:scale-[0.98] shadow-[0_1px_0_hsl(var(--cream)/0.6)_inset]"
-          >
-            Score your People function in 8 minutes
-            <ArrowCircle tone="green" />
-          </Link>
-          <Link
-            to={auditHref}
-            onClick={onAudit}
-            className="group inline-flex items-center gap-1 rounded-full border border-cream/40 text-cream pl-7 pr-3 py-2.5 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/10 active:scale-[0.98]"
-          >
-            Book a Grain Audit
-            <ArrowCircle tone="cream" />
-          </Link>
-        </div>
-
-        <div className="hidden md:flex absolute bottom-6 left-0 right-0 container-grain items-center justify-between text-cream/40 font-sans uppercase" style={{ fontSize: "10px", letterSpacing: "0.25em" }}>
+        <div
+          className="hidden lg:flex absolute bottom-6 left-0 right-0 container-grain items-center justify-between text-cream/40 font-sans uppercase"
+          style={{ fontSize: "10px", letterSpacing: "0.25em" }}
+        >
           <span>Matt Bradburn · Founder, Deepgrain</span>
           <span>Work with the grain</span>
         </div>
