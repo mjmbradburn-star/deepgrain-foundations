@@ -54,14 +54,15 @@ const Contact = () => (
           </p>
           <div className="mt-10">
             <PillButton
-              href="/grain-audit"
+              href="#book"
               variant="filled"
-              cta="grain_audit_hero"
+              cta="scroll_to_calendar"
               ctaLocation="contact_hero"
             >
-              Book a Grain Audit
+              Grab a slot below
             </PillButton>
           </div>
+
           <p className="mt-6 text-cream/50 text-sm">
             Want to talk it through first? Thirty minutes, below.
           </p>
