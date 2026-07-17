@@ -61,13 +61,14 @@ export const PillButton = ({
   };
 
   if (href) {
-    if (external || href.startsWith("mailto:") || href.startsWith("http")) {
+    if (external || href.startsWith("mailto:") || href.startsWith("http") || href.startsWith("#")) {
       return (
         <a href={href} className={classes} onClick={fireCta}>
           {children}
         </a>
       );
     }
+
     return (
       <Link to={href} className={classes} onClick={fireCta}>
         {children}
