@@ -54,14 +54,15 @@ const Contact = () => (
           </p>
           <div className="mt-10">
             <PillButton
-              href="/grain-audit"
+              href="#book"
               variant="filled"
-              cta="grain_audit_hero"
+              cta="scroll_to_calendar"
               ctaLocation="contact_hero"
             >
-              Book a Grain Audit
+              Grab a slot below
             </PillButton>
           </div>
+
           <p className="mt-6 text-cream/50 text-sm">
             Want to talk it through first? Thirty minutes, below.
           </p>
@@ -70,7 +71,7 @@ const Contact = () => (
     </section>
 
     {/* The three steps, then the calendar */}
-    <section className="bg-linen text-walnut py-20 md:py-28">
+    <section id="book" className="bg-linen text-walnut py-20 md:py-28 scroll-mt-24">
       <div className="container-grain">
         <div className="grid lg:grid-cols-[5fr_7fr] gap-12 lg:gap-16 items-start">
           <ScrollReveal>
