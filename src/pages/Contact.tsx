@@ -71,7 +71,7 @@ const Contact = () => (
     </section>
 
     {/* The three steps, then the calendar */}
-    <section className="bg-linen text-walnut py-20 md:py-28">
+    <section id="book" className="bg-linen text-walnut py-20 md:py-28 scroll-mt-24">
       <div className="container-grain">
         <div className="grid lg:grid-cols-[5fr_7fr] gap-12 lg:gap-16 items-start">
           <ScrollReveal>
