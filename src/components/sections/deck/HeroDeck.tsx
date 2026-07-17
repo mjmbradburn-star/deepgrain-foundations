@@ -21,23 +21,6 @@ const ArrowCircle = ({ tone = "green" }: { tone?: "green" | "cream" }) => (
   </span>
 );
 
-const ChevronDown = ({ size = 28 }: { size?: number }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden
-  >
-    <path d="m6 9 6 6 6-6" />
-  </svg>
-);
-
 const Pip = ({ icon, label }: { icon: string; label: string }) => (
   <span className="inline-flex items-center gap-2 rounded-full border border-brass/40 px-3.5 py-1.5 text-xs text-cream/85">
     <span className="text-brass">{icon}</span> {label}
@@ -138,34 +121,6 @@ export const HeroDeck = () => {
             </Parallax>
           </div>
         </div>
-
-        <div
-          className="hidden lg:flex absolute bottom-6 left-0 right-0 container-grain items-center justify-between text-cream/40 font-sans uppercase"
-          style={{ fontSize: "10px", letterSpacing: "0.25em" }}
-        >
-          <span>Matt Bradburn · Founder, Deepgrain</span>
-          <span>Work with the grain</span>
-        </div>
-      </div>
-
-      <div className="absolute inset-x-0 bottom-4 md:bottom-6 flex justify-center pointer-events-none z-10">
-        <button
-          type="button"
-          onClick={() => {
-            const hero = document.getElementById("hero");
-            const next = hero?.nextElementSibling as HTMLElement | null;
-            const prefersReduced =
-              typeof window !== "undefined" &&
-              window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            const behavior: ScrollBehavior = prefersReduced ? "auto" : "smooth";
-            if (next) next.scrollIntoView({ behavior, block: "start" });
-            else window.scrollTo({ top: window.innerHeight, behavior });
-          }}
-          aria-label="Scroll to next section"
-          className="pointer-events-auto inline-flex items-center justify-center text-cream/50 hover:text-cream transition-colors animate-bob motion-reduce:animate-none p-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cream/60"
-        >
-          <ChevronDown size={26} />
-        </button>
       </div>
     </section>
   );

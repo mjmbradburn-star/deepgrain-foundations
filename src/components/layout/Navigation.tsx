@@ -83,11 +83,10 @@ export const Navigation = () => {
     setToolsOpen(false);
   }, [pathname]);
 
-  const solid =
-    scrolled ||
-    open ||
-    pathname.startsWith("/method") ||
-    pathname.startsWith("/enablement");
+  // The nav is transparent only over a dark hero (home, readiness). Everywhere
+  // else it stays solid from the top so cream links never sit on linen.
+  const darkHeroRoute = pathname === "/" || pathname === "/readiness";
+  const solid = scrolled || open || !darkHeroRoute;
 
   const sectionActive = (to: string) => {
     if (pathname === to) return true;
