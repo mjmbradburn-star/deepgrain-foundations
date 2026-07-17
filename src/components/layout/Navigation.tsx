@@ -167,7 +167,7 @@ export const Navigation = () => {
                 )}
                 {/* pt-5 is the hover bridge from trigger to panel */}
                 <div className="absolute right-0 top-full pt-5 opacity-0 invisible translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0">
-                  <div className="w-[320px] rounded-[16px] bg-green/98 backdrop-blur-md ring-1 ring-cream/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] p-2">
+                  <div className="w-[320px] rounded-[16px] bg-bark ring-1 ring-cream/15 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] p-2">
                     {tools.map((t) => (
                       <Link
                         key={t.to}

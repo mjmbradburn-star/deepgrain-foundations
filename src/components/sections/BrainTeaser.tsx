@@ -35,7 +35,7 @@ export const BrainTeaser = () => (
 
 
     <div className="relative container-grain max-w-6xl">
-      <div className="relative bg-walnut/92 backdrop-blur-sm rounded-[48px] md:rounded-[80px] p-8 sm:p-12 md:p-16 lg:p-20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20">
+      <div className="relative bg-walnut rounded-[48px] md:rounded-[80px] p-8 sm:p-12 md:p-16 lg:p-20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20">
         <div className="grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
           {/* LEFT: copy + CTAs */}
           <div>

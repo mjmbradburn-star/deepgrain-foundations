@@ -377,7 +377,7 @@ const ExposureMap = () => {
           </div>
 
           <ScrollReveal delay={100}>
-            <div className="relative mt-24 md:mt-32 bg-walnut/92 backdrop-blur-sm rounded-[48px] md:rounded-[80px] p-10 md:p-16 lg:p-20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20 overflow-hidden">
+            <div className="relative mt-24 md:mt-32 bg-walnut rounded-[48px] md:rounded-[80px] p-10 md:p-16 lg:p-20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20 overflow-hidden">
               <GrainFlow className="absolute inset-x-0 -top-8 h-44" opacity={0.1} />
               <div className="relative grid gap-12 md:grid-cols-3 md:gap-14">
                 {INSIGHTS.map((card, i) => (

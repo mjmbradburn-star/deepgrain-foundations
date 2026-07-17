@@ -34,7 +34,7 @@ export const WhoThisIsFor = () => (
     </div>
     <div className="relative container-grain max-w-5xl">
       {/* Curved bronze panel for legibility */}
-      <div className="relative bg-walnut/92 backdrop-blur-sm rounded-[48px] md:rounded-[80px] p-10 md:p-16 lg:p-20 max-w-4xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20">
+      <div className="relative bg-walnut rounded-[48px] md:rounded-[80px] p-10 md:p-16 lg:p-20 max-w-4xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20">
         <ScrollReveal>
           <Eyebrow className="text-brass mb-8">The pattern we keep seeing</Eyebrow>
           <h2 className="font-display text-cream text-[2rem] sm:text-5xl md:text-6xl lg:text-[80px] leading-[1.1] sm:leading-[1.05] max-w-3xl text-pretty">
