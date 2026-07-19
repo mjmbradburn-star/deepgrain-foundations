@@ -14,6 +14,11 @@ interface ScrollRevealProps {
  * driven by index.css. Replaces the previous framer-motion implementation so the
  * critical path no longer needs motion-vendor.
  *
+ * A 1200ms timeout forces `data-reveal="in"` if the observer never fires (a
+ * stalled observer, a backgrounded tab, an unsupported browser), so content
+ * can never strand hidden. Cleared as soon as the observer fires or the
+ * component unmounts.
+ *
  * forwardRef so consumers (and dev-tooling) can pass a ref without React warning.
  */
 const ScrollRevealInner = forwardRef<HTMLElement, ScrollRevealProps>(({
@@ -36,19 +41,25 @@ const ScrollRevealInner = forwardRef<HTMLElement, ScrollRevealProps>(({
       node.setAttribute("data-reveal", "in");
       return;
     }
+    let fallback: ReturnType<typeof setTimeout> | undefined;
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             (entry.target as HTMLElement).setAttribute("data-reveal", "in");
             io.unobserve(entry.target);
+            if (fallback) clearTimeout(fallback);
           }
         }
       },
       { threshold, rootMargin: "0px 0px -10% 0px" },
     );
     io.observe(node);
-    return () => io.disconnect();
+    fallback = setTimeout(() => node.setAttribute("data-reveal", "in"), 1200);
+    return () => {
+      io.disconnect();
+      if (fallback) clearTimeout(fallback);
+    };
   }, [threshold]);
 
   const style: CSSProperties = {

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { CLUSTERS_BY_SLUG, type ClusterSlug } from "@/lib/clusters";
 import { getArticlesByCluster, type Article } from "@/lib/intelligence";
 
@@ -20,7 +19,6 @@ interface Props {
   /** Heading + section background. */
   variant?: "linen" | "cream";
   heading?: string;
-  kicker?: string;
 }
 
 /**
@@ -64,7 +62,6 @@ export const RelatedClusterArticles = ({
   perCluster = 3,
   variant = "linen",
   heading = "Related across the library",
-  kicker = "Related articles",
 }: Props) => {
   const exclude = new Set([
     ...excludeSlugs,
@@ -92,7 +89,6 @@ export const RelatedClusterArticles = ({
     <section className={`${bg} py-20 md:py-28`}>
       <div className="container-grain">
         <div className="max-w-3xl mb-12">
-          <Eyebrow>{kicker}</Eyebrow>
           <h2
             className="font-display text-3xl md:text-5xl text-walnut mt-3"
             style={{ letterSpacing: "-0.015em" }}
@@ -106,7 +102,9 @@ export const RelatedClusterArticles = ({
             <div key={cluster.slug}>
               <div className="flex items-baseline justify-between gap-6 mb-6 pb-4 border-b border-walnut/15">
                 <div>
-                  <Eyebrow>{cluster.short}</Eyebrow>
+                  <p className="font-sans uppercase text-walnut/60 text-[11px] tracking-[0.14em]">
+                    {cluster.short}
+                  </p>
                   <h3 className="font-display text-xl md:text-2xl text-walnut mt-2">
                     {cluster.name}
                   </h3>

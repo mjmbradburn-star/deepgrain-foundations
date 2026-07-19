@@ -2,7 +2,9 @@ import { Helmet } from "react-helmet-async";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { CLUSTERS, getCluster } from "@/lib/clusters";
 import { getArticlesByCluster } from "@/lib/intelligence";
+import { getPillar } from "@/data/pillars";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
+import { IntelligenceCTA } from "@/components/intelligence/IntelligenceCTA";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
@@ -20,11 +22,11 @@ const IntelligenceCluster = () => {
   if (!cluster) return <Navigate to="/intelligence" replace />;
 
   const articles = getArticlesByCluster(slug);
-  const url = `https://deepgrain.ai/intelligence/cluster/${cluster.slug}`;
+  const url = `https://www.deepgrain.ai/intelligence/cluster/${cluster.slug}`;
 
   const breadcrumbLd = buildBreadcrumbLd([
-    { name: "Home", url: "https://deepgrain.ai/" },
-    { name: "Intelligence", url: "https://deepgrain.ai/intelligence" },
+    { name: "Home", url: "https://www.deepgrain.ai/" },
+    { name: "Intelligence", url: "https://www.deepgrain.ai/intelligence" },
     { name: cluster.name, url },
   ]);
 
@@ -37,20 +39,21 @@ const IntelligenceCluster = () => {
     isPartOf: {
       "@type": "WebSite",
       name: "Deepgrain",
-      url: "https://deepgrain.ai",
+      url: "https://www.deepgrain.ai",
     },
     mainEntity: {
       "@type": "ItemList",
       itemListElement: articles.map((a, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        url: `https://deepgrain.ai/intelligence/${a.frontmatter.slug}`,
+        url: `https://www.deepgrain.ai/intelligence/${a.frontmatter.slug}`,
         name: a.frontmatter.title,
       })),
     },
   };
 
   const adjacent = CLUSTERS.filter((c) => c.slug !== cluster.slug).slice(0, 6);
+  const parentPillar = getPillar(cluster.parentPillar);
 
   return (
     <>
@@ -64,6 +67,7 @@ const IntelligenceCluster = () => {
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
         <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       <section className="bg-green text-cream pt-40 md:pt-48 pb-20 md:pb-28">
@@ -88,6 +92,18 @@ const IntelligenceCluster = () => {
           <p className="mt-6 text-sm text-cream/60">
             {articles.length} {articles.length === 1 ? "article" : "articles"} in this cluster.
           </p>
+          {parentPillar && (
+            <p className="mt-2 text-sm text-cream/60">
+              Part of the fuller{" "}
+              <Link
+                to={`/intelligence/pillar/${parentPillar.slug}`}
+                className="underline hover:text-cream"
+              >
+                {parentPillar.title}
+              </Link>{" "}
+              pillar →
+            </p>
+          )}
         </div>
       </section>
 
@@ -125,6 +141,8 @@ const IntelligenceCluster = () => {
           </ul>
         </div>
       </section>
+
+      <IntelligenceCTA />
     </>
   );
 };

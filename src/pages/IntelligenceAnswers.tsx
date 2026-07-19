@@ -2,9 +2,11 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ANSWERS } from "@/data/answers";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
+import { EmailCapture } from "@/components/forms/EmailCapture";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
-const SITE = "https://deepgrain.ai";
+const SITE = "https://www.deepgrain.ai";
 const URL = `${SITE}/intelligence/answers`;
 
 /**
@@ -62,7 +64,7 @@ const IntelligenceAnswers = () => {
         <meta property="og:description" content="Direct answers to the questions people actually search about AI operating systems, AI workspaces, and AI readiness." />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://deepgrain.ai/og-intelligence.png" />
+        <meta property="og:image" content="https://www.deepgrain.ai/og-intelligence.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">{JSON.stringify(qaPageLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqPageLd)}</script>
@@ -126,6 +128,24 @@ const IntelligenceAnswers = () => {
               </li>
             ))}
           </ol>
+
+          <div className="mt-16 pt-12 border-t border-walnut/15">
+            <EmailCapture
+              source="answers"
+              variant="light"
+              heading="If this resonated, there's more."
+              description="Subscribe to receive new Intelligence pieces as they're published. No noise, just the work."
+            />
+          </div>
+
+          <div className="mt-10">
+            <AssessmentLadder
+              variant="inline"
+              tone="linen"
+              tools={["readiness"]}
+              ctaLocation="answers_footer"
+            />
+          </div>
         </div>
       </section>
     </>

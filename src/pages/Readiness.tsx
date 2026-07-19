@@ -12,7 +12,7 @@ import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { track, trackFormSubmit } from "@/lib/analytics";
-import { recordAssessment } from "@/lib/assessmentCapture";
+import { getAssessmentSessionId, recordAssessment } from "@/lib/assessmentCapture";
 import { cn } from "@/lib/utils";
 import {
   GAPS,
@@ -35,7 +35,7 @@ const READINESS_LD = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" },
-  provider: { "@id": "https://deepgrain.ai/#organization" },
+  provider: { "@id": "https://www.deepgrain.ai/#organization" },
   description:
     "Sixteen questions scoring a People function across four capability layers. One honest number, the gaps, and what fixes each.",
 };
@@ -230,11 +230,11 @@ const ResultLeadForm = ({ result }: { result: AssessmentResult }) => {
                 className="font-display font-semibold text-cream leading-[1.05]"
                 style={{ fontSize: "clamp(28px, 3vw, 44px)", letterSpacing: "-0.01em" }}
               >
-                Want the board-ready version?
+                Want this as one page for your CEO?
               </h3>
               <p className="text-cream/75 mt-6 text-[17px] leading-relaxed max-w-md">
-                Your score, the four layers, your two gaps and the recommended first move, written
-                up to be forwarded to your CEO as it stands.
+                Same score, same two gaps, same first move, formatted to forward. Nothing new,
+                just ready to send.
               </p>
               <p className="text-cream/50 mt-5 text-sm">
                 One email with your readout. Nothing else unless you ask.{" "}
@@ -356,14 +356,48 @@ const ResultScore = ({ result }: { result: AssessmentResult }) => {
   );
 };
 
+/** In-progress session key, namespaced to the visitor's stable session id so a
+ *  refresh mid-quiz restores exactly where they left off. Cleared on
+ *  completion and on restart so a stale entry never rehydrates a finished
+ *  quiz back into its last question. */
+const progressKey = () => `dg_readiness_progress_${getAssessmentSessionId()}`;
+
 const Readiness = () => {
   const [started, setStarted] = useState(false);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [result, setResult] = useState<AssessmentResult | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const question = QUESTIONS[index];
   const progress = useMemo(() => Math.round((index / QUESTIONS.length) * 100), [index]);
+
+  // Rehydrate an in-progress quiz once on mount, so a refresh never erases
+  // answers already given.
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem(progressKey());
+      if (!raw) return;
+      const saved = JSON.parse(raw) as { started?: boolean; index?: number; answers?: number[] };
+      if (saved.started && Array.isArray(saved.answers) && saved.answers.length > 0) {
+        setStarted(true);
+        setIndex(saved.index ?? 0);
+        setAnswers(saved.answers);
+      }
+    } catch {
+      /* corrupt or unavailable storage: start fresh */
+    }
+  }, []);
+
+  // Persist progress as the visitor answers, so a refresh mid-quiz restores.
+  useEffect(() => {
+    if (!started || result) return;
+    try {
+      sessionStorage.setItem(progressKey(), JSON.stringify({ started, index, answers }));
+    } catch {
+      /* best-effort persistence only; never blocks the quiz */
+    }
+  }, [started, index, answers, result]);
 
   const start = () => {
     setStarted(true);
@@ -374,6 +408,11 @@ const Readiness = () => {
     const next = [...answers];
     next[index] = points;
     setAnswers(next);
+    track("assessment_answer", {
+      assessment: "readiness",
+      question_index: index,
+      layer: LAYERS[question.layer],
+    });
     if (index + 1 < QUESTIONS.length) {
       setIndex(index + 1);
     } else {
@@ -394,7 +433,13 @@ const Readiness = () => {
         detail: { weakestLayers: r.weakestLayers.map((l) => LAYERS[l]) },
         source: "readiness_complete",
       });
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      try {
+        sessionStorage.removeItem(progressKey());
+      } catch {
+        /* nothing to clear */
+      }
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
     }
   };
 
@@ -403,13 +448,39 @@ const Readiness = () => {
     setIndex(0);
     setAnswers([]);
     setResult(null);
+    try {
+      sessionStorage.removeItem(progressKey());
+    } catch {
+      /* nothing to clear */
+    }
+  };
+
+  const shareText = (r: AssessmentResult) =>
+    `My People function scored ${r.score}/100 on Deepgrain's AI Readiness Assessment (${r.stage.name}). Score yours: ${
+      typeof window !== "undefined" ? window.location.href : "https://www.deepgrain.ai/readiness"
+    }`;
+
+  const copyResult = async (r: AssessmentResult) => {
+    try {
+      await navigator.clipboard.writeText(shareText(r));
+      setCopied(true);
+      track("cta_click", {
+        cta_id: "copy_result_readiness",
+        cta_location: "readiness_result",
+        cta_label: "Copy your result",
+        link_url: window.location.href,
+      });
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* clipboard unsupported; no-op, the link is already in the address bar */
+    }
   };
 
   return (
     <>
       <PageMeta
         title="How AI-ready is your People function? | Deepgrain"
-        description="Sixteen questions, eight minutes, one honest number. Score your People function across four capability layers and see the two gaps that matter most."
+        description="Sixteen questions, about ten minutes, one honest number. Score your People function across four capability layers and see the two gaps that matter most."
         path="/readiness"
         jsonLd={READINESS_LD}
       />
@@ -447,7 +518,7 @@ const Readiness = () => {
                   className="font-display italic text-cream/85 mt-10 max-w-2xl"
                   style={{ fontSize: "clamp(22px, 2.8vw, 32px)", lineHeight: 1.3 }}
                 >
-                  Sixteen questions, eight minutes. One honest number, not a vanity score.
+                  Sixteen questions, about ten minutes. One honest number, not a vanity score.
                 </p>
                 <p className="mt-7 text-cream/75 max-w-xl text-lg leading-relaxed">
                   Where your team sits across the four capability layers, the specific gaps, and
@@ -466,7 +537,23 @@ const Readiness = () => {
                 </button>
                 <span className="text-cream/50 text-sm">Free · no sign-up</span>
               </div>
-
+              <div className="fade-in-up fade-in-up-3 mt-7">
+                <Link
+                  to="/exposure-map"
+                  onClick={() =>
+                    track("cta_click", {
+                      cta_id: "exposure_readiness_intro",
+                      cta_location: "readiness_intro",
+                      cta_label: "Open the AI Exposure Map",
+                      link_url: "/exposure-map",
+                    })
+                  }
+                  className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-cream/80 hover:text-cream underline-offset-4 hover:underline"
+                >
+                  Prefer task-by-task detail? Open the AI Exposure Map instead
+                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                </Link>
+              </div>
             </div>
           </>
         )}
@@ -485,7 +572,7 @@ const Readiness = () => {
                 >
                   <span>
                     Question {index + 1}{" "}
-                    <span className="text-cream/25">of {QUESTIONS.length}</span>
+                    <span className="text-cream/45">of {QUESTIONS.length}</span>
                   </span>
                   <span>{LAYERS[question.layer]}</span>
                 </div>
@@ -517,7 +604,7 @@ const Readiness = () => {
                         key={opt.label}
                         type="button"
                         onClick={() => answer(opt.points)}
-                        className="group w-full rounded-[1.75rem] ring-1 ring-cream/20 bg-bark/40 px-9 py-7 text-left transition-all duration-500 hover:ring-brass/60 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+                        className="group w-full rounded-[1.75rem] ring-1 ring-cream/20 bg-bark/40 px-9 py-7 text-left transition-all duration-500 hover:ring-brass/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
                         style={{ transitionTimingFunction: EASE }}
                       >
                         <span className="flex items-center justify-between gap-6">
@@ -558,7 +645,7 @@ const Readiness = () => {
                     <span aria-hidden />
                   )}
                   <span
-                    className="font-sans uppercase text-cream/30"
+                    className="font-sans uppercase text-cream/45"
                     style={{ fontSize: "11px", letterSpacing: "0.2em" }}
                   >
                     Honest answers, honest number
@@ -642,8 +729,25 @@ const Readiness = () => {
                       <ArrowCircle tone="green" />
                     </Link>
                     <span className="text-cream/50 text-sm">
-                      Two weeks. GBP 2,000, credited in full if you go further.
+                      Two weeks. £2,000, credited in full if you go further.
                     </span>
+                  </div>
+                  <div className="mt-5">
+                    <Link
+                      to="/contact"
+                      onClick={() =>
+                        track("cta_click", {
+                          cta_id: "call_readiness_result",
+                          cta_location: "readiness_result",
+                          cta_label: "Talk it through first",
+                          link_url: "/contact",
+                        })
+                      }
+                      className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-cream/80 hover:text-cream underline-offset-4 hover:underline"
+                    >
+                      Or talk it through first, thirty minutes, no charge
+                      <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                    </Link>
                   </div>
                 </div>
               </Reveal>
@@ -657,10 +761,18 @@ const Readiness = () => {
               <div className="mt-16 flex flex-wrap items-center gap-x-10 gap-y-5">
                 <Link
                   to="/exposure-map"
-                  className="group inline-flex items-center gap-1 rounded-full border border-cream/80 text-cream pl-7 pr-3 py-3 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] hover:bg-cream hover:text-green"
+                  onClick={() =>
+                    track("cta_click", {
+                      cta_id: "exposure_map_from_readiness_result",
+                      cta_location: "readiness_result",
+                      cta_label: "See which tasks drive this",
+                      link_url: "/exposure-map",
+                    })
+                  }
+                  className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-cream/80 hover:text-cream underline-offset-4 hover:underline"
                 >
                   See which tasks drive this
-                  <ArrowCircle tone="invert" />
+                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
                 </Link>
                 <button
                   type="button"
@@ -669,6 +781,33 @@ const Readiness = () => {
                 >
                   Retake the assessment
                 </button>
+              </div>
+              <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-5">
+                <button
+                  type="button"
+                  onClick={() => copyResult(result)}
+                  className="font-sans text-sm tracking-wider text-cream/80 hover:text-cream underline-offset-4 hover:underline"
+                >
+                  {copied ? "Copied to your clipboard" : "Copy your result"}
+                </button>
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                    typeof window !== "undefined" ? window.location.href : "https://www.deepgrain.ai/readiness",
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    track("cta_click", {
+                      cta_id: "share_linkedin_readiness_result",
+                      cta_location: "readiness_result",
+                      cta_label: "Share on LinkedIn",
+                      link_url: "/readiness",
+                    })
+                  }
+                  className="font-sans text-sm tracking-wider text-cream/80 hover:text-cream underline-offset-4 hover:underline"
+                >
+                  Share on LinkedIn
+                </a>
               </div>
               <p className="mt-16 text-cream/40 text-sm max-w-2xl leading-relaxed">
                 Scoring: sixteen questions, four per layer, equal weight. Your answers never
@@ -722,6 +861,17 @@ const Readiness = () => {
                   </Reveal>
                 );
               })}
+            </div>
+            <div className="mt-14 md:mt-16 flex flex-wrap items-center gap-5">
+              <button
+                type="button"
+                onClick={start}
+                className="group inline-flex items-center gap-1 rounded-full bg-green text-cream pl-8 pr-3 py-3.5 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-green/90 active:scale-[0.98]"
+              >
+                Start the assessment
+                <ArrowCircle tone="cream" />
+              </button>
+              <span className="text-walnut/60 text-sm">Free · no sign-up</span>
             </div>
           </div>
         </section>

@@ -1,4 +1,3 @@
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
@@ -9,36 +8,8 @@ import { Linkedin } from "lucide-react";
 import matthewPortrait from "@/assets/matthew-bradburn.jpg";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
-import { ThreeLevels, type Level } from "@/components/sections/deck/ThreeLevels";
-import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
-
-const ALTITUDES: Level[] = [
-  {
-    n: "01",
-    label: "Strategic",
-    title: "How I think about an organisation.",
-    question: "Where is this place actually trying to go, and what is in the way of it getting there?",
-    failure: "Reading the strategy deck and believing it.",
-    resilient: "Reading the org from the inside, then deciding where to cut with the grain and where to cut against it.",
-  },
-  {
-    n: "02",
-    label: "Functional",
-    title: "How I work inside one.",
-    question: "Which workflows carry the function, which leak value, and which are theatre?",
-    failure: "Recommending tools at role level. Pilots that never reach a Tuesday afternoon.",
-    resilient: "Mapping at the click level. Building agents where the friction actually is.",
-  },
-  {
-    n: "03",
-    label: "Individual",
-    title: "Who I build alongside.",
-    question: "Which three people in the function will hold this work after I leave?",
-    failure: "Training everyone to the same shallow depth. No-one ships.",
-    resilient: "Three or four champions, air cover, time, and a small starting brief.",
-  },
-];
-
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
+import { Link } from "react-router-dom";
 
 const testimonials = [
   {
@@ -63,7 +34,7 @@ const About = () => (
         {
           "@context": "https://schema.org",
           "@type": "Person",
-          "@id": "https://deepgrain.ai/about#matthew-bradburn",
+          "@id": "https://www.deepgrain.ai/about#matthew-bradburn",
           name: "Matthew Bradburn",
           givenName: "Matthew",
           familyName: "Bradburn",
@@ -71,11 +42,11 @@ const About = () => (
           worksFor: {
             "@type": "Organization",
             name: "Deepgrain",
-            url: "https://deepgrain.ai",
+            url: "https://www.deepgrain.ai",
           },
-          url: "https://deepgrain.ai/about",
+          url: "https://www.deepgrain.ai/about",
           email: "matt@deepgrain.ai",
-          image: "https://deepgrain.ai/og-image.png",
+          image: "https://www.deepgrain.ai/og-image.png",
           knowsAbout: [
             "Organisational consultancy",
             "AI operating systems",
@@ -88,8 +59,8 @@ const About = () => (
           ],
         },
         buildBreadcrumbLd([
-          { name: "Home", url: "https://deepgrain.ai/" },
-          { name: "About", url: "https://deepgrain.ai/about" },
+          { name: "Home", url: "https://www.deepgrain.ai/" },
+          { name: "About", url: "https://www.deepgrain.ai/about" },
         ]),
       ]}
     />
@@ -116,9 +87,24 @@ const About = () => (
       </div>
     </section>
 
-    {/* Three altitudes - how I work, mirroring the method */}
-    <ThreeLevels levels={ALTITUDES} showMoves={false} />
-
+    {/* Altitudes, short form - the detail lives on Method */}
+    <section className="bg-linen text-body py-16 md:py-20">
+      <div className="container-grain max-w-3xl">
+        <ScrollReveal>
+          <p className="font-display text-walnut text-2xl md:text-3xl leading-snug text-balance">
+            I work at three altitudes at once: strategy, the function, and the
+            people who carry it. The detail lives on the{" "}
+            <Link
+              to="/method"
+              className="underline decoration-brass/50 underline-offset-4 hover:decoration-brass transition-colors"
+            >
+              Method page
+            </Link>
+            .
+          </p>
+        </ScrollReveal>
+      </div>
+    </section>
 
     {/* Bio - who Matthew is, in his own grain */}
     <section className="bg-linen text-body section-pad">
@@ -151,7 +137,6 @@ const About = () => (
           </ScrollReveal>
 
           <ScrollReveal>
-            <Eyebrow className="text-walnut/60 mb-6">Who runs this</Eyebrow>
             <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-[60px] leading-[1.05] text-balance">
               Matthew Bradburn. Founder. Still doing the work myself.
             </h2>
@@ -202,18 +187,27 @@ const About = () => (
       </div>
     </section>
 
+    <section className="bg-linen text-body pb-16 md:pb-20">
+      <div className="container-grain max-w-6xl">
+        <AssessmentLadder
+          variant="inline"
+          tone="linen"
+          tools={["readiness"]}
+          ctaLocation="about_bio"
+        />
+      </div>
+    </section>
+
     {/* The belief - moved here from the homepage so the line still lives somewhere */}
     <section className="bg-cream text-walnut py-24 md:py-32 border-y border-walnut/10">
       <div className="container-grain max-w-4xl text-center">
         <ScrollReveal>
-          <Eyebrow className="text-walnut/60 mb-8">The belief</Eyebrow>
           <p
-            className="font-display italic font-light text-walnut text-3xl sm:text-4xl md:text-5xl lg:text-[52px] leading-tight text-balance"
+            className="font-display font-light text-walnut text-3xl sm:text-4xl md:text-5xl lg:text-[52px] leading-tight text-balance"
             style={{ letterSpacing: "-0.01em" }}
           >
-            &ldquo;Strategy at the top. Enablement and training across the team.
-            Agents and automations in the workflow. Built function by function,
-            top to bottom.&rdquo;
+            The work that survives is the work the client can run without me
+            in the room.
           </p>
         </ScrollReveal>
       </div>
@@ -257,7 +251,9 @@ const About = () => (
       contentClassName="container-grain max-w-4xl"
     >
         <ScrollReveal>
-          <Eyebrow className="text-brass mb-6">Track record</Eyebrow>
+          <h2 className="font-display text-cream text-3xl md:text-4xl leading-snug mb-8">
+            Track record.
+          </h2>
           <div className="space-y-4 text-cream/85 leading-relaxed text-lg">
             <p>1,000+ managers trained across 100+ cohorts.</p>
             <p>Clients from 50 to 600 people.</p>
@@ -267,11 +263,8 @@ const About = () => (
           </div>
           <BrassRule className="my-16" />
           <div className="grid md:grid-cols-2 gap-12">
-            {testimonials.map((t, i) => (
-              <blockquote
-                key={t.attribution}
-                className={i >= 1 ? "hidden md:block" : undefined}
-              >
+            {testimonials.map((t) => (
+              <blockquote key={t.attribution}>
                 <p className="font-display italic text-2xl text-cream leading-snug">&ldquo;{t.quote}&rdquo;</p>
                 <footer className="mt-4 text-brass text-xs uppercase tracking-[0.15em]">
                   {t.attribution}
@@ -283,6 +276,7 @@ const About = () => (
     </BarkSection>
 
     <Invitation
+      eyebrow=""
       ctaLocation="about"
       headline="If any of that's true of your organisation, say so."
       sub="Thirty minutes tells us both if there's a fit."

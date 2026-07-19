@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { HeroDeck } from "@/components/sections/deck/HeroDeck";
 import { TheShift } from "@/components/sections/deck/TheShift";
 import { WorkedExample } from "@/components/sections/deck/WorkedExample";
-import { StickyBookingPill } from "@/components/layout/StickyBookingPill";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { HOME_FAQ_LD } from "@/data/homeFaq";
 
@@ -71,22 +71,35 @@ const Home = () => (
           name: "Simple AI, a 90-second primer for G&A leaders",
           description:
             "Seventeen of the terms cluttering every AI conversation, in plain English. Made for G&A leaders, not engineers.",
-          thumbnailUrl: ["https://deepgrain.ai/simple-ai-poster.jpg"],
+          thumbnailUrl: ["https://www.deepgrain.ai/simple-ai-poster.jpg"],
           uploadDate: "2026-05-01T00:00:00+00:00",
           duration: "PT1M30S",
-          contentUrl: "https://deepgrain.ai/simple-ai.mp4",
-          embedUrl: "https://deepgrain.ai/simple-ai.mp4",
-          publisher: { "@id": "https://deepgrain.ai/#organization" },
+          contentUrl: "https://www.deepgrain.ai/simple-ai.mp4",
+          embedUrl: "https://www.deepgrain.ai/simple-ai.mp4",
+          publisher: { "@id": "https://www.deepgrain.ai/#organization" },
         },
         HOME_FAQ_LD,
       ]}
     />
     <HeroDeck />
     <TheShift />
+    <AssessmentLadder
+      variant="band"
+      tone="linen"
+      tools={["readiness", "exposure"]}
+      heading="Two ways to start, before we talk."
+      ctaLocation="home_shift"
+    />
     <WorkedExample />
     <Suspense fallback={<SectionFallback />}>
       <div className="cv-auto">
-        <LogoCarousel background="green" />
+        {/* eyebrow suppressed: the hero pill and the FAQ default already use
+            up this page's two-eyebrow budget. */}
+        <LogoCarousel
+          background="green"
+          eyebrow=""
+          headline="Teams that chose to understand themselves first."
+        />
       </div>
       <div className="cv-auto">
         <AgentArchitecture />
@@ -110,7 +123,6 @@ const Home = () => (
         <ClosingInvitation />
       </div>
     </Suspense>
-    <StickyBookingPill />
   </>
 );
 

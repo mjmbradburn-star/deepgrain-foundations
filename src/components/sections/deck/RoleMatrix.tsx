@@ -1,5 +1,4 @@
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 
 const cells = [
   {
@@ -52,8 +51,7 @@ export const RoleMatrix = () => (
   <section className="bg-cream text-walnut section-pad">
     <div className="container-grain">
       <Reveal>
-        <SectionEyebrow pill tone="linen" className="mb-6">The matrix</SectionEyebrow>
-        <h2 className="font-display text-walnut text-4xl md:text-6xl leading-[1.05] max-w-3xl mt-6">
+        <h2 className="font-display text-walnut text-4xl md:text-6xl leading-[1.05] max-w-3xl">
           Not every role automates. Most have a piece that should.
         </h2>
         <p className="mt-6 max-w-2xl text-walnut/75 text-lg leading-relaxed">
@@ -92,7 +90,7 @@ export const RoleMatrix = () => (
                       key={`${c.row}-${c.col}`}
                       className={
                         c.accent
-                          ? "rounded-xl border border-brass/40 bg-brass/[0.08] p-5 ring-1 ring-brass/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]"
+                          ? "rounded-xl bg-brass/[0.08] p-5"
                           : "rounded-xl border border-walnut/15 bg-cream p-5"
                       }
                     >

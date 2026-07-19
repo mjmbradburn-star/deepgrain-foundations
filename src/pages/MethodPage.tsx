@@ -6,7 +6,7 @@ import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { ValueVisualiser } from "@/components/sections/ValueVisualiser";
-import { BuildVsHire } from "@/components/sections/BuildVsHire";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { BarkSection } from "@/components/ui/BarkSection";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
@@ -50,12 +50,12 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How long does a Deepgrain engagement run?",
     answer:
-      "Most engagements run between three and nine months. We start with a 30-day Read phase to surface the operating reality, then move into Craft (typically 60–120 days of focused interventions paired with champion development), and finally a Scale phase that hands the practice over to your team. Some clients renew into a lighter advisory cadence after that.",
+      "Most engagements run between three and nine months. We start with a 30-day Read phase to surface the operating reality, then move into Craft (typically 60-120 days of focused interventions paired with champion development), and finally a Scale phase that hands the practice over to your team. Some clients renew into a lighter advisory cadence after that.",
     answerNode: (
       <>
         Most engagements run between three and nine months. We start with a 30-day{" "}
         <Link to="/method#read" className={linkCls}>Read</Link> phase to surface the operating reality, then move into{" "}
-        <Link to="/method#craft" className={linkCls}>Craft</Link> (typically 60–120 days of focused interventions paired with champion development), and finally a{" "}
+        <Link to="/method#craft" className={linkCls}>Craft</Link> (typically 60-120 days of focused interventions paired with champion development), and finally a{" "}
         <Link to="/method#scale" className={linkCls}>Scale</Link> phase that hands the practice over to your team. Some clients renew into a lighter advisory cadence after that.
         <FaqFooter ask="I'd like to understand what an engagement timeline would look like for us. A bit about our situation: " />
       </>
@@ -119,10 +119,11 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How does pricing work?",
     answer:
-      "Engagements are scoped per phase, not by retainer or day rate. If you want a fixed number before that conversation, start with the Grain Audit: two weeks, £2,000, one process mapped end to end. It's credited in full against a programme if you go further.",
+      "Engagements are scoped per phase, not by retainer or day rate. You can start free with the Readiness Assessment, about ten minutes, or if you want a fixed number before that conversation, start with the Grain Audit: two weeks, £2,000, one process mapped end to end. It's credited in full against a programme if you go further.",
     answerNode: (
       <>
-        Engagements are scoped per phase, not by retainer or day rate. If you want a fixed number before that conversation, start with the{" "}
+        Engagements are scoped per phase, not by retainer or day rate. You can start free with the{" "}
+        <Link to="/readiness" className={linkCls}>Readiness Assessment</Link>, about ten minutes, or if you want a fixed number before that conversation, start with the{" "}
         <Link to="/grain-audit" className={linkCls}>Grain Audit</Link>: two weeks, £2,000, one process mapped end to end. It's credited in full against a programme if you go further.
         <FaqFooter
           related={{ to: "/grain-audit", label: "Book a Grain Audit →" }}
@@ -148,21 +149,21 @@ const howToLd = {
       "@type": "HowToStep",
       position: 1,
       name: "Read the grain",
-      url: "https://deepgrain.ai/method#read",
+      url: "https://www.deepgrain.ai/method#read",
       text: "A 30-day operating diagnostic. Sit inside the operating cadence, run structured interviews, and surface where the operating story diverges from the operating reality. Output is a written diagnostic leadership can act on, not slideware.",
     },
     {
       "@type": "HowToStep",
       position: 2,
       name: "Craft with the grain",
-      url: "https://deepgrain.ai/method#craft",
+      url: "https://www.deepgrain.ai/method#craft",
       text: "Build a small set of agentic systems and operating rituals alongside three or four internal champions. Human judgement and machine precision working together, designed around how this specific organisation actually moves.",
     },
     {
       "@type": "HowToStep",
       position: 3,
       name: "Scale without breaking the grain",
-      url: "https://deepgrain.ai/method#scale",
+      url: "https://www.deepgrain.ai/method#scale",
       text: "Hand the practice to the team. Trained champions extend the work into corners we never touched. The capability stays in the function, not in a vendor.",
     },
   ],
@@ -178,11 +179,11 @@ const serviceLd = {
   serviceType: "Organisational consultancy and AI operating systems",
   description:
     "Operating consultancy that reads an organisation's grain, builds agentic systems and rituals with it, and leaves a trained internal capability behind.",
-  url: "https://deepgrain.ai/method",
+  url: "https://www.deepgrain.ai/method",
   provider: {
     "@type": "Organization",
     name: "Deepgrain",
-    url: "https://deepgrain.ai",
+    url: "https://www.deepgrain.ai",
     email: "matt@deepgrain.ai",
   },
   areaServed: { "@type": "Place", name: "United Kingdom" },
@@ -200,7 +201,7 @@ const serviceLd = {
           "@type": "Service",
           name: "Read",
           description: "30-day operating diagnostic. Written output leadership can act on.",
-          url: "https://deepgrain.ai/method#read",
+          url: "https://www.deepgrain.ai/method#read",
         },
       },
       {
@@ -209,7 +210,7 @@ const serviceLd = {
           "@type": "Service",
           name: "Craft",
           description: "Building agentic systems and operating rituals with internal champions.",
-          url: "https://deepgrain.ai/method#craft",
+          url: "https://www.deepgrain.ai/method#craft",
         },
       },
       {
@@ -218,7 +219,7 @@ const serviceLd = {
           "@type": "Service",
           name: "Scale",
           description: "Capability handover. Champions extend the practice after the engagement ends.",
-          url: "https://deepgrain.ai/method#scale",
+          url: "https://www.deepgrain.ai/method#scale",
         },
       },
     ],
@@ -307,12 +308,12 @@ const MethodPage = () => {
       <PageMeta
         title="Method · Read · Craft · Scale | Deepgrain"
         description="The Deepgrain method in full. Read the operating reality, craft the smallest interventions that compound, then scale without breaking the grain."
-        image="https://deepgrain.ai/og-method.png"
+        image="https://www.deepgrain.ai/og-method.png"
         path="/method"
         jsonLd={[
           buildBreadcrumbLd([
-            { name: "Home", url: "https://deepgrain.ai/" },
-            { name: "Method", url: "https://deepgrain.ai/method" },
+            { name: "Home", url: "https://www.deepgrain.ai/" },
+            { name: "Method", url: "https://www.deepgrain.ai/method" },
           ]),
           buildFAQLd(FAQ_ITEMS),
           howToLd,
@@ -325,7 +326,7 @@ const MethodPage = () => {
           <TopoBackdrop variant="ridge" opacity={0.22} />
         </Parallax>
         <div className="relative container-grain max-w-5xl">
-          <Reveal>
+          <Reveal blur={0} duration={500}>
             <SectionEyebrow className="mb-6" />
             <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] text-balance max-w-4xl">
               Read. Craft. Scale. In that order, always.
@@ -355,6 +356,47 @@ const MethodPage = () => {
       {/* Worked example: sits between the spine and the Read/Craft/Scale narrative.
           Shared with Home, already carries the double-bezel treatment from there. */}
       <WorkedExample />
+
+      {/* Empowerment beat: the partnership philosophy that underlies all three
+          phases below. Sits ahead of Read so the Read -> Craft -> Scale run
+          stays unbroken. No eyebrow: the H2 carries the section on its own. */}
+      <section className="bg-linen text-body section-pad">
+        <div className="container-grain max-w-3xl">
+          <Reveal>
+            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
+              Agents that partner. People who grow.
+            </h2>
+            <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
+              <p>
+                Agents take the repeatable, low-judgement work. Your champions
+                learn to design, run, and extend them. The capability stays in
+                the team, not in a vendor.{" "}
+                <Link to="/enablement" className={linkCls}>
+                  See how enablement works →
+                </Link>
+              </p>
+              <p className="hidden md:block">
+                It's a training programme first. The systems ship as a side
+                effect, and the hours we reclaim go straight back to your
+                people, for the work only they can do.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={140}>
+            <QuoteBezel tone="linen" className="mt-10">
+              <blockquote className="font-display text-walnut text-xl md:text-2xl leading-snug italic">
+                “The leaders who get this right don't lead the rollout. They lead the conditions that make the rollout inevitable.”
+              </blockquote>
+              <figcaption className="mt-4 text-sm text-body/70">
+                From{" "}
+                <Link to="/intelligence/leading-the-ai-transformation" className={linkCls}>
+                  Leading the AI transformation →
+                </Link>
+              </figcaption>
+            </QuoteBezel>
+          </Reveal>
+        </div>
+      </section>
 
       {/* Read */}
       <section id="read" className="bg-linen text-body section-pad scroll-mt-40">
@@ -435,49 +477,6 @@ const MethodPage = () => {
         </Reveal>
       </BarkSection>
 
-      {/* Empowerment beat */}
-      <section className="bg-linen text-body section-pad">
-        <div className="container-grain max-w-3xl">
-          <Reveal>
-            <SectionEyebrow tone="linen" pill className="mb-6">The partnership</SectionEyebrow>
-            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
-              Agents that partner. People who grow.
-            </h2>
-            <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
-              <p>
-                Agents take the repeatable, low-judgement work. Your champions
-                learn to design, run, and extend them. The capability stays in
-                the team, not in a vendor.{" "}
-                <Link to="/enablement" className={linkCls}>
-                  See how enablement works →
-                </Link>
-              </p>
-              <p className="hidden md:block">
-                It's a training programme first. The systems ship as a side
-                effect, and the hours we reclaim go straight back to your
-                people, for the work only they can do.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={140}>
-            <QuoteBezel tone="linen" className="mt-10">
-              <blockquote className="font-display text-walnut text-xl md:text-2xl leading-snug italic">
-                “The leaders who get this right don't lead the rollout. They lead the conditions that make the rollout inevitable.”
-              </blockquote>
-              <figcaption className="mt-4 text-sm text-body/70">
-                From{" "}
-                <Link to="/intelligence/leading-the-ai-transformation" className={linkCls}>
-                  Leading the AI transformation →
-                </Link>
-              </figcaption>
-            </QuoteBezel>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Build vs Hire: sits between Craft and Scale. Page-specific to /method. */}
-      <BuildVsHire />
-
       {/* Scale */}
       <section id="scale" className="bg-linen text-body section-pad scroll-mt-40">
         <div className="container-grain max-w-3xl">
@@ -523,11 +522,20 @@ const MethodPage = () => {
         </div>
       </section>
 
+      {/* Free entry step, straight after the Read/Craft/Scale sequence closes. */}
+      <AssessmentLadder
+        variant="band"
+        tone="linen"
+        tools={["readiness", "exposure"]}
+        heading="Start with a number."
+        ctaLocation="method_body"
+      />
+
       {/* Value visualiser: page-specific to /method. */}
       <ValueVisualiser />
 
       {/* FAQ: shared with Enablement, Work, IntelligenceArticle - not restyled here. */}
-      <FAQ heading="What clients ask before they engage." items={FAQ_ITEMS} />
+      <FAQ eyebrow="" heading="What clients ask before they engage." items={FAQ_ITEMS} />
 
       {/* CTA: Grain Audit, the paid bridge offer for a reader who just read the whole method */}
       <section className="relative bg-green text-cream section-pad overflow-hidden">
@@ -536,7 +544,6 @@ const MethodPage = () => {
         </Parallax>
         <div className="relative container-grain max-w-3xl">
           <Reveal>
-            <SectionEyebrow pill className="mb-6">The Grain Audit</SectionEyebrow>
             <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight text-balance">
               Don't take the method on faith. Run it on one process.
             </h2>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
-import { AIOI_URL } from "@/lib/aioi";
 import { trackFormSubmit } from "@/lib/analytics";
 
 /**
@@ -119,11 +118,11 @@ export const BrainCaptureForm = ({
                 isDark ? "text-cream/70" : "text-walnut/70",
               )}
             >
-              The Brain link is on its way. While you wait, see how your
-              People function actually scores.
+              The Brain link is on its way. While you wait, score your
+              People function in about ten minutes.
             </p>
-            <a
-              href={AIOI_URL}
+            <Link
+              to="/readiness"
               className={cn(
                 "mt-5 inline-flex items-center font-sans uppercase text-[11px] px-5 py-2.5 rounded-full border transition-colors",
                 isDark
@@ -132,8 +131,8 @@ export const BrainCaptureForm = ({
               )}
               style={{ letterSpacing: "0.16em" }}
             >
-              Take the AIOI →
-            </a>
+              Take the Readiness Assessment →
+            </Link>
           </div>
         </div>
       </div>

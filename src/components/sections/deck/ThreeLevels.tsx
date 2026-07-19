@@ -1,5 +1,4 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 
 export interface Level {
   n: string;
@@ -44,6 +43,13 @@ const DEFAULT_LEVELS: Level[] = [
 /**
  * Method spine, ported from deck slides 5 and 6. Three altitudes,
  * each with the failure-mode and the resilient-posture sat next to it.
+ *
+ * Stacked, not a hanging two-column row: the level label sits directly above
+ * its own title and question rather than pinned in a left rail, so nothing
+ * dangles unattached at small widths. The level numerals are dropped
+ * entirely (only the Strategic/Functional/Individual labels render) so they
+ * never read as a second, competing "01/02/03" against the page's own
+ * Read/Craft/Scale ordinals further down /method.
  */
 export const ThreeLevels = ({
   levels = DEFAULT_LEVELS,
@@ -55,7 +61,6 @@ export const ThreeLevels = ({
   <section className="bg-linen text-walnut section-pad">
     <div className="container-grain">
       <ScrollReveal>
-        <SectionEyebrow tone="linen" className="mb-6">The method</SectionEyebrow>
         <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">
           Three levels. You work at all three at once.
         </h2>
@@ -69,61 +74,50 @@ export const ThreeLevels = ({
       <div className="mt-16 md:mt-20 space-y-16 md:space-y-20">
         {levels.map((lv, i) => (
           <ScrollReveal key={lv.n} delay={i * 80}>
-            <div className="grid lg:grid-cols-[180px_1fr] gap-8 lg:gap-12">
-              <div>
-                <div
-                  className="font-sans uppercase text-brass mb-2"
-                  style={{ fontSize: "10px", letterSpacing: "0.25em", fontWeight: 600 }}
-                >
-                  Level {lv.n}
+            <div className="max-w-3xl">
+              <div className="font-display text-walnut text-3xl md:text-4xl">{lv.label}</div>
+              <h3 className="mt-3 font-display text-walnut text-2xl md:text-3xl leading-snug">
+                {lv.title}
+              </h3>
+              <p className="mt-4 font-display italic text-brass text-lg md:text-xl max-w-2xl">
+                {lv.question}
+              </p>
+
+              <div className="mt-8 grid md:grid-cols-2 gap-6">
+                <div className="rounded-2xl border border-walnut/15 bg-cream/50 p-6">
+                  <div
+                    className="font-sans uppercase text-walnut/55 mb-3"
+                    style={{ fontSize: "10px", letterSpacing: "0.22em", fontWeight: 600 }}
+                  >
+                    ✕ Failure mode
+                  </div>
+                  <p className="text-walnut/80 leading-relaxed">{lv.failure}</p>
                 </div>
-                <div className="font-display text-walnut text-3xl md:text-4xl">{lv.label}</div>
+                <div className="rounded-2xl border border-brass/40 bg-brass/[0.06] p-6">
+                  <div
+                    className="font-sans uppercase text-brass mb-3"
+                    style={{ fontSize: "10px", letterSpacing: "0.22em", fontWeight: 600 }}
+                  >
+                    ✓ Resilient posture
+                  </div>
+                  <p className="text-walnut/85 leading-relaxed">{lv.resilient}</p>
+                </div>
               </div>
 
-              <div>
-                <h3 className="font-display text-walnut text-2xl md:text-3xl leading-snug">
-                  {lv.title}
-                </h3>
-                <p className="mt-4 font-display italic text-brass text-lg md:text-xl max-w-2xl">
-                  {lv.question}
-                </p>
-
-                <div className="mt-8 grid md:grid-cols-2 gap-6">
-                  <div className="rounded-2xl border border-walnut/15 bg-cream/50 p-6">
-                    <div
-                      className="font-sans uppercase text-walnut/55 mb-3"
+              {showMoves && lv.move && (
+                <div className="mt-6 flex items-start gap-3 text-walnut/75">
+                  <span className="text-brass">→</span>
+                  <span className="leading-relaxed">
+                    <span
+                      className="font-sans uppercase text-walnut/55 mr-2"
                       style={{ fontSize: "10px", letterSpacing: "0.22em", fontWeight: 600 }}
                     >
-                      ✕ Failure mode
-                    </div>
-                    <p className="text-walnut/80 leading-relaxed">{lv.failure}</p>
-                  </div>
-                  <div className="rounded-2xl border border-brass/40 bg-brass/[0.06] p-6">
-                    <div
-                      className="font-sans uppercase text-brass mb-3"
-                      style={{ fontSize: "10px", letterSpacing: "0.22em", fontWeight: 600 }}
-                    >
-                      ✓ Resilient posture
-                    </div>
-                    <p className="text-walnut/85 leading-relaxed">{lv.resilient}</p>
-                  </div>
-                </div>
-
-                {showMoves && lv.move && (
-                  <div className="mt-6 flex items-start gap-3 text-walnut/75">
-                    <span className="text-brass">→</span>
-                    <span className="leading-relaxed">
-                      <span
-                        className="font-sans uppercase text-walnut/55 mr-2"
-                        style={{ fontSize: "10px", letterSpacing: "0.22em", fontWeight: 600 }}
-                      >
-                        Do this now
-                      </span>
-                      {lv.move}
+                      Do this now
                     </span>
-                  </div>
-                )}
-              </div>
+                    {lv.move}
+                  </span>
+                </div>
+              )}
             </div>
           </ScrollReveal>
         ))}

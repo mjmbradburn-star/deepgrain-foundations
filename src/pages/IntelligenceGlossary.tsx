@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { GLOSSARY } from "@/data/glossary";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+import { IntelligenceCTA } from "@/components/intelligence/IntelligenceCTA";
 
-const SITE = "https://deepgrain.ai";
+const SITE = "https://www.deepgrain.ai";
 const URL = `${SITE}/intelligence/glossary`;
 
 const IntelligenceGlossary = () => {
@@ -47,7 +48,7 @@ const IntelligenceGlossary = () => {
         <meta property="og:description" content="Working definitions of the operating, AI, and method terms used across Deepgrain Intelligence." />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://deepgrain.ai/og-intelligence.png" />
+        <meta property="og:image" content="https://www.deepgrain.ai/og-intelligence.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">{JSON.stringify(definedTermSetLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
@@ -137,6 +138,8 @@ const IntelligenceGlossary = () => {
           </dl>
         </div>
       </section>
+
+      <IntelligenceCTA />
     </>
   );
 };

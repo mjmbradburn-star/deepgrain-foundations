@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { PillButton } from "@/components/ui/PillButton";
 
@@ -71,9 +70,6 @@ export const SimpleAIPrimer = () => {
 
           {/* Right - copy */}
           <Reveal delay={120}>
-            <Eyebrow withRule className="text-walnut/70 mb-4 md:mb-6">
-              Watch · 90 seconds
-            </Eyebrow>
             <h2
               id="simple-ai-heading"
               className="font-display text-walnut text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.05] text-balance"

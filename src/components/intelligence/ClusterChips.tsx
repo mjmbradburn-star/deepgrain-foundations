@@ -12,6 +12,12 @@ interface ClusterChipsProps {
  * Primary cluster is visually emphasised. Used near the top of article pages
  * to surface the topic-cluster index page each piece belongs to, which is a
  * strong internal-link signal for both Google and answer engines.
+ *
+ * Deliberately NOT tracked-caps: the masthead already carries the category
+ * label and read time in that treatment directly above these chips, so a
+ * third identical tracked-caps row would read as one interchangeable label
+ * costume. Sentence case at normal tracking keeps the cluster's role (a
+ * secondary, browsable tag) visually distinct from the primary metadata.
  */
 export const ClusterChips = ({ primary, secondary = [], className = "" }: ClusterChipsProps) => {
   const all = [
@@ -34,8 +40,8 @@ export const ClusterChips = ({ primary, secondary = [], className = "" }: Cluste
               to={`/intelligence/cluster/${c.slug}`}
               className={
                 isPrimary
-                  ? "inline-flex items-center rounded-full border border-brass/60 bg-brass/15 px-3 py-1 text-xs uppercase tracking-[0.12em] text-brass hover:bg-brass/25 transition-colors"
-                  : "inline-flex items-center rounded-full border border-walnut/20 px-3 py-1 text-xs uppercase tracking-[0.12em] text-walnut/70 hover:border-brass hover:text-brass transition-colors"
+                  ? "inline-flex items-center rounded-full border border-brass/60 bg-brass/15 px-3 py-1 text-[13px] font-medium text-brass hover:bg-brass/25 transition-colors"
+                  : "inline-flex items-center rounded-full border border-walnut/20 px-3 py-1 text-[13px] text-walnut/70 hover:border-brass hover:text-brass transition-colors"
               }
             >
               {c.short}

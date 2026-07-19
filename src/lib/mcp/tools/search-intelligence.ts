@@ -25,7 +25,7 @@ export default defineTool({
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: true },
   handler: async ({ query, limit }) => {
     const max = limit ?? 8;
-    const res = await fetch("https://deepgrain.ai/llms-full.txt", {
+    const res = await fetch("https://www.deepgrain.ai/llms-full.txt", {
       headers: { "user-agent": "deepgrain-mcp/0.1" },
     });
     if (!res.ok) {

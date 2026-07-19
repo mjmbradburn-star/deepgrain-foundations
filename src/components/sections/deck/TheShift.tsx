@@ -1,9 +1,7 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { Parallax } from "@/components/ui/Parallax";
-import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { ChipFlow } from "@/components/sections/deck/ChipFlow";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
-import { SectionLocator } from "@/components/sections/deck/SectionLocator";
 
 /**
  * Home section, ported from deck slide 4. The single most conversion-loaded
@@ -17,8 +15,7 @@ export const TheShift = () => (
     </Parallax>
     <div className="relative container-grain">
       <Reveal>
-        <SectionEyebrow pill className="mb-6">The shift</SectionEyebrow>
-        <h2 className="font-display text-cream text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl mt-6">
+        <h2 className="font-display text-cream text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">
           Stop auditing roles. Start auditing clicks.
         </h2>
       </Reveal>
@@ -46,8 +43,6 @@ export const TheShift = () => (
           Your map asks the question. The atomic layer answers it.
         </p>
       </Reveal>
-
-      <SectionLocator index={1} total={5} right="The shift" tone="green" className="mt-20" />
     </div>
   </section>
 );

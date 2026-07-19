@@ -60,6 +60,11 @@ export interface FAQItem {
 type FAQVariant = "section" | "inline";
 
 interface FAQProps {
+  /**
+   * Section eyebrow (section variant only). Pass an empty string to let the
+   * heading open the section directly - used on pages that already carry
+   * their eyebrow budget elsewhere (see the design system's 2-eyebrow gate).
+   */
   eyebrow?: string;
   heading: string;
   items: FAQItem[];
@@ -308,7 +313,7 @@ export const FAQ = ({
     return (
       <section
         className="mt-16 pt-12 border-t border-walnut/15"
-        aria-label={eyebrow}
+        aria-label={eyebrow || heading}
       >
         <h2 className={`${articleTypography.h2} mb-6`} style={articleH2Style}>
           {heading}
@@ -333,7 +338,7 @@ export const FAQ = ({
     <section className="bg-linen text-walnut section-pad">
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
-          <Eyebrow className="text-brass mb-4">{eyebrow}</Eyebrow>
+          {eyebrow && <Eyebrow className="text-walnut/70 mb-4">{eyebrow}</Eyebrow>}
           <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-6xl leading-tight text-balance">
             {heading}
           </h2>

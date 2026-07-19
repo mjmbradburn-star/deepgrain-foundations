@@ -31,7 +31,7 @@ export const BeforeAfterCard = ({ item }: { item: BeforeAfter }) => (
     <div className="container-grain">
       <ScrollReveal>
         <div
-          className="font-sans uppercase text-brass mb-3"
+          className="font-sans uppercase text-[hsl(35,45%,30%)] mb-3"
           style={{ fontSize: "11px", letterSpacing: "0.22em", fontWeight: 600 }}
         >
           {item.eyebrow}
@@ -46,7 +46,7 @@ export const BeforeAfterCard = ({ item }: { item: BeforeAfter }) => (
         <ScrollReveal>
           <div className="bg-cream rounded-2xl p-7 md:p-9 h-full border border-walnut/10 shadow-[0_20px_50px_-40px_hsl(var(--walnut)/0.5)]">
             <div
-              className="font-sans uppercase text-brass mb-5"
+              className="font-sans uppercase text-[hsl(35,45%,30%)] mb-5"
               style={{ fontSize: "11px", letterSpacing: "0.2em", fontWeight: 600 }}
             >
               {item.beforeLabel ?? "Before"}
@@ -62,7 +62,7 @@ export const BeforeAfterCard = ({ item }: { item: BeforeAfter }) => (
           </div>
         </ScrollReveal>
 
-        <div className="flex items-center justify-center text-brass">
+        <div className="flex items-center justify-center text-[hsl(35,45%,30%)]">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden className="hidden lg:block">
             <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -74,7 +74,7 @@ export const BeforeAfterCard = ({ item }: { item: BeforeAfter }) => (
         <ScrollReveal delay={120}>
           <div className="bg-cream rounded-2xl p-7 md:p-9 h-full border border-walnut/10 shadow-[0_20px_50px_-40px_hsl(var(--walnut)/0.5)]">
             <div
-              className="font-sans uppercase text-brass mb-5"
+              className="font-sans uppercase text-[hsl(35,45%,30%)] mb-5"
               style={{ fontSize: "11px", letterSpacing: "0.2em", fontWeight: 600 }}
             >
               {item.afterLabel ?? "After"}
@@ -95,7 +95,7 @@ export const BeforeAfterCard = ({ item }: { item: BeforeAfter }) => (
         <ScrollReveal delay={200}>
           <div className="mt-10 border-l-2 border-brass/60 bg-cream/60 px-6 py-5 max-w-4xl">
             <p className="text-walnut/85 leading-relaxed text-sm md:text-base">
-              <span className="text-brass font-semibold">⚖ </span>
+              <span className="text-[hsl(35,45%,30%)] font-semibold">⚖ </span>
               {item.judgement}
             </p>
           </div>

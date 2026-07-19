@@ -76,6 +76,8 @@ const AnimatedNumberInner = forwardRef<HTMLSpanElement, AnimatedNumberProps>(({
   }, [value, live]);
 
   // countUp mode: ticker from 0 → value once, the first time we scroll in.
+  // A 1200ms timeout forces the final value if the observer never fires, so a
+  // stalled observer or backgrounded tab never strands the stat at 0.
   useEffect(() => {
     if (live || !countUp) return;
     const node = ref.current;
@@ -84,6 +86,7 @@ const AnimatedNumberInner = forwardRef<HTMLSpanElement, AnimatedNumberProps>(({
       setDisplay(value);
       return;
     }
+    let fallback: ReturnType<typeof setTimeout> | undefined;
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -91,13 +94,23 @@ const AnimatedNumberInner = forwardRef<HTMLSpanElement, AnimatedNumberProps>(({
             startedRef.current = true;
             animate(0, value);
             io.unobserve(entry.target);
+            if (fallback) clearTimeout(fallback);
           }
         }
       },
       { threshold: 0.4 },
     );
     io.observe(node);
-    return () => io.disconnect();
+    fallback = setTimeout(() => {
+      if (!startedRef.current) {
+        startedRef.current = true;
+        setDisplay(value);
+      }
+    }, 1200);
+    return () => {
+      io.disconnect();
+      if (fallback) clearTimeout(fallback);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, live, countUp]);
 

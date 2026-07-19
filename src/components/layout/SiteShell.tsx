@@ -4,6 +4,7 @@ import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
 import { MethodSubnav } from "./MethodSubnav";
 import { ReadingProgress } from "./ReadingProgress";
+import { StickyBookingPill } from "./StickyBookingPill";
 import { CookieBanner } from "@/components/compliance/CookieBanner";
 import { SiteEntityLd } from "@/components/seo/SiteEntityLd";
 import { cn } from "@/lib/utils";
@@ -12,6 +13,10 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
   const hasSubnav =
     pathname.startsWith("/method") || pathname.startsWith("/enablement");
+  // The sticky pill duplicates a booking action already on-screen on the
+  // booking pages themselves, so it hides there. Every other route gets it.
+  const showStickyPill =
+    !pathname.startsWith("/contact") && !pathname.startsWith("/grain-audit");
   // Sticky reading progress on long-form pages where it actually helps.
   const showProgress =
     /^\/intelligence\/[^/]+$/.test(pathname) ||
@@ -57,6 +62,7 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
         {children}
       </main>
       <Footer />
+      {showStickyPill && <StickyBookingPill />}
       <CookieBanner />
     </div>
   );

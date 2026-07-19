@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react";
-import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { Slider } from "@/components/ui/slider";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
@@ -65,7 +64,6 @@ export const ValueVisualiser = () => {
     <section className="bg-linen text-body section-pad">
       <div className="container-grain max-w-5xl">
         <Reveal>
-          <SectionEyebrow tone="linen" pill className="mb-6">A directional model</SectionEyebrow>
           <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
             What might this be worth in your function?
           </h2>
@@ -141,7 +139,7 @@ export const ValueVisualiser = () => {
                 <Output label="Hours/week reclaimed">
                   <AnimatedNumber value={hoursReclaimed} live />
                 </Output>
-                <Output label="FTE freed for higher-judgment work">
+                <Output label="FTE freed for higher-judgement work">
                   <AnimatedNumber value={fteFreed} live decimals={1} />
                 </Output>
                 <Output label="Annual value created">
@@ -154,9 +152,9 @@ export const ValueVisualiser = () => {
 
         <Reveal delay={200}>
           <p className="mt-12 max-w-2xl text-sm text-body/60 italic leading-relaxed">
-            Reclaimed hours go back to your people for higher-judgment work.
+            Reclaimed hours go back to your people for higher-judgement work.
             This is a partnership model. Assumes ~60% of identified
-            low-judgment hours are genuinely recoverable across a 48-week
+            low-judgement hours are genuinely recoverable across a 48-week
             year. A directional model, not a quote. The actual number comes
             out of the diagnostic, usually within ten percent of this.
           </p>

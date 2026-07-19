@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PillButton } from "@/components/ui/PillButton";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
 import { ARTICLES, getFeaturedArticles } from "@/lib/intelligence";
 
 /**
@@ -88,6 +89,14 @@ const NotFound = () => {
               Search
             </button>
           </form>
+
+          <AssessmentLadder
+            variant="inline"
+            tone="green"
+            tools={["readiness"]}
+            ctaLocation="not_found"
+            className="mt-8 justify-center"
+          />
         </div>
 
         {recommended.length > 0 && (

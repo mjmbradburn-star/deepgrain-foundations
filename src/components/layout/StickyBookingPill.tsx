@@ -5,11 +5,12 @@ import { track } from "@/lib/analytics";
 const STORAGE_KEY = "dg_pill_dismissed";
 
 /**
- * Persistent booking prompt. Slides in once the hero has scrolled away and
- * retreats again as the footer (and the closing invitation just above it)
- * approaches, so it never doubles up with an on-screen CTA. One action only:
- * Book a Grain Audit. Dismissible for the session, and fully static under
- * prefers-reduced-motion.
+ * Persistent booking prompt, mounted globally in SiteShell on every route
+ * except /contact and /grain-audit (both are already booking pages). Slides
+ * in once the hero has scrolled away and retreats again as the footer
+ * approaches, so it hides near the footer rather than riding pinned over
+ * every inline CTA further up the page. One action only: Book a Grain Audit.
+ * Dismissible for the session, and fully static under prefers-reduced-motion.
  *
  * A single passive scroll listener batched into one requestAnimationFrame,
  * mirroring the pattern in Navigation and Parallax. setVisible only flips the

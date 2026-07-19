@@ -123,7 +123,7 @@ export const ContactForm = () => {
         </div>
         <div>
           <label className={labelClass} htmlFor="size">Team size</label>
-          <input id="size" value={form.size} onChange={update("size")} placeholder="e.g. 50–200" className={inputClass} maxLength={50} />
+          <input id="size" value={form.size} onChange={update("size")} placeholder="e.g. 50-200" className={inputClass} maxLength={50} />
         </div>
       </div>
       <div>

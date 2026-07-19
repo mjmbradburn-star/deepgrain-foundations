@@ -13,7 +13,7 @@ import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PillButton } from "@/components/ui/PillButton";
 import { EmailCapture } from "@/components/forms/EmailCapture";
-import { AIOI_URL } from "@/lib/aioi";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { FAQ, buildFAQLd } from "@/components/sections/FAQ";
@@ -154,9 +154,8 @@ const IntelligenceArticle = () => {
               { name: f.title },
             ]}
           />
-          {/* Deck-style eyebrow rail: brass hairline + tracked-caps category */}
+          {/* Deck-style eyebrow rail: tracked-caps category, no decorative hairline */}
           <div className="flex items-center gap-3 mb-8">
-            <span aria-hidden className="inline-block h-px w-8 bg-brass/80" />
             <Link
               to={`/intelligence/category/${f.category}`}
               className="font-sans uppercase text-[11px] text-brass hover:text-cream transition-colors"
@@ -218,8 +217,6 @@ const IntelligenceArticle = () => {
                 </time>
               </>
             )}
-            <span className="text-cream/30 hidden sm:inline">·</span>
-            <SaveLink className="ml-auto sm:ml-0" />
           </div>
           </div>
         </header>
@@ -252,6 +249,16 @@ const IntelligenceArticle = () => {
             </span>
           </div>
 
+          {/* Free first rung, before the paid bridge offer below */}
+          <div className="mt-14">
+            <AssessmentLadder
+              variant="inline"
+              tone="linen"
+              tools={["readiness"]}
+              ctaLocation="article_footer"
+            />
+          </div>
+
           {/* Warm CTA: reader finished the piece. Point at the paid bridge offer. */}
           <div className="mt-14">
             <p className="font-display italic text-walnut/55 text-lg mb-3">
@@ -261,7 +268,7 @@ const IntelligenceArticle = () => {
               The Grain Audit maps one People Ops process end to end, ranks the highest-return automations, and hands you a 90-day plan you keep whether or not we work together.
             </p>
             <p className="font-sans text-walnut/70 leading-relaxed mb-7 max-w-xl">
-              Two weeks. GBP 2,000, credited in full against a programme. Three slots a month.
+              Two weeks. £2,000, credited in full against a programme. Three slots a month.
             </p>
             <Link
               to="/grain-audit"
@@ -295,7 +302,8 @@ const IntelligenceArticle = () => {
         </div>
       </article>
 
-      {/* AIOI CTA */}
+      {/* Readiness diagnostic: on-site tool that captures to Supabase, not the
+          deprioritised AIOI experiment. */}
       <section className="bg-green text-cream py-20 md:py-28">
         <div className="container-grain max-w-3xl text-center">
           <Eyebrow className="text-brass">Diagnostic</Eyebrow>
@@ -303,13 +311,18 @@ const IntelligenceArticle = () => {
             className="font-display text-3xl md:text-5xl mt-4 mb-6 leading-tight"
             style={{ letterSpacing: "-0.01em" }}
           >
-            Where does your operating system stand?
+            Where does your People function stand?
           </h2>
           <p className="text-cream/75 max-w-xl mx-auto mb-10 leading-relaxed">
-            Take the AI Operating Index, a free 8-pillar diagnostic.
+            Score it yourself, free, in about ten minutes.
           </p>
-          <PillButton href={AIOI_URL} variant="filled" external cta="aioi" ctaLocation="article_footer">
-            Begin the index →
+          <PillButton
+            href="/readiness"
+            variant="filled"
+            cta="readiness_article_diagnostic"
+            ctaLocation="article_footer"
+          >
+            Take the Readiness Assessment →
           </PillButton>
         </div>
       </section>
@@ -320,8 +333,7 @@ const IntelligenceArticle = () => {
           className="py-20 md:py-28"
           contentClassName="container-grain"
         >
-            <Eyebrow className="text-brass">Keep reading</Eyebrow>
-            <h2 className="font-display text-3xl md:text-4xl text-cream mt-3 mb-12">
+            <h2 className="font-display text-3xl md:text-4xl text-cream mb-12">
               Related pieces
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

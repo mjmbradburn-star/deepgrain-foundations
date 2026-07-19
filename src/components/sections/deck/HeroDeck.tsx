@@ -21,18 +21,13 @@ const ArrowCircle = ({ tone = "green" }: { tone?: "green" | "cream" }) => (
   </span>
 );
 
-const Pip = ({ icon, label }: { icon: string; label: string }) => (
-  <span className="inline-flex items-center gap-2 rounded-full border border-brass/40 px-3.5 py-1.5 text-xs text-cream/85">
-    <span className="text-brass">{icon}</span> {label}
-  </span>
-);
-
 /**
  * Two-column deck hero. Left rail carries the tracked-caps eyebrow, the
- * Cormorant headline, three altitude chips and the dominant CTA pair. The
- * right rail hangs the grain-rings render as framed artwork on the dark
- * ground, lifted on a soft shadow and drifting on scroll. On tablet and
- * mobile the frame drops below the copy so the message always leads.
+ * Cormorant headline, and the CTA row (one filled primary, two secondary
+ * text-links). The right rail hangs the grain-rings render as framed artwork
+ * on the dark ground, lifted on a soft shadow and drifting on scroll. On
+ * tablet and mobile the frame drops below the copy so the message always
+ * leads.
  */
 export const HeroDeck = () => {
   const auditHref = "/grain-audit";
@@ -50,16 +45,23 @@ export const HeroDeck = () => {
       cta_label: "Score your People function",
       link_url: "/readiness",
     });
+  const onExposure = () =>
+    track("cta_click", {
+      cta_id: "exposure_home_hero",
+      cta_location: "hero",
+      cta_label: "Map what AI touches",
+      link_url: "/exposure-map",
+    });
 
   return (
     <section
-      className="relative bg-bark text-cream overflow-hidden min-h-[620px] lg:h-[calc(100svh-4rem)] lg:min-h-[640px] lg:max-h-[880px] flex items-center"
+      className="relative bg-bark text-cream overflow-hidden min-h-[620px] lg:min-h-[640px] lg:max-h-[880px] flex items-center"
       id="hero"
       data-no-rule
     >
       <BarkGrain />
       {/* Directional wash: solid green under the copy, opening toward the art. */}
-      <div className="absolute inset-0 bg-gradient-to-br from-green/92 via-green/70 to-bark/85 pointer-events-none z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-green/90 via-green/70 to-bark/85 pointer-events-none z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-b from-green/30 via-transparent to-green/45 pointer-events-none z-[1]" />
       {/* Warm brass glow seated behind the artwork. */}
       <div className="hidden lg:block absolute right-[-6%] top-1/2 -translate-y-1/2 w-[46%] aspect-square rounded-full bg-brass/[0.14] blur-[120px] pointer-events-none z-[1]" />
@@ -86,28 +88,30 @@ export const HeroDeck = () => {
               </p>
             </div>
 
-            <div className="fade-in-up fade-in-up-2 mt-6 flex flex-wrap gap-2.5">
-              <Pip icon="◎" label="Strategic" />
-              <Pip icon="⌥" label="Functional" />
-              <Pip icon="◯" label="Individual" />
-            </div>
-
-            <div className="fade-in-up fade-in-up-3 mt-8 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
-              <Link
-                to="/readiness"
-                onClick={onReadiness}
-                className="group inline-flex items-center justify-center gap-1 rounded-full bg-cream text-green pl-7 pr-3 py-3 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/90 active:scale-[0.98] shadow-[0_1px_0_hsl(var(--cream)/0.6)_inset]"
-              >
-                Score your People function
-                <ArrowCircle tone="green" />
-              </Link>
+            <div className="fade-in-up fade-in-up-3 mt-8 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-4 sm:gap-6">
               <Link
                 to={auditHref}
                 onClick={onAudit}
-                className="group inline-flex items-center justify-center gap-1 rounded-full border border-cream/40 text-cream pl-7 pr-3 py-3 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/10 active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-1 rounded-full bg-cream text-green pl-7 pr-3 py-3 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/90 active:scale-[0.98] shadow-[0_1px_0_hsl(var(--cream)/0.6)_inset]"
               >
                 Book a Grain Audit
-                <ArrowCircle tone="cream" />
+                <ArrowCircle tone="green" />
+              </Link>
+              <Link
+                to="/readiness"
+                onClick={onReadiness}
+                className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-cream/80 hover:text-cream underline-offset-4 hover:underline"
+              >
+                Score your People function
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+              </Link>
+              <Link
+                to="/exposure-map"
+                onClick={onExposure}
+                className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-cream/80 hover:text-cream underline-offset-4 hover:underline"
+              >
+                Map what AI touches
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
               </Link>
             </div>
           </div>

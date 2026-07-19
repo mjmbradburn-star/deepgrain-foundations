@@ -41,6 +41,13 @@ export const ClosingInvitation = () => {
       cta_label: "Score your People function",
       link_url: "/readiness",
     });
+  const onExposure = () =>
+    track("cta_click", {
+      cta_id: "exposure_home_closing",
+      cta_location: "closing_invitation",
+      cta_label: "Map what AI touches",
+      link_url: "/exposure-map",
+    });
 
   return (
     <section className="bg-linen section-pad" data-no-rule>
@@ -58,7 +65,7 @@ export const ClosingInvitation = () => {
                 Start with one workflow.
               </h2>
               <p className="font-display italic text-cream/80 mt-5 text-lg md:text-xl lg:text-[22px] leading-snug max-w-xl">
-                A two-week Grain Audit. We map how one part of your business actually runs, then hand you the three highest-leverage moves to change it.
+                A two-week Grain Audit. We map how one part of your business actually runs, then hand you the three moves worth making first.
               </p>
 
               <div className="mt-9 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
@@ -73,10 +80,18 @@ export const ClosingInvitation = () => {
                 <Link
                   to="/readiness"
                   onClick={onReadiness}
-                  className="group inline-flex items-center justify-center gap-1 rounded-full border border-cream/40 text-cream pl-7 pr-3 py-3 font-sans text-sm tracking-wider transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/10 active:scale-[0.98]"
+                  className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-cream/80 hover:text-cream underline-offset-4 hover:underline"
                 >
                   Score your People function
-                  <ArrowCircle tone="cream" />
+                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                </Link>
+                <Link
+                  to="/exposure-map"
+                  onClick={onExposure}
+                  className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-cream/80 hover:text-cream underline-offset-4 hover:underline"
+                >
+                  Map what AI touches
+                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
                 </Link>
               </div>
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
@@ -7,6 +8,7 @@ import { brainCards } from "@/data/brainCards";
 import matthewPortrait from "@/assets/matthew-bradburn.jpg";
 import { BrainCaptureForm } from "@/components/forms/BrainCaptureForm";
 import CoworkPreview from "@/components/brain/CoworkPreview";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
 
 /**
  * /brain - The People Ops AI Brain (lead capture).
@@ -34,38 +36,38 @@ const Brain = () => (
       title="People Ops AI Brain: 9 Examples, 27 Guides"
       description="9 worked examples and 27 deep practical guides on running People functions with AI. Free with your email. One link, yours to keep."
       path="/brain"
-      image="https://deepgrain.ai/og-brain.png"
+      image="https://www.deepgrain.ai/og-brain.png"
       jsonLd={[
         buildBreadcrumbLd([
-          { name: "Home", url: "https://deepgrain.ai/" },
-          { name: "Brain", url: "https://deepgrain.ai/brain" },
+          { name: "Home", url: "https://www.deepgrain.ai/" },
+          { name: "Brain", url: "https://www.deepgrain.ai/brain" },
         ]),
         {
           "@context": "https://schema.org",
           "@type": "WebPage",
           name: "The People Ops AI Brain",
-          url: "https://deepgrain.ai/brain",
+          url: "https://www.deepgrain.ai/brain",
           description:
             "The most thorough collection of working notes on running People functions with AI. Free with your email. One link, yours to keep.",
           inLanguage: "en",
           isPartOf: {
             "@type": "WebSite",
             name: "Deepgrain",
-            url: "https://deepgrain.ai",
+            url: "https://www.deepgrain.ai",
           },
           author: {
             "@type": "Person",
             name: "Matthew Bradburn",
-            url: "https://deepgrain.ai/about",
+            url: "https://www.deepgrain.ai/about",
           },
           publisher: {
             "@type": "Organization",
             name: "Deepgrain",
-            url: "https://deepgrain.ai",
+            url: "https://www.deepgrain.ai",
           },
           potentialAction: {
             "@type": "SubscribeAction",
-            target: "https://deepgrain.ai/brain#brain-capture-form",
+            target: "https://www.deepgrain.ai/brain#brain-capture-form",
             name: "Get the Brain",
           },
         },
@@ -75,7 +77,7 @@ const Brain = () => (
           name: "The People Ops AI Brain",
           description:
             "Free access to the People Ops AI Brain in exchange for an email address.",
-          url: "https://deepgrain.ai/brain",
+          url: "https://www.deepgrain.ai/brain",
           price: "0",
           priceCurrency: "GBP",
           availability: "https://schema.org/InStock",
@@ -83,7 +85,7 @@ const Brain = () => (
           seller: {
             "@type": "Organization",
             name: "Deepgrain",
-            url: "https://deepgrain.ai",
+            url: "https://www.deepgrain.ai",
           },
         },
         {
@@ -113,77 +115,59 @@ const Brain = () => (
       />
 
       <div className="container-grain pt-32 pb-14 md:pt-36 md:pb-16 lg:pt-40 lg:pb-20">
-        <div className="grid lg:grid-cols-[1fr_auto] gap-14 lg:gap-20 items-start">
-          <div className="max-w-4xl">
-            <div className="flex items-center gap-5 mb-10">
-              <Eyebrow className="text-brass">THE BRAIN</Eyebrow>
-              <span className="hidden sm:inline-block h-px flex-1 bg-cream/15" />
-              <span
-                className="hidden sm:inline-flex font-sans uppercase text-[11px] text-cream/60"
-                style={{ letterSpacing: "0.18em" }}
-              >
-                A LIVING BOOK
-              </span>
-            </div>
-
-            <h1
-              className="font-display font-semibold text-cream leading-[0.92] text-[2.75rem] sm:text-6xl md:text-[80px] lg:text-[96px] xl:text-[112px]"
-              style={{ letterSpacing: "-0.01em" }}
+        <div className="max-w-4xl">
+          <div className="flex items-center gap-5 mb-10">
+            <Eyebrow className="text-brass">THE BRAIN</Eyebrow>
+            <span className="hidden sm:inline-block h-px flex-1 bg-cream/15" />
+            <span
+              className="hidden sm:inline-flex font-sans uppercase text-[11px] text-cream/60"
+              style={{ letterSpacing: "0.18em" }}
             >
-              The People<br />Ops AI<br />Brain.
-            </h1>
+              A LIVING BOOK
+            </span>
+          </div>
 
-            <p className="mt-10 max-w-2xl text-cream/85 text-xl md:text-2xl leading-snug font-medium">
-              The most thorough working file on running People functions
-              with AI. Twenty-seven guides. One link, yours
-              to keep.
-            </p>
+          <h1
+            className="font-display font-semibold text-cream leading-[0.92] text-[2.75rem] sm:text-6xl md:text-[80px] lg:text-[96px] xl:text-[112px]"
+            style={{ letterSpacing: "-0.01em" }}
+          >
+            The People<br />Ops AI<br />Brain.
+          </h1>
 
-            <BrassRule className="mt-12 mb-10 max-w-2xl" />
+          <p className="mt-10 max-w-2xl text-cream/85 text-xl md:text-2xl leading-snug font-medium">
+            The most thorough working file on running People functions
+            with AI. Twenty-seven guides. One link, yours
+            to keep.
+          </p>
 
-            {/* Form card - cream artefact sitting on the dark ground */}
-            <div className="max-w-2xl rounded-3xl border border-brass/30 bg-cream/[0.06] backdrop-blur-sm p-7 md:p-10">
-              <p
-                className="font-sans uppercase text-[11px] text-brass mb-6"
-                style={{ letterSpacing: "0.18em" }}
-              >
-                Send it to me
-              </p>
-              <BrainCaptureForm
-                formId={FORM_TARGET_ID}
-                variant="dark"
-                size="lg"
-              />
-              <p className="mt-7 text-cream/60 text-xs max-w-md leading-relaxed">
-                One email. The link is permanent. We don&apos;t share,
-                sell, or sync your address anywhere.
-              </p>
-            </div>
+          <BrassRule className="mt-12 mb-10 max-w-2xl" />
 
+          {/* Form card - cream artefact sitting on the dark ground */}
+          <div className="max-w-2xl rounded-3xl border border-brass/30 bg-cream/[0.06] backdrop-blur-sm p-7 md:p-10">
             <p
-              className="mt-10 text-cream/65 text-xs uppercase max-w-xl leading-relaxed"
-              style={{ letterSpacing: "0.16em" }}
+              className="font-sans uppercase text-[11px] text-brass mb-6"
+              style={{ letterSpacing: "0.18em" }}
             >
-              Read by heads of People at Series B SaaS, defence tech, and
-              founder-led services firms.
+              Send it to me
+            </p>
+            <BrainCaptureForm
+              formId={FORM_TARGET_ID}
+              variant="dark"
+              size="lg"
+            />
+            <p className="mt-7 text-cream/60 text-xs max-w-md leading-relaxed">
+              The link is permanent, updated monthly. We don&apos;t share,
+              sell, or sync your address anywhere.
             </p>
           </div>
 
-          {/* Desktop meta rail */}
-          <aside className="hidden lg:flex flex-col gap-8 pt-4 pr-2 text-cream/70 min-w-[170px]">
-            <div>
-              <p
-                className="font-sans uppercase text-[10px] text-cream/50"
-                style={{ letterSpacing: "0.2em" }}
-              >
-                Updated
-              </p>
-              <p className="font-display text-cream text-2xl mt-1">
-                Monthly
-              </p>
-            </div>
-          </aside>
-
+          <p
+            className="mt-10 text-cream/65 text-xs uppercase max-w-xl leading-relaxed"
+            style={{ letterSpacing: "0.16em" }}
+          >
+            Read by heads of People at Series B SaaS, defence tech, and
+            founder-led services firms.
+          </p>
         </div>
       </div>
     </section>
@@ -193,16 +177,14 @@ const Brain = () => (
       <div className="container-grain">
         <div className="max-w-3xl mx-auto text-center">
           <ScrollReveal>
-            <Eyebrow withRule className="text-brass mb-6 justify-center inline-flex">
-              A taste from inside · Piece 05 of 27
-            </Eyebrow>
             <h2 className="font-display text-cream text-4xl md:text-5xl lg:text-[56px] leading-[1.05] text-balance">
               Read one of the pieces.
             </h2>
             <p className="mt-6 text-cream/80 leading-relaxed max-w-xl mx-auto">
               <span className="text-brass">Claude Cowork for People Teams.</span>{" "}
-              The desktop AI that does the work while you live your life.
-              Twelve pages, straight from inside the Brain.
+              Piece 06 of 27, straight from inside the Brain. The desktop
+              AI that does the work while you live your life, in twelve
+              pages.
             </p>
           </ScrollReveal>
         </div>
@@ -236,9 +218,6 @@ const Brain = () => (
     >
       <div className="container-grain">
         <ScrollReveal>
-          <Eyebrow withRule className="text-body/70 mb-6">
-            What&apos;s inside
-          </Eyebrow>
           <h2 className="font-display text-walnut text-4xl md:text-5xl lg:text-6xl leading-[1.05] max-w-3xl text-balance">
             9 examples. 27 deep practical guides.
           </h2>
@@ -256,7 +235,7 @@ const Brain = () => (
                     {card.number}
                   </p>
                   <span
-                    className="font-sans uppercase text-[10px] text-body/60 px-2.5 py-1 rounded-full border border-walnut/15"
+                    className="font-sans uppercase text-[10px] text-brass/80"
                     style={{ letterSpacing: "0.16em" }}
                   >
                     {card.layer}
@@ -269,6 +248,15 @@ const Brain = () => (
                 <p className="mt-4 text-body/75 text-sm leading-relaxed">
                   {card.blurb}
                 </p>
+                {card.number === "05" && (
+                  <Link
+                    to="/readiness"
+                    className="group mt-5 inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-walnut/80 underline-offset-4 hover:text-walnut hover:underline"
+                  >
+                    Try the Readiness Assessment
+                    <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </Link>
+                )}
               </article>
             </ScrollReveal>
           ))}
@@ -295,9 +283,6 @@ const Brain = () => (
           </ScrollReveal>
 
           <ScrollReveal delay={120}>
-            <Eyebrow withRule className="text-brass mb-6">
-              Who wrote this
-            </Eyebrow>
             <h2 className="font-display text-cream text-4xl md:text-5xl lg:text-[56px] leading-[1.05] text-balance">
               Matthew Bradburn.
             </h2>
@@ -314,21 +299,12 @@ const Brain = () => (
               </p>
             </div>
 
-            <div className="mt-10 flex flex-wrap gap-3">
-              {[
-                "20+ yrs People Ops",
-                "AI-native operators",
-                "Founder-tested",
-              ].map((label) => (
-                <span
-                  key={label}
-                  className="inline-flex items-center px-4 py-2 rounded-full border border-brass/60 text-brass text-xs uppercase"
-                  style={{ letterSpacing: "0.16em" }}
-                >
-                  {label}
-                </span>
-              ))}
-            </div>
+            <p
+              className="mt-10 font-sans uppercase text-xs text-brass/80"
+              style={{ letterSpacing: "0.16em" }}
+            >
+              20+ yrs People Ops · AI-native operators · Founder-tested
+            </p>
           </ScrollReveal>
         </div>
       </div>
@@ -363,21 +339,32 @@ const Brain = () => (
             <BrainCaptureForm formId={`${FORM_TARGET_ID}-secondary`} />
           </div>
 
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {[
-              "No spam, ever",
-              "Unsubscribe in one click",
-              "EU-region storage",
-            ].map((label) => (
-              <span
-                key={label}
-                className="inline-flex items-center px-4 py-2 rounded-full border border-brass/50 text-cream/80 text-xs uppercase"
-                style={{ letterSpacing: "0.16em" }}
-              >
-                {label}
-              </span>
-            ))}
+          <div className="mt-10">
+            <AssessmentLadder
+              variant="inline"
+              tone="bark"
+              tools={["readiness", "exposure"]}
+              ctaLocation="brain_closing"
+              className="justify-center text-center"
+            />
           </div>
+
+          <p className="mt-6">
+            <Link
+              to="/grain-audit"
+              className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-cream/80 underline-offset-4 hover:text-cream hover:underline"
+            >
+              Rather talk it through first? Book a Grain Audit.
+              <span className="transition-transform group-hover:translate-x-0.5">→</span>
+            </Link>
+          </p>
+
+          <p
+            className="mt-10 font-sans uppercase text-xs text-cream/70"
+            style={{ letterSpacing: "0.16em" }}
+          >
+            No spam, ever · Unsubscribe in one click · EU-region storage
+          </p>
         </ScrollReveal>
       </div>
     </section>

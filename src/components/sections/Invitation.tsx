@@ -9,20 +9,24 @@ import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
  */
 export const Invitation = ({
   ctaLocation = "invitation",
-  prefill = "I'd like a 30-minute audit. The workflow I'd most like to fix is:",
+  prefill = "I'd like a 30-minute call. The workflow I'd most like to fix is:",
   headline = "Map one workflow with me.",
   sub = "Thirty minutes. Twenty mapping, ten agreeing the first move.",
+  eyebrow = "The first move",
 }: {
   ctaLocation?: string;
   prefill?: string;
   headline?: string;
   sub?: string;
+  /** Pass an empty string to let the headline open the section directly on
+   * pages that already carry their eyebrow budget elsewhere. */
+  eyebrow?: string;
 } = {}) => (
   <section className="relative bg-green text-cream section-pad overflow-hidden">
     <TopoBackdrop variant="basin" opacity={0.16} />
     <div className="relative container-grain max-w-3xl">
       <ScrollReveal>
-        <SectionEyebrow className="mb-6">The first move</SectionEyebrow>
+        {eyebrow && <SectionEyebrow className="mb-6">{eyebrow}</SectionEyebrow>}
         <AuditPrompt
           tone="green"
           ctaId={`audit_${ctaLocation}`}

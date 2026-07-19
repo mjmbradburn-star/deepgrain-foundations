@@ -14,10 +14,10 @@ interface SectionEyebrowProps {
 }
 
 /**
- * Deck-style eyebrow. Renders as `,  LABEL` with a brass em-dash glyph
- * preserved before the tracked-caps label, matching the rail used on every
- * Montagu slide. The em-dash is a deliberate typographic mark here, not
- * prose copy, so it sits outside the project's "no em dashes in prose" rule.
+ * Deck-style eyebrow: tracked-caps label, brass on a dark surface, a readable
+ * ink tone on linen. The plain (non-pill) variant no longer carries a
+ * decorative hairline rule; a rule beside a label added no meaning, so it was
+ * removed. Use `pill` for the rounded-capsule variant with the brass dot.
  */
 export const SectionEyebrow = ({
   children,
@@ -25,8 +25,7 @@ export const SectionEyebrow = ({
   tone = "green",
   pill = false,
 }: SectionEyebrowProps) => {
-  const label =
-    tone === "green" ? "text-brass" : "text-brass";
+  const label = tone === "linen" ? "text-walnut" : "text-brass";
   const content = children || "DEEPGRAIN · AN OPERATING CONSULTANCY BUILT FOR THE AI ERA.";
 
   if (pill) {
@@ -47,15 +46,10 @@ export const SectionEyebrow = ({
 
   return (
     <p
-      className={cn(
-        "flex items-center gap-3 font-sans uppercase",
-        label,
-        className,
-      )}
+      className={cn("font-sans uppercase", label, className)}
       style={{ fontSize: "11px", letterSpacing: "0.22em", fontWeight: 600 }}
     >
-      <span aria-hidden className="inline-block h-px w-8 bg-brass/80" />
-      <span>{content}</span>
+      {content}
     </p>
   );
 };

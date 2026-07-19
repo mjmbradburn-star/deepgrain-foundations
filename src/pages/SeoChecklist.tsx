@@ -61,7 +61,7 @@ const STEPS: Step[] = [
       label: "Open Sitemaps in Search Console",
     },
     copies: [
-      { label: "Full URL", value: "https://deepgrain.ai/sitemap.xml" },
+      { label: "Full URL", value: "https://www.deepgrain.ai/sitemap.xml" },
       { label: "Path only", value: "sitemap.xml" },
     ],
     note: "The sitemap is generated at build time and already served from /sitemap.xml - nothing to deploy, just submit.",
@@ -81,7 +81,7 @@ const STEPS: Step[] = [
       href: "https://search.google.com/search-console/inspect?resource_id=sc-domain%3Adeepgrain.ai&url=https%3A%2F%2Fdeepgrain.ai%2F",
       label: "Open URL Inspection",
     },
-    copies: [{ label: "Homepage URL", value: "https://deepgrain.ai/" }],
+    copies: [{ label: "Homepage URL", value: "https://www.deepgrain.ai/" }],
     note: "The rendered HTML preview in URL Inspection is exactly what Google indexes - this is the definitive check that the site is crawlable.",
   },
 ];

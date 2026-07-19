@@ -1,6 +1,4 @@
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
-import { SectionLocator } from "@/components/sections/deck/SectionLocator";
 import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
 
 const pillars = [
@@ -30,11 +28,9 @@ export const TheCounterweight = () => (
   <section className="bg-linen text-walnut section-pad">
     <div className="container-grain">
       <Reveal>
-        <SectionEyebrow pill tone="linen" className="mb-6">The counterweight</SectionEyebrow>
-        <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-3xl mt-6">
+        <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-3xl">
           What we will not automate.
         </h2>
-        <div className="mt-6 h-px w-full bg-brass/40 max-w-3xl" />
       </Reveal>
 
       <div className="mt-14 md:mt-20 grid md:grid-cols-3 gap-8 md:gap-10">
@@ -63,15 +59,14 @@ export const TheCounterweight = () => (
       </Reveal>
 
       <Reveal delay={280}>
-        <div className="mt-16 md:mt-20 grid md:grid-cols-[1fr_auto] gap-8 items-end">
-          <SectionLocator index={5} total={5} right="The counterweight" tone="linen" />
+        <div className="mt-16 md:mt-20">
           <AuditPrompt
             tone="linen"
             ctaId="audit_home_counterweight"
             ctaLocation="home_counterweight"
             headline="Map one workflow with me."
             sub="Thirty minutes. Honest answers. One first move."
-            prefill="I'd like a 30-minute audit. The workflow I'd most like to fix is:"
+            prefill="I'd like a 30-minute call. The workflow I'd most like to fix is:"
           />
         </div>
       </Reveal>

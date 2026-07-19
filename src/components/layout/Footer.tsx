@@ -52,6 +52,33 @@ export const Footer = () => (
               </a>
             </li>
           </ul>
+
+          {/* Quiet sub-list, not equal weight with the five narrative pages
+              above: a smaller label and smaller text mark these out as tools,
+              not sections. */}
+          <div className="mt-8">
+            <span className="block font-sans uppercase text-cream/40 text-[11px] tracking-[0.18em] mb-3">
+              Tools
+            </span>
+            <ul className="space-y-2.5">
+              <li>
+                <Link
+                  to="/readiness"
+                  className="text-[13px] text-cream/60 hover:text-cream transition-colors"
+                >
+                  Readiness Assessment
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/exposure-map"
+                  className="text-[13px] text-cream/60 hover:text-cream transition-colors"
+                >
+                  AI Exposure Map
+                </Link>
+              </li>
+            </ul>
+          </div>
         </nav>
         <div>
           <a

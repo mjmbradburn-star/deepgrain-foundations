@@ -1,7 +1,5 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
-import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
-import { SectionLocator } from "@/components/sections/deck/SectionLocator";
 
 const NodeChip = ({
   label,
@@ -58,15 +56,16 @@ export const AgentArchitecture = () => (
   <section className="relative bg-green text-cream section-pad overflow-hidden">
     <div className="relative container-grain">
       <Reveal>
-        <SectionEyebrow pill className="mb-6">Behind the scenes · how I run my own practice</SectionEyebrow>
-        <h2 className="font-display text-cream text-4xl md:text-6xl leading-[1.05] max-w-3xl mt-6">
+        <h2 className="font-display text-cream text-4xl md:text-6xl leading-[1.05] max-w-3xl">
           I ran this from my own desk first.
         </h2>
-        <div className="mt-6 h-px w-full bg-brass/30 max-w-4xl" />
         <p className="mt-8 text-cream/80 max-w-3xl text-lg leading-relaxed">
           It takes every meeting and every email, pulls the actions out of the call, routes each
           one, and drafts what comes next. Several iterations to get it honest. Now it runs the back
           office of my practice.
+        </p>
+        <p className="mt-4 text-cream/80 max-w-3xl text-lg leading-relaxed">
+          This is the same click-level mapping we run in a Grain Audit.
         </p>
       </Reveal>
 
@@ -108,8 +107,6 @@ export const AgentArchitecture = () => (
           </p>
         </div>
       </Reveal>
-
-      <SectionLocator index={3} total={5} right="The practice" tone="green" className="mt-20" />
     </div>
   </section>
 );

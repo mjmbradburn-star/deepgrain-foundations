@@ -31,6 +31,8 @@ export interface Cluster {
   description: string;
   /** Short label for chips/eyebrows. */
   short: string;
+  /** Slug of the pillar (see src/data/pillars.ts) this cluster sits closest to. */
+  parentPillar: string;
 }
 
 export const CLUSTERS: Cluster[] = [
@@ -39,54 +41,63 @@ export const CLUSTERS: Cluster[] = [
     name: "Readiness and diagnosis",
     short: "Readiness",
     description: "Mapping where a People function actually stands before building anything.",
+    parentPillar: "ai-workspace-for-people-ops",
   },
   {
     slug: "enablement-and-change",
     name: "Enablement and change",
     short: "Enablement",
     description: "Operating models, champions, and the change rituals that make AI stick.",
+    parentPillar: "ai-workspace-for-people-ops",
   },
   {
     slug: "org-design-and-roles",
     name: "Org design and roles",
     short: "Org design",
     description: "New People roles, ratios, and structures when AI is infrastructure.",
+    parentPillar: "ai-workspace-for-people-ops",
   },
   {
     slug: "governance-and-policy",
     name: "Governance and policy",
     short: "Governance",
     description: "Operating posture and policy artifacts that keep AI work safe and fast.",
+    parentPillar: "ai-workspace-for-people-ops",
   },
   {
     slug: "measurement-and-roi",
     name: "Measurement and ROI",
     short: "ROI",
     description: "Quantifying AI value, building the board narrative, defending the spend.",
+    parentPillar: "ai-workspace-for-people-ops",
   },
   {
     slug: "workflows-and-automation",
     name: "Workflows and automation",
     short: "Workflows",
     description: "Audit, prioritise, and rebuild People workflows with AI in the loop.",
+    parentPillar: "ai-workspace-for-people-ops",
   },
   {
     slug: "agents-and-systems",
     name: "Agents and systems",
     short: "Agents",
     description: "Production agents and connected systems that run between sessions.",
+    parentPillar: "ai-workspace-for-people-ops",
   },
   {
     slug: "workspace-and-tools",
     name: "Workspace and tools",
     short: "Workspace",
     description: "Persistent workspaces, model selection, and the daily tooling layer.",
+    parentPillar: "ai-workspace-for-people-ops",
   },
   {
     slug: "prompting-and-craft",
     name: "Prompting and craft",
     short: "Craft",
     description: "Prompting patterns, evaluation habits, and the craft underneath the systems.",
+    parentPillar: "ai-workspace-for-people-ops",
   },
 ];
 

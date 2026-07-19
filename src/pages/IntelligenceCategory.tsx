@@ -3,6 +3,7 @@ import { Navigate, useParams, Link } from "react-router-dom";
 import { getArticlesByCategory, getCategory } from "@/lib/intelligence";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { RelatedClusterArticles } from "@/components/intelligence/RelatedClusterArticles";
+import { IntelligenceCTA } from "@/components/intelligence/IntelligenceCTA";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
@@ -12,11 +13,11 @@ const IntelligenceCategory = () => {
   if (!cat) return <Navigate to="/intelligence" replace />;
 
   const items = getArticlesByCategory(cat.slug);
-  const url = `https://deepgrain.ai/intelligence/category/${cat.slug}`;
+  const url = `https://www.deepgrain.ai/intelligence/category/${cat.slug}`;
 
   const breadcrumbLd = buildBreadcrumbLd([
-    { name: "Home", url: "https://deepgrain.ai/" },
-    { name: "Intelligence", url: "https://deepgrain.ai/intelligence" },
+    { name: "Home", url: "https://www.deepgrain.ai/" },
+    { name: "Intelligence", url: "https://www.deepgrain.ai/intelligence" },
     { name: cat.name, url },
   ]);
 
@@ -29,7 +30,7 @@ const IntelligenceCategory = () => {
     url,
     name: `${cat.name} | Deepgrain Intelligence`,
     description: cat.description,
-    isPartOf: { "@id": "https://deepgrain.ai/#website" },
+    isPartOf: { "@id": "https://www.deepgrain.ai/#website" },
     mainEntity: {
       "@type": "ItemList",
       itemListOrder: "https://schema.org/ItemListOrderDescending",
@@ -37,7 +38,7 @@ const IntelligenceCategory = () => {
       itemListElement: items.map((a, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        url: `https://deepgrain.ai/intelligence/${a.frontmatter.slug}`,
+        url: `https://www.deepgrain.ai/intelligence/${a.frontmatter.slug}`,
         name: a.frontmatter.title,
       })),
     },
@@ -55,6 +56,7 @@ const IntelligenceCategory = () => {
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
         <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       <section className="bg-green text-cream pt-40 md:pt-48 pb-20 md:pb-28">
@@ -96,6 +98,8 @@ const IntelligenceCategory = () => {
         variant="cream"
         heading={`More ways into ${cat.name.toLowerCase()}`}
       />
+
+      <IntelligenceCTA />
     </>
   );
 };

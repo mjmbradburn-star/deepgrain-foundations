@@ -2,9 +2,11 @@ import { Helmet } from "react-helmet-async";
 import { Link, Navigate } from "react-router-dom";
 import { COMPARES } from "@/data/compares";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
+import { EmailCapture } from "@/components/forms/EmailCapture";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
-const SITE = "https://deepgrain.ai";
+const SITE = "https://www.deepgrain.ai";
 
 /**
  * Shared template for /intelligence/<x>-vs-<y> pages.
@@ -58,7 +60,7 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
         <meta property="og:description" content={entry.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content="https://deepgrain.ai/og-intelligence.png" />
+        <meta property="og:image" content="https://www.deepgrain.ai/og-intelligence.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
@@ -155,6 +157,24 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
               </li>
             ))}
           </ul>
+
+          <div className="mt-16 pt-12 border-t border-walnut/15">
+            <EmailCapture
+              source="compare"
+              variant="light"
+              heading="If this resonated, there's more."
+              description="Subscribe to receive new Intelligence pieces as they're published. No noise, just the work."
+            />
+          </div>
+
+          <div className="mt-10">
+            <AssessmentLadder
+              variant="inline"
+              tone="linen"
+              tools={["readiness"]}
+              ctaLocation="compare_footer"
+            />
+          </div>
         </div>
       </article>
     </>

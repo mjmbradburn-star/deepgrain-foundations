@@ -1,8 +1,6 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
-import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { MetricBlock } from "@/components/sections/deck/MetricBlock";
-import { SectionLocator } from "@/components/sections/deck/SectionLocator";
 import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
 
 const Chip = ({ children }: { children: React.ReactNode }) => (
@@ -33,13 +31,12 @@ export const WorkedExample = () => (
   <section className="bg-linen text-walnut section-pad">
     <div className="container-grain">
       <Reveal>
-        <SectionEyebrow pill tone="linen" className="mb-6">
-          Worked example · a real people workflow
-        </SectionEyebrow>
-        <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-3xl mt-6">
+        <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-3xl">
           Mapped, then rebuilt. In that order.
         </h2>
-        <div className="mt-6 h-px w-full bg-brass/30" />
+        <p className="mt-5 text-walnut/70 max-w-2xl text-lg md:text-xl leading-relaxed">
+          A real people workflow, joiner to first pay run.
+        </p>
       </Reveal>
 
       <div className="mt-14 md:mt-20 grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-6 items-stretch">
@@ -63,11 +60,6 @@ export const WorkedExample = () => (
             </div>
             <div className="mt-10 text-walnut/60 text-xs uppercase tracking-widest">
               14 atomic steps
-            </div>
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {Array.from({ length: 14 }).map((_, i) => (
-                <span key={i} className="w-2 h-2 rounded-full bg-brass" />
-              ))}
             </div>
           </Bezel>
         </Reveal>
@@ -102,14 +94,6 @@ export const WorkedExample = () => (
             <div className="mt-10 text-walnut/60 text-xs uppercase tracking-widest">
               9 kept · 5 cut
             </div>
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {Array.from({ length: 9 }).map((_, i) => (
-                <span key={`k${i}`} className="w-2 h-2 rounded-full bg-brass" />
-              ))}
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span key={`c${i}`} className="w-2 h-2 rounded-full border border-brass/50" />
-              ))}
-            </div>
           </Bezel>
         </Reveal>
       </div>
@@ -125,8 +109,7 @@ export const WorkedExample = () => (
       </Reveal>
 
       <Reveal delay={240}>
-        <div className="mt-16 md:mt-20 grid md:grid-cols-[1fr_auto] gap-8 items-end">
-          <SectionLocator index={2} total={5} right="The proof" tone="linen" />
+        <div className="mt-16 md:mt-20">
           <AuditPrompt
             tone="linen"
             ctaId="audit_home_worked_example"

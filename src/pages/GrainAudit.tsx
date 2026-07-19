@@ -4,6 +4,7 @@ import { BarkGrain } from "@/components/ui/BarkGrain";
 import { GrainFlow } from "@/components/ui/GrainFlow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { PillButton } from "@/components/ui/PillButton";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
@@ -15,8 +16,8 @@ const AUDIT_LD = {
   name: "The Grain Audit",
   serviceType: "People Ops process audit",
   description:
-    "A two-week fixed-scope review of one People Ops process. You get a U-shaped process map, a ranked automation shortlist scored on impact and effort, a one-page 90-day plan you keep, and a 30-minute readout. GBP 2,000, credited in full against any enablement programme within 30 days.",
-  provider: { "@id": "https://deepgrain.ai/#organization" },
+    "A two-week fixed-scope review of one People Ops process. You get a U-shaped process map, a ranked automation shortlist scored on impact and effort, a one-page 90-day plan you keep, and a 30-minute readout. £2,000, credited in full against any enablement programme within 30 days.",
+  provider: { "@id": "https://www.deepgrain.ai/#organization" },
   areaServed: "Worldwide",
   offers: {
     "@type": "Offer",
@@ -29,7 +30,7 @@ const AUDIT_LD = {
 const DELIVERABLES = [
   {
     title: "A U-shaped process map",
-    body: "One process, drawn end to end. Where the hours go, where the judgment lives, where the work drops down into task and climbs back up into decision. The map most teams have never seen of their own process.",
+    body: "One process, drawn end to end. Where the hours go, where the judgement lives, where the work drops down into task and climbs back up into decision. The map most teams have never seen of their own process.",
   },
   {
     title: "A ranked automation shortlist",
@@ -47,9 +48,9 @@ const DELIVERABLES = [
 
 const STEPS = [
   {
-    time: "10 minutes",
-    label: "Intake",
-    body: "A short form. The process you want mapped, who runs it, what already hurts.",
+    time: "30 minutes",
+    label: "Fit call",
+    body: "Free, no pitch. We check the process has real volume behind it, then lock a slot.",
   },
   {
     time: "60 minutes",
@@ -70,7 +71,7 @@ const GrainAudit = () => {
     <>
       <PageMeta
         title="The Grain Audit | Deepgrain"
-        description="A two-week fixed-scope review of one People Ops process. U-shaped process map, ranked automation shortlist, a one-page 90-day plan you keep, and a 30-minute readout. GBP 2,000, credited in full against any programme. Three slots a month."
+        description="A two-week fixed-scope review of one People Ops process. U-shaped process map, ranked automation shortlist, a one-page 90-day plan you keep, and a 30-minute readout. £2,000, credited in full against any programme. Three slots a month."
         path="/grain-audit"
         jsonLd={AUDIT_LD}
       />
@@ -81,7 +82,7 @@ const GrainAudit = () => {
         <div className="relative container-grain pt-24 pb-16 md:pt-36 md:pb-24">
           <div className="fade-in-up">
             <SectionEyebrow tone="linen" className="mb-10">
-              The bridge offer
+              One process, fixed scope
             </SectionEyebrow>
             <h1
               className="font-display font-semibold max-w-4xl"
@@ -104,13 +105,13 @@ const GrainAudit = () => {
             </p>
             <p className="text-body text-lg leading-relaxed">
               A fixed-scope review of one process, end to end. We map where the hours and the
-              judgment sit, rank the automations worth building, and hand you a 90-day plan you
-              keep. GBP 2,000, credited in full against any programme. Three slots a month.
+              judgement sit, rank the automations worth building, and hand you a 90-day plan you
+              keep.
             </p>
           </div>
           <div className="fade-in-up fade-in-up-3 mt-12 flex flex-wrap items-center gap-6">
             <PillButton
-              href="/contact"
+              href="/contact?subject=I'd%20like%20to%20book%20a%20Grain%20Audit%20for%3A%20"
               variant="filled"
               cta="grain_audit_hero"
               ctaLocation="grain_audit_hero"
@@ -130,7 +131,7 @@ const GrainAudit = () => {
               }
               className="font-sans text-sm tracking-wider text-walnut/70 underline underline-offset-4 decoration-brass hover:text-walnut transition-colors"
             >
-              Not sure yet? Take the 8-minute readiness assessment →
+              Not sure yet? Take the readiness assessment, about ten minutes →
             </Link>
           </div>
         </div>
@@ -181,17 +182,15 @@ const GrainAudit = () => {
       <section className="bg-linen text-walnut" data-no-rule>
         <div className="container-grain pb-24 md:pb-36">
           <div className="h-px w-10 bg-brass/30 mb-10" />
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-10 lg:gap-24 items-end">
-            <h2
-              className="font-display font-semibold"
-              style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" }}
-            >
-              What it costs your team
-            </h2>
-            <p className="font-display italic text-walnut/75 text-2xl md:text-[28px] leading-snug">
-              Under two hours of anyone's time. The heavy lifting is ours.
-            </p>
-          </div>
+          <h2
+            className="font-display font-semibold max-w-3xl"
+            style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" }}
+          >
+            What it costs your team
+          </h2>
+          <p className="text-body text-lg leading-relaxed max-w-2xl mt-6">
+            Under two hours of anyone's time. The heavy lifting is ours.
+          </p>
 
           <div className="mt-14 grid gap-px md:grid-cols-3 bg-walnut/15">
             {STEPS.map((s) => (
@@ -214,6 +213,14 @@ const GrainAudit = () => {
           </div>
         </div>
       </section>
+
+      <AssessmentLadder
+        variant="band"
+        tone="linen"
+        tools={["readiness", "exposure"]}
+        heading="Not ready to spend £2,000 yet?"
+        ctaLocation="grain_audit_terms"
+      />
 
       {/* ------------------------------------------------ price + terms -- */}
       <section className="relative bg-bark text-cream overflow-hidden" data-no-rule>
@@ -244,8 +251,8 @@ const GrainAudit = () => {
                   2 weeks
                 </p>
                 <p className="text-cream/75 mt-5 text-[17px] leading-relaxed max-w-xs">
-                  Start to readout. One intake, one working session, one walkthrough. No drawn-out
-                  discovery, no open-ended retainer.
+                  Start to readout. One fit call, one working session, one walkthrough. No
+                  drawn-out discovery, no open-ended retainer.
                 </p>
               </div>
               <div>
@@ -329,7 +336,7 @@ const GrainAudit = () => {
             </p>
             <div className="mt-12 flex flex-wrap items-center gap-6">
               <PillButton
-                href="/contact"
+                href="/contact?subject=I'd%20like%20to%20book%20a%20Grain%20Audit%20for%3A%20"
                 variant="filled"
                 cta="grain_audit_footer"
                 ctaLocation="grain_audit_footer"

@@ -184,14 +184,20 @@
 .fade-in-up-2 { animation-delay: 0.30s; }
 .fade-in-up-3 { animation-delay: 0.45s; }
 
-/* IntersectionObserver-driven reveal — set [data-reveal] then toggle data-reveal="in" */
+/* IntersectionObserver-driven reveal: set [data-reveal] then toggle data-reveal="in".
+   The hidden state only applies once main.tsx has stamped `.js-reveal` on <html>,
+   so with no JS (or a stalled bundle) every [data-reveal] element stays fully
+   visible instead of stranding at opacity:0. See also ScrollReveal.tsx's
+   1200ms timeout fallback for a stalled IntersectionObserver. */
 [data-reveal] {
-  opacity: 0;
-  transform: translate3d(0, 24px, 0);
   transition:
     opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
     transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
   will-change: opacity, transform;
+}
+.js-reveal [data-reveal]:not([data-reveal="in"]) {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
 }
 [data-reveal="in"] {
   opacity: 1;

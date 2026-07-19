@@ -17,7 +17,7 @@ const tools = [
   {
     to: "/readiness",
     label: "Readiness Assessment",
-    blurb: "Score your People function in 8 minutes",
+    blurb: "Score your People function in about ten minutes",
   },
   {
     to: "/exposure-map",
@@ -65,7 +65,13 @@ export const Navigation = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60);
+      // The Tools panel is a click-to-open overlay, not a static menu; close
+      // it once the page has scrolled past the bar so it never rides down
+      // the page pinned over content.
+      if (window.scrollY > 40) setToolsOpen(false);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -82,6 +88,15 @@ export const Navigation = () => {
     setOpen(false);
     setToolsOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!toolsOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setToolsOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [toolsOpen]);
 
   // The nav is transparent only over a dark hero (home, readiness). Everywhere
   // else it stays solid from the top so cream links never sit on linen.
@@ -150,6 +165,8 @@ export const Navigation = () => {
                 <button
                   type="button"
                   aria-haspopup="true"
+                  aria-expanded={toolsOpen}
+                  onClick={() => setToolsOpen((v) => !v)}
                   className={cn(
                     navLink,
                     "inline-flex items-center gap-1.5 cursor-pointer",
@@ -157,7 +174,12 @@ export const Navigation = () => {
                   )}
                 >
                   Tools
-                  <Chevron className="opacity-60 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180" />
+                  <Chevron
+                    className={cn(
+                      "opacity-60 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180",
+                      toolsOpen && "rotate-180",
+                    )}
+                  />
                 </button>
                 {toolsActive && (
                   <span
@@ -165,8 +187,18 @@ export const Navigation = () => {
                     className="absolute -bottom-2 left-0 right-4 h-px bg-brass animate-[fade-in-up_0.4s_ease-out_both]"
                   />
                 )}
-                {/* pt-5 is the hover bridge from trigger to panel */}
-                <div className="absolute right-0 top-full pt-5 opacity-0 invisible translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0">
+                {/* pt-5 is the hover bridge from trigger to panel. toolsOpen (click state)
+                    forces the panel open independent of hover/focus-within, and the
+                    scroll + Escape handlers above close it so it cannot ride pinned
+                    down the page. */}
+                <div
+                  className={cn(
+                    "absolute right-0 top-full pt-5 transition-all duration-200 ease-[cubic-bezier(0.32,0.72,0,1)]",
+                    toolsOpen
+                      ? "opacity-100 visible translate-y-0"
+                      : "opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0",
+                  )}
+                >
                   <div className="w-[320px] rounded-[16px] bg-bark ring-1 ring-cream/15 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] p-2">
                     {tools.map((t) => (
                       <Link

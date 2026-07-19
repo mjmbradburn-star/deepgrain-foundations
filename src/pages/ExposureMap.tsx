@@ -15,6 +15,7 @@ import {
 import { PageMeta } from "@/components/seo/PageMeta";
 import { BarkGrain } from "@/components/ui/BarkGrain";
 import { GrainFlow } from "@/components/ui/GrainFlow";
+import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
@@ -40,8 +41,8 @@ const EXPOSURE_LD = {
   name: "The AI Exposure Map",
   description:
     "Every operating function and its component tasks scored 0-10 for AI exposure. Exposure is judged at task level: every function splits into work that automates and judgment that compounds.",
-  creator: { "@id": "https://deepgrain.ai/#organization" },
-  license: "https://deepgrain.ai/terms",
+  creator: { "@id": "https://www.deepgrain.ai/#organization" },
+  license: "https://www.deepgrain.ai/terms",
 };
 
 const ROLE_ICONS: LucideIcon[] = [
@@ -277,7 +278,7 @@ const ExposureMap = () => {
                         className={`group rounded-2xl px-5 py-5 md:px-6 md:py-6 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
                           active
                             ? "bg-cream ring-1 ring-brass/60 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]"
-                            : "bg-linen/90 ring-1 ring-walnut/10 hover:-translate-y-1 hover:bg-cream hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]"
+                            : "bg-linen/90 ring-1 ring-walnut/10 hover:-translate-y-0.5 hover:bg-cream hover:shadow-[0_8px_20px_-8px_rgba(61,46,28,0.35)]"
                         }`}
                         style={{ transitionTimingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)" }}
                       >
@@ -285,7 +286,7 @@ const ExposureMap = () => {
                           <span
                             className={`inline-flex items-center justify-center w-11 h-11 rounded-full border transition-colors duration-300 ${
                               active
-                                ? "border-brass/70 text-brass bg-brass/10"
+                                ? "border-brass/70 text-brass"
                                 : "border-walnut/20 text-walnut/60 group-hover:border-brass/50 group-hover:text-brass"
                             }`}
                           >
@@ -322,6 +323,18 @@ const ExposureMap = () => {
               </div>
             </div>
           </ScrollReveal>
+
+          <div className="mt-10 md:mt-12 flex justify-center">
+            <PillButton
+              href="/grain-audit"
+              variant="filled"
+              cta="grain_audit_from_exposure_chart"
+              ctaLocation="exposure_map_chart"
+              className="bg-green text-cream hover:bg-green/90 shadow-none"
+            >
+              Book a Grain Audit →
+            </PillButton>
+          </div>
 
           <div className="mt-20 md:mt-28">
             <div className="h-px w-10 bg-brass/30 mb-10" />
@@ -376,6 +389,25 @@ const ExposureMap = () => {
             </div>
           </div>
 
+          <p className="mt-16 md:mt-20 text-walnut/70 text-base md:text-lg max-w-2xl">
+            Curious how your own function scores?{" "}
+            <Link
+              to="/readiness"
+              onClick={() =>
+                track("cta_click", {
+                  cta_id: "readiness_from_exposure_map_midpage",
+                  cta_location: "exposure_map_midpage",
+                  cta_label: "Take the Readiness Assessment",
+                  link_url: "/readiness",
+                })
+              }
+              className="group inline-flex items-center gap-1.5 font-medium text-walnut underline underline-offset-4 decoration-brass hover:text-brass transition-colors"
+            >
+              Take the Readiness Assessment, about ten minutes
+              <span className="transition-transform group-hover:translate-x-0.5">→</span>
+            </Link>
+          </p>
+
           <ScrollReveal delay={100}>
             <div className="relative mt-24 md:mt-32 bg-walnut rounded-[48px] md:rounded-[80px] p-10 md:p-16 lg:p-20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)] border border-brass/20 overflow-hidden">
               <GrainFlow className="absolute inset-x-0 -top-8 h-44" opacity={0.1} />
@@ -413,60 +445,58 @@ const ExposureMap = () => {
         <TopoBackdrop variant="ridge" opacity={0.18} className="z-[1]" />
         <GrainFlow className="absolute inset-x-0 -top-6 h-40 z-[2]" opacity={0.14} />
         <div className="relative z-10 container-grain section-pad">
-          <ScrollReveal>
-            <SectionEyebrow className="mb-10">The next question</SectionEyebrow>
-            <h2
-              className="font-display font-semibold max-w-3xl"
-              style={{
-                fontSize: "clamp(32px, 4.5vw, 64px)",
-                letterSpacing: "-0.01em",
-                lineHeight: 1.05,
-              }}
+          <h2
+            className="font-display font-semibold max-w-3xl"
+            style={{
+              fontSize: "clamp(32px, 4.5vw, 64px)",
+              letterSpacing: "-0.01em",
+              lineHeight: 1.05,
+            }}
+          >
+            Where is your company on this map?
+          </h2>
+          <p className="text-cream/75 mt-8 max-w-xl text-lg leading-relaxed">
+            This is the generic version. Get one built for your actual functions and team:
+            your tasks scored, mapped to a plan. No cost.
+          </p>
+          <p className="text-cream/60 mt-3 max-w-xl text-sm">
+            You will get a short PDF within two working days, scored for your actual
+            functions.
+          </p>
+          <div className="mt-10">
+            <MapLeadForm viewedFunction={role.role} />
+          </div>
+          <p className="text-cream/60 mt-10 max-w-xl text-sm leading-relaxed">
+            Want this done properly, on your own process? Or prefer a number first? Either
+            way, no cost to find out.
+          </p>
+          <div className="mt-5 flex flex-wrap items-center gap-4">
+            <PillButton
+              href="/grain-audit"
+              variant="filled"
+              cta="grain_audit_from_exposure_map"
+              ctaLocation="exposure_map_footer"
             >
-              Where is your company on this map?
-            </h2>
-            <p className="text-cream/75 mt-8 max-w-xl text-lg leading-relaxed">
-              This is the generic version. Get one built for your actual functions and team:
-              your tasks scored, mapped to a plan. No cost.
-            </p>
-            <div className="mt-10">
-              <MapLeadForm viewedFunction={role.role} />
-            </div>
-            <p className="text-cream/50 mt-8 text-sm">
-              Want this done properly, on your own process?{" "}
-              <Link
-                to="/grain-audit"
-                onClick={() =>
-                  track("cta_click", {
-                    cta_id: "grain_audit_from_exposure_map",
-                    cta_location: "exposure_map_footer",
-                    cta_label: "Book a Grain Audit",
-                    link_url: "/grain-audit",
-                  })
-                }
-                className="text-cream underline underline-offset-4 decoration-brass hover:text-brass transition-colors"
-              >
-                Book a Grain Audit →
-              </Link>
-            </p>
-            <p className="text-cream/50 mt-3 text-sm">
-              Prefer a number first?{" "}
-              <Link
-                to="/readiness"
-                onClick={() =>
-                  track("cta_click", {
-                    cta_id: "readiness_from_exposure_map",
-                    cta_location: "exposure_map_footer",
-                    cta_label: "Take the readiness assessment",
-                    link_url: "/readiness",
-                  })
-                }
-                className="text-cream underline underline-offset-4 decoration-brass hover:text-brass transition-colors"
-              >
-                Take the 8-minute readiness assessment →
-              </Link>
-            </p>
-          </ScrollReveal>
+              Book a Grain Audit →
+            </PillButton>
+            <Link
+              to="/readiness"
+              onClick={() =>
+                track("cta_click", {
+                  cta_id: "readiness_from_exposure_map",
+                  cta_location: "exposure_map_footer",
+                  cta_label: "Take the Readiness Assessment",
+                  link_url: "/readiness",
+                })
+              }
+              className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-cream/80 hover:text-cream underline-offset-4 hover:underline"
+            >
+              Take the Readiness Assessment
+              <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>
+                →
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
     </>

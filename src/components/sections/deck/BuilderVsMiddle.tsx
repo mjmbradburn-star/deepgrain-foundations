@@ -1,5 +1,4 @@
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 
 const builders = [
   "Already wires their own tools together on the quiet.",
@@ -53,8 +52,7 @@ export const BuilderVsMiddle = () => (
   <section className="bg-linen text-walnut section-pad">
     <div className="container-grain">
       <Reveal>
-        <SectionEyebrow pill tone="linen" className="mb-6">Where the value is</SectionEyebrow>
-        <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl mt-6">
+        <h2 className="font-display text-walnut text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">
           Find your builder. Move your middle layer.
         </h2>
         <div className="mt-6 h-px w-full bg-brass/40 max-w-4xl" />

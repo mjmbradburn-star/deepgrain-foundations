@@ -1,8 +1,6 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
-import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { MetricBlock } from "@/components/sections/deck/MetricBlock";
-import { SectionLocator } from "@/components/sections/deck/SectionLocator";
 
 const ways = [
   { icon: "✕", text: "Avoid a hire you would otherwise make." },
@@ -18,11 +16,10 @@ export const TheBridge = () => (
   <section className="relative bg-green text-cream section-pad overflow-hidden">
     <div className="relative container-grain">
       <Reveal>
-        <SectionEyebrow pill className="mb-6">The bridge</SectionEyebrow>
-        <h2 className="font-display text-cream text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl mt-6">
+        <div className="font-display text-brass text-6xl md:text-7xl leading-none">3</div>
+        <h2 className="font-display text-cream text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl mt-4">
           Reclaimed capacity is not value until you spend it.
         </h2>
-        <div className="mt-6 h-px w-full bg-brass/30 max-w-3xl" />
       </Reveal>
 
       <div className="mt-16 md:mt-20 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16">
@@ -74,8 +71,6 @@ export const TheBridge = () => (
           </div>
         </Reveal>
       </div>
-
-      <SectionLocator index={4} total={5} right="The bridge" tone="green" className="mt-20" />
     </div>
   </section>
 );

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Reveal } from "@/components/ui/Reveal";
 import { Parallax } from "@/components/ui/Parallax";
@@ -16,7 +15,7 @@ import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 import { BuilderVsMiddle } from "@/components/sections/deck/BuilderVsMiddle";
 import { RoleMatrix } from "@/components/sections/deck/RoleMatrix";
-import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
 
 /** Trailing arrow nested in its own circular wrapper, magnetic on hover. Mirrors
  * the button-in-button treatment on HeroDeck / IntelligenceTeaser. */
@@ -46,20 +45,20 @@ const ctaCls = "group inline-flex items-center rounded-full border border-brass/
 const askLink = (prompt: string) =>
   `/contact?subject=${encodeURIComponent(prompt)}`;
 
-/** Footer row under each FAQ answer: optional related link + the contextual CTA. */
+/** Footer row under each FAQ answer: optional related links + the contextual CTA. */
 const FaqFooter = ({
   related,
   ask,
 }: {
-  related?: { to: string; label: string };
+  related?: { to: string; label: string }[];
   ask: string;
 }) => (
   <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
-    {related && (
-      <Link to={related.to} className={trailingCls}>
-        {related.label}
+    {related?.map((r) => (
+      <Link key={r.to} to={r.to} className={trailingCls}>
+        {r.label}
       </Link>
-    )}
+    ))}
     <Link to={askLink(ask)} className={ctaCls}>
       Ask about this
       <ArrowGlyph />
@@ -76,7 +75,10 @@ const faqItems: FAQItem[] = [
       <>
         We name an exec sponsor, identify three or four champions inside the function, and pick one bounded, painful workflow to build first. No procurement marathon, no tooling debate. We use what you already have where we can, and stand up the missing pieces (an LLM provider, one workflow tool) on the right terms in week one.
         <FaqFooter
-          related={{ to: "/method#read", label: "01 Read · Before we touch a thing, we understand →" }}
+          related={[
+            { to: "/method#read", label: "01 Read · Before we touch a thing, we understand →" },
+            { to: "/readiness", label: "Score your function first, about ten minutes →" },
+          ]}
           ask="I'd like to understand what onboarding would look like for our team. A bit about us: "
         />
       </>
@@ -114,7 +116,7 @@ const faqItems: FAQItem[] = [
       <>
         Champions keep building. They extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team, not parked with a vendor on a retainer.
         <FaqFooter
-          related={{ to: "/method#scale", label: "03 Scale · We leave something that compounds →" }}
+          related={[{ to: "/method#scale", label: "03 Scale · We leave something that compounds →" }]}
           ask="I'd like to understand what life looks like after the engagement ends. A bit about us: "
         />
       </>
@@ -128,7 +130,7 @@ const faqItems: FAQItem[] = [
       <>
         Three signals. Champions ship a workflow we did not scope, end-to-end, without us. A new joiner is brought up to speed by a colleague rather than a deck. And six months on, the workflow count has grown, not flatlined. If those are not true, the engagement did not land, regardless of hours saved.
         <FaqFooter
-          related={{ to: "/work", label: "See where it has landed →" }}
+          related={[{ to: "/work", label: "See where it has landed →" }]}
           ask="I'd like to talk about how we'd measure capability transfer in our context. A bit about us: "
         />
       </>
@@ -174,7 +176,7 @@ const curriculum = [
   {
     n: "01",
     title: "Reading the grain",
-    body: "Where agents fit, and where human judgment has to stay.",
+    body: "Where agents fit, and where human judgement has to stay.",
     duration: "Half day",
   },
   {
@@ -198,7 +200,7 @@ const curriculum = [
   {
     n: "05",
     title: "Measuring value",
-    body: "Hours saved, judgment freed, capability gained. Numbers you can say out loud in the boardroom, not vibes.",
+    body: "Hours saved, judgement freed, capability gained. Numbers you can say out loud in the boardroom, not vibes.",
     duration: "Half day",
   },
   {
@@ -221,12 +223,12 @@ const Enablement = () => (
     <PageMeta
       title="Enablement | Coaching and champions | Deepgrain"
       description="What 'people upskilled' means in a Deepgrain engagement: the coaching curriculum, the champion model, and capability your team keeps."
-      image="https://deepgrain.ai/og-enablement.png"
+      image="https://www.deepgrain.ai/og-enablement.png"
       path="/enablement"
       jsonLd={[
         buildBreadcrumbLd([
-          { name: "Home", url: "https://deepgrain.ai/" },
-          { name: "Enablement", url: "https://deepgrain.ai/enablement" },
+          { name: "Home", url: "https://www.deepgrain.ai/" },
+          { name: "Enablement", url: "https://www.deepgrain.ai/enablement" },
         ]),
         buildFAQLd(faqItems),
       ]}
@@ -251,18 +253,18 @@ const Enablement = () => (
           <dl className="mt-14 grid gap-10 sm:grid-cols-3 border-t border-cream/15 pt-10 max-w-2xl">
             <div>
               <dt className="font-display font-semibold text-brass text-5xl md:text-6xl leading-none tabular-nums">
-                <AnimatedNumber value={37} countUp />
+                <AnimatedNumber value={100} suffix="+" countUp />
               </dt>
               <dd className="mt-3 text-[11px] uppercase tracking-[0.2em] text-cream/70 font-semibold">
-                Champions trained
+                Cohorts run
               </dd>
             </div>
             <div>
               <dt className="font-display font-semibold text-brass text-5xl md:text-6xl leading-none tabular-nums">
-                <AnimatedNumber value={11} countUp />
+                <AnimatedNumber value={7} countUp />
               </dt>
               <dd className="mt-3 text-[11px] uppercase tracking-[0.2em] text-cream/70 font-semibold">
-                Functions reshaped
+                Sectors served
               </dd>
             </div>
             <div>
@@ -289,9 +291,8 @@ const Enablement = () => (
       <div className="container-grain">
         <Reveal>
           <div className="max-w-3xl">
-            <SectionEyebrow pill tone="linen" className="mb-6">People upskilled</SectionEyebrow>
-            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight mt-6">
-              What the metric means.
+            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
+              What &ldquo;people upskilled&rdquo; means.
             </h2>
             <p className="mt-8 text-body/85 text-lg leading-relaxed">
               When we report &ldquo;people upskilled&rdquo; at the end of an engagement, we
@@ -326,8 +327,7 @@ const Enablement = () => (
       <div className="container-grain">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <SectionEyebrow pill tone="linen" className="mb-6">The champion model</SectionEyebrow>
-            <h2 className="font-display text-walnut text-4xl md:text-5xl leading-tight mt-6">
+            <h2 className="font-display text-walnut text-4xl md:text-5xl leading-tight">
               You need three or four champions, not engineers.
             </h2>
             <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
@@ -363,7 +363,7 @@ const Enablement = () => (
 
           <Reveal delay={120}>
             <div className="border-t border-walnut/15 pt-8 lg:pt-0 lg:border-t-0 lg:border-l lg:border-walnut/15 lg:pl-16 h-full">
-              <Eyebrow>What a champion needs</Eyebrow>
+              <p className="font-sans text-walnut/60 text-sm font-semibold">What a champion needs</p>
               <ul className="mt-6 divide-y divide-walnut/15">
                 {championNeeds.map((c) => (
                   <li key={c.label} className="py-6 first:pt-0 last:pb-0">
@@ -383,8 +383,7 @@ const Enablement = () => (
       <div className="container-grain">
         <Reveal>
           <div className="max-w-3xl">
-            <SectionEyebrow pill tone="linen" className="mb-6">The coaching curriculum</SectionEyebrow>
-            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight mt-6">
+            <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
               Six modules, run alongside the build.
             </h2>
             <p className="mt-8 text-body/85 text-lg leading-relaxed">
@@ -400,7 +399,7 @@ const Enablement = () => (
             <Reveal key={m.n} delay={i * 70}>
               <div className="grid gap-4 py-8 md:grid-cols-[80px_1fr_140px] md:items-baseline md:gap-10">
                 <div className="flex md:block">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brass/10 ring-1 ring-brass/20 font-display text-brass text-lg shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]">
+                  <span className="font-display text-brass text-2xl md:text-3xl leading-none tabular-nums">
                     {m.n}
                   </span>
                 </div>
@@ -424,8 +423,7 @@ const Enablement = () => (
     <BarkSection className="section-pad" contentClassName="container-grain">
       <Reveal>
         <div className="max-w-3xl">
-          <SectionEyebrow pill className="mb-6">What you walk away with</SectionEyebrow>
-          <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight mt-6">
+          <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight">
             A practice the team holds.
           </h2>
         </div>
@@ -436,7 +434,7 @@ const Enablement = () => (
             key={o}
             delay={i * 80}
             as="li"
-            className="border-t border-brass/40 pt-6 text-cream/85 text-lg leading-relaxed"
+            className="text-cream/85 text-lg leading-relaxed"
           >
             {o}
           </Reveal>
@@ -452,9 +450,20 @@ const Enablement = () => (
         <p className="mt-6 max-w-2xl text-cream/85 text-lg leading-relaxed">
           Not ready for the full programme? The Grain Audit maps one People Ops process
           end to end, ranks the highest-return automations, and hands you a 90-day plan
-          you keep whether or not we work together. Two weeks. GBP 2,000, credited in
+          you keep whether or not we work together. Two weeks. £2,000, credited in
           full against a programme. Three slots a month.
         </p>
+        <p className="mt-6 max-w-2xl text-cream/60 text-sm">
+          The path in: a free assessment, then a 30-minute call, then a Grain Audit, then
+          the full programme. Start wherever you actually are.
+        </p>
+        <AssessmentLadder
+          variant="inline"
+          tone="bark"
+          tools={["readiness"]}
+          ctaLocation="enablement_outcomes"
+          className="mt-8 max-w-2xl"
+        />
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
           <PillButton
             href="/grain-audit"
@@ -481,12 +490,12 @@ const Enablement = () => (
     </BarkSection>
 
     <FAQ
-      eyebrow="Onboarding & after"
+      eyebrow=""
       heading="What working with us actually looks like."
       items={faqItems}
     />
 
-    <Invitation />
+    <Invitation eyebrow="" />
   </>
 );
 

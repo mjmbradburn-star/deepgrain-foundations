@@ -9,22 +9,22 @@ const PILLARS = [
   {
     slug: "what-is-an-ai-operating-system",
     title: "What is an AI operating system",
-    url: "https://deepgrain.ai/intelligence/what-is-an-ai-operating-system",
+    url: "https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system",
   },
   {
     slug: "five-pillars-of-ai-readiness",
     title: "The five pillars of AI readiness",
-    url: "https://deepgrain.ai/intelligence/five-pillars-of-ai-readiness",
+    url: "https://www.deepgrain.ai/intelligence/five-pillars-of-ai-readiness",
   },
   {
     slug: "ai-operating-ladder-five-tiers",
     title: "The AI operating ladder: five tiers",
-    url: "https://deepgrain.ai/intelligence/ai-operating-ladder-five-tiers",
+    url: "https://www.deepgrain.ai/intelligence/ai-operating-ladder-five-tiers",
   },
   {
     slug: "setting-up-your-ai-workspace",
     title: "Setting up your AI workspace",
-    url: "https://deepgrain.ai/intelligence/people-ops/setting-up-your-ai-workspace",
+    url: "https://www.deepgrain.ai/intelligence/people-ops/setting-up-your-ai-workspace",
   },
 ];
 

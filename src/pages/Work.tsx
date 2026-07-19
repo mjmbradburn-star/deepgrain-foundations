@@ -1,37 +1,33 @@
-import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
 import { caseStudies } from "@/data/caseStudies";
 import { CaseStudyCard } from "@/components/sections/CaseStudyCard";
 import { LogoCarousel } from "@/components/sections/LogoCarousel";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { PillButton } from "@/components/ui/PillButton";
 import { EmailCapture } from "@/components/forms/EmailCapture";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { BarkSection } from "@/components/ui/BarkSection";
 import { Invitation } from "@/components/sections/Invitation";
-import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 import { BeforeAfterCard, type BeforeAfter } from "@/components/sections/deck/BeforeAfterCard";
-import { AuditPrompt } from "@/components/sections/deck/AuditPrompt";
-import { track } from "@/lib/analytics";
 
 const variants: Array<"linen" | "walnut" | "green"> = ["linen", "walnut", "linen", "green"];
 
 const heroBeforeAfter: BeforeAfter = {
   eyebrow: "Hero case · Defence tech · Series B · 200 people",
   headline: "Finance and People Ops, before and after we read the grain.",
-  beforeLabel: "⏱  Before · weekly admin load",
+  beforeLabel: "⏱︎  Before · weekly admin load",
   beforeValue: "83 hrs",
   beforeCaption:
     "of rekeying, chasing and re-answering across Finance and People Ops. The most expensive seats doing the least judgement work.",
-  beforeChips: ["▦ 3 systems out of sync", "⌥ Repeating policy questions", "⚖ No time for the real work"],
-  afterLabel: "◷  After · 12-week engagement",
+  beforeChips: ["▦︎ 3 systems out of sync", "✕︎ Repeating policy questions", "⚖︎ No time for the real work"],
+  afterLabel: "◷︎  After · 12-week engagement",
   afterValue: "60% / 70%",
   afterCaption:
     "of Finance time reclaimed; seventy percent of People Ops queries handled by systems the team owns and modifies itself.",
-  afterChips: ["⚙ Agents wired in", "✦ 5 champions trained", "✓ 0 critical issues, 2 months on"],
+  afterChips: ["⚙︎ Agents wired in", "✦︎ 5 champions trained", "✓︎ 0 critical issues, 2 months on"],
   judgement:
     "Two months on the champions had shipped five more agents we never scoped. That is the test.",
 };
@@ -42,30 +38,30 @@ const beforeAfterGallery: BeforeAfter[] = [
     headline: "From training programme to production tools.",
     beforeValue: "15 people",
     beforeCaption: "across two timezones, fluent on prompts but with nothing shipped end to end.",
-    beforeChips: ["⌥ Training fatigue", "▦ No production agents"],
+    beforeChips: ["✕︎ Training fatigue", "▦︎ No production agents"],
     afterValue: "5 tools",
     afterCaption: "live in seven weeks. Five squads, one production solution each, owned by the function.",
-    afterChips: ["⚙ 5 production tools", "✦ Champions still building"],
+    afterChips: ["⚙︎ 5 production tools", "✦︎ Champions still building"],
   },
   {
     eyebrow: "Transit technology · PE backed · 260 people",
     headline: "A doing problem, not a training problem.",
     beforeValue: "£40k",
     beforeCaption: "in licences and a champions programme producing no outputs outside engineering.",
-    beforeChips: ["⌥ Licences unused", "◌ No internal builders"],
+    beforeChips: ["✕︎ Licences unused", "◌︎ No internal builders"],
     afterValue: "1 tool, 2 builders",
     afterCaption: "one named production tool, two internal builders who can maintain and extend everything.",
-    afterChips: ["✦ 40 enabled in wave one", "✓ £40k cost retired"],
+    afterChips: ["✦︎ 40 enabled in wave one", "✓︎ £40k cost retired"],
   },
   {
     eyebrow: "Climate consultancy · growth stage · ~60 people",
     headline: "A new operating model, not a new tool.",
     beforeValue: "Ad hoc",
     beforeCaption: "associate lifecycle held together by individuals, breaking quietly under growth.",
-    beforeChips: ["⌥ Onboarding gaps", "▦ Lost institutional knowledge"],
+    beforeChips: ["✕︎ Onboarding gaps", "▦︎ Lost institutional knowledge"],
     afterValue: "1 lifecycle",
     afterCaption: "redesigned from joiner to leaver, with AI woven through every stage, built to compound.",
-    afterChips: ["⚙ Agents across the lifecycle", "✓ Survives the next hire wave"],
+    afterChips: ["⚙︎ Agents across the lifecycle", "✓︎ Survives the next hire wave"],
   },
 ];
 
@@ -107,12 +103,12 @@ const Work = () => (
     <PageMeta
       title="Work · Before and after | Deepgrain"
       description="Real engagements at click level. Before-and-after on Finance, People Ops, and operating lifecycles across defence, financial data, transit and climate."
-      image="https://deepgrain.ai/og-work.png"
+      image="https://www.deepgrain.ai/og-work.png"
       path="/work"
       jsonLd={[
         buildBreadcrumbLd([
-          { name: "Home", url: "https://deepgrain.ai/" },
-          { name: "Work", url: "https://deepgrain.ai/work" },
+          { name: "Home", url: "https://www.deepgrain.ai/" },
+          { name: "Work", url: "https://www.deepgrain.ai/work" },
         ]),
         buildFAQLd(FAQ_ITEMS),
       ]}
@@ -123,7 +119,6 @@ const Work = () => (
       <TopoBackdrop variant="ridge" opacity={0.22} />
       <div className="relative container-grain max-w-5xl">
         <ScrollReveal>
-          <SectionEyebrow className="mb-6" />
           <h1 className="font-display text-cream text-5xl md:text-7xl lg:text-[88px] leading-[1.02] text-balance max-w-4xl">
             Read first. Then the numbers move.
           </h1>
@@ -145,7 +140,6 @@ const Work = () => (
     <section className="bg-cream text-walnut py-20 md:py-28">
       <div className="container-grain max-w-5xl">
         <ScrollReveal>
-          <SectionEyebrow tone="linen" className="mb-6" />
           <h2 className="font-display text-walnut text-3xl md:text-5xl leading-[1.05] max-w-3xl">
             Same shape. Different grain.
           </h2>
@@ -161,10 +155,17 @@ const Work = () => (
       <BeforeAfterCard key={item.eyebrow} item={item} />
     ))}
 
+    <AssessmentLadder
+      variant="band"
+      tone="linen"
+      tools={["readiness", "exposure"]}
+      heading="Not ready to talk yet?"
+      ctaLocation="work_gallery"
+    />
+
     {/* Long-form case studies retained for clients who want the full narrative */}
     <section className="bg-walnut text-cream py-20">
       <div className="container-grain max-w-3xl text-center">
-        <SectionEyebrow className="mb-4 justify-center">In the client's words</SectionEyebrow>
         <p className="font-display text-cream/85 text-2xl md:text-3xl italic leading-snug">
           Below: the testimonials, the shape of each engagement, what the team still has now
           we've gone. Not our words. Theirs.
@@ -179,33 +180,23 @@ const Work = () => (
     {/* Proof sits next to the offer: every case above started as a Grain Audit. */}
     <BarkSection className="section-pad" contentClassName="container-grain max-w-3xl">
       <ScrollReveal>
-        <Eyebrow withRule className="text-brass mb-6">The next move</Eyebrow>
         <h2 className="font-display text-cream text-3xl md:text-5xl leading-[1.08] max-w-2xl">
           Every case above started the same way.
         </h2>
         <p className="mt-6 max-w-xl text-cream/75 leading-relaxed">
           The Grain Audit maps one People Ops process end to end, ranks the highest-return
           automations, and hands you a 90-day plan you keep whether or not we work together. Two
-          weeks. GBP 2,000, credited in full against a programme. Three slots a month.
+          weeks. £2,000, credited in full against a programme. Three slots a month.
         </p>
-        <Link
-          to="/grain-audit"
-          onClick={() =>
-            track("cta_click", {
-              cta_id: "audit_work_proof",
-              cta_location: "work_proof",
-              cta_label: "Book a Grain Audit",
-              link_url: "/grain-audit",
-            })
-          }
-          className="group mt-8 inline-flex items-center gap-2 rounded-full bg-cream px-7 py-3.5 font-sans text-sm tracking-wider text-green transition-all duration-300 hover:bg-cream/90"
+        <PillButton
+          href="/grain-audit"
+          variant="filled"
+          cta="audit_work_proof"
+          ctaLocation="work_proof"
+          className="mt-8"
         >
-          Book a Grain Audit
-          <ArrowUpRight
-            className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            strokeWidth={2}
-          />
-        </Link>
+          Book a Grain Audit →
+        </PillButton>
       </ScrollReveal>
     </BarkSection>
 
@@ -214,31 +205,21 @@ const Work = () => (
     <section className="bg-linen py-20 md:py-28">
       <div className="container-grain max-w-3xl">
         <ScrollReveal>
-          <Eyebrow withRule className="text-walnut/60 mb-6">Stay close</Eyebrow>
           <EmailCapture
             source="work"
             variant="light"
             heading="Field notes from the work."
             description="A short dispatch, a few times a quarter. Patterns we keep seeing in how organisations actually run."
           />
-          <div className="mt-12">
-            <AuditPrompt
-              tone="linen"
-              ctaId="audit_work_mid"
-              ctaLocation="work_mid"
-              headline="Want this kind of before and after on your own function?"
-              sub="Thirty minutes. One workflow. We map it together."
-              prefill="I saw the case studies. The function I'd like to map a before and after for is:"
-            />
-          </div>
         </ScrollReveal>
       </div>
     </section>
 
     <Invitation
+      eyebrow=""
       ctaLocation="work"
       headline="Want this kind of before and after on your own function?"
-      sub="Thirty minutes. One workflow. We map it together."
+      sub="Thirty minutes, no charge. We map one workflow together and you leave with the shape of it."
       prefill="I saw the case studies. The function I'd like to map a before and after for is:"
     />
   </>

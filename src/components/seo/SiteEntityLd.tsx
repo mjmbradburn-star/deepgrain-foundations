@@ -16,14 +16,14 @@ export const SiteEntityLd = () => {
   const org = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://deepgrain.ai/#organization",
+    "@id": "https://www.deepgrain.ai/#organization",
     name: "Deepgrain",
-    url: "https://deepgrain.ai",
+    url: "https://www.deepgrain.ai",
     logo: {
       "@type": "ImageObject",
-      url: "https://deepgrain.ai/og-image.png",
+      url: "https://www.deepgrain.ai/og-image.png",
     },
-    founder: { "@id": "https://deepgrain.ai/about#matthew-bradburn" },
+    founder: { "@id": "https://www.deepgrain.ai/about#matthew-bradburn" },
     description:
       "Organisational consultancy that reads the grain of how a company actually operates, then changes it without breaking what works.",
     sameAs: [
@@ -34,11 +34,11 @@ export const SiteEntityLd = () => {
   const person = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "@id": "https://deepgrain.ai/about#matthew-bradburn",
+    "@id": "https://www.deepgrain.ai/about#matthew-bradburn",
     name: "Matthew Bradburn",
-    url: "https://deepgrain.ai/about",
+    url: "https://www.deepgrain.ai/about",
     jobTitle: "Operating consultant",
-    worksFor: { "@id": "https://deepgrain.ai/#organization" },
+    worksFor: { "@id": "https://www.deepgrain.ai/#organization" },
     description:
       "Operating consultant working with founders and operating leaders building AI-native, defence, financial data, transit, and climate companies.",
     sameAs: [
@@ -49,10 +49,10 @@ export const SiteEntityLd = () => {
   const website = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://deepgrain.ai/#website",
-    url: "https://deepgrain.ai",
+    "@id": "https://www.deepgrain.ai/#website",
+    url: "https://www.deepgrain.ai",
     name: "Deepgrain",
-    publisher: { "@id": "https://deepgrain.ai/#organization" },
+    publisher: { "@id": "https://www.deepgrain.ai/#organization" },
     inLanguage: "en-GB",
   };
 
@@ -61,11 +61,11 @@ export const SiteEntityLd = () => {
   const service = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://deepgrain.ai/#service",
+    "@id": "https://www.deepgrain.ai/#service",
     name: "Deepgrain",
-    url: "https://deepgrain.ai",
-    parentOrganization: { "@id": "https://deepgrain.ai/#organization" },
-    founder: { "@id": "https://deepgrain.ai/about#matthew-bradburn" },
+    url: "https://www.deepgrain.ai",
+    parentOrganization: { "@id": "https://www.deepgrain.ai/#organization" },
+    founder: { "@id": "https://www.deepgrain.ai/about#matthew-bradburn" },
     serviceType: [
       "Organisational consultancy",
       "AI operating systems",

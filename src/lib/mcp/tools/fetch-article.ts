@@ -16,7 +16,7 @@ export default defineTool({
       .string()
       .min(1)
       .describe(
-        "A full https://deepgrain.ai URL, or an Intelligence article slug like 'ai-operating-ladder-five-tiers'.",
+        "A full https://www.deepgrain.ai URL, or an Intelligence article slug like 'ai-operating-ladder-five-tiers'.",
       ),
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: true },
@@ -35,7 +35,7 @@ export default defineTool({
       target = parsed.toString();
     } else {
       const slug = urlOrSlug.replace(/^\/+/, "").replace(/\/+$/, "");
-      target = `https://deepgrain.ai/intelligence/${slug}`;
+      target = `https://www.deepgrain.ai/intelligence/${slug}`;
     }
 
     const res = await fetch(target, {

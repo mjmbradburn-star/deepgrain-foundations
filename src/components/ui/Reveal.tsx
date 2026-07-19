@@ -79,7 +79,13 @@ export const Reveal = forwardRef<HTMLElement, RevealProps>(
         { threshold, rootMargin: "0px 0px -8% 0px" },
       );
       io.observe(node);
-      return () => io.disconnect();
+      // Fail-safe: a stalled or throttled observer must never strand content
+      // hidden. Content is visible by default after this window regardless.
+      const failSafe = window.setTimeout(() => setShown(true), 1200);
+      return () => {
+        io.disconnect();
+        window.clearTimeout(failSafe);
+      };
     }, [threshold]);
 
     const motion: CSSProperties = reduced

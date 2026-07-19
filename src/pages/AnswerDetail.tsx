@@ -1,8 +1,57 @@
 import { Helmet } from "react-helmet-async";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ANSWERS } from "@/data/answers";
+import { ANSWERS, type AnswerEntry } from "@/data/answers";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
+import { getArticleBySlug } from "@/lib/intelligence";
+import type { ClusterSlug } from "@/lib/clusters";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
+
+/**
+ * An answer's `link` usually points into an Intelligence article (optionally
+ * with a `#fragment`). Resolve it to that article's cluster set so related
+ * answers can be picked by real topic, not by list position.
+ */
+const clustersForAnswer = (link?: string): Set<ClusterSlug> => {
+  if (!link || !link.startsWith("/intelligence/")) return new Set();
+  const articleSlug = link.slice("/intelligence/".length).split("#")[0];
+  const f = getArticleBySlug(articleSlug)?.frontmatter;
+  return new Set<ClusterSlug>([
+    ...(f?.primaryCluster ? [f.primaryCluster] : []),
+    ...(f?.clusters ?? []),
+  ]);
+};
+
+/**
+ * Cluster-matched related answers, falling back to the previous
+ * recency-stable modulo pick when there is no cluster signal (no link, or
+ * the linked article carries no cluster tags), so the section is never empty.
+ */
+const getRelatedAnswers = (idx: number, entry: AnswerEntry, limit = 3): AnswerEntry[] => {
+  const modulo = Array.from({ length: limit }, (_, n) => ANSWERS[(idx + n + 1) % ANSWERS.length]).filter(
+    (a) => a.slug !== entry.slug,
+  );
+
+  const entryClusters = clustersForAnswer(entry.link);
+  if (entryClusters.size === 0) return modulo;
+
+  const scored = ANSWERS.map((a, i) => ({ a, i }))
+    .filter(({ a }) => a.slug !== entry.slug)
+    .map(({ a, i }) => {
+      const otherClusters = clustersForAnswer(a.link);
+      let score = 0;
+      for (const c of otherClusters) if (entryClusters.has(c)) score++;
+      return { a, i, score };
+    })
+    .sort((x, y) => y.score - x.score || x.i - y.i);
+
+  const matched = scored.filter((s) => s.score > 0).map((s) => s.a);
+  if (matched.length >= limit) return matched.slice(0, limit);
+
+  const chosen = new Set(matched.map((a) => a.slug));
+  const fillers = modulo.filter((a) => !chosen.has(a.slug));
+  return [...matched, ...fillers].slice(0, limit);
+};
 
 /**
  * Per-question canonical URL. Route: /answers/:slug
@@ -18,19 +67,14 @@ const AnswerDetail = () => {
   if (idx === -1) return <Navigate to="/intelligence/answers" replace />;
   const entry = ANSWERS[idx];
 
-  const url = `https://deepgrain.ai/answers/${entry.slug}`;
+  const url = `https://www.deepgrain.ai/answers/${entry.slug}`;
   const description = entry.answer.slice(0, 158);
 
-  // Two follow-up answers from the same list (recency-stable, deterministic).
-  const related = [
-    ANSWERS[(idx + 1) % ANSWERS.length],
-    ANSWERS[(idx + 2) % ANSWERS.length],
-    ANSWERS[(idx + 3) % ANSWERS.length],
-  ].filter((a) => a.slug !== entry.slug);
+  const related = getRelatedAnswers(idx, entry, 3);
 
   const breadcrumbLd = buildBreadcrumbLd([
-    { name: "Home", url: "https://deepgrain.ai/" },
-    { name: "Answers", url: "https://deepgrain.ai/intelligence/answers" },
+    { name: "Home", url: "https://www.deepgrain.ai/" },
+    { name: "Answers", url: "https://www.deepgrain.ai/intelligence/answers" },
     { name: entry.question, url },
   ]);
 
@@ -49,7 +93,7 @@ const AnswerDetail = () => {
         author: {
           "@type": "Person",
           name: "Matthew Bradburn",
-          url: "https://deepgrain.ai/about",
+          url: "https://www.deepgrain.ai/about",
         },
       },
     },
@@ -67,6 +111,7 @@ const AnswerDetail = () => {
         <meta property="og:type" content="article" />
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
         <script type="application/ld+json">{JSON.stringify(qaLd)}</script>
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       <article className="bg-cream pt-40 md:pt-48 pb-20 md:pb-28">
@@ -98,6 +143,14 @@ const AnswerDetail = () => {
               </Link>
             </p>
           )}
+          <div className="mt-10 pt-8 border-t border-walnut/15">
+            <AssessmentLadder
+              variant="inline"
+              tone="linen"
+              tools={["readiness"]}
+              ctaLocation="answer_footer"
+            />
+          </div>
         </div>
       </article>
 

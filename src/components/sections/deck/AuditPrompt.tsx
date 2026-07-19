@@ -41,7 +41,7 @@ export const AuditPrompt = ({
     track("cta_click", {
       cta_id: ctaId,
       cta_location: ctaLocation,
-      cta_label: "Book a 30-minute audit",
+      cta_label: "Book a 30-minute call",
       link_url: href,
     });
   };
@@ -78,7 +78,7 @@ export const AuditPrompt = ({
             : "bg-green text-cream hover:bg-green/90",
         )}
       >
-        Book a 30-minute audit
+        Book a 30-minute call
         <span className="transition-transform group-hover:translate-x-0.5">→</span>
       </Link>
     </div>

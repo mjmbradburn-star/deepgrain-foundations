@@ -8,18 +8,33 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { PillarGlossaryStrip } from "@/components/intelligence/PillarGlossaryStrip";
+import { IntelligenceCTA } from "@/components/intelligence/IntelligenceCTA";
+import { track } from "@/lib/analytics";
+
+// Keyed per pillar so the nudge speaks to what that pillar actually covers,
+// rather than one generic line pasted across all four.
+const READINESS_NUDGE: Record<string, string> = {
+  "ai-operating-system":
+    "Skip the reading. The Readiness Assessment covers these same pillars in about ten minutes.",
+  "ai-workspace-for-people-ops":
+    "Skip the reading. The Readiness Assessment scores your workspace and tooling maturity in about ten minutes.",
+  "operating-leadership":
+    "Skip the reading. The Readiness Assessment scores how your operating model actually runs, in about ten minutes.",
+  "sector-operating-lenses":
+    "Skip the reading. The Readiness Assessment scores your function against the same benchmarks, in about ten minutes.",
+};
 
 const IntelligencePillar = () => {
   const { slug = "" } = useParams();
   const pillar = getPillar(slug);
   if (!pillar) return <Navigate to="/intelligence/pillars" replace />;
 
-  const url = `https://deepgrain.ai/intelligence/pillar/${pillar.slug}`;
+  const url = `https://www.deepgrain.ai/intelligence/pillar/${pillar.slug}`;
 
   const breadcrumbLd = buildBreadcrumbLd([
-    { name: "Home", url: "https://deepgrain.ai/" },
-    { name: "Intelligence", url: "https://deepgrain.ai/intelligence" },
-    { name: "Pillars", url: "https://deepgrain.ai/intelligence/pillars" },
+    { name: "Home", url: "https://www.deepgrain.ai/" },
+    { name: "Intelligence", url: "https://www.deepgrain.ai/intelligence" },
+    { name: "Pillars", url: "https://www.deepgrain.ai/intelligence/pillars" },
     { name: pillar.title, url },
   ]);
 
@@ -40,7 +55,7 @@ const IntelligencePillar = () => {
     itemListElement: s.items.map((a, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `https://deepgrain.ai/intelligence/${a.frontmatter.slug}`,
+      url: `https://www.deepgrain.ai/intelligence/${a.frontmatter.slug}`,
       name: a.frontmatter.title,
     })),
   }));
@@ -62,6 +77,7 @@ const IntelligencePillar = () => {
             {JSON.stringify(ld)}
           </script>
         ))}
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       <section className="bg-green text-cream pt-40 md:pt-48 pb-20 md:pb-28">
@@ -108,8 +124,7 @@ const IntelligencePillar = () => {
             </p>
           ))}
           <nav aria-label="On this pillar" className="pt-6 border-t border-walnut/15">
-            <Eyebrow>In this pillar</Eyebrow>
-            <ol className="mt-4 space-y-2">
+            <ol className="space-y-2">
               {sections.map((s, i) => (
                 <li key={s.heading}>
                   <a
@@ -125,6 +140,27 @@ const IntelligencePillar = () => {
               ))}
             </ol>
           </nav>
+          {READINESS_NUDGE[pillar.slug] && (
+            <p className="mt-8">
+              <Link
+                to="/readiness"
+                onClick={() =>
+                  track("cta_click", {
+                    cta_id: `readiness_intel_pillar_${pillar.slug}`,
+                    cta_location: "intel_pillar_nudge",
+                    cta_label: "Take the Readiness Assessment",
+                    link_url: "/readiness",
+                  })
+                }
+                className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-walnut/80 hover:text-walnut underline-offset-4 hover:underline"
+              >
+                {READINESS_NUDGE[pillar.slug]}
+                <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>
+                  →
+                </span>
+              </Link>
+            </p>
+          )}
         </div>
       </section>
 
@@ -136,8 +172,13 @@ const IntelligencePillar = () => {
             return (
               <div key={s.heading} id={id} className="scroll-mt-32">
                 <div className="mb-10 pb-6 border-b border-walnut/15 max-w-3xl">
-                  <Eyebrow>{s.heading}</Eyebrow>
-                  <p className="font-display text-2xl md:text-3xl text-walnut mt-3">
+                  <h2
+                    className="font-display text-3xl md:text-4xl text-walnut"
+                    style={{ letterSpacing: "-0.01em" }}
+                  >
+                    {s.heading}
+                  </h2>
+                  <p className="text-walnut/80 text-lg leading-relaxed mt-3">
                     {s.intro}
                   </p>
                 </div>
@@ -160,16 +201,14 @@ const IntelligencePillar = () => {
         sourceArticles={sections.flatMap((s) => s.items)}
         excludeSlugs={sections.flatMap((s) => s.items.map((a) => a.frontmatter.slug))}
         heading="Related across the library"
-        kicker="Related articles"
       />
 
       {/* Related pillars */}
       {pillar.related && pillar.related.length > 0 && (
         <section className="bg-green text-cream py-20 md:py-24">
           <div className="container-grain max-w-3xl">
-            <Eyebrow className="text-brass">Adjacent pillars</Eyebrow>
             <h2
-              className="font-display text-3xl md:text-4xl mt-3 mb-8"
+              className="font-display text-3xl md:text-4xl mb-8"
               style={{ letterSpacing: "-0.01em" }}
             >
               Keep going.
@@ -193,6 +232,8 @@ const IntelligencePillar = () => {
           </div>
         </section>
       )}
+
+      <IntelligenceCTA />
     </>
   );
 };

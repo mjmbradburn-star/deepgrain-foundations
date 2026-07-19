@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { getFeaturedArticles } from "@/lib/intelligence";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 
 export const IntelligenceTeaser = () => {
@@ -14,9 +13,8 @@ export const IntelligenceTeaser = () => {
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
             <div className="max-w-2xl">
-              <Eyebrow withRule>Deepgrain Intelligence</Eyebrow>
               <h2
-                className="font-display text-3xl md:text-5xl lg:text-[3.25rem] text-walnut leading-[1.05] mt-4"
+                className="font-display text-3xl md:text-5xl lg:text-[3.25rem] text-walnut leading-[1.05]"
                 style={{ letterSpacing: "-0.01em" }}
               >
                 Practical essays on operating with AI, not around it.
