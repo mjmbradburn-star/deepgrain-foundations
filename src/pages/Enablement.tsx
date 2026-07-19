@@ -253,18 +253,18 @@ const Enablement = () => (
           <dl className="mt-14 grid gap-10 sm:grid-cols-3 border-t border-cream/15 pt-10 max-w-2xl">
             <div>
               <dt className="font-display font-semibold text-brass text-5xl md:text-6xl leading-none tabular-nums">
-                <AnimatedNumber value={100} suffix="+" countUp />
+                <AnimatedNumber value={37} countUp />
               </dt>
               <dd className="mt-3 text-[11px] uppercase tracking-[0.2em] text-cream/70 font-semibold">
-                Cohorts run
+                Champions trained
               </dd>
             </div>
             <div>
               <dt className="font-display font-semibold text-brass text-5xl md:text-6xl leading-none tabular-nums">
-                <AnimatedNumber value={7} countUp />
+                <AnimatedNumber value={11} countUp />
               </dt>
               <dd className="mt-3 text-[11px] uppercase tracking-[0.2em] text-cream/70 font-semibold">
-                Sectors served
+                Functions reshaped
               </dd>
             </div>
             <div>
