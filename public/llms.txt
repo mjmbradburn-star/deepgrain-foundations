@@ -31,11 +31,11 @@ Articles within each category below are listed in foundational reading order (ol
 
 [Browse category](https://www.deepgrain.ai/intelligence/category/leadership-and-craft)
 
-- [The craft mindset for modern operators](https://www.deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators): Operating leadership is a craft. Crafts have masters, apprentices, tools, and standards. Most companies forget all four.
+- [The craft mindset for modern operators](https://www.deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators): Operating excellence is not a personality you hire for. It is a craft you build. Here is the craft mindset: masters, apprentices, tools and standards.
 - [Founder-mode vs operator-mode](https://www.deepgrain.ai/intelligence/founder-mode-vs-operator-mode): Founder-mode vs operator-mode is not a personality test. They are postures you switch between, and reading which one the moment wants is the executive job.
-- [What CTOs get wrong about scale](https://www.deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale): Scale problems almost always show up as operating problems wearing a technology disguise.
+- [What CTOs get wrong about scale](https://www.deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale): Most scale problems are not infrastructure problems. What CTOs get wrong about scale is the decision graph above the database, not the database itself.
 - [Hiring for the grain: building teams that compound](https://www.deepgrain.ai/intelligence/hiring-for-the-grain): Hiring for the grain is not culture fit and not raw brilliance. It is coherence in how a team decides. Here is how to test for it before you make the offer.
-- [The quiet discipline of operating leadership](https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership): The best operating leaders are quiet on the outside and rigorous on the inside. The volume is misleading.
+- [The quiet discipline of operating leadership](https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership): Operating leadership rarely looks like the loud version boards reward. The real discipline is cadence kept and decisions made without an audience.
 
 ### Method & Practice
 
@@ -43,22 +43,22 @@ Articles within each category below are listed in foundational reading order (ol
 
 - [Read · Craft · Scale: the Deepgrain method](https://www.deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method): Most change work skips straight to the build. Read, Craft, Scale is the discipline against that: diagnose first, craft small, scale at the pace people can absorb.
 - [How to diagnose an organisation in 30 days](https://www.deepgrain.ai/intelligence/how-to-diagnose-an-organisation-in-30-days): How to diagnose an organisation in 30 days: two-thirds listening, one-third synthesis, and zero recommendations until you have earned the right to make them.
-- [The art of the operating intervention](https://www.deepgrain.ai/intelligence/the-art-of-the-operating-intervention): An intervention is the smallest change that produces the largest second-order effect. The craft is in the smallness.
+- [The art of the operating intervention](https://www.deepgrain.ai/intelligence/the-art-of-the-operating-intervention): Leaders reach for scale because scale feels serious. The best operating intervention is the smallest change that moves the system. Here is how to size it.
 - [Scaling without breaking the grain](https://www.deepgrain.ai/intelligence/scaling-without-breaking-the-grain): Scaling without breaking the grain is not about growing slowly. It is about matching structural repair to growth, and knowing which invisible rituals hold the place up.
-- [What good looks like: signals of operating health](https://www.deepgrain.ai/intelligence/signals-of-operating-health): Why the real signal of organisational health is conversational, not a line on a dashboard, and how to listen for it before the numbers move.
+- [What good looks like: signals of operating health](https://www.deepgrain.ai/intelligence/signals-of-operating-health): Your dashboard is green and the org is not fine. The real signals of operating health are conversational, not on a chart. Here is how to read them early.
 - [AI maturity frameworks for G&A leaders](https://www.deepgrain.ai/intelligence/ai-maturity-frameworks-for-ga-leaders): Every AI maturity framework collapses to the same five tiers. For G&A leaders only one jump pays: pilot to integration. Here is how to score it, and move it.
 
 ### AI & Operating Systems
 
 [Browse category](https://www.deepgrain.ai/intelligence/category/ai-operating-systems)
 
-- [What is an AI operating system? (AI OS, explained)](https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system): An AI operating system, or AI OS, is the layer between models and work. It is what turns a clever demo into a compounding capability. Here is what it includes, how it differs from an operating model, and how to build one.
+- [What is an AI operating system? (AI OS, explained)](https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system): Most leaders think they don't have an AI operating system yet. They do, it just wasn't designed. Here are the five pillars that decide whether AI compounds.
 - [The five pillars of AI readiness](https://www.deepgrain.ai/intelligence/five-pillars-of-ai-readiness): AI readiness is not a model problem. It is a data, tools, agents, governance and cadence problem in that order. Here is the diagnostic and what good looks like.
-- [Why AI pilots stall at production](https://www.deepgrain.ai/intelligence/why-ai-pilots-stall-at-production): The path from pilot to production is paved with the things nobody wanted to think about during the demo. Here is the recurring pattern, and how to design pilots that actually cross it.
+- [Why AI pilots stall at production](https://www.deepgrain.ai/intelligence/why-ai-pilots-stall-at-production): Getting an AI pilot to production is not a model problem. It is a data, integration, governance and ownership problem. Here is why pilots stall, and the fix.
 - [From AI experiments to AI infrastructure](https://www.deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure): Most AI programmes never switch from experiments to AI infrastructure, so nothing compounds. Here is when to make the switch, and what to build first.
 - [The AI operating ladder: five tiers explained](https://www.deepgrain.ai/intelligence/ai-operating-ladder-five-tiers): Most teams think they are two rungs higher than they are. The AI operating ladder scores AI maturity function by function and names your exact next move.
 - [How to identify the efficiency gaps AI can fill](https://www.deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill): Most teams pick AI work by what is loudest, not by shape. The efficiency gaps AI can fill are repetitive, latency-bound, pattern-matching and owned.
-- [AI operating system for business](https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business): How to use AI as an operating system, not just a set of tools. A plain guide for business leaders, built on Deepgrain's Read, Craft, Scale method.
+- [AI operating system for business](https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business): Most businesses own AI tools but run no AI operating system for business. Here is what the system is, and how to install it before plumbing outruns adoption.
 - [Building agentic operating systems: a roadmap](https://www.deepgrain.ai/intelligence/building-agentic-operating-systems): Most teams shop for an agent platform before they own one working agent. An agentic operating system is built the other way, one agent at a time.
 
 ### Sector Lenses
@@ -75,11 +75,11 @@ Articles within each category below are listed in foundational reading order (ol
 
 [Browse category](https://www.deepgrain.ai/intelligence/category/foundations)
 
-- [What is organisational consultancy?](https://www.deepgrain.ai/intelligence/what-is-organisational-consultancy): Organisational consultancy is the practice of reading how a company actually operates, then changing it without breaking what works.
-- [Why most change programmes fail](https://www.deepgrain.ai/intelligence/why-most-change-programmes-fail): 70% of change programmes fail. The reason is rarely strategy. It's that the grain was never read before the cut was made.
-- [The grain metaphor: reading your organisation](https://www.deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation): Wood has a grain. So does every organisation. Cut with it and the work compounds; cut against it and you spend the rest of the year sanding.
+- [What is organisational consultancy?](https://www.deepgrain.ai/intelligence/what-is-organisational-consultancy): Most consulting sells answers. Organisational consultancy reads how your company actually operates, then changes it without breaking what holds it together.
+- [Why most change programmes fail](https://www.deepgrain.ai/intelligence/why-most-change-programmes-fail): Why change programmes fail is rarely a strategy problem. It is that the grain, how work actually flows, was never read before the cut was designed.
+- [The grain metaphor: reading your organisation](https://www.deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation): Every organisation has a grain: how work really moves. Reading your organisation before you change it is why some change sticks and some spends a year sanding.
 - [Operating systems vs operating models](https://www.deepgrain.ai/intelligence/operating-systems-vs-operating-models): Operating system vs operating model: one is a slide you present, one is what runs when nobody is looking. The difference, and why you read the system first.
-- [The difference between strategy and operating reality](https://www.deepgrain.ai/intelligence/strategy-vs-operating-reality): Strategy is a story about the future. Operating reality is a description of the present. Most leadership teams confuse the two.
+- [The difference between strategy and operating reality](https://www.deepgrain.ai/intelligence/strategy-vs-operating-reality): Strategy vs operating reality: a plan that assumes capability you don't have is a wish, not a strategy. Here is how to read the gap and fund closing it.
 
 ## Intelligence: People Ops AI
 

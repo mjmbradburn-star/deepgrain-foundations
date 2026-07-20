@@ -2,67 +2,149 @@ export const frontmatter = {
   title: "The difference between strategy and operating reality",
   slug: "strategy-vs-operating-reality",
   category: "foundations",
-  description: "Strategy is a story about the future. Operating reality is a description of the present. Most leadership teams confuse the two.",
-  keywords: ["strategy", "operating reality", "execution"],
-  readTime: "7 min",
+  description: "Strategy vs operating reality: a plan that assumes capability you don't have is a wish, not a strategy. Here is how to read the gap and fund closing it.",
+  keywords: ["strategy vs operating reality", "operating reality", "strategy execution gap", "why strategies fail to execute", "strategy review process", "closing the strategy gap"],
+  readTime: "10 min",
   publishedAt: "2026-02-09",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
+export const faqs = [
+  {
+    question: "What is the difference between strategy and operating reality?",
+    answer:
+      "Strategy is a story about the future: where the company is going, who it will serve, what it will stop doing. Operating reality is a measured description of the present: current throughput, skill mix, tooling, decision latency, cash runway. The distance between the two is the actual plan, whether or not anyone writes it down. A strategy that contradicts operating reality is a wish with a deadline attached.",
+  },
+  {
+    question: "Why do so many strategies fail to execute?",
+    answer:
+      "Because they assume capability the organisation does not have yet, and nobody prices closing that gap. The retro six months later calls it an execution problem. The real failure happened at approval, when a plan that needed the team to become something it was not got signed off with no hires, no timeline and no budget attached to the change. The gap was the central risk, and it was treated as a rounding error.",
+  },
+  {
+    question: "How do you close the gap between strategy and reality?",
+    answer:
+      "You have two honest moves. Fund the change in operating reality explicitly, with the time, headcount and money it actually costs. Or shrink the strategy to what the organisation can do this quarter. Both are legitimate. What is not legitimate is doing neither and hoping the organisation grows into the ambition by accident, on nobody's budget and nobody's timeline.",
+  },
+  {
+    question: "What should a strategy review actually spend its time on?",
+    answer:
+      "Half of it on operating reality, measured rather than described in adjectives: what the team can build, what the tooling supports, where the bottlenecks already sit. Only once that picture is agreed and nobody is arguing with it should the room move to the future state. Most reviews spend ninety percent on the future and ten, if that, checking whether the present can carry it.",
+  },
+];
+
 <TLDR>
-- Strategy is a story about the future. Operating reality is a description of the present.
-- Most leadership teams confuse the two and end up with a wish dressed as a plan.
-- A strategy that contradicts operating reality is not a strategy. It is a wish.
-- The work is closing the gap between them, deliberately, in both directions.
+- Strategy is a story about the future. Operating reality is a measured description of the present. The gap between them is the real plan.
+- A strategy that contradicts operating reality is a wish, and treating that gap as an execution footnote is how the plan quietly fails.
+- The gap deserves the same seniority in the room as the strategy itself, with a number attached: the hires, the months, the systems, the training.
+- There are only two honest moves once the gap is visible. Fund the change explicitly, or shrink the strategy to what the organisation can do today.
+- A good strategy review reads the present first and spends half its time there.
 </TLDR>
 
-A strategy that contradicts operating reality is not a strategy. It is a wish.
+A strategy that contradicts operating reality is not a strategy. It is a wish. And most leadership teams write both documents, present them as one, and never reconcile the two. Strategy vs operating reality is not an abstract distinction. It is the difference between a plan the organisation can execute and a slide it will fail to grow into.
 
-## Two documents, one meeting
+## Strategy and operating reality: two documents nobody reconciles
 
-Most leadership teams write two documents and present them as one. The first is a strategy: a story about where the company is going, who it will serve, what it will stop doing. The second is a description of the organisation as it actually runs today: how fast decisions get made, what the team can actually build, who is already overloaded, what the tooling can and cannot do. When these two documents disagree, and they nearly always disagree a bit, the strategy off-site papers over the gap with confidence instead of closing it.
+Sit in enough strategy off-sites and you learn to spot the tell. A three-year plan goes up with a slide titled "Become platform-led." In the same building, the engineering org still ships every client a bespoke build: no shared components, no reusable IP, a backlog of one-off requests six months deep. Nobody in the room says the obvious thing out loud. You do not become platform-led by writing the words "platform-led" on a slide. You become platform-led by funding a rebuild, freezing bespoke work for a quarter, and accepting slower delivery while the foundation gets laid.
 
-I've sat in the room enough times to recognise the tell. Someone presents a three-year plan with a slide titled "Become platform-led." The engineering org in that same building still ships every client a bespoke build: no shared components, no reusable IP, a backlog of one-off requests six months deep. Nobody in the room says the obvious thing out loud: you don't become platform-led by writing the words "platform-led" on a slide. You become platform-led by funding a rebuild, freezing bespoke work for a quarter, and accepting slower delivery while the foundation gets laid. That's a real plan, with a real cost. Nobody wants to put the cost on the slide, so they leave it off and call the gap "execution risk" instead.
+That is a real plan, with a real cost. Nobody wants the cost on the slide, so they leave it off and call the gap "execution risk" instead. Two documents, presented as one. The first is the strategy: the story about where the company is going. The second is the description of the organisation as it actually runs today: how fast decisions get made, what the team can build, who is already overloaded, what the tooling can and cannot do. When those two disagree, and they nearly always disagree a bit, the off-site papers over the gap with confidence rather than closing it.
+
+The confidence is the problem. A wish said firmly enough, on a good template, reads like a decision. It is not one. The same dynamic sits underneath [why most change programmes fail](/intelligence/why-most-change-programmes-fail): the ambition was never wrong, the reconciliation with the present never happened.
 
 ## What operating reality actually means
 
-Operating reality isn't vibes. It's specific and measurable: current throughput, current skill mix on the team, current tooling, current decision latency, current customer concentration, current cash runway. It's the honest answer to "what can this organisation actually do this quarter, with the people and systems it has right now."
+Operating reality is not vibes and it is not culture. It is specific and measurable: current throughput, current skill mix on the team, current tooling, current decision latency, current customer concentration, current cash runway. It is the honest answer to one question. What can this organisation actually do this quarter, with the people and systems it has right now.
 
-Strategy describes a future state. Operating reality describes the present state. The distance between the two is the actual plan, whether anyone writes it down or not.
+> Strategy describes a future state. Operating reality describes the present state, measured. The distance between the two is the plan, whether anyone writes it down or not.
 
-Here's a concrete example. A professional services firm decides its strategy is "AI-native delivery." Good ambition. Then you look at operating reality: every AI-generated output still routes through a three-day manual QA queue before a client sees it, because nobody trusts the output and nobody has redesigned the review process to match a faster, AI-assisted workflow. The strategy says "AI-native." The operating reality says "manual review with an extra AI-shaped step." Those are not the same company. The strategy won't survive contact with that queue unless something about the queue changes first.
+Here is the version I watch play out most often now, because everyone has the same ambition on the same slide.
 
-## Why leadership teams skip the audit
+<FieldNote label="From the field">
+A professional services firm decides its strategy is "AI-native delivery." Good ambition, written with conviction. Then you go and look at the present. Every AI-generated output still routes through a three-day manual QA queue before a client sees it, because nobody trusts the output and nobody has redesigned the review to match a faster, AI-assisted workflow.
 
-Because reading operating reality out loud is uncomfortable. Writing the future is fun. Vision decks get applause. Auditing the present means standing in front of the leadership team and saying "our managers don't have four hours a week for coaching, they have forty minutes, and the strategy assumes the four hours." That's not a popular slide. Nobody gets promoted for presenting it. So most strategy processes spend ninety percent of the time on the future and ten percent, if that, checking whether the present can support it.
+The strategy says AI-native. The operating reality says manual review with an extra AI-shaped step bolted on the front. Those are not the same company, and the strategy will not survive contact with that queue until something about the queue changes first.
 
-The order matters. Read the operating reality first. A strategy built before anyone has looked honestly at the present is just a hope with a deadline attached.
+The gap was not a technology gap. It was a review process nobody had permission to rebuild, and a strategy that had quietly assumed the rebuild had already happened.
+</FieldNote>
+
+That is what reading operating reality buys you. Not a mood, a measurement. You can point at the queue. You can time it. You can name the person who owns it and the reason it exists. None of that appears on the strategy slide, which is exactly why the slide is dangerous on its own.
+
+## Why the gap never makes the slide
+
+Reading operating reality out loud is uncomfortable, and writing the future is fun. Vision decks get applause. Auditing the present means standing in front of the leadership team and saying "our managers do not have four hours a week for coaching, they have forty minutes, and the strategy assumes the four hours." That is not a slide anyone gets promoted for presenting. So most strategy processes spend ninety percent of the time on the future and ten percent, if that, checking whether the present can support it.
+
+The order is the fix, and it is nearly free. Read the operating reality first. A strategy built before anyone has looked honestly at the present is a hope with a deadline attached. Read the present, then build the future on top of what is actually there. It is the same down-then-up discipline behind a proper audit: go down into what is happening on the ground before you come back up with a plan for where it should go. Skip the down leg and the up leg is a guess with better formatting. That sequence is the whole of the [Read, Craft, Scale method](/method): you do not get to redesign anything until you have read the grain of how work actually flows.
+
+The reason this keeps happening is not stupidity. It is incentive. Nobody in the room is paid to be the person who slows the vision down with the truth about the present. So the truth waits, and it turns up later, at much higher cost, wearing the word "execution."
 
 ## The gap is the risk, not a rounding error
 
-When a strategy assumes capability the organisation doesn't have, that gap isn't a manageable line in a RAID log. It's the central risk of the whole plan, and it deserves the same seniority in the conversation as the strategy itself.
+When a strategy assumes capability the organisation does not have, that gap is not a manageable line in a RAID log. It is the central risk of the whole plan, and it deserves the same seniority in the conversation as the strategy itself.
 
-Take headcount planning. A growth strategy assumes the sales team can carry double the pipeline next year at the same headcount. Nobody checks whether the CRM data is clean enough to route leads without manual triage, whether the SDRs have the tooling to work double the volume, or whether the sales manager has ever run a team this size before. Six months in, the number gets missed, and the retro calls it "execution." The retro is being kind to itself. The real failure happened months earlier, when nobody checked the strategy against what the team could actually do on day one.
+Take headcount planning, the cleanest example there is. A growth strategy assumes the sales team can carry double the pipeline next year at the same headcount. Nobody checks whether the CRM data is clean enough to route leads without manual triage, whether the SDRs have the tooling to work double the volume, or whether the sales manager has ever run a team this size before. Six months in, the number gets missed, and the retro calls it execution. The retro is being kind to itself. The real failure happened months earlier, when nobody checked the strategy against what the team could do on day one.
+
+The uncomfortable part is that closing the gap is usually cheaper and more concrete than the ambition that hid it. A strategy that assumed the organisation needed to buy its way to a new capability often turns out to need one workflow rebuilt and two people who can build it.
+
+<PullStat value="£40k">
+A transit company had a consolidation strategy built around tools it never needed. The operating reality was one workflow and two internal builders, and the licences it retired had been renewing on nobody's decision for years.
+</PullStat>
+
+That number was not on any strategy slide. It was sitting in the operating reality the whole time, waiting for someone to read it. The strategy talked about the future of the tooling stack. The present held forty thousand pounds of annual spend that no living person had chosen. Reading the present did more for that plan than any amount of writing the future.
 
 ## Closing the gap, in both directions
 
-Once the gap is visible, there are only two honest moves. Fund the change in operating reality explicitly, with the time, headcount and money it actually costs to close. Or change the strategy to match what the organisation can do today. Both are legitimate choices. What isn't legitimate is doing neither: leaving the ambitious strategy on the wall and hoping the org grows into it by accident, on nobody's budget, on nobody's timeline.
+Once the gap is visible, there are only two honest moves. Fund the change in operating reality explicitly, with the time, headcount and money it actually costs to close. Or change the strategy to match what the organisation can do today. Both are legitimate. What is not legitimate is doing neither: leaving the ambitious strategy on the wall and hoping the organisation grows into it by accident, on nobody's budget, on nobody's timeline.
 
-If the plan requires the organisation to become something it is not yet, say so on the same slide as the plan, with a number attached: the hires, the months, the systems, the training. A strategy without that number hasn't really been approved by the board. Only the idea of it has.
+If the plan requires the organisation to become something it is not yet, say so on the same slide as the plan, with a number attached: the hires, the months, the systems, the training. A strategy without that number has not really been approved by the board. Only the idea of it has. The difference between a plan and a wish comes down to whether the change it depends on has an owner, a cost and a date.
+
+<ComparePanel
+  a={{ heading: "A strategy you can execute", items: [
+    "Names the present state, measured, before it names the future",
+    "Prices the capability gap on the same slide as the ambition",
+    "Assigns each closing move to a named owner with a date",
+    "Was stress-tested against Monday-morning reality, not a clean export",
+    "Survives someone in the room saying 'we can't do that yet'",
+  ]}}
+  b={{ heading: "A wish on the wall", items: [
+    "Opens on the future and describes the present in adjectives",
+    "Calls the gap 'execution risk' and moves on",
+    "Leaves the change on nobody's budget and nobody's timeline",
+    "Assumes a capability the demo implied but production never proved",
+    "Requires everyone to agree not to mention what is missing",
+  ]}}
+  caption="The wording can be identical. What separates them is whether the change the plan depends on has an owner, a cost and a date."
+/>
+
+Funding the change is not the same as approving a bigger budget and hoping. It is the [operating intervention](/intelligence/the-art-of-the-operating-intervention) done deliberately: pick the one workflow the strategy actually leans on, rebuild it, and put the capability where the plan needs it before the plan needs it.
 
 ## What a good strategy review looks like
 
-Flip the ratio. Spend half the review on operating reality: what's actually true right now, measured, not described in adjectives. What the team can build. What the tooling supports. Where the bottlenecks already sit before you stack ambition on top of them. Only once that picture is agreed, and nobody in the room is arguing with it, should the conversation move to the future state.
+Flip the ratio. Spend half the review on operating reality: what is true right now, measured, not described in adjectives. What the team can build. What the tooling supports. Where the bottlenecks already sit before you stack ambition on top of them. Only once that picture is agreed, and nobody is arguing with it, should the conversation move to the future state.
 
-It's the same discipline behind a proper U-shaped audit: go down into what's actually happening on the ground before you come back up with a plan for where it should go. Skip the down leg and the up leg is just a guess with better formatting.
+That first half is not a status update. It is a diagnosis, and it has its own signals of health worth reading properly. A team that ships small things weekly, resolves decisions without escalation, and can name who owns each critical workflow is carrying a very different operating reality from one that cannot, however similar their two strategy decks look. If you want the specific tells, [signals of operating health](/intelligence/signals-of-operating-health) lists what to look for and what the absence of each one costs you later.
 
-## The test
+The review that flatters everyone spends its time on the future because the future has no counter-evidence yet. The review that works spends its time on the present because the present is where the plan will actually be tested. A vision is easy to agree with. An honest read of the present is where the disagreements live, which is exactly why it is worth the room's most senior attention.
 
-Before you sign off the next strategy document, ask one question of every initiative on it: does the organisation, as it exists today, have the capacity, skill and tooling to do this? If the answer is no, the document needs one more line: what closes that gap, and who is paying for it. If nobody in the room can answer that line, what's actually on the wall is a slide, not a strategy.
+## The test before you sign off
+
+Before you sign off the next strategy document, run every initiative on it through one filter. Does the organisation, as it exists today, have the capacity, skill and tooling to do this? If the answer is no, the document needs one more line: what closes that gap, and who is paying for it.
+
+<DecisionFilter
+  title="Run each initiative through this before you approve the plan"
+  criteria={[
+    { test: "What does this assume the organisation can already do?", fail: "The assumption was never written down, so it was never tested" },
+    { test: "Is that capability true today, measured, or is it hoped?", fail: "Described in adjectives: 'agile', 'data-driven', 'AI-native'" },
+    { test: "If it is not true yet, what closes the gap and by when?", fail: "The change lives in the word 'execution', on no one's plan" },
+    { test: "Who owns closing it, and is the cost on the same slide as the ambition?", fail: "The ambition has a slide; the cost has a shrug" },
+  ]}
+  verdict="If nobody in the room can answer the last line, what is on the wall is a slide, not a strategy."
+/>
+
+None of this is a call to lower ambition. The organisations that pull off the hard strategies are not the ones with smaller plans. They are the ones that read their own operating reality clearly enough to know exactly what the plan will cost, and then decide, in the open, to pay it. Strategy vs operating reality is not a tension to resolve once. It is the discipline of keeping the story about the future honest about the present it has to start from, every review, every quarter. That discipline is most of what [operating leadership](/intelligence/pillar/operating-leadership) actually is.
 
 <KeyTakeaways>
-- Read the operating reality first. Strategy that ignores it cannot be executed.
-- If the strategy requires the organisation to be something it is not, fund the change explicitly. Otherwise, change the strategy.
-- Strategy reviews should spend half the time on operating reality, not the future state.
+- Read the operating reality first, measured. A strategy built before anyone has looked honestly at the present is a hope with a deadline.
+- Treat the capability gap as the central risk, not a footnote. Put its cost on the same slide as the ambition it enables.
+- If the plan needs the organisation to become something it is not, fund the change with a named owner and a date, or shrink the plan to what today allows.
+- Spend half of every strategy review on the present. That is where the plan will actually be tested.
 </KeyTakeaways>

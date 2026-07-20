@@ -2,70 +2,146 @@ export const frontmatter = {
   title: "Why most change programmes fail",
   slug: "why-most-change-programmes-fail",
   category: "foundations",
-  description: "70% of change programmes fail. The reason is rarely strategy. It's that the grain was never read before the cut was made.",
-  keywords: ["change management", "transformation failure", "operating model", "organisational change"],
-  readTime: "8 min",
+  description: "Why change programmes fail is rarely a strategy problem. It is that the grain, how work actually flows, was never read before the cut was designed.",
+  keywords: ["why change programmes fail", "change management failure", "transformation programme failure", "change programme failure rate", "operating model change", "why change management fails", "reading the organisational grain"],
+  readTime: "10 min",
   publishedAt: "2026-01-19",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
+export const faqs = [
+  {
+    question: "Why do most change programmes fail?",
+    answer:
+      "Because the change is designed against the operating reality, not the one leadership believes is true. Programmes are built from an org chart and a consultant's model of how work happens, then rolled onto teams whose real work flows along paths nobody mapped. The usual explanations, resistance and communication and sponsorship, are downstream of that one upstream mistake. Better change management does not fix a diagnosis that was wrong before kickoff.",
+  },
+  {
+    question: "What is the real failure rate of change programmes?",
+    answer:
+      "The figure everyone quotes is roughly seven in ten large change programmes failing to deliver what they promised, and it has barely moved in thirty years of better methodology. Treat it as a diagnosis problem wearing a communications costume. The number stays high because the defect sits before the kickoff deck, in how the change was designed, not in how well it was later explained.",
+  },
+  {
+    question: "How do you stop a change programme from failing?",
+    answer:
+      "Diagnose before you design. Interview the people actually doing the work rather than their managers describing it secondhand, trace where decisions really get made under pressure, and run any pilot long enough to tell the process from the person holding it together. Then force a real decision, one where someone gives something up on the record. It is slower at the start and faster everywhere after, because you stop paying the rework tax.",
+  },
+  {
+    question: "Is resistance to change the reason programmes fail?",
+    answer:
+      "No. Resistance is usually information, not obstruction. When operators push back it is often because the programme replaced something that already worked or missed a constraint they live with daily. Treating resistance as a comms problem to be managed hides the real signal. The people on the ground are telling you the design was built against the grain, and that is worth reading, not overriding.",
+  },
+];
+
 <TLDR>
-- Roughly 70% of large change programmes fail to deliver what they promised.
-- The reasons usually given (resistance, communication, sponsorship) are downstream of one upstream mistake: the change was designed against the operating story, not the operating reality.
-- Three recurring patterns: cut against the grain, scale before craft, strategy as substitute for decision.
-- Better change management won't fix it. Read the grain before you design the cut.
+- Why change programmes fail is rarely a strategy problem. It is that the change was designed against the operating reality, not the operating story leadership believed.
+- The figure everyone quotes is roughly 70% of large programmes failing, and the usual causes given (resistance, communication, sponsorship) sit downstream of that one upstream mistake.
+- Three patterns recur: the cut runs against the grain, scale arrives before craft is earned, and a deck stands in for a decision.
+- Better change management will not rescue a wrong diagnosis. Read the grain before you design the cut.
+- Diagnosing first is slower at kickoff and faster everywhere after, because it stops the rework tax that eats every programme built on the story.
 </TLDR>
 
-The number is famous: roughly 70% of large change programmes fail to deliver what they promised. The reasons given, resistance, communication, sponsorship, are mostly downstream of one upstream mistake.
+A programme I watched up close spent two quarters replacing a Slack channel and a Monday stand-up that already worked, and lost the goodwill of the two teams who had built the fix themselves. Nobody in the steering committee called it a failure. That is why most change programmes fail: not resistance, not weak sponsorship, not thin communication, but a change designed against the operating reality instead of the one the deck described.
 
-## The upstream mistake
+## Why change programmes fail before the kickoff deck
 
-Change programmes are designed against the operating story, not the operating reality. The story is what leadership believes is true. The reality is what an engineer in the third sprint of a delayed migration actually does on a Tuesday.
+Change programmes are designed against the operating story, not the operating reality. The story is what leadership believes is true. The reality is what an engineer in the third sprint of a delayed migration actually does on a Tuesday, and the two are almost never the same document.
 
-The story says the new process improves handoffs between product and engineering. The reality is that the two teams already fixed their handoff problem eighteen months ago with a Slack channel and a Monday stand-up nobody put in a deck. The programme rolls in, replaces the Slack channel with a ticketing workflow nobody asked for, and calls the resulting slowdown "change fatigue".
+The story says the new process improves handoffs between product and engineering. The reality is that those two teams already solved their handoff problem eighteen months ago with a Slack channel and a stand-up nobody put in a deck. The programme rolls in, replaces the working fix with a ticketing workflow nobody asked for, and files the resulting slowdown under "change fatigue".
 
-It isn't fatigue. It's friction, and friction has a cause. Somebody designed a solution to a problem that had already been solved, by people who were never asked what they'd already solved.
+It is not fatigue. It is friction, and friction has a cause. Somebody designed a solution to a problem that had already been solved, by people who were never asked what they had already solved. This is why post-mortems on failed programmes read the same way every time. Sponsorship was there. Comms were "extensive". The deck had a burning-platform slide and a RACI. And it still failed, because none of that touches the actual defect: the programme was built from an org chart and a model of how work happens, not from how work actually happens. A carpenter does not argue with the wood. They read it first. This is the whole of the [grain metaphor for reading your organisation](/intelligence/the-grain-metaphor-reading-your-organisation), applied to the one moment it matters most.
 
-This is why post-mortems on failed programmes read the same way every time. Sponsorship was there. Comms were "extensive". The deck had a burning platform slide and a RACI. And it still failed, because none of that touches the actual defect: the programme was built from an org chart and a consultant's model of how work happens, not from how work actually happens.
+<PullStat value="70%">
+Roughly seven in ten large change programmes fail to deliver what they promised. That figure has barely moved in thirty years of better change management, because the defect it measures sits before the kickoff, not after the first missed milestone.
+</PullStat>
 
-A carpenter doesn't argue with wood. They read it first.
+The number is a diagnosis problem wearing a communications costume. You do not lower it with a better comms plan or a stronger sponsor. You lower it by reading the operating reality before you design the change. Three patterns account for most of the failures, and each one is a way of skipping that read.
 
-## Three patterns we see repeatedly
+## Pattern one: the cut runs against the grain
 
-### Cut against the grain
+Every organisation has a grain: the informal paths trust and tacit knowledge actually travel along. It rarely matches the org chart. The account manager who quietly resolves four in five escalations does it through a personal relationship with someone two levels down in ops, not through the process map. The engineer everyone routes the hard problems to is not the team lead. She is the person who has been there nine years and remembers why the third microservice exists.
 
-Every organisation has a grain: the informal paths trust and tacit knowledge actually travel along. It rarely matches the org chart. The account manager who quietly resolves 80% of escalations does it through a personal relationship with someone two levels down in ops, not through the process map. The engineer everyone routes hard problems to isn't the team lead, she's the person who's been there nine years and remembers why the third microservice exists.
+Restructures cut against this constantly, because the grain is invisible to anyone reading a chart from the top. You move the account manager to a different vertical to "balance capability", and the escalation path that quietly held a client relationship together for three years leaves with her. Nobody documented it, because it was never a process. It was trust, and trust does not show up on a slide.
 
-Restructures cut against this constantly, because the grain is invisible to anyone reading an org chart from the top. You move the account manager to a different vertical to "balance capability" and the escalation path that quietly kept a client relationship alive for three years disappears with her. Nobody documented it because it was never a process. It was trust, and trust doesn't show up on a slide.
+<FieldNote label="What broke">
+I sat with a services team six weeks after a reorg that looked clean on paper. Headcount balanced, spans of control tidied, two verticals merged. What the chart could not show was that a single account manager had been the unofficial escalation route for the firm's three largest clients, resolving things through a relationship with an ops lead nobody had connected her to on any diagram.
 
-The fix isn't sentiment about "protecting relationships". It's diagnostic: before you cut, map where the actual load-bearing relationships sit, and design the change to route around them or through them deliberately, not through ignorance.
+The reorg moved her. The ops lead reported to someone new. Within two months the three accounts were escalating to the executive team directly, because the quiet path that used to absorb the problem no longer existed. The programme had cut a load-bearing wall and called the collapse "teething".
 
-### Scale before craft
+The fix was never sentiment about protecting relationships. It was diagnostic. Map where the load actually sits before you cut, then design the change to route around it or through it deliberately, not through ignorance of it.
+</FieldNote>
+
+The tell for this pattern is simple. If the design started from an org chart, it has almost certainly missed the grain, because the grain is the part the chart cannot draw.
+
+## Pattern two: scale arrives before craft is earned
 
 The second pattern is rolling out a process before it has earned the right to exist. A pilot works in one team, in one context, with one particularly capable manager holding it together through sheer competence. Leadership sees the pilot metrics, likes them, and mandates the same process across twelve teams next quarter.
 
-What actually made the pilot work rarely makes the slide. It was the manager's judgement calls, the exceptions she quietly allowed, the version of the process that existed in her head and never got written down because writing it down felt like overhead when the thing was still small. Scale that process without her judgement embedded in it and you've scaled the paperwork, not the outcome.
+What actually made the pilot work rarely makes the slide. It was the manager's judgement calls, the exceptions she quietly allowed, the version of the process that existed in her head and never got written down because writing it down felt like overhead when the thing was still small. Scale that process without her judgement embedded in it and you have scaled the paperwork, not the outcome. This is the same failure that kills AI programmes, where a demo that worked in October is dead by January. It is worth reading how [AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production) for the same shape in a different costume: the pilot proves a thing can be done once, and production proves the organisation can absorb it happening every day.
 
-Craft has to be earned before it's replicated. That means running the pilot long enough to know which parts are genuinely portable and which parts are one person's competence disguised as a system. Most programmes skip this because the fiscal year has a Q3 deadline and the pilot only has six weeks of runway. The rollout happens on the calendar's schedule, not the process's.
+Craft has to be earned before it is replicated. That means running the pilot long enough to know which parts are genuinely portable and which parts are one person's competence disguised as a system. Most programmes skip this because the fiscal year has a Q3 deadline and the pilot has six weeks of runway. The rollout happens on the calendar's schedule, not the process's. The demo worked. The rollout didn't.
 
-### Strategy as substitute
+## Pattern three: the deck stands in for the decision
 
-The third pattern is mistaking a deck for a decision. Leadership teams will spend six months and a six-figure consulting fee producing a beautifully sequenced transformation roadmap, complete with workstreams, milestones, and a target operating model diagram with arrows going in all the satisfying directions. Then nothing changes, because the deck was never a decision. It was a description of a decision someone hoped to make later, dressed up to look finished.
+The third pattern is mistaking a deck for a decision. Leadership teams will spend six months and a six-figure fee producing a beautifully sequenced roadmap, complete with workstreams, milestones, and a target operating model diagram with arrows pointing in all the satisfying directions. Then nothing changes, because the deck was never a decision. It was a description of a decision someone hoped to make later, dressed up to look finished.
 
-A real decision closes off options. It says: we are doing this, which means we are explicitly not doing that, and here is who owns the tradeoff when the two collide in week four. A deck that hasn't forced anyone to give something up is just an inventory of possibilities, and inventories don't survive contact with a delayed migration or a client escalation.
+A real decision closes off options. It says: we are doing this, which means we are explicitly not doing that, and here is who owns the trade-off when the two collide in week four. A deck that has not forced anyone to give something up is an inventory of possibilities, and inventories do not survive contact with a delayed migration or a client escalation. You can tell the difference in the room. A real decision produces at least one person unhappy about what they are losing. A deck produces universal nodding, because nobody has actually been asked to give anything up yet. The board wants a roadmap. You don't have one. What the roadmap is standing in for is the [difference between strategy and operating reality](/intelligence/strategy-vs-operating-reality): the deck is a story about the future, and a story is not a plan until it has cost someone something in the present.
 
-You can tell the difference in the room. A real decision produces at least one person who's unhappy about what they're losing. A deck produces universal nodding, because nobody has actually been asked to give anything up yet.
+Laid side by side, the three patterns share one spine. Each is a way of designing from the story and skipping the read.
 
-## What reading the grain actually looks like
+| Pattern | The story in the deck | The operating reality | What the collision costs |
+| --- | --- | --- | --- |
+| Cut against the grain | The org chart is the operating model | Work flows along informal, load-bearing relationships | The quiet path breaks and escalations reroute to the executive team |
+| Scale before craft | The pilot metrics are the process | One manager's judgement was holding the pilot together | You scale the paperwork, the outcome stays behind |
+| Deck as decision | The roadmap is the commitment | Nobody has been asked to give anything up | The plan dissolves the first time two workstreams collide |
 
-None of this is an argument against structure, process, or ambition. It's an argument against sequence. Diagnose before you design. That means interviews with the people actually doing the work, not their managers describing it secondhand. It means tracing where decisions actually get made under pressure, not where the process map says they should get made. It means running the pilot long enough that you can tell the difference between the process and the person carrying it.
+## What reading the grain before the cut looks like
 
-This is slower at the start. It is faster everywhere else, because you stop paying the rework tax that eats every programme built on the operating story instead of the operating reality. The 70% failure rate is a diagnosis problem wearing a communications costume, and it gets solved before the kickoff deck, not after the first missed milestone.
+None of this is an argument against structure, process, or ambition. It is an argument about sequence. Diagnose before you design. That is the whole move, and it is boring, which is exactly why programmes skip it in favour of a burning-platform slide.
+
+Reading the grain means interviews with the people actually doing the work, not their managers describing it secondhand. It means tracing where decisions really get made under pressure, not where the process map says they should. It means running the pilot long enough to tell the difference between the process and the person carrying it. Done properly, the read surfaces the informal fixes that already work, the relationships the chart cannot see, and the constraints the operators live with daily and nobody wrote down.
+
+<ComparePanel
+  a={{ heading: "Change designed with the grain", items: [
+    "Starts by mapping where work actually flows, not the org chart",
+    "Names the load-bearing relationships before anyone is moved",
+    "Runs the pilot long enough to separate the process from the person",
+    "Forces a real decision: someone gives something up on the record",
+    "Routes deliberately around the informal fixes that already work",
+  ]}}
+  b={{ heading: "Change designed against it", items: [
+    "Starts from an org chart and a target operating model diagram",
+    "Treats the informal network as noise, or never sees it at all",
+    "Scales on the fiscal calendar, before craft has been earned",
+    "Ships a deck of options nobody has been asked to trade off",
+    "Replaces working informal fixes with mandated process",
+  ]}}
+  caption="Same ambition, same budget, opposite sequence. Only one of these survives contact with a Tuesday."
+/>
+
+This is slower at the start. It is faster everywhere else, because you stop paying the rework tax that eats every programme built on the operating story instead of the operating reality. The £2,000 [Grain Audit](/grain-audit) exists for exactly this reason: two weeks, one process read end to end at click level, before anyone designs the cut. It is the cheapest insurance against joining the 70%. And it is the same discipline the best operators run continuously, not just at kickoff, which is what separates a one-off transformation from real [operating leadership](/intelligence/pillar/operating-leadership).
+
+## Before you approve the next programme
+
+Most change programmes are approved on the strength of the deck, which is the one artefact guaranteed not to tell you whether the design read the grain. Run the programme through this before you sign the kickoff, not after the first slipped milestone.
+
+<DecisionFilter
+  title="Run the programme through this before you sign it off"
+  criteria={[
+    { test: "Who already solved this, quietly, without being asked?", fail: "Nobody looked; the design started from the org chart and the deck" },
+    { test: "Which relationships are load-bearing, and does the change route around them or through them deliberately?", fail: "The restructure moves people to balance headcount and finds out later" },
+    { test: "Has the pilot run long enough to tell the process from the person holding it together?", fail: "Rollout is dated to Q3 and the pilot has six weeks of runway" },
+    { test: "Has anyone in the room been asked to give something up, on the record?", fail: "Universal nodding; nobody is unhappy yet, so nothing has been decided" },
+  ]}
+  verdict="If the honest answer to any of these is 'we'll sort it after kickoff', the programme was wished into existence, not designed."
+/>
+
+Resistance, when it comes, is the cheapest diagnostic you will ever get. It is usually telling you the programme missed something the operators on the ground already know. Read it as information, not obstruction, and it points straight at the part of the grain the design cut across. The programmes that clear the 70% are not the ones with the best comms. They are the ones that read the wood before they made the cut.
 
 <KeyTakeaways>
-- Diagnose the operating reality first. Designing a programme against the operating story guarantees rework.
-- Resistance is information. It is usually telling you the programme missed something the operators on the ground know.
-- Sponsorship matters, but no amount of sponsorship rescues a programme that cuts against the grain.
+- Diagnose the operating reality first. Designing a programme against the operating story guarantees the rework tax that sinks most of them.
+- Read the grain before you cut: map the load-bearing relationships, trace where decisions really get made, and run the pilot long enough to tell the process from the person.
+- Resistance is information. It usually means the programme replaced something that worked or missed a constraint the operators live with daily.
+- No amount of sponsorship rescues a programme that cuts against the grain. Better change management cannot fix a diagnosis that was wrong before kickoff.
 </KeyTakeaways>

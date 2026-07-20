@@ -2,11 +2,11 @@ export const frontmatter = {
   title: "Why AI pilots stall at production",
   slug: "why-ai-pilots-stall-at-production",
   category: "ai-operating-systems",
-  description: "The path from pilot to production is paved with the things nobody wanted to think about during the demo. Here is the recurring pattern, and how to design pilots that actually cross it.",
-  keywords: ["AI pilots", "AI production", "AI deployment", "AI operating system", "AI infrastructure", "AI agents efficiency", "operational efficiency AI"],
-  readTime: "8 min",
+  description: "Getting an AI pilot to production is not a model problem. It is a data, integration, governance and ownership problem. Here is why pilots stall, and the fix.",
+  keywords: ["AI pilot to production", "why AI pilots fail", "AI pilots stall", "AI deployment", "moving AI from pilot to production", "AI operating system", "AI production readiness"],
+  readTime: "11 min",
   publishedAt: "2026-03-02",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
@@ -14,89 +14,158 @@ export const faqs = [
   {
     question: "Why do most AI pilots fail to reach production?",
     answer:
-      "Because the people building the pilot are usually the people incentivised to declare it a win, not to fund what comes after. A vendor closes when the demo lands. An internal champion moves to the next priority. Nobody in the room is paid to ask whether the pipeline, the integration, or the governance will survive real volume, so those questions get asked in January instead of October, once the budget and the sponsor have both moved on.",
+      "Because the people who build the pilot are usually the people paid to declare it a win, not to fund what comes after. A vendor closes when the demo lands. An internal champion moves to the next priority. Nobody in the room is paid to ask whether the data pipeline, the integration, or the governance will survive real volume, so those questions get asked in January instead of October, once the budget and the sponsor have both moved on.",
   },
   {
-    question: "How do you design an AI pilot that actually ships?",
+    question: "How do you move an AI pilot to production?",
     answer:
-      "Get the production infrastructure costed and approved in principle before the pilot starts, not after it demos well. Put that budget on the same approval as the pilot budget. If the answer to 'what would this cost to run properly' is still open once the pilot succeeds, you have built a demo with good PR, not a pilot.",
+      "Get the production infrastructure costed and approved in principle before the pilot starts, not after it demos well. Put that budget on the same approval as the pilot budget, and name the operating leader who will own the workflow on the Monday after launch. If the honest answer to what this would cost to run properly is still open once the pilot succeeds, you have built a demo with good PR, not a pilot.",
   },
   {
-    question: "What is the most common single reason pilots stall?",
+    question: "What is the most common single reason AI pilots stall?",
     answer:
-      "It usually isn't a hiring gap, it's a misassignment. Boards default to handing the ownerless workflow to IT, because IT owns the infrastructure it runs on. But IT doesn't own the business decision the workflow makes, so it can keep the lights on without anyone actually watching whether the agent is still making good calls. The fix is naming an operating leader from the business side, not adding headcount to IT.",
+      "It usually is not a hiring gap, it is a misassignment. Boards default to handing the ownerless workflow to IT, because IT owns the infrastructure it runs on. But IT does not own the business decision the workflow makes, so it can keep the lights on while nobody watches whether the agent is still making good calls. The fix is naming an operating leader from the business side, not adding headcount to IT.",
+  },
+  {
+    question: "How much does the production version of an AI pilot actually cost?",
+    answer:
+      "Less in software than most people fear, more in ownership than most people budget. The tooling is cheap: a workflow platform like n8n runs about £20 per builder seat per month and is SOC 2 and ISO 27001 compliant. The real cost is a fortnight of pipeline work, some legal and DPO time booked before launch, and a named operating leader plus one or two internal builders. Two builders is usually enough to hold a workflow.",
   },
 ];
 
 <TLDR>
-- A pilot proves a model can do a task. Production proves an organisation can absorb the consequences. Almost no pilot is designed for the second question.
-- The recurring stall pattern: manual data pipelines, hacked integrations, Slack-thread governance, no maintenance owner, and pilots that tested the model instead of the operating system.
-- Pilots that ship are designed as the production version at lower volume, with a real owner, real data, real integrations, and a decision at the end.
-- The single most common stall reason is the absence of an operating leader who owns the workflow on Monday morning.
-- The model is rarely the problem. The substrate around it is.
+- A pilot proves a model can do a task. Getting an AI pilot to production proves your organisation can absorb the consequences of it doing that task every day.
+- The recurring stall pattern is always the same five things: manual data pipelines, hacked integrations, Slack-thread governance, no maintenance owner, and a pilot that tested the model instead of the operating system around it.
+- Pilots that ship are designed as the production version at lower volume, with a named owner, real data, real integrations, and a decision at the end.
+- The single most common stall reason is misassignment: the ownerless workflow gets handed to IT, which keeps the lights on without owning the business decision.
+- The model is rarely the problem. The substrate around it is, and the substrate is cheaper to build than most boards fear.
 </TLDR>
 
-A pilot proves a model can do a task. Production proves an organisation can absorb the consequences. Most can't, yet, and the gap between the two is where AI programmes go to die quietly.
+A pilot proves a model can do a task. Getting an AI pilot to production proves your organisation can absorb the consequences of it doing that task every day, at real volume, with nobody preparing the data by hand. Almost no pilot is designed for the second question, which is why so many die quietly between the October demo and the January budget review. The model is rarely what fails. The substrate around it is: the pipeline, the integration, the governance, and the person who owns the workflow on the Monday after launch.
 
-We have seen the same pattern across enough engagements to write it down. The model is rarely the problem. The pilot was a clever solution to the wrong test.
+I have watched this across enough engagements to write it down as a pattern rather than bad luck. The demo worked. The rollout didn't. That is not a technology story: it is a story about what a pilot was designed to answer, and what production actually asks.
 
 ## The recurring pattern
 
-A vendor or internal team builds a pilot in October. It demos beautifully: the model handles the workflow, the slides land, the steering committee approves "moving to production." By January, the pilot is dead, paused, or "in the next phase." Nobody quite remembers when it happened.
+A vendor or an internal team builds a pilot in October. It demos beautifully. The model handles the workflow, the slides land, the steering committee approves moving to production. By January the pilot is dead, paused, or living in a phrase like "the next phase". Nobody quite remembers the meeting where it stopped, because there wasn't one. It degraded, and then it was quietly switched off.
 
-Trace it back and you find one or more of these:
+Trace any of these stalls back and the failure is almost never the model. The model did the thing you asked it to do in the demo. What broke was everything the demo did not have to be true about. A demo runs once, on prepared data, watched by people who want it to work. Production runs every day, on Monday morning data, watched by nobody until it is wrong. Those are different tests, and a pilot passes the first while telling you almost nothing about the second.
 
-**1. The data pipeline was manual.** The pilot ran on a clean export prepared by a person on the team. Production needs the data to flow on its own, on a schedule, with permissions, with refresh, with someone owning when it breaks. The pilot didn't budget for the pipe.
+<Takeaway>A demo runs once, on prepared data, watched by people who want it to work. Production runs every day, on Monday morning data, watched by nobody until it is wrong.</Takeaway>
 
-**2. The tool integration was a hack.** The pilot used a screenshot, a copy-paste, a personal API key, or a browser extension. Production needs a stable interface, an audit trail, and a permissions model that survives the person who built it leaving.
+## Trace the stall back and it is always the same five things
 
-**3. Governance was a Slack thread.** The pilot got informal sign-off from legal in a DM. Production needs DPA, audit, escalation paths, and a written policy. The pilot didn't include the GC and DPO on the cadence, and now they are reading about it for the first time at the production review.
+Pull apart a stalled pilot and you find one or more of these. They are boring, which is exactly why nobody budgets for them.
 
-**4. Nobody owned maintenance.** The pilot had a project manager who was already on to the next thing. Production needs an operating leader who owns the workflow's drift, the agent's failures, the prompt updates, the policy changes. There is no such person, so the workflow degrades and gets quietly switched off.
+**1. The data pipeline was manual.** The pilot ran on a clean export a person on the team prepared the night before. Production needs that data to flow on its own, on a schedule, with permissions, with a refresh, and with someone who owns the pager when it breaks at 6am. The pilot did not budget for the pipe, so on go-live day the workflow is starved of the one thing it needs, and a human quietly goes back to doing the export by hand. Now you have an agent and a manual step, which is worse than either alone.
 
-**5. The pilot tested the model, not the operating system.** The pilot answered "can the model do this?" The production question is "can our [AI operating system](/intelligence/what-is-an-ai-operating-system) absorb this?" Different question, different answer, almost always.
+**2. The tool integration was a hack.** The pilot used a screenshot, a copy-paste, a personal API key, or a browser extension running on one laptop. Production needs a stable interface, an audit trail, and a permissions model that survives the person who built it going on leave. The hack works right up until the builder changes their password, and then the workflow is dead and nobody can say why.
 
-The model was the easy part.
+**3. Governance was a Slack thread.** The pilot got informal sign-off from legal in a DM. Production needs a data processing agreement, an audit trail, an escalation path, and a written policy on what the agent must not decide. The pilot did not put the general counsel and the data protection officer on the cadence, so they are reading about it for the first time at the production review, and now they are a blocker instead of a partner. That delay is not their fault. It is the pilot's.
 
-<Takeaway>Pilots prove a model can do a task. Production proves the AI OS can absorb the consequences.</Takeaway>
+**4. Nobody owned maintenance.** The pilot had a project manager who was already onto the next thing. Production needs an operating leader who owns the workflow's drift, the agent's failures, the prompt updates, and the policy changes when the business changes. There is no such person, so the workflow ages badly. Models drift, edge cases accumulate, the business shifts underneath it, and with no owner watching, it decays until someone loses trust and turns it off.
+
+**5. The pilot tested the model, not the operating system.** The pilot answered "can the model do this?" The production question is "can our operating system absorb this?" Those are different questions with different answers, almost every time. A model that reads a CV well in a demo is not the same as a hiring workflow your organisation can actually run, review, and defend.
+
+Four of those five have nothing to do with the model. The model was the easy part. It always is.
+
+## Getting an AI pilot to production is an infrastructure problem, not a model problem
+
+Here is the reframe that changes how you budget. The gap between pilot and production is not intelligence. It is infrastructure. And the useful news is that the infrastructure is cheaper than most boards fear, because they have been quoted enterprise platform prices for what is mostly a fortnight of plumbing and a named owner.
+
+This is roughly what the production substrate actually costs, drawn from workflows we have taken across the line.
+
+| Layer | What production actually needs | Rough cost or effort |
+| --- | --- | --- |
+| Data pipeline | Scheduled, permissioned data flow with an owner for when it breaks | Model-only extraction, about a fortnight to build, no regex fallback |
+| Tool integration | A stable interface with an audit trail, not a personal API key | A platform like n8n: SOC 2 and ISO 27001, roughly £20 per builder seat per month, self-hostable |
+| Governance | Written policy, a data processing agreement, an escalation path, a review cadence | A few days of legal and DPO time, booked before launch rather than after |
+| Ownership | A named operating leader from the business plus internal builders | Two internal builders is usually enough to hold a workflow long-term |
+
+The line that surprises people is the tooling one. Seat-based software has trained everyone to expect a five-figure annual licence for anything that touches production. A workflow platform that is compliant, auditable and self-hostable at about twenty pounds a builder seat a month is a different economic shape entirely. The expensive part of production is not the software. It is the fortnight of pipeline work and the person who owns the result, and neither shows up in a vendor quote.
+
+If you want the fuller argument for treating this as architecture rather than a shopping list, the [AI operating system](/intelligence/what-is-an-ai-operating-system) piece lays out the substrate a pilot has to land in.
 
 ## What pilots that ship look like
 
-The pilots that survive to production share a small set of design choices.
+The pilots that survive to production share a small set of design choices, and they are all decisions you make on day one, not rescues you attempt at the production review. The difference is not effort. It is what the pilot was pointed at from the start.
 
-- **They define the production version before the pilot starts.** The owner, the data source, the integration, the policy, the cadence are all named on day one. The pilot is the production version at lower volume, not a separate artefact.
-- **They run on Monday morning data, not curated demos.** Real volume, real noise, real edge cases. If the model cannot handle the actual inbox, no demo will save it later.
-- **They have an operating leader, not just a project manager.** The person who will own the workflow on the Monday after launch is the person running the pilot.
-- **They are short on purpose.** Weeks, not quarters. A short timebox forces real questions early.
-- **They end in a decision.** Ship, kill, or budget the infrastructure to scale. Pilots that end in "let's keep iterating" are pilots that never end.
+<ComparePanel
+  a={{ heading: "Pilot that ships", items: [
+    "Production version defined before the pilot starts",
+    "Runs on Monday morning data: real volume, real noise",
+    "An operating leader owns it, not a project manager",
+    "Short on purpose: weeks, not quarters",
+    "Ends in a decision: ship, kill, or fund the infrastructure",
+  ]}}
+  b={{ heading: "Pilot that stalls", items: [
+    "Production costed only after the demo lands",
+    "Runs on a clean export a person prepared",
+    "A project manager already onto the next thing",
+    "Open-ended: quarters that slide",
+    "Ends in 'let's keep iterating'",
+  ]}}
+  caption="The winning column is not more expensive. It is aimed at production from day one instead of hoping to reach it."
+/>
 
-## The five questions to ask before approving a pilot
+The design choice that does the most work is the first one. A shipping pilot is the production version run at lower volume, not a separate artefact you hope to industrialise later. Name the owner, the data source, the integration, the policy and the cadence before you build, and the pilot is a rehearsal for the real thing. Name them after the demo, and you are retrofitting a foundation under a house that is already standing. That is where the cost and the delay come from.
 
-Before you sign off on the next AI pilot, ask:
+## The questions to ask before you approve a pilot
 
-1. Who owns this workflow on the Monday after launch?
-2. Where does the data come from, on what schedule, with whose permission?
-3. What tool calls does it make, and how are they logged and reversed?
-4. What is the written policy on what the agent must not decide?
-5. What forum reviews this workflow's drift, and how often?
+Most stalls are decided at the approval meeting, months before anyone notices the workflow degrading. The approval is where the manual pipeline and the ownerless workflow get waved through, because the demo was good and nobody wanted to be the person asking the boring question. So ask the boring questions there, out loud, before you sign.
 
-If any of those answers is "we'll figure it out later", the pilot was wished into existence rather than designed.
+<DecisionFilter
+  title="Run the pilot through this before you sign off"
+  criteria={[
+    { test: "Who owns this workflow on the Monday after launch?", fail: "No named business owner, only IT keeping the lights on" },
+    { test: "Where does the data come from, on what schedule, with whose permission?", fail: "A person prepares a clean export by hand" },
+    { test: "What tool calls does it make, and how are they logged and reversed?", fail: "A personal API key or a browser extension on one laptop" },
+    { test: "What is the written policy on what the agent must not decide?", fail: "It lives in a Slack thread with legal" },
+    { test: "What forum reviews this workflow's drift, and how often?", fail: "Nothing scheduled; someone will notice when it breaks" },
+  ]}
+  verdict="Any answer of 'we'll figure it out later' means the pilot was wished into existence, not designed. Later is where budgets and sponsors go to disappear."
+/>
 
-## Where pilots fit in the larger arc
+None of these questions is about the model. That is the point. If you can answer all five before you approve, you have designed a pilot. If you cannot, you have approved a demo and scheduled its funeral for January.
 
-Pilots are useful. They tell you whether the model can do the task and whether your team will use the result. What they do not tell you, on their own, is whether the organisation can run the workflow.
+## The misassignment that kills more pilots than any hiring gap
 
-That is what the [AI operating system](/intelligence/what-is-an-ai-operating-system) is for. The pilot is a probe. The AI OS is what the probe lands in. If the substrate is not there, no pilot will reach production. If the substrate is there, pilots cross to production almost automatically.
+When a board asks why a pilot stalled, the answer they reach for is usually "we did not have the skills". Sometimes that is true. More often it is a misassignment, and misassignment is a cheaper problem to fix than a hiring gap, which is why it is worth getting right first.
 
-For the longer arc, see [from AI experiments to AI infrastructure](/intelligence/from-ai-experiments-to-ai-infrastructure). It covers when to make the switch and what to switch into.
+The ownerless workflow lands on IT by default, because IT owns the infrastructure it runs on. That feels tidy and it is exactly wrong. IT owns the servers and the security. It does not own the business decision the workflow makes: which candidate to shortlist, which invoice to flag, which query to escalate. So IT keeps the lights on, the workflow keeps running, and nobody with a stake in the decision is watching whether the agent is still making good calls. The workflow does not fail loudly. It drifts, and drift is invisible until it is a headline.
 
-## A working summary
+The fix is not more headcount. It is naming an operating leader from the business side, the person who feels it in their numbers when the workflow makes a bad call, and giving them one or two internal builders to keep it healthy. That is a role you already have in the building. This is the [quiet discipline of operating leadership](/intelligence/the-quiet-discipline-of-operating-leadership): owning the thing after the launch party, when the interesting work is finished and the maintenance starts.
 
-> AI pilots stall because the pilot proves the model can do the task and production proves the organisation can absorb the consequences. The model is rarely the problem. The pipeline, the integration, the governance, the maintenance, and the operating ownership are. Pilots that ship are designed as the production version at lower volume, with a named owner, real data, and a decision at the end.
+<FieldNote label="The gotcha">
+A transit business was three weeks from renewing about forty thousand pounds of software licences to fix a workflow everyone agreed was slow. The licences were never the problem. The workflow was. We retired the £40k, rebuilt the process on a single tool, and handed it to two internal builders who still run it today.
+
+The lesson I keep relearning: when a workflow hurts, the instinct is to buy a tool for it. Most of the time that tool is a pilot in disguise, and it stalls at production for the same five reasons everything else does. Fix the workflow first. Then you know what, if anything, is actually worth buying.
+</FieldNote>
+
+## Where the pilot actually fits, and what production looks like when it holds
+
+Pilots are useful. They tell you whether the model can do the task and whether your team will trust the result. What they do not tell you, on their own, is whether your organisation can run the workflow. That is a different question, and it is the one that decides whether you get a system or a slide.
+
+When the substrate is there, pilots cross to production almost without ceremony, because there is nothing left to retrofit. This is what that looks like on the other side, from a defence tech engagement where the data pipeline, the ownership and the governance were designed in from the start.
+
+<StatBand
+  stats={[
+    { value: "83", label: "hours a week reclaimed", note: "defence tech engagement" },
+    { value: "70%", label: "routine queries handled by systems the team owns" },
+    { value: "0", label: "critical issues, two months on" },
+  ]}
+/>
+
+Those are not model numbers. A better model would not have produced them. They are what happens when the workflow around a competent model is designed to be owned, fed and governed. The zero at the end matters most: two months on, nothing critical had broken, because someone owned it and the substrate held. That is the difference between a pilot and production, expressed as a number.
+
+If you want a picture of [what good looks like once a workflow is live](/intelligence/signals-of-operating-health), that is the health you are aiming for, not the demo applause. And if all of this reads as too big to start, it is not. The move is to take one process, map it end to end, and design the production version of a single workflow rather than a programme. A [Grain Audit](/grain-audit) does exactly that: one process, a ranked automation plan, and a plan you keep. For the wider arc this sits inside, from probe to infrastructure, see the [AI operating system pillar](/intelligence/pillar/ai-operating-system).
+
+> AI pilots stall because the pilot proves the model can do the task and production proves the organisation can absorb the consequences. The model is rarely the problem. The data pipeline, the integration, the governance, the maintenance and the operating ownership are. Pilots that ship are designed as the production version at lower volume, with a named owner, real data, and a decision at the end.
 
 <KeyTakeaways>
-- Design the production version first, then run it as a pilot at lower volume.
-- Name the operating leader who will own the workflow on Monday before the pilot starts.
+- Design the production version first, then run it as a pilot at lower volume. The pilot is a rehearsal, not a separate artefact.
+- Name the operating leader who will own the workflow on the Monday after launch before the pilot starts, and give them one or two internal builders.
+- Budget the substrate, not just the model: a fortnight of pipeline work, a workflow platform at roughly £20 a builder seat a month, and legal time booked before launch.
 - Run pilots on Monday morning data, not curated demos. The dirt is the test.
-- A pilot without a kill criterion is not a pilot. It is a budget line.
+- A pilot without a kill criterion is not a pilot. It is a budget line waiting to be quietly switched off.
 </KeyTakeaways>

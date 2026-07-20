@@ -2,67 +2,158 @@ export const frontmatter = {
   title: "What good looks like: signals of operating health",
   slug: "signals-of-operating-health",
   category: "method-and-practice",
-  description: "Why the real signal of organisational health is conversational, not a line on a dashboard, and how to listen for it before the numbers move.",
-  keywords: ["operating health", "organisational signals", "leading indicators"],
-  readTime: "7 min",
+  description: "Your dashboard is green and the org is not fine. The real signals of operating health are conversational, not on a chart. Here is how to read them early.",
+  keywords: ["signals of operating health", "leading indicators of organisational health", "how to measure organisational health", "operating health metrics", "reading organisational health", "psychological safety signals"],
+  readTime: "10 min",
   publishedAt: "2026-04-20",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
+export const faqs = [
+  {
+    question: "What are the leading indicators of a healthy organisation?",
+    answer: "The leading indicators are conversational, not quantitative. Listen for whether people name their own mistakes in plain language, whether bad news travels sideways and downward rather than only up the reporting line, and how fast the org gets from 'this went wrong' to an honest write-up that names it. Those move months before attrition or engagement scores do.",
+  },
+  {
+    question: "Why do employee engagement surveys miss real problems?",
+    answer: "A survey measures what people are willing to tell you they feel, which in an unsafe org is exactly the answer they think you want. It also lags: by the time a score dips, the decision to leave or disengage was made months earlier, in a conversation nobody in leadership heard. Watch the standups and read the incident channel instead. Behaviour is harder to fake than a survey response.",
+  },
+  {
+    question: "How do you measure organisational health without a survey?",
+    answer: "Read the language, not a dashboard. Pull your last five retros and count how often a specific name attaches to a specific decision versus how often the passive voice launders the ownership. Then track one number: mean time from an incident to an honest, public write-up. A healthy org gets there in hours or days. An unhealthy one takes weeks, if the document ever arrives.",
+  },
+  {
+    question: "How can a leader tell if bad news is actually reaching them?",
+    answer: "Ask, publicly, what went wrong this month that you have not heard about yet, and watch what happens. Silence in a full room is not a clean month, it is a measurement of how unsafe it feels to speak. If bad news only ever reaches you filtered through one manager who decided what to escalate, you are seeing the subset of problems that survived a process designed to protect careers, not fix things.",
+  },
+];
+
 <TLDR>
-- The first signal of operating health is language, not the dashboard: listen to how an org talks about its own mistakes.
-- Leading indicators are conversational, not quantitative. Listen for them.
-- Healthy orgs surface bad news quickly, name it cleanly, and act on it. Unhealthy orgs do the reverse.
-- Dashboards lag. Conversations lead.
+- The first signal of operating health is language, not the dashboard: listen to how an organisation talks about its own mistakes.
+- Healthy teams name the owner, name the decision and name the fix in plain words. Unhealthy teams reach for the passive voice.
+- Where bad news travels is diagnostic: sideways and down in a healthy org, only up the formal line in a sick one.
+- The single best quantitative proxy is mean time from an incident to an honest, public write-up, not time to fix.
+- You read this in the room, in the vocabulary, months before it reaches any metric you would think to check.
 </TLDR>
 
-The leading indicators are conversational, not quantitative. Listen for them.
+Every CPO I have worked with has a dashboard, and most of them are green. Engagement score, eNPS, attrition by cohort, time-to-hire, the lot. When I have actually scored those same functions for operating reality rather than survey sentiment, the base rate has been ugly: of eleven I put through a real readiness assessment, not one came in above seventy. Green on the board, failing underneath. The signals of operating health you can trust are conversational, and they move long before any of those numbers do.
 
-Every CPO I've worked with has a dashboard. Engagement score, eNPS, attrition by cohort, time-to-hire, the lot. Most of them are green. Most of the organisations underneath them are not fine.
+<PullStat value="0">
+Of the eleven functions I scored, not one came in above seventy. Every one of their dashboards was green at the time.
+</PullStat>
 
-Green dashboards and dying orgs coexist because the dashboard runs on a delay. A dashboard reports what already happened, aggregated across a quarter, smoothed by whoever built the query. By the time attrition ticks up in the numbers, the decision to leave was made months earlier, in a conversation nobody in leadership heard. The dashboard is a lagging indicator wearing a leading indicator's clothes.
+## Why a green dashboard tells you nothing about operating health
 
-## Where the real signal lives
+Green dashboards and dying organisations coexist because the dashboard runs on a delay. It reports what already happened, aggregated across a quarter, smoothed by whoever wrote the query. By the time attrition ticks up in the numbers, the decision to leave was made months earlier, in a one-to-one nobody in leadership sat in on. The dashboard is a lagging indicator wearing a leading indicator's clothes, and the gap between the two is where the damage lives.
 
-The real signal lives in language, and specifically in how a team talks about the thing that just went wrong.
+This is the same trap as mistaking the plan for the operating reality. The chart is a representation of the organisation, produced on a schedule, and like any representation it is most confident exactly where it is most out of date. If you want the difference laid out properly, the [difference between strategy and operating reality](/intelligence/strategy-vs-operating-reality) is the piece that does it. For the purpose of reading health, the point is narrower: a metric can only tell you about a state it has already been given the vocabulary and the time to measure. Operating health fails faster than any of your metrics are built to notice.
 
-Sit in on a retro at a healthy team and you'll hear specifics. "We shipped the pricing change without checking the enterprise contracts, that's on me, here's what we're doing differently next sprint." Named owner, named mistake, named fix. Nobody flinches. The conversation moves on in ninety seconds because there's nothing left to hide.
+So the honest answer to "is this organisation healthy" is not on a screen. It is in a room, in the way a team talks about the thing that just went wrong.
 
-Sit in on a retro at an unhealthy team and you'll hear passive voice. "Mistakes were made in the rollout process." "There were some communication gaps." "It wasn't fully clear who owned that." Nobody is named. Nothing is specific. The conversation stretches because everyone is negotiating how much truth is safe to put on the record, and that negotiation is the tell. You are watching people manage risk to themselves, not manage the problem.
+## The real signal is language
 
-This is why the audit has to be conversational, not quantitative. You cannot survey your way to this. Ask people directly whether they feel safe admitting mistakes and you'll get the answer they think you want to hear, which is itself a data point about how unsafe it actually is. You have to watch the standups, sit in the retros, read the incident channel, and listen for whether the vocabulary is precise or evasive.
+The real signal lives in language, and specifically in how a team describes a failure it owns.
 
-## The vocabulary is the diagnostic
+Sit in on a retro at a healthy team and you will hear specifics. "We shipped the pricing change without checking the enterprise contracts. That is on me. Here is what we are doing differently next sprint." Named owner, named mistake, named fix. Nobody flinches, and the conversation moves on in ninety seconds because there is nothing left to hide.
 
-Here's the practical version. Pull up your last five retro documents, or sit in on the next five live, and count two things: how often a specific name is attached to a specific decision, and how often the write-up uses passive constructions to describe what broke.
+Sit in on a retro at an unhealthy team and you will hear the passive voice doing the hiding. "Mistakes were made in the rollout process." "There were some communication gaps." "It was not fully clear who owned that." Nobody is named. Nothing is specific. The conversation stretches, because everyone is quietly negotiating how much truth is safe to put on the record, and that negotiation is the tell. You are watching people manage risk to themselves, not manage the problem.
 
-"I approved that migration without a rollback plan" is healthy language. "The migration process lacked a rollback plan" is the same fact, laundered of ownership. Both sentences can describe an identical failure. Only one of them tells you the organisation is capable of learning from it.
+<ComparePanel
+  a={{ heading: "Healthy language", items: [
+    "'I approved the migration without a rollback plan.' Named owner, named decision.",
+    "The retro closes in ninety seconds because nothing is left to hide.",
+    "A junior flags the production bug in the public channel first.",
+    "The fix is specific, lands next sprint, and has a name on it.",
+    "Bad news travels sideways and downward, not only up.",
+  ]}}
+  b={{ heading: "Laundered language", items: [
+    "'The migration process lacked a rollback plan.' No owner, no decision.",
+    "The retro stretches while people negotiate what is safe to record.",
+    "The junior tells their manager privately and waits to see what escalates.",
+    "The fix is a 'process improvement' nobody is accountable for.",
+    "Bad news travels only up the formal line, filtered on the way.",
+  ]}}
+  caption="Both columns can describe an identical failure. Only one of them tells you the organisation can learn from it."
+/>
 
-You'll also want to check where bad news actually travels. In a healthy org, a junior engineer who spots a production bug tells the on-call channel immediately, in public, because the cost of speaking up is lower than the cost of staying quiet. In an unhealthy org, that same engineer tells their manager privately first, who decides whether and how it gets escalated. If bad news only travels upward through the formal reporting line, and never sideways or downward, you are not seeing most of the actual problems in your organisation. You're seeing the subset that survived a filtering process designed to protect careers, not fix things.
+"I approved that migration without a rollback plan" and "the migration process lacked a rollback plan" describe the same event. One of them names a person who can change their behaviour next time. The other has been laundered of ownership, and an organisation cannot fix what it will not attach a name to. This is why you cannot survey your way to the answer. Ask people directly whether they feel safe admitting mistakes and you will get the reply they think you want, which is itself a measurement of how unsafe it actually is.
 
-I've sat in on client all-hands where a founder asked, straight out, "what went wrong this month that I haven't heard about yet." Dead silence in a room of forty people is not a neutral result. It's a measurement.
+Here is the play, and you can run it this afternoon. Pull your last five retro documents, or sit in on the next five live, and count two things. First, how often a specific name attaches to a specific decision. Second, how often the write-up reaches for a passive construction to describe what broke. You are looking for a ratio, not a verdict on any single line. A healthy function runs maybe four named owners to every laundered sentence; a sick one inverts it, and the worst I have read produced five pages of incident review without a single first-person "I". The documents were immaculate and told me nothing, which was the finding. When the vocabulary is that uniformly careful, you are not reading a record of what happened. You are reading a record of what people were willing to be seen to have written.
 
-## The one number that matters
+## Where bad news travels is the diagnostic
 
-If you want a single quantitative proxy for all of this, and I understand the itch, use mean time from incident to public, honest write-up. Not time to fix. Time to a document that names what happened, in plain language, without softening the ownership.
+The second signal is direction. Watch where a problem goes when someone first spots it.
 
-Track this across your engineering incidents, your sales losses, your failed launches, whatever the equivalent is in your function. A healthy org gets from "this went wrong" to "here's exactly what happened and why" in hours or days. An unhealthy org takes weeks, if it ever produces that document at all, because the write-up has to pass through a legal-adjacent instinct to protect reputations before it protects information.
+In a healthy organisation, a junior engineer who finds a production bug tells the on-call channel immediately, in public, because the cost of speaking up is lower than the cost of staying quiet. In an unhealthy one, that same engineer tells their manager privately first, and the manager decides whether and how it gets escalated. If bad news only ever travels upward through the formal reporting line, and never sideways or downward, you are not seeing most of the real problems in your organisation. You are seeing the subset that survived a filtering process built to protect careers, not to fix things.
 
-This metric is better than engagement scores for one simple reason: it measures what people did, not what they told a survey they felt. You can't fake a fast, honest write-up culture in a survey response. You can only produce one by actually doing it, repeatedly, until it becomes the default instinct instead of a special effort.
+You can read this without sitting in a single meeting, just by knowing where to look and what each venue tends to reveal.
 
-## What to actually do with this
+| Where you listen | Healthy tell | Evasive tell |
+| --- | --- | --- |
+| The daily standup | Blockers named with the person and the dependency | "Still working through some things" |
+| The retro | A specific decision owned by a specific person | Passive constructions, no name attached |
+| The incident channel | The finder posts in public before telling their manager | Problems arrive pre-packaged by a manager |
+| The all-hands | Someone volunteers a miss unprompted | Only wins get airtime; questions dry up |
+| The skip-level | People raise the thing their manager has not | People repeat their manager's summary back |
 
-Don't build a new dashboard for this. That would be the exact mistake the whole piece is arguing against, converting a conversational signal into a quantitative one and losing the thing that made it useful.
+None of these is a survey. Each is a place where the organisation is already telling you the truth about itself in the vocabulary it uses, if you go and listen rather than wait for the quarterly roll-up. Reading an organisation this way, at the level of the actual conversation, is the whole discipline. It is what [the quiet discipline of operating leadership](/intelligence/the-quiet-discipline-of-operating-leadership) is built around, and it is a skill you get better at by doing it deliberately, not by buying a better tool.
 
-Instead, build the habit of listening. Sit in on retros you weren't invited to. Read incident write-ups as a manager, not just as a stakeholder wanting the summary. Notice, deliberately, whether names attach to decisions or whether the passive voice is doing the hiding for people. When you hear evasive language, don't correct the individual, look at the incentive that produced it. People go passive-voice when the active voice has cost them something before.
+## The one number worth tracking
 
-And if you're the leader in the room, model it first. The fastest way to get a team naming its own mistakes cleanly is to name yours that way, in front of them, before you ask it of anyone else. Nobody surfaces bad news to a leader who has never publicly owned their own.
+If you want a single quantitative proxy for all of this, and I understand the itch, use mean time from an incident to an honest, public write-up. Not time to fix. Time to a document that names what happened, in plain language, without softening the ownership.
 
-A doctor doesn't diagnose from the patient's holiday photos. They ask what hurts, and they listen to how the answer is phrased. Operating health gets read the same way, in the room, in the language, months before it shows up anywhere you'd think to look for it.
+Track it across your engineering incidents, your lost deals, your failed launches, whatever the equivalent is in your function. A healthy organisation gets from "this went wrong" to "here is exactly what happened and why" in hours or days. An unhealthy one takes weeks, if it ever produces the document at all, because the write-up has to pass through a legal-adjacent instinct to protect reputations before it protects information.
+
+This beats an engagement score for one plain reason: it measures what people did, not what they told a survey they felt. You cannot fake a fast, honest write-up culture in a questionnaire. You can only produce one by actually doing it, repeatedly, until it becomes the default instinct instead of a special effort.
+
+<Takeaway>
+Time to fix tells you about your engineers. Time to an honest write-up tells you about your organisation. Track the second one.
+</Takeaway>
+
+One warning. The moment you start tracking this number, someone will want to put it on the dashboard and set a target for it, and the target will teach people to file thin write-ups fast to hit the metric. Watch the substance of the documents, not just the clock. The number is a prompt to go and read, not a replacement for reading.
+
+## What breaks when you get this wrong
+
+The failure mode is not dramatic. It is a leader who mistakes the quiet for calm.
+
+<FieldNote label="From the field">
+I sat in on a client all-hands once where the founder asked, straight out, what went wrong this month that he had not heard about yet. Forty people in the room. Dead silence.
+
+He read it as a good month. It was the opposite. Silence in that room was not the absence of problems, it was the presence of a filter. The problems existed. The safety to name them in front of him did not.
+
+The tell was not that nobody spoke. It was that nobody was even tempted to. In a healthy room you feel the pause where two or three people weigh whether to say the thing. There was no pause. Everyone had already done that maths, months earlier, and settled on quiet.
+</FieldNote>
+
+A room of forty going silent to that question is not a neutral result. It is a measurement, and it reads far higher than any engagement score would have that quarter. The founder walked out reassured. The information he most needed had been routed around him by people who had learned, correctly, that surfacing it cost more than sitting on it.
+
+That is the whole risk of reading health from the wrong instrument. A dashboard cannot show you a silence. It has no cell for the problem that was never written down. And once bad news has learned to route around you, every metric you do have gets quietly less true, because it is now describing the filtered version of reality that made it upward. Acting on this before it hardens is exactly [the art of the operating intervention](/intelligence/the-art-of-the-operating-intervention): you change the incentive that produced the silence, not the individual who went quiet.
+
+## How to read the signals of operating health yourself
+
+Do not build a dashboard for this. That would be the exact mistake the whole piece is arguing against, turning a conversational signal into a quantitative one and losing the thing that made it useful. Build the habit of listening instead, and run your own organisation through a short filter this week.
+
+<DecisionFilter
+  title="Read your own operating health this week"
+  criteria={[
+    { test: "Pull your last five retros. How often does a specific name attach to a specific decision?", fail: "Every failure is written in the passive voice with no owner" },
+    { test: "When bad news last broke, did it travel sideways and down, or only up the reporting line?", fail: "It reached you filtered, through one manager who chose what you heard" },
+    { test: "How long from 'this went wrong' to a write-up that names it honestly?", fail: "Weeks, or the document never arrives" },
+    { test: "When you last asked publicly what you had not heard about, what happened?", fail: "A full room went silent and you read it as calm" },
+    { test: "Have you named your own mistake, cleanly, in front of the team this quarter?", fail: "You expect a surfacing you have never once modelled" },
+  ]}
+  verdict="If you are scoring any of these from a dashboard, you have already missed it. Read it in the room."
+/>
+
+Two of these are about you, not the team, and they are the ones that move the others. Notice, deliberately, whether names attach to decisions or whether the passive voice is doing the hiding for people. When you hear evasive language, do not correct the individual. Look at the incentive that produced it. People go passive-voice when the active voice has cost them something before, and the fix is to change what it costs, not to police the grammar.
+
+And if you are the leader in the room, model it first. The fastest way to get a team naming its own mistakes cleanly is to name yours that way, in front of them, before you ask it of anyone else. Nobody surfaces bad news to a leader who has never publicly owned their own. If you want an outside read on how this looks across one real process, click by click, that is what a [Grain Audit](/grain-audit) does: it reads the operating reality at the level of the actual work, not the summary.
+
+A doctor does not diagnose from the patient's holiday photos. They ask what hurts, and they listen to how the answer is phrased. Operating health gets read the same way, in the room, in the language, months before it shows up anywhere you would think to look. Learning to read it that way is not a soft skill. It is [the operating-leadership discipline](/intelligence/pillar/operating-leadership) that decides whether the numbers you eventually see are describing the organisation or only its cover story.
 
 <KeyTakeaways>
-- Audit the language used in standups and retros. The vocabulary is the diagnostic.
-- If bad news only travels upward via the formal channel, you are missing most of the signal.
-- Track the mean time from incident to public, honest write-up. It is the single best operating health metric.
+- Audit the language in your standups and retros before you trust the dashboard: the vocabulary is the diagnostic.
+- If bad news only travels upward through the formal channel, you are seeing the filtered subset, not the real one.
+- Track mean time from incident to honest, public write-up, and read the substance, not just the clock.
+- Model it yourself first: nobody surfaces mistakes cleanly to a leader who has never owned one in the room.
 </KeyTakeaways>

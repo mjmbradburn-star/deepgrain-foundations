@@ -6,13 +6,13 @@
     <atom:link href="https://www.deepgrain.ai/feed.xml" rel="self" type="application/rss+xml" />
     <description>Long-form essays on operating systems, AI readiness, and the craft of operating leadership.</description>
     <language>en-GB</language>
-    <lastBuildDate>Mon, 20 Jul 2026 16:19:16 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2026 16:39:12 GMT</lastBuildDate>
     <item>
       <title>The quiet discipline of operating leadership</title>
       <link>https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</guid>
       <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
-      <description>The best operating leaders are quiet on the outside and rigorous on the inside. The volume is misleading.</description>
+      <description>Operating leadership rarely looks like the loud version boards reward. The real discipline is cadence kept and decisions made without an audience.</description>
     </item>
     <item>
       <title>AI maturity frameworks for G&amp;A leaders</title>
@@ -33,7 +33,7 @@
       <link>https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business</guid>
       <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
-      <description>How to use AI as an operating system, not just a set of tools. A plain guide for business leaders, built on Deepgrain's Read, Craft, Scale method.</description>
+      <description>Most businesses own AI tools but run no AI operating system for business. Here is what the system is, and how to install it before plumbing outruns adoption.</description>
     </item>
     <item>
       <title>Building agentic operating systems: a roadmap</title>
@@ -47,7 +47,7 @@
       <link>https://www.deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/what-ctos-get-wrong-about-scale</guid>
       <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Scale problems almost always show up as operating problems wearing a technology disguise.</description>
+      <description>Most scale problems are not infrastructure problems. What CTOs get wrong about scale is the decision graph above the database, not the database itself.</description>
     </item>
     <item>
       <title>How to identify the efficiency gaps AI can fill</title>
@@ -68,7 +68,7 @@
       <link>https://www.deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/the-craft-mindset-for-modern-operators</guid>
       <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Operating leadership is a craft. Crafts have masters, apprentices, tools, and standards. Most companies forget all four.</description>
+      <description>Operating excellence is not a personality you hire for. It is a craft you build. Here is the craft mindset: masters, apprentices, tools and standards.</description>
     </item>
     <item>
       <title>Operating consultancy for AI-native companies</title>
@@ -194,7 +194,7 @@
       <link>https://www.deepgrain.ai/intelligence/signals-of-operating-health</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/signals-of-operating-health</guid>
       <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Why the real signal of organisational health is conversational, not a line on a dashboard, and how to listen for it before the numbers move.</description>
+      <description>Your dashboard is green and the org is not fine. The real signals of operating health are conversational, not on a chart. Here is how to read them early.</description>
     </item>
     <item>
       <title>AI workspace setup for People teams (Claude, ChatGPT, Copilot)</title>
@@ -285,7 +285,7 @@
       <link>https://www.deepgrain.ai/intelligence/the-art-of-the-operating-intervention</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/the-art-of-the-operating-intervention</guid>
       <pubDate>Mon, 06 Apr 2026 00:00:00 GMT</pubDate>
-      <description>An intervention is the smallest change that produces the largest second-order effect. The craft is in the smallness.</description>
+      <description>Leaders reach for scale because scale feels serious. The best operating intervention is the smallest change that moves the system. Here is how to size it.</description>
     </item>
     <item>
       <title>How to diagnose an organisation in 30 days</title>
@@ -320,7 +320,7 @@
       <link>https://www.deepgrain.ai/intelligence/why-ai-pilots-stall-at-production</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/why-ai-pilots-stall-at-production</guid>
       <pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate>
-      <description>The path from pilot to production is paved with the things nobody wanted to think about during the demo. Here is the recurring pattern, and how to design pilots that actually cross it.</description>
+      <description>Getting an AI pilot to production is not a model problem. It is a data, integration, governance and ownership problem. Here is why pilots stall, and the fix.</description>
     </item>
     <item>
       <title>The five pillars of AI readiness</title>
@@ -334,14 +334,14 @@
       <link>https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system</guid>
       <pubDate>Mon, 16 Feb 2026 00:00:00 GMT</pubDate>
-      <description>An AI operating system, or AI OS, is the layer between models and work. It is what turns a clever demo into a compounding capability. Here is what it includes, how it differs from an operating model, and how to build one.</description>
+      <description>Most leaders think they don't have an AI operating system yet. They do, it just wasn't designed. Here are the five pillars that decide whether AI compounds.</description>
     </item>
     <item>
       <title>The difference between strategy and operating reality</title>
       <link>https://www.deepgrain.ai/intelligence/strategy-vs-operating-reality</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/strategy-vs-operating-reality</guid>
       <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
-      <description>Strategy is a story about the future. Operating reality is a description of the present. Most leadership teams confuse the two.</description>
+      <description>Strategy vs operating reality: a plan that assumes capability you don't have is a wish, not a strategy. Here is how to read the gap and fund closing it.</description>
     </item>
     <item>
       <title>Operating systems vs operating models</title>
@@ -355,7 +355,7 @@
       <link>https://www.deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation</guid>
       <pubDate>Mon, 26 Jan 2026 00:00:00 GMT</pubDate>
-      <description>Wood has a grain. So does every organisation. Cut with it and the work compounds; cut against it and you spend the rest of the year sanding.</description>
+      <description>Every organisation has a grain: how work really moves. Reading your organisation before you change it is why some change sticks and some spends a year sanding.</description>
     </item>
   </channel>
 </rss>

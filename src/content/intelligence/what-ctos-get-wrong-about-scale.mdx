@@ -2,78 +2,147 @@ export const frontmatter = {
   title: "What CTOs get wrong about scale",
   slug: "what-ctos-get-wrong-about-scale",
   category: "leadership-and-craft",
-  description: "Scale problems almost always show up as operating problems wearing a technology disguise.",
-  keywords: ["CTO", "scale", "engineering leadership"],
-  readTime: "8 min",
+  description: "Most scale problems are not infrastructure problems. What CTOs get wrong about scale is the decision graph above the database, not the database itself.",
+  keywords: ["what CTOs get wrong about scale", "scaling engineering organisations", "CTO scaling mistakes", "engineering operating model", "re-platforming", "decision graph"],
+  readTime: "11 min",
   publishedAt: "2026-06-15",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
+export const faqs = [
+  {
+    question: "Why does re-platforming not fix our scaling problems?",
+    answer: "Because the thing that broke was rarely the platform. Re-platforming rebuilds the code and leaves the decision graph untouched: who is allowed to roll back at 11pm, who triages an incident, whether a postmortem finding becomes a resourced change or a priority-4 ticket. A faster system just gives the same broken decisions a faster way to express themselves. If the incident shape recurs after the rewrite, the technology was never the constraint.",
+  },
+  {
+    question: "What is a decision graph in engineering?",
+    answer: "The decision graph is the set of judgement calls a system forces on the humans running it, and who is allowed to make each one. It covers who approves a schema change under time pressure, what happens when a deploy fails during a customer escalation, and how a postmortem turns into a change that ships. Most orgs have drawn their architecture five layers deep and never drawn this. It lives in two or three senior heads, which is exactly why it becomes the bottleneck.",
+  },
+  {
+    question: "How do I find the real bottleneck when scaling an engineering team?",
+    answer: "Pull the last twenty production incidents and ask three questions of each: what broke technically, what decision let it happen or run longer than it should have, and who had the authority to call it differently. Run that honestly and a pattern surfaces by incident ten. It is almost always about decisions, not code: one person approving everything, a review cadence gone to theatre, an on-call rota that pages the wrong seniority by default.",
+  },
+  {
+    question: "Should a CTO fix the technology or the organisation first?",
+    answer: "Read the organisation first, then decide what to build. The architecture tells you what to build; the decision graph tells you whether the organisation can actually run it. A slower system a team can operate beats a faster one that needs three specific people awake and available. Redesign how one class of decision gets made and who owns it before you approve a seven-figure rebuild, because the rebuild will not touch that.",
+  },
+];
+
 <TLDR>
-- Scale problems almost always show up as operating problems wearing a technology disguise.
-- The bottleneck is rarely the database. It is the decision graph above it.
-- Re-platforming a system that the organisation cannot operate produces a faster system the organisation still cannot operate.
-- CTOs who scale well work as much on the operating system around the technology as on the technology itself.
+- What CTOs get wrong about scale is treating it as a technology problem when it is almost always an operating problem wearing a technology disguise.
+- The bottleneck is rarely the database. It is the decision graph above it: who is allowed to make which call under load, and how fast.
+- Re-platforming a system the organisation cannot operate produces a faster system the organisation still cannot operate.
+- Read the last twenty incidents for the decision that failed, not the code that failed, and the real constraint surfaces by incident ten.
+- CTOs who scale well work as hard on the operating model around the technology as on the technology itself.
 </TLDR>
 
-The bottleneck is rarely the database. It's the decision graph above it.
-
-Every scaling story I've sat inside starts the same way. Response times creep up, an on-call engineer gets paged at 2am for the third night running, and someone in the leadership meeting says the word "re-platform". Six months and a seven-figure budget later, the new system is faster. The incidents are still weekly. Nobody can quite explain why, so they start planning the next re-platform.
+Three re-platforms in four years, and the 2am pages never stopped. That is the pattern I keep meeting, and it points straight at what CTOs get wrong about scale: they treat it as a technology problem when it is almost always an operating problem wearing a technology disguise. The bottleneck is rarely the database. It is the decision graph above it: who is allowed to make which call under load, and how fast. Rebuild the database and you get a faster system running the same broken decisions. Redesign the decisions and the old system often holds for another two years.
 
 ## The re-platform trap
 
-Re-platforming feels like progress because it produces artefacts: new architecture diagrams, a migration plan, a Slack channel with a rocket emoji in the name. It is legible work. It has a start and an end date. Boards love it.
+Re-platforming feels like progress because it produces artefacts. New architecture diagrams. A migration plan with phases. A Slack channel with a rocket emoji in the name and a target date everyone can point at. It is legible work. It has a start, an end, and a number attached, which is exactly why boards approve it and why it makes such a clean roadmap slide.
 
-What it doesn't touch is the thing that actually broke: how decisions get made when the system is under load. Who has authority to roll back a deploy at 11pm without waking three people up first. Whether an incident gets triaged by the person who wrote the code or by whoever's on the rota that week, regardless of context. Whether "we'll fix it properly next sprint" is a real commitment or a phrase everyone has quietly agreed means "never".
+What it does not touch is the thing that actually broke: how decisions get made when the system is under load. Who has authority to roll back a deploy at 11pm without waking three people first. Whether an incident gets triaged by the engineer who wrote the code or by whoever is on the rota that week, regardless of context. Whether "we'll fix it properly next sprint" is a real commitment or a phrase everyone has quietly agreed means never.
 
-None of that lives in the codebase. All of it determines whether the codebase stays healthy. A team that ships a monolith with clear ownership, a fast rollback path and an incident review that actually changes behaviour will outscale a team running Kubernetes with neither, every time. I've watched it happen twice in the last eighteen months, on two engagements that had nothing else in common.
+None of that lives in the codebase. All of it decides whether the codebase stays healthy. A team that ships a monolith with clear ownership, a fast rollback path and an incident review that actually changes behaviour will outscale a team running Kubernetes with none of those, every time. The technology is not the variable that separates them. The operating model is. This is the same shape I keep writing about in [scaling without breaking the grain](/intelligence/scaling-without-breaking-the-grain): the structure that got you here is usually the thing that fails next, and it is rarely the part you rebuilt.
 
 ## What the decision graph actually is
 
-The decision graph is the set of judgement calls a system forces on the humans running it, and who's allowed to make each one. It includes:
+The decision graph is the set of judgement calls a system forces on the humans running it, and who is allowed to make each one. It is not an org chart and it is not a service diagram. It is the map of authority under pressure. It includes:
 
-- Who approves a schema change under time pressure, and how long that approval takes
-- What happens when a deploy fails at the same time a customer escalation lands
-- Whether "good enough to ship" is a shared standard or a personal one that varies by engineer
-- How a postmortem finding turns into a backlog item that actually gets picked up, rather than one that sits at priority 4 for two quarters
+- Who approves a schema change under time pressure, and how long that approval takes when the person is asleep
+- What happens when a deploy fails at the same moment a customer escalation lands, and which one wins
+- Whether "good enough to ship" is a shared, written standard or a personal one that varies by engineer and by how tired they are
+- How a postmortem finding turns into a backlog item that actually gets picked up, rather than one that sits at priority 4 for two quarters and quietly expires
 
-Most engineering orgs have never drawn this graph. They've drawn the system architecture in exhaustive detail, five layers deep, cached in Notion and out of date within a month. The decision graph exists only in the heads of two or three senior engineers, which is exactly why it becomes the bottleneck. It doesn't scale with headcount. It scales with tenure, and tenure walks out the door.
+Most engineering orgs have never drawn this graph. They have drawn the system architecture in exhaustive detail, five layers deep, cached in Notion and out of date within a month. The decision graph exists only in the heads of two or three senior engineers, which is precisely why it becomes the bottleneck. It does not scale with headcount. It scales with tenure. And tenure walks out the door.
 
-When a CTO tells me "we've outgrown our infrastructure", I ask a different question first: when did you last change how a decision gets made, rather than what makes it? Nine times out of ten, the honest answer is never. The infrastructure has been rebuilt three times. The operating model underneath it hasn't been touched since eight people worked there.
+<FieldNote label="What broke">
+I have watched the same failure twice in eighteen months, on two engagements that had nothing else in common. Both had rebuilt their infrastructure more than once. Neither had ever drawn the decision graph.
 
-## Why CTOs default to technology fixes
+It lived in the heads of two or three senior engineers, and when one of them got pulled onto a re-org project, the fast rollback path and the incident judgement went with them. Nobody else knew where the workflow lived.
 
-This isn't a competence gap. It's an incentive gap. A re-platform is a project a CTO can point at, staff, and report progress on to the board. "We're redesigning our incident escalation model so a senior engineer isn't the single point of failure for every production judgement call" doesn't fit on a roadmap slide the same way. It sounds soft. It sounds like an HR problem wearing an engineering badge, which is precisely why it gets skipped, and precisely why it's the actual work.
+The system was fine. The knowledge of how to run it under load was never written down, so it never scaled with headcount. It scaled with the tenure of a handful of people, and that is the least scalable thing in any engineering organisation.
+</FieldNote>
 
-There's also a comfort factor. Technology is a domain CTOs trained in for a decade. Operating model design, who decides what, how escalation actually flows, how review cadences either catch problems or become theatre, is a domain most technical leaders never studied and don't feel qualified to touch. So they retreat to the terrain they know. Understandable. Still wrong.
+When a CTO tells me "we've outgrown our infrastructure", I ask a different question first. When did you last change how a decision gets made, rather than what makes it? Nine times out of ten the honest answer is never. The infrastructure has been rebuilt three times. The operating model underneath it has not been touched since eight people worked there, and eight-person decision-making does not survive contact with forty engineers, three time zones and a real on-call load.
 
-## The audit that finds the real bottleneck
+## Why good CTOs get scale wrong
 
-Before any re-platform gets approved, the system deserves the same scrutiny as the org does. Pull the last twenty production incidents and ask three questions of each one, not one:
+This is not a competence gap. It is an incentive gap, and it is worth being precise about why the smartest technical leaders keep making the same call.
 
-1. What broke technically.
-2. What decision, made or not made, let it happen or let it run longer than it should have.
-3. Who had the authority to make a different call, and did they know they had it.
+A re-platform is a project a CTO can point at, staff, and report progress on to the board. "We're redesigning our incident escalation so a senior engineer is not the single point of failure for every production judgement call" does not fit on a roadmap slide the same way. It sounds soft. It sounds like an HR problem wearing an engineering badge, which is precisely why it gets skipped, and precisely why it is the actual work.
 
-Run that exercise properly and a pattern usually surfaces inside the first ten incidents. The pattern is almost always about decisions, not code: the same person approving everything because nobody else is trusted to, or a review cadence that exists on the calendar but has become a status update rather than a genuine check, or an on-call rotation that pages the wrong seniority level by default because nobody redesigned it since the team was a third the size.
+There is also a comfort factor, and it is human rather than lazy. Technology is a domain a CTO trained in for a decade. Operating design, who decides what, how escalation actually flows, how a review cadence either catches problems or curdles into theatre, is a domain most technical leaders never studied and do not feel qualified to touch. So they retreat to the terrain they know and rebuild the part they understand. Understandable. Still wrong. The [quiet discipline of operating leadership](/intelligence/the-quiet-discipline-of-operating-leadership) is mostly the willingness to work on the unglamorous layer that does not demo well, and it is the layer that decides whether scale holds.
 
-A carpenter doesn't argue with wood. They read it first. The same discipline applies here: read the decision graph before you touch the architecture, because the architecture will tell you what to build and the decision graph will tell you whether the organisation can actually run what you build.
+## Read the incidents before you touch the architecture
 
-## What "operating system" means in practice
+Before any re-platform gets approved, the system deserves the same scrutiny you would give the org. There is a specific exercise for this, and it is cheap. You can run it in an afternoon with the incident log and three questions.
 
-This is the part CTOs who scale well actually do, and it looks unglamorous next to a re-platform. It means writing down who owns which class of decision, and revisiting that ownership every time the team doubles, because ownership that made sense at fifteen engineers is usually wrong at forty. It means treating on-call design, review cadences, and escalation paths as architecture with the same rigour as service boundaries, because functionally they are exactly that: they determine what happens under load, which is the only condition that actually matters.
+<ProcessFlow
+  stages={[
+    { label: "Pull the incidents", body: "Take the last twenty production incidents, not the last three everyone remembers. Recency and memory both lie.", meta: "Day 1" },
+    { label: "Ask three questions of each", body: "What broke technically. What decision, made or missed, let it happen or let it run longer. Who had the authority to call it differently, and did they know.", meta: "Day 1" },
+    { label: "Find the shape", body: "By incident ten the pattern repeats. It is almost always about decisions, not code: one approver, a cadence gone to theatre, a rota that pages the wrong seniority.", meta: "Day 2" },
+    { label: "Redesign the call, not the code", body: "Change how one class of decision gets made and who owns it. Rewrite the escalation, not the service.", meta: "Week 1" },
+    { label: "Re-check under load", body: "Watch the next round of incidents for the same shape. If it recurs, you fixed the wrong layer.", meta: "Ongoing" },
+  ]}
+/>
 
-It means running postmortems that produce one specific, resourced change rather than a document nobody rereads. And it means being honest, in the leadership meeting, that a slower system the team can actually operate beats a faster one that requires three specific people to be awake and available.
+Run that properly and the pattern is rarely the code. It is the same person approving everything because nobody else is trusted to. Or a review cadence that exists on the calendar but has become a status update rather than a genuine check. Or an on-call rotation that pages the wrong seniority level by default because nobody redesigned it since the team was a third the size. A carpenter does not argue with the wood. They read it first. Read the decision graph before you touch the architecture, because the architecture will tell you what to build and the decision graph will tell you whether the organisation can actually run what you build. That reading discipline is the whole of [the art of the operating intervention](/intelligence/the-art-of-the-operating-intervention): diagnose the real constraint before you spend a quarter fixing a false one.
 
-## The pattern that never lies
+Once you have the pattern, put the re-platform through a filter before you sign the budget. If any of these come back honest and ugly, the money is going to the wrong layer.
 
-Here's the test that cuts through the noise: watch what happens after the rewrite. If the same incident shape recurs, wrong person paged, decision bottlenecked on one individual, a fix that's "temporary" for the third quarter running, that tells you the constraint was always the organisation's operating habits, not the technology. A faster system just gave them a faster way to express the same limitation.
+<DecisionFilter
+  title="Run the re-platform through this before you approve it"
+  criteria={[
+    { test: "Who owns this system on the Monday after we ship it?", fail: "Only the on-call rota, rotated weekly regardless of who knows the context" },
+    { test: "When did we last change how a decision gets made, not just what we decide with?", fail: "Never. The infrastructure has been rebuilt three times; the operating model has not" },
+    { test: "Does a postmortem finding become a resourced change, or a ticket?", fail: "It sits at priority 4 for two quarters and quietly expires" },
+    { test: "Can any on-call engineer roll back at 11pm without waking three specific people?", fail: "The rollback path lives in one senior engineer's head" },
+  ]}
+  verdict="Any answer of 'we'll sort that later' is a decision you wished into place, not one you designed. The re-platform will inherit it."
+/>
 
-Re-platforming a system the organisation cannot operate produces a faster system the organisation still cannot operate. That's not a technology verdict. It's an operating verdict, and it's the one that actually determines whether scale holds.
+## What a team that outscales actually does
+
+The difference between an org that scales and one that keeps re-platforming is not the stack. I have seen the slower architecture win, repeatedly, because the team could actually operate it. Here is the contrast, laid out honestly, because it is not the flattering one.
+
+<ComparePanel
+  a={{ heading: "The team that outscales", items: [
+    "A monolith with clear, written ownership of every boundary",
+    "A rollback path any on-call engineer can run alone",
+    "Postmortems that produce one specific, resourced change each",
+    "Decision ownership revisited every time the team doubles",
+    "Slower by design, operable by whoever is on the rota",
+  ]}}
+  b={{ heading: "The team that stalls", items: [
+    "Kubernetes nobody fully owns and two people understand",
+    "A rollback that needs three specific people awake and available",
+    "Postmortems that produce documents nobody rereads",
+    "Ownership last set when eight people worked there",
+    "Faster on paper, runnable only by three individuals",
+  ]}}
+  caption="The winning column is rarely the one with the better technology. It is the one the organisation can run at 2am without heroics."
+/>
+
+Building the left-hand column is unglamorous next to a re-platform. It means writing down who owns which class of decision, and revisiting that ownership every time the team doubles, because ownership that made sense at fifteen engineers is usually wrong at forty. It means treating on-call design, review cadences and escalation paths as architecture, with the same rigour as service boundaries, because functionally they are exactly that. They determine what happens under load, which is the only condition that actually matters.
+
+It also means running postmortems that produce one specific, resourced change rather than a document nobody rereads. And it means being honest in the leadership meeting that a slower system the team can operate beats a faster one that requires three named people to be awake. That honesty is uncomfortable because it admits the expensive rebuild will not help. It is also the [signal of operating health](/intelligence/signals-of-operating-health) I trust most: a leadership team that can name the operating constraint out loud instead of buying another technology fix to avoid it.
+
+## The test that never lies
+
+Here is the test that cuts through the noise, and it costs nothing but honesty. Watch what happens after the rewrite. If the same incident shape recurs, wrong person paged, the decision bottlenecked on one individual, a fix that is "temporary" for the third quarter running, that tells you the constraint was always the organisation's operating habits, not the technology. A faster system just gave the same limitation a faster way to express itself.
+
+Re-platforming a system the organisation cannot operate produces a faster system the organisation still cannot operate. That is not a technology verdict. It is an operating verdict, and it is the one that actually decides whether scale holds. Everything else is the part that demos well.
+
+The work most CTOs skip is the work that lasts: reading the decision graph, redesigning who owns what under load, and treating that as first-class architecture. This is exactly the reading discipline that sits under the whole of [operating leadership](/intelligence/pillar/operating-leadership), and it is why the strongest technical leaders eventually stop asking "what should we build?" and start asking "can we run what we already have?" If you want to run the exercise on one real process end to end rather than the whole estate, that is precisely what a [Grain Audit](/grain-audit) does: read one workflow at click level, find where the decisions snag, and hand you a plan you keep.
 
 <KeyTakeaways>
-- Map the decision graph before re-platforming. Most scale problems live there.
-- Treat operating habits, on-call rotations, and review cadences as part of the architecture.
-- If the same incident pattern recurs after the rewrite, the technology was not the problem.
+- Map the decision graph before you approve a re-platform. Most scale problems live there, not in the database.
+- Pull the last twenty incidents and read them for the decision that failed, not just the code that failed.
+- Treat on-call design, review cadences and escalation paths as architecture, with the same rigour as service boundaries.
+- Revisit decision ownership every time the team doubles; what worked at fifteen engineers is usually wrong at forty.
+- If the same incident shape recurs after the rewrite, the technology was never the constraint. Fix the operating model.
 </KeyTakeaways>
