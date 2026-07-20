@@ -5,114 +5,172 @@ export const frontmatter = {
   primaryCluster: "readiness-and-diagnosis",
   clusters: ["enablement-and-change", "workflows-and-automation"],
   track: "people-ops",
-  description: "GenAI does not create People debt. It exposes it. Inconsistent levelling, undocumented processes, decision rights nobody can name, all become legible the moment you try to automate around them. The audit, and the order to repay.",
-  keywords: ["people debt", "HR technical debt", "GenAI HR transformation", "People function debt", "AI exposes people debt", "people operations debt"],
-  readTime: "11 min",
+  description: "GenAI does not create people debt, it exposes it: drifting levelling, unowned decision rights, undocumented process. Here is the audit and the order to repay.",
+  keywords: ["people debt", "HR technical debt", "GenAI and people debt", "how to pay down people debt", "people operations debt", "AI exposes HR process debt"],
+  readTime: "12 min",
   publishedAt: "2026-05-04",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
 export const faqs = [
   {
     question: "What is people debt?",
-    answer: "The accumulated cost of decisions the People function deferred rather than made: levelling that varies by manager, decision rights nobody wrote down, processes that only run because one person remembers the exceptions. It compounds like technical debt, quietly, until someone tries to build on top of it. The tell is simple: ask two people the same policy question and get two different answers, both delivered with total confidence.",
+    answer: "People debt is the accumulated cost of decisions the People function deferred rather than made: levelling that varies by manager, decision rights nobody wrote down, processes that only run because one person remembers the exceptions. It compounds quietly, like technical debt, until someone tries to build on top of it. The tell is simple. Ask two people the same policy question and get two confident, contradictory answers.",
   },
   {
     question: "How does GenAI expose people debt?",
-    answer: "Speed. A new hire can take six months to notice your promotion criteria contradict themselves, and even then they usually just quietly work around it. A model tries to apply those criteria on day one, to every case at once, and fails immediately and visibly. AI does not tolerate the same ambiguity a human absorbs without comment.",
+    answer: "Speed and scale. A new hire takes six months to notice your promotion criteria contradict themselves, and then quietly works around it. A model tries to apply those criteria on day one, to every case at once, and fails visibly. AI does not absorb the ambiguity a human swallows without comment, so the gaps that stayed hidden for years surface in the first build.",
   },
   {
     question: "Should we pay down people debt before adopting AI?",
-    answer: "No. Do it concurrently, inside the same sprint as the build, not as a separate cleanup project that has to finish first. Pick the workflow, pay down only the debt that workflow surfaces, build. If the cleanup is taking longer than the build, you picked the wrong workflow to start with, drop to a smaller one.",
+    answer: "No. Do it concurrently, inside the same sprint as the build, not as a cleanup project that has to finish first. Pick one workflow, repay only the debt that workflow surfaces, then build. If the cleanup is taking longer than the build itself, you picked too big a workflow to start with. Drop to a smaller one and the ratio comes back.",
   },
   {
-    question: "What is the order to repay people debt?",
-    answer: "By blast radius, not comfort. Definitions first: what \"senior\" means, what counts as a high performer, what the hiring loop actually is step by step. Every later workflow inherits these. Then decision rights, written down, one meeting is usually enough once someone is willing to own the call. Then the processes you are about to automate, documented as they should run, not as they currently limp through. Artefacts last: templates and scorecards fall out of the work for free. Skip the order and you get a fast, confident, wrong model.",
+    question: "How do you pay down people debt in the right order?",
+    answer: "By blast radius, not comfort. Definitions first: what senior means, what a high performer is, what the hiring loop actually is, step by step. Every later workflow inherits these. Then decision rights, written down. Then the specific processes you are about to automate. Artefacts like templates and scorecards come last, because they fall out of the work for free.",
   },
   {
-    question: "Where does this fit in a 90-day plan?",
-    answer: "The first 30 days, no more. The diagnostic phase finds the highest-debt workflows, and the definitions and data cleanup happens before any meaningful build starts. Days 31 to 60 prove value on the cleaned-up workflows. Days 61 to 90 harden and scale. If the cleanup is still running past day 30, the workflow you picked has too much debt under it, switch to a smaller one.",
+    question: "Where does paying down people debt fit in a 90-day plan?",
+    answer: "The first 30 days, no more. The diagnostic phase finds the highest-debt workflows and the definition cleanup happens before any real build. Days 31 to 60 prove value on the cleaned-up workflows. Days 61 to 90 harden and scale. If cleanup is still running past day 30, the workflow you picked has too much debt under it.",
   },
 ];
 
 <TLDR>
-- People debt is the accumulated cost of decisions deferred at the people-systems layer.
-- GenAI exposes people debt faster than any prior technology because it removes the slowness that hid it.
-- Roles that were marginally productive become obviously so. Workflows that were quietly broken break loudly.
-- The work is paying down the debt with intention, not pretending the tool will absorb it.
+- People debt is the accumulated cost of decisions the People function deferred: levelling that varies by manager, decision rights nobody wrote down, processes only one person can run.
+- GenAI does not create people debt, it exposes it, faster than any technology before it, because it removes the slowness that hid the ambiguity.
+- You do not pay it all down first. Pick one workflow, repay only the debt that workflow surfaces, then build.
+- Repay by blast radius: definitions, then decision rights, then the processes in scope, then artefacts.
+- Do it as you build and you keep two assets: the workflow, and a documented, current version of the process underneath it.
 </TLDR>
 
-There is a moment, usually about three weeks into the first AI workflow build, when the team realises the problem is not the model. The problem is that the inputs the workflow needs do not exist in any consistent form. Levelling varies by team. The hiring loop on paper is not the hiring loop in practice. The performance criteria mean three different things. The model can only be as clear as the rules it is given, and the rules turn out to have never been written down.
+The demo worked. The rollout didn't. That gap is where most People teams meet their people debt for the first time, and it usually costs them a workflow before they understand what happened. GenAI does not create people debt. It exposes it. The inconsistent levelling, the undocumented process, the decision rights nobody can name, all become legible the moment you try to build an AI workflow around them, because the model needs rules that were never actually written down.
 
-This is people debt becoming visible.
+Here is the shape of it. About three weeks into the first build, the team realises the problem is not the model. The inputs the workflow needs do not exist in any consistent form. Levelling varies by team. The hiring loop on paper is not the hiring loop in practice. The performance criteria mean three different things at three different levels. The model can only be as clear as the rules it is handed, and the rules turn out to have been carried in people's heads for years.
 
-<Takeaway>GenAI does not create people debt. It exposes it, and it hands you the deadline to fix it before anyone else notices.</Takeaway>
+<Takeaway>GenAI does not create people debt. It exposes it, and it hands you the deadline to repay it before anyone else notices.</Takeaway>
 
-## What people debt is
+## What people debt actually is
 
-People debt is the accumulated cost of decisions the People function has deferred or fudged over time:
+People debt is the accumulated cost of decisions the People function has deferred, fudged, or never got round to writing down. It comes in four flavours, and every function I have looked at carries some of each.
 
-- **Definitions that drift.** What "senior" means, what counts as a high-performer, what the hiring loop actually is, what a "Director" does that a "Senior Manager" does not.
-- **Decision rights nobody can name.** Who can approve a salary band exception. Who signs off on a counter-offer. Who decides when a role gets opened. In well-run companies, written down. In most, transmitted by oral tradition.
-- **Undocumented processes.** The promotion process, the performance cycle, the comp review, all run on a mix of spreadsheets, tribal knowledge, and Slack threads.
-- **Drifted artefacts.** Comp bands that have not been calibrated in two years. Job descriptions that no longer match the work. Scorecards that nobody updates.
+- **Definitions that drift.** What "senior" means. What counts as a high performer. What a Director does that a Senior Manager does not. What the hiring loop actually is, step by step. These started as shared understanding and quietly diverged.
+- **Decision rights nobody can name.** Who approves a salary band exception. Who signs off a counter-offer. Who decides when a role gets opened. In well-run companies, written down. In most, transmitted by oral tradition and reconstructed under pressure.
+- **Undocumented processes.** The promotion cycle, the performance review, the comp calibration. Each one runs on a mix of spreadsheets, memory, and a Slack thread from eight months ago.
+- **Drifted artefacts.** Comp bands nobody has calibrated in two years. Job descriptions that stopped matching the work. Scorecards no one updates but everyone still fills in.
 
-Like technical debt, people debt compounds invisibly. It rarely shows up on a quarterly review. It shows up the first time you try to build something new on top of it.
+Like technical debt, people debt compounds invisibly. It rarely shows on a quarterly review. It shows the first time you try to build something new on top of it. And the reason it survives so long is that humans are extraordinary at absorbing it. A person hits a contradictory rule, shrugs, picks the interpretation that fits the case in front of them, and moves on. The debt is paid, silently, out of individual judgement, every single day. Nobody logs the cost.
 
-## Why GenAI is the harshest debt audit you will ever run
+## Why GenAI is the harshest debt audit you will run
 
-Every AI workflow worth building needs three things: structured inputs, clear rules, and a defined output. The moment you try to assemble those for a real People process, you discover what is missing.
+Every AI workflow worth building needs three things: structured inputs, clear rules, and a defined output. The moment you assemble those for a real People process, you find out what is missing.
 
-The onboarding workflow needs a canonical handbook. Half of it lives in three Google Docs and one Notion page that contradicts the others. The HRBP triage workflow needs a routing matrix. There is no routing matrix. Decisions get routed by who happens to be online. The performance summary workflow needs a definition of "exceeds expectations." There are six definitions, one per level, and four of them are mutually inconsistent.
+The onboarding workflow needs a canonical handbook. Half of it lives in three Google Docs and one Notion page that contradicts the others. The HRBP triage workflow needs a routing matrix. There is no routing matrix. Requests get routed to whoever happens to be online. The performance summary workflow needs a single definition of "exceeds expectations". There are six, one per level, and four of them are mutually inconsistent.
 
-AI is unforgiving of ambiguity. People debt is mostly ambiguity. The collision is the point.
+A person tolerates all of this without a word. A model cannot. AI is unforgiving of ambiguity, and people debt is mostly ambiguity, so the collision is not a bug in the build. It is the audit doing its job. Where the model fails, it is pointing at something that was never written down. That is worth more than a clean first result, because you now know exactly where the function is soft.
 
-## Should you pay down debt before adopting AI?
+<PullStat value="0">
+When we score People functions on readiness, people debt is why the numbers come back low. Of the eleven functions we scored, not one came in above seventy. I would rather you knew that than pretend the base rate is good.
+</PullStat>
 
-No. Three reasons.
+Read that as the base rate, not an outlier. If you have never run an AI workflow against your own definitions, you do not yet know how much debt you are carrying. The first build is how you find out, and finding out early, on one workflow, is a great deal cheaper than finding out late, across a rollout the whole team is depending on. This is the same reason [AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production): the demo runs on a clean export a person prepared, and production runs on the mess underneath.
 
-You will never pay it all down. Even good companies have people debt, because the function evolves faster than the documentation. Waiting for a clean slate means waiting forever.
+## No, you don't pay it all down first
 
-The AI window is open now and not for long. Teams that build capability in the next 18 months will be operating in a different gear two years from now. Teams that wait will be paying compound interest.
+The instinct, once the debt is visible, is to stop and clean everything before building anything. Resist it. Three reasons.
 
-AI work is the cheapest forcing function for cleanup you will ever get. The team has motivation, the work surfaces the specific debt that matters, and the cleanup has a visible reward (the workflow you wanted in the first place).
+You will never pay it all down. Even good companies carry people debt, because the function evolves faster than the documentation ever will. Waiting for a clean slate means waiting forever, and while you wait the debt keeps compounding.
 
-## The order to repay
+The window is open now and not for long. Teams that build real capability in the next eighteen months will be operating in a different gear two years from now. Teams that treat cleanup as a prerequisite project will still be scoping it while everyone else is shipping.
 
-The temptation is to clean everything. Resist. Pay down debt by blast radius:
+AI work is the cheapest forcing function for cleanup you will ever get. The team is motivated, the build surfaces the specific debt that matters rather than the debt that feels tidy, and the cleanup carries a visible reward: the workflow you wanted in the first place. A standalone documentation project has none of that and dies in a backlog. So the cleanup rides on the build. That is the whole move.
 
-1. **Definitions first.** What does "senior" mean here. What counts as a high-performer. What is the actual hiring loop, step by step. These show up in every workflow downstream. Cleaning them once pays interest on every later piece of work.
-2. **Decision rights.** Written down. Who approves what, with what limits, and what the escalation looks like. Without this, every automated workflow eventually hits a step where it does not know who to route to.
-3. **Processes you are about to automate.** Not all processes. Just the ones touched by the next two or three workflows. Document how they should run. Not how they limp along today. Use the build as the forcing function.
-4. **Artefacts.** Templates, scorecards, handbooks. The cleanup falls out of the work. Almost never worth doing in advance.
+The discipline is picking the right first workflow, one where the debt underneath is smaller than the thing you are building. Run the candidate through this before you commit.
 
-Skipping definitions is the most common mistake. Teams jump straight to processes, automate ambiguity, and produce confidently wrong outputs at scale. The model amplifies whatever ambiguity it inherits.
+<DecisionFilter
+  title="Before you pick the first workflow, run it through this"
+  criteria={[
+    { test: "Can you name, in one sentence, the definition this workflow depends on?", fail: "'Senior means, well, it varies by manager'" },
+    { test: "Is there a single person who can own the decision this workflow will escalate to?", fail: "The decision lives in oral tradition and gets reconstructed each time" },
+    { test: "Can the cleanup finish inside the build, not before it?", fail: "You'd need a three-month documentation project just to start" },
+    { test: "Is the debt under this workflow smaller than the workflow itself?", fail: "The cleanup is bigger than the thing you're trying to ship" },
+  ]}
+  verdict="If the cleanup is bigger than the build, you picked the wrong workflow. Drop to a smaller one and the ratio comes back."
+/>
 
-## What this looks like in a 90-day plan
+## The order to repay people debt
 
-In the [FinEdge case study](/intelligence/ai-roadmap-case-study-finedge), the first two weeks were the [diagnostic toolkit](/intelligence/people-ops-diagnostic-toolkit). What the diagnostic actually surfaced was a list of definition debt, decision-rights debt, and process debt sitting under each of the three target workflows. The next four weeks paid down the specific debt those workflows depended on, then built. By day 60, the workflows were running. By day 90, the debt cleanup had bled out into adjacent processes, because once a definition is written down it tends to stay written down.
+Once you are inside the right workflow, repay the debt it surfaces in a fixed order. The order matters because the early items are inherited by everything downstream, so cleaning them once pays interest on every later piece of work. Get the order wrong and you build a fast, confident, wrong model.
 
-The pattern repeats. AI work creates the deadline. The deadline creates the cleanup. The cleanup creates the foundation for everything that comes next.
+<ProcessFlow
+  stages={[
+    { label: "Definitions", body: "Fix what 'senior', 'high performer' and 'the hiring loop' actually mean. Every workflow downstream inherits these, so cleaning them once pays off repeatedly.", meta: "Fix once" },
+    { label: "Decision rights", body: "Write down who approves what, with what limit, and where it escalates. One meeting is usually enough once someone will own the call.", meta: "One meeting" },
+    { label: "Processes in scope", body: "Document the two or three processes the next workflows touch, as they should run, not as they currently limp through.", meta: "In the build" },
+    { label: "Artefacts", body: "Templates, scorecards and the handbook fall out of the work. Almost never worth doing in advance.", meta: "Free" },
+  ]}
+/>
 
-## The asset hidden inside the debt
+Skipping definitions is the most common and most expensive mistake. Teams jump straight to automating the process, hand the model six contradictory definitions of the same word, and produce confidently wrong outputs at scale. The model does not resolve the ambiguity. It amplifies it, and now it does so in every case at once, in writing, with a tone of authority. Fixing "exceeds expectations" is one afternoon in a room. Not fixing it is a performance cycle that quietly breaks trust for a year.
 
-Pay down people debt while building AI workflows and you end up with two things instead of one. You have the workflow. You also have a documented, current, defensible version of the underlying process, with named owners, written rules, and clean inputs. That second thing is worth more than the workflow. It is the foundation every later workflow stands on.
+Decision rights are the second trap. Almost every automated workflow eventually reaches a step where it does not know who to route to. If that answer lives in oral tradition, the automation stalls there every time, and you end up with a human manually unblocking the "automated" process, which defeats the point.
 
-Skip the cleanup and you build castles on sand. Do it as you build, and each new workflow makes the next one easier.
+## The four kinds of debt, and where each one bites
 
+Not all debt costs the same, and not all of it gets repaid at the same moment. The kind determines the blast radius, and the blast radius determines the order. This is the map I run against a workflow before committing to it.
 
-## What this connects to
+| Kind of debt | The tell | Where it bites | When to repay |
+| --- | --- | --- | --- |
+| Definition debt | Two people answer the same policy question two different ways | Every downstream workflow, all at once | First, always |
+| Decision-rights debt | "It depends who's online" is the real routing rule | The step where the workflow has to escalate | Second |
+| Process debt | The real process lives in three docs and a Slack thread | The specific workflow you are automating now | As you build it |
+| Artefact debt | Comp bands and job specs are two years stale | The quality of the output, not whether it runs | Last, it falls out |
 
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
+Read the table top to bottom and you have the repayment sequence. Definition debt sits at the top because it is inherited widest: a wrong definition poisons every workflow that touches it. Artefact debt sits at the bottom because it is local and cosmetic by comparison, and because it tends to repair itself as a by-product of doing the higher work properly. Pay in that order and the interest stops compounding. Pay out of order, starting with the tidy artefact work because it feels productive, and you have polished the scorecards while the definitions underneath them still contradict.
 
-- [AI governance for People teams](/intelligence/ai-governance-for-people-teams)
-- [Measuring AI value in People Ops](/intelligence/measuring-ai-value-in-people-ops)
-- [The People Ops diagnostic toolkit](/intelligence/people-ops-diagnostic-toolkit)
-- [Designing the AI-native People team](/intelligence/designing-the-ai-native-people-team)
+<FieldNote label="What broke">
+A team I worked with tried to automate performance summaries first, because on paper it looked like the highest-value workflow. Three weeks in, the model was producing six different readings of "exceeds expectations", because there were six written definitions, one per level, and four of them contradicted each other. Nobody had noticed in years, because managers quietly picked whichever definition suited the case in front of them.
+
+The fix was not a better prompt. It was one afternoon getting four managers in a room to agree what the word actually meant. The workflow they shipped first, once they were being honest, was onboarding, which had almost no definition debt under it. Performance came later, after the definitions existed to build on.
+</FieldNote>
+
+## Paper over it, or pay it down as you build
+
+There are two ways to respond when the first build exposes the debt, and they lead to very different places. One treats the model as a way to hide the mess. The other treats the model as the reason to fix it. Same tool, opposite outcome.
+
+<ComparePanel
+  a={{ heading: "Pay it down as you build", items: [
+    "The model finally runs on rules someone wrote down",
+    "You keep a current, defensible version of the process",
+    "Named owners for every decision the workflow touches",
+    "The next workflow starts from cleaner ground",
+    "Cleanup carries a visible reward: the workflow you wanted",
+  ]}}
+  b={{ heading: "Paper over it with the model", items: [
+    "The model applies the ambiguity faster and more confidently",
+    "The process stays undocumented, now with an AI on top",
+    "Every escalation dead-ends at 'who actually owns this?'",
+    "The next workflow inherits exactly the same mess",
+    "Cleanup gets deferred again, interest keeps compounding",
+  ]}}
+  caption="Same model, same team. The only variable is whether you fix the debt the build surfaces or automate on top of it."
+/>
+
+The right-hand column is the seductive one, because in the short term it looks like progress. You shipped something. It even demos well, on the cases someone hand-picked. But you have taken an undocumented, ambiguous process and bolted a confident machine to the front of it, so now the ambiguity ships at speed with a straight face. That is worse than the manual version, because the manual version at least had a human in the loop quietly catching the contradictions.
+
+## What paying it down actually leaves you
+
+Here is the part teams underestimate. Pay down people debt while building the workflow and you end up with two assets instead of one. You have the workflow. You also have a documented, current, defensible version of the underlying process, with named owners, written rules, and clean inputs.
+
+That second asset is worth more than the workflow. It is the foundation every later workflow stands on, and it is the thing consultants usually charge you for and then take with them when they leave. Build it into your own systems as you go and the capability stays. This is exactly what a [Grain Audit](/grain-audit) is designed to produce: one process taken end to end, the debt under it repaid, and a plan you keep rather than a slide deck you file.
+
+You can see the full arc in the [FinEdge 90-day case](/intelligence/ai-roadmap-case-study-finedge). The first two weeks were a diagnostic that surfaced the definition, decision-rights, and process debt sitting under three target workflows. The next four weeks repaid the specific debt those workflows depended on, then built. By day 60 the workflows were running. By day 90 the cleanup had bled out into adjacent processes, because once a definition is written down it tends to stay written down. If you want the diagnostic that finds the highest-debt workflows first, the [People Ops diagnostic toolkit](/intelligence/people-ops-diagnostic-toolkit) is the same instrument, and [diagnosing AI readiness in People Ops](/intelligence/diagnosing-ai-readiness-in-people-ops) shows where debt shows up in the score.
+
+The pattern repeats every time. The AI work creates the deadline. The deadline creates the cleanup. The cleanup creates the foundation for everything that comes next. Skip it and you build castles on sand. Do it as you build, and each new workflow makes the next one cheaper, which is the compounding you actually want, running in the other direction. This is the practical core of the [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops): the workspace is only as good as the definitions and decision rights underneath it.
 
 <KeyTakeaways>
-- Treat GenAI as a diagnostic. Where it lights up dysfunction, fix the dysfunction first.
-- Pay down people debt before scaling AI capability on top of it.
-- The teams that thrive are the ones who use the moment to clean up, not paper over.
+- Treat the first AI build as a debt audit. Where the model fails, it is telling you what was never written down.
+- Repay in order: definitions first, then decision rights, then the in-scope processes, artefacts last.
+- Never let the cleanup outrun the build. If it does, you picked too big a workflow. Drop to a smaller one.
+- The documented process you get for free is worth more than the workflow. It is what every later workflow stands on.
 </KeyTakeaways>

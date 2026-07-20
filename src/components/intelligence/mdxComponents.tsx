@@ -4,6 +4,15 @@ import { slugifyHeading } from "@/lib/slugifyHeading";
 import { Takeaway } from "@/components/intelligence/Takeaway";
 import { TLDR } from "@/components/intelligence/TLDR";
 import { KeyTakeaways } from "@/components/intelligence/KeyTakeaways";
+import {
+  ProcessFlow,
+  StatBand,
+  ComparePanel,
+  LayerStack,
+  DecisionFilter,
+  FieldNote,
+  PullStat,
+} from "@/components/intelligence/articleVisuals";
 
 /**
  * Shared article typography tokens.
@@ -109,4 +118,13 @@ export const mdxComponents: MDXComponents = {
   Takeaway,
   TLDR,
   KeyTakeaways,
+  // The seven article visual components (ARTICLE-BLUEPRINT.md section B).
+  // Static, no-JS, token-only. Each gets no per-article import inside MDX.
+  ProcessFlow,
+  StatBand,
+  ComparePanel,
+  LayerStack,
+  DecisionFilter,
+  FieldNote,
+  PullStat,
 };

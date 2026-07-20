@@ -2,66 +2,152 @@ export const frontmatter = {
   title: "Read · Craft · Scale: the Deepgrain method",
   slug: "read-craft-scale-the-deepgrain-method",
   category: "method-and-practice",
-  description: "Three movements, in order. Skip the first and the rest is theatre. Skip the third and the work doesn't compound.",
-  keywords: ["deepgrain method", "consulting method", "read craft scale"],
-  readTime: "10 min",
+  description: "Most change work skips straight to the build. Read, Craft, Scale is the discipline against that: diagnose first, craft small, scale at the pace people can absorb.",
+  keywords: ["Read Craft Scale", "the Deepgrain method", "operating consultancy method", "how to diagnose before you build", "organisational change method", "working with the grain"],
+  readTime: "11 min",
   publishedAt: "2026-03-23",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
+export const faqs = [
+  {
+    question: "What is the Deepgrain method?",
+    answer:
+      "Read, Craft, Scale, in that order. Read is the diagnosis: how the organisation actually runs at click level, not how the org chart says it runs. Craft is the smallest change that resolves what you found, built with the tools and people already in the building. Scale paces that change to what the organisation can absorb, and trains the people who own it after you leave. Skip the first and the rest is theatre.",
+  },
+  {
+    question: "Why diagnose before building a change programme?",
+    answer:
+      "Because everything downstream is only as good as the diagnosis it sits on. Most People Ops work starts from an assumption, not a read: someone decides the org needs an AI strategy or a new onboarding process, a team gets assembled, and the build begins before anyone established what is actually true. You end up with a well-designed intervention nobody uses, because it was built for an organisation that does not exist.",
+  },
+  {
+    question: "How long should the Read phase take?",
+    answer:
+      "Longer than feels comfortable, and the more senior the sponsor, the more pressure there is to cut it short. On a single process end to end, the paid Grain Audit runs two weeks of reading before a line of the plan is written. On a full function it is weeks of interviews and watching work run. The rule is simple: you are not done reading until you can predict what the next interview will tell you.",
+  },
+  {
+    question: "What does it mean to work with the grain of an organisation?",
+    answer:
+      "Every organisation has a grain: the way work actually flows, the paths people already trust, the tools they already open. Most leaders design against theirs and wonder why the change splits. Working with the grain means the intervention fits the shape you diagnosed rather than a best-practice template from a different company. A carpenter reads the wood before the cut. Same discipline, applied to an org.",
+  },
+];
+
 <TLDR>
-- Three movements, in order: Read, Craft, Scale.
-- They are sequential, not parallel. They are also asymmetric in time: most of the work is in the reading.
-- Skip Read and the rest is theatre. Skip Scale and the work does not compound.
-- Read diagnoses operating reality. Craft designs interventions that fit the grain. Scale compounds the work without breaking it.
+- The Deepgrain method is three movements in a fixed order: Read, Craft, Scale.
+- Most change work skips the first movement and starts building on an assumption. That is how you ship something nobody uses.
+- Read diagnoses how the organisation actually runs. Craft designs the smallest change that fits. Scale paces it to what the organisation can absorb.
+- The movements are asymmetric in time: most of the budget belongs in the reading, because everything downstream is only as good as the diagnosis under it.
+- Skip Read and the rest is theatre. Skip Scale and the work never compounds.
 </TLDR>
 
-Three movements. They are sequential, not parallel. They are also asymmetric in time: most of the work is in the reading.
+Most leaders believe the work is the build. The value, in their heads, lives in the thing they ship: the new process, the platform, the AI rollout with the timeline slide. So they skip to it. The Deepgrain method, Read then Craft then Scale, is built on the opposite claim: most of the value lives in the reading, and the build is small when the read is done properly. Get the order wrong and you produce activity that looks like progress and changes nothing about how the organisation actually runs.
 
-Most People Ops work skips straight to the middle movement. Someone in leadership decides the org needs "an AI strategy" or "better onboarding" or "a new performance process", and a team gets assembled to build it. Nobody spent proper time establishing what's actually true about how the organisation runs today. The build starts from an assumption, not a diagnosis. That's how you end up with a beautifully designed intervention that nobody uses, because it was never built for the organisation that has to run it.
+I have watched this fail from close enough to write it down. Someone in leadership decides the org needs "an AI strategy" or "better onboarding" or "a new performance process". A team gets assembled to build it. Nobody spent proper time establishing what is true about how the place runs today, so the build starts from an assumption. You end up with a beautifully designed intervention that nobody uses, because it was never built for the organisation that has to run it. Read, Craft, Scale is the discipline against that, and it is hardest to hold exactly when the pressure is on to jump to the middle.
 
-Read, Craft, Scale is the discipline against that. It is a sequence you enforce, hardest exactly when the pressure is on to skip to the middle.
+<ProcessFlow
+  stages={[
+    { label: "Read", body: "Map one process at click level. Find where the work actually snags, not where the handbook says it should.", meta: "Weeks 1-2" },
+    { label: "Craft", body: "Design the narrowest change that resolves what you found. Build it with the tools and people already in the building.", meta: "Weeks 3-6" },
+    { label: "Scale", body: "Pace the change to what the organisation can absorb. Train the champions so the capability stays after you leave.", meta: "Weeks 7+" },
+  ]}
+/>
 
 ## Read: establish what's true before you touch anything
 
-Read is the diagnostic phase. You're not designing yet. You're not fixing yet. You're finding out how the organisation actually operates, as distinct from how the org chart, the handbook, and the leadership team's mental model say it operates. Those three things are rarely the same document.
+Read is the diagnostic movement. You are not designing yet and you are not fixing yet. You are finding out how the organisation actually operates, as distinct from how the org chart, the handbook, and the leadership team's mental model say it operates. Those three are rarely the same document, and the distance between them is where every failed initiative already lives.
 
-In practice this means structured interviews across levels, not just with the people who commissioned the work. It means watching a process run rather than asking someone to describe it from memory. It means reading the Slack threads and the ticket backlogs, not just the strategy deck. A U-shaped audit exists because the people at the top of the org and the people doing the work at the bottom see completely different organisations, and the gap between those two views is where every failed initiative lives.
+In practice this means structured interviews across levels, not just with the people who commissioned the work. It means watching a process run rather than asking someone to describe it from memory, because people describe the version they wish they ran. It means reading the Slack threads and the ticket backlogs, not the strategy deck. A U-shaped audit exists for one reason: the people at the top of the org and the people doing the work at the bottom see completely different companies, and neither view alone is the truth. The [thirty-day diagnostic](/intelligence/how-to-diagnose-an-organisation-in-30-days) is the same instinct run at pace.
 
-The temptation to cut Read short is constant, and it gets worse the more senior the sponsor. Executives want to see progress, and progress looks like artefacts: a new process document, a pilot, a slide with a timeline on it. Sitting in interviews for three weeks doesn't look like progress. It looks like stalling. This is exactly the moment to hold the line, because everything built on a shallow read has to be rebuilt once the real picture surfaces, usually at the worst possible time, usually in front of the same executive who pushed you to hurry.
+Read works at the level of the workflow, never the role. A role is forty workflows in a coat. Ask "is the recruiter's job exposed to AI" and you get a shrug. Ask "what happens between a hiring manager approving a req and the first candidate landing in the inbox, click by click, tool by tool" and you get the real picture: the three re-keyings, the spreadsheet that four people quietly maintain, the approval that sits in someone's DMs for two days. That is the grain. You cannot design with it until you have read it.
 
-A carpenter doesn't argue with wood. They read it first. Every intervention that ignores the grain of an organisation gets the same result a woodworker gets when they cut against it: it splits.
+The temptation to cut Read short is constant, and it gets worse the more senior the sponsor. Executives want to see progress, and progress looks like artefacts: a process document, a pilot, a slide with a timeline on it. Sitting in interviews for three weeks does not look like progress. It looks like stalling. This is the moment to hold the line, because everything built on a shallow read has to be rebuilt once the real picture surfaces, usually at the worst possible time, usually in front of the same executive who pushed you to hurry.
 
-## Craft: small interventions that fit what you found
+<DecisionFilter
+  title="Know when Read is actually done"
+  criteria={[
+    { test: "Can you predict what the next interview will tell you?", fail: "Every conversation still surprises you. You are early, not finished." },
+    { test: "Have you watched the process run, not just heard it described?", fail: "Your picture is built entirely on what people said they do" },
+    { test: "Do the top-of-org and bottom-of-org versions of the process reconcile?", fail: "Leadership and the doers describe two different companies and you have not closed the gap" },
+    { test: "Can you name the single snag that, if fixed, moves the most?", fail: "You have a list of twenty problems and no rank order" },
+  ]}
+  verdict="If you cannot predict the next interview and rank the snags, you are not reading any more, you are collecting. Stop collecting."
+/>
 
-Craft is where the diagnosis becomes a design. This is the part everyone assumes is the real work, and it is real work, but it's supposed to be small. If Read was done properly, the intervention should feel almost obvious, almost underwhelming, because it's built to fit a shape you already understand rather than to impress anyone.
+A carpenter does not argue with wood. They read it first. Every intervention that ignores the grain of an organisation gets the result a woodworker gets cutting against it: it splits, and it splits at the point of most stress, which is always the moment you can least afford it.
 
-Big interventions are how teams break the grain they just learned to read. A leadership team that spends six weeks diagnosing a fragmented onboarding process and then responds with a twelve-module enterprise LMS rollout has thrown away everything Read taught them. The diagnosis said "three specific breakpoints in week one." The craft should fix three specific breakpoints in week one. It should not become a platform migration.
+## Craft: the smallest change that resolves what you found
 
-Small, in this context, means: the narrowest change that resolves the diagnosed problem, built with the tools and the people already in the building, tested against the actual grain rather than against a best-practice template pulled from a different company's org chart. It means resisting the instinct to bundle in three adjacent problems while you're in there, because bundling is how a two-week fix becomes a six-month programme that never ships.
+Craft is where the diagnosis becomes a design. This is the part everyone assumes is the real work, and it is real work, but it is supposed to be small. If Read was done properly the intervention should feel almost obvious, almost underwhelming, because it is built to fit a shape you already understand rather than to impress anyone in the room.
 
-This is also where AI tooling earns its place or doesn't. The craft question isn't "where can we use AI", it's "what specific, diagnosed breakpoint does this close, and would a human process fix it just as well." If the answer to the second half is yes, use the human process. Tooling should follow the diagnosis, never lead it.
+Big interventions are how teams break the grain they just spent weeks learning to read. A leadership team that diagnoses a fragmented onboarding process and then answers with a twelve-module enterprise LMS rollout has thrown away everything Read taught them. The diagnosis said "three specific breakpoints in week one". The craft should fix three specific breakpoints in week one. It should not become a platform migration with a business case attached.
+
+Small, here, means the narrowest change that resolves the diagnosed problem, built with the tools and the people already in the building, tested against the grain rather than against a best-practice template pulled from a different company's org chart. It means resisting the instinct to bundle in three adjacent problems while you are in there, because bundling is how a two-week fix becomes a six-month programme that never ships. The [art of the operating intervention](/intelligence/the-art-of-the-operating-intervention) is mostly the discipline of doing less than you are tempted to.
+
+<ComparePanel
+  a={{ heading: "Craft that fits the grain", items: [
+    "Fixes the specific snag the read surfaced, nothing adjacent",
+    "Built on tools the team already opens on a Monday",
+    "One or two internal builders own it from day one",
+    "Ships in weeks, on real data at real volume",
+    "Measured against the diagnosed problem, not a template",
+  ]}}
+  b={{ heading: "Craft that breaks it", items: [
+    "Bundles three problems into one flagship programme",
+    "Introduces a new platform the team has to learn first",
+    "A consultant or vendor owns the build alone",
+    "Ships in quarters, if it ships, on a clean export",
+    "Measured against best practice from another company",
+  ]}}
+  caption="The left column is smaller, cheaper, and less impressive in a steering meeting. It is also the one still running a year later."
+/>
+
+This is also where AI tooling earns its place or does not. The craft question is never "where can we use AI". It is "what specific, diagnosed snag does this close, and would a plain human process close it just as well". If the answer to the second half is yes, use the human process. Tooling follows the diagnosis, it never leads it. When tooling is right, the choice is concrete: an [n8n](/intelligence/what-is-an-ai-operating-system) workflow at roughly £20 per builder seat per month, SOC 2 and ISO 27001 compliant and self-hostable, doing the plumbing; Claude doing the reasoning; a Notion or Supabase spine underneath so the data is actually reachable. Model-only extraction, never a regex fallback, because the fallback is where the quiet errors breed.
+
+<FieldNote label="From the field">
+On a transit engagement the read surfaced a single licence line worth about forty thousand pounds a year that nobody in the room could explain. It had been renewed on autopilot for years. The tool underneath it did one job, badly, for a workflow the team had already half-worked-around by hand.
+
+The craft was not a replacement platform. It was one tool and two internal builders rebuilding that one workflow. The forty thousand came off the licence bill, and the capability to do it again stayed in the building, because the people who built it still worked there.
+</FieldNote>
+
+That last point is the whole of Craft in miniature. Build for the first client, design so every client after inherits it, and never build the bespoke thing twice. A craft that only the person who made it can maintain is not finished. It is a dependency you have not noticed yet.
 
 ## Scale: pace it to what the organisation can absorb
 
-Scale is not a rollout plan. Rollout plans are about coverage, getting the intervention in front of everyone as fast as possible. Scale is about absorption, making sure the organisation can actually take on the change at the rate it's arriving without rejecting it.
+Scale is not a rollout plan. Rollout plans are about coverage: get the intervention in front of everyone as fast as possible. Scale is about absorption: making sure the organisation can actually take on the change at the rate it is arriving without rejecting it. The constraint is pace, not distribution.
 
-The constraint here is pace, not distribution. An intervention that worked beautifully in one team of twelve can fail completely when pushed to four hundred people in six weeks, not because the design was wrong but because the absorption rate was wrong. Organisations have a metabolic limit on change, the same way a person does. Push past it and you don't get faster adoption, you get exhaustion, workaround culture, and a quiet reversion to the old way as soon as attention moves elsewhere.
+An intervention that worked beautifully in one team of twelve can fail completely when it is pushed to four hundred people in six weeks, not because the design was wrong but because the absorption rate was wrong. Organisations have a metabolic limit on change, the same way a person does. Push past it and you do not get faster adoption. You get exhaustion, workaround culture, and a quiet reversion to the old way the moment attention moves elsewhere.
 
-Scaling well means watching for the signals that absorption is lagging behind rollout speed: managers starting to skip steps, questions repeating that should have died out after week two, the intervention becoming something people comply with rather than something they use. Those signals mean slow down, not push harder. The habit compounds when it's given room to become normal before the next wave arrives.
+Scaling well means watching for the signals that absorption is lagging behind rollout speed: managers starting to skip steps, the same questions repeating that should have died out after week two, the intervention becoming something people comply with rather than something they use. Those signals mean slow down, not push harder. The habit compounds when it is given room to become normal before the next wave arrives. [Scaling without breaking the grain](/intelligence/scaling-without-breaking-the-grain) is mostly the discipline of reading those signals honestly instead of hitting the target date.
 
-This is also where the work either compounds or evaporates. An intervention that gets scaled at the right pace becomes infrastructure: the next thing gets built on top of it. An intervention that gets forced through too fast gets tolerated for a quarter and then quietly abandoned, and the next initiative has to start from zero, sometimes from below zero, because the organisation now has a scar tissue memory of "that thing we tried that didn't work."
+Scale is also where the capability either stays or walks out with the people who built it. The failure has a name I use because it keeps happening: the builders left, and the capability went with them. If the only people who understand the new workflow are the consultants who shipped it, you have bought a quarter of relief and a cliff edge. This is why the movement ends in training, not handover. Across engagements that has meant thirty-seven champions trained inside client teams, the people who own the drift, the failures, the prompt updates and the policy changes once the outside help is gone. The test of the whole method is not what ships during the engagement. It is what the team ships in the two months after you leave.
 
-## Why the order is non-negotiable
+## Why Read, Craft, Scale only works in that order
 
-Read, Craft, Scale only works in that order. Craft before Read produces solutions to problems nobody diagnosed. Scale before Craft produces rollout of something unfinished. And skipping Read entirely, which is the most common failure, produces theatre: activity that looks like progress and changes nothing about how the organisation actually runs.
+The order is not a preference, it is a dependency chain. Craft before Read produces solutions to problems nobody diagnosed. Scale before Craft produces the rollout of something unfinished. And skipping Read entirely, the most common failure, produces theatre: activity that photographs like progress and changes nothing about how the organisation runs on a Tuesday. The same dependency is why [AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production): the demo answered "can the model do this", the read that would have answered "can this organisation absorb it" never happened.
 
-The asymmetry matters as much as the sequence. Most of the time budget should sit in Read, not because diagnosis is glamorous but because everything downstream is only as good as the diagnosis it's built on. Spend the uncomfortable amount of time there. Then craft small. Then scale at the pace the organisation can actually keep.
+The asymmetry matters as much as the sequence. Most of the time budget sits in Read, not because diagnosis is glamorous but because everything downstream is only as good as the diagnosis it is built on. The paid Grain Audit puts this on the table plainly: £2,000, two weeks, one process end to end, and the first of those weeks is reading before a single line of the plan gets written. You keep the ranked automation plan and the 90-day plan whether or not you ever work with me again, because the read is the asset, not the relationship.
+
+Hold the order and something quiet happens: the work starts to compound. An intervention scaled at the right pace becomes infrastructure, and the next thing gets built on top of it. An intervention forced through too fast gets tolerated for a quarter and then abandoned, and the next initiative starts from below zero, because the organisation now carries a scar-tissue memory of "that thing we tried that did not work". That patience is the quiet part of [operating leadership](/intelligence/pillar/operating-leadership), and it is the part that does not survive a steering meeting unless someone defends it. The full method, movement by movement, is laid out at [the method](/method).
+
+## What it looks like when the method holds
+
+The proof is not in the design review. It is in the numbers the team is still hitting after the outside help has gone home.
+
+<StatBand
+  stats={[
+    { value: "83", label: "hours/week reclaimed", note: "defence tech engagement" },
+    { value: "70%", label: "routine queries now handled by systems the team owns" },
+    { value: "0", label: "critical issues, two months on" },
+  ]}
+/>
+
+None of those came from a bigger build. They came from a smaller one, aimed at the right snag, scaled at a pace the organisation could keep, and left in the hands of people who could extend it. That is the method doing its job: read first, craft small, scale at the rate the place can absorb, and measure yourself by what stays behind rather than what you shipped on the way out.
 
 <KeyTakeaways>
-- Spend more time in Read than feels comfortable. The temptation to start crafting early costs the whole engagement.
-- Craft is small by design. Big interventions are how teams break the grain they just learned to read.
-- Scale is a pacing problem, not a rollout problem. Compound at the rate the organisation can absorb.
+- Spend more time in Read than feels comfortable. The temptation to start crafting early costs the whole engagement, and the cost lands late.
+- Craft small on purpose. Big interventions are how teams break the grain they just spent weeks learning to read.
+- Scale is a pacing problem, not a rollout problem. Compound at the rate the organisation can absorb, and slow down when the absorption signals lag.
+- End every movement in the hands of internal people. If the capability walks out with the builders, you bought relief, not a system.
 </KeyTakeaways>

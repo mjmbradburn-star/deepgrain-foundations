@@ -5,145 +5,190 @@ export const frontmatter = {
   primaryCluster: "workspace-and-tools",
   clusters: ["prompting-and-craft"],
   track: "people-ops",
-  description: "How to set up an AI workspace for a People team: custom instructions, projects, and reference documents that turn AI from a search bar into a colleague. Works for Claude, ChatGPT, Copilot, and Gemini.",
-  keywords: ["AI workspace", "AI workspace setup", "Claude Projects", "ChatGPT custom instructions", "Copilot for HR", "People Ops AI setup", "AI for HR"],
-  readTime: "12 min",
+  description: "Your AI sounds generic because it works generically. Here is the AI workspace setup that turns Claude, ChatGPT or Copilot into a colleague that knows your team.",
+  keywords: ["AI workspace setup", "AI for HR teams", "Claude Projects for HR", "ChatGPT custom instructions", "Copilot for People teams", "AI workspace for People Ops"],
+  readTime: "11 min",
   publishedAt: "2026-04-19",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
+export const faqs = [
+  {
+    question: "How do I set up an AI workspace for my HR team?",
+    answer:
+      "Block 90 minutes and build three things: a standing brief the model reads every time, one project per recurring workstream, and a handful of short reference documents the model treats as ground truth. That is the whole setup. It works the same in Claude, ChatGPT, Copilot and Gemini, because they all give you the same three primitives under different names.",
+  },
+  {
+    question: "What is the difference between custom instructions and a project?",
+    answer:
+      "Custom instructions are a standing brief the model reads at the start of every conversation: who you are, what you care about, what you never want. A project is a named container that holds files and history for one kind of work. Instructions set the voice everywhere; a project gives the model the context for one workstream. You need both.",
+  },
+  {
+    question: "Can I put employee data into an AI workspace?",
+    answer:
+      "Not raw individual records. Do not load full employee files, performance ratings tied to names, or unredacted survey free-text into a standing project, even with enterprise terms in place. Aggregate, anonymise or paraphrase. If you genuinely need to work with named individuals, do it in a single throwaway conversation and treat it as disposable.",
+  },
+  {
+    question: "Do Claude, ChatGPT and Copilot all work for a People team workspace?",
+    answer:
+      "Yes. All four consumer tools, Claude, ChatGPT, Copilot and Gemini, give you the same three building blocks: a standing brief, named containers, and attached reference files. The names differ and the enterprise controls differ, but the setup is identical. Pick the one your company already pays for and start there rather than waiting for a tool decision.",
+  },
+];
+
 <TLDR>
-- An AI workspace is the structured layer that turns a generic AI tool into a function-specific colleague.
-- Custom instructions, projects, reference docs, shared prompts. That is the unit of work.
-- The workspace is the first artefact most People teams should build. Most skip it and wonder why outputs are mediocre.
-- It is operating infrastructure. Set it up once and it keeps paying out.
+- An AI workspace setup is three things: a standing brief, projects mapped to your workstreams, and reference documents the model treats as ground truth.
+- The reason your AI sounds generic is that it is being used generically. Nothing about the model needs to change. The context does.
+- The same three primitives exist in Claude, ChatGPT, Copilot and Gemini under different names, so the setup is portable.
+- It is the first artefact a People team should build, before any tool purchase, and it takes about 90 minutes done once.
+- Build it as a shared team asset, not a personal habit, or the context walks out the door when someone leaves.
 </TLDR>
 
-The single biggest reason People teams say AI feels generic is that they are using it generically. They open a fresh chat, paste a question, get a fresh-from-the-internet answer, and conclude the tool is shallow. The tool is not shallow. The setup is.
+"We gave the whole company Copilot. Why does nothing feel different?" It is the question a CEO asks about six weeks after the rollout, and it is the right question. The honest answer is that an AI workspace setup was never done. People open a fresh chat, paste a question, get a fresh-from-the-internet answer, and conclude the tool is shallow. The tool is not shallow. The setup is. The same model that gives you a bland onboarding checklist on Monday gives you something specific to your company, your tone, your last reorg and your CPO's stated priorities on Friday, once it can see where it is standing.
 
-A workspace, properly assembled, changes the work. The same model that gave you a bland onboarding checklist on Monday gives you something specific to your company, your tone, your last reorg and your CPO's stated priorities on Friday. Nothing about the model changed. The context did.
+Nothing about the model changed between those two days. The context did. A workspace is the structured layer that carries that context, and it is the cheapest, highest-return thing a People function can build first. It is not glamorous. Skip it and every other layer you build on top is weaker.
 
-This is a foundations piece. It is not glamorous. Skip it and every other layer is weaker.
+<Takeaway>An AI workspace is a standing brief, projects, and reference documents. The first artefact a People team should build, before any tool purchase.</Takeaway>
 
-<Takeaway>An AI workspace is custom instructions, projects, and reference documents. The first artefact a People team should build, before any tool purchase.</Takeaway>
+## What an AI workspace setup actually is
 
-## The three things to set up
+Every consumer AI tool gives you the same three primitives. Learn them once and the naming stops mattering.
 
-Most consumer AI tools - Claude, ChatGPT, Copilot, Gemini - give you the same three primitives, under different names. Get them right once and the rest of the work compounds.
+A **standing brief** the model reads at the start of every conversation: who you are, who you work with, the tone you want, the things you never want it to do. **Named containers** that hold files, instructions and history for one kind of work. And **reference documents**, the five to ten files the model should always be able to see when it works on a given thing. That is the whole unit. Everything else is variation on those three.
 
-**1. Custom instructions.** A short standing brief the model reads at the start of every conversation. Who you are, who you work with, what tone you want, what you never want it to do.
+The tools disagree only on vocabulary. If you have picked a tool because you were told one of them "does workspaces" and the others do not, you were sold a feature that all four share.
 
-**2. Projects.** Named containers that hold context - files, instructions, conversation history - for a specific kind of work. One project per recurring workstream, not one per task.
+| Tool | Standing brief | Named container | Reference files |
+| --- | --- | --- | --- |
+| Claude | Profile and project instructions | Projects | Project knowledge and uploads |
+| ChatGPT | Custom instructions | Projects and GPTs | Files inside the project or GPT |
+| Copilot | Personalisation | Agents | SharePoint and Graph content |
+| Gemini | Saved info | Gems | Files and Drive grounding |
 
-**3. Reference documents.** The five to ten files the model should always be able to see when it works on a given thing. Your handbook. Your operating principles. Your job architecture. Your last engagement survey.
+Pick the one your company already pays for. The setup is portable, so the tool decision matters far less than the setup decision, and waiting for a tool review before you build the workspace is how a team loses a quarter. If you are genuinely choosing between models, [choosing AI models for HR work](/intelligence/choosing-ai-models-for-hr-work) is the piece for that, but it is a separate decision from this one.
 
-That is the whole setup. Everything else is variation on these three.
+## Custom instructions: write a brief, not a personality
 
-<Takeaway label="Workspace takeaway">An AI workspace is custom instructions, projects, and reference docs. The first artefact a People team should build, before any tool purchase.</Takeaway>
+The mistake people make is treating the standing brief as a vibe. "Be friendly. Be concise. Use British English." Fine, but it barely moves the output. What moves it is telling the model what you actually do, what you actually care about, and what you have already decided.
 
-## Custom instructions: write them like a brief, not a personality
+A real standing brief for a Head of People at a 250-person scale-up reads more like this:
 
-The mistake people make is treating custom instructions as a vibe. *"Be friendly. Be concise. Use British English."* Fine, but it barely moves the output.
-
-What moves it: telling the model what you actually do, what you actually care about, and what you have already decided.
-
-A real custom instruction for a Head of People at a 250-person scale-up reads more like this:
-
-> I am the Head of People at a Series B B2B SaaS company, 240 people, growing to 350 this year. Our principles are written, used, and matter - I will share them. We have a hybrid model with a London hub. Our biggest current pressures are manager capability, performance differentiation, and absorbing 120 hires without losing the culture.
+> I am the Head of People at a Series B B2B SaaS company, 240 people, growing to 350 this year. Our principles are written, used, and matter, and I will share them. We run hybrid with a London hub. Our biggest current pressures are manager capability, performance differentiation, and absorbing 120 hires without losing the culture.
 >
-> When I ask for drafts: write in plain British English, sentences short, no consultancy padding. Never use the words "leverage", "synergy", "robust", "best practice". Never recommend a "framework" without telling me the trade-off.
+> When I ask for drafts: write in plain British English, sentences short, no consultancy padding. Never use the words "leverage", "synergy", or "best practice". Never recommend a framework without telling me the trade-off.
 >
-> When I ask for analysis: assume I have read the obvious. Skip the 101. Show me the second-order effects. If you do not know something specific to my company, ask before guessing.
+> When I ask for analysis: assume I have read the obvious, skip the 101, show me the second-order effects. If you do not know something specific to my company, ask before guessing.
 
-That is a brief. The model behaves differently because it knows where it is standing.
+That is a brief. The model behaves differently because it now knows where it is standing, what good looks like to you, and where the edges are. The last line does more work than the rest combined: an instruction to ask before guessing is what stops the confident, wrong, generic answer that makes people distrust the tool in the first place.
 
 ## Projects: one per workstream, not one per task
 
-A project is just a folder with memory. The trick is choosing the right size of folder.
+A project is a folder with memory. The only real skill is choosing the right size of folder.
 
-Too small (one per task) and you spend your life setting up new projects and re-uploading the same handbook. Too large ("People Ops") and the context becomes a blur and the model loses focus.
+Too small, one per task, and you spend your life setting up new projects and re-uploading the same handbook. Too large, a single project called "People Ops", and the context becomes a blur and the model loses the thread. The right grain for most People functions is roughly six to ten projects, mapped to the workstreams that actually repeat.
 
-The right grain, for most People functions, is roughly six to ten projects, mapped to the workstreams that actually repeat:
+- **Performance and calibration.** Cycle docs, calibration grids, manager guides, last cycle's learnings.
+- **Comp and levelling.** Job architecture, salary bands, last benchmarking exercise, comp philosophy.
+- **Onboarding and first 90 days.** The playbook, role-specific plans, the six-week check-in template.
+- **Manager development.** Capability framework, training catalogue, last enablement deck.
+- **Engagement and culture.** Survey results, action plans, the principles, the rituals.
+- **Talent acquisition.** Workforce plan, EVP, scorecard templates, last quarter's funnel.
+- **Org design and change.** Current org chart, planned changes, prior reorg postmortems.
+- **Board and exec comms.** Board pack template, last three updates, voice and tone notes.
 
-- **Performance & calibration** - cycle docs, calibration grids, manager guides, last cycle's learnings.
-- **Comp & levelling** - job architecture, salary bands, last benchmarking exercise, comp philosophy.
-- **Onboarding & first 90 days** - the playbook, role-specific plans, the six-week check-in template.
-- **Manager development** - capability framework, training catalogue, last enablement deck.
-- **Engagement & culture** - survey results, action plans, the principles, the rituals.
-- **Talent acquisition strategy** - workforce plan, EVP, scorecard templates, last quarter's funnel.
-- **Org design & change** - current org chart, planned changes, prior reorg postmortems.
-- **Board & exec comms** - board pack template, last three updates, voice & tone notes.
-
-Each of these is a project. Each holds the documents that matter for that workstream and only those. You spin up a conversation inside the project and the model already knows the context. You do not paste the handbook for the fortieth time.
+Each of these is a project. You open a conversation inside it and the model already holds the context. You do not paste the handbook for the fortieth time. The workstream is the unit because that is the thing that actually recurs. A role is not the unit. A role is forty workflows in a coat, and half of them belong in different projects.
 
 ## Reference documents: the three-tier rule
 
-Inside each project, not every document deserves equal weight. A useful structure is three tiers.
+Inside each project, not every document deserves equal weight. Give the model everything at full volume and it drowns. The structure that works is three tiers, and they are a genuine stack: the always-on layer is the ground the other two stand on.
 
-**Tier 1: Always-on.** Two to four short, dense documents the model should treat as ground truth. Your principles. Your tone of voice. The role's responsibilities. Keep these tight - half a page each. The model reads them every time. If they are bloated, every answer is bloated.
+<LayerStack
+  layers={[
+    { name: "One-shot", body: "The thing on your desk today: the draft, the transcript, the data dump. Paste it, work it, let it go. It never becomes part of the project.", tag: "Tier 3" },
+    { name: "Reference", body: "Five to fifteen longer documents the model reaches for when the work calls for them: the full handbook, last cycle's calibration, the job architecture spreadsheet.", tag: "Tier 2" },
+    { name: "Always-on", body: "Two to four dense, half-page documents the model treats as ground truth every single time: your principles, your tone of voice, the role's remit.", tag: "Tier 1" },
+  ]}
+  baseLabel="Most teams only ever build Tier 3"
+/>
 
-**Tier 2: Reference.** Five to fifteen longer documents the model can reach for when relevant. Your full handbook. Last cycle's calibration outcomes. The job architecture spreadsheet. These are not loaded into every prompt; they are available when the work calls for them.
+Tier 1 is the one people get wrong, in both directions. They either skip it, so the model has no ground truth and every answer starts from the internet, or they bloat it, so the model reads three thousand words of preamble before it reads the actual question and every answer comes back padded. Keep each Tier 1 document to half a page. Dense, not long. The model reads them every time, so their weight is the tax you pay on every single output.
 
-**Tier 3: One-shot.** The thing you are working on right now. The draft message. The transcript. The data dump. You paste it into the conversation, work on it, and let it go.
+Most teams have only Tier 3. They paste, work, lose. Adding Tiers 1 and 2 is precisely what turns AI from a clever search bar into a colleague who already knows the context.
 
-Most teams have only Tier 3. They paste, work, lose. Adding Tiers 1 and 2 is what turns AI from a clever search bar into a colleague who already knows the context.
+## What never goes into the workspace
 
-## What never goes in
+A workspace is defined as much by what it excludes as by what it holds. Run every document through a short filter before it goes in, because a standing project is the one place careless data becomes permanent.
 
-A workspace is also defined by what it excludes. Two rules cover most of it.
+<DecisionFilter
+  title="Before a document goes into the workspace"
+  criteria={[
+    { test: "Is this aggregate or anonymised, rather than a raw individual record?", fail: "It is a full employee file, or ratings tied to names, or unredacted survey free-text" },
+    { test: "Does this belong to a workstream that recurs, rather than only today's task?", fail: "It is a one-off you will never open again, so it belongs in the chat, not the project" },
+    { test: "If it is legal or contractual, is the standing rule to flag it for human review?", fail: "The workspace treats a confident generic answer as good enough to send" },
+    { test: "Would you be relaxed if this exact file leaked tomorrow?", fail: "You would not, and enterprise terms are doing all the reassuring" },
+  ]}
+  verdict="Aggregate, anonymise or paraphrase. If you need named individuals, do it in a single throwaway conversation, never in the standing project."
+/>
 
-**No raw individual data.** Do not load full employee records, performance ratings tied to names, or unredacted survey free-text into a workspace. Even with enterprise terms in place, the operating principle is: aggregate, anonymise, or paraphrase. If you need to work with named individuals, do it in a one-shot pasted into a single conversation, and treat the conversation as disposable.
+Those first two rules cover most of the risk. Employment law varies, contracts have teeth, and confident-sounding generic answers about either are dangerous. This is the floor, not the ceiling. When you get to it properly, the governance work sharpens it further, and [AI governance for People teams](/intelligence/ai-governance-for-people-teams) is the piece that does that. But you do not need the full policy to start. You need these four questions and the discipline to actually ask them.
 
-**No legal or contractual surfaces without review.** Employment law varies, contracts have teeth, and confident-sounding generic answers are dangerous. Legal documents can be summarised, compared, or drafted - but the workspace's standing instruction should be: *flag this for legal review before sending.*
+## The team move, and the 90-minute build
 
-This is the floor. Governance work, when you get to it, sharpens it further. (For more on that, the [governance piece](/intelligence/ai-governance-for-people-teams) is the next read.)
+Everything above can be done by one person. The move that compounds is doing it together. A shared workspace, the same projects, the same Tier 1 documents, the same standing brief, means everyone in the function works from one source of truth. The output looks like it came from one team. The improvement one person makes flows to everyone. And the institutional memory stops walking out the door when a long-tenured colleague leaves, because the context they carried in their head now lives in a project.
 
-## The team move: shared, not personal
+This is where the [champion model](/intelligence/the-champion-model) earns its keep. The champions own the workspace. They keep the Tier 1 documents tight, retire stale projects, and update the shared context when the reorg lands. They are the librarians of the team's context, and without a named owner the workspace rots the way any shared drive rots.
 
-Almost everything above can be done as an individual. The team move is to do it together.
+The build itself is not a project plan. It is 90 minutes.
 
-A shared workspace - same projects, same Tier 1 documents, same custom instructions - means everyone in the People function is working from the same context. The output looks like it came from the same team. The improvements one person makes flow to everyone. The institutional memory stops walking out the door when someone leaves.
+<ProcessFlow
+  stages={[
+    { label: "Write the standing brief", body: "Use the example above as a frame. Be specific about your company, your principles, and the language you never want to see.", meta: "15 min" },
+    { label: "Map workstreams to projects", body: "List the six to ten workstreams that actually repeat. Create a project for each, named so anyone on the team recognises it.", meta: "30 min" },
+    { label: "Trim the Tier 1 documents", body: "Pull together principles, tone and the role brief. Cut each to half a page. Upload them to every project where they belong.", meta: "30 min" },
+    { label: "Run one real job through it", body: "Pick a project, run an actual piece of work, and watch the difference. Adjust the brief where the output missed.", meta: "15 min" },
+  ]}
+/>
 
-The mechanics differ by tool - Claude has team Projects, ChatGPT has team workspaces, Copilot inherits from Microsoft 365 - but the principle is the same. One source of truth. Shared context. Updated together.
+The whole thing takes less time than most teams spend, across a quarter, complaining that AI feels generic.
 
-This is also where the [champion model](/intelligence/the-champion-model) earns its keep. The champions own the workspace. They keep the Tier 1 documents tight. They retire stale projects. They are the librarians of the team's context.
+<FieldNote label="From the field">
+When I rebuilt Deepgrain as a one-person operation, the first thing I built was not an agent. It was the workspace. A standing brief that knew the business, a project for each part of the work, a handful of Tier 1 documents I trusted. We run the model on ourselves first, so this is not theory.
 
-## A 90-minute setup
+The mistake I made was in Tier 1. I had stuffed a whole method into the always-on layer, and every answer came back bloated because the model was reading three thousand words of me before it reached the question. I cut each document to half a page. The output sharpened the same afternoon. That is the scar I keep, and it is why the half-page rule above is not a suggestion.
+</FieldNote>
 
-If you want to do this once, properly, block 90 minutes.
+## What good looks like three months in
 
-- **15 min.** Write your custom instructions. Use the example above as a starting frame. Be specific about your company, your principles, and the language you do not want to see.
-- **30 min.** List your six to ten workstreams. Create a project for each. Name them so anyone in the team would recognise them.
-- **30 min.** Pull together your Tier 1 documents - principles, tone, role-specific brief. Trim each to half a page. Upload them to every project where they belong.
-- **15 min.** Pick one project and run a real piece of work through it. See the difference. Adjust.
+A team with a working workspace looks different in a few quiet ways, and the difference is easiest to see side by side.
 
-The whole thing takes less time than most people spend complaining that AI feels generic.
+<ComparePanel
+  a={{ heading: "Fresh chat, every time", items: [
+    "You paste the handbook again before you can start",
+    "Drafts come back in a voice that belongs to nobody",
+    "The model asks for context it should already hold",
+    "One person's good prompt dies in their chat history",
+    "A new joiner starts from a blank box on day one",
+  ]}}
+  b={{ heading: "A workspace that holds context", items: [
+    "The handbook lives in the project, loaded once",
+    "Drafts come back in the team's voice on the first pass",
+    "The model already knows the reorg and the CPO's priorities",
+    "A good prompt becomes a shared project everyone inherits",
+    "A new joiner opens a project and the context is waiting",
+  ]}}
+  caption="None of this is a model upgrade. It is the same tool, given somewhere to stand."
+/>
 
-## What good looks like, three months in
+Quiet, unglamorous, infrastructure work. But it is the precondition for everything above it. You cannot build reliable skills, automations and agents on top of a generic chat history, which is why moving [from prompts to systems](/intelligence/from-prompts-to-systems) starts here and not with a tool purchase. The workspace is Layer 1 of the People Ops AI stack, and skipping it is why so many teams stall at clever demos that never become part of how the work runs.
 
-A team with a working AI workspace looks different in three quiet ways.
-
-Drafts come back in the team's voice on the first attempt. Nobody pastes the handbook into a prompt any more. New joiners get up to operating speed faster, because the context they need lives in shared projects rather than in the heads of long-tenured colleagues.
-
-Quiet, unglamorous, infrastructure work. But it is the precondition for everything in [Layer 2 and Layer 3](/intelligence/from-prompts-to-systems) of the People Ops AI stack - skills, automations, agents. You cannot build those on top of a generic chat history.
+If you are not sure where your function actually stands before you build, the [Readiness Assessment](/readiness) scores you across the four capability layers in about ten minutes, and it tends to make the case for starting here obvious. For the wider map of how workspace, skills and agents fit together, the [AI workspace for People Ops pillar](/intelligence/pillar/ai-workspace-for-people-ops) holds the full arc.
 
 Set the workspace up. Then build.
 
-
-
-## What this connects to
-
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
-
-- [AI governance for People teams](/intelligence/ai-governance-for-people-teams)
-- [Measuring AI value in People Ops](/intelligence/measuring-ai-value-in-people-ops)
-- [Designing the AI-native People team](/intelligence/designing-the-ai-native-people-team)
-- [People debt: what GenAI exposes, and what to do about it](/intelligence/people-debt-and-genai)
-
 <KeyTakeaways>
-- Build the workspace before scaling adoption. Without it, every prompt starts from zero.
-- Treat reference docs as living. Stale context is worse than no context.
-- Share the workspace across the team. Private workspaces do not compound.
+- Build the workspace before you scale adoption. Without it, every prompt starts from zero and the tool will keep feeling generic.
+- Keep Tier 1 documents to half a page each. Bloated ground truth makes every answer bloated.
+- Share it across the team and name a champion to own it. A private workspace does not compound, and an unowned one rots.
+- Never load raw individual data into a standing project. Aggregate, anonymise, or keep named work in a throwaway chat.
 </KeyTakeaways>

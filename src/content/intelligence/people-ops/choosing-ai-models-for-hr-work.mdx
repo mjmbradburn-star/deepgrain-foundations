@@ -5,118 +5,156 @@ export const frontmatter = {
   primaryCluster: "workspace-and-tools",
   clusters: ["prompting-and-craft"],
   track: "people-ops",
-  description: "A practical guide to which AI model to reach for by HR task type. ChatGPT, Claude, Gemini, Perplexity, and the trade-offs that actually matter when the work is real.",
-  keywords: ["best AI for HR", "ChatGPT vs Claude HR", "AI tools for People Ops", "HR AI model comparison"],
+  description: "No single best AI model for HR work exists. Match the model to the task, run two or three, and cross-check what matters. Here is the working stack.",
+  keywords: ["AI models for HR work", "best AI for HR", "ChatGPT vs Claude for HR", "AI tools for People Ops", "which AI model for HR tasks", "HR AI model comparison"],
   readTime: "10 min",
   publishedAt: "2026-04-25",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
 export const faqs = [
   {
-    question: "Is one AI model enough for a People team?",
-    answer: "No. Running two or three subscriptions costs about £15-20 a month each, less than the time it takes to fix one bad first draft. The default stack: ChatGPT for structured drafting and workflows, Claude for nuanced writing and policy work, Perplexity or Gemini for research with citations. Most teams stick to one model out of habit, then wonder why the writing never quite lands.",
+    question: "Which is the best AI model for HR work?",
+    answer: "There isn't one. The right pattern is two or three models matched to task type: Claude for policy, sensitive comms and anything where tone has to land; ChatGPT for structured drafting and workflow scaffolding; Perplexity or Gemini for research you can source. Most teams run one model out of habit and pay for it every time the writing does not quite land.",
   },
   {
-    question: "Which model should we use for writing HR policies?",
-    answer: "Claude wins on policy drafting because it handles tone, edge cases, and the implicit \"what would a reader take from this\" check. GPT is fine for structured first drafts. Whichever model writes it, run the draft through a second model for critique. Two passes, two perspectives, far fewer mistakes.",
+    question: "Which AI model should we use for writing HR policies?",
+    answer: "Claude, for policy drafting and sensitive comms. It handles tone, edge cases and the implicit 'what would a reader take from this' check better than the alternatives. ChatGPT is fine for a structured first draft. Whichever model writes it, run the draft through a second model for critique. Two passes, two perspectives, far fewer mistakes reaching a real employee.",
   },
   {
-    question: "What about hiring decisions and performance work?",
-    answer: "Use AI as an assistant, never as the decision-maker, regardless of model. Claude and GPT both produce good interview question banks, calibration prompts, performance review draft frames. Both will produce confidently wrong recommendations if you let them touch decision-making without human review. Keep a human at every consequential step.",
+    question: "Do we need more than one AI subscription for a People team?",
+    answer: "Usually yes. Two or three subscriptions run about £15 to £20 a month each, less than the time it takes to redo one first draft written in the wrong model. Four tabs, four logins, and the friction of switching between them is close to zero. The saving is real work that does not need redoing.",
   },
   {
-    question: "Is Gemini or Perplexity worth it for HR teams?",
-    answer: "Yes, for different reasons. Gemini is strong on multimodal tasks, large research synthesis, and integration into the Google stack. Perplexity is the most reliable answer engine for \"what is the current state of the art\" type questions, with sources you can check. Most People teams underuse both.",
+    question: "Can AI make hiring or performance decisions for us?",
+    answer: "No, and no model changes that. Use AI to draft interview kits, calibration prompts and review frames, never to make the call. Every model will produce a confidently wrong recommendation if you let it touch a decision about a named person without review. Keep a human at every consequential step.",
   },
 ];
 
 <TLDR>
-- Model choice matters less than most teams think and more than most vendors will admit.
-- For the bulk of People work, the frontier general models are fine. Pick by trust, latency, and price.
-- Specialist models earn their place at the edges: long-context document review, sensitive comms, structured extraction.
-- Re-evaluate every six months. The cost-quality curve moves quarterly.
+- There is no single best AI model for HR work. Match the model to the task and run two or three, not one.
+- Claude wins on policy, sensitive comms and anything where tone matters. ChatGPT wins on structured drafting and workflow scaffolding. Perplexity and Gemini win on sourced research.
+- Two habits beat any model choice: never ship a first draft, and cross-check anything consequential with a second model.
+- Never let a model decide anything about a named person. AI drafts, a human decides.
+- Write the model map into a one-page doc and re-evaluate every six months. The cost-quality curve moves quarterly.
 </TLDR>
 
-The "best AI for HR" question gets asked all the time. The honest answer is that there is no best, and the right pattern is to use two or three models for what each one is best at.
+The question lands in almost every operating review the moment AI comes up: "Which AI model should we standardise the People team on?" The honest answer is that there is no single best AI model for HR work, and standardising on one is the wrong instinct. The right pattern is to run two or three models and reach for whichever one is strongest for the task in front of you: Claude for policy and sensitive comms, ChatGPT for structured drafting and workflows, Perplexity or Gemini for research you can source. The model is rarely the bottleneck. Knowing which one to pick, when, is.
 
-Here is a practical breakdown.
+## There is no best AI model for HR work
 
-<Takeaway>Most teams run one model because nobody decided otherwise. A reasonable People Ops stack: ChatGPT for structured drafting, Claude for nuanced writing and policy, Perplexity or Gemini for sourced research.</Takeaway>
+"Best" is a vendor's word, not an operator's. It assumes one tool wins every task, which is not how the work behaves. Writing a redundancy letter and scaffolding a Zapier flow are different jobs that reward different strengths, and no frontier model tops the table on both at once. So the useful question is not "which one is best", it is "which one is best for this".
 
-## ChatGPT (GPT-5 class)
+Most teams never actually choose. They signed up for one model in year one, wired their habits around it, and never revisited the decision. That is understandable and it is expensive. The writing never quite lands and nobody can say why, because the cause is invisible: the wrong tool, applied to a task it was never the strongest at. The fix costs about £15 to £20 a month for a second subscription and roughly zero friction. Four tabs, four logins, and switching between Claude, ChatGPT, Gemini and Perplexity now takes seconds.
 
-**Where it wins.** Structured outputs, large multi-document workflows, automation scaffolding, anything where you need the model to follow instructions literally and return a clean JSON or table. Custom GPTs are still the easiest way to package a reusable workflow for a non-technical team. Strong on iteration: you can refine a draft through ten passes without it forgetting the spec.
+<ComparePanel
+  a={{ heading: "The right model per task", items: [
+    "Two or three subscriptions, matched to task type",
+    "Drafting, policy, research and structure each go where they are strongest",
+    "A second model critiques what the first one wrote",
+    "The model map lives in a one-page doc the team follows",
+    "Reviewed every six months, because the curve moves quarterly",
+  ]}}
+  b={{ heading: "One model, chosen once", items: [
+    "Signed up in year one, never revisited since",
+    "Every task runs through the same model, good fit or not",
+    "The writing never quite lands and nobody knows why",
+    "One critique pass, from the model that wrote the draft",
+    "Re-evaluation happens when something breaks, not on a cadence",
+  ]}}
+  caption="The cost of a second subscription is trivial. The cost of the wrong model on the wrong task compounds every week."
+/>
 
-**Where it is weaker.** Tone in long-form writing can drift toward generic. Will produce confident first drafts that need critique passes.
+## What each model is actually good at
 
-**Reach for it when.** Drafting JDs, building interview kits, structuring 30-60-90 plans, scaffolding workflows for Zapier or n8n, generating data for analysis, building Custom GPTs for the team.
+Strip the marketing and four models carry the bulk of People work. Each has a real edge and a real weakness. Learn both and the choice mostly makes itself.
 
-## Claude
+**ChatGPT (GPT-5 class).** Strongest on structured output, multi-document workflows and automation scaffolding: anything where you need the model to follow instructions literally and hand back a clean table, a JSON block, or a spec a downstream tool can consume. Custom GPTs remain the easiest way to package a reusable play for a non-technical team. It also iterates without losing the thread: you can refine a draft through ten passes and it holds the brief. Where it is weaker: tone in long-form writing drifts toward generic, and it produces confident first drafts that need a critique pass before anyone reads them. Reach for it when you are drafting job descriptions, building interview kits, structuring a 30-60-90 plan, scaffolding an [n8n](/intelligence/from-prompts-to-systems) or Zapier flow, or shipping a Custom GPT the team will reuse.
 
-**Where it wins.** Long-form writing, sensitive communications, policy drafting, performance review prose, anything where tone and judgment matter. More likely than other models to push back when something feels off, which is a feature for People work. Strong on multi-step reasoning when given room to think.
+**Claude.** Strongest on long-form writing, sensitive communications, policy drafting and performance-review prose: anything where tone and judgement decide whether the words land. It is more likely than the others to push back when something feels off, which is a feature, not a nuisance, when the reader is a real employee reading a real decision. It reasons well across multiple steps when you give it room to think. Where it is weaker: it is less aggressive about structured output unless you ask explicitly, and some tiers carry a smaller default context window. Reach for it when you are writing a difficult comms email, drafting a policy, framing a hard performance conversation, or redesigning a team ritual, anything where a careless sentence does damage.
 
-**Where it is weaker.** Less aggressive about structured outputs unless you specify them. Smaller default context for certain tiers.
+**Gemini.** Strongest on multimodal input and large research synthesis: feed it a screenshot, a PDF, a chart, or a pile of documents and ask it to read widely and pull the thread together. It is native to the Google stack, which matters if your team lives in Workspace. Where it is weaker: personality and tone read flatter than Claude, and it is less consistent than ChatGPT on tightly structured output. Reach for it when you are running a research scan, comparing vendors, reading survey-result screenshots, or summarising a long PDF where the input is varied and large.
 
-**Reach for it when.** Writing a difficult comms email, drafting policy, framing a tricky performance conversation, redesigning team rituals, anything where the words have to land carefully.
+**Perplexity.** The answer engine for "what does the public web actually say about this", with citations built in and time filters that work. It is the first place to go for questions like "what is the current state of pay benchmarking for engineering at Series B", where you need sources you can open and check. Where it is weaker: it is not a drafting tool and not a workflow tool. Treat it as research, not as an assistant, and it earns its keep. Reach for it for market research, benchmarking, regulatory updates, and "is this actually true" checks on something another model has told you.
 
-## Gemini
+<Takeaway>Claude for words that have to land. ChatGPT for structure and workflows. Gemini for large multimodal research. Perplexity for sourced answers. Match the strength to the task.</Takeaway>
 
-**Where it wins.** Multimodal: feed it a screenshot, a PDF, a chart. Strong on large research tasks where you want it to read a lot and synthesise. Native to the Google stack, which matters if your team lives in Workspace.
+## The stack that works, task by task
 
-**Where it is weaker.** Personality and tone are flatter than Claude. Less consistent on highly structured outputs than GPT.
-
-**Reach for it when.** Research scans, vendor comparisons, analysing screenshots of survey results, summarising long PDFs, anything where the input is varied and large.
-
-## Perplexity
-
-**Where it wins.** The answer engine for "what does the public web actually say about this." Citations are built in. Time filters work well. The first place to go for "what is the current state of comp benchmarking for engineering at Series B" type questions.
-
-**Where it is weaker.** Not a drafting tool. Not a workflow tool. Treat it as research, not as an assistant.
-
-**Reach for it when.** Market research, benchmarking, regulatory updates, "is this true" checks on something a model has told you.
-
-## Pattern stack by task
-
-A working default stack for a People team:
+Here is a working default for a People function. It is not gospel; it is a starting map you adjust as the models move. The pattern that matters is the second column: a primary model does the work, a different model critiques it. Two perspectives on the same draft catches most of what a single model misses.
 
 | Task | Primary | Critique pass |
 |---|---|---|
-| Writing HR policies | Claude | GPT-5 |
-| Career pathing and coaching frames | Claude | GPT-5 |
-| Employee comms and tone rewrites | Claude | GPT-5 |
-| Recruiting: JDs, interview kits | GPT-5 | Claude |
-| Market and trend research | Perplexity or Gemini | (cross-check second source) |
-| Performance review support | Claude | GPT-5 |
-| Meeting summaries from transcripts | Gemini or Claude | n/a |
-| Internal knowledge base, SOPs | Claude | GPT-5 |
-| Workflow automation scaffolding | GPT-5 | n/a |
-| Vendor research | Perplexity | Gemini |
+| Writing HR policies | Claude | ChatGPT |
+| Career pathing and coaching frames | Claude | ChatGPT |
+| Employee comms and tone rewrites | Claude | ChatGPT |
+| Recruiting: JDs, interview kits | ChatGPT | Claude |
+| Market and trend research | Perplexity or Gemini | Cross-check a second source |
+| Performance review support | Claude | ChatGPT |
+| Meeting summaries from transcripts | Gemini or Claude | None |
+| Internal knowledge base, SOPs | Claude | ChatGPT |
+| Workflow automation scaffolding | ChatGPT | None |
+| Vendor and tool research | Perplexity | Gemini |
 
-Two reliable habits sit underneath this stack: never ship a first draft, and always cross-check important outputs with a second model. The cost is one extra prompt, one extra pass. The pay-off is work that doesn't need redoing.
+Read the table and the underlying logic is simple. Where the output is words a person will read and react to, Claude leads and ChatGPT checks. Where the output is structure a system will consume, ChatGPT leads. Where the output is a fact you are staking a decision on, an answer engine leads and you verify against a second source. The model follows the shape of the work.
 
-## What this means in practice
+## Two habits that beat any model choice
 
-Most teams that run one model never chose to. They signed up for one in year one and never revisited it. Four tabs open, four logins, that is the actual friction cost of switching between Claude, ChatGPT, Gemini and Perplexity now, and it is close to zero. The right answer for almost every team is "use the right one for the task."
+Which model you pick matters less than two disciplines that sit underneath the whole stack. Get these wrong and the best model in the world still ships you bad work.
 
-That is also one of the easier early wins for the [champion model](/intelligence/the-champion-model). Champions can document, by task type, which model the team should reach for, and embed that into the [AI workspace](/intelligence/setting-up-your-ai-workspace). It's a one-page doc. Most teams never write it, and pay for that every time someone drafts a redundancy letter in the wrong model.
+The first: never ship a first draft. A first draft is a model's opening guess, not a finished thing. It exists to be argued with. The second: cross-check anything consequential with a second model. The cost is one extra prompt and one extra pass. The pay-off is work that does not come back to be redone, and mistakes caught before they reach a real employee rather than after.
 
-The model is not the bottleneck for most teams. The bottleneck is knowing which one to pick, when. Solve that, then move on to the more interesting question: how to wire any of them into the workflows that actually matter, which is where the move from [prompts to systems](/intelligence/from-prompts-to-systems) begins.
+<FieldNote label="What breaks">
+I have watched a team draft a redundancy letter in the model they always used, because it was the tab that happened to be open. The letter was structurally fine and tonally cold in a way nobody clocked until it had gone out. The same brief in a model that handles sensitive comms would have flagged the missing warmth on the first pass.
 
+The letter was not the failure. The workflow was. Nobody had decided, in advance, which model touches a message that changes someone's life. So the decision got made by whichever tab was open, which is no decision at all.
+</FieldNote>
 
+The cross-check habit earns its place most on numbers. A model will hand you a benchmark, a statistic, a "typical" figure with total confidence and no source. That is precisely where a second pass through an answer engine pays for itself.
 
-## What this connects to
+<FieldNote label="The gotcha">
+A model once told a team, flatly, that a particular salary median sat well above where it actually was. Confident, specific, wrong. The number would have anchored a whole pay-review conversation if it had gone unchecked.
 
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
+Perplexity, with the sources on the page, corrected it in under a minute. The lesson is not "that model is bad". It is that any model will state a made-up number as fact, so anything you are about to build a decision on gets a sourced second look.
+</FieldNote>
 
-- [Automation patterns that pay off](/intelligence/automation-patterns-that-pay-off)
-- [Coaching and feedback systems that actually compound](/intelligence/coaching-and-feedback-systems)
-- [Designing values that stick](/intelligence/designing-values-that-stick)
-- [Production agents for People Ops](/intelligence/production-agents-for-people-ops)
+## How to pick a model for a task you have not mapped
+
+The table covers the common jobs. New tasks turn up weekly, and you will not always have a row for them. Rather than guess, run the task through a short filter. It takes about thirty seconds and it beats defaulting to the open tab.
+
+<DecisionFilter
+  title="Run a new task through this before you pick a model"
+  criteria={[
+    { test: "What does a wrong answer cost here?", fail: "High-stakes, human-facing work sent to whichever model was already open" },
+    { test: "Does the tone have to land, or does the output just have to be correct?", fail: "A sensitive message drafted in a model tuned for structure, not judgement" },
+    { test: "Does it need sources you can open and check?", fail: "A benchmark taken on faith from a model that cannot cite one" },
+    { test: "Does a downstream system consume the output?", fail: "Clean structured data expected from a model asked in free prose" },
+    { test: "Does it decide anything about a named person?", fail: "The model asked to make the call, not draft the option" },
+  ]}
+  verdict="If the last answer is yes, the model drafts and a human decides. That line does not move for any model, at any tier."
+/>
+
+The filter is not academic. It is the thing a [champion](/intelligence/the-champion-model) writes down once and the team runs forever. Most of the value in a People function's AI stack is not the models; it is the fifteen minutes someone spent deciding which model meets which kind of work, and writing it where the rest of the team can find it.
+
+## Where AI is never the decider
+
+One line runs under every model choice and never bends. AI is an assistant for HR decisions, never the decision-maker, and that is true of Claude, ChatGPT, Gemini and every model that follows them. All of them produce good interview question banks, calibration prompts and review draft frames. All of them will also produce a confidently wrong recommendation if you let them near a decision about a person without a human in the loop.
+
+The failure mode is subtle. The output reads well, so it feels authoritative, so the human review quietly thins from "judge this" to "rubber-stamp this". That is the moment the model became the decider by default, without anyone choosing it, exactly like the redundancy letter picked by the open tab. This is why AI in People work needs a written line on what a model must never decide, not a vibe. [Governance for People teams](/intelligence/ai-governance-for-people-teams) is the mechanism that keeps the human at every consequential step, so speed on the drafting never turns into drift on the judgement.
+
+## Make it a one-page doc, not a habit
+
+The single easiest win here is not a better model. It is writing the model map down. By task type, which model the team reaches for, which model critiques it, and where the human review is non-negotiable. Embed it in your [AI workspace](/intelligence/setting-up-your-ai-workspace) so it is next to the work, not buried in a wiki nobody opens. It is a one-page document. Most teams never write it, and pay for that omission every time someone drafts something sensitive in the wrong tool. This is one small piece of a wider [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops): the models are the easy part, the decisions around them are the work.
+
+Then re-evaluate it every six months. The cost-quality curve moves quarterly; a model that trailed on tone last spring may lead on it now, and the reverse. Bake the review into a cadence rather than waiting for something to break. If you want a structured way to see where your function actually stands on tools, data and the habits around them, the [Readiness Assessment](/readiness) scores it across four capability layers in about ten minutes.
+
+The model is not the interesting problem. Once you know which one to pick and when, the real question opens up: how to wire any of them into the workflows that carry real weight, which is where the move from prompts to systems begins.
 
 <KeyTakeaways>
-- Default to one general model across the function. Reduce decision overhead.
-- Use specialist models only where the workflow demands it.
-- Bake re-evaluation into the cadence. The market moves whether you do or not.
+- Run two or three models and match each to the task, rather than standardising on one out of habit.
+- Claude leads on words that have to land, ChatGPT on structure and workflows, Perplexity and Gemini on sourced research.
+- Never ship a first draft, and cross-check anything consequential, especially numbers, with a second model.
+- Keep a human as the decider on anything about a named person. AI drafts the options; it does not make the call.
+- Write the model map into a one-page doc, embed it in the workspace, and re-evaluate every six months.
 </KeyTakeaways>

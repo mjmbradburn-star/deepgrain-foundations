@@ -5,141 +5,181 @@ export const frontmatter = {
   primaryCluster: "measurement-and-roi",
   clusters: ["governance-and-policy"],
   track: "people-ops",
-  description: "If the CFO asks what your AI investment has returned, vague time-saving stories are not enough. Here is how to measure People Ops AI value properly - and tell the story to a board that knows the difference.",
-  keywords: ["AI ROI in HR", "measuring AI value", "People Ops AI business case", "AI cost benefit analysis", "board narrative AI"],
+  description: "Time saved is the vanity metric every function reports and no CFO banks. Here is how measuring AI value in People Ops actually works, and how to defend it.",
+  keywords: ["measuring AI value in People Ops", "AI ROI in HR", "People Ops AI business case", "how to measure AI ROI in HR", "AI cost benefit analysis for HR", "board narrative for AI investment"],
   readTime: "12 min",
   publishedAt: "2026-04-14",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
+export const faqs = [
+  {
+    question: "How do you measure the ROI of AI in HR?",
+    answer: "Count three things and rank them by how well finance trusts them. First, the spend that stops: licences, vendors and contractors you no longer need. Second, hires you can defer, but only if the role was named on the workforce plan before the AI work removed it. Third, hours moved from low-judgement to high-judgement work, measured before and after with the people doing it. Convert the hours to a fraction of an FTE so a CFO can read them.",
+  },
+  {
+    question: "What counts as a good ROI for AI in People Ops?",
+    answer: "A properly measured People Ops AI portfolio returns roughly five to ten times its direct cost in the first year. Not a hundred times, whatever the vendor deck claims. Most of that return is licence displacement and reallocated time across eight to twelve shipped workflows, and payback on a single workflow is often a matter of weeks. Five to ten is large enough to keep the funding and small enough to survive a hostile question.",
+  },
+  {
+    question: "Is time saved a useful metric for AI value?",
+    answer: "Time saved is the weakest number you can lead with. It never appears as money on a P&L, the baseline is almost always a guess, and every function has claimed it for two years, so a board now discounts it on sight. Measure the hours if you like, but convert them to FTE, tie them to the person who does the work, and keep them behind the harder numbers: retired spend and deferred, pre-committed hires.",
+  },
+  {
+    question: "How do you prove AI headcount savings to a CFO?",
+    answer: "You prove headcount avoidance before the AI work, not after. Document the role you would have opened, the date it was due, and the salary band, on the workforce plan, with a sign-off. When the existing team absorbs the work instead, you point to a named role that came off the plan. Without that pre-commitment the saving is invisible, and a claim of avoided hires with no plan behind it reads as wishful, not measured.",
+  },
+];
+
 <TLDR>
-- Most AI value measurement in People Ops is theatre. Time saved per task is a vanity metric.
-- Measure what compounds: capability built, decisions improved, latency reduced, work prevented.
-- Pair every quantitative metric with a qualitative read. The numbers lie alone.
-- Reporting AI value is a craft. Treat it like one.
+- Measuring AI value in People Ops means counting the spend you can stop, the hires you can defer, and the work the team can now do, not the hours a dashboard says were saved.
+- Value falls into five categories, and only two of them read as hard money to a CFO. Lead with those.
+- Every number you put on a slide should be labelled hard, soft, or a claim, honestly. Boards trust the function more when it distinguishes.
+- A properly measured portfolio returns five to ten times its direct cost in year one, not the hundred the vendor promised.
+- The team needs a different story from the board: what the work feels like now, not what it returned.
 </TLDR>
 
-Sooner than most CPOs expect, the CFO will ask a version of: *what has this AI work returned?* The wrong answer is a story about how everyone feels more productive. The right answer is a small set of numbers, defended honestly, that show where the gains actually came from and where they did not.
+Measuring AI value in People Ops means counting three things: the spend you can stop, the hires you can defer, and the work your team can now do that it could not do before. It does not mean the hours a dashboard says were saved. Time saved is the metric every function reports and no CFO banks, because it never lands as money and nobody can defend the baseline. The real business case is smaller, harder to build, and far more credible than the one most People teams try to tell.
 
-This piece is about how to build that answer. It is not about gaming a measurement framework to make AI look good. It is about measuring properly so the work that earns its keep gets continued investment, and the work that does not gets retired.
+<Takeaway>Vague time-saving stories will not survive a CFO question. Five categories of value, the numbers a board actually banks, and a filter for every one before it reaches a slide.</Takeaway>
 
-<Takeaway>Vague time-saving stories will not survive a CFO question. Five categories of value, the numbers the board cares about, and the single chart that wins the conversation.</Takeaway>
+## What measuring AI value in People Ops actually means
 
-## Five categories of value (and which the board cares about)
+Sooner than most CPOs expect, the CFO asks a version of the same question: *what has this AI work returned?* The wrong answer is a story about everyone feeling more productive. The right answer is a small set of numbers, defended honestly, that show where the gains came from and where they did not.
 
-Most People Ops AI value falls into one of five buckets. They are not equally legible to a finance team, and you should know which is which before you start measuring.
+The instinct is to reach for time saved, because a tool will happily report it. Resist that. Time saved is a vanity metric for three reasons. It never appears as money, so finance has nothing to bank. Its baseline is almost always invented after the fact, so it fails the first hostile question. And every function has claimed a productivity uplift for two years now, so the number has stopped meaning anything in a boardroom.
 
-**1. Direct cost displacement.** Licences retired. Vendors cancelled. Contractors not renewed. This is the only category the CFO sees as unambiguous. If you can point to a £40k/year survey-analysis contract that is no longer needed because the team now does it in Claude, that is real money.
+Measuring properly is not about gaming a framework to make AI look good. It is the opposite. It is measuring honestly enough that the work which earns its keep gets continued investment, and the work that does not gets retired. That honesty is the asset. A People function that can distinguish a hard number from a soft one earns more trust, not less, and trust is what funds the next round.
 
-**2. Headcount avoidance.** A role that would have been hired and was not, because the existing team can now absorb the work. Harder to defend than displacement (the counterfactual is hypothetical) but real, especially in growing companies. Document the role you would have opened, the date, and the salary band, *before* the AI work eliminates it. Without that pre-commitment, the avoidance becomes invisible.
+## Five categories of value, and which the board actually banks
 
-**3. Time reallocation.** Hours per week shifted from low-judgment work (drafting, coordination, reporting) to high-judgment work (partnering, calibration, design). The hardest to monetise but often the largest in absolute size. Worth measuring even though the CFO will discount it.
+Most People Ops AI value falls into one of five categories. They are not equally legible to a finance team, and you should know which is which before you measure anything.
 
-**4. Quality and risk.** Faster time-to-fix on people issues. Earlier signal on engagement problems. Fewer mistakes in comms, comp, or contracts. Real value, almost impossible to quantify without a controlled experiment, and worth tracking qualitatively rather than fabricating numbers for.
+| Category | What it is | How the CFO reads it | When it lands |
+| --- | --- | --- | --- |
+| Cost displacement | Licences, vendors and contractors that stop | Unambiguous, hard money | Straight away |
+| Headcount avoidance | A planned hire the team now absorbs | Real if pre-committed, hypothetical if not | Next budget cycle |
+| Time reallocation | Hours moved from low to high judgement | Discounted, though often the largest | Over quarters |
+| Quality and risk | Faster fixes, earlier signal, fewer errors | Believed only with examples | Hard to date |
+| Capability and optionality | Work the team could not do before | A strategic argument, not a P&L line | Long term |
 
-**5. Capability and optionality.** The team can now do things it could not do before. New analyses. New cadences. New experiments. This is the long-term value but it shows up nowhere on a P&L this year.
+Cost displacement is the only category the CFO treats as beyond argument. A survey-analysis contract you no longer need because the team now does the work in Claude is real money that stopped. Headcount avoidance is real too, but only if you did the work up front: name the role, the date and the band on the workforce plan *before* the AI work removes it. Without that pre-commitment the saving becomes invisible, and a claim of avoided hires with no plan behind it reads as wishful.
 
-A credible board narrative leads with categories 1 and 2 (the legible numbers), substantiates with category 3 (the time shift), and uses categories 4 and 5 as the strategic argument for continued investment. Trying to lead with capability and optionality, without a hard number alongside, almost never lands.
+Time reallocation is the largest category in absolute size and the one finance discounts most, because a freed hour is not a saved pound until someone decides what fills it. Quality and risk is genuinely valuable and almost impossible to quantify without a controlled experiment, so track it with examples, not fabricated percentages. Capability and optionality, the team doing work it simply could not before, is the long-term prize and shows up nowhere on this year's P&L.
+
+A credible board narrative leads with the first two categories, substantiates with the third, and uses the last two as the strategic argument for continued investment. Trying to lead with capability, without a hard number beside it, almost never lands.
 
 ## The numbers worth tracking, in order of difficulty
 
-Not everything needs to be measured. The discipline is in measuring the small set that actually moves a board conversation.
+Not everything needs measuring. The discipline is measuring the small set that moves a board conversation, and being honest about how hard each one is to defend.
 
-**Easy and credible: licence and vendor displacement.** Maintain a running list. *Before AI: £80k/year on transcription, surveys, candidate-screening tools. After AI: £25k/year. Net displacement: £55k/year.* This number is the floor of your business case and the easiest to defend. Most teams do not track it because nobody asks them to. Start tracking it from day one.
+**Easy and credible: licence and vendor displacement.** Keep a running list from day one. *Before: £80k a year on transcription, surveys and candidate-screening tools. After: £25k a year. Net displacement: £55k a year.* This is the floor of your business case and the easiest number to defend, because it is a line item that stopped. Most teams never track it, because nobody asks them to. Start now.
 
-**Moderately hard, very credible: time per workflow.** For each shipped automation, measure once before and once after, with the actual people doing the work. *Recruiter–hiring-manager kickoff doc: 45 minutes before, 10 minutes after, run 60 times a year, 35 hours of recruiter time reallocated.* Multiply across your shipped workflows, sum the hours, and convert to FTE. *Total reallocation: 0.6 FTE worth of time.* That is a number the CFO understands.
+**Moderately hard, very credible: time per workflow.** For each shipped automation, measure once before and once after, with the actual people doing the work. *Recruiter and hiring-manager kickoff doc: 45 minutes before, 10 minutes after, run 60 times a year. Thirty-five hours of recruiter time reallocated.* Sum across your workflows and convert to a fraction of an FTE. *Total: 0.6 of an FTE.* That is a number a CFO understands.
 
-**Harder, still credible: cycle-time improvements.** Time-to-hire by stage. Time from survey close to first action. Time from manager request to first draft. Pick two or three cycles where the team has shipped automations and track quarter-on-quarter. The shape of the trend matters more than any single number.
+**Harder, still credible: cycle time.** Time-to-hire by stage. Time from survey close to first action. Time from a manager's request to a first draft. Pick two or three cycles where the team has shipped automations and track them quarter on quarter. The shape of the trend matters more than any single reading.
 
-**Very hard, do not fake it: quality.** Resist the temptation to invent quality metrics. *"AI-generated drafts are 23% better quality"* - based on what? - destroys credibility faster than admitting you do not have a number. Either run a real comparison study (rare and expensive) or speak about quality qualitatively, with examples, and own the lack of a number.
+**Very hard, do not fake it: quality.** Resist inventing a quality metric. *"AI drafts are 23 percent better"*, measured by whom, against what? A fabricated quality number destroys credibility faster than admitting you do not have one. Either run a real comparison study, which is rare and expensive, or speak about quality with examples and own the absence of a figure.
 
-The pattern is: be honest about which numbers are hard and which are soft. Boards trust the People function more, not less, when it distinguishes between them.
+The pattern is simple: be honest about which numbers are hard and which are soft. A board trusts a function that draws that line itself.
 
-## The single chart that wins the conversation
+## What the ROI calculation actually looks like
 
-If you only get one slide for the AI work, make it a single chart with three stacked components, plotted over four to six quarters:
+For a single shipped workflow the calculation is not complicated.
 
-- **Cumulative cost displaced** (hard £, going up)
-- **Cumulative FTE reallocated** (hard hours converted to FTE, going up)
-- **Number of shipped workflows** (count, going up)
-
-What this chart shows is a curve that compounds. The cost displacement grows quietly. The FTE reallocation grows faster than headcount. The workflow count grows faster than both - because each new workflow is cheaper to build than the last one, given the shared infrastructure.
-
-Underneath the chart, three sentences. *Q1: foundations and first cluster. Q2: second cluster, first headcount avoidance. Q3: function-wide rollout, first cost displacement at scale.* Story attached to numbers attached to dates. No buzzwords. No "transformation journey."
-
-The board sees a function that can count what it does. That alone separates you from most People functions in their portfolio.
-
-## What ROI calculation actually looks like
-
-For each shipped workflow, the calculation is simple:
-
-> **Annual value** = (hours saved per cycle × cycles per year × loaded hourly cost of the role) + any directly displaced licence/vendor cost
+> **Annual value** = (hours saved per cycle × cycles per year × loaded hourly cost of the role) + any licence or vendor cost the workflow directly retires.
 >
-> **Annual cost** = build cost (one-off, amortised over expected life) + run cost (tooling, monitoring, periodic improvement)
+> **Annual cost** = build cost, amortised over the workflow's expected life, plus run cost: tooling, monitoring and periodic improvement.
 
-A worked example. The recruiter–hiring-manager kickoff doc workflow:
+Take the recruiter kickoff doc, worked through end to end:
 
-- Hours saved: 0.6 hours (35 minutes) per cycle
-- Cycles: 60 hires per year
-- Loaded recruiter cost: ~£60/hour
-- Annual value (time): 0.6 × 60 × £60 = £2,160
-- Plus: avoided ~£3k/year on a templating add-on the team had wanted to buy
-- **Annual value: ~£5k**
-- Build cost: ~10 champion hours (£60/hour) = £600, amortised over 2 years = £300/year
-- Run cost: ~£200/year in tooling
-- **Annual cost: ~£500**
-- **Net: ~£4.5k/year, payback in roughly 6 weeks**
+- Hours saved: 0.6 hours per cycle, run 60 times a year
+- Loaded recruiter cost: about £60 an hour
+- Annual value from time: 0.6 × 60 × £60 = £2,160
+- Plus a £3k templating add-on the team had wanted to buy and no longer needs
+- **Annual value: about £5k**
+- Build cost: roughly 10 champion hours at £60, so £600, amortised over two years is £300 a year
+- Run cost: about £200 a year in tooling
+- **Annual cost: about £500**
+- **Net: about £4.5k a year, payback in roughly six weeks**
 
-Done across a portfolio of 8–12 workflows in the first year, the math compounds. Most People Ops AI portfolios, properly measured, return 5–10x their direct cost in year one. They do not return 100x, contrary to vendor decks. The honest number is large enough.
+One workflow is a rounding error. Eight to twelve of them in the first year is a portfolio, and the maths compounds, because each new workflow is cheaper to build than the last one given the shared infrastructure underneath. The tooling that carries most of this, n8n for orchestration at around £20 per builder seat a month, SOC 2 and ISO 27001 compliant and self-hostable, is a fixed cost the whole portfolio shares. That is where the [automation audit playbook](/intelligence/automation-audit-playbook) earns back its two weeks: it hands you the ranked list of workflows worth building, so the portfolio starts with the ones that pay.
 
-## What not to claim
+<PullStat value="100×">
+That is the return the vendor deck promised. The honest number, measured properly, is five to ten. Five to ten is more than enough to keep the funding, and it survives the question the hundred never could.
+</PullStat>
 
-Three claims that destroy credibility every time.
+## Run every number through this before the board sees it
 
-**"AI saved us a year of work."** No it did not. It saved you specific hours on specific tasks. Quantify what you can; do not extrapolate to round numbers that nobody can defend.
+The failure mode is not too few numbers. It is one soft number dressed as a hard one, caught live by a CFO who has seen the trick before. Before anything reaches a slide, put it through a filter.
 
-**"Productivity is up 30%."** Based on what baseline? Measured how? In whose work? Boards have heard this number from every function for two years. It now means nothing.
+<DecisionFilter
+  title="Five tests before a number reaches the board"
+  criteria={[
+    { test: "Can you show the contract, invoice or workforce plan the number came from?", fail: "It lives only in a spreadsheet you built" },
+    { test: "Did you measure the before, not just the after?", fail: "The baseline is a guess made after the fact" },
+    { test: "Would the number survive the person who does the work reading it?", fail: "It assumes a saving they would not recognise" },
+    { test: "Is it a count of real cycles, or one good week annualised?", fail: "A single fast run multiplied by fifty-two" },
+    { test: "Have you labelled it hard, soft, or a claim, honestly?", fail: "A soft number wearing a hard number's clothes" },
+  ]}
+  verdict="A number that cannot answer all five is a story, not evidence. Tell it as a story or leave it off the slide."
+/>
 
-**"We avoided three hires."** Maybe true, but only credible if you can show the three roles that were on the workforce plan and were removed, with dates and signatures. Without that pre-commitment, headcount avoidance is a claim, not a number.
+The principle underneath the filter is one line: claim less than you could, with more precision than expected. Credibility is the thing you are protecting, and it is far more expensive to rebuild than to keep.
 
-The principle: claim less than you could, with more precision than expected. Credibility is the asset you are protecting.
+## What a board banks, and what it discounts
 
-## The internal version of the story
+The same value, described two ways, either survives the room or dies in it. The difference is not spin. It is whether there is something behind the number a hostile CFO can pull on.
 
-Boards see one version of the value story. The team needs a different one.
+<ComparePanel
+  polarized
+  a={{ heading: "A number the board banks", items: [
+    "£55k of licence and vendor spend retired, with the contracts to show it",
+    "0.6 of an FTE freed, measured before and after with the people who do the work",
+    "Two deferred hires, named on the workforce plan with dates and a sign-off",
+    "A cycle that moved from 21 days to 9, quarter on quarter",
+    "A range you can defend line by line under pressure",
+  ]}}
+  b={{ heading: "A claim the board discounts", items: [
+    "\"AI saved us a year of work\", extrapolated from nowhere",
+    "\"Productivity is up 30 percent\", with no baseline anyone can name",
+    "\"We avoided three hires\", with no plan showing the three roles",
+    "\"Drafts are 23 percent better\", measured by no one",
+    "A round number chosen because it sounds like impact",
+  ]}}
+  caption="Every claim on the right describes real value. It just has nothing behind it a CFO can pull on."
+/>
 
-Internally, the value story is less about money and more about *what the work feels like now.* Two questions, asked twice a year, do most of the work:
+The three claims that destroy credibility every time all live on the right. *"AI saved us a year of work"*: no, it saved specific hours on specific tasks, so quantify those and stop. *"Productivity is up 30 percent"*: against what baseline, in whose work? *"We avoided three hires"*: only credible if the three roles were on the plan and came off it with dates. Notice the pull toward the round number in all three. Round numbers feel like impact and read as invention, because real measurement almost never lands on a multiple of ten.
 
-1. *What used to take you a chunk of your week that no longer does?*
-2. *What can you do now that you simply could not do before?*
+<FieldNote label="The gotcha">
+A transit company we worked with had a £40,000 annual licence sitting in the budget that nobody had questioned in three years. It was the assumed cost of a job everyone believed needed a specialist tool. One tool and two internal builders later, the job ran without it, and the licence came out of the budget.
 
-The answers are qualitative, anecdotal, and far more motivating than any ROI chart. They tell the team that the change is real, that the build effort was worth it, and that the next round of work is worth doing too.
+That £40,000 was the easiest number in the whole engagement to defend, because it was a line item that stopped. No projection, no counterfactual, no loaded hourly rate to argue over. The lesson stuck: before you reach for the hard-to-defend hours, go and find the spend that simply ends. It is usually hiding in plain sight, three budget cycles deep.
+</FieldNote>
 
-A function that gets both stories right - the hard numbers for the board, the lived experience for the team - has solved the harder half of the AI investment conversation. The actual technology, by then, is the easy part.
+## The story the team needs is not the story the board needs
 
-## The longer game
+A board sees one version of the value story. The team needs a different one, and getting only the board version right is half a job.
 
-ROI matters most in the first eighteen months, when the work needs justifying. After that, AI in the People function should be like the HRIS - you do not calculate the ROI of having one, because not having one is not on the table.
+Internally, value is less about money and more about what the work feels like now. Two questions, asked twice a year, do most of the work. *What used to take a chunk of your week that no longer does? What can you do now that you simply could not before?* The answers are qualitative, anecdotal, and far more motivating than any ROI chart. They tell the team the change is real, the build effort was worth it, and the next round is worth doing. This is also where you catch the workflows that quietly stopped being used, which no dashboard will show you and which quietly rot your numbers if you let them.
 
-The signal that you have got there is when the CFO stops asking the question. Not because they have lost interest, but because the answer has become obvious. The function ships work. The work compounds. The numbers, when looked at, hold up. The conversation has moved on to what the team does next.
+Getting both stories right, the hard numbers for the board and the lived experience for the team, is the harder half of the AI investment conversation. It sits inside the wider discipline of [AI governance for People teams](/intelligence/ai-governance-for-people-teams): who owns the number, who reviews it, and how a claim gets from a champion's spreadsheet to a board slide without losing its honesty on the way. The measurement work and the governance work are the same work seen from two ends. Both belong to the [operating-leadership](/intelligence/pillar/operating-leadership) discipline, not to a tooling decision.
 
-That is the destination. The measurement work above is how you get there without losing the room on the way.
+## When the CFO stops asking
 
+ROI matters most in the first eighteen months, while the work still needs justifying. After that, AI in the People function should sit where the HRIS sits: you do not calculate the return on having one, because not having one is not on the table. The reason so many pilots never reach that point is the same reason [AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production), a model proving it can do a task is not an organisation proving it can absorb the consequences, and the value case is one of the consequences it has to absorb.
 
+The signal that you have arrived is when the CFO stops asking the question. Not because they lost interest, but because the answer became obvious. The function ships work. The work compounds. The numbers, when anyone checks, hold up. The conversation has moved on to what the team does next.
 
-## What this connects to
-
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
-
-- [The automation audit playbook](/intelligence/automation-audit-playbook)
-- [AI governance for People teams](/intelligence/ai-governance-for-people-teams)
-- [People debt: what GenAI exposes, and what to do about it](/intelligence/people-debt-and-genai)
-- [AI workspace setup for People teams (Claude, ChatGPT, Copilot)](/intelligence/setting-up-your-ai-workspace)
+That is the destination, and it is closer than most People leaders think. If you want the fastest honest route to a first defensible number, the [Grain Audit](/grain-audit) takes one process end to end in two weeks and hands you a ranked plan you keep, which is exactly the raw material the measurement above runs on. Pick the process. Measure the before. The numbers take care of themselves once you have earned the right to claim them.
 
 <KeyTakeaways>
-- Drop time-saved as the headline metric. It hides as much as it reveals.
-- Track capability, decision quality, and latency together.
-- Use a quarterly written narrative alongside the dashboard. The narrative is where the truth lives.
+- Drop time saved as the headline. Lead with retired spend and pre-committed hires you can defer, and keep the hours behind them, converted to FTE.
+- Label every number hard, soft, or a claim, and run all five through the filter before a board ever sees them.
+- Measure the before, not just the after. A baseline invented after the fact is the first thing a CFO pulls on.
+- Expect five to ten times direct cost in year one across a portfolio of shipped workflows. If you are claiming a hundred, you are about to lose the room.
+- Tell the team a different story: what the work feels like now, asked twice a year, in their words.
 </KeyTakeaways>

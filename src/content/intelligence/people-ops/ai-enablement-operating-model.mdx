@@ -5,146 +5,156 @@ export const frontmatter = {
   primaryCluster: "enablement-and-change",
   clusters: ["org-design-and-roles", "governance-and-policy"],
   track: "people-ops",
-  description: "Champions are a distribution layer, not a strategy. The operating model that makes AI enablement compound has three connected layers: org-wide, team-wide, individual.",
-  keywords: ["AI enablement", "AI operating model", "CHRO AI strategy", "People function AI", "AI capability building"],
-  readTime: "13 min",
+  description: "Champions and licences are not a strategy. AI enablement is an operating model with three layers and a cadence. How People leaders build one that sticks.",
+  keywords: ["AI enablement operating model", "AI enablement", "CHRO AI strategy", "People function AI capability", "how to build AI capability", "AI adoption"],
+  readTime: "10 min",
   publishedAt: "2026-04-28",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
 export const faqs = [
   {
+    question: "What is an AI enablement operating model?",
+    answer: "It is the system that turns AI from a set of tools into a sustained capability of the function. It has three connected layers: org-wide (standards, tooling strategy, governance, measurement, incentives), team-wide (rebuilt workflows, shared assets, an operating cadence), and individual (workspace, output standards, evaluation habits). Each layer has an owner, a cadence and a budget line. A licence count and a training day are inputs to it, not the thing itself.",
+  },
+  {
     question: "Why does a champions programme alone not produce sustained AI adoption?",
-    answer: "Because it has no way to survive a champion moving on. The tell is that adoption tracks the champion's calendar, not the team's workflow: move them onto a new project and usage drops within a quarter, because nothing structural was holding it up. Standards, guardrails, governance, and incentives are what keep capability in place after the individual has left the room.",
+    answer: "Because it has no way to survive a champion moving on. The tell is that adoption tracks the champion's calendar, not the team's workflow: move them onto a new project and usage drops within a quarter, because nothing structural was holding it up. Standards, guardrails, governance and incentives are what keep capability in place after the individual has left the room.",
   },
   {
-    question: "What are the three layers of an AI enablement operating model?",
-    answer: "Org-wide is the unglamorous backbone: standards, guardrails, tooling strategy, capability expectations, governance, measurement, incentives. Team-wide is where the work actually happens: workflow transformation, shared assets, an operating cadence. Individual is the human layer: workspace, context, output standards, evaluation habits. Skip one and the other two stall. Rituals with no org backbone give you inconsistent standards team by team. Individual skill with no team cadence gives you isolated power users the rest of the function can't learn from.",
+    question: "What does good look like in the first 90 days?",
+    answer: "Three to five use cases with a number attached to each: hours saved, error rate, cycle time. One published policy page. A weekly show-the-thing cadence nobody needs reminding about by month two. The real test: could a sceptical manager on a completely different team name one thing that has changed. If the answer is no, you have built a project, not a capability.",
   },
   {
-    question: "What does \"good\" look like in the first 90 days?",
-    answer: "Three to five use cases with a number attached to each: hours saved, error rate, cycle time. One published policy page. A weekly show-the-thing cadence nobody needs reminding about by month two. The real test: could a sceptical manager on a completely different team name one thing that's changed. If the answer's no, you've built a project, not a capability.",
-  },
-  {
-    question: "Whose job is this?",
-    answer: "The CHRO or CPO. AI enablement is fundamentally a people system: expectations, capability development, incentives, performance, progression, culture, trust, change management. IT can deploy tools. Only People leadership can standardise behaviours and embed AI capability into how work is done.",
+    question: "Whose job is AI enablement, IT or HR?",
+    answer: "The CHRO or CPO. AI enablement is fundamentally a people system: expectations, capability development, incentives, performance, progression, culture, trust, change management. IT can deploy tools and hold the security line. Only People leadership can standardise behaviours and embed AI capability into how work actually gets done.",
   },
 ];
 
 <TLDR>
-- AI enablement is not training. It is an operating model with owners, cadences, and budget.
-- The People function is uniquely placed to run it because enablement is half-skills, half-systems.
-- Most enablement programmes stall because they are run as events, not as a function.
-- Treat enablement like any other operating capability: roadmap, ownership, review.
+- AI enablement is not training or a tool count. It is an operating model with three layers, owners, cadences and budget.
+- The three layers are org-wide (the backbone), team-wide (where the work is rebuilt), and individual (the human layer). Skip one and the other two stall.
+- Champions are a distribution layer, not a strategy. Without the backbone, their wins evaporate the moment they rotate off.
+- Sequence it: prove value in the first quarter, scale in the second, embed by the end of the year.
+- The owner is the CHRO or CPO, because enablement is half skills and half systems.
 </TLDR>
 
-Most organisations have invested in generative AI tools and run an "AI champions" programme. Adoption and ROI remain inconsistent. The pattern is familiar.
+The question that lands in the CHRO's inbox after the board meeting is usually one line: "We rolled out AI to everyone. Where's the return?"
 
-A small group becomes power users. The majority dabble, then plateau. Risk behaviours vary by team. Leaders cannot confidently quantify impact or explain what "great" looks like.
+The honest answer is that you rolled out tools, not capability. An AI enablement operating model is not a training programme or a licence count. It is a system with three connected layers, each with an owner, a cadence and a budget line. Skip the model and you get exactly the picture the board is describing: a handful of power users, a majority who dabble then plateau, risk behaviours that vary team by team, and no leader able to say confidently what "great" looks like. The tools were the easy part. The operating model underneath them is the work.
 
-The gap sits one level up from the tools. AI enablement needs to be treated as a company capability, comparable to leadership development, security awareness, or management fundamentals: three connected layers, not one.
+<Takeaway>Champions distribute capability. They cannot replace the operating backbone underneath: standards, guardrails, capability expectations, governance, measurement and incentives.</Takeaway>
 
-<Takeaway>Champions distribute capability. They cannot replace the operating backbone underneath: standards, guardrails, capability expectations, governance, measurement, and incentives.</Takeaway>
+## Why AI enablement is an operating model, not a training programme
 
-## Why a champions programme alone is not enough
+Most organisations have already bought the licences and stood up an "AI champions" programme. Adoption and return stay stubbornly uneven. The pattern repeats across enough engagements to write it down: a small group becomes genuinely good, the majority try it a few times and drift back to old habits, and every team invents its own idea of what is safe. Leaders cannot quantify the impact because there is nothing consistent to measure.
 
-Champions are useful. They translate generic guidance into examples that make sense for Finance, People, Sales, Engineering, Legal. They create social proof. They surface friction early. A good champions programme accelerates adoption.
+The gap sits one level up from the tools. Treat AI enablement the way you already treat leadership development, security awareness or management fundamentals: as a company capability with a backbone, not an event with a launch date. Those capabilities did not stick because someone ran a workshop. They stuck because there was a standard, a cadence, an owner and a set of incentives that carried the behaviour long after the training day. AI is no different, and it moves faster, so the absence of a backbone shows up sooner.
 
-What a champions programme cannot do, on its own, is produce sustained capability. Champions rotate. Their priorities shift. The teams around them go back to old habits the moment the champion is occupied with something else. Without an underlying system, the wins evaporate.
+An AI enablement operating model gives you something to point at. It also gives you somewhere to put the money that is currently disappearing into scattered licences with no line of sight to a result.
 
-Champions are a distribution layer, not a strategy. Build the backbone underneath them and the same champions stop restarting from zero every time someone rotates off the programme.
+## The three layers, and why skipping one stalls the other two
 
-## The three layers
+The model has three layers. They are not a maturity ladder you climb one rung at a time. They are load-bearing walls: pull one out and the other two sag.
 
-### 1. Org-wide enablement
+<LayerStack
+  layers={[
+    { name: "Individual", body: "The human layer: a persistent workspace, reusable context, output standards and the habit of evaluating before shipping.", tag: "Layer 3" },
+    { name: "Team-wide", body: "Where the work is rebuilt. Top workflows redesigned with AI in the loop, shared prompts and agents the team owns, and an operating cadence.", tag: "Layer 2" },
+    { name: "Org-wide", body: "The backbone. Standards, tooling strategy, capability expectations, governance, measurement and incentives.", tag: "Layer 1" },
+  ]}
+  baseLabel="Build from the backbone up"
+/>
 
-This is the backbone. It includes:
+**Org-wide** is the layer almost everyone skips, because it is unglamorous and produces no launch moment. It is one page of standards in plain English (what is approved, what is forbidden, what needs review), a tooling strategy that says which models are licensed and where the data lives, capability expectations tied to the levelling framework rather than bolted on as a side project, governance that names who can deploy what with what oversight, monthly measurement reported openly, and incentives that make AI-fluent behaviour show up in promotion and performance conversations. It is boring, and it is the layer that decides whether everything above it compounds or evaporates.
 
-- **Standards and guardrails.** What is approved, what is forbidden, what requires review. Plain English. One page.
-- **Tooling strategy.** Which models are licensed, which workflows are blessed, where the data lives.
-- **Capability expectations.** What every employee, every manager, every leader is expected to be able to do with AI. Tied to the levelling framework, not bolted on as a side initiative.
-- **Governance.** Decision rights for who can deploy what, where, with what oversight.
-- **Measurement.** Adoption, quality, outcomes. Reported openly, monthly.
-- **Incentives.** Promotion criteria, performance reviews, recognition rituals all reflect AI-fluent behaviour.
+**Team-wide** is where the value actually shows up. The unit is the team, not the individual. Each team picks its top three workflows and rebuilds them with AI in the loop. Take onboarding: instead of bolting a chatbot onto induction, you redesign the whole flow so AI sits at the moments that genuinely slow people down, day one, week two, first review. The before-and-after is visible enough that new hires notice it themselves. Then the team keeps the assets, prompts, agents and automations, versioned and owned, and runs a cadence that makes the work visible.
 
-Org-wide enablement is the layer most companies skip. It is unglamorous. It does not produce a launch moment. It is also the layer that decides whether the rest of the work compounds or evaporates.
+**Individual** is the human layer, and it is the one most companies do invest in, often the only one. Every employee needs a persistent AI workspace with reusable context, an understanding of what "good" looks like by task type, and the reflex to run a critique pass before shipping a first draft. It is necessary and, on its own, nowhere near sufficient. This is the whole territory of an [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops): make the individual layer real, but never mistake it for the model.
 
-### 2. Team-wide enablement
+Here is the same picture as a working matrix. It is the fastest way to see what each layer owns and, more usefully, what breaks the moment you leave one out.
 
-This is where the operating model meets the work. The unit is the team, not the individual.
+| Layer | Who owns it | Core artefact | Cadence | What breaks if you skip it |
+| --- | --- | --- | --- | --- |
+| Org-wide | CHRO plus a named enablement lead | Standards, tooling strategy, governance, metrics pack | Monthly | Standards drift team by team; no shared floor to hold anyone to |
+| Team-wide | The team lead, accountable for the workflow | Rebuilt workflows, shared prompts and agents | Weekly demo, monthly retro | Isolated wins that die when the champion rotates off |
+| Individual | The employee, backed by their manager | Persistent workspace, output standards, evaluation habits | Continuous | Power users the rest of the function cannot learn from |
 
-- **Workflow transformation.** Each team picks its top three workflows and rebuilds them with AI in the loop. Take onboarding: redesign the whole flow so AI sits at the moments that actually slow people down, day one, week two, first review, rather than being bolted onto induction as an add-on. The before-and-after is visible enough that new hires notice it themselves.
-- **Shared assets.** Prompts, Custom GPTs, automations, agents. Owned by the team, versioned, shared.
-- **Cross-functional process ownership.** Workflows that cross teams (offer-to-onboard, hire-to-pay) get an explicit owner who is accountable for the AI-enabled version.
-- **Operating cadence.** Weekly demos. Monthly retros. Quarterly outcome reviews. The rituals make adoption visible and create the feedback loop that drives improvement.
+Read the last column on its own and the interdependence is obvious. Rituals with no org backbone give you inconsistent standards team by team. Individual skill with no team cadence gives you isolated power users nobody else can learn from. Org standards with no individual capability give you a policy document that describes a behaviour nobody in the building can actually perform.
 
-Team-wide enablement is where the value shows up. It is also where most champions programmes fall short, because they leave the team without the structures to sustain the work.
+## Where champions help, and where they can't
 
-### 3. Individual enablement
+Champions are useful, and I would not run an enablement effort without them. They translate generic guidance into examples that make sense for Finance, People, Sales, Engineering and Legal. They create social proof. They surface friction early. A good champions programme genuinely accelerates adoption.
 
-The final layer is the human. Without individual capability, the other two layers are theoretical.
+What a champions programme cannot do, on its own, is produce sustained capability. Champions rotate. Their priorities shift. The teams around them slide back to old habits the moment the champion is pulled onto something else. Without an underlying system, the wins evaporate, and the next champion starts again from zero. That is the whole case for building the backbone first and letting the [champion model](/intelligence/the-champion-model) sit on top of it, distributing capability the system already supports rather than carrying the strategy by itself.
 
-- **Persistent workspaces.** Every employee has an [AI workspace](/intelligence/setting-up-your-ai-workspace) with reusable context, memory, and shared prompts. This is foundational. Without it, every AI session starts from zero.
-- **Reusable context.** People know how to load context efficiently, write good prompts, evaluate outputs. The basics covered in [prompting patterns](/intelligence/prompting-patterns-for-people-ops).
-- **Output standards.** What "good" looks like by task type. Models are not the source of standards. The team is.
-- **Evaluation habits.** Critique passes are normal. Nobody ships a first draft.
+<FieldNote label="The gotcha">
+There is a pattern I see so often it has a name. Seventeen tools. No strategy.
 
-Individual enablement is the layer most companies do invest in, often the only one. It is necessary and not sufficient.
+On one transit engagement, managers had each found their own point solution and expensed it, and the licence bill had passed forty thousand pounds before anyone thought to add it up. We retired almost all of it, kept a single tool, and trained two people inside the team to build on it. The capability that mattered was never in the tools. It was in the two builders who now owned the workflow, and it stayed after we left.
 
-## Sequencing
+The tools were never the enablement. They were the receipt for its absence.
+</FieldNote>
 
-The temptation is to do all three layers at once. Do not. The operating cadence that works:
+## What to build in the first year
 
-**Months 0 to 3, prove value fast.**
+The temptation is to do all three layers at once. Do not. The order matters more than the ambition, and each layer has to earn the next.
 
-Pick three workflows with clear outcomes. Onboard the first cohort of champions. Publish a one-page AI policy. Stand up a weekly demo. Build a simple metrics pack. Ship something visible. Resist the urge to write the strategy deck before the first thing ships.
+<ProcessFlow
+  stages={[
+    { label: "Prove value", body: "Pick three workflows with clear outcomes. Onboard the first cohort of champions. Publish a one-page policy. Stand up a weekly demo and a simple metrics pack. Ship something visible before you write the strategy deck.", meta: "Months 0-3" },
+    { label: "Scale the wins", body: "Extend the workflow set. Launch team-wide enablement in two or three pilot teams. Add the operating cadence. Tie capability expectations to the levelling framework. Start the governance work in earnest.", meta: "Months 3-6" },
+    { label: "Embed", body: "Org-wide standards published and enforced. Team-wide enablement live across most of the function. Capability expectations baked into hiring, performance and promotion. The champions programme becomes a feeder for builders, not the only mechanism.", meta: "Months 6-12" },
+  ]}
+/>
 
-**Months 3 to 6, scale the wins.**
+The sequence is not arbitrary. Org-wide standards drafted in month one will be wrong by month four, because you will not yet know what the real workflows or the real risks look like. Team-wide rituals introduced before there is anything worth showing will get gamed before they produce value. Individual enablement that runs ahead of team cadence creates power users who feel unsupported and quietly stop bothering.
 
-Extend the workflow set. Launch the team-wide enablement layer in two to three pilot teams. Add the operating cadence. Tie capability expectations to the levelling framework. Begin the governance work in earnest.
+Two artefacts pay for themselves early. The first is the one-page policy: publish what is approved and what is forbidden before anyone asks, so the answer to a nervous manager is a page, not a Slack thread. The [AI policy blueprint for People teams](/intelligence/ai-policy-blueprint-for-people-teams) is the fastest version of that. The second is the move the whole model turns on, which is the shift from scattered prompting to owned systems. Enablement that never crosses [from prompts to systems](/intelligence/from-prompts-to-systems) produces clever individuals and no institutional capability. Move in sequence, and let each layer buy the right to build the next.
 
-**Months 6 to 12, embed.**
+## The behaviours that decide whether it takes root
 
-Org-wide standards published and enforced. Team-wide enablement live across most of the function. Capability expectations baked into hiring, performance, and promotion. Measurement now routine. Champions programme becomes a feeder for builders, not the only mechanism.
+Underneath the three layers sits a small set of leadership behaviours. They are what actually decide whether the operating model roots or withers, and they cost nothing but attention.
 
-The order matters. Org-wide standards drafted in month one will be wrong in month four. Team-wide rituals introduced in month one will get gamed before they produce value. Individual enablement that runs ahead of team rituals will create power users who feel unsupported.
+- **Context first.** Translate every People decision into commercial terms, so AI work is judged on outcomes, not on activity.
+- **Speed with safety.** Ship in slices, capture the learning, add the controls the slice revealed you need. Not a nine-month governance project before the first workflow moves.
+- **Show the work.** Prompts, evaluations and outcomes are visible by default. Hidden good practice does not spread.
+- **Coaching over policing.** Teach managers to think with AI, not just to monitor compliance. A manager who can only check a box will not lift their team.
+- **Transparency.** Employees know what is automated, why, and how it is monitored. Trust is the substrate everything else runs on.
 
-Move in sequence. Let each layer earn the next.
+The signal that a leader is living this: they can explain any People decision in two sentences in commercial terms, and they volunteer examples of safe automation their team shipped this month. The anti-signal is the one to watch for: tool-first and problem-second, pilots that never end, and dashboards that produce no decisions.
 
-## Behaviours that scale
+## What good looks like in 90 days, honestly
 
-Underneath the three layers sit a small set of leadership behaviours that decide whether the operating model takes root.
+I would rather give you a testable bar than a comfortable one. Good, at the 90-day mark, is three to five use cases with a real number attached to each, one published policy page, and a weekly show-the-thing cadence that nobody has to be reminded about by month two. Measure adoption and capability separately, because both lag and both matter, and put a figure on the value rather than an adjective. The discipline of [measuring AI value in People Ops](/intelligence/measuring-ai-value-in-people-ops) is what stops the programme becoming a story you tell instead of a result you can defend.
 
-- **Context first.** Translate every People decision into commercial terms.
-- **Speed with safety.** Ship in slices, capture learning, add controls.
-- **Show the work.** Prompts, evaluations, outcomes are visible by default.
-- **Coaching over policing.** Teach managers to think with AI, not just to monitor compliance.
-- **Transparency.** Employees know what is automated, why, how it is monitored.
+Run this filter before you tell the board it landed.
 
-The signal a leader is living it: they can explain any People decision in two sentences, in commercial terms, and they volunteer examples of safe automation their team shipped this month. The anti-signal: tool-first, problem-second, pilots that never end, dashboards without decisions.
+<DecisionFilter
+  title="Is it a capability, or a project dressed as one?"
+  criteria={[
+    { test: "Could a sceptical manager on a different team name one concrete thing that changed?", fail: "Only the people who ran the programme can point to results" },
+    { test: "Does adoption hold when the champion is pulled onto something else?", fail: "Usage tracks the champion's calendar, not the workflow" },
+    { test: "Is there a number attached to each use case: hours, error rate, cycle time?", fail: "The wins are described in adjectives, not figures" },
+    { test: "Is there one published page saying what is approved and what is forbidden?", fail: "The policy lives in a Slack thread and a few people's heads" },
+  ]}
+  verdict="If the honest answer to any of these is no, you have built a project. A capability survives the people who started it."
+/>
 
-## Where this lands
+For a sense of the ceiling, the mature version of this is not exotic. On one defence-tech engagement the reclaimed time reached 83 hours a week, roughly 70 per cent of routine queries were handled by systems the team owned, and there were no critical issues two months on. Across the wider practice, 37 champions trained and 11 functions reshaped is what the far end of the curve looks like. None of that came from a bigger tool budget. It came from the backbone holding the wins in place while the individuals and teams kept building on top.
 
-The CHRO who owns this work is doing something specific: building a system that turns AI into a sustained capability of the function, then the company. Licenses and training programmes are inputs to that, not the deliverable.
+## Whose job this is
 
-That work has the same shape as any other operating system work, which is why it sits inside the broader frame of an [AI operating system](/intelligence/what-is-an-ai-operating-system) and a wider [People Ops domain map](/intelligence/the-people-ops-ai-domain-map). The diagnosis comes first, see [diagnosing AI readiness](/intelligence/diagnosing-ai-readiness-in-people-ops), and the practice underneath is the move from [prompts to systems](/intelligence/from-prompts-to-systems).
+This is the CHRO's work, or the CPO's. Not because IT cannot help, but because AI enablement is a people system before it is a technical one: expectations, capability development, incentives, performance, progression, culture, trust and change. IT can deploy the tools and hold the security line. Only People leadership can standardise the behaviours and embed the capability into how work is done. Hand this to IT and you get tools with no adoption; hand it to a champions programme with no backbone and you get adoption with no memory.
 
-Get the operating model right and the champions programme finally does what it was always meant to do: distribute capability the system already supports.
-
-
-## What this connects to
-
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
-
-- [Leading the AI transformation in People](/intelligence/leading-the-ai-transformation)
-- [From prompts to systems](/intelligence/from-prompts-to-systems)
-- [The champion model](/intelligence/the-champion-model)
-- [Prompting patterns for People Ops](/intelligence/prompting-patterns-for-people-ops)
+Before you build the model, it is worth knowing where your function actually stands today, which is what the [Readiness Assessment](/readiness) is for: sixteen questions, about ten minutes, a score across the four capability layers so you are building on a diagnosis rather than a hunch. Get the operating model right and the champions programme finally does the one job it was always meant for: distributing capability the system already supports.
 
 <KeyTakeaways>
-- Name a single owner. Diffuse ownership is the default failure mode.
-- Run enablement on a quarterly cadence with a published roadmap.
-- Measure adoption and capability separately. Both lag, both matter.
+- Treat AI enablement as an operating model with three layers, each with a named owner, a cadence and a budget line.
+- Build the org-wide backbone first. It is the unglamorous layer everyone skips, and the one that decides whether the rest compounds.
+- Use champions to distribute capability the system already supports, not to carry the strategy on their own.
+- Attach a number to every use case and publish one policy page. If a sceptical manager on another team cannot name what changed, you built a project, not a capability.
+- The owner is the CHRO or CPO. IT can deploy tools; only People leadership can standardise behaviour.
 </KeyTakeaways>

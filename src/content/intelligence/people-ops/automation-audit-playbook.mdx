@@ -5,158 +5,161 @@ export const frontmatter = {
   primaryCluster: "workflows-and-automation",
   clusters: ["measurement-and-roi"],
   track: "people-ops",
-  description: "Most automation efforts fail because they start with \"what can I automate?\" The right question is \"what problems am I trying to solve?\" A problem-first audit, with the 6T framework and a prioritisation matrix.",
-  keywords: ["automation audit", "process automation HR", "ROI automation", "People Ops automation"],
+  description: "An automation audit done properly starts with the problem, not the tool. Score each workflow with 6T, cost it in pounds, then sequence by value.",
+  keywords: ["automation audit", "process automation HR", "automation ROI", "People Ops automation", "6T framework", "how to prioritise automation"],
   readTime: "11 min",
   publishedAt: "2026-05-02",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
 export const faqs = [
   {
-    question: "Why do most automation efforts fail to deliver ROI?",
-    answer: "Because they start with \"what can I automate?\" instead of \"what problems am I trying to solve?\" Tool-first thinking automates the easy, low-value work while the painful, expensive workflows stay manual. Put a number in pounds on the workflow's cost before you build anything. No number, no business case.",
+    question: "Why do most automation projects fail to deliver ROI?",
+    answer: "Because they start with what can I automate instead of what problem am I solving. Tool-first thinking automates the easy, cheap work while the painful, expensive workflows stay manual. Put a number in pounds on a workflow's annual cost before you build anything. No number, no business case, and no honest way to tell whether the build was worth it.",
   },
   {
-    question: "What is the 6T framework for evaluating a process for automation?",
-    answer: "Time (how much does this consume?), Touchpoints (how many handoffs?), Tedium (how repetitive?), Trips (how many systems does it cross?), Triggers (what kicks it off, how predictable?), and Transparency (can you see what is happening at each step?). Score each from 1 to 5. High scores mean strong candidates. Low scores mean either it is fine as it is or automating it will not move the needle. In practice, one or two dimensions carry most workflows, the rest just confirm the call.",
+    question: "What is the 6T framework for evaluating a workflow for automation?",
+    answer: "Six dimensions, each scored 1 to 5: Time (how much does it consume), Touchpoints (how many handoffs), Tedium (how repetitive), Trips (how many systems it crosses), Triggers (what starts it and how predictable), and Transparency (can you see each step). High scores mark strong candidates. Low scores mean either it is fine as it is or automating it will not move the needle.",
   },
   {
-    question: "What is \"Swiss cheese\" risk?",
-    answer: "Borrowed from accident analysis. A process that has many small holes, missed checks, ambiguous handoffs, undocumented exceptions, eventually has the holes line up and a serious failure goes through. Automate before you find those holes and the exception does not get caught by whoever normally spots it. It just fails silently at 2am instead.",
+    question: "How do you calculate ROI on automating a People Ops process?",
+    answer: "Write a one-line case: hours saved per week, times people involved, times loaded hourly rate, gives the annual saving. Then apply two honesty tests. Add 30 percent of build cost as ongoing maintenance, and discount any time saved that does not go somewhere valuable. A saving that survives both is real. Most first drafts do not.",
   },
   {
-    question: "How do you prioritise once you have the audit data?",
-    answer: "A 2x2: business impact on one axis, implementation complexity on the other. Top-left (high impact, low complexity) ships first. Top-right (high impact, high complexity) is the strategic backlog. Bottom-left is filler, bottom-right is the backlog you ignore. Revisit the matrix every quarter, not just once. What counted as high complexity six months ago is usually a commodity build now.",
+    question: "How do you decide which processes to automate first?",
+    answer: "Plot each candidate on a two by two: business impact against implementation complexity. High impact and low complexity ships first. High impact and high complexity becomes a scoped strategic build with a sponsor. Low impact is filler or ignore. Revisit the grid every quarter, because what counted as complex six months ago is usually a commodity build now.",
   },
 ];
 
 <TLDR>
-- An automation audit is a structured read of where work hides, repeats, or breaks.
-- Most People functions have more automation surface than they realise and worse hygiene than they admit.
-- The audit produces three things: a candidate list, a risk register, and a sequencing call.
-- Run it before you build, not after the third tool has been bought.
+- An automation audit is a structured read of where work in your function hides, repeats, and breaks, costed in pounds before anything is built.
+- Most efforts fail because they start with the tool, not the problem, so they automate the cheap work and leave the expensive work manual.
+- The audit produces three things: a costed candidate list, a risk register of undocumented exceptions, and a sequencing call.
+- Score candidates with 6T, cost each one honestly with maintenance and soft-saving discounts applied, then sequence by impact against complexity.
+- Run it before you buy the third tool, not after.
 </TLDR>
 
-Most People Ops automation efforts fail. The pattern is so consistent it is almost a law. A team gets excited about a new tool, picks the most visible workflow, builds something, demos it once, and quietly drops it three months later because the maintenance cost outweighed the savings.
+A People team I worked with in transit was a fortnight from renewing a licence that cost roughly £40k a year, on a tool three people used and none of them trusted. An automation audit is what stops that renewal going through on autopilot. It is a structured read of where work in your function actually hides, repeats, and breaks, costed in pounds, so you build against the expensive problems instead of the easy ones. We ran the audit, found the one workflow the tool was really there for, and two internal builders rebuilt it. The £40k licence was retired.
 
-The cause is almost always the same. The team started with the wrong question.
+Most automation efforts do not end that well. The pattern is so consistent it is almost a law. A team gets excited about a new tool, picks the most visible workflow, builds something, demos it once, and quietly drops it three months later because the maintenance cost outweighed the saving. The cause is nearly always the same. They started with the wrong question.
 
-<Takeaway>Most automation efforts fail because they start with "what can I automate?" The right question is "what problems am I trying to solve?" Score with 6T, prioritise with the matrix, then build.</Takeaway>
+<Takeaway>Start with the problem, not the tool. Score candidates with 6T, cost them honestly, then sequence by impact against complexity. The audit comes before the build.</Takeaway>
 
-## The wrong question vs the right question
+## Start with the problem, not the tool
 
-The wrong question: *"What can I automate?"*
+The wrong question is *what can I automate?* It optimises for the wrong thing. You end up automating low-value work because it is easy, while the painful, costly workflows stay manual, and you generate technical debt that a future version of you inherits.
 
-The right question: *"What problems am I trying to solve?"*
+The right question is *what problem am I trying to solve?* Start by mapping the pain. Where is the team losing time, money, or quality, and where are you carrying business risk? For each candidate, work out the true cost. Then design the smallest thing that addresses the highest-impact problem. That reorders everything, because the expensive problem is rarely the easy one.
 
-Tool-first thinking optimises for the wrong outcome. You end up automating low-value work because it is easy to automate, while the painful, expensive workflows stay manual. Worse, you generate technical debt that future you will inherit.
+<ComparePanel
+  a={{ heading: "Problem-first audit", items: [
+    "Starts from where the team loses time, money, or quality",
+    "Costs each workflow in pounds before anyone builds",
+    "Automates the expensive problem, even when it is harder",
+    "Documents the exceptions before automating the rule",
+    "Ends in a ranked plan the business owns",
+  ]}}
+  b={{ heading: "Tool-first audit", items: [
+    "Starts from what the new tool happens to do",
+    "Justifies the build after the licence is signed",
+    "Automates the easy workflow because it demos well",
+    "Papers over the holes and hides the failures",
+    "Ends in a tool nobody opens by March",
+  ]}}
+  caption="Same team, same tools, opposite outcome. The question you open with decides which column you land in."
+/>
 
-Problem-first thinking flips it. Start by mapping the pain. Where is the team losing time? Money? Quality? Where are you creating business risk? For each candidate, calculate the true cost: direct time, error cost, opportunity cost, scaling cost. Then design the smallest solution that addresses the highest-impact problem.
+## The shape of the automation audit
 
-## Step 1: Map the pain
+An automation audit is not a workshop and a wishlist. It is a sequence, and it runs in about three weeks alongside the day job. Each stage feeds the next, and skipping one is where teams lose the plot. Here is the whole arc before we go into the parts.
 
-Spend a week observing the team's actual work. Not the work as documented. The work as it happens.
+<ProcessFlow
+  stages={[
+    { label: "Map the pain", body: "Watch the work as it actually happens for a week. Cost each workflow in pounds, not in complaints.", meta: "Week 1" },
+    { label: "Score with 6T", body: "Rate every candidate on six dimensions. The score tells you what to build and what to leave alone.", meta: "Week 1" },
+    { label: "Spot the Swiss cheese", body: "Find the undocumented exceptions before you automate the rule, or the automation hides them.", meta: "Week 2" },
+    { label: "Cost it honestly", body: "One-line business case per candidate. Add maintenance, discount soft savings, or the ROI is fiction.", meta: "Week 2" },
+    { label: "Prioritise", body: "Plot impact against complexity. Quick wins ship, strategic builds get a sponsor.", meta: "Week 2" },
+    { label: "Roadmap", body: "Turn the ranked list into a 90-day plan you keep. Two a month beats twelve in month one.", meta: "Week 3+" },
+  ]}
+/>
 
-For each workflow, capture:
+## Map the pain in pounds
 
-- **Direct time cost.** Hours per week × number of people involved × loaded hourly rate.
-- **Error cost.** Frequency of mistakes × downstream cost per mistake.
-- **Opportunity cost.** What strategic work is not happening because this is consuming time?
-- **Scaling cost.** What happens to this workflow as the company doubles in size?
-- **Risk cost.** What is the worst case if this workflow goes wrong? Compliance, reputation, legal?
+Spend a week observing the team's real work. Not the work as documented, the work as it happens: the copy-paste between two systems, the chase email, the spreadsheet that gets rebuilt every Friday because nobody trusts the last version.
 
-A simple table per workflow. Three columns: workflow name, total annual cost (rough), pain owner.
+For each workflow, capture five costs. Direct time: hours a week, times people involved, times a loaded hourly rate. Error cost: how often it goes wrong, times the downstream cost per mistake. Opportunity cost: what strategic work is not happening because this consumes the week. Scaling cost: what this does when the company doubles. Risk cost: the worst case if it fails, in compliance, reputation, or legal terms.
 
-This is not a precise exercise. The point is to make the cost visible. A workflow that costs the company £80,000 a year in loaded hours is not a "nice to have" automation candidate, it is a serious business problem.
+None of this needs to be precise. The point is to make the cost visible. Take a joiner-setup workflow: three hours a week, four people touching it, a loaded rate around £45 an hour. That is roughly £28k a year in direct time alone, before a single new-starter error. Once it reads as £28k rather than "a bit of admin", it stops being a nice-to-have and starts being a business problem with a number attached. Keep it to a simple table per workflow: name, rough annual cost, and the person who owns the pain. That last column matters more than it looks, because a workflow with no named owner rarely gets fixed and never gets maintained.
 
-## Step 2: Score with the 6T framework
+## Score every candidate with 6T
 
-For every candidate workflow, score on six dimensions, 1 to 5.
+Once you have a costed list, you need a fast way to sort the strong candidates from the ones that will waste a build. Score each workflow 1 to 5 on six dimensions.
 
-- **Time.** How much time does this consume?
-- **Touchpoints.** How many handoffs between people or teams?
-- **Tedium.** How repetitive and rule-based is the work?
-- **Trips.** How many systems does the workflow cross?
-- **Triggers.** What kicks it off, and how predictable is the trigger?
-- **Transparency.** Can you see what is happening at each step today?
+| Dimension | The question it asks | A high score tells you |
+| --- | --- | --- |
+| Time | How much does this consume, per week and per person? | The saving is large enough to fund a proper build |
+| Touchpoints | How many handoffs between people or teams? | Latency and error live in the gaps; worth removing |
+| Tedium | How repetitive and rule-based is the work? | A machine can do it well, with low judgement risk |
+| Trips | How many systems does the work cross? | A workflow tool earns its place stitching them together |
+| Triggers | What starts it, and how predictable is the trigger? | It can run on its own without a person watching the door |
+| Transparency | Can you see what is happening at each step today? | Low here is a warning: fix visibility before you build |
 
-A workflow scoring 4 or 5 across most dimensions is a strong candidate. A workflow scoring 1 or 2 either does not need automating or will not benefit from it.
+A workflow scoring 4 or 5 across most dimensions is a strong candidate. One scoring 1 or 2 either does not need automating or will not benefit. In practice, one or two dimensions carry most decisions and the rest just confirm the call.
 
-The 6T scores also tell you what kind of solution fits. High touchpoints + low transparency means a workflow tool first (n8n, Make), not an agent. High tedium + high triggers + low touchpoints means a clean automation. High touchpoints + ambiguity in the work needs an AI-augmented workflow with humans in the loop.
+The scores also tell you what kind of solution fits, which stops you buying an agent for a job that wanted a pipe. High touchpoints and low transparency points to a workflow tool first, something like [n8n](/intelligence/production-agents-for-people-ops), which is SOC 2 and ISO 27001 compliant, self-hostable, and runs around £20 per builder seat a month. High tedium plus predictable triggers plus low touchpoints is a clean automation with no model in the loop at all. High touchpoints with real ambiguity in the work needs an AI-assisted workflow with a human reviewing the calls. Match the score to the shape and you avoid the most expensive mistake in this whole exercise, which is building the wrong class of thing. The [automation patterns that pay off](/intelligence/automation-patterns-that-pay-off) go deeper on which shape fits which score.
 
-## Step 3: Spot the Swiss cheese
+## Spot the Swiss cheese before you automate
 
-Borrowed from accident analysis. Most processes have small holes: a missed check, an ambiguous handoff, an undocumented exception. Most of the time, the holes do not line up and the work gets through. Occasionally the holes do line up, and a serious failure happens.
+Borrow this from accident analysis. Most processes have small holes: a missed check, an ambiguous handoff, an undocumented exception. Most of the time the holes do not line up and the work gets through. Occasionally they do line up, and something serious slips out the far side. A person doing the work catches most of these by instinct. An automation catches only what you told it to.
 
-The audit should surface the Swiss cheese before the automation hides it.
+So the audit has to surface the Swiss cheese before the automation hides it. Automate a workflow without addressing the holes and the failures do not stop, they go quiet. They become less visible, not less frequent, and when they surface they are far harder to diagnose because everyone assumes the machine had it. Run every candidate through this before you commit.
 
-For each candidate workflow, ask:
+<DecisionFilter
+  title="Run every candidate through this before you automate"
+  criteria={[
+    { test: "Where are the decisions nobody wrote down?", fail: "Everyone just knows, which means one person knows" },
+    { test: "Who catches the exception today, and how?", fail: "Ask Sarah, and Sarah is the entire control" },
+    { test: "What happens when the trigger arrives in a shape you did not expect?", fail: "Nobody has seen that case, so nobody has designed for it" },
+    { test: "If this fails silently at 2am, who finds out, and when?", fail: "The first sign is an angry email a week later" },
+  ]}
+  verdict="Automate a hole and you do not remove it. You just move the failure somewhere darker."
+/>
 
-- Where are the implicit decisions that nobody documented?
-- Where does the work depend on a single person's judgement that is not written down?
-- Where are exceptions handled by "ask Sarah"?
-- What goes wrong when the trigger comes in a non-standard form?
+The discipline is simple to say and unglamorous to do: document the exceptions before you automate the rule.
 
-If you automate a workflow without addressing the Swiss cheese, the automation will paper over the holes. The failures will get less visible, not less frequent. When they do happen, they will be harder to diagnose.
+<FieldNote label="The gotcha">
+An automation I inherited on one engagement quietly deduplicated new joiners against an old list. Two people a month were dropped before their first day. No error, no alert, nothing in a log. A human running the same task had always caught the odd duplicate by eye and asked a question. The automation could not, because nobody had told it that the rule had exceptions.
 
-The discipline: document the exceptions before automating the rule.
+We only found it because a manager chased a starter who never got a laptop. The rule had been automated. The judgement around the rule had not. That gap is where automations fail, and it is invisible right up until it is a person without a desk.
+</FieldNote>
 
-## Step 4: Calculate ROI honestly
+## Cost the saving honestly
 
-For each candidate, build a one-line business case.
+For each surviving candidate, write a one-line business case. Automating this workflow saves X hours a week across N people at a £Y loaded rate, for an annual saving of £Z, against a build cost of £A in time and tooling, paying back in B months, with this named risk if it fails.
 
-> Automating \[workflow\] will save \[X hours/week\] across \[N people\] at \[£Y loaded rate\]. Annual saving: £Z. Build cost (time + tooling): £A. Payback: B months. Risk if it fails: \[summary\].
+Then apply two honesty tests, because this is where most business cases quietly fall apart. The first is maintenance. Add 30 percent of the build cost as ongoing annual maintenance. Automations drift, triggers change, systems update their APIs, and someone has to own the drift. Teams forget this line and watch the ROI evaporate a quarter later. The second is the difference between hard and soft savings. Time saved is only real if the time goes somewhere valuable. If saving Sarah three hours a week means Sarah spends three more hours in Slack, the saving is fiction dressed as a number. A case that survives both tests is worth pursuing. One that only survives on paper is the reason teams stop trusting automation numbers at all, which is a worse outcome than never having built it. If you want the fuller version of this, [measuring AI value in People Ops](/intelligence/measuring-ai-value-in-people-ops) walks through the board-facing side.
 
-Two honesty tests:
+## Prioritise, then sequence
 
-- **Maintenance cost.** Add 30% of build cost as ongoing annual maintenance. Most teams forget this and the ROI evaporates.
-- **Soft savings vs hard savings.** Time saved is only a real saving if the time goes somewhere valuable. If saving Sarah three hours a week means Sarah spends three more hours on Slack, the saving is fictional.
+Now you have costed, scored, de-risked candidates. Rank them on a two by two: business impact on one axis, implementation complexity on the other.
 
-ROI calculations that survive these two tests are the ones worth pursuing.
+| | Low complexity | High complexity |
+| --- | --- | --- |
+| High impact | Quick wins. Ship now. | Strategic build. Scope, sponsor, fund. |
+| Low impact | Filler. Fine for a champion learning the tools. | Ignore. Eats the team for no return. |
 
-## Step 5: Prioritise with the matrix
+Top-left ships first. Top-right is the strategic backlog: built deliberately, with a sponsor and milestones, never squeezed in between other work. Bottom-left is filler, useful only when a champion wants a low-stakes build to learn on. Bottom-right is the trap most teams fall into, building the interesting thing rather than the valuable one. As a rough split, run about 70 percent of your automation effort in the top-left and 30 percent in the top-right. Anything else means the audit was skipped or ignored.
 
-A 2x2.
+Then turn the ranked list into a 90-day roadmap you keep. Days 0 to 30: two top-left automations shipped and their ROI measured against the number you wrote down. Days 30 to 60: the first top-right build scoped, with sponsor and budget agreed. Days 60 to 90: a second cohort of quick wins, and the first strategic build going live. The cadence matters more than the volume. Two automations a month, sustained for a year, reshapes a function. Twelve in month one and nothing after reshapes nothing. This is also where the [workflow assessment framework](/intelligence/workflow-assessment-framework) hands over to delivery, and where a two-week [Grain Audit](/grain-audit) does the whole read on one process for you if you would rather not run it alone.
 
-```text
-                 LOW COMPLEXITY        HIGH COMPLEXITY
-HIGH IMPACT  |   Quick wins         |  Strategic build
-             |   Ship now           |  Plan, scope, fund
-             ---------------------- ----------------------
-LOW IMPACT   |   Filler             |  Ignore
-             |   If a champion       |  Will eat the team
-             |   wants to learn      |  for no return
-```
-
-Top-left ships first. Top-right is the strategic backlog: build deliberately, with sponsors and milestones. Bottom-left is filler, fine for a champion learning the tools. Bottom-right is the trap most teams fall into, building because it sounded interesting, not because it moved the business.
-
-Most teams should be running 70% of their automation work in the top-left and 30% in the top-right. Anything else is a sign that the audit was not done, or was ignored.
-
-## Step 6: Build the roadmap
-
-Output of the audit: a 90-day roadmap.
-
-- **0 to 30 days.** Two top-left automations shipped. ROI measured.
-- **30 to 60 days.** First top-right automation scoped, with sponsor and budget agreed.
-- **60 to 90 days.** Second cohort of top-left automations, plus first top-right ships.
-
-The cadence matters more than the volume. Two automations a month, sustained for a year, transforms a function. Twelve automations in month one, then nothing, transforms nothing.
-
-
-
-## What this connects to
-
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
-
-- [Measuring AI value in People Ops](/intelligence/measuring-ai-value-in-people-ops)
-- [A workflow assessment framework for People Ops](/intelligence/workflow-assessment-framework)
-- [An AI policy blueprint for People teams](/intelligence/ai-policy-blueprint-for-people-teams)
-- [Leading the AI transformation in People](/intelligence/leading-the-ai-transformation)
+One last thing the roadmap should force: audit your existing automations as ruthlessly as your new candidates. The dead script nobody owns and the tool three people distrust are costing you now, in licence fees and silent failures, while you plan the next build. The audit is not a one-time act of tidying before you start. It is the discipline that keeps a function honest about what its automation is actually worth, which is why it sits inside the broader [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops) rather than off to the side as a procurement step.
 
 <KeyTakeaways>
-- Look for repetition, latency, and rework. That's where the savings hide.
-- Audit existing automations as ruthlessly as you audit new candidates.
-- Sequence by value and absorption together. High-value low-absorption is the trap.
+- Cost every workflow in pounds before you build. A number turns admin into a business case and kills the tool-first reflex.
+- Score with 6T to match the solution to the shape: a pipe, a clean automation, or a human-in-the-loop workflow.
+- Document the exceptions before you automate the rule, or the automation hides the failures instead of fixing them.
+- Apply the maintenance and soft-saving tests, then sequence 70 percent quick wins to 30 percent strategic builds on a 90-day cadence.
+- Audit existing automations as hard as new candidates. The dead script and the distrusted licence are costing you today.
 </KeyTakeaways>

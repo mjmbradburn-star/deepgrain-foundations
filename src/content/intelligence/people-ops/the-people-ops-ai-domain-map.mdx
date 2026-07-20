@@ -5,105 +5,174 @@ export const frontmatter = {
   primaryCluster: "workflows-and-automation",
   clusters: ["readiness-and-diagnosis"],
   track: "people-ops",
-  description: "A map of where AI fits across the People function - from sourcing to offboarding - so you can see the whole estate before you build any one piece of it.",
-  keywords: ["People Ops AI map", "HR AI use cases", "People function automation", "AI in HR landscape"],
-  readTime: "10 min",
+  description: "A People Ops AI map: the five domains where AI fits across the People function, the shape of the win in each, and how to pick which one to build first.",
+  keywords: ["People Ops AI map", "HR AI use cases", "where AI fits in HR", "People function automation", "which HR process to automate first", "AI in HR landscape"],
+  readTime: "11 min",
   publishedAt: "2026-04-14",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
+export const faqs = [
+  {
+    question: "What is a People Ops AI map?",
+    answer: "It is a view of the whole People function split into five domains where AI fits differently: talent acquisition, onboarding and lifecycle, performance and development, operations and compliance, and strategy and insight. The map exists so you can see the whole estate and pick where to build first, instead of buying tools one workflow at a time.",
+  },
+  {
+    question: "Where does AI give the best return in HR?",
+    answer: "Operations and compliance, usually. It is high-volume, low-creativity, high-correctness work, and the AI shape that fits it (draft, log, present for approval, never commit) is safe and repeatable. In one defence tech engagement that shape reclaimed 83 hours a week with zero critical issues two months on. Most teams under-invest here and over-invest in talent acquisition.",
+  },
+  {
+    question: "How do I decide which HR process to automate with AI first?",
+    answer: "Walk all five domains and mark where the team loses hours it will not get back. Walk them again and mark where the source data is reachable and trustworthy today. The overlap is your first quarter of work. Everything else is a later quarter, not a failure. Trying to build across all five at once produces five half-built things.",
+  },
+  {
+    question: "Does AI work for performance reviews?",
+    answer: "For preparation, yes. AI can assemble the pre-read, surface inconsistent language across managers before calibration, and scaffold self-reflection. It should never score or rate a person directly. Performance is a judgement domain: the model prepares the table, humans decide what goes on it. Cross that line and you get performance theatre the company eventually rejects.",
+  },
+];
+
 <TLDR>
-- Five domains cover the People Ops AI estate: TA, onboarding and lifecycle, performance and growth, comms and policy, analytics and planning.
-- Each has its own grain. AI leverage looks different in each one.
-- The map is a wall to pin your own work against, not a strategy.
-- Empty domains are places to look. Crowded domains are places to consolidate.
+- The People Ops AI estate splits into five domains: talent acquisition, onboarding and lifecycle, performance and development, operations and compliance, and strategy and insight.
+- Each domain has its own grain, so the AI pattern that pays off in one will fail in another.
+- The map is a wall to pin your own work against, not a strategy. Empty domains are places to look; crowded domains are places to consolidate.
+- The winning shape in every domain is draft, log, present, verify. The losing shape is decide, score, commit.
 </TLDR>
 
-It is hard to think clearly about AI in a People function while you are inside any one workflow. The detail of *should this prompt include the JD or just the requirements list* swallows the larger question of *where, across the whole function, is AI worth investing in at all*.
+The People Ops AI estate is not a shortlist of tools to buy. It is five domains of work, each with its own grain: talent acquisition, onboarding and lifecycle, performance and development, operations and compliance, and strategy and insight. This is the People Ops AI map, and the whole point of it is to see the estate before you build any one piece of it.
 
-So this piece is a map: five domains, each with the patterns that tend to work, the patterns that tend to disappoint, and where the leverage actually sits.
+My rule of thumb is that a role is forty workflows in a coat. An eight-person People team is not eight jobs you can automate one at a time. It is closer to three hundred workflows, and no one can hold three hundred in their head while deciding where AI is worth the effort. So you zoom out. Five domains is a number you can actually reason about, and it is small enough to walk end to end in an afternoon.
 
-Use it as a wall to pin your own work against. Anywhere a domain is empty in your function is a place to look. Anywhere it is crowded is a place to consolidate.
+Use the map as a wall. Anywhere a domain is empty in your function is a place to look. Anywhere it is crowded with half-finished pilots and overlapping licences is a place to consolidate before you add anything new.
 
-<Takeaway>See the whole People Ops estate before you build any one piece of it. Five domains, each with a different shape of AI leverage.</Takeaway>
+<Takeaway>See the whole People Ops estate before you build any one piece of it. Five domains, each with a different shape of AI return.</Takeaway>
 
-## Domain 1 - Talent Acquisition
+## The five domains, at a glance
 
-The most-explored domain, with the most mature patterns and the most over-claimed vendors.
+Before the detail, the map in one grid. Maturity is how well-trodden the domain is, not how valuable it is. The two are often inverted: the most-explored domain is rarely the highest return.
 
-**Where AI consistently helps:** inbound triage with human-in-the-loop decision; JD drafting from real role context (not generic templates); interview scorecard synthesis; structured de-biasing of language in candidate-facing comms; outreach personalisation grounded on actual public information; offer-letter assembly.
+| Domain | Maturity | Highest-return play | Where it disappoints |
+| --- | --- | --- | --- |
+| Talent acquisition | High, over-claimed | Inbound triage and JD drafting with a human deciding | Autonomous "AI sourcer" tools |
+| Onboarding and lifecycle | Low, under-built | First-week sequencing and handover packs | "AI buddy" chatbots replacing a person |
+| Performance and development | Low, hard | Pre-read and calibration preparation | Anything that scores a person directly |
+| Operations and compliance | Low, highest return | Grounded policy Q&A and draft-and-present docs | Anything that commits without review |
+| Strategy and insight | Talked about, least built | Survey and exit-interview synthesis | Dashboards predicting from thin data |
 
-**Where AI consistently disappoints:** end-to-end "AI sourcer" tools that promise to find candidates autonomously; chatbots that try to replace a human touchpoint with a candidate; anything that claims to predict performance from a CV.
+## Talent acquisition: scale the volume, protect the judgement
 
-**The grain:** TA is a high-volume, high-judgment function. AI scales the volume work and protects the judgment work - but only if the team holds the line. The teams that get this right use AI to clear the bottom and top of the funnel and put recruiters on the messy middle.
+The most-explored domain, with the most mature patterns and the most over-claimed vendors. Talent acquisition is high-volume and high-judgement at the same time, which is exactly why AI helps and exactly why it goes wrong.
 
-## Domain 2 - Onboarding & Lifecycle
+The play that pays off is clearing the top and bottom of the funnel so recruiters can spend their hours on the messy middle. A worked version: an inbound triage flow in [n8n](/intelligence/production-agents-for-people-ops) reads each application against the actual requirements list, not a generic template, tags it, and drops it into a ranked queue. The recruiter opens a queue, not an inbox of two hundred. The model never rejects anyone. It orders the pile and shows its reasoning, and a person makes every call. n8n runs about £20 per builder seat per month, is SOC 2 and ISO 27001 compliant, and can be self-hosted if the data cannot leave your estate.
 
-Less explored, often higher leverage. The first month of an employee's tenure is where the most can be improved with the least friction.
+Where it disappoints: end-to-end "AI sourcer" tools that promise to find candidates on their own, chatbots that replace a human touchpoint with a candidate, and anything claiming to predict performance from a CV. The grain here is that AI scales the volume work and protects the judgement work, but only if the team holds the line. The moment it starts making the hire, you have crossed from useful into liability.
 
-**Where AI consistently helps:** first-week sequencing and nudging; manager prompts for new-joiner check-ins; personalised learning path drafting from role + level + tenure; offboarding handover packs assembled from where work lives.
+## Onboarding and lifecycle: keep the templates alive
 
-**Where AI consistently disappoints:** "AI buddy" chatbots that try to replace human connection in the first week; anything that automates a moment where the new joiner needed a person.
+Less explored, often higher return. The first month of someone's tenure is where the most can be improved with the least friction, because the work already runs on clear handoffs and templates. The templates just go stale and get skipped when a coordinator is busy.
 
-**The grain:** lifecycle work has clear handoffs and templates already. AI's job is to keep the templates alive. The moments that need a person still get one. The bar for adoption is low because the alternative is "a coordinator forgot."
+AI's job is to keep them alive. First-week sequencing that nudges the right person at the right moment. Manager prompts for new-joiner check-ins, grounded on role, level and start date. A personalised learning path drafted from real context rather than a one-size PDF. Offboarding handover packs assembled from where the leaver's work actually lives, so the knowledge does not walk out with them. Most of this is a scheduled flow plus a Notion workspace, not a product you buy.
 
-## Domain 3 - Performance & Development
+Where it disappoints: "AI buddy" chatbots that try to replace human connection in week one, and anything that automates a moment where the new joiner needed an actual person. The bar for adoption is low here because the alternative is usually "a coordinator forgot", but the failure mode is automating the warmth out of the one month that sets the tone for everything after.
 
-The hardest domain to get right, because the consequence of a wrong call is the highest and the data is the messiest.
+## Performance and development: the hardest call to get right
 
-**Where AI consistently helps:** pre-read assembly for review cycles; calibration session preparation (surfacing inconsistencies in language across managers); 1:1 prompts grounded on prior conversation themes; self-reflection scaffolding for employees writing their own reviews; learning recommendations grounded on real role and project history.
+The hardest domain, because the consequence of a wrong call is the highest and the data is the messiest. This is where I see the most tempting and most damaging over-reach.
 
-**Where AI consistently disappoints:** anything that scores or rates an employee directly; "AI coach" tools that try to replace a manager conversation; bias-detection tools that produce a number rather than a conversation.
+AI earns its place in preparation. Pre-read assembly for review cycles. Calibration preparation that surfaces where managers are using wildly different language for the same performance, before people are in the room arguing. Self-reflection scaffolding for employees writing their own reviews, grounded on prior conversation themes rather than a blank box. Learning recommendations tied to real project history. All of it prepares the table.
 
-**The grain:** performance is a judgment domain. AI prepares the table; humans decide what is on it. Teams that respect this line make their performance cycles better. Teams that cross it produce performance theatre that the company eventually rejects.
+Where it disappoints, and where careers get damaged: anything that scores or rates a person directly, "AI coach" tools that stand in for a manager conversation, and bias-detection that produces a number instead of a conversation. The grain is that performance is a judgement domain. The model prepares what humans then decide. Teams that respect that line make their cycles better. Teams that cross it produce performance theatre the company eventually rejects, and they lose the trust that made the tools usable in the first place.
 
-## Domain 4 - Operations & Compliance
+## Operations and compliance: the quiet highest-return domain
 
-Quietly the highest-ROI domain, and the most under-invested.
+Quietly the highest-return domain, and the most under-invested. It is high-volume, low-creativity and high-correctness, which is the profile AI handles best, and the profile People teams keep skipping in favour of shinier work.
 
-**Where AI consistently helps:** policy Q&A grounded on the actual handbook; document drafting for letters, contracts, references (with human review always); reconciliation workflows across HRIS, payroll, finance; audit trail assembly; regulatory horizon-scanning summaries.
+The shape that fits is "draft, log, present for approval, never commit". Policy questions answered against the actual handbook through retrieval, so the answer is grounded and traceable rather than invented. Letters, contracts and references drafted with a human review step that is never optional. Reconciliation across HRIS, payroll and finance. Audit-trail assembly. Regulatory horizon-scanning summarised for a person to act on. Done well, this is the domain where a team gets back the most hours per week per build.
 
-**Where AI consistently disappoints:** anything that signs, files, or commits without a human review step; legal advice generation; anything that touches data the model was not supposed to see.
+<StatBand
+  stats={[
+    { value: "83", label: "hours/week reclaimed", note: "defence tech engagement" },
+    { value: "70%", label: "routine queries handled by systems the team owns" },
+    { value: "0", label: "critical issues, two months on" },
+  ]}
+/>
 
-**The grain:** ops work is high-volume, low-creativity, high-correctness. The AI shape that fits is "draft, log, present for approval, never commit." Done well, this is the domain where the team gets back the most hours per week per build.
+Those numbers came from one defence tech engagement, and they came from operations and compliance work, not from a clever recruiting tool. Where it disappoints: anything that signs, files or commits without a human step, generated legal advice, and anything that touches data the model was never meant to see. Correctness is the whole game here, so the review step is the feature, not the friction.
 
-## Domain 5 - Strategy & Insight
+## Strategy and insight: ground it or don't build it
 
-The most-talked-about, the least-built. Reasonably so - the data quality bar is highest here.
+The most talked about and the least built, which is reasonable, because the data-quality bar is highest here and the failure is the quietest.
 
-**Where AI consistently helps:** survey response synthesis at scale; theme extraction from open-text feedback; meeting note synthesis for People exec syncs; pattern surfacing across exit interviews; turning rich qualitative data into shape that informs quantitative decisions.
+AI genuinely helps with synthesis. Survey responses summarised at scale. Themes pulled from open-text feedback. Meeting notes turned into something a People exec sync can act on. Patterns surfaced across exit interviews. Rich qualitative data shaped into something that can inform a quantitative decision. The discipline that makes all of it useful is grounding every output in retrievable source: the quote, the transcript, the individual response. When we build extraction here, it is model-only, never a regex fallback, because a regex pattern will confidently produce garbage and call it a finding.
 
-**Where AI consistently disappoints:** "AI dashboards" that try to predict attrition or engagement from thin data; insight generation that the team cannot trace back to source; anything that claims to find a pattern the team had not already half-noticed.
+Where it disappoints: "AI dashboards" that predict attrition or engagement from thin data, insight the team cannot trace back to source, and anything claiming to have found a pattern nobody had already half-noticed. Insight is where AI hallucinates most confidently. Treat its output as a draft for a human to verify, never as truth, and it becomes one of the most useful things in the estate.
 
-**The grain:** insight work is where AI most often hallucinates confidently. The discipline that makes it useful is grounding everything in retrievable source - quotes, transcripts, individual responses - and treating model output as a draft for a human to verify, never as truth.
+## The pattern that repeats in every domain
 
-## How to use this map
+Walk all five domains and the same line runs through them. The AI shape that works is the same everywhere, whatever the workflow. So is the shape that fails.
 
-Three things, in order.
+<ComparePanel
+  a={{ heading: "The AI shape that fits", items: [
+    "Drafts the letter, the pack, the shortlist, then hands it to a person",
+    "Reads from a source it can reach on a schedule, with permission",
+    "Logs what it did, so the work is auditable after the fact",
+    "Stops at present-for-approval and never commits on its own",
+    "Treats its own output as a draft to verify, not as truth",
+  ]}}
+  b={{ heading: "The AI shape that fails", items: [
+    "Decides the hire, the score, the outcome, and calls it done",
+    "Runs on a clean export a person prepares by hand each time",
+    "Leaves no trail, so no one can check what it touched",
+    "Signs, files or sends the moment it finishes",
+    "Presents a pattern the team cannot trace back to source",
+  ]}}
+  caption="Same line in all five domains: prepare and present, never decide and commit."
+/>
 
-First, walk across all five domains and ask: *where is the team already losing time we wouldn't get back?* That is your priority list.
+This is why the map matters more than any single build. If you know the winning shape, you can apply it in a domain you have never touched and be roughly right on the first attempt. The domains differ in their data and their stakes. The shape does not.
 
-Second, walk across again and ask: *where is the data clean enough to build now?* The intersection of those two lists is your first quarter of work.
+## How to read the People Ops AI map
 
-Third, leave the rest alone. The domains where you are not yet building are not failures - they are the next quarters' work. Trying to move on all five at once produces five half-built things and one exhausted champion. The map exists so you can see the whole picture and still pick.
+Three moves, in order. This is the part you can run on Monday, and the part most teams skip because building one thing feels more productive than choosing the right thing.
 
-The function that has built across all five domains in eighteen months looks unrecognisable. The function that tried to build across all five domains at once looks unchanged. Same map. Different sequencing. Every domain runs on the same base: the team's [AI workspace](/intelligence/setting-up-your-ai-workspace), and underneath that, an [AI operating system](/intelligence/what-is-an-ai-operating-system) shaped to People.
+<ProcessFlow
+  stages={[
+    { label: "Find the lost time", body: "Walk all five domains and mark where the team loses hours it will never get back. That is your priority list.", meta: "Step 1" },
+    { label: "Find the clean data", body: "Walk the five again and mark where the source is reachable and trustworthy today. Ambition without clean data is a stalled pilot.", meta: "Step 2" },
+    { label: "Ship one, leave the rest", body: "The overlap of the two lists is your first quarter. The untouched domains are next quarter, not a failure.", meta: "Step 3" },
+  ]}
+/>
 
+Before you commit a domain to that first quarter, run it through a filter. This is the same test I use on any workflow: does it survive first contact with reality, or was it wished into existence.
 
+<DecisionFilter
+  title="Run a domain through this before you build in it"
+  criteria={[
+    { test: "Is the work high-volume and judgement-light, or is the judgement the whole point?", fail: "You are trying to automate the judgement itself" },
+    { test: "Can the model reach the source it needs, on a schedule, with permission?", fail: "A person prepares a clean export by hand every run" },
+    { test: "Is there a named owner for the output on the Monday after launch?", fail: "Only IT keeping the lights on, no business owner" },
+    { test: "Does the output get reviewed by a person before it commits anything?", fail: "It signs, files or sends on its own" },
+    { test: "Would you stake a decision on the base rate of the data here?", fail: "Thin data dressed up as insight" },
+  ]}
+  verdict="A domain that fails three of these is not ready. That is not a no, it is a not yet, and the gap tells you what to fix first."
+/>
 
-## What this connects to
+The other half of reading the map is spotting the crowded domains, the ones already full of overlapping tools nobody has questioned. Consolidation there usually beats a new build anywhere else.
 
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
+<FieldNote label="From the field">
+A transit operator I worked with was paying about forty thousand pounds a year in licences for a tool that covered one corner of their operations and compliance work. Nobody had questioned it in years. It was just the thing they used.
 
-- [Automation patterns that pay off](/intelligence/automation-patterns-that-pay-off)
-- [AI workspace setup for People teams (Claude, ChatGPT, Copilot)](/intelligence/setting-up-your-ai-workspace)
-- [Designing the AI-native People team](/intelligence/designing-the-ai-native-people-team)
-- [A workflow assessment framework for People Ops](/intelligence/workflow-assessment-framework)
+We rebuilt that corner as a single workflow with two internal builders owning it. The licence went, and the forty thousand went with it. The lesson was not that the tool was bad. It was that a crowded domain is a place to consolidate before it is a place to add anything new.
+</FieldNote>
+
+To score the individual workflows inside your chosen domain, the [workflow assessment framework](/intelligence/workflow-assessment-framework) gives you the rubric. To see task-level exposure across the whole estate at a glance, run the [AI Exposure Map](/exposure-map). And whichever domain you pick, every build in it sits on the same base: the team's [AI workspace](/intelligence/setting-up-your-ai-workspace), and underneath that, an [AI operating system](/intelligence/pillar/ai-workspace-for-people-ops) shaped to People rather than bolted on from a vendor. The [patterns that pay off](/intelligence/automation-patterns-that-pay-off) repeat across the domains once you have the base right.
+
+The function that has built across all five domains in eighteen months looks unrecognisable. The function that tried to build across all five at once looks unchanged. Same map. Different sequencing. That is the only difference that matters.
 
 <KeyTakeaways>
-- Map your own estate before adding capability. You will see redundancy you did not know existed.
-- Match AI patterns to the domain grain. Patterns that work in TA often fail in performance.
-- Consolidate before you build. Two well-run systems beat five half-built ones.
+- Map the whole People Ops AI estate first. You will find redundancy and overlapping licences you did not know you had.
+- Match the AI pattern to the domain's grain. What scales talent acquisition will wreck a performance cycle.
+- The winning shape in every domain is draft, log, present, verify. The losing shape is decide, score, commit.
+- Consolidate a crowded domain before you build in an empty one. Two systems the team owns beat five half-built ones.
 </KeyTakeaways>

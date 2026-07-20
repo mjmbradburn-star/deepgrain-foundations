@@ -5,147 +5,160 @@ export const frontmatter = {
   primaryCluster: "readiness-and-diagnosis",
   clusters: ["enablement-and-change"],
   track: "people-ops",
-  description: "A two-axis maturity read plus a six-axis diagnostic for People functions. Use it before you build anything, so you build the right thing first.",
-  keywords: ["AI readiness assessment", "People Ops maturity", "HR AI diagnostic", "AI adoption framework", "AI maturity model"],
-  readTime: "12 min",
+  description: "AI readiness in People Ops is not a model problem. It is a data, process, tooling, sponsor and risk read. Here is the diagnostic, and how to act on it.",
+  keywords: ["AI readiness in People Ops", "AI readiness assessment", "People Ops maturity model", "HR AI diagnostic", "how to assess AI readiness", "AI adoption framework"],
+  readTime: "9 min",
   publishedAt: "2026-04-16",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
 export const faqs = [
   {
+    question: "How do you assess whether a People team is ready for AI?",
+    answer: "Run a fast two-axis read first, then a six-axis diagnostic. The two axes are tooling (what the team can physically build) and strategy (whether any of it is doing something that matters). The six axes are data hygiene, process clarity, tool fragmentation, curiosity distribution, sponsor presence and risk posture. None of them is about the model. Score all six honestly before you build a single workflow.",
+  },
+  {
     question: "Why diagnose readiness before building anything?",
-    answer: "Because the cost doesn't disappear if you skip it, it just moves downstream and grows. Four months out it shows up as a rebuild, a tool nobody opens past week three, a champion who quietly stops pushing. Read first. It's cheaper every single time.",
+    answer: "Because the cost of skipping the read does not disappear, it moves downstream and grows. Four months out it shows up as a rebuild, a tool nobody opens past week three, or a champion who quietly stops pushing. The read costs a morning. The skip costs a quarter. Reading first is cheaper every single time.",
+  },
+  {
+    question: "Which readiness axis matters most?",
+    answer: "Sponsor presence, and it is not close. Everyone assumes it is budget or tooling. Watch what actually happens: a Head of People says out loud, in a leadership meeting, that this is how the team works now, and protects an hour a week for the champions. That one sentence outlasts three quarters of budget cuts. No sponsor, and the whole thing dies at the first bad quarter.",
   },
   {
     question: "What is the difference between tooling maturity and strategy maturity?",
-    answer: "Tooling maturity is what your team can physically do with AI: prompt well, build a Custom GPT, wire an automation, deploy a small agent. Strategy maturity is whether any of that is doing something that matters. Most teams are mismatched, and it rarely shows up on a dashboard. A team at six on tooling and two on strategy can build a beautifully slick Zapier chain that automates the wrong process end to end.",
+    answer: "Tooling maturity is what your team can physically do with AI: prompt well, build a Custom GPT, wire an automation, deploy a small agent. Strategy maturity is whether any of that is doing something that matters. Most teams are mismatched. A team high on tooling and low on strategy will build a beautifully slick automation that handles the wrong process end to end.",
   },
   {
-    question: "What axes should we actually assess?",
-    answer: "Six, and none of them about the model. Data hygiene: one source of truth or three. Process clarity: can the team draw the workflow on a whiteboard in five minutes. Tool fragmentation: three tools per workflow or thirteen. Curiosity distribution: who has played with AI on their own time and who hasn't. Sponsor presence: a named leader who'll defend the champions' hours. Risk posture: cautious culture or move fast. Score all six honestly before you touch a single workflow. Skip one and the diagnostic just tells you a comfortable half-truth.",
-  },
-  {
-    question: "Which axis matters most?",
-    answer: "Sponsor presence, and it isn't close. Everyone assumes it's budget or tooling. Watch what actually happens: a Head of People says out loud, in a leadership meeting, that this is how the team works now, and protects an hour a week for the champions. That one sentence outlasts three quarters of budget cuts. No sponsor, and the whole thing dies at the first bad quarter.",
-  },
-  {
-    question: "What does the diagnostic actually produce?",
-    answer: "Six lines, plain language, no score attached: HRIS clean or scattered, process mapped or murky, three tools in play or thirteen, two curious people or none, a named sponsor or nobody, cautious culture or move fast. That's it. No slide, no maturity badge, just six honest lines you could read out loud in a stand-up in under a minute.",
+    question: "What does the readiness diagnostic actually produce?",
+    answer: "Six honest lines, plain language, no score attached: HRIS clean or scattered, process mapped or murky, three tools in play or thirteen, curious people or none, a named sponsor or nobody, cautious culture or move fast. No slide, no maturity badge. Just six lines you could read out loud in a stand-up in under a minute, from which the build order writes itself.",
   },
 ];
 
 <TLDR>
-- AI readiness in People Ops is not a model question. It is an operating question.
-- Five surfaces decide it: data, tools, agents, governance, cadence.
-- Most teams overrate their tools and underrate their data and cadence.
-- Diagnose first. Buying ahead of readiness is the most common failure mode.
+- AI readiness in People Ops is an operating question, not a model question.
+- Run a fast two-axis read first (what the team can build, what the AI is actually doing), then score six axes: data, process, tools, curiosity, sponsor, risk.
+- Most teams overrate their tooling and underrate their data and their sponsor.
+- Diagnose first. The read costs a morning. Skipping it costs a rebuild four months later.
 </TLDR>
 
-Before any team builds anything with AI, there is a step almost everyone skips: actually reading where the function is right now. Not the aspirational version. Not the version that lives in the strategy deck. The version that exists when you walk through the team's week, hour by hour, and notice what is actually happening.
+A Head of People I sat with last year had already bought the tools. Two licences, a pilot underway, and a request: help us roll this out. We spent the morning walking the team's actual week instead. AI readiness in People Ops is not a model problem, and it is almost never a tooling problem. It is a question of whether the data, the processes, the people and the sponsor can absorb what you are about to build. Hers could not, not yet. So we parked the rollout and read the function first.
 
-The cost of skipping the diagnostic is not subtle. It shows up four months later as a half-built workflow nobody adopted, a tool the team works around, a champion who burned out trying to drag the function somewhere it was not ready to go.
+That order matters more than any tool choice. Read first. Build second. Every time.
 
-Reading first. Building second. Always.
+## Why AI readiness is not a model problem
 
-<Takeaway>Two axes before six. Read process maturity and AI maturity first, then score the six axes that decide where to build next.</Takeaway>
+The model is the part that already works. Whatever you are trying to do inside the People function, drafting, summarising, screening, answering the same policy question for the fortieth time, a frontier model can almost certainly do the task in isolation. That is the wrong test. AI readiness in People Ops is the answer to a harder question: can the organisation around the model absorb what happens when you point it at real work?
+
+> Readiness is the gap between "the model can do this task" and "our function can run this workflow, on Monday-morning data, without a person quietly holding it together." Diagnosing readiness is measuring that gap before you spend on closing it.
+
+That gap has almost nothing to do with which model you licence and almost everything to do with the state of the function underneath it. The [five pillars of AI readiness](/intelligence/five-pillars-of-ai-readiness) cover the surfaces at company scale. What follows is the People-specific version: the read I actually run before letting a team build.
 
 ## Two axes before six
 
-Before the six-axis diagnostic, run a faster read first. Score the team on two axes from 0 to 10.
+Before the six-axis diagnostic, run a faster read. Score the team on two axes, 0 to 10, and then ignore the numbers.
 
-**Tooling.** What can your team physically do with AI today? At zero, they have heard of ChatGPT. At three, they paste in context and use Custom GPTs. At five, they are building light automations in Zapier or Make. At seven, they can debug API calls and build self-updating dashboards. At nine, they are deploying small internal agents wired to your stack. At ten, they probably should not be in HR any more.
+**Tooling.** What can your team physically do with AI today? At zero, they have heard of ChatGPT. At three, they paste in context and use Custom GPTs. At five, they are building light automations in n8n, Zapier or Make. At seven, they can debug API calls and stand up a self-updating dashboard. At nine, they are deploying small internal agents wired into your stack. At ten, they probably should not be in HR any more.
 
-**Strategy.** What is the AI actually doing inside the function? At zero, nothing. At two, low-stakes time savers like rewording job ads. At five, AI use is encouraged, a champion has built playbooks, KPIs are starting to attach. At seven, AI is the default in some core areas: performance, onboarding, internal comms. At nine, your AI-enabled People workflows are influencing other departments. At ten, AI is how the function delivers.
+**Strategy.** What is the AI actually doing inside the function? At zero, nothing. At two, low-stakes time savers like rewording job ads. At five, use is encouraged, a champion has written playbooks, KPIs are starting to attach. At seven, AI is the default in some core areas: performance, onboarding, internal comms. At nine, your People workflows are shaping how other departments work. At ten, AI is how the function delivers.
 
-Forget the number. Look at the gap. Tooling at six and strategy at two means the team can build but is building the wrong things. Strategy at five and tooling at two means leadership has bought the story but the team cannot ship. Both look like progress on a slide and feel like nothing on a Tuesday.
+Forget the two numbers. Look at the gap between them. The mismatch is the diagnosis, and it comes in two shapes.
 
-Once you know roughly where you are on the two axes, the six-axis diagnostic tells you what to actually do about it.
+<ComparePanel
+  a={{ heading: "Tooling ahead of strategy", items: [
+    "The team can build a slick automation in an afternoon",
+    "It automates a process nobody agreed was the right one",
+    "Impressive demos, no line anyone can point to on the P&L",
+    "Champions burn out dragging the function somewhere it won't follow",
+    "Looks like progress on a slide, feels like nothing on a Tuesday",
+  ]}}
+  b={{ heading: "Strategy ahead of tooling", items: [
+    "Leadership has bought the story and funded the intent",
+    "The team cannot yet ship what the story promised",
+    "Playbooks written, but nobody can wire the automation",
+    "Momentum stalls waiting on a build that never lands",
+    "Also a good slide, also nothing delivered on the Tuesday",
+  ]}}
+  caption="Both feel like progress. Neither is. The fix for each is the opposite of the fix for the other."
+/>
 
-## The six axes
+Tooling at six and strategy at two means the team can build but is building the wrong things: point the effort at a process that matters. Strategy at five and tooling at two means leadership has bought the story but the team cannot ship: invest in capability before you invest in more intent. Get this read wrong and you spend a quarter fixing the problem you do not have.
 
-For a People function, there are six axes that matter. None of them is about the model. All of them are about the team and the work.
+A financial-data business we read, roughly six hundred people, scored high on tooling and low on strategy. Engineers everywhere, automations half-built, none of them pointed at a workflow the People team actually owned. The read did one thing. It aimed the capability that already existed at the processes that mattered. Seven weeks later they had five production tools running against real volume, built by their own people, because the constraint was never the building. It was knowing what to build, and in what order. That is the entire return on reading before you buy, and it is why the two-axis mismatch is worth naming out loud before anyone opens a vendor tab.
 
-### 1. Data hygiene
+## The six axes that decide readiness
 
-Where does the truth about your people live? In one HRIS, or three spreadsheets, or a Notion page maintained by one person who left? The answer determines what you can build.
+Once you know roughly where the two axes sit, the six-axis diagnostic tells you what to do about it. For a People function, six axes decide readiness. None of them is about the model. All of them are about the team and the work. The fastest way to use them is as a filter you run against your own function, out loud, in a room.
 
-A function with one clean source of truth can build retrieval-grounded workflows that actually work. A function with three sources cannot. Until the data is unified, AI will produce confidently wrong answers, which is worse than no answer at all. Fix the source before you fix the workflow.
+<DecisionFilter
+  title="Score your function on these six before you build"
+  criteria={[
+    { test: "Data hygiene: one source of truth for people data, or three?", fail: "The real HRIS is a spreadsheet one person maintained, and they left" },
+    { test: "Process clarity: can the team draw the workflow on a whiteboard in five minutes?", fail: "Nobody agrees where it starts, so nobody can say where AI would sit" },
+    { test: "Tool fragmentation: how many tools does the average workflow touch?", fail: "Thirteen, and the glue between them is someone's memory" },
+    { test: "Curiosity distribution: who has played with AI on their own time, across which sub-teams?", fail: "One enthusiast, twelve sceptics, all sitting in the same corner" },
+    { test: "Sponsor presence: is there a named leader who will defend the champions' hours out loud?", fail: "Support that exists in private and evaporates the first hot quarter" },
+    { test: "Risk posture: cautious-until-proven, or move-fast-and-ask-forgiveness?", fail: "Nobody has decided, so every build reopens the same argument" },
+  ]}
+  verdict="Skip one axis and the diagnostic hands you a comfortable half-truth. Score all six or none."
+/>
 
-### 2. Process clarity
+Two of the six carry more weight than the rest, and they are not the two most people watch.
 
-For each major workflow, sourcing, screening, interviewing, onboarding, performance, comp review, can the team draw it on a whiteboard in five minutes? If yes, that workflow is buildable. If no, the workflow needs to get simple and mapped before AI touches it. Often the diagnostic conversation alone produces this clarity, and the building gets easier as a side effect.
+**Data hygiene sets the ceiling.** A function with one clean source of truth can build retrieval-grounded workflows that actually work. A function with three sources cannot. Until the data is unified, AI will produce confidently wrong answers, which is worse than no answer, because someone acts on them. Fix the source before you touch the workflow.
 
-### 3. Tool fragmentation
+**Sponsor presence sets the survival rate.** The presence of a real sponsor is the single best predictor of whether anything gets built. Better than budget, better than tooling, better than the team's raw capability. Without a named leader who will publicly say "this is how we work now," every workflow you build is the first thing dropped when a quarter gets hot. With one, the work survives the first crisis. That is what buys you a second.
 
-How many tools does the average workflow touch? Three is workable. Seven is not. The ceiling on what you can automate is set by how much glue you can build between systems, and the glue gets brittle fast above five integrations. A function trying to "do AI" while running thirteen disconnected tools should consolidate first.
+## What the read looks like when it is honest
 
-### 4. Curiosity distribution
+The diagnostic does not produce a maturity badge. It produces six lines you could read out loud in a stand-up. A real one, lightly anonymised, reads like this:
 
-Who in the team has, on their own time, played with AI? Who has not? A function with three or four already-curious people across different sub-teams can stand up the [champion model](/intelligence/the-champion-model) in a quarter. A function with one curious person and twelve sceptics needs a different approach, usually a ground-up enablement programme before any building starts.
+> *Data: one HRIS, mostly clean. Process: TA and onboarding clear, performance murky. Tools: nine in active use, three obsolete. Curiosity: four people leaning in, two in TA, one HRBP, one Ops. Sponsor: CPO engaged, board curious. Risk: cautious culture, EU AI Act exposure.*
 
-Some people are ready to build now. Others need to see it work first. Both groups exist in every team. The diagnostic finds them.
+From that, the build order writes itself. Start with TA workflows where the data is good and the process is clear. Use the four curious people as your first champions, which is exactly how the [champion model](/intelligence/the-champion-model) gets its footing. Stand up governance early, because the risk posture demands it. Leave performance for phase two, after the process gets mapped. This read is the entry point to the wider [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops): get the diagnosis right and every build after it has somewhere to land.
 
-### 5. Sponsor presence
+That is the whole trick. The diagnostic does not grade the team. It makes the next three moves obvious.
 
-Is there a named senior leader, CPO, Head of People, COO, who will publicly say "this is part of how we work now," and who will defend the time the champions take? Without that, every workflow build will be the first thing dropped when a quarter gets hot. With it, the work survives the first crisis.
+<FieldNote label="What the read found">
+On one read, in a transit business, the tool-fragmentation axis turned up a licence costing forty thousand a year. Two people used it. Everyone assumed someone else depended on it, so nobody had ever questioned the renewal.
 
-The presence of a real sponsor is the single best predictor of whether anything gets built. Better than budget, better than tooling, better than capability.
+We retired it, kept one tool, and put two internal builders on the workflow instead. The point is not the saving. The point is that reading the function found it in a morning, and a year of rollout planning never would have.
+</FieldNote>
 
-### 6. Risk posture
+## Where People sits against the rest of the business
 
-How does the company think about AI risk? Is it a "we won't touch it until we know it's safe" culture, a "move fast and ask forgiveness" culture, or somewhere in between? The right governance model, and the speed at which you can build, is set by this, and pretending otherwise produces friction nobody anticipated.
+A useful side effect of the read: it lets you place People against the rest of the company. Most businesses have wildly uneven AI capability across functions. Engineering adaptive, Marketing capable, People unacceptable. If you do not know where you sit relative to your peers inside the business, you will either over-promise in the board meeting or get out-flanked in the budget one.
 
-A regulated company moves differently from a 60-person scaleup. Both can build. The shape of the build is different.
+A simple frame, borrowed from capability maturity work in adjacent fields, gives you the vocabulary and, more usefully, the right next step for each level.
 
-## Reading the result
+| Maturity level | What it looks like | The right next step |
+| --- | --- | --- |
+| Unacceptable | Refuses or ignores AI tooling | One low-stakes win a sceptic can watch work |
+| Capable | AI for individual tasks: drafting, summarising, light analysis | A shared workspace so the wins compound, not scatter |
+| Adaptive | AI embedded in core workflows with human checkpoints | Governance and a named maintenance owner |
+| Transformative | AI changes the operating model, not just the tasks | Protect it, document it, export the pattern |
 
-The diagnostic produces a six-line summary: a short, honest description of where the function actually stands on each axis, and what that implies about the order of the work.
+You do not need every function at transformative. You need to know where each one is, and to set the right next step for each, this quarter. For the cross-function vocabulary that maps this ladder onto the named industry models, see [AI maturity frameworks for G&A leaders](/intelligence/ai-maturity-frameworks-for-ga-leaders).
 
-A typical reading might look like:
+The honest part is that most functions score lower than their leaders think.
 
-> *Data: one HRIS, mostly clean. Process: TA and onboarding clear, performance murky. Tools: nine in active use, three obsolete. Curiosity: four people leaning in, two TA, one HRBP, one Ops. Sponsor: CPO engaged, Board curious. Risk: cautious culture, EU AI Act exposure.*
+<PullStat value="0">
+Of the eleven functions we scored across one business, not one came in above seventy. I would rather a leader carry that number into a budget meeting than a comfortable one that pretends the base rate is good.
+</PullStat>
 
-From that, the build order writes itself. Start with TA workflows where the data is good and the process is clear. Use the four curious people as initial champions. Set up governance early because the risk posture demands it. Leave performance work for phase two, after the process gets cleaned up.
+## The cost of skipping the read
 
-The diagnostic makes the strategy obvious. That's the whole job.
+Skipping the diagnostic feels like speed. It is the most expensive form of slow. Every workflow you build without reading the function first carries a quiet bet: that the data is good enough, that the process is clear enough, that the team will adopt, that a sponsor will hold the line. Most of those bets lose, and they lose in month four, when the budget and the attention have both moved on.
 
-## Capability maturity, by function
+Read first, and the building is faster afterwards, every time. In almost every engagement, the first concrete build is [setting up the team's AI workspace](/intelligence/setting-up-your-ai-workspace), so the workflows that follow have somewhere to live. Everything after that is a question of order, and the read gives you the order.
 
-A useful side effect of the diagnostic is that it lets you compare People against the rest of the business. Most companies have wildly uneven AI capability across functions. Engineering at "adaptive," Marketing at "capable," People at "unacceptable." If you do not know where you are relative to your peers in the business, you will either over-promise or get out-flanked.
-
-A simple frame, borrowed from capability maturity work in adjacent fields:
-
-- **Unacceptable.** Refuses or ignores AI tooling.
-- **Capable.** Uses AI for individual tasks: drafting, summarising, light analysis.
-- **Adaptive.** Embeds AI into core workflows with human-in-the-loop checkpoints.
-- **Transformative.** AI changes the operating model, not just the tasks.
-
-You do not need every function at "transformative." You need to know where each one is, and to set the right next step for each, this quarter. For the cross-function vocabulary that connects this maturity ladder to the named industry models (Gartner, MIT, BCG), see [AI maturity frameworks for G&A leaders](/intelligence/ai-maturity-frameworks-for-ga-leaders).
-
-## The trap of skipping
-
-Skipping the diagnostic feels like speed. It is the most expensive form of slow. Every workflow built without reading the function first carries a small bet, that the data is good enough, that the process is clear enough, that the team will adopt, and most of the bets lose.
-
-Read first. The building is faster afterwards, every time. The first concrete build, in almost every case we have seen, is [setting up the team's AI workspace](/intelligence/setting-up-your-ai-workspace) so that subsequent workflows have somewhere to live. From there, the [domain map](/intelligence/the-people-ops-ai-domain-map) tells you where to point the build effort, and the move from [prompts to systems](/intelligence/from-prompts-to-systems) tells you what the work looks like once you start.
-
-Grading the team was never the point. Knowing what to build next was.
-
-
-
-## What this connects to
-
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
-
-- [Designing the AI-native People team](/intelligence/designing-the-ai-native-people-team)
-- [An AI enablement operating model for People leaders](/intelligence/ai-enablement-operating-model)
-- [AI governance for People teams](/intelligence/ai-governance-for-people-teams)
-- [From prompts to systems](/intelligence/from-prompts-to-systems)
+If you want to run the read on your own function before you spend a penny on tooling, the [Readiness Assessment](/readiness) is the sixteen-question version of this diagnostic, scored across four capability layers in about ten minutes. Grading the team was never the point. Knowing what to build next always was.
 
 <KeyTakeaways>
-- Score the five surfaces honestly. Vendor demos do not count as evidence.
-- Fix the lowest-scoring surface before adding new capability on top.
-- Re-diagnose every six months. Readiness is a moving target.
+- Read the function before you build. Buying ahead of readiness is the most common and most expensive failure mode.
+- Run the two-axis read first (tooling and strategy), then score the six axes: data, process, tools, curiosity, sponsor, risk.
+- Sponsor presence and data hygiene carry more weight than budget or tooling. Get both named before you start.
+- Re-read every six months. Readiness moves, and last quarter's diagnosis expires.
 </KeyTakeaways>

@@ -5,117 +5,155 @@ export const frontmatter = {
   primaryCluster: "governance-and-policy",
   clusters: ["enablement-and-change"],
   track: "people-ops",
-  description: "Governance is not the brake. It is the steering. The People teams that stay fast with AI are the ones that decided early what they would never let it decide.",
-  keywords: ["AI governance HR", "People Ops AI policy", "AI risk management", "responsible AI HR"],
-  readTime: "11 min",
+  description: "AI governance for People teams is not a forty-page policy. It is four boundaries, a sign-off, and a log. Here is what to decide, and how to prove it holds.",
+  keywords: ["AI governance for People teams", "AI governance HR", "People Ops AI policy", "responsible AI in HR", "AI risk management HR", "AI governance framework"],
+  readTime: "12 min",
   publishedAt: "2026-04-18",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
 export const faqs = [
   {
-    question: "Why does most People-function AI governance fail?",
-    answer: "Because it gets written once and never checked against the work. Fast way to test it: ask the team when anyone last opened the policy doc. If nobody can answer, that's your diagnosis. The fix isn't a better document, it's a habit: a short recurring review (see the fourth boundary below) that keeps the rules attached to what people are actually doing with AI, not what someone imagined they'd do six months ago.",
+    question: "What is AI governance for a People team?",
+    answer: "It is a short set of decisions, made once and written down, about what the model may never do, plus the habit that keeps those decisions attached to the work. Four boundaries carry almost all of it: decisions the model never makes alone, data it never sees, outputs a human always checks, and logging that actually exists. The forty-page policy is the easy part and the least useful part. The governance is whether those four things hold on a normal Tuesday.",
   },
   {
     question: "What decisions should an AI model never make alone in a People function?",
-    answer: "Six: hiring, termination, performance ratings, compensation, reasonable adjustments and accommodations, discipline outcomes. The model can draft, summarise and suggest on all six. It never gets the final call, a named human does, every time. The way you actually catch a slip isn't a policy re-read, it's the workflow log from the fourth boundary: if a call came out of one of these six workflows with no named human sign-off next to it, that's the violation, and it should show up in minutes, not get found in an audit six months later.",
+    answer: "Six: hiring, termination, performance ratings, compensation, reasonable adjustments and accommodations, and discipline outcomes. The model can draft, summarise and suggest on all six. It never gets the final call, a named human does, every time. The way you catch a slip is not a policy re-read, it is the workflow log: if a decision came out of one of these six with no named human sign-off next to it, that is the violation, and it should surface in minutes.",
   },
   {
-    question: "What data should the model never see?",
-    answer: "Health information, disability status, salary tied to identity, grievance content, anything under GDPR special category, anything under an NDA. The quick test before switching a tool on: does it need to see any of that to do the job? If not, it doesn't get access, whatever the vendor promises about training data. That's a configuration decision made once per tool, not a trust exercise repeated every time someone opens a chat window.",
+    question: "What employee data should an AI model never see?",
+    answer: "Health information, disability status, salary tied to identity, grievance content, anything in the GDPR special category, anything under an NDA. The test before you switch a tool on: does it need to see any of that to do the job? If not, it does not get access, whatever the vendor promises about training. That is a configuration decision made once per tool, not a trust exercise repeated every time someone opens a chat window.",
   },
   {
-    question: "How do you tell if you actually have governance, not just aspirations?",
-    answer: "Time yourself answering four questions: which workflows use a model, which model and where it runs, where the prompt and output history lives, who owns each workflow. Most teams fail on the third one. They can name the workflows and the model fine, but nobody can actually produce a log when asked. That gap, not the absence of a policy document, is what a tribunal or an external audit finds first.",
+    question: "How do you tell if you actually have AI governance, not just aspirations?",
+    answer: "Time yourself answering four questions: which workflows use a model, which model and where it runs, where the prompt and output history lives, and who owns each workflow. Most teams fail on the third. They name the workflows and the model fine, then nobody can produce a log. That gap, not the missing policy document, is what a tribunal or an external audit finds first.",
   },
 ];
 
 <TLDR>
-- AI governance is not the brake. It is the steering.
-- People teams are usually the first asked to write the AI policy and the last given the time to do it well.
-- Good governance is a small set of clear rules, escalation paths, and audit trails. Not a 40-page document nobody reads.
-- The work is making the right thing the easy thing.
+- AI governance for a People team is a short set of decisions about what the model may never do, plus the habit that keeps those decisions attached to the work.
+- It is steering, not braking: the teams that move fastest with AI are the ones that decided early what they would never let it decide.
+- Four boundaries carry almost all the weight: decisions the model never makes alone, data it never sees, outputs a human always checks, and logging that actually exists.
+- If you cannot answer four inventory questions in five minutes, you have aspirations, not governance.
+- The whole first move is writing your four boundaries down this week.
 </TLDR>
 
-Most AI governance work in People functions starts with a fear and ends with a policy nobody reads. The fear is real - bias, leakage, EU AI Act, candidate complaints, employment tribunals. The policy is real too. It exists in a Notion page nobody opens after the day it was written. In between, individuals make the actual calls about what AI does in the function, alone, one prompt at a time.
+AI governance for People teams is not a forty-page policy. It is a short set of decisions, made once and written down, about what the model may never do, plus the habit that keeps those decisions attached to what the team actually ships. Most of what gets filed under governance is the document. The document is the easy part and the least useful part. It sits in a page nobody opens after the day it was written, while individuals make the real calls about what AI does in the function, alone, one prompt at a time. That gap, between the policy and the work, is the thing worth governing.
 
-That is the gap. Not "do we have a policy" but "does the policy meet the work." For the policy document itself, see [the AI policy blueprint](/intelligence/ai-policy-blueprint-for-people-teams). This piece is about the operating posture underneath it.
+<Takeaway>Governance is steering, not braking. The People teams that move fastest with AI decided early what they would never let it decide, then went hard on everything else.</Takeaway>
 
-<Takeaway>Governance is steering, not braking. The People teams that move fastest with AI decided early what they would never let it decide.</Takeaway>
+## What AI governance for People teams actually is
+
+Start with a definition you can act on, because the fuzzy ones are exactly why this work stalls.
+
+> AI governance for a People team is the set of boundaries you decide in advance, the sign-off that holds them, and the log that proves they held. Everything else is paperwork.
+
+Here is the position most compliance-led framings would argue with: governance is not a document handed down from legal, and it is not compliance's job to author on the function's behalf. It is operating hygiene, and it belongs inside the People team, owned by someone who runs the work. The reason is simple. A model touches candidate data, grievance notes, salary bands and performance history. The person who understands what a wrong call costs there is not sitting in a risk committee. They are the ops lead who has watched one bad reference letter turn into a two-year rebuild of trust.
+
+The second thing others would argue: the policy is the least important artefact. A team can have a beautiful forty-page document and no governance, because nobody has changed a single thing about how the work happens. And a team can have governance with almost no document, because four decisions are written on a one-pager and the workflow logs itself. If you only have time to build one, build the second. This piece is about that operating posture. For the written artefact that sits on top of it, see [the AI policy blueprint for People teams](/intelligence/ai-policy-blueprint-for-people-teams).
 
 ## Steer, don't brake
 
-The instinct, especially under regulatory pressure, is to treat governance as a brake. Slow things down. Add approvals. Require sign-off. The result is predictable: the work routes around the policy. People still use AI. They just stop telling you about it.
+The instinct, especially under regulatory pressure, is to treat governance as a brake. Slow things down. Add approvals. Require sign-off on everything. The result is predictable: the work routes around the policy. People still use AI. They just stop telling you about it, and now you have shadow usage with no logging, which is the worst of both worlds. You have taken on all the risk and kept none of the visibility.
 
-Good governance asks a different question. Where, in this function, does AI need to be in the loop? Where does it need to be **only** in the loop, with a human deciding? Where is the line, and who holds it?
+Good governance asks a different question. Where, in this function, does AI need to be in the loop? Where does it need to be only in the loop, with a human deciding? Where is the line, and who holds it? Those are steering questions. They point the work rather than stopping it, and they are answerable in an afternoon.
+
+There is a version of this that goes wrong in the other direction, and it is just as common. A team buys tools faster than it governs them. Seventeen tools. No strategy. Every hire has a favourite assistant, every vendor demo lands a free trial, and six months later nobody can list which tools touch employee data. That is not freedom, it is an ungoverned surface, and it is more fragile than the over-braked version because you cannot even see it. Steering means the function moves fast on purpose, on a small set of approved paths, not fast by accident on a sprawl nobody mapped.
 
 ## The four boundaries that matter
 
-Four boundaries matter more than anything else in a People-function AI policy. Get these right and the rest of the document is just paperwork.
+Four boundaries carry more weight than everything else in a People-function AI policy combined. Get these right and the rest of the document is just paperwork. Get them wrong and no amount of paperwork saves you.
 
-### 1. Decisions a model never makes alone
+<div className="not-prose my-8 overflow-x-auto">
 
-Hiring decisions. Termination decisions. Performance ratings. Compensation calls. Reasonable adjustments and accommodations. Discipline outcomes. These are the six places where the consequence of a wrong call is high, the data is messy, and the bias risk is concentrated. The model can prepare, summarise, suggest, draft. The model never decides. A named human does. Always.
+| Boundary | The model may | The model may never | How you enforce it |
+| --- | --- | --- | --- |
+| Decisions | Draft, summarise, rank, suggest | Make the final call on hiring, termination, ratings, pay, adjustments, discipline | A named human signs off, logged, every time |
+| Data | See job-relevant, de-identified context | See health, disability, salary-by-name, grievance content, special-category or NDA data | Configuration: enterprise endpoints, no training, identifiers stripped before the model sees them |
+| Outputs | Produce the draft | Become the deliverable unchecked, when it reaches a candidate, regulator or record | Human review and sign-off before anything external or permanent goes out |
+| Logging | Run the workflow | Run without a trace of prompt, output and owner | A living one-pager plus prompt and output history you can produce on request |
 
-Write that list down. Put it at the top of the policy. Everything else is detail.
+</div>
 
-### 2. Data the model never sees
+Read the table down the "may never" column and you have the whole risk surface of AI in a People team. Read it down the "how you enforce it" column and you have the actual work, because a boundary you cannot enforce is a wish. Let me take each one at the level a person actually implements it.
 
-Health information. Disability status. Salary detail tied to identity. Grievance content. Anything covered by special category data under GDPR. Anything covered by an NDA. Anything that, if it leaked, would damage trust permanently.
+**Decisions a model never makes alone.** Hiring. Termination. Performance ratings. Compensation. Reasonable adjustments and accommodations. Discipline outcomes. Six places where the consequence of a wrong call is high, the data is messy, and the bias risk is concentrated. The model can prepare, summarise, suggest, draft. It never decides. A named human does, always. Write that list of six at the top of your policy. Everything else is detail.
 
-The way this gets enforced is rarely "we trust people not to paste it." It is configuration. Approved tools that route to enterprise endpoints with no training. Workflows that strip identifiers before the model sees them. A short list of providers, not a long one.
+**Data the model never sees.** Health information. Disability status. Salary tied to a name. Grievance content. Anything in the GDPR special category. Anything under an NDA. This boundary is almost never enforced by trusting people not to paste. It is enforced by configuration: approved tools routing to enterprise endpoints with training switched off, workflows that strip identifiers before the model gets them, a short provider list rather than a long one. Model choice is part of this decision, not separate from it, which is why [choosing AI models for HR work](/intelligence/choosing-ai-models-for-hr-work) and drawing the data boundary are the same conversation held once per tool.
 
-### 3. Outputs the human must always check
+**Outputs the human must always check.** Anything that reaches a candidate. Anything that reaches a regulator. Anything that enters an employment record. Anything that becomes a written commitment. A model's draft becomes the deliverable only after a human has read it and signed off. That review is what makes the speedup safe, and it is cheap: reading and approving a good draft is minutes, and it is the minutes that keep you out of a tribunal.
 
-Anything that goes to a candidate. Anything that goes to a regulator. Anything that goes into an employment record. Anything that becomes a written commitment. A model's draft only becomes the deliverable once a human has reviewed and signed off on it. That review is what makes the speedup safe.
+**Logging that actually exists.** If the team uses AI in the work, you should be able to answer four questions in under five minutes: which workflows use a model, which model and where it runs, where the prompt and output history lives, and who is accountable for each workflow. Most teams can answer the first two instantly and fail on the third. They can name the workflow and the model, then nobody can produce a log. If you cannot, you do not have governance. You have aspirations.
 
-### 4. Logging that actually exists
+## What good governance looks like from inside the team
 
-If the team is using AI in the work, you should be able to answer four questions in under five minutes:
+Governance shows up in the daily texture of a team long before anyone rereads a policy doc, and the two versions are easy to tell apart once you know what to look at. The theatre version is loud on paper and invisible in the work. The real version is quiet on paper and visible everywhere in the work.
 
-- Which workflows use a model?
-- Which model, and where does it run?
-- Where is the prompt and output history?
-- Who is accountable for each workflow?
+<ComparePanel
+  a={{ heading: "Governance in the work", items: [
+    "A living one-pager lists every AI workflow, owner, model and data touched",
+    "The people who run the workflows update it, not a central function",
+    "A short monthly review where owners walk through near-misses by name",
+    "One named person owns the hygiene: 'the AI is in good order'",
+    "Surfacing a near-miss gets you thanked, not investigated",
+  ]}}
+  b={{ heading: "Governance as theatre", items: [
+    "A forty-page policy nobody has opened since the day it shipped",
+    "Legal wrote it and handed it down; the team never touched it",
+    "An annual audit that discovers the workflows for the first time",
+    "Everyone assumes someone else owns it, so no one does",
+    "A near-miss gets buried because owning up looks like a confession",
+  ]}}
+  caption="The left column is boring on purpose. Boring is the goal: it means the rules are attached to the work, not to a document."
+/>
 
-If you can't, you don't have governance. You have aspirations.
+The single sheet matters more than it sounds. It is usually a one-pager, not a deck: every AI workflow the team runs, its owner, its model, the data it touches, and whether it is in pilot, live or retired. It is maintained by the people who run the workflows, which is the only way it stays true. A central register that a coordinator updates once a quarter is already wrong by week two.
 
-## What good looks like inside the team
+The review matters as much. Monthly or quarterly, short, and deliberately dull. Owners walk through what their workflow did, what it nearly got wrong, and what they are changing. New workflows get added, old ones retired. The near-miss culture is the part that takes longest to build and pays the most. The first time someone says "I almost let the model send that" and gets thanked rather than investigated, the system starts to actually work, because now the failures surface while they are still near-misses instead of after they have become incidents.
 
-Governance shows up in the daily texture of the team, long before anyone rereads the policy doc. The People functions that get this right tend to look the same from inside.
+<FieldNote label="From the field">
+On a transit engagement the whole governance win was the inventory itself. Nobody had a list of which tools touched employee data. When the team finally built the one-pager, it surfaced a stack of licences nobody could account for and nobody clearly owned. Retiring them took forty thousand pounds of annual licence cost off the table, and the work that mattered moved onto one tool with two internal builders who actually understood it.
 
-There is a single page - usually a one-pager, not a deck - that lists every AI workflow the team uses. The owner. The model. The data it touches. Whether it is in pilot, live, or retired. It is updated by the people who run the workflows, not by a central function.
+The lesson has stuck with me since. The audit trail is not overhead you add after the fact. Building it is often where you find the risk you did not know you were carrying, and the savings that pay for the whole exercise.
+</FieldNote>
 
-There is a regular review, monthly or quarterly. Short. The owners walk through what their workflow has done, what it nearly did wrong, what they are changing. New workflows are added. Old ones are retired. The review is boring on purpose. Boring is the goal.
+## The five-minute test: do you actually have governance?
 
-There is a named person - usually the operations lead, sometimes the CPO, sometimes a senior HRBP - whose job includes "the AI is in good order." Not "the AI strategy." The order of it. The hygiene.
+Here is how you find out where you stand without a consultant and without a review cycle. Time yourself against these. If you can answer all of them cold, in five minutes, from memory or from one sheet, you have governance. If you stall on any of them, that stall is your diagnosis, and it tells you exactly what to build first.
 
-And there is a culture, slowly built, where surfacing a near-miss is a gift to the team, not a confession. The first time someone says "I almost let the model send that" and gets thanked instead of investigated, the system starts to actually work.
+<DecisionFilter
+  title="Answer these four cold, in five minutes"
+  criteria={[
+    { test: "Which workflows in your function use a model, and can you name every one?", fail: "You can name a few and suspect there are more you have not mapped" },
+    { test: "For each, which model is it and where does it run?", fail: "You know the tool's brand name but not the endpoint or the training setting" },
+    { test: "Where does the prompt and output history live, and can you produce it on request?", fail: "Nobody can actually pull a log; this is where most teams break" },
+    { test: "Who is the named human accountable for each workflow on a Monday morning?", fail: "IT keeps the lights on but no business owner holds the decision" },
+  ]}
+  verdict="The question you stall on is the boundary you have not built. Most teams stall on the third, so start there: a log you can produce beats a policy you cannot enforce."
+/>
+
+This test is deliberately harder than reading your policy back. A policy tells you what you intended. The four questions tell you what is true. When an external audit or a tribunal comes, they do not ask to see your intentions. They ask you to produce the log, name the owner, and explain the decision, which is why the same four questions are the ones worth rehearsing now. If you want a structured version that scores the whole function rather than one workflow, the [Readiness Assessment](/readiness) runs the diagnostic across four capability layers in about ten minutes.
 
 ## The trade you are making
 
-Governance done well is a small tax on speed in exchange for a large reduction in tail risk. That trade is almost always worth it inside a People function. The risk here isn't cash, it's trust, and a People team that loses the company's trust because the model said something it shouldn't, or saw something it shouldn't, takes years to rebuild.
+Governance done well is a small tax on speed in exchange for a large reduction in tail risk. Inside a People function that trade is almost always worth taking, and the reason is what is at stake. The risk here is not mainly cash. It is trust. A People team that loses the company's trust because the model said something it should not have, or saw something it should not have, spends years rebuilding it, and no efficiency gain from AI is worth that.
 
-The teams that move fastest with AI decided early, in writing, what they would never let the model do. Then they went hard on everything else.
+There is a second cost people miss. Ungoverned AI does not just risk a bad output. It quietly makes the function unauditable, and unauditable is a state you cannot exit cheaply. The team that logs from day one can answer a data-subject request, a works-council question or a regulator in an afternoon. The team that did not spends weeks reconstructing what happened, if it can reconstruct it at all. That reconstruction cost is invisible right up until the day you need it, at which point it is the only cost that matters.
 
-Write your four boundaries down this week. That's the whole first move.
+The teams that move fastest with AI are not the ones that governed least. They are the ones that decided early, in writing, what they would never let the model do, and then stopped worrying about the rest. The boundary is what lets you go fast. When the six decisions and the data lines are settled, everyone knows where the edges are, so nobody has to pause and check on every prompt. Governance, done right, is what removes the hesitation. This is the same logic that keeps [AI pilots from stalling at production](/intelligence/why-ai-pilots-stall-at-production): a pilot proves a model can do a task, and governance is part of proving the organisation can absorb the consequences.
 
+## The first move
 
+You do not need a policy project to start. You need four boundaries on one page. Write down the six decisions the model never makes alone. Write down the data it never sees. Write down the outputs a human always checks. Write down the four logging questions and make sure you can answer them. That fits on a single sheet, it takes an afternoon, and it is more governance than most functions have after a quarter of committee time.
 
-## What this connects to
-
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
-
-- [Measuring AI value in People Ops](/intelligence/measuring-ai-value-in-people-ops)
-- [People debt: what GenAI exposes, and what to do about it](/intelligence/people-debt-and-genai)
-- [AI workspace setup for People teams (Claude, ChatGPT, Copilot)](/intelligence/setting-up-your-ai-workspace)
-- [Designing the AI-native People team](/intelligence/designing-the-ai-native-people-team)
+Do that this week. Then build the review that keeps it attached to the work, and put one named person in charge of the hygiene. That is the whole operating posture, and everything in the [AI workspace for People Ops pillar](/intelligence/pillar/ai-workspace-for-people-ops) sits more safely on top of it once it is in place. The document can come later. The boundaries cannot.
 
 <KeyTakeaways>
-- Write rules people can quote from memory. If they cannot, the rules do not exist.
-- Bake governance into the workspace, not into a separate review step.
-- Audit-trail the high-risk decisions. Trust the rest.
+- Write your four boundaries on one page this week: decisions the model never makes alone, data it never sees, outputs a human always checks, logging you can produce on request.
+- Bake governance into the workspace and the configuration, not into a separate review step people route around.
+- Time yourself on the four inventory questions; the one you stall on is the boundary you have not built yet.
+- Put one named person in charge of the hygiene, and thank people who surface near-misses.
 </KeyTakeaways>

@@ -2,109 +2,172 @@ export const frontmatter = {
   title: "From AI experiments to AI infrastructure",
   slug: "from-ai-experiments-to-ai-infrastructure",
   category: "ai-operating-systems",
-  description: "Experiments are cheap. Infrastructure is expensive. The companies that win the next decade are the ones that know when to switch, and what to switch into.",
-  keywords: ["AI infrastructure", "AI experiments", "AI strategy", "AI operating system", "AI adoption"],
-  readTime: "8 min",
+  description:
+    "Most AI programmes never switch from experiments to AI infrastructure, so nothing compounds. Here is when to make the switch, and what to build first.",
+  keywords: [
+    "AI infrastructure",
+    "AI experiments",
+    "when to build AI infrastructure",
+    "AI operating system",
+    "scaling AI pilots",
+    "AI adoption strategy",
+  ],
+  readTime: "11 min",
   publishedAt: "2026-03-09",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
 export const faqs = [
   {
-    question: "When should a company stop running AI experiments and build AI infrastructure?",
+    question:
+      "When should a company stop running AI experiments and build AI infrastructure?",
     answer:
-      "In practice, the switch usually gets forced by whoever owns the third rebuild, not by a strategy team sitting above the work. If nobody named is losing sleep over rebuilding the same plumbing again, the pressure is not real yet, and any infrastructure you build now will be built for the wrong workflow.",
+      "Switch when the same workflow has been built three times, or when one experiment throws off value in two or more functions. In practice the pressure gets forced by whoever owns the third rebuild, not by a strategy team above the work. If nobody named is losing sleep over rebuilding the same plumbing again, the moment has not arrived, and infrastructure built now gets built for the wrong workflow.",
   },
   {
-    question: "What counts as AI infrastructure?",
+    question: "What actually counts as AI infrastructure?",
     answer:
-      "Run a simple test: pull the component out and see what breaks. If three separate workflows would have to rebuild the same plumbing, it was infrastructure. If only one demo dies, it was an experiment wearing infrastructure's clothes.",
+      "Pull the component out and see what breaks. If three separate workflows would have to rebuild the same plumbing, it was infrastructure. If only one demo dies, it was an experiment wearing infrastructure's clothes. Infrastructure is the reusable substrate underneath many workflows: data access, tool interfaces, an agent runtime, governance, and the cadence that keeps them honest.",
   },
   {
-    question: "Is AI infrastructure the same as buying an AI platform?",
+    question: "Is buying an AI platform the same as building AI infrastructure?",
     answer:
-      "No. A platform is a component. Infrastructure includes the data, the integrations, the policies, and the operating habits wrapped around the platform. Companies that buy a platform and call it infrastructure end up with a powerful piece of software and the same workflow problems they had before.",
+      "No. A platform is one component. Infrastructure is the data, the integrations, the policies, and the operating habits wrapped around that platform. Companies that buy a platform and call it infrastructure end up with a powerful piece of software and the exact workflow problems they had before. The software was never the hard part.",
+  },
+  {
+    question: "How much does it cost to build AI infrastructure?",
+    answer:
+      "Far less than the moonshot platform the pitch deck implies. The substrate is data access you mostly already have, a workflow tool like n8n at roughly £20 per builder seat per month, and a governance page in Notion. The real cost is deciding which workflow needs it first and giving one operating leader the time to own it. Budget weeks of build for the first pillar, not a quarter.",
   },
 ];
 
 <TLDR>
-- Experiments answer "can the model do this?" Infrastructure answers "can we run this on Monday?" Different question, different cost.
-- Switch from experiments to infrastructure when the same workflow has been pilot-built three times, or when value repeats across two functions.
-- Infrastructure is not a platform purchase. It is data pipelines, integrations, governance, runtime, and the operating cadence around them.
-- Build infrastructure smallest-first, in the order real workflows need it. Avoid the temptation to wire everything before running anything.
-- The cost of not switching is usually invisible: the same prompts re-written, the same data re-secured, the same demo re-run.
+- Experiments answer "can the model do this?" Infrastructure answers "can we run this every Monday?" Different question, different cost, different owner.
+- Make the switch when the same workflow has been built three times, or when value repeats across two or more functions.
+- AI infrastructure is not a platform purchase. It is data access, tool interfaces, an agent runtime, governance, and the operating cadence around them.
+- Build it smallest-first, in the order real workflows need it. Wiring everything before you run anything is how a quarter disappears.
+- The cost of not switching is invisible: the same prompts re-written, the same data re-secured, the same demo re-run, forever.
 </TLDR>
 
-There is a moment in every AI programme when the experiments need to stop and the infrastructure needs to start. Knowing when, and knowing what to switch into, is the job.
+A company I know ran a proof of concept every quarter for two years. Different model each time, a fresh demo each time, a working group that met and quietly dissolved. The bill was real, but the worse cost was the one nobody put on a slide: the same customer-onboarding workflow got rebuilt from scratch three separate times, and on Monday morning it still ran on one person's exported spreadsheet. That is what happens when a programme never switches from AI experiments to AI infrastructure. The switch is the actual job, and you make it when the same workflow has been built three times, or when one experiment throws off value in two or more functions.
 
-Get it wrong in the early direction and you will run experiments for two years and have nothing that compounds. Get it wrong in the late direction and you will spend a quarter wiring infrastructure for workflows that turned out not to be the ones worth wiring.
+Get the timing wrong early and you run experiments for two years with nothing that compounds. Get it wrong late and you spend a quarter wiring infrastructure for workflows that turned out not to be the ones worth running. Both are expensive. Only one is loud.
 
-## What experiments are for
+## Why experiments stop paying
 
-Experiments exist to find out two things: whether a model can do a piece of work to the standard your customers will accept, and whether your team will actually use the result. Both are real questions and neither can be answered from a vendor demo.
+Experiments exist to answer two questions a vendor demo cannot: whether a model can do a specific piece of work to the standard your customers accept, and whether your own team will actually use the result when the novelty wears off. Both are real. Neither survives a slide.
 
-A good experiment looks like:
-- A specific workflow, owned by a specific person, with a clear definition of "good enough"
-- A timebox of weeks, not quarters
-- A decision at the end: ship, kill, or build the infrastructure to scale
-- A short written record of what was learned, regardless of outcome
+A good experiment is narrow and disposable. One workflow, one named owner, a timebox measured in weeks, a clear definition of "good enough", and a decision at the end: ship it, kill it, or build the substrate to run it for real. You keep the lesson, not the wiring. A bad experiment is the six-month "AI pilot" with no exit criteria, a working group with no operator on it, and a demo nobody can run on a real day's work. It ends where it started, and then someone suggests trying it again with the newer model.
 
-A bad experiment looks like:
-- A six-month "AI pilot" with no defined exit criteria
-- A working group with no operator on it
-- A demo that nobody can run on a real day's work
-- A repeating cycle of "let's try this with the new model"
+The demo worked. The rollout didn't. That Pattern is not a model failure. It is what happens when a piece of work that has proven itself keeps getting rebuilt by hand because there is nothing reusable underneath it. The experiment did its job. The organisation just had nowhere to put the answer.
 
-Experiments that never end in a decision are just spend, dressed up as R&D.
+## Experiment or infrastructure: which question are you answering
 
-## When to switch
+The clearest way to tell an experiment from infrastructure is to ask which question the thing is built to answer. An experiment answers "can this be done?" Infrastructure answers "can this keep running without me?" They look similar on a whiteboard and cost completely different amounts to own.
 
-Switch from experiments to infrastructure when one of three things is true:
+<ComparePanel
+  a={{ heading: "An experiment", items: [
+    "Answers: can the model do this to a standard customers accept?",
+    "Owned by one person, timeboxed to weeks",
+    "Runs on a clean export someone prepared by hand",
+    "Ends in a decision: ship, kill, or build the substrate",
+    "Disposable by design; you keep the lesson, not the wiring",
+  ]}}
+  b={{ heading: "Infrastructure", items: [
+    "Answers: can we run this every Monday, at real volume and noise?",
+    "Owned by an operating leader, maintained on a cadence",
+    "Reaches the same source of truth a human would, live",
+    "Ends in nothing visible; it just keeps running underneath",
+    "Reusable by design; the next workflow calls it, never rebuilds it",
+  ]}}
+  caption="Same demo, opposite economics. The experiment is cheap because it throws itself away. Infrastructure is expensive because it is meant to survive."
+/>
 
-**1. The same workflow has been built three times.** Once for the pilot, once for the demo, once for the "real" version that still does not run on Mondays. The cost of building infrastructure is now lower than the cost of building it again.
+A pilot proves a model can do a task. Production proves an organisation can absorb the consequences of that task running at volume, on live data, when the person who built it is on holiday. Those are different proofs, and treating the first as if it were the second is the most common and most expensive mistake in this whole arc. If you want the full anatomy of that gap, [why AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production) walks the failure modes one by one.
 
-**2. An experiment has produced repeated value across two or more functions.** The pattern is general. The thing stopping it scaling is not the model, it is the absence of shared retrieval, shared tool access, shared governance.
+## When to switch from experiments to AI infrastructure
 
-**3. You can name three workflows that are clearly worth running, but cannot run them concurrently because every new one rebuilds the same plumbing.** This is the moment infrastructure pays for itself almost immediately.
+There is no calendar date for the switch and no maturity-model tick box that hands it to you. The signal comes from the work itself. Run your situation against these three tests. Any one of them being true means the moment has arrived.
 
-If none of those is true yet, you are not ready to build infrastructure. Keep experimenting. The cost of premature infrastructure is months of wiring for workflows you will not end up running.
+<DecisionFilter
+  title="You are ready to switch when any of these is true"
+  criteria={[
+    { test: "The same workflow has been built three times: once for the pilot, once for the demo, once for the version that still will not run on Mondays.", fail: "You are about to scope a fourth build and calling it 'the real one'." },
+    { test: "One experiment has thrown off value in two or more functions, and the only thing blocking a third is shared plumbing.", fail: "Every new team starts from an empty page and re-secures the same data." },
+    { test: "You can name three workflows worth running that you cannot run at once, because each rebuilds retrieval, tool access and governance from scratch.", fail: "The list of 'clearly worth running' is still one item long." },
+  ]}
+  verdict="None of these true yet? Keep experimenting. Infrastructure built before the workflows exist is just wiring for guesses, and it will be wired for the wrong ones."
+/>
 
-<Takeaway>Switch from experiments to AI OS infrastructure when the same workflow gets built three times, or when value repeats across two functions.</Takeaway>
+Notice what is not on that list. Board pressure is not a trigger. A competitor's announcement is not a trigger. A budget line that has to be spent before year end is the worst trigger of all, because it forces the build before the workflows have earned it. The switch is a decision made by whoever owns the third rebuild, not a milestone handed down from a strategy off-site. If you are unsure where your function actually sits, [AI maturity frameworks for G&A leaders](/intelligence/ai-maturity-frameworks-for-ga-leaders) gives you a score you can defend at the board rather than a gut feel you cannot.
 
-## What to build
+## What AI infrastructure actually is
 
-The infrastructure has a name: an [AI operating system](/intelligence/what-is-an-ai-operating-system). Five pillars (data, tools, agents, governance, cadence) and a maintenance rhythm. Without it, every experiment dies on its own.
+The infrastructure has a name and a shape. It is an [AI operating system](/intelligence/what-is-an-ai-operating-system): five pillars and a maintenance rhythm that turns one-off experiments into work that compounds. Without it, every experiment dies alone, and the next one starts from nothing.
 
-Build the smallest possible version of each pillar:
+> Infrastructure is the reusable substrate underneath many workflows. Not the model, not the demo, but the data access, tool interfaces, agent runtime, governance and cadence that let the next workflow take a week instead of a quarter.
 
-- **Data**: identity, permissions, retrieval. The model can reach the same source of truth a human would, in the same shape.
-- **Tools**: a small set of stable interfaces (MCP, internal APIs) that any new workflow can call without re-negotiating access.
-- **Agents**: a runtime where new agents are days of work, not months. Logged, reversible, owned.
-- **Governance**: a written list of what is allowed, what is logged, what gets a human in the loop. Reviewed on a cadence.
-- **Cadence**: a recurring forum where agents are reviewed, drift is caught, and policy is updated.
+The mistake here is reaching for the moonshot: an eighteen-month platform programme that ships nothing until it ships everything. That is not infrastructure, it is a bet. Real infrastructure is the smallest reusable version of each pillar, built in the order your actual workflows need it. Here is what "smallest that counts" looks like, with the tools I would reach for and the honest effort behind each.
 
-Skip the moonshot platform that takes 18 months to ship. Infrastructure here means the smallest reusable substrate that makes the next workflow take a week instead of a quarter. The [five pillars of AI readiness](/intelligence/five-pillars-of-ai-readiness) is the diagnostic that tells you which pillar to build first, and the [AI maturity frameworks for G&A leaders](/intelligence/ai-maturity-frameworks-for-ga-leaders) guide is how you translate that pillar work into a maturity score Finance and People Ops leaders can defend at the board.
+| Pillar | The smallest version that counts | What I would reach for | Rough effort |
+| --- | --- | --- | --- |
+| Data | Identity, permissions and retrieval, so the model reaches the same source of truth a human would, in the same shape | Supabase, Notion, the APIs you already run | Days to wire, not months |
+| Tools | A small set of stable interfaces any new workflow can call without re-negotiating access | n8n, roughly £20 per builder seat per month, SOC 2 and ISO 27001, self-hostable | A fortnight for the first, minutes after |
+| Agents | A runtime where a new agent is days of work: logged, reversible, owned by a person | Claude, the Anthropic API, model-only extraction | About two weeks each |
+| Governance | A written list of what is allowed, what is logged, what needs a human in the loop | One Notion page, reviewed on a cadence | An afternoon to write, ongoing to keep |
+| Cadence | A recurring forum where agents are reviewed, drift is caught, and policy is updated | A standing meeting, thirty minutes | Half an hour a fortnight |
 
-## What to stop doing
+None of that is exotic. The tools are boring on purpose. What makes it infrastructure rather than a pile of subscriptions is that each pillar is shared: the second workflow calls the data layer the first one built, uses the same tool interfaces, inherits the same governance page. The [five pillars of AI readiness](/intelligence/five-pillars-of-ai-readiness) is the diagnostic that tells you which pillar to build first, so you build the one a live workflow is waiting on rather than the one that felt tidy.
 
-When you make the switch, three things stop being acceptable:
+## Build it smallest-first, in workflow order
 
-- New workflows that re-implement retrieval, governance, or tool access from scratch
-- Agents that are owned by "the AI team" rather than a specific operating leader
-- Experiments that run forever without a decision
+The unit of infrastructure is a workflow, not a layer. This matters because the tempting move is to build the whole data pillar, then the whole tools pillar, then agents, as if you were pouring foundations for a house. Do that and you will spend three months building capability nothing is using yet, and you will build it for a general case that never quite matches the specific workflow you eventually run.
 
-If those three things are still tolerated after the switch, you have spent more money without actually making the switch.
+Instead, pick one workflow that has clearly earned it. Build only the slice of each pillar that workflow needs: the data it retrieves, the two tools it calls, the one governance rule it must obey, the runtime it sits in. Ship it. Run it on Monday morning against real volume. Then pick the second workflow, and notice how much of the substrate is already there. By the third, most of the pillars exist and the build is mostly assembly. That is the compounding the experiments could never give you, and it only shows up when you build in workflow order rather than layer order.
 
-## A working summary
+Bespoke for the first workflow, reusable for every one after. You never build the same plumbing twice, which is the entire point of calling it infrastructure.
 
-> Experiments are how you learn what is worth running. Infrastructure is how you actually run it. The switch happens when the same workflow has been built three times, or when value is repeating across functions. The infrastructure is an AI operating system, built smallest-first, in the order the pillars are needed by real workflows.
+## What the switch actually buys you
 
-For most companies, the right next step is one experiment fewer and one piece of infrastructure more. Pick the workflow. Build the substrate. Run it on Monday morning. Then do it again.
+The payoff is not "we use AI now". Plenty of companies drowning in stalled pilots can say that. The payoff is that new work gets cheaper the more infrastructure you have, because each workflow stands on the last one instead of starting from an empty page.
+
+<PullStat value="83" unit="hours/week">
+That is what one defence tech team got back once the substrate was real and new workflows stopped rebuilding the same plumbing. Experiments do not compound. Infrastructure does.
+</PullStat>
+
+Eighty-three hours a week did not come from a single clever agent. It came from a run of workflows that each took days instead of quarters, because the data access, the tool interfaces and the governance were already there to call. Two months on, the team had shipped agents nobody had scoped at the start, with no critical issues, because the substrate held. That is the test of infrastructure: what the team ships after you stop paying attention.
+
+## The cost of not switching
+
+The reason companies stay in experiment mode too long is that the cost of not switching is invisible. Nobody sends an invoice for the third rebuild. The prompts get re-written, the data gets re-secured, the demo gets re-run, and each instance looks like ordinary work rather than a symptom. The waste hides inside busyness.
+
+<FieldNote label="What it cost">
+A transit operator I worked with had been renewing about £40,000 a year in software licences for a workflow nobody had questioned in three budget cycles. It was a genuine job, done every week, and the seats simply felt like the cost of doing it. Nobody had asked whether the workflow was actually infrastructure wearing a subscription's clothes.
+
+We rebuilt it with one tool and two of their own internal builders. The £40,000 did not come back as a saving on a slide. It came back as two engineers who now owned the thing and could change it. That is the difference between renting a workflow forever and owning the substrate underneath it.
+
+The seat cost was never the real bill. The real bill was that nobody inside the building could touch the workflow, so it never improved and never went away.
+</FieldNote>
+
+Seat-based pricing is dying for exactly this reason. When the workflow is AI-native and the substrate is yours, you stop paying per person to run a process a system could own. The licence renewal that felt unavoidable turns out to have been an experiment nobody ever decided to graduate.
+
+## What stops being acceptable after the switch
+
+The switch is not real until certain things stop happening. When you have genuinely moved from experiments to infrastructure, three behaviours become the exception you catch and correct, not the norm.
+
+- New workflows that re-implement retrieval, governance or tool access from scratch, when the substrate already provides them.
+- Agents owned by "the AI team" rather than by the operating leader who lives with the consequences on Monday.
+- Experiments that run forever with no decision, quietly renewing as a line item.
+
+If those three are still tolerated after the switch, you have spent more money without actually making it. You bought the software and kept the workflow problem, which is the whole trap [what is an AI operating system](/intelligence/pillar/ai-operating-system) exists to name.
+
+For most companies the right next step is one experiment fewer and one piece of infrastructure more. Pick the workflow that has been built three times. Build the smallest substrate it needs. Run it on Monday, then run the next one on top of it. If you want a two-week, fixed-scope way to find that first workflow and leave with a ranked plan, that is exactly what the [Grain Audit](/grain-audit) does.
 
 <KeyTakeaways>
-- Experiments without exit criteria burn budget and teach nothing.
-- The switch is a decision, not a roadmap milestone. Mark it explicitly.
-- The unit of infrastructure is a workflow, not a layer. Build the layer the workflow needs, then the next.
-- A platform purchase is one component. It never substitutes for the strategy built around it.
+- Experiments without exit criteria burn budget and teach nothing. Give every one a named owner, a timebox, and a decision at the end.
+- The switch is a decision, not a roadmap milestone. Mark it the day the same workflow gets built a third time, or value repeats across two functions.
+- The unit of infrastructure is a workflow, not a layer. Build the slice of each pillar the workflow needs, then reuse it for the next.
+- A platform purchase is one component. It never substitutes for the data, governance and operating habits built around it.
+- The cost of not switching is invisible, which is why it survives so long. Go looking for the workflow you keep rebuilding, and the licence nobody has questioned.
 </KeyTakeaways>

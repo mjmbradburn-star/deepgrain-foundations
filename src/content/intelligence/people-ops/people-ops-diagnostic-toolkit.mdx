@@ -5,123 +5,164 @@ export const frontmatter = {
   primaryCluster: "readiness-and-diagnosis",
   clusters: ["workflows-and-automation", "measurement-and-roi"],
   track: "people-ops",
-  description: "Five working diagnostics for People leaders: the underperformance early warning, the People-as-a-product checklist, the 90-day roadmap, the workflow heatmap, and the AI-readiness read. Use them together, not in isolation.",
-  keywords: ["People Ops diagnostic", "HR diagnostic toolkit", "People function audit", "People as a product", "90-day People roadmap", "underperformance early warning"],
-  readTime: "12 min",
+  description: "The read comes before the fix. The People Ops diagnostic toolkit is five repeatable diagnostics that tell you where a People function actually snags.",
+  keywords: ["People Ops diagnostic toolkit", "HR diagnostic toolkit", "People function audit", "how to diagnose a People function", "workflow heatmap", "90-day People roadmap", "AI readiness read"],
+  readTime: "11 min",
   publishedAt: "2026-05-04",
-  updatedAt: "2026-07-15",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
 export const faqs = [
   {
-    question: "When should a People leader run a full diagnostic?",
-    answer: "Three moments. New into the role, new exec team, or before any AI investment over six figures. Also worth re-running after a reorg or a funding round, because both change headcount and priorities before anyone gets round to updating the roadmap.",
+    question: "What is the People Ops diagnostic toolkit?",
+    answer: "Five repeatable diagnostics you run on a People function before you change anything: an underperformance early warning, a People-as-a-product structural read, a workflow heatmap, an AI readiness read, and a 90-day roadmap. Four tell you where you are. One sequences the fixes. The reconciliation between them is the value, because the function looks different from each angle.",
   },
   {
-    question: "What is the underperformance early warning?",
-    answer: "It runs off data you already have: 1-1 calendar entries, ticket timestamps, Slack response times. No new tooling, no dashboard build. Same five signals, same order, every Friday, so you can compare this week against last week rather than judging each signal in isolation.",
+    question: "How do I diagnose a People function without buying a tool?",
+    answer: "Run the reads off data you already have. The early warning uses 1-1 calendar entries, ticket timestamps and Slack response times. The heatmap uses your own list of recurring workflows. No dashboard build, no new licence. The only thing you need is three weeks and the discipline to run the same lenses every time so this quarter is comparable to last.",
+  },
+  {
+    question: "When should a People leader run a full diagnostic?",
+    answer: "Three moments. New into the role, new exec team, or before any AI investment over six figures. Also worth re-running after a reorg or a funding round, because both change headcount and priorities before anyone updates the roadmap. The read is cheap. Acting on a stale one is not.",
   },
   {
     question: "What does People-as-a-product mean in practice?",
-    answer: "It means every offering carries a retire date. Skip that and the catalogue only ever grows: half the reason a six-person People team is drowning is that some of what they ship should have been sunset two reorgs ago.",
-  },
-  {
-    question: "How does the 90-day roadmap connect to the other diagnostics?",
-    answer: "It runs alongside the early warning, not instead of it. The roadmap sets the nine priorities; the weekly signals tell you in week three if priority four needs to jump the queue. Skip that link and you end up defending a 90-day plan that stopped matching reality around day 40.",
+    answer: "It means every offering carries an owner, a user, a spec, a measurement rhythm and a retire date. Skip the retire date and the catalogue only ever grows. Half the reason a six-person People team feels underwater is that some of what it ships should have been sunset two reorgs ago and nobody had the read to say so.",
   },
   {
     question: "Where does AI fit in the diagnostic toolkit?",
-    answer: "Two artefacts, not one score. The heatmap ranks automation candidates from work you already run. The readiness read scores whether the team, the data, and the governance can actually support it. A hot cell on the heatmap next to a weak readiness score is a build to postpone, not one to cancel.",
+    answer: "Two artefacts, not one score. The heatmap ranks automation candidates from work you already run. The readiness read scores whether the team, the data and the governance can actually support them. A hot cell on the heatmap sitting next to a weak readiness score is a build to postpone, not one to cancel. Automating a mess just gives you a faster mess.",
   },
 ];
 
 <TLDR>
-- A small set of repeatable diagnostics will tell you most of what you need to know about a People function.
-- Five lenses: ownership, cadence, data, escalation, capability.
-- Run them before any tool decision. Run them again after.
-- A deliverable gathers dust. The toolkit runs every quarter.
+- The People Ops diagnostic toolkit is five diagnostics you run before you change anything: early warning, People-as-a-product, workflow heatmap, AI readiness read, and 90-day roadmap.
+- Four read the function from different angles. One sequences the fixes. The disagreement between the angles is where the truth is.
+- Run every read off data you already have. No dashboard build, no new licence, three weeks of work.
+- Run the same lenses every time so this quarter is comparable to last. A deliverable gathers dust; the toolkit runs every quarter.
 </TLDR>
 
-Most People leaders inherit a function shaped by whoever ran it last, sized for a company that no longer exists, and measured by metrics nobody asked for. The first job is not to fix it. The first job is to read it. This toolkit is the read.
+Five diagnostics, three weeks, run off data you already own: that is the whole People Ops diagnostic toolkit, and it costs a fraction of the consulting audit most leaders reach for instead. You run it on a People function before you change anything. An underperformance early warning, a People-as-a-product structural read, a workflow heatmap, an AI readiness read, and a 90-day roadmap. Four of them tell you where you are. One sequences the fixes. The point is not any single artefact. It is the reconciliation between them, because the function looks different from every angle and the truth usually sits in the disagreement.
 
-<Takeaway>Five diagnostics, one read. Used together they give a People leader a clean map of the function, the team, and the work in under three weeks.</Takeaway>
+<Takeaway>Five diagnostics, one read. Used together they give a People leader a clean map of the function, the team, and the work in under three weeks, off data the team already generates.</Takeaway>
 
-## Why a toolkit, not a single audit
+## Why five diagnostics beat one audit
 
-A single audit produces a single answer, usually the answer the auditor already had in mind before they walked in. A toolkit forces you to look at the function from five angles and reconcile what you see. The reconciliation is the value.
+A single audit produces a single answer, usually the answer the auditor walked in holding. You hire someone to look at retention, they find a retention problem. You ask why onboarding is slow, you get an onboarding project. The shape of the question decides the shape of the finding, and the finding is rarely the thing that was actually costing you.
 
-The five diagnostics are deliberately different in shape. Two are signal-based and run continuously. Two are structural and run quarterly. One is sequencing. They do not overlap by accident.
+Five diagnostics force the function through five different lenses and make you reconcile what you see. The early warning shows you motion: what is slipping this week. The product checklist shows you structure: what has an owner and what is orphaned. The heatmap shows you where the manual cost lives. The readiness read shows you whether you could even fix it with AI if you wanted to. The roadmap shows you the order. When two lenses agree, you have a fact. When they disagree, you have found the thing worth looking at.
 
-## 1. The underperformance early warning
+Most People leaders inherit a function shaped by whoever ran it last, sized for a company that no longer exists, and measured by numbers nobody asked for. The first job is not to fix it. The first job is to read it. This is where the read pays for itself, in cash, not in insight.
 
-A weekly five-minute read of five signals across the function. Cheap, fast, and the only diagnostic on this list that runs every week.
+<PullStat value="£40k" unit="a year">
+One transit client was paying that in software licences for a workflow two internal builders replaced with a single tool. Nobody had questioned the spend, because nobody had read the function.
+</PullStat>
 
-- **Missed 1-1s.** Cancellations without reschedule inside seven days.
-- **Slipping commitments.** Tickets, hires, decisions that move their due date more than once.
-- **Stalled loops.** Hiring loops sitting in the same stage for more than a week with no scheduled action.
-- **Response latency.** Median time-to-first-reply on internal Slack and shared inboxes.
-- **Scope ambiguity.** Number of tickets reopened or reclassified in the last week.
+That number was not hiding. It sat in the finance system in plain sight for years. What was missing was a read that put the workflow, its manual cost, and its licence bill on the same page at the same time. A single audit into "our HR software stack" would have benchmarked the licences and renewed them. The toolkit asked a different question of the same facts, and the answer was worth forty thousand pounds a year. Here is what separates a function that has been read from one still running on inheritance.
 
-None of these is decisive alone. Two together is yellow. Three is a conversation owed inside the week. Catch it here and the fix costs a conversation. Miss it and it costs a quarter.
+<ComparePanel
+  a={{ heading: "A function that has been read", items: [
+    "Every offering has a named owner and a retire date",
+    "Priorities are visible, so the team knows what is not being done",
+    "AI spend follows a heatmap, not the loudest vendor",
+    "A weekly signal catches a slip while it still costs a conversation",
+    "The read is a live page, kept current, not a deck from onboarding week",
+  ]}}
+  b={{ heading: "A function running on inheritance", items: [
+    "Owners are implied, retire dates do not exist",
+    "Everything feels urgent, so nothing is genuinely prioritised",
+    "AI spend follows whoever gave the best demo last quarter",
+    "Slips surface at the quarterly review, when they cost a quarter",
+    "The last real read was the deck the previous lead left behind",
+  ]}}
+  caption="Same team, same headcount. The difference is whether anyone ran the read."
+/>
 
-## 2. The People-as-a-product checklist
+## The underperformance early warning
 
-Treat each People offering as a product. Onboarding is a product. Performance is a product. Comp, learning, internal mobility: all products. Each one needs:
+This is the only diagnostic on the list that runs every week, and the only one that costs five minutes. It is a read of five signals across the function, taken every Friday, in the same order, so you are comparing this week against last week rather than judging each signal cold.
 
-- A named owner accountable for outcomes, not activities.
-- A defined user. Often more than one (employee, manager, exec).
-- A versioned spec. What it does, what it deliberately does not do.
-- A measurement rhythm. Two or three numbers, reviewed monthly.
-- A retire date or a renewal date. Things that never get retired absorb the team.
+- **Missed 1-1s.** Cancellations without a reschedule inside seven days. A manager who keeps dropping their team's 1-1s is telling you something before the engagement survey does.
+- **Slipping commitments.** Tickets, hires and decisions that move their due date more than once. One slip is life. A second slip on the same item is a pattern.
+- **Stalled loops.** Hiring loops sitting in the same stage for more than a week with no scheduled next action. Candidates feel this before your data does.
+- **Response latency.** Median time-to-first-reply on internal Slack and shared inboxes. Not the average, which one holiday inbox will wreck; the median.
+- **Scope ambiguity.** Tickets reopened or reclassified in the last week. A rising reopen rate means work is being done to the wrong spec.
 
-The checklist sounds obvious. Almost no People function passes it cleanly. Half of what most teams ship has no defined user and no measurement rhythm, which is why the team feels busy and the company feels unserved.
+None of these is decisive alone. Two together is yellow. Three is a conversation you owe someone inside the week. The whole point is timing. Catch a slip here and the fix costs a ten-minute conversation. Miss it, let it surface at the quarterly review, and the same slip costs you a quarter. The signals all run off data you already have: a calendar, a ticketing tool, Slack timestamps. If you are building a dashboard for this, you have already overbuilt it.
 
-## 3. The 90-day roadmap
+## People as a product: the structural read
 
-The other four diagnostics tell you where you are. This one is sequencing.
+Treat each People offering as a product. Onboarding is a product. Performance is a product. Comp, learning, internal mobility, the reference-letter process: all products, whether or not anyone has ever called them that. A product has an owner, a user, a spec, a measurement rhythm and an end-of-life. Run each offering through the filter and watch how many pass cleanly.
 
-Three priorities for the first 30 days. Three for days 31 to 60. Three for days 61 to 90. Each priority has a single owner, a single weekly check-in, and a single visible scorecard. Nine items total. No more.
+<DecisionFilter
+  title="Run each People offering through this"
+  criteria={[
+    { test: "Who is the named owner, accountable for the outcome, not the activity?", fail: "The team owns it collectively, which means nobody does" },
+    { test: "Who is the user, and is it one user or three pretending to be one?", fail: "Built for the employee, quietly serving the manager, measured against neither" },
+    { test: "What is the spec: what does it do, and what does it deliberately not do?", fail: "Scope is whatever last quarter's crisis bolted onto it" },
+    { test: "What two or three numbers get reviewed, and how often?", fail: "Activity is counted, outcomes are assumed" },
+    { test: "What is the retire date, or the next renewal review?", fail: "It runs until someone leaves and it quietly breaks" },
+  ]}
+  verdict="A People offering with no owner, no user and no retire date is not a product. It is a habit the org stopped questioning."
+/>
 
-The roadmap is the artefact a new People leader shows the CEO in week two. It is also the artefact you show the team, so they know what is being prioritised and, by implication, what is not.
+Almost no People function passes this cleanly the first time, and the retire date is where they fail most. Nobody retires anything. The performance process from three org shapes ago still runs alongside the new one. The onboarding checklist has grown a section for every incident it ever caused. Half of what a stretched team ships has no defined user and no measurement rhythm, which is exactly why the team feels underwater while the company feels underserved. The structural read is how you find the things to stop doing, and stopping is usually a bigger win than starting.
 
-## 4. The workflow heatmap
+## The workflow heatmap: where AI actually goes
 
-A grid of every recurring People workflow on one axis and three properties on the other:
+The heatmap is a grid: every recurring People workflow down one axis, and three properties across the other. Frequency, how often it runs. Manual pain, how much hand coordination it costs per run. AI fit, which steps could be safely automated today given your actual tooling and data, not a vendor's slide. The rank falls out of the multiplication. This is the same logic as the [workflow assessment framework](/intelligence/workflow-assessment-framework), compressed to one artefact a leadership team reads in two minutes.
 
-- Frequency: how often it runs.
-- Pain: how much manual coordination it costs per run.
-- AI fit: which steps could be safely automated today, given current tooling and data.
+| Workflow | Frequency | Manual pain | AI fit today | Where it ranks |
+| --- | --- | --- | --- | --- |
+| Policy and benefits Q&A | Daily | Medium | High | 1 |
+| Interview scheduling | Weekly | High | High | 2 |
+| Onboarding setup | Weekly | High | Medium | 3 |
+| Reference and verification letters | Monthly | Medium | High | 4 |
+| Absence and payroll reconciliation | Monthly | High | Low | Park |
 
-Heatmap colours fall out of the multiplication. The hottest cells are where the next investment goes. This is the same logic as the [workflow assessment framework](/intelligence/workflow-assessment-framework), compressed to a single artefact the leadership team can read in two minutes.
+Read the bottom row carefully, because it is the one people get wrong. Absence and payroll reconciliation is painful and frequent enough to feel like the obvious first build. Its AI fit is low: the data is messy, the rules are exception-heavy, and the cost of an error lands in someone's pay packet. Park it. The genuinely automatable wins are policy Q&A and scheduling, high frequency and high fit, boring and safe. The unglamorous cells are almost always where the return is. A heatmap keeps you from spending your first AI budget on the workflow that looked hardest instead of the one that pays.
 
-## 5. The AI readiness read
+<FieldNote label="From the field">
+A climate venture, about sixty people, asked me to help them buy an AI tool for onboarding. I ran the heatmap first. Onboarding came back hot, exactly as they expected, but the readiness read on data came back a three: joiner records lived in four systems and none of them agreed.
 
-Score the six axes from the [AI readiness diagnostic](/intelligence/diagnosing-ai-readiness-in-people-ops) honestly. Most teams overestimate readiness on tooling and underestimate readiness on data. Nobody scores a clean 9 across all six first try. What matters is why tooling comes back a 7 and data comes back a 3.
+Building an onboarding agent on top of that would have automated the disagreement. So we rebuilt the joiner-to-leaver data spine first, then bought the tool. The decision waited a month and cost less when it finally landed, because it was buying a solution instead of papering over a mess.
+</FieldNote>
 
-Pair this read with the heatmap and you get a defensible answer to the question every CFO will ask: *of all the things we could build with AI, why this one first?*
+## The AI readiness read: can the team support it
 
-## How to run the toolkit
+The heatmap tells you what is worth building. The readiness read tells you whether you could survive building it. Score the six axes from the [AI readiness diagnostic](/intelligence/diagnosing-ai-readiness-in-people-ops) honestly, and the honesty is the hard part. Most teams overestimate readiness on tooling and underestimate it on data. Tooling comes back a 7 because everyone has a login. Data comes back a 3 because the records that would feed the tool are scattered, contradictory, and owned by nobody.
 
-Three weeks. Week one: heatmap and AI readiness, run as workshops with the team. Week two: People-as-a-product checklist, run as a desk exercise on each offering. Week three: 90-day roadmap, drafted privately, then pressure-tested with the CEO and CPO. The underperformance early warning starts week one and never stops.
+Nobody scores a clean read across all six axes on the first pass, and a clean score would make me suspicious anyway. What matters is not the total. It is the gap: why tooling is a 7 while data is a 3, and which of the two you can move first. Pair the readiness read with the heatmap and you have a defensible answer to the question every CFO asks, of all the things we could build with AI, why this one first. A hot heatmap cell next to a weak readiness axis is not a no. It is a sequence: fix the axis, then build. If you want a fast version of this read before you commit anyone's week to it, the [Readiness Assessment](/readiness) scores the function across four capability layers in about ten minutes.
 
-The output is a single page. Five sections, one per diagnostic, written in present tense. That page is the artefact you reference in every prioritisation conversation for the next six months.
+## The 90-day roadmap: sequencing the fixes
 
-Get this right and every later decision, including the AI ones, has a defensible foundation under it. Skip it and you will spend the next year defending choices nobody can connect to a real read of the function.
+The other four diagnostics tell you where you are. This one is the only thing that tells you what to do first, and doing things in the wrong order is how good diagnoses die on the shelf.
 
+Three priorities for the first 30 days. Three for days 31 to 60. Three for days 61 to 90. Nine items, no more. Each priority gets a single owner, a single weekly check-in, and a single visible scorecard. The discipline is the cap: the moment you have twelve priorities you have zero, because the team cannot tell which four to drop when the week goes sideways. Nine forces the trade-offs to happen on paper, where they are cheap, instead of in the moment, where they are not.
 
-## What this connects to
+The roadmap does not run instead of the early warning. It runs alongside it. The roadmap sets the nine priorities in week one; the weekly signals tell you in week three whether priority four needs to jump the queue because the thing it was going to fix is already on fire. Skip that link and you will spend day 60 defending a plan that stopped matching reality around day 40. This is also the artefact you show the CEO in week two and the team in week three, because it says as much about what you are not doing as what you are.
 
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
+## Running the People Ops diagnostic toolkit in three weeks
 
-- [People debt: what GenAI exposes, and what to do about it](/intelligence/people-debt-and-genai)
-- [The automation audit playbook](/intelligence/automation-audit-playbook)
-- [Measuring AI value in People Ops](/intelligence/measuring-ai-value-in-people-ops)
-- [Production agents for People Ops](/intelligence/production-agents-for-people-ops)
+The whole toolkit is three weeks of work, and it is worth being strict about the order, because each read feeds the next.
+
+<ProcessFlow
+  stages={[
+    { label: "Week one: the reads", body: "Run the heatmap and the AI readiness read as workshops with the team. Start the early warning this week and never stop it.", meta: "Week 1" },
+    { label: "Week two: the structure", body: "Take each People offering through the product checklist at a desk. Owner, user, spec, numbers, retire date, one at a time.", meta: "Week 2" },
+    { label: "Week three: the sequence", body: "Draft the 90-day roadmap privately, then pressure-test it with the CEO and CPO before it goes near the team.", meta: "Week 3" },
+  ]}
+/>
+
+The output is a single page. Five sections, one per diagnostic, written in present tense, kept live. That page is the artefact you reference in every prioritisation conversation for the next six months, and the one you re-run each quarter so the reads stay comparable. It is cheap to produce and expensive to skip, which is the wrong way round from how most functions treat it.
+
+Get the read right and every later decision, the AI ones included, has a defensible foundation under it. Skip it and you spend the next year defending choices nobody can connect to an honest read of the function. The toolkit is not a deliverable that gets filed. It is a habit, and it belongs in the [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops) alongside the tools it tells you when to buy. Reading the function is not the boring precursor to the interesting AI work. It is the work that makes the AI work worth doing. For the fuller picture of how the reads connect to what you build next, [measuring AI value in People Ops](/intelligence/measuring-ai-value-in-people-ops) picks up where the roadmap leaves off, and [people debt](/intelligence/people-debt-and-genai) names what GenAI exposes when you finally look.
 
 <KeyTakeaways>
-- Run the same five lenses every time. Comparability is the point.
-- Document the diagnostic. A diagnosis nobody can repeat is folklore.
-- Use the toolkit before buying any new capability.
+- Run the same five lenses every time. Comparability across quarters is the whole point; a one-off audit gives you a snapshot you cannot trust next quarter.
+- Read before you buy. The heatmap ranks the build; the readiness read decides whether you can survive it. A hot cell next to a weak axis is a sequence, not a purchase.
+- Give every People offering an owner and a retire date. Most functions drown because nothing gets sunset, not because nothing gets shipped.
+- Keep the roadmap to nine items and wire it to the weekly signals, so the plan can bend in week three instead of breaking at day 60.
 </KeyTakeaways>

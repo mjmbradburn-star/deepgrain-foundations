@@ -5,133 +5,168 @@ export const frontmatter = {
   primaryCluster: "org-design-and-roles",
   clusters: ["enablement-and-change"],
   track: "people-ops",
-  description: "Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it - different roles, different ratios, different leverage. Here is what an AI-native People team actually looks like.",
-  keywords: ["AI-native People team", "People Ops org design", "People function structure", "AI in HR org design", "People team operating model"],
-  readTime: "13 min",
+  description: "Bolting AI onto the People org chart changes nothing but the bill. An AI-native People team is redesigned around it: fewer roles, more senior, work that stays.",
+  keywords: ["AI-native People team", "People Ops org design", "AI-native People function", "how to structure a People team for AI", "People team operating model", "AI in HR org design"],
+  readTime: "11 min",
   publishedAt: "2026-04-18",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
+export const faqs = [
+  {
+    question: "What is an AI-native People team?",
+    answer: "An AI-native People team is a People function redesigned around AI as infrastructure, not the old team with AI seats bolted on. Roles are defined by the judgement only humans do, agents are owned like team members, the seats are fewer and more senior, and the systems outlive the people who built them. Buying tools is procurement. Becoming AI-native is org design.",
+  },
+  {
+    question: "Do you have to cut headcount to build an AI-native People function?",
+    answer: "No, and leading with redundancies is the worst possible first move. Teams that cut first get fear, work-hoarding, and no capability built, then end up back at the same headcount because the systems were never made. The gain comes from redesigning the work so a smaller, more senior team does more, not from doing the cuts before the redesign.",
+  },
+  {
+    question: "What new roles appear on an AI-native People team?",
+    answer: "Three tend to appear: a People Systems Lead who owns the workflow architecture and the integrations, three or four Champions who build inside their existing roles, and a People Data Lead whose job shifts from maintaining dashboards to designing what gets measured. Maybe five FTE depending on size. They sit inside your structure and change what it can do, rather than replacing it.",
+  },
+  {
+    question: "How long does it take to go from AI-enabled to AI-native?",
+    answer: "Most teams should aim for AI-augmented in about twelve months and AI-native in twenty-four to thirty-six. Skipping the augmented stage rarely holds: the team needs the muscle memory of building before a redesign sticks. Put a date on the destination or it stays a someday-conversation that never gets an owner.",
+  },
+];
+
 <TLDR>
-- An AI-native People team has different roles, different ratios, and a different operating cadence.
-- Agents are part of the workforce. Treat them as roles with owners and KPIs.
-- The team is smaller and more senior, with builder DNA in every seat.
-- Designing for AI-native is a posture, not a headcount exercise.
+- An AI-native People team is a People function redesigned around AI as infrastructure, not the old team with AI seats bolted on.
+- It has different roles, different ratios, and fewer people doing more senior work.
+- Agents are treated as roles: each has a named owner, a review cadence, and someone who gets paged when it breaks.
+- The transition runs through an augmented stage first, over roughly two to three years, and it is an org-design decision the CPO owns.
 </TLDR>
 
-Most People functions, when they think about AI, think about tools. The next layer up thinks about workflows. The layer above that - the one almost nobody is at yet - thinks about org design. Not *which AI do we buy*, but *what does the team look like when AI is infrastructure rather than a side project?*
+A 600-person company gives its People function AI seats. Copilot for everyone, a ChatGPT licence each, a proud line in the all-hands about being AI-forward. Eighteen months on, the org chart is identical, the weekly work is identical, and the only thing that measurably changed is the software bill. I have watched a version of this more than once, and it is the most expensive way to do nothing. An AI-native People team is not the old team with AI seats bolted on. It is a People function redesigned around AI as infrastructure: different roles, different ratios, and fewer people doing more senior work. Buying tools is a procurement decision. Becoming AI-native is an org-design decision, and almost nobody is treating it as one.
 
-It is the conversation a CPO needs to have once, then act on: once AI is genuinely embedded, the old shape of the team stops fitting.
+<Takeaway>Bolting AI onto the org chart changes the software bill and nothing else. The teams pulling ahead redesign around it: different roles, different ratios, more senior work.</Takeaway>
 
-<Takeaway>Most People functions bolt AI onto the existing org chart. The ones pulling ahead redesign around it: different roles, different ratios, different leverage.</Takeaway>
+## What an AI-native People team actually is
 
-## Three maturity levels, plainly
+Most People functions, when they think about AI, think about tools. The next layer up thinks about workflows. The layer above that, the one almost nobody is at yet, thinks about org design. Not *which AI do we buy*, but *what does the team look like when AI is genuinely infrastructure rather than a side project?*
 
-There are roughly three states a People function can be in. Some teams skip one entirely. Each describes a genuinely different operating mode.
+The difference is not cosmetic. A team with AI bolted on keeps its old roles and hands each person a chatbot. A team redesigned around AI defines its roles by the work that only a human can do, and lets the systems carry the rest. One is a spend. The other is a shape.
 
-**AI-Enabled.** Individuals on the team use AI tools to be faster at their existing work. The org chart is unchanged. The capability lives in a few enthusiasts. When they leave, it leaves with them. Most People functions are here, whether they say so or not.
+<ComparePanel
+  polarized
+  a={{ heading: "Redesigned around AI", items: [
+    "Roles defined by the judgement only a human can do",
+    "Agents owned like team members, a name against each one",
+    "Fewer, more senior seats carrying more of the work",
+    "New joiners learn to work this way from week one",
+    "The systems stay when a builder leaves",
+  ]}}
+  b={{ heading: "AI bolted on", items: [
+    "The old roles, now with a chatbot open in another tab",
+    "Tools bought per seat, owned by no one in particular",
+    "Same headcount, same work, a higher software bill",
+    "Capability living in two or three enthusiasts",
+    "When they leave, the capability leaves with them",
+  ]}}
+  caption="The seats on the right cost real money and change nothing. The shape on the left is the actual work."
+/>
 
-**AI-Augmented.** The team has shared workspaces, a few real automations, and named champions building things. The work has shifted: less drafting, more reviewing; less reporting, more interpreting. The org chart is mostly the same, but the time allocation inside roles has changed. A People Partner spends less time wrangling documents and more time on the conversations the documents enable.
+> An AI-native People function is one where AI is part of the operating architecture, not a productivity perk sitting on top of it. You can tell which side you are on by asking what happens when your best builder resigns. If the systems stay, you have designed something. If the knowledge walks out the door, you bought licences.
 
-**AI-Native.** The function has been redesigned around the new ratios. There are roles that did not exist three years ago. There are fewer of some roles that used to dominate. If a champion leaves, the systems they built stay behind - nobody has to relearn it from scratch. New joiners learn to work this way from week one.
+## Three levels, and why most teams are stuck on the first
 
-There's no "best" here. The right level is whichever matches the leverage you actually need. A 60-person company can run a great AI-Enabled team. A 600-person company that stays AI-Enabled is leaving an obscene amount on the table.
+There are roughly three states a People function can be in. Each is a genuinely different operating mode, and most teams are further down the ladder than they say they are.
 
-## What changes inside roles before titles change
+<ProcessFlow
+  stages={[
+    { label: "AI-Enabled", body: "Individuals use AI to be faster at their existing work. The org chart is untouched, and the capability lives in a few enthusiasts. When they leave, it leaves with them.", meta: "Most teams, today" },
+    { label: "AI-Augmented", body: "Shared workspaces, a few real automations, named champions building things. The time inside each role has shifted even though the titles have not.", meta: "~12 months" },
+    { label: "AI-Native", body: "The function is redesigned around the new ratios. Roles that did not exist three years ago, fewer of the ones that used to dominate, systems that outlive the people who built them.", meta: "24 to 36 months" },
+  ]}
+/>
 
-Before the org chart moves, the *content* of existing roles starts to shift. This is where most teams notice the change first.
+There is no "best" here. The right level is whichever matches the payoff you actually need. A 60-person company can run a genuinely excellent AI-Enabled team and be right to stop there. A 600-person company that stays AI-Enabled is leaving an obscene amount on the table, and usually knows it.
 
-A **People Partner** in an AI-Native team spends very little time writing comms, summarising survey data, or chasing managers for performance inputs. The system does the drafting and the chasing. They spend much more time on the high-context, judgment-heavy work that AI cannot do alone - calibration conversations, leader coaching, navigating ambiguous ER situations, designing interventions for specific teams.
+The mistake is skipping the middle. Teams read about AI-native functions and try to jump straight from a few enthusiasts to a redesigned org chart. It almost never holds, because the team has no muscle memory of building yet. The augmented stage is where that muscle gets built. Skip it and the redesign is a deck nobody knows how to run. This is why an [AI enablement operating model](/intelligence/ai-enablement-operating-model) matters before any restructure: it is the stage that makes the next one possible.
 
-A **Talent Partner** spends almost no time on initial CV review, scheduling, or rejection messages. The pipeline tooling does that. They spend much more time on assessment design, interviewer calibration, and the human side of closing senior hires.
+## What changes inside roles before the titles move
 
-A **People Operations specialist** is no longer the person who runs reports and reconciles spreadsheets. They are the person who owns the systems that produce the reports - the workflows, the integrations, the data quality. The work has moved up the stack from "generates outputs" to "operates the machine that generates outputs."
+Before the org chart moves, the *content* of existing roles starts to shift. This is where most teams notice the change first, and it is the earliest honest signal that you are actually becoming augmented rather than just talking about it.
 
-If you look at your team and these shifts have not started, you are not yet AI-Augmented, regardless of which tools you have bought.
+A **People Partner** in an AI-native team spends very little time writing comms, summarising survey data, or chasing managers for performance inputs. The system drafts and chases. They spend far more time on the high-context, judgement-heavy work that AI cannot do alone: calibration conversations, leader coaching, working through ambiguous employee-relations situations, designing interventions for one specific team that is struggling.
 
-## The new roles that actually appear
+A **Talent Partner** spends almost no time on first-pass CV review, scheduling, or rejection messages. The pipeline tooling does that. They spend more time on assessment design, interviewer calibration, and the human side of closing senior hires, the part where a candidate is choosing between three offers and the difference is how the process made them feel.
 
-Once the function tips into AI-Native, three roles tend to emerge. They do not always have these titles, but the work is unmistakable.
+A **People Operations specialist** is no longer the person who runs reports and reconciles spreadsheets. They own the systems that produce the reports: the workflows, the integrations, the data quality. The work has moved up the stack, from generating outputs to operating the machine that generates them. If you want the sharpest version of where this ends up, it is a distinct job now, which is the argument in [the HR Architect role](/intelligence/the-hr-architect-role).
 
-**The People Systems Lead.** Owns the workflow architecture across the function. Decides which work gets automated, in what order, with what guardrails. Holds the integrations between the HRIS, the ATS, the LMS, the survey tool, and the AI layer that ties them together. Reports to the Head of People Ops or, increasingly, directly to the CPO. This person used to be called a "People Ops Manager" but the job is genuinely different: less coordination, more design.
+If you look at your team and none of these shifts have started, you are not yet AI-augmented, whatever tools sit on the invoice.
 
-**The People AI Champion(s).** Three or four people, distributed across the team, who build things: a People Partner who builds, a Talent Partner who builds, an Ops specialist who builds. Woven through the existing roles, not split off into a new function. Twenty per cent of their week, protected. They are the difference between a team that uses AI and a team that makes things with it. (More on the model in [the champion piece](/intelligence/the-champion-model).)
+## The roles that appear
 
-**The People Data Lead.** The title usually stays the same - analytics has existed in big functions for years - but the shape changes. Less time on dashboard maintenance, more time on signal design: deciding what to measure, what counts as a real shift, what to surface to whom. AI does the heavy lifting on the queries and the visualisations; the human work is in framing the questions and interpreting the answers.
+Once the function tips into AI-native, three roles tend to emerge. They do not always carry these titles, but the work is unmistakable.
 
-Three roles. Maybe five FTE depending on your size. They do not replace your existing structure. They sit inside it and change what it is capable of.
+**The People Systems Lead.** Owns the workflow architecture across the function. Decides which work gets automated, in what order, with what guardrails. Holds the integrations between the HRIS, the ATS, the LMS, the survey tool, and the AI layer that ties them together. This person was often called a People Ops Manager, but the job is genuinely different: less coordination, more design. In smaller teams they report to the Head of People Ops; increasingly they report to the CPO directly, because the decisions are that consequential.
 
-## What gets smaller
+**The Champions.** Three or four people, distributed across the team, who build things: a People Partner who builds, a Talent Partner who builds, an Ops specialist who builds. Woven through the existing roles, not spun off into a separate function. Twenty per cent of their week, protected in writing. They are the difference between a team that uses AI and a team that makes things with it. Three or four rather than one is not a nice-to-have; a single builder is fragile, and I have watched a single-champion build stall inside six weeks when that one person got pulled onto a re-org. The full model, and why the number is four, is [the champion model](/intelligence/the-champion-model).
 
-This is the part most CPOs find hardest to say out loud. In an AI-Native People function, some categories of work shrink dramatically. That has implications.
+**The People Data Lead.** The title usually stays the same, since analytics has existed in large functions for years, but the shape changes. Less time on dashboard maintenance, more on signal design: deciding what to measure, what counts as a real shift versus noise, what to surface to whom. AI does the heavy lifting on queries and visualisations. The human work is framing the questions and interpreting the answers.
 
-The pure **coordination layer** shrinks. Scheduling, status-chasing, document-prep work that used to occupy a meaningful slice of a People Coordinator's week largely goes away. The role does not disappear - there is still real work in joining a team, in sensing how it is doing, in being the human face of the function - but the *shape* of it changes from administrator to relationship-builder.
+Three roles. Maybe five FTE, depending on your size. They do not replace your existing structure. They sit inside it and change what it is capable of.
 
-The **first-line content production** shrinks. Internal comms drafts, FAQ answers, policy explanations, training material first drafts - the volume of human time going into these drops by an order of magnitude. The remaining human work is editorial: judgment, voice, knowing what not to send.
+## The work that quietly shrinks
 
-The **reporting cottage industry** shrinks. The weekly headcount slide, the monthly attrition deck, the quarterly DEI cut - these stop being human-assembled artefacts and become outputs of the system. Humans curate and interpret rather than build.
+This is the part most CPOs find hardest to say out loud. In an AI-native People function, whole categories of work shrink, and that has consequences you have to name rather than hope nobody notices.
 
-What this means in practice is that some teams will get smaller. Others will keep the same headcount but spend it on entirely different work. Either way, the conversation needs to be honest. Pretending nothing changes is the fastest route to a team that resents AI rather than uses it.
+The pure **coordination layer** shrinks. Scheduling, status-chasing, document prep that used to fill a meaningful slice of a coordinator's week largely goes away. The role does not disappear, because there is still real work in joining a team, sensing how it is doing, being the human face of the function, but the shape of it moves from administrator to relationship-builder.
 
-## Ratios that actually shift
+**First-line content production** shrinks. Internal comms drafts, FAQ answers, policy explanations, training material first drafts: the volume of human time going into these drops by an order of magnitude. The remaining human work is editorial. Judgement, voice, and knowing what not to send.
 
-A useful diagnostic: count what your People function spends its time on, in rough percentages. Then ask what those percentages look like in an AI-Native version of itself.
+The **reporting cottage industry** shrinks. The weekly headcount slide, the monthly attrition deck, the quarterly diversity cut stop being human-assembled artefacts and become outputs of the system. Humans curate and interpret rather than build.
 
-A common starting profile in a 250-person scale-up:
+<FieldNote label="From the field">
+A transit operator I worked with was carrying about forty thousand pounds a year in software licences for a job that two internal builders and one workflow tool now do. Nobody had ever questioned the licences. They were a line in the budget that renewed itself.
 
-- 35% transactional / coordination work
-- 25% drafting and content production
-- 15% reporting and analytics
-- 15% partnering and judgment work (the work humans uniquely do)
-- 10% strategy, design, and leadership
+The lesson was not that the software was bad. It was that the organisation had been buying seats to paper over a workflow it had never redesigned. Once the workflow was redesigned, most of the seats had nothing left to do.
+</FieldNote>
 
-The AI-Native version of the same function tends toward something like:
+What this means in practice is that some teams get smaller and some keep the same headcount but spend it on entirely different work. Either way the conversation has to be honest. Pretending nothing changes is the fastest route to a team that resents AI rather than uses it. And leading with redundancies is worse still: you get fear, work-hoarding, no capability built, and eventually the same headcount, because the systems were never made.
 
-- 10% transactional / coordination
-- 5% drafting (mostly editorial review)
-- 10% reporting (mostly interpretation)
-- 50% partnering and judgment
-- 25% strategy, design, and leadership
+## The ratios that actually shift
 
-That's a different job. The team spends its time on what people actually came into People to do - judgment, relationships, design - and less of what nobody enjoyed in the first place.
+A useful diagnostic: count what your People function spends its time on, in rough percentages, then ask what those percentages look like in an AI-native version of itself. Here is a common starting profile in a 250-person scale-up, next to where the same function tends to land once it is genuinely native.
 
-If the ratios in your head do not look something like this when you imagine three years out, you are still designing an AI-Enabled function and calling it transformed.
+| Where the week goes | AI-enabled team | AI-native team |
+| --- | --- | --- |
+| Transactional and coordination | 35% | 10% |
+| Drafting and content production | 25% | 5% |
+| Reporting and analytics | 15% | 10% |
+| Partnering and judgement | 15% | 50% |
+| Strategy, design and leadership | 10% | 25% |
 
-## The CPO's actual job in this transition
+That is a different job. The team spends its time on what people actually came into People to do, judgement and relationships and design, and less on what nobody enjoyed in the first place. If the ratios in your head do not look something like the right-hand column when you picture three years out, you are still designing an AI-enabled function and calling it transformed.
 
-Three things, in order, none of them about tools.
+The payoff is real when the redesign is real. In one defence-tech engagement the reshaped function reclaimed 83 hours a week, put 70% of routine queries onto systems the team owns, and ran two months with zero critical issues. None of that came from buying more seats. It came from changing the shape. Hold yourself to that number rather than the vibe, or the redesign quietly reverts to a tool review.
 
-**Decide the destination.** Pick AI-Augmented or AI-Native explicitly, with a date. Most companies should aim for AI-Augmented in twelve months and AI-Native in twenty-four to thirty-six. Skipping the augmented stage rarely works - the team needs the muscle memory before the redesign sticks.
+## The CPO's real job in the transition
 
-**Protect the builders.** Champions need cover. The People Systems Lead needs authority. The work of redesign is constantly under pressure from "real" work. The CPO is the only person senior enough to hold the line.
+The CPO's job here is three things, in order, and none of them is about tools. Decide the destination and put a date on it, picking augmented or native explicitly rather than drifting. Protect the builders, because the work of redesign is constantly under pressure from "real" work and the CPO is the only person senior enough to hold that line. And be honest about the shape, so the team hears it from you before they hear it from a leak or an org-chart deck. The teams that handle this well treat it as a multi-quarter change conversation, not a memo. This is the leadership half of the job, and it is the argument in [leading the AI transformation in People](/intelligence/leading-the-ai-transformation).
 
-**Be honest about the shape.** When the ratios shift, when some roles shrink and others appear, the team needs to hear it from the CPO before they hear it from a leak or an org chart redesign deck. The teams that handle this well treat it as a multi-quarter change conversation, not a memo.
+Before you tell anyone your team is AI-native, run it through this.
 
-## What this is not
+<DecisionFilter
+  title="Five tests before you call your team AI-native"
+  criteria={[
+    { test: "Is there a role on your team that did not exist three years ago, with a name against it?", fail: "Everyone has the title they had before, plus an AI licence" },
+    { test: "Can you point to an agent and name the person who owns it, reviews it, and gets paged when it breaks?", fail: "The agents run, but no one owns them, so no one fixes them" },
+    { test: "If your best builder resigned tomorrow, do the systems they built stay?", fail: "The capability walks out with the person" },
+    { test: "Has the mix of what the team does actually moved toward judgement and design?", fail: "The percentages in your head look the same as two years ago" },
+    { test: "Did the team hear the shape of the change from you, before an org chart told them?", fail: "The redesign arrived as a memo, or a leak" },
+  ]}
+  verdict="Four or more fails and you have an AI-enabled team wearing an AI-native label."
+/>
 
-It is not a justification for cutting headcount as the first move. Teams that lead with that get the worst possible outcome - fear, hoarding of work, no actual capability building, and eventually the same headcount because the systems were never built. The leverage comes from doing the redesign well, not from doing the redundancies first.
-
-This does not land once and stay fixed. The shape of an AI-Native People function keeps moving for years as the underlying tooling shifts. The point is to build a team that can keep redesigning itself, not land on a final org chart.
-
-None of this is optional either. Within three to five years, the gap between an AI-Native People function and an AI-Enabled one will be the difference between a function the CEO leans on and one the CEO works around. The companies that have started already know this. The ones that have not are about to find out.
-
-The work begins with one decision: what does *our* team actually look like, designed from scratch, knowing what we now know? Answer that honestly and the rest is execution.
-
-
-
-## What this connects to
-
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
-
-- [A workflow assessment framework for People Ops](/intelligence/workflow-assessment-framework)
-- [People debt: what GenAI exposes, and what to do about it](/intelligence/people-debt-and-genai)
-- [AI workspace setup for People teams (Claude, ChatGPT, Copilot)](/intelligence/setting-up-your-ai-workspace)
-- [AI governance for People teams](/intelligence/ai-governance-for-people-teams)
+None of this lands once and stays fixed. The shape of an AI-native People function keeps moving for years as the underlying tooling shifts, so the aim is not a final org chart. It is a team that can keep redesigning itself. And none of it is optional in the medium run either: within three to five years the gap between an AI-native People function and an AI-enabled one will be the difference between a function the CEO leans on and one the CEO works around. The place to start is not a tool review. It is one honest look at what your own team would be, designed from scratch, knowing what you now know. If you want a structured version of that look, the [Readiness Assessment](/readiness) scores your function across the four capability layers in about ten minutes, and it belongs to the wider [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops) picture. Answer it honestly and the rest is execution.
 
 <KeyTakeaways>
-- Hire builders, not administrators. The substrate changed.
-- Give agents owners. Without an owner, the agent rots.
-- Design the cadence for a smaller, more senior team. Old rituals will not fit.
+- Redesign the roles around the judgement only humans do; do not hand the old roles a chatbot and call it transformation.
+- Give every agent a named owner, a review cadence, and someone who gets paged when it breaks.
+- Run through the augmented stage before the native one, put a date on the destination, and name the shrinking work honestly instead of leading with cuts.
 </KeyTakeaways>

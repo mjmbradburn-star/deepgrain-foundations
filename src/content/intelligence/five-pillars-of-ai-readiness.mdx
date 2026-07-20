@@ -2,11 +2,11 @@ export const frontmatter = {
   title: "The five pillars of AI readiness",
   slug: "five-pillars-of-ai-readiness",
   category: "ai-operating-systems",
-  description: "Readiness is not a model selection problem. It is a Data, Tools, Agents, Governance, and Cadence problem, in that order. Here is the diagnostic, with what good and bad look like at each pillar.",
-  keywords: ["AI readiness", "AIOI", "AI assessment", "AI governance", "AI operating system", "AI maturity"],
-  readTime: "9 min",
+  description: "AI readiness is not a model problem. It is a data, tools, agents, governance and cadence problem in that order. Here is the diagnostic and what good looks like.",
+  keywords: ["AI readiness", "AI readiness assessment", "AI operating system", "AI governance", "AI maturity framework", "how to assess AI readiness"],
+  readTime: "11 min",
   publishedAt: "2026-02-23",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
@@ -14,139 +14,169 @@ export const faqs = [
   {
     question: "What are the five pillars of AI readiness?",
     answer:
-      "Data, tools, agents, governance, and operating cadence. Data has to be reachable and trustworthy. Tools have to be callable by models. Agents have to handle multi-step work. Governance has to define what is allowed. And cadence has to keep the whole system maintained.",
+      "Data, tools, agents, governance and operating cadence. Data has to be reachable and trustworthy. Tools have to be callable by a model. Agents have to carry multi-step work with an owner and an off-switch. Governance has to say what the system is never allowed to decide. And cadence has to keep the whole arrangement maintained on a rhythm. The weakest of the five sets the strength of the lot.",
   },
   {
-    question: "Why is AI readiness not a model selection problem?",
+    question: "Is AI readiness about picking the right model?",
     answer:
-      "Because two companies can run the exact same frontier model and get completely different results, purely on the strength of what surrounds it. Watch what a company spends its AI budget on first: if it is a model upgrade rather than data cleanup or tool wiring, the outcomes will not move much.",
+      "No. Two companies can run the identical frontier model and get opposite results, because everything that decides the outcome sits underneath the model. Watch where a company spends its AI budget first. If it goes on a model upgrade rather than reachable data or wired tools, the outcomes will barely move. The model is the easy part.",
   },
   {
-    question: "Which pillar should I start with?",
+    question: "Which AI readiness pillar should we fix first?",
     answer:
-      "Whichever one is preventing the next workflow from running end to end. Most companies want to start with data because it is the most expensive. The right answer is usually to pick one workflow, identify which pillar is breaking it, and start there.",
+      "Whichever one is stopping the next workflow you actually need from running end to end. Most teams want to start with data because it is the biggest and most expensive. The better move is to pick one real workflow, score the five pillars against that workflow alone, and fix the pillar with the lowest score. Not the one that sounds most strategic.",
   },
   {
-    question: "How is AI readiness related to an AI operating system?",
+    question: "How do I assess AI readiness without a big consulting project?",
     answer:
-      "Readiness is the diagnostic. The AI operating system is the runtime. Teams that only ever run the diagnostic tend to re-score the same five pillars every quarter without building anything, because nobody moved from grading to construction. The score is only useful if a build follows it.",
+      "Pick one workflow you already need to run. Score it out of three on each of the five pillars: can the model reach the data, call the tools, run the agent, stay inside a written policy, and get reviewed on a rhythm. The lowest score is your blocker. Build the smallest thing that lifts it to a two, then run the workflow. That is a morning of work, not a quarter.",
   },
 ];
 
 <TLDR>
-- AI readiness has five pillars: data, tools, agents, governance, and operating cadence.
-- The model is the easy part. Switching frontier models rarely changes outcomes. The pillars do.
+- AI readiness rests on five pillars: data, tools, agents, governance and operating cadence.
+- The model is the easy part. Switching frontier models rarely moves outcomes. The pillars do.
 - Skip a pillar and the system rots in that exact place. The weakest pillar sets the strength of the whole.
-- Start with whichever pillar is breaking the next workflow you actually need to run, not the one that sounds most strategic.
+- Start with whichever pillar is breaking the next workflow you need to run, not the one that sounds most strategic.
 - Readiness is the diagnostic. The AI operating system is the runtime. You assess pillar by pillar, then build pillar by pillar.
 </TLDR>
 
-Most organisations grade themselves on the wrong axis. They ask which model they are using, which platform they have bought, which roadmap they have signed off. None of those questions predict whether AI will produce real output a year from now.
+"Which model should we be standardising on?" It is the question I hear most in board reviews, and it is the wrong one. AI readiness is not a model problem. It is the condition of five things sitting underneath the model: your data, your tools, your agents, your governance and your operating cadence. Two companies can run the identical frontier model and get opposite results, because everything that decides the outcome lives in those five pillars, not in the model choice. So the useful questions are these. Can the model reach the data it needs? Can it call the tools that touch your customers? Can it run an agent that does more than answer a single prompt? Do you know what it is never allowed to decide? And does anyone maintain the whole arrangement on a rhythm that keeps up with how fast it changes?
 
-The questions that do predict it are these. Can the model reach the data it needs? Can it call the tools that touch your customers? Can it run an agent that handles more than a single prompt? Do you know what it is allowed to do? And does anyone maintain the whole arrangement on a rhythm that matches how fast it changes?
+## Why AI readiness is not a model problem
 
-Five pillars. Skip one and the system rots in that exact place.
+Most organisations grade themselves on the wrong axis. They ask which model they run, which platform they bought, which roadmap they signed off. None of those predict whether AI produces real output a year from now. The model has become a commodity you can swap in an afternoon. What surrounds it takes months to get right, and that is exactly where the readiness lives.
+
+Think of the five as a stack, not a menu. Each pillar rests on the one below it. You cannot build agents on data you cannot trust. You cannot govern tools you cannot see. And none of it stays standing without a cadence holding it up. Read the stack from the base:
+
+<LayerStack
+  layers={[
+    { name: "Operating cadence", body: "A rhythm that reviews, prunes and maintains the whole system so it does not quietly rot.", tag: "Pillar 5" },
+    { name: "Governance", body: "The written line on what the system is never allowed to decide, with a logged audit trail.", tag: "Pillar 4" },
+    { name: "Agents", body: "A model plus a goal plus the steps, scoped to one workflow with an owner and an off-switch.", tag: "Pillar 3" },
+    { name: "Tools", body: "Stable interfaces the model can call to read a record, draft a message, book a room, update a system.", tag: "Pillar 2" },
+    { name: "Data", body: "Reachable, trustworthy, owned. The source of truth a human would consult, in the shape a model can use.", tag: "Pillar 1" },
+  ]}
+  baseLabel="You build from the base up. The weakest pillar caps the whole."
+/>
+
+This is also why the [AI operating system](/intelligence/what-is-an-ai-operating-system) and the readiness assessment are different objects. Readiness is the diagnostic: it tells you where the stack is thin. The operating system is the runtime: the thing you build once you know. Teams that only ever run the diagnostic re-score the same five pillars every quarter and never construct anything, because nobody moved from grading to building. The score is only worth having if a build follows it.
 
 ## Pillar 1: Data
 
-Data is the pillar most companies underestimate and most pilots die on. The model is fine. The data underneath was incomplete, stale, scattered across tools that do not speak to each other, or owned by nobody.
+Data is the pillar most companies underestimate and most pilots die on. The model was fine. The data underneath was incomplete, stale, scattered across tools that do not speak to each other, or owned by nobody. This is the single most common reason [AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production): the demo ran on a clean export a person prepared by hand, and Monday-morning data looks nothing like it.
 
-What good looks like:
-- Every customer-facing system has a documented owner and a refresh cadence
-- Permissions are declarative, not tribal
-- The model can reach the same source of truth a human would consult, in the same shape
-- Sensitive fields are tagged at source, not filtered at runtime
+What good looks like here is specific. Every customer-facing system has a documented owner and a refresh cadence. Permissions are declarative, written down, not tribal knowledge held by one long-serving admin. The model can reach the same source of truth a human would consult, in the same shape, without three exports and a manual join. Sensitive fields are tagged at source, so privacy is a property of the data rather than a filter someone remembers to apply at runtime.
 
-What bad looks like:
-- "We need to do a data project first" is the answer to every AI question
-- Every workflow needs three exports and a manual join
-- The same metric reads differently in three places and nobody knows which is right
+What bad looks like is just as recognisable. "We need to do a data project first" becomes the reflex answer to every AI question. The same metric reads three different ways in three systems and nobody can say which is right. Every workflow needs a human to stitch the inputs together before anything can run.
 
-You cannot build agents on data you cannot trust. You cannot govern data you cannot see. Start here, but start small: enough trustworthy data to run one real workflow end to end, not a two-year platform migration.
+The trap is treating this as a two-year platform migration. You do not need clean data. You need enough trustworthy data to run one real workflow end to end. Start with the data one workflow touches, get that reachable and owned, and move on. The rest can wait for the workflow that needs it.
 
 ## Pillar 2: Tools
 
-A model without tools is a chatbot. A model with tools is an operator: it reads the calendar, drafts the message, books the room, updates the record. The gap between those two states is where most of the value lives.
+A model without tools is a chatbot. A model with tools is an operator: it reads the calendar, drafts the message, books the room, updates the record, closes the ticket. The gap between those two states is where most of the value sits, and it is a wiring problem, not an intelligence problem.
 
-What good looks like:
-- The model can call a small, well-chosen set of tools through stable interfaces (MCP, function calling, internal APIs)
-- Tool calls are logged and reversible
-- New tools are added by the team, not by procurement
+Good here means the model can call a small, well-chosen set of tools through stable interfaces: MCP, function calling, internal APIs. Every tool call is logged and reversible, so a mistake is a line in an audit trail rather than a silent action against a customer. New tools get added by the team that owns the workflow, not routed through a procurement queue that takes six weeks. This is the pillar where automation platforms earn their place. n8n runs around £20 per builder seat per month, is SOC 2 and ISO 27001 compliant, and self-hosts, which means the team can wire a new tool into a workflow in an afternoon instead of buying another point solution.
 
-What bad looks like:
-- Every integration is a screenshot or a copy-paste
-- Tool access is gated on someone manually granting credentials
-- The "AI tool" is a wrapper around a chat window with no system access
+Bad here is the tell that a company has bought AI theatre. Every integration is a screenshot or a copy-paste. Tool access waits on someone manually granting credentials. The "AI tool" turns out to be a wrapper around a chat window with no access to any system that matters. It can talk about the work. It cannot do it.
 
-Tools are the pillar where engineering and operating teams have to actually work together. Skip the joint design and you end up with tools the model technically can call but operationally should not.
+Tools are the pillar where engineering and operating teams have to actually sit together. Skip that joint design and you end up with tools the model technically can call but operationally should not, which is worse than no tools at all.
+
+<FieldNote label="The gotcha">
+A transit operator was carrying about £40k a year in licences for a tool nobody had questioned in three budget cycles. It had been bought for a problem that no longer existed, and it survived because no one had a standing reason to ask whether it still earned its keep.
+
+We replaced the lot with one tool and two internal builders. The saving was real, but the point is why it lasted so long. There was no cadence that forced the question. A licence with no owner and no review is a subscription to your own inertia.
+</FieldNote>
 
 ## Pillar 3: Agents
 
-An agent is a model plus a goal plus the ability to take steps. Most companies do not need many agents. They need three or four, doing the work that used to clog three or four roles.
+An agent is a model plus a goal plus the ability to take steps. Most companies do not need many. They need three or four, doing the work that used to clog three or four roles. The instinct to build an agent for everything is how you end up with a graveyard of half-finished ones, none of which has been run on a real day's work.
 
-What good looks like:
-- Agents are scoped to a single workflow with a clear owner and a clear off-switch
-- Each agent has a "what should never happen" list, not just a "what to do" prompt
-- Agents are evaluated on output quality and operator trust, not vanity throughput
+Good agents are scoped to a single workflow with a clear owner and a clear off-switch. Each one carries a "what should never happen" list, not just a "what to do" prompt, because the failure modes are where the risk lives. They are judged on output quality and operator trust, not on how many tasks they touched. The fastest way to climb the [AI operating ladder](/intelligence/ai-operating-ladder-five-tiers) is not to deploy more agents. It is to deploy fewer, better-scoped ones, into workflows that already exist and already have an owner.
 
-What bad looks like:
-- A pile of half-built agents, none of which has been run on a real day's work
-- Agents that orchestrate other agents to produce results no one reviews
-- An agent inventory that nobody can name from memory
+Bad agents are a pile no one can name from memory. Agents orchestrating other agents to produce output nobody reviews. An inventory that grows because building is fun and pruning is not. If you cannot list your agents and their owners in a single breath, you have too many.
 
-The fastest way to climb the [AI operating ladder](/intelligence/ai-operating-ladder-five-tiers) is not to deploy more agents. It is to deploy fewer, better-scoped ones, into workflows that already exist.
+The honest base rate is worth stating. On one defence-tech engagement, a small set of well-scoped agents reclaimed 83 hours a week and handled 70 per cent of routine queries through systems the team owned, with zero critical issues two months on. That did not come from a large agent estate. It came from a few, built into the grain of work that was already happening.
 
 ## Pillar 4: Governance
 
-Governance is the pillar most teams treat as a brake. It is not the brake. It is the steering. The teams that move fastest with AI are the ones that decided early what they would never let it decide.
+Governance is the pillar most teams treat as the brake. It is not the brake. It is the steering. The teams that move fastest with AI are the ones that decided early what they would never let it decide, because a clear boundary is what lets everyone else move without asking permission each time.
 
-What good looks like:
-- A short, written list of decisions humans must make
-- A logged audit trail of agent actions on customer-facing surfaces
-- Clear escalation paths when an agent produces an outcome outside its envelope
-- Privacy and DPA review baked in at workflow design, not bolted on at launch
+Good governance is short and written. A one-page list of decisions a human must make. A logged audit trail of agent actions on any customer-facing surface. Clear escalation paths for when an agent produces an outcome outside its envelope. Privacy and DPA review built into workflow design, not bolted on the week before launch. The document your CFO, GC and DPO will actually read, treated like product rather than paperwork.
 
-What bad looks like:
-- Governance lives in a Slack thread between the head of legal and the head of engineering
-- Every new agent re-asks the same compliance questions from scratch
-- The audit trail exists in principle but nobody knows where the logs live
-
-Governance is the pillar your CFO, GC, and DPO will actually read. Treat it like product, not paperwork.
+Bad governance lives in a Slack thread between the head of legal and the head of engineering. Every new agent re-asks the same compliance questions from scratch, so nothing compounds. The audit trail exists in principle, but nobody can tell you where the logs are kept. When that is the state, governance is not slowing you down. Its absence is, the first time something goes wrong and there is no record of what the system did or why.
 
 ## Pillar 5: Operating cadence
 
-An AI OS without a maintenance cadence is a garden without a gardener. The plants do not stop growing. They just stop being plants you want.
+An AI operating system without a maintenance cadence is a garden without a gardener. The plants do not stop growing. They just stop being the plants you wanted. Cadence is the cheapest pillar to build and the most expensive to skip, and it is the one that keeps the other four honest.
 
-What good looks like:
-- A weekly or fortnightly forum where new workflows, agent failures, and policy changes get reviewed by name
-- A standing owner for each agent with explicit hours
-- A monthly look at metrics that matter (operator trust, output rejection rate, time-to-decision), not vanity dashboards
-- A quarterly cull of agents that no longer earn their keep
+Good cadence is a standing rhythm with names against it. A weekly or fortnightly forum where new workflows, agent failures and policy changes get reviewed out loud. A named owner for each agent, with explicit hours, not a shared sense that "the team" looks after it. A monthly look at the metrics that matter (operator trust, output rejection rate, time to decision) rather than vanity dashboards. A quarterly cull of agents and tools that no longer earn their keep, which is exactly the review that £40k licence never got.
 
-What bad looks like:
-- The AI programme is "in flight" with no recurring meeting
-- The launch was the last time anyone reviewed the workflow
-- Nobody can name who owns the prompt that runs ten thousand times a week
+Bad cadence is a programme that is permanently "in flight" with no recurring meeting. The launch was the last time anyone looked at the workflow. Nobody can name who owns the prompt that runs ten thousand times a week. When cadence is missing, the system does not fail loudly. It drifts, and you find out months later that half of it has quietly stopped being trustworthy.
 
-Cadence is the cheapest pillar to build and the most expensive to skip.
+<Takeaway>The five pillars are a set, not a sequence you finish. The weakest one decides the strength of the whole operating system, so readiness is a question of your thinnest pillar, not your average.</Takeaway>
 
-<Takeaway>The five pillars are a set, not a sequence. The weakest one decides the strength of the whole AI OS.</Takeaway>
+## What ready looks like against what theatre looks like
 
-## How to use the pillars
+Put the five together and the difference between a ready organisation and one performing readiness gets easy to see. It is rarely about ambition. Both kinds of company want the same outcome. One has built the conditions underneath the model and the other has bought the appearance of them.
 
-Read them as a checklist, not a curriculum. Pick one workflow you actually need to run. For that workflow alone, score yourself out of three on each pillar. The pillar with the lowest score is the one stopping the workflow from going to production. Build the smallest possible thing that gets that pillar to a two, then run the workflow.
+<ComparePanel
+  polarized
+  a={{ heading: "Readiness that ships", items: [
+    "Data for one workflow is reachable, owned and trusted",
+    "The model calls a small set of tools through stable, logged interfaces",
+    "Three or four agents, each with an owner and an off-switch",
+    "A one-page policy on what the system may never decide",
+    "A standing forum reviews failures, metrics and dead tools",
+  ]}}
+  b={{ heading: "Readiness theatre", items: [
+    "A two-year data project blocks every AI question",
+    "Every integration is a screenshot or a manual credential grant",
+    "A graveyard of half-built agents nobody has run on real work",
+    "Compliance re-argued from scratch in a Slack thread each time",
+    "The launch was the last time anyone looked at the workflow",
+  ]}}
+  caption="Same ambition, opposite outcome. The gap is the five pillars, not the model."
+/>
 
-Repeat with the second workflow, and the third. Within a quarter, you will have a usable [AI operating system](/intelligence/what-is-an-ai-operating-system) and the readiness scoring will move on its own. If you also need to translate that progress into a board-ready maturity number, the [AI maturity frameworks for G&A leaders](/intelligence/ai-maturity-frameworks-for-ga-leaders) guide compares the major models (Gartner, MIT, BCG) and proposes a five-category maturity index aligned to the pillars above.
+This is also the honest answer to boards that want AI framed as a maturity number. A [board-ready maturity model](/intelligence/ai-maturity-frameworks-for-ga-leaders) is useful for tracking progress over time, but it only means something if it maps to these conditions. A high maturity score with a two-year data project underneath it is a score measuring intent, not capability.
 
-If you want a structured version of the same exercise, the [AI Operating Index](https://aioi.deepgrain.ai) runs the diagnostic across all eight axes (the five pillars plus leadership, talent, and intervention readiness) and gives you a ranked plan back.
+## Score one workflow, not the whole company
 
-## A working summary
+Here is the play you can run on Monday. Do not assess the organisation. Assess one workflow. Pick a single workflow you actually need to run: a contract renewal, a new-joiner setup, a support triage. Score that workflow out of three on each pillar. The lowest score is the pillar stopping it from reaching production. Build the smallest thing that lifts that pillar to a two, then run the workflow.
 
-> AI readiness is the condition of an organisation's data, tools, agents, governance, and operating cadence such that it can absorb AI as capability rather than as demo. The five pillars form a set, and the weakest one decides the strength of the whole.
+<DecisionFilter
+  title="Score one workflow against the five, out of three each"
+  criteria={[
+    { test: "Can the model reach this workflow's data, in the right shape, without a manual export?", fail: "A person prepares a clean file by hand before anything runs" },
+    { test: "Can it call the tools this workflow touches, through a stable, logged interface?", fail: "The integration is a screenshot or a copy-paste" },
+    { test: "Is there one agent, scoped to this workflow, with an owner and an off-switch?", fail: "It orchestrates three other agents and no one reviews the output" },
+    { test: "Is there a written line on what this workflow's agent may never decide?", fail: "The policy lives in a Slack thread between legal and engineering" },
+    { test: "Is there a recurring review where this workflow's failures get looked at by name?", fail: "The launch was the last time anyone opened it" },
+  ]}
+  verdict="The pillar with the lowest score is your blocker. Build the smallest thing that gets it to a two, then run the workflow. Not the pillar that sounds most strategic."
+/>
+
+Worked through, it looks like this. Take a new-joiner setup workflow and score it honestly:
+
+| Pillar | Score /3 | What is blocking it | The smallest fix |
+| --- | --- | --- | --- |
+| Data | 2 | Start dates live in the HRIS, equipment list in a spreadsheet | Point the workflow at both as read-only sources |
+| Tools | 1 | Account creation is a manual ticket to IT | Wire the identity tool so the agent can request the account |
+| Agents | 2 | A draft agent exists but nobody owns it | Assign an owner and a two-line off-switch |
+| Governance | 3 | Onboarding data is already inside DPA scope | Nothing; log the agent's actions |
+| Cadence | 1 | No review; failures surface as complaints | Add it to the fortnightly ops forum |
+
+The lowest scores are tools and cadence, both at one. So the first build is not a data platform and not a smarter model. It is wiring the identity tool and putting the workflow on a fortnightly review. Two small, cheap moves that turn a stalled workflow into a running one. Repeat with the second workflow, and the third. Within a quarter you have a working [AI operating system](/intelligence/pillar/ai-operating-system) built in the order real work demanded it, not the order a vendor sold it, and the readiness score starts moving on its own.
+
+If you want a structured version of the same exercise, the free [Readiness Assessment](/readiness) runs sixteen questions across the capability layers and hands you a ranked view of where your thinnest pillar is. It takes about ten minutes and gives you somewhere honest to start.
+
+> AI readiness is the condition of an organisation's data, tools, agents, governance and operating cadence such that it can absorb AI as capability rather than as demo. The five pillars form a set, and the weakest one decides the strength of the whole.
 
 <KeyTakeaways>
-- Treat the pillars as a checklist tied to a real workflow, not a curriculum to study.
-- Score each pillar honestly out of three for one workflow. Move the lowest pillar to a two, then run the workflow.
-- Build the AI OS pillar by pillar in the order real workflows demand it, not in the order vendors sell it.
-- Readiness moves on its own once two or three workflows are running end to end.
+- Treat the pillars as a checklist tied to one real workflow, not a curriculum to study or a maturity badge to chase.
+- Score each pillar honestly out of three for a single workflow. Move the lowest pillar to a two, then run the workflow.
+- Build the operating system pillar by pillar in the order real workflows demand it, not the order vendors sell it.
+- Readiness starts moving on its own once two or three workflows are running end to end.
+- The model is the commodity. The five pillars are the work, and your thinnest one is the whole story.
 </KeyTakeaways>

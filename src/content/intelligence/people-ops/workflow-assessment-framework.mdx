@@ -5,11 +5,11 @@ export const frontmatter = {
   primaryCluster: "workflows-and-automation",
   clusters: ["measurement-and-roi", "readiness-and-diagnosis"],
   track: "people-ops",
-  description: "Most People teams pick AI workflows by instinct or by what is loudest. A simple scoring framework - value, frequency, fit, risk - turns a wishlist into a 90-day plan you can actually defend.",
-  keywords: ["AI workflow assessment", "People Ops automation prioritisation", "AI opportunity score", "automation roadmap", "HR workflow audit", "efficiency gaps AI can fill", "where AI fits in operations"],
+  description: "Most People teams pick AI workflows by instinct or by what is loudest. A workflow assessment framework scores value, frequency, fit and risk into a plan you can defend.",
+  keywords: ["workflow assessment framework", "AI workflow prioritisation for People Ops", "how to prioritise AI workflows", "automation roadmap", "HR workflow audit", "value frequency fit risk scoring", "which AI workflows to build first"],
   readTime: "11 min",
   publishedAt: "2026-04-15",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
@@ -18,122 +18,153 @@ export const faqs = [
   {
     question: "How do you prioritise AI workflows in a People function?",
     answer:
-      "Score every candidate on four dimensions: value, frequency, fit, risk. One to five each, done with the team that actually does the work, not just the people who lead it. A team of six can score twenty candidate workflows in under two hours. The ones that score high on value and frequency, fit AI well, and carry manageable risk get built first. Everything else waits.",
+      "Score every candidate on four dimensions: value, frequency, fit and risk. One to five each, done with the people who actually do the work, not just the ones who lead it. A team of six can score twenty candidate workflows in under two hours. The ones that score high on value and frequency, suit AI well, and carry manageable risk get built first. Everything else waits.",
   },
   {
-    question: "How do businesses identify efficiency gaps that AI can fill?",
+    question: "Which AI workflows should a People team build first?",
     answer:
-      "By running the assessment against actual workflows, not ambitions. Most of the gaps AI can fill are repetitive, latency-bound, and pattern-matching, and the framework surfaces them in an afternoon. In practice that means recruiter coordination, first-draft documents, and scorecard summarising show up on almost every backlog; calibration and comp decisions almost never do. Anything that clears fewer than three of the four dimensions gets parked, not built.",
+      "The highest-scoring workflow the team can build to a working state in four to six weeks with what it already has. Not the biggest, not the loudest, not the most impressive on a slide. Recruiter coordination, first-draft documents and scorecard summarising clear that bar on almost every backlog. Calibration and comp decisions almost never do, so they wait until the team has built confidence on simpler work.",
   },
   {
     question: "What is an AI workflow assessment?",
     answer:
-      "A short, structured scoring exercise, not a full audit. It turns a wishlist of AI ideas into a sequenced 90-day plan using the same four dimensions for every candidate, so decisions are comparable and defensible. Where a full audit can run for weeks, this takes an afternoon and produces a ranked list, an owner per item, and a defined first build.",
+      "A short, structured scoring exercise, not a full audit. It turns a wishlist of AI ideas into a sequenced 90-day plan using the same four dimensions for every candidate, so the decisions are comparable and defensible. A full audit runs for weeks. This takes an afternoon and produces a ranked list, an owner per item and a defined first build.",
+  },
+  {
+    question: "How often should you re-score the automation backlog?",
+    answer:
+      "Once a quarter is about right. More often and workflows in build never get a stable run. Less often and you miss what changed in the world and in what AI can now do well. Re-scoring is also when you retire ideas that scored well twice and still were not built, because that is the backlog telling you something the score did not.",
   },
 ];
 
 <TLDR>
-- A workflow assessment framework gives you a defensible way to choose what to automate, redesign, or leave alone.
-- Four dimensions: value, frequency, fit, risk.
-- Most People teams automate by feel. Feel optimises for novelty, not value.
-- Use the framework once and it changes how the next ten decisions get made.
+- A workflow assessment framework gives you a defensible way to choose what to automate, redesign, or leave alone: score every candidate on value, frequency, fit and risk.
+- Most People teams choose by feel, and feel optimises for novelty, not value.
+- The loudest request is rarely the right first build. Scoring lets you say so without it being personal.
+- A ranked list is not a roadmap. Sequence by what the team can ship in six weeks, cluster by shared plumbing, and reserve a fifth of capacity for the unscoreable.
+- Run it once and it changes how the next ten decisions get made.
 </TLDR>
 
-The question we get asked more than any other is some version of: *we know there are dozens of things AI could do for our team - how do we choose what to build first?*
+A financial-data company, about 600 people, put us in front of a whiteboard covered in AI ideas. Recruiter coordination, survey theming, policy drafts, calibration support, onboarding sequences, a dozen more. Everyone in the room had a favourite and everyone's favourite was different. The instinct was to argue it out and start with whichever champion argued hardest. We scored it instead, and seven weeks later five of those workflows were in production. The other seven were not, and nobody was upset about it, because the reason was written down. A workflow assessment framework is what turns that whiteboard into a sequenced plan: you score every candidate on the same four dimensions, value, frequency, fit and risk, and let the numbers order the build.
 
-The honest answer is that most teams choose badly. They pick the workflow someone is loudest about, or the one that sounds most impressive on a slide, or the one a vendor demoed last week. Three months later, the build is half-finished, the team is sceptical, and the next workflow gets harder to fund.
+<Takeaway>Score each candidate workflow on value, frequency, fit and risk. A wishlist becomes a 90-day plan you can defend to the CFO.</Takeaway>
 
-There is a better way, and it is not complicated: a scoring exercise that takes an afternoon, properly done, and turns a wishlist into a sequenced plan you can defend to the CFO.
+## Why teams pick the wrong workflow first
 
-<Takeaway>Score each candidate workflow on four dimensions: value, frequency, fit, risk. A wishlist becomes a 90-day plan you can defend.</Takeaway>
+Left to instinct, most teams choose badly, and they choose badly in a predictable way. They pick the workflow someone is loudest about, or the one that sounds most impressive on a slide, or the one a vendor demoed last Tuesday. None of those signals correlate with value. Volume of opinion correlates with seniority and confidence. Slide-worthiness correlates with novelty. A vendor demo correlates with whatever the vendor happens to sell.
 
-## The four dimensions that matter
+Three months later the build is half-finished, the team is sceptical, and the next workflow is harder to fund because the last one did not land. This is the pilot trap wearing a People Ops coat. The demo worked. The rollout did not. The fix is not more enthusiasm or a better vendor. It is a way to compare unlike things on the same axis before anyone writes a line of automation, so the first build is the one most likely to ship and compound, not the one that shouted.
 
-Every candidate workflow can be scored on four dimensions. None of them are novel. The discipline is in scoring honestly and in not skipping any of them.
+That comparison is the whole job of the framework. It is not clever. Its value is entirely in the discipline of applying it to everything, honestly, in a room with the right people.
 
-**Value.** How much time, money, or quality lift would a working version of this actually deliver, per cycle? Be specific. Not "saves time on hiring" but "removes 4 hours of recruiter coordination per role, and we hire 60 roles a year." Workflows that cannot be made specific in this way are usually not as valuable as they sound.
+## The four dimensions: value, frequency, fit, risk
 
-**Frequency.** How often does this work happen? Weekly workflows compound. Annual workflows do not. A 30-minute weekly task is worth more than a 4-hour quarterly one, even though the quarterly one feels bigger. The first builds 26 hours of leverage a year and a team that uses the system every week. The second builds 16 hours and a team that forgets the system between cycles.
+Every candidate workflow gets scored on four dimensions, one to five each. None of them are novel. The discipline is scoring honestly and never skipping one because it is inconvenient.
 
-**Fit.** How well-suited is this work to AI today? Some work is a natural fit - drafting, summarising, classifying, structured extraction, first-pass analysis. Some work is a poor fit - high-stakes judgment, sensitive ER conversations, anything where being wrong is much worse than being slow. Score honestly. The most expensive failures come from forcing AI into work it is bad at.
+<DecisionFilter
+  title="Score every candidate on these four, one to five"
+  criteria={[
+    { test: "Value: how much time, money or quality lift does a working version deliver per cycle?", fail: "You can only describe it in the abstract, like 'saves time on hiring', instead of 'removes 4 hours of recruiter coordination per role, across 60 roles a year'" },
+    { test: "Frequency: how often does this work actually happen?", fail: "It is annual or quarterly, so the team forgets the system between cycles and never builds the muscle" },
+    { test: "Fit: how well-suited is this work to what AI does well today?", fail: "It is high-stakes judgement, a sensitive ER conversation, or anything where being wrong is far worse than being slow" },
+    { test: "Risk: what is the cost of being wrong, and can you fix it fast?", fail: "A wrong output lands in a real decision or a real conversation before a human can catch it" },
+  ]}
+  verdict="Score risk before value and fit, not after. People inflate the things they already want to build."
+/>
 
-**Risk.** What is the cost of being wrong? A wrong-but-quickly-fixed-internal-comms-draft is low risk. A wrong calibration recommendation that goes into a real conversation is much higher. Score risk separately because high-risk workflows can still be built - they just need different guardrails (human-in-the-loop, narrower scope, slower rollout) and you should know that before you start, not after.
+A note on each. **Value** has to be specific or it is not a score. Not "improves manager experience" but "saves 20 minutes per manager per quarter on prep for performance conversations, across 35 managers". If you cannot make a candidate that specific, it is not ready to be scored. **Frequency** is the one teams underweight. A 30-minute weekly task beats a 4-hour quarterly one, even though the quarterly one feels bigger. The weekly build compounds 26 hours of freed time a year and a team that touches the system every week. The quarterly build frees 16 hours and a team that forgets the system between cycles.
 
-Score each dimension 1–5, honestly, with the team. The combined score is not a perfect ranking, but it is a much better starting point than instinct.
+**Fit** is where the expensive mistakes hide. Drafting, summarising, classifying, structured extraction and first-pass analysis are a natural fit. High-stakes judgement is not. Score it honestly, because the costliest failures come from forcing AI into work it is bad at and then blaming the tool. **Risk** gets scored separately and first, because high-risk workflows can still be built. They just need different guardrails, human-in-the-loop, a narrower scope, a slower rollout, and you want to know that before you start, not after the first bad output. The combined score is not a perfect ranking. It is a far better starting point than the loudest voice in the room.
+
+## Where AI fits, and where it does not
+
+Before the scores mean anything, the room has to agree on what "good fit" honestly looks like. This is the fit dimension made concrete, and it is worth getting opinionated about, because it settles half the arguments before they start.
+
+<ComparePanel
+  a={{ heading: "Work AI fits today", items: [
+    "Recruiter and hiring-manager kickoff docs from a short brief",
+    "Summarising interview scorecards into a hiring recommendation",
+    "Theming free-text survey comments into named patterns",
+    "First-draft policies, FAQs and internal comms",
+    "First-pass triage of routine people queries",
+  ]}}
+  b={{ heading: "Work to keep human-led", items: [
+    "Performance calibration and rating decisions",
+    "Compensation and promotion calls",
+    "Sensitive employee-relations conversations",
+    "Anything legally or ethically consequential if wrong",
+    "Judgement where being wrong beats being slow",
+  ]}}
+  caption="The right-hand column is not off-limits forever. AI can assist it later, under guardrails. It just should not be the first thing you build."
+/>
+
+The line between the columns is not permanent. It moves as models improve and as your team gets better at scoping. But on day one it is a reliable filter, and the workflows on the left are where the compounding lives: high frequency, low risk, genuinely suited to the technology. Start there, build the team's confidence and the underlying plumbing, then let the harder work earn its place.
 
 ## A worked example
 
-Take a real People Ops backlog from a 250-person company. Six candidate workflows on the board:
+Take a real People Ops backlog from a 250-person company. Six candidates went on the board and through the same filter. Risk is scored so that five means safe, so every column reads the same direction and the four simply add up.
 
-| Workflow | Value | Freq | Fit | Risk (lower = better) | Score |
+| Workflow | Value | Freq | Fit | Risk (5 = safe) | Score |
 |---|---|---|---|---|---|
-| Recruiter–hiring manager kickoff doc generation | 4 | 5 | 5 | 5 | **19** |
-| Engagement survey free-text theming | 5 | 2 | 5 | 4 | **16** |
-| Onboarding first-week Slack sequence | 3 | 5 | 5 | 4 | **17** |
-| Performance calibration recommendations | 5 | 1 | 2 | 1 | **9** |
-| New policy first-draft generation | 3 | 2 | 4 | 4 | **13** |
+| Recruiter kickoff doc generation | 4 | 5 | 5 | 5 | **19** |
 | Interview scorecard summarisation | 4 | 5 | 5 | 4 | **18** |
+| Onboarding first-week Slack sequence | 3 | 5 | 5 | 4 | **17** |
+| Engagement survey free-text theming | 5 | 2 | 5 | 4 | **16** |
+| New policy first-draft generation | 3 | 2 | 4 | 4 | **13** |
+| Performance calibration recommendations | 5 | 1 | 2 | 1 | **9** |
 
-Three workflows separate from the pack: kickoff doc generation, interview scorecard summarisation, and the onboarding sequence. All three are weekly or near-weekly, score well on fit, and carry manageable risk.
+Three workflows separate from the pack: kickoff docs, scorecard summarisation and the onboarding sequence. All three are weekly or near-weekly, score well on fit, and carry manageable risk. They are the first cluster.
 
-The performance calibration workflow - which was, predictably, the one most loudly requested - scores poorly. It has real value. It is also annual, a poor fit for current AI, and high-risk, so it waits, and comes back later with proper guardrail design, once the team has built confidence on simpler work.
+The calibration workflow, which was, predictably, the one most loudly requested, scores a nine. It has real value, a five. It is also annual, a poor fit for current AI, and high-risk, so it waits and comes back later with proper guardrail design, once the team has shipped simpler work and earned the right to attempt it. This is the conversation the framework forces, and it forces it without making it personal. Nobody is overruling the sponsor. The scores are.
 
-This is the conversation the framework forces. The loudest request is rarely the best first workflow. The data lets you have that conversation without it being personal.
+## Scoring honestly is the hard part
 
-## The honest part of scoring
+The maths is trivial. The honesty is not. Three rules, all learned the hard way.
 
-Three rules, learned the hard way.
+**Score with the people who do the work, not just the people who lead it.** A Head of People scores value high and frequency low, because they see the strategic version of the work. The Talent Partner doing the actual coordination scores value moderate and frequency very high, and they are usually right about the shape. Both readings matter. Only one of them is in the room by default.
 
-**Score with the people who do the work, not just the people who lead it.** A Head of People often scores Value high and Frequency low because they see the strategic version of the work. The Talent Partner doing the actual coordination scores Value moderate and Frequency very high - and they are usually right about the shape. Both perspectives matter; only one of them is in the room by default.
+**Score risk first, and imagine the failure out loud.** People inflate value and fit on workflows they already want. Scoring risk first, and saying plainly what a wrong output would do, keeps the rest of the scoring honest.
 
-**Score Risk before you score the others, not after.** People naturally inflate Value and Fit on workflows they want to build. Scoring Risk first - and explicitly imagining what the failure modes look like - keeps the rest of the scoring honest.
+**Be ruthless about specificity.** If a candidate cannot be made specific to the level of "20 minutes, 35 managers, per quarter", it is not a workflow yet. It is an ambition. Park it until someone can name the cycle, the volume and the person who owns it.
 
-**Be ruthless about specificity.** "Improves manager experience" is not a Value score. "Saves 20 minutes per manager per quarter on the prep for performance conversations, across 35 managers" is. If you cannot make a candidate workflow specific to that level, it is not ready to be scored. Park it until it is.
+<FieldNote label="What broke">
+The first time I ran this with a client, we scored the whole backlog in a room that was all Heads-of. Clean numbers, confident consensus, a tidy top three. Then a Talent Partner who had missed the session saw the sheet and quietly pointed out that the top-ranked workflow ran maybe four times a year, not weekly, because the leaders had scored the strategic version of the work and she scored the version she actually did on a Monday.
 
-Most teams find, after their first scoring exercise, that a third of their backlog disappears. It was not workflows. It was wishful thinking.
+One frequency score moved from a five to a two. The ranking reshuffled. We had nearly committed six weeks of build to the wrong first workflow because the person who does the work was not at the table. Now the rule is simple: the people who touch the workflow score the workflow. Everyone else observes.
+</FieldNote>
+
+Most teams find, after their first honest scoring pass, that roughly a third of the backlog quietly disappears. It was never a set of workflows. It was wishful thinking wearing the costume of a plan.
 
 ## From score to roadmap
 
-A score gives you a ranking. A ranking is not yet a roadmap. Three more moves turn one into the other.
+A score gives you a ranking. A ranking is not yet a roadmap. Three more moves turn one into the other, and they are the difference between a spreadsheet and something the CFO will fund.
 
-**Sequence by capability building, not just by score.** The first workflow is rarely the highest-scoring one. It is the highest-scoring one that the team can build to working state in 4–6 weeks, with what they currently have. A slightly lower-scoring workflow that ships is worth far more than a top-scoring workflow that is still being scoped in week ten.
+<ProcessFlow
+  ordered={false}
+  stages={[
+    { label: "Rank", body: "Order the backlog by combined score. This is the raw list, not the plan.", meta: "The sheet" },
+    { label: "Sequence by buildability", body: "Pick the highest-scoring workflow the team can ship to working state in four to six weeks with what it has now. A slightly lower score that ships beats a top score still being scoped in week ten.", meta: "First build" },
+    { label: "Cluster by shared plumbing", body: "Group workflows that need the same integration, say the ATS wired to the workspace, and build them together. The second and third in a cluster cost a fraction of the first.", meta: "Compounding" },
+    { label: "Reserve for the unscoreable", body: "Ring-fence a fifth of build capacity for what did not exist when you scored: a reorg, a regulatory change, an experiment a champion brings back from a course.", meta: "20% held" },
+  ]}
+/>
 
-**Group workflows by shared infrastructure.** If three of your top scorers all need the same data integration (say, the ATS connected to the workspace), build them as a cluster. The second and third workflow in a cluster cost a fraction of what the first one cost. This is where compounding starts.
+The reserve is the move teams skip and regret. Some of the highest-return work in a year comes from things that were not on the board when you scored: a tool deprecation, a January budget review that reshapes priorities, an opportunistic build a champion returns with. Commit every hour to the scored backlog and none of that gets done. Hold a fifth back and the team keeps the ability to respond. A 90-day roadmap that comes out of this usually looks like one cluster of three shipped, one harder solo workflow underway, and one opportunistic build that surprised everyone. Not glamorous. It compounds, quarter after quarter. If you want that first cluster scoped and built end to end rather than left as a spreadsheet, that is exactly the shape of a [Grain Audit](/grain-audit): one process, a ranked plan, a 90-day sequence you keep.
 
-**Reserve 20% of build capacity for the unscoreable.** Some of the highest-leverage work in a year comes from things that did not exist when you scored. A regulatory change, a reorg, a tool deprecation, an opportunistic experiment a champion brings back from a course. If 100% of build time is committed to the scored backlog, none of these get done. Reserve a fifth of the time and the team retains the ability to respond.
+## When to re-score, and what the framework is really for
 
-A 90-day roadmap that emerges from this exercise typically looks like: one cluster of three workflows shipped, one harder solo workflow underway, and one opportunistic build that surprised everyone. Not glamorous. It compounds, quarter after quarter.
+Re-score once a quarter. Not more, because workflows in build need a stable run. Not less, because the world moves and so does what AI does well. Re-scoring is also when you retire what has not been built. If a workflow has scored well twice and still not shipped, that is a signal: either the team does not actually want it, or it is harder than the score suggested, or there is a sponsorship problem nobody has named. Pretending the backlog is still live is worse than removing the line.
 
-## When to re-score
+The real job of the framework, though, has almost nothing to do with rankings. It gives the team a shared language for deciding which AI work is worth doing. Without one, every conversation about a new workflow collapses into enthusiasm or doubt, both exhausting, neither scalable. With one, the conversation gets shorter and better. Someone proposes a workflow. The team scores it together. The score either confirms what everyone suspected or surfaces a disagreement worth having. Either outcome moves the work forward.
 
-Once a quarter is roughly right. Not more often, because workflows in build need stability. Not less often, because the world moves and so does what AI can do well.
+That is the test of a good framework: not perfect rankings, a conversation that gets easier every time. It is the same discipline behind [identifying the efficiency gaps AI can actually fill](/intelligence/identifying-efficiency-gaps-ai-can-fill) and the reason a scored backlog rarely falls into the [pattern that stalls AI pilots at production](/intelligence/why-ai-pilots-stall-at-production). Where a scoring pass ends, a deeper [automation audit](/intelligence/automation-audit-playbook) begins, and both feed the same [AI workspace your People team runs on](/intelligence/pillar/ai-workspace-for-people-ops). Once the first cluster ships, [measuring the value it returns](/intelligence/measuring-ai-value-in-people-ops) is what keeps the next quarter funded.
 
-Re-scoring is also the moment to retire workflows that have not been built. If something has scored well twice and not been built, it is telling you something - either the team does not actually want it, or it is harder than the score suggested, or there is a sponsorship problem. Pretending the backlog is still live is worse than removing it.
-
-## The framework's real job
-
-The real job of the framework has nothing to do with prioritisation. It gives the team a shared language for talking about which AI work is worth doing. Without it, every conversation about a new workflow turns into either enthusiasm or doubt - both of which are exhausting and neither of which scales.
-
-With it, the conversation gets shorter and better. Someone proposes a workflow. The team scores it together. The score either confirms what everyone suspected, or it surfaces a disagreement worth having. Either outcome moves the work forward.
-
-That is the test of a good framework: not perfect rankings, a conversation that gets easier every time. Score the backlog. Sequence the build. Ship the first cluster. Then re-score, and do it again. Three quarters in, you will have an automation portfolio that the team understands, the CFO can defend, and the function genuinely depends on.
-
-That is what a working People Ops automation roadmap looks like. It is built from a spreadsheet, not a strategy deck.
-
-
-
-## What this connects to
-
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
-
-- [How to identify the efficiency gaps AI can fill](/intelligence/identifying-efficiency-gaps-ai-can-fill)
-- [Designing the AI-native People team](/intelligence/designing-the-ai-native-people-team)
-- [Measuring AI value in People Ops](/intelligence/measuring-ai-value-in-people-ops)
-- [The automation audit playbook](/intelligence/automation-audit-playbook)
-- [Leading the AI transformation in People](/intelligence/leading-the-ai-transformation)
+Score the backlog. Sequence the build. Ship the first cluster. Re-score, and do it again. Three quarters in you will have an automation portfolio the team understands, the CFO can defend, and the function genuinely depends on. It is built from a spreadsheet, not a strategy deck.
 
 <KeyTakeaways>
-- Score every candidate workflow on the same four dimensions.
-- High-judgment, high-risk workflows stay human-led. AI assists, never decides.
-- Document the call. The framework only compounds if the reasoning is visible later.
+- Score every candidate workflow on the same four dimensions, one to five, with the people who actually do the work.
+- The loudest, biggest or most impressive request is rarely the right first build. Let the score, not seniority, order the queue.
+- Sequence by what ships in six weeks, cluster by shared plumbing, and reserve a fifth of capacity for the unscoreable.
+- High-judgement, high-risk work stays human-led. AI assists, it does not decide, and that call is made before the build, not after.
+- Re-score quarterly, retire what scored well but never shipped, and write down the reasoning so the framework compounds.
 </KeyTakeaways>

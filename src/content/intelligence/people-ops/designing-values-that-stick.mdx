@@ -5,117 +5,165 @@ export const frontmatter = {
   primaryCluster: "org-design-and-roles",
   clusters: ["enablement-and-change"],
   track: "people-ops",
-  description: "Most corporate values projects fail. They produce a poster, not a behaviour. The values that actually shape a company are short, specific, costly to live by, and wired into how decisions get made. Here is the design pattern.",
-  keywords: ["company values", "designing values", "values that stick", "corporate values", "values-led leadership", "operating values"],
-  readTime: "10 min",
+  description: "Most values projects produce a poster, not a behaviour. Values that stick are short, costly to live by, and wired into how decisions actually get made.",
+  keywords: ["values that stick", "company values", "how to make company values stick", "designing company values", "operating values", "values-led leadership"],
+  readTime: "11 min",
   publishedAt: "2026-05-04",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
 export const faqs = [
+  {
+    question: "How do you make company values actually stick?",
+    answer: "Write each value as a decision rule that costs something, then wire it into hiring, promotion, weekly rituals and feedback. Values stick when a normal employee can use one to settle a contested call out loud, and when at least three of those four operating surfaces reference it by name. A value that only lives on a page will not survive its first hard quarter.",
+  },
   {
     question: "Why do most corporate values projects fail?",
     answer: "Three reasons. Committee drafting sands the language down until nobody could object, which also means nobody is bound by it. The value costs nothing to live by, so it never forces a decision. And it ends up in a poster or an onboarding deck, nowhere near the promotion criteria or hiring loops where decisions actually get made. Usually the last person to edit the sentence is the one who removes the only word with teeth.",
   },
   {
     question: "What does it mean for a value to be costly?",
-    answer: "A value is costly when it forces a real trade-off. \"Customer obsession\" is costly when it leads you to slip a launch date because the customer signal is not yet there. Quick test: if a competitor could put your exact wording on their own website and nobody would blink, it is not costly enough yet.",
+    answer: "A value is costly when it forces a real trade-off. \"Customer obsession\" is costly when it slips a launch date because the customer signal is not yet there. Quick test: if a competitor could put your exact wording on their own website and nobody would blink, it is not costly enough yet. Pick the cost when you pick the value, or you have not picked anything.",
   },
   {
-    question: "How many values should a company have?",
-    answer: "Three to five. Fewer than three and you cover too little. More than five and nobody can recall them under pressure, which is the only moment they matter. Five is the practical ceiling.",
+    question: "How many company values should you have?",
+    answer: "Three to five. Fewer than three and you cover too little of how the company actually decides. More than five and nobody can recall them under pressure, which is the only moment they matter. Five is the practical ceiling, and most companies would be better at four.",
   },
   {
-    question: "How do you wire values into operating practice?",
-    answer: "Four places. Hiring loops, one interview explicitly probes a value with a real scenario. Promotion criteria, each level expectation written through the value lens. Weekly rituals, demos and retros and decision logs reference the values by name. Performance feedback, specific praise and specific challenge, both grounded in a named value. Start with hiring loops and weekly rituals: they cost nothing to set up and compound fastest. Promotion criteria and performance feedback catch up over the next cycle.",
-  },
-  {
-    question: "Where can AI help, and where should it not?",
-    answer: "AI can help test whether a draft value is specific enough: ask a model to write the exact opposite value in equally polished language. If that took no effort, the original was never specific enough to rule anything out. AI can also surface patterns in employee experience data that map to particular values. It cannot generate the values themselves. The exec team has to argue them out, in the room, in their own language.",
+    question: "Where can AI help with company values, and where should it not?",
+    answer: "AI can pressure-test whether a draft value is specific enough: ask a model to write the exact opposite value in equally polished language, and if that took no effort, the original ruled nothing out. It can also surface patterns in engagement and exit data that map to particular values. It cannot generate the values themselves. The exec team has to argue those out in the room, in their own language.",
   },
 ];
 
 <TLDR>
 - Values stick when they are written in the language of decisions, not the language of posters.
 - Most values fail because they are aspirational nouns that do not survive contact with a hard call.
-- The test: can someone use the value to make a contested decision out loud?
-- Values are a tool of the operating system, not a marketing artefact.
+- Every value that bites carries four parts: a statement, a behaviour, an anti-pattern, and a named cost.
+- Wiring into hiring, promotion, rituals and feedback is what turns a value into a behaviour.
+- The test is simple: can someone use the value to make a contested decision out loud?
 </TLDR>
 
-Most companies have a values page. Most companies do not have values. The two facts are unrelated, which is the problem.
+Cover the logo on five different company values pages and try to sort them back to their companies. You cannot. Excellence, integrity, innovation, ownership, impact: the same words in a different order, describing every organisation that has ever filed accounts. That interchangeability is the whole problem, and the fix is not a better workshop. Values that stick are written as decision rules that cost something to follow, and wired into the places where decisions actually get made: hiring, promotion, weekly rituals, feedback.
 
-A values project usually starts with a workshop, runs through three rounds of wordsmithing, ends in a poster, and quietly stops mattering inside a year. The team that wrote them feels good. The team that has to live by them does not notice the difference.
-
-The values that actually shape a company look different.
+Values fail when they are aspirational nouns that never force a hard call. A value that has never made a decision harder is not a value. It is decoration, and everyone in the building can tell the difference between the two, usually within a week of the launch.
 
 <Takeaway>A value that never causes an uncomfortable decision is not a value. It is decoration. Costly, specific, and wired into operating practice, or it does not count.</Takeaway>
 
-## What stops values from sticking
+## Why most values projects fail
 
-Three patterns kill values projects. They are predictable enough to design around.
+A values project usually starts with a workshop, runs through three rounds of wordsmithing, ends in a poster, and quietly stops mattering inside a year. The team that wrote them feels good. The team that has to live by them does not notice the difference. This is the same failure that sinks [most change programmes](/intelligence/why-most-change-programmes-fail): the artefact ships, the behaviour does not.
 
-**Designed by committee.** Every word gets sanded down to the point where nobody could disagree with it. "Excellence." "Integrity." "Innovation." Words so generic they describe every company that has ever existed. Nobody disagrees. Nobody changes anything either.
+Three deaths kill values work, and they are predictable enough to design around.
 
-**Costless.** A value that does not force a trade-off shapes no decision. "Customer obsession" is costless until it slips a launch date because the customer signal is not yet there. "Long-term thinking" is costless until it costs you a quarter. Pick the cost when you pick the value, or you have not picked anything.
+**Designed by committee.** Every word gets sanded down to the point where nobody could disagree with it. The sharp phrase that one exec pushed back on gets softened, then softened again, until it describes a company that could be anyone. Nobody disagrees. Nobody changes anything either. The mechanism is quiet and it is nearly universal: the last person to edit the sentence is the one who removes the only word with teeth.
 
-**Unwired.** The values live on a page and nowhere else. Not in hiring loops, not in promotion criteria, not in the weekly rituals where decisions actually get made. Wiring is the difference between a value and a slogan.
+**Costless.** A value that does not force a trade-off shapes no decision. "Customer obsession" is costless until it slips a launch date because the customer signal is not yet there. "Long-term thinking" is costless until it actually costs you a quarter and the board asks why. If you cannot name, in advance, the decision a value will make harder, you have written a preference, not a value. Preferences are free. Values are supposed to hurt in the moment you most want to ignore them.
 
-## The design pattern that works
+**Unwired.** The value lives on a page and nowhere else. Not in the hiring loop, not in the promotion rubric, not in the retro where the team picks apart last week's calls. Wiring is the entire difference between a value and a slogan. A slogan is a value with the operating connections cut.
 
-Three to five values. Each one carries:
+<ComparePanel
+  a={{ heading: "A value that binds", items: [
+    "Written as a decision rule you can apply out loud",
+    "Names the trade-off it forces, in advance",
+    "Rules out a real behaviour, specifically",
+    "Lives in hiring loops, promotion criteria and retros",
+    "Argued out by the exec team and signed by name",
+  ]}}
+  b={{ heading: "A value that decorates", items: [
+    "Written as an aspirational noun on a poster",
+    "Costs nothing when it competes with a deadline",
+    "So elastic it forbids nothing",
+    "Lives on a values page and nowhere else",
+    "Sanded by committee until nobody could object",
+  ]}}
+  caption="Same length, opposite fate. The affirmative column is the design target for every value you keep."
+/>
 
-- **A statement.** One sentence, written in the company's own language. Not borrowed.
-- **A behaviour.** What the value looks like on a normal Tuesday. Specific.
-- **An anti-pattern.** What the value rules out. Equally specific. Without the anti-pattern, the value is too elastic to bite.
-- **A cost.** The trade-off the value forces when it competes with something else. Named, in advance, by the exec team.
+## What values that stick are made of
 
-That is the unit. Five of those, written by the exec team in the room, argued through, signed off by name. Not by a committee. Not by an external facilitator who hands you a deck.
+The values that shape a company are not single words. They are units, and each unit carries four parts. Miss any one and the value goes soft.
 
-## Wiring the values into the operating system
+<ProcessFlow
+  stages={[
+    { label: "The statement", body: "One sentence, written in the company's own language, not borrowed from a peer's careers page. It reads as a rule, not a mood.", meta: "The sentence" },
+    { label: "The behaviour", body: "What the value looks like on a normal Tuesday. Concrete enough that two people would recognise the same act.", meta: "The Tuesday" },
+    { label: "The anti-pattern", body: "What the value rules out, equally specific. Without a named anti-pattern the value is too elastic to bite.", meta: "The line it draws" },
+    { label: "The cost", body: "The trade-off it forces when it competes with something you also want. Named up front by the exec team, before the pressure lands.", meta: "The price" },
+  ]}
+/>
 
-Once the values exist, the work is wiring them into how the company actually runs. Four places to do it:
+That is the unit. Three to five of them, written by the exec team in the room, argued through, signed off by name. Not by a committee that dilutes as it goes. Not by an external facilitator who hands you a laminated deck and an invoice. The statement without the behaviour is a mood. The behaviour without the anti-pattern is advice. The anti-pattern without a named cost is a rule nobody will pay for when it counts. All four, or it does not hold.
 
-**Hiring loops.** One interview in every loop explicitly probes a value with a scenario from real work. Not "tell me about a time you showed integrity." A specific situation where the value would have forced a trade-off. The signal is whether the candidate has ever had to make that trade-off, and what they chose.
+The reason this works is the same reason the [Read, Craft, Scale method](/method) works on anything else: you are designing the value at the level of the actual decision, not the level of the slogan. Designing the value is Craft. Wiring it in is Scale. That order is not optional.
 
-**Promotion criteria.** Each level expectation gets rewritten through the values lens. If one of the values is "ship in public," senior IC at this company means posting the rough version in the open channel two weeks before the polished one, not after. Promotions reinforce the values or they undermine them. There is no neutral.
+## Three values, fully designed
 
-**Weekly rituals.** Demos, retros, decision logs all reference the values explicitly. "We made this trade-off because of \[value\]." The reference is the practice. Without it, the values fade.
+Abstract advice about values is itself a kind of poster. Here is what the unit looks like when it is finished, for three values a real company might hold. Notice that each cost is a sentence an exec would flinch to say out loud, which is exactly how you know it is a value and not a preference.
 
-**Performance feedback.** Specific praise and specific challenge, both grounded in a named value. The same evidence-led shape as the [coaching system](/intelligence/coaching-and-feedback-systems). "This decision lived our value of X. This other decision did not, and here is why."
+| Value | On a Tuesday | What it rules out | The cost it forces |
+| --- | --- | --- | --- |
+| Ship in public | You post the rough version in the open channel before it is polished | Building in private and revealing the finished thing for applause | You will be seen being wrong, in front of people, on purpose |
+| Customer signal over calendar | You move a date when the evidence says the thing is not ready | Hitting the date to protect the roadmap slide | Some launches slip, and the quarter looks worse before it looks better |
+| Disagree in the room | You say the hard thing to the person's face, in the meeting, not after | Nodding along and re-litigating the decision in the corridor | Meetings get slower and more uncomfortable, and people leave them stung |
 
-If a value is not present in at least three of these four places within ninety days of being adopted, it will not survive the year.
+None of those three is elegant. That is the point. An elegant value is usually one that has had its cost edited out. Run your own drafts through the same table: if the "cost" column comes out blank or bland, the value is not finished, whatever the statement sounds like.
 
-## Where AI helps, and where it should not
+## Wiring values into how the company runs
 
-AI is useful at the edges of values work, not in the middle.
+Once the values exist, the work is wiring them into how the company actually operates. Four surfaces, in the order they pay off.
 
-It can pressure-test a draft statement: rephrase it as a forced choice between two attractive options, see if the value still picks one. It can surface patterns in employee experience surveys, exit interviews, and engagement data that map to specific values, evidence the exec team can react to.
+**Hiring loops.** One interview in every loop explicitly probes a value with a scenario from real work. Not "tell me about a time you showed integrity," which teaches candidates to perform. A specific situation where the value would have forced a trade-off, told as it happened. The signal is whether the person has ever actually made that trade-off and what they chose when it cost them. This is the same instinct as [hiring for the grain](/intelligence/hiring-for-the-grain): you are testing for how someone works under pressure, not what they claim to believe.
 
-It cannot generate values. The exec team has to argue them out in the room, in their own language, with the cost of each one named openly. A value generated by a model is borrowed in the most literal sense, and people can tell.
+**Promotion criteria.** Each level expectation gets rewritten through the value lens. If one of the values is "ship in public," then senior IC at this company means posting the rough version in the open channel two weeks before the polished one, and that expectation sits in the written rubric. Promotions either reinforce the values or they quietly repeal them. Promote the person who lives the opposite of a value and you have just told the whole company which document to trust. There is no neutral promotion.
 
-## The test
+**Weekly rituals.** Demos, retros and decision logs reference the values by name. "We made this trade-off because of this value" is a sentence people should hear in a normal week, not a launch event. The reference is the practice. A value spoken aloud in a Tuesday retro is being maintained; a value nobody has named in a month is already fading.
 
-Six months after launch, ask three questions:
+**Performance feedback.** Specific praise and specific challenge, both grounded in a named value, on the same evidence-led shape as any working [coaching and feedback system](/intelligence/coaching-and-feedback-systems). "This decision lived our value of X. This other one did not, and here is why." Vague feedback teaches nothing; feedback tied to a named value teaches the value.
 
-1. Can a randomly-selected employee name the values without checking?
-2. Can they describe a decision in the last quarter that one of the values shaped?
-3. Can the exec team name a decision the values made harder, and explain why they kept the value anyway?
+If a value is not present in at least three of these four surfaces within ninety days of being adopted, it will not survive the year. This is [operating leadership](/intelligence/pillar/operating-leadership), not brand work, and the difference shows up in the calendar, not the wall.
 
-Three yeses and the values are alive. Two yeses and they are decaying. One or zero, and you have a poster.
+## The draft filter
 
+Before an exec team signs anything, run every candidate value through a short filter. It takes ten minutes and it saves a year of polite decay. The point is to fail values on purpose, in the room, while it is still cheap to rewrite them.
 
-## What this connects to
+<DecisionFilter
+  title="Run each draft value through this before you sign"
+  criteria={[
+    { test: "Could a direct competitor put this exact sentence on their site with a straight face?", fail: "Yes. It is generic enough to belong to anyone, which means it binds no one." },
+    { test: "Can the exec team name the decision this value would make harder?", fail: "Nobody in the room can point to a real trade-off it forces." },
+    { test: "Who does this value rule out, in hiring and in promotion?", fail: "It rules out nobody. Everyone already agrees, which is why it is safe and useless." },
+    { test: "Is the last edit the one that removed the only word with teeth?", fail: "The sharp word got sanded off to spare an objection, and the sentence went limp." },
+  ]}
+  verdict="A value that survives all four will still cost you something in a hard week. That flinch is the signal you designed it right."
+/>
 
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
+The filter matters most on the fourth question, because that is the failure you cannot see while it happens. The room agrees to soften a phrase to avoid a five-minute argument, and the softening feels like progress. It is the opposite. The friction you edited out was the value doing its one job.
 
-- [Leading the AI transformation in People](/intelligence/leading-the-ai-transformation)
-- [Coaching and feedback systems that actually compound](/intelligence/coaching-and-feedback-systems)
-- [An AI policy blueprint for People teams](/intelligence/ai-policy-blueprint-for-people-teams)
-- [Automation patterns that pay off](/intelligence/automation-patterns-that-pay-off)
+## Where AI helps, and where it must not
+
+AI is useful at the edges of values work, never in the middle.
+
+It can pressure-test a draft. Ask a model to write the exact opposite value in equally polished language. If the opposite reads just as reasonable, the original never picked a side, and a value that picks no side rules nothing out. Ask it to rephrase a statement as a forced choice between two attractive options and check the value still selects one. It can also surface patterns across engagement surveys, exit interviews and decision logs that map to particular values, giving the exec team real evidence to argue from rather than anecdote.
+
+What it cannot do is generate the values. A value written by a model is borrowed in the most literal sense, and people can tell the way they can tell a card was signed by an assistant. The exec team has to argue each one out in the room, in their own words, with the cost named openly, because the argument is where the commitment gets made. Skip the argument and you have skipped the value. The model speeds up the testing. The judgement is still yours.
+
+## The six-month test
+
+Six months after launch, ask three questions and answer them honestly.
+
+1. Can a randomly chosen employee name the values without checking a page?
+2. Can they describe a decision in the last quarter that one of the values visibly shaped?
+3. Can the exec team name a decision the values made harder, and explain why they held the line anyway?
+
+Three yeses and the values are alive. Two and they are decaying, and the third question is usually the one that fails first, because it is the only one that costs the leadership anything to answer. One or zero yeses and you do not have values. You have a poster, an onboarding slide, and a year to run the design properly next time.
+
+Revisit the set annually, and treat a value that has never once changed a decision as a candidate for deletion rather than a badge of stability. The goal was never a wall of admirable nouns. The goal is a company that decides the same way whether or not anyone is watching, which is the only definition of values that has ever meant anything on a Monday.
 
 <KeyTakeaways>
-- Write each value as a decision rule, not a noun.
-- Stress-test values against real recent decisions. If they do not bite, rewrite them.
-- Revisit annually. Values that never change have probably stopped working.
+- Write each value as a decision rule with a named cost, not an aspirational noun.
+- Give every value four parts: statement, behaviour, anti-pattern, cost. Missing any one and it goes soft.
+- Wire each value into at least three of hiring, promotion, rituals and feedback within ninety days.
+- Stress-test drafts against real recent decisions and the competitor-website test. If they do not bite, rewrite them.
+- Six months on, if nobody can name a decision a value shaped, you have a poster, not a value.
 </KeyTakeaways>

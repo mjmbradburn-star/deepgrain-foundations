@@ -5,11 +5,11 @@ export const frontmatter = {
   primaryCluster: "enablement-and-change",
   clusters: ["org-design-and-roles"],
   track: "people-ops",
-  description: "You don't need engineers to build AI capability inside the People function. You need three or four champions, given air cover and time. Here is how the model actually works.",
-  keywords: ["AI champions", "People Ops capability", "internal AI builders", "AI enablement"],
-  readTime: "9 min",
+  description: "You do not need engineers to build AI capability in People. You need a champion model: three or four operators given air cover, a budget and time. How it runs.",
+  keywords: ["champion model", "AI champions", "build AI capability without engineers", "internal AI builders", "People Ops AI capability", "how to build AI capability in HR"],
+  readTime: "11 min",
   publishedAt: "2026-04-17",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
@@ -17,90 +17,143 @@ export const frontmatter = {
 export const faqs = [
   {
     question: "Do we need to hire engineers to build AI capability inside our People function?",
-    answer: "No. Hiring engineers into a People function to \"do AI\" usually backfires: they solve the problem they understand, which is rarely the problem the team has. What usually happens instead is a slick internal tool nobody in the team asked for, built for a bottleneck that wasn't actually the bottleneck, abandoned within a couple of quarters. The champion model uses people already inside the team - senior coordinators, People Partners, Ops leads, Talent Partners - who know where the friction is because they live in it. Same people you already pay, given a different mandate.",
+    answer: "No. Hiring engineers into a People function to \"do AI\" usually backfires: they solve the problem they understand, which is rarely the problem the team has. What you get instead is a slick internal tool nobody asked for, built for a bottleneck that was not actually the bottleneck, abandoned within a couple of quarters. The champion model uses people already inside the team, senior coordinators, People Partners, Ops leads, Talent Partners, who know where the friction is because they live in it. Same people you already pay, given a different mandate.",
   },
   {
     question: "What does a champion actually need to succeed?",
-    answer: "Three things, in order. Air cover: a named exec sponsor (usually the CPO or Head of People) who has said, in writing, that the champion can spend at least twenty per cent of their week on building. Tools and a small budget with no procurement friction - one workflow tool, an LLM provider on the right enterprise terms, a company card rather than a six-week vendor review, a few hundred a month total. And a small starting brief: one bounded, painful workflow owned by a colleague willing to test the new version. Meeting notes triage, say. Not a programme. One thing. Get all three right and a champion usually ships something working inside the first fortnight. Miss any one of them and it stretches to months, if it happens at all.",
+    answer: "Three things, in order. Air cover: a named exec sponsor who has said in writing that the champion can spend at least twenty per cent of their week building. Tools and a small budget with no procurement friction: one automation tool, an LLM provider on enterprise terms, a company card rather than a six-week vendor review, a few hundred a month total. And a small starting brief: one bounded, painful workflow owned by a colleague willing to test the new version. Get all three right and a champion usually ships something working inside the first fortnight.",
   },
   {
     question: "Why three or four champions, not just one?",
-    answer: "A single champion is fragile. They get sick, get pulled into a crisis, or leave - and the work stops. I've watched a single-champion build stall within six weeks once, when the champion got pulled onto a re-org project. Nobody else knew where the workflow lived, so it died with them. Three or four champions distributed across TA, HRBP, and Ops review each other's work, share patterns, and cover each other when one is buried. Four is roughly the number where naming conventions start appearing without anyone mandating them, and workflows get reused without being told to.",
+    answer: "A single champion is a single point of failure. They get sick, get pulled into a crisis, or leave, and the work stops. I have watched a single-champion build stall inside six weeks when the champion got pulled onto a re-org project and nobody else knew where the workflow lived. Three or four champions distributed across TA, HRBP and Ops review each other's work, share patterns, and cover each other when one is buried. Four is roughly the number where naming conventions and reused workflows start appearing without anyone mandating them.",
   },
   {
-    question: "What does success look like six months in?",
-    answer: "Eight or twelve workflows running, each saving a few hours a week. But the number worth actually watching is different: the exec sponsor stops getting pinged for tool-spend approval, because the champions just use the budget they were given. The clearer failure signal is the opposite: champions still asking, three months in, whether they're \"allowed\" to build something. Two months after the engagement ends, if there was one, the champions worth keeping are still building, into corners nobody asked them to touch, and training the next one.",
+    question: "How do you know if the champion model is working?",
+    answer: "Watch two signals, not the workflow count. The good one: the exec sponsor stops getting pinged for tool-spend approval, because the champions just use the budget they were given. The bad one: champions still asking, three months in, whether they are \"allowed\" to build. And the real test comes later. Two months after any outside help leaves, the champions worth keeping are still building into corners nobody scoped, and training the next one. Capability is what survives the invoice, not what shipped during it.",
   },
 ];
 
 <TLDR>
-- The Champion Model is a staffing pattern for building AI capability inside a function without engineers.
-- Three or four operators, given air cover, time, and a build-first remit, supported by a coaching cadence.
-- It compounds faster than centralised builds because the champions live inside the work.
-- The risk is starvation: if the champions do not get protected time, the model collapses inside a quarter.
+- The champion model builds AI capability inside a People function using three or four existing operators, not hired engineers.
+- Each champion needs three things: air cover for a fifth of their week, a small budget with no procurement friction, and one bounded workflow to start.
+- Three or four beats one because a lone champion is a single point of failure, and four is where workflows start getting reused without anyone mandating it.
+- The model starves and collapses inside a quarter if build time is not protected against so-called real work.
+- Success is measured by what champions ship after the engagement ends, not by workflows counted on a slide.
 </TLDR>
 
-The most common question I hear from People leaders is some version of: *do I need to hire technical people to do this?* The honest answer is no. Hiring engineers into a People function to "do AI" usually backfires: they solve the problem they understand, which is rarely the problem the team has.
+The champion model is a staffing decision, not a training programme. You build AI capability inside a People function by picking three or four operators who already know where the work snags, protecting a fifth of their week, handing them a budget and one painful workflow, and standing back. Not by hiring engineers, and not by running the whole team through a course. Same people you already pay, given a different mandate. Most People leaders reach for a course or a headcount request. Both are slower, more expensive, and less likely to stick than the champion sitting two desks away.
 
-What works, in engagement after engagement, is the champion model.
+## What a champion is, and why an engineer is the wrong hire
 
-<Takeaway>You do not need engineers to build AI capability inside the People function. You need three or four champions, given air cover and time.</Takeaway>
+A champion is someone already inside the team, usually a senior coordinator, a People Partner, an Ops lead or a Talent Partner, who has two things at once: deep tacit knowledge of how the work actually flows, and genuine curiosity about wiring things together. The first is rare and takes years to build. The second you can spot in a week. You cannot easily teach either, which is why you select for both rather than train for them.
 
-## What a champion is
+The reason this beats hiring is grain. The champion already knows where the friction is, because they live in it. They know which steps everyone hates, which approvals are theatre, which handoffs quietly drop information. An engineer has to discover all of that before they can build anything useful, and they usually discover the wrong thing, because they optimise for what is technically interesting rather than what is operationally painful. You end up with an elegant solution to a problem the team did not have.
 
-A champion is someone already inside the team - usually a senior coordinator, a People Partner, an Ops lead, a Talent Partner - who has two things at once: deep tacit knowledge of how the work actually flows, and genuine curiosity about wiring things together. Same person already on the payroll. Different mandate.
+There is a second failure mode with the outside hire, and it is the one that costs most. Bring in a contractor or an agency to build the systems, and when they leave, the systems become unmaintainable black boxes. The builders left. The capability went with them. The champion model exists precisely to keep the capability inside the building, held by people who are not going anywhere.
 
-The reason this works is grain. The champion already knows where the friction is, because they live in it. They know which steps everyone hates, which approvals are theatre, which handoffs drop information. An engineer would have to discover all of that before they could build anything. The champion starts with it.
+<PullStat value="37">
+Thirty-seven champions, across eleven functions, and not one of them writes traditional code. The capability is real. It is just not where People leaders keep looking for it.
+</PullStat>
 
-## What a champion needs
+## Who actually makes a good champion
 
-Three things, in order.
+The instinct is to pick the person with the freest calendar, or the one who put their hand up in the AI town hall. Both are usually wrong. The free calendar is often free for a reason, and the loud volunteer is frequently more interested in the topic than in the grind of shipping. What you want is the operator with an itch: the person who already builds workarounds in spreadsheets, who mutters about the same broken handoff every month, who reaches for a tool the moment something annoys them.
 
-**Air cover.** A named exec sponsor - usually the CPO or Head of People - who has said, in writing, that this person can spend a defined slice of their week on building. Twenty per cent is the floor. Less than that and the builds never finish. The cover matters because the champion will be asked, repeatedly, to drop the build work for "real" work. The sponsor's job is to say no on their behalf.
+Run your candidates through a short filter before you name anyone. It saves you the more painful discovery three months later, when the training budget is spent and nothing has shipped.
 
-**Tools and a budget.** Not a big budget. A small one with no procurement friction. A workflow tool (n8n, Make, Zapier - pick one and stop debating). An LLM provider with the right enterprise terms. A vector store if the work needs memory. A few hundred a month, total. The friction of asking for these tools each time is what kills momentum, not the cost.
+<DecisionFilter
+  title="Before you name someone a champion, run them through this"
+  criteria={[
+    { test: "Do they already know where this workflow snags, without being told?", fail: "They would have to interview the team to find the friction" },
+    { test: "Do they reach for a tool when something annoys them, unprompted?", fail: "They wait for IT to fix it, or they just live with it" },
+    { test: "Will they hand the finished workflow to the team and start the next one?", fail: "They want to own it forever as their personal thing" },
+    { test: "Does a named exec actually want to sponsor them, in writing?", fail: "The sponsor is nominal and will fold under the first resourcing squeeze" },
+  ]}
+  verdict="If someone fails the first two, no amount of training fixes it. Pick the operator with the itch, not the volunteer with the empty diary."
+/>
 
-**A small starting brief.** One workflow. Bounded. Painful. Owned by a colleague who is willing to test the new version. Not "transform recruiting." Not "automate onboarding." One thing. *The first-day Slack message sequence.* Or *interview scorecard summarisation.* Or *the weekly headcount reconciliation.*
+None of this requires a technical background. It requires someone who understands the work and cannot leave a broken process alone. If you are formalising this into a job shape, that person is on the path to something like [the HR Architect role](/intelligence/the-hr-architect-role), whatever the title on their contract says today.
 
-Give them those three things and stand back. (Champions also need somewhere to build: a shared [AI workspace](/intelligence/setting-up-your-ai-workspace) is the usual first artefact.)
+## The three things a champion needs
 
-## Why three or four, not one
+Once you have picked well, the model succeeds or fails on three inputs. Get all three right and a champion ships something working inside the first fortnight. Miss any one and the build stretches to months, if it happens at all.
 
-A single champion is fragile. They get sick, they get pulled into a crisis, they leave. The work stops and the institutional memory walks out the door.
+**Air cover.** A named exec sponsor, usually the CPO or Head of People, who has said in writing that this person can spend a defined slice of their week building. Twenty per cent is the floor. Less than that and the builds never finish. The cover matters because the champion will be asked, repeatedly, to drop the build work for real work. The sponsor's job is to say no on their behalf, out loud, in the meeting where the ask happens.
 
-Three or four champions across the team - distributed across TA, HRBP, and Ops, ideally - give you something different. They review each other's work. They share patterns. They cover each other when one is buried. They form the nucleus of a real practice.
+**Tools and a small budget.** Not a big budget. A small one with no procurement friction. One automation tool, and stop debating which: n8n runs about twenty pounds per builder seat per month, is SOC 2 and ISO 27001 compliant, and self-hosts if your security team needs it inside the perimeter. Add an LLM provider on the right enterprise terms, and a vector store only if the work genuinely needs memory. A few hundred a month, total, on a company card. The friction of asking for these tools each time is what kills momentum, not the cost. A six-week vendor review to approve a twenty-pound licence is how you turn an eager champion into a discouraged one.
 
-Four is roughly the number where you start to see emergent behaviour: workflows being reused, naming conventions appearing without anyone mandating them, junior people in the team asking "can we do that for X?" because they have seen it work for Y.
+**A small starting brief.** One workflow. Bounded. Painful. Owned by a colleague who is willing to test the new version live. Not "transform recruiting". Not "automate onboarding". One thing: the first-day Slack message sequence, or interview scorecard summarisation, or the weekly headcount reconciliation. The scope of the first brief is the single most common thing leaders get wrong. They hand the champion a mandate the size of a strategy deck, and the champion drowns before shipping anything. Give them somewhere to build too: a shared [AI workspace](/intelligence/setting-up-your-ai-workspace) is usually the first artefact a champion needs before the first workflow.
 
-## What champions are not
+## The first fortnight
 
-A champion's job is shipping, not governance. The moment the role turns into a committee, a strategy deck, or an "AI taskforce," the model has failed. There are other people for that. Champions ship.
+The model has a natural rhythm, and the first two weeks set whether it holds. The point of the fortnight is not a polished system. It is proof, to the champion and to the sceptics watching, that something real ships fast. Ugly and working beats elegant and pending, every time.
 
-They are also not the eventual owners of every workflow. A good champion builds something, hands it to the team that uses it, and moves on. The workflow lives inside its function. The champion's job is to build the next one.
+<ProcessFlow
+  stages={[
+    { label: "Name and protect", body: "The sponsor puts the twenty per cent in writing and blocks it on the calendar, not just in a corridor conversation.", meta: "Day 1" },
+    { label: "Pick one workflow", body: "One bounded, painful process a named colleague owns and agrees to test. Meeting-notes triage, interview scorecards, headcount reconciliation.", meta: "Day 1-2" },
+    { label: "Stand up the workspace", body: "An LLM provider on enterprise terms and one automation tool, bought on a card, not routed through a procurement queue.", meta: "Day 2-3" },
+    { label: "Build the ugly first version", body: "Ship something that works end to end before it is tidy. The colleague who owns the process tests it on real, messy data.", meta: "Day 4-9" },
+    { label: "Show it and hand it back", body: "Demo the working version, hand ownership to the function that uses it, and the champion starts the next one.", meta: "Day 10-14" },
+  ]}
+/>
 
-## The compounding effect
+Notice the last step. A good champion builds something, hands it to the team that uses it, and moves on. The workflow lives inside its function, maintained by the people who depend on it. The champion's job is to build the next one, not to become the permanent owner of a growing pile of automations. The moment a champion is running twelve workflows single-handed, you have rebuilt the single point of failure you were trying to avoid.
 
-Six months in, a healthy champion model produces something that looks unimpressive on a slide and changes almost everything about how the team spends its week. There are eight or twelve workflows running. Each saves a few hours a week. Together they have changed what the People function spends its time on.
+## Why the champion model needs three or four, never one
 
-More importantly, the team's relationship with AI has shifted. It is no longer a thing they read about. It is a thing they make. New joiners learn the craft from the champions, not from an enablement deck. The capability lives in the people, not the policy.
+A single champion is fragile in a way that is easy to underrate until it bites. They get sick. They get pulled into a crisis. They leave. And when they do, the work does not gently degrade. It stops, and the institutional memory walks out the door with them.
 
-This is the test. Two months after the engagement ends - if there was an engagement - the champions are still building. They have extended the work into corners nobody asked them to touch. They are training the next champion already.
+<FieldNote label="What broke">
+I watched a single-champion build stall inside six weeks once. The champion got pulled onto a re-org project the moment the wider business needed hands, and nobody else knew where the workflow lived or how it was wired together.
 
-That is what we mean by capability: a practice the team owns long after the invoice is paid.
+It did not slow down. It stopped. When she came back two months later, the context had gone cold, and it was easier to start again than to reconstruct what she had built.
 
+That is the whole case for three or four instead of one. Not redundancy for its own sake. A practice that survives the day one of its people gets pulled away.
+</FieldNote>
 
+Three or four champions across the team, distributed across TA, HRBP and Ops, give you something a lone builder never can. They review each other's work. They share patterns. They cover each other when one is buried. They form the nucleus of a real practice rather than a hero project with a bus factor of one.
 
-## What this connects to
+Four is also roughly the number where you start to see emergent behaviour. Workflows get reused without anyone mandating it. Naming conventions appear on their own. Junior people in the team start asking "can we do that for X?" because they have watched it work for Y. That reuse and that curiosity are worth more than any single workflow, because they are the practice becoming self-sustaining. Below three, you have individuals. At four, you have a habit.
 
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
+## What compounds, and what starves
 
-- [An AI enablement operating model for People leaders](/intelligence/ai-enablement-operating-model)
-- [Designing the AI-native People team](/intelligence/designing-the-ai-native-people-team)
-- [Prompting patterns for People Ops](/intelligence/prompting-patterns-for-people-ops)
-- [The HR Architect: a new role inside the People function](/intelligence/the-hr-architect-role)
+Two champion models can look identical on the launch slide and diverge completely within a quarter. The difference is almost never talent. It is whether the three inputs stayed protected once the launch glow faded and the business got busy. The most common way the model dies is quiet starvation: nobody kills it, the build time just gets eaten, one urgent week at a time, until the champion is back to their old job with a lapsed licence and a half-built workflow.
+
+<ComparePanel
+  a={{ heading: "A model that compounds", items: [
+    "Build time is defended by the sponsor when the business gets busy",
+    "Budget sits on a company card, no procurement queue per tool",
+    "Three or four builders who review each other's work",
+    "Each ships one bounded workflow, hands it off, starts the next",
+    "Six months in, workflows get reused without anyone mandating it",
+  ]}}
+  b={{ heading: "A model that starves", items: [
+    "Build time is the first thing sacrificed to so-called real work",
+    "Every tool needs a fresh business case and a vendor review",
+    "One lone champion carrying the entire practice alone",
+    "The role drifts into a taskforce, a deck, a governance committee",
+    "Six months in, the champion is still asking if they are allowed",
+  ]}}
+  caption="The gap is not skill. It is whether air cover, budget and a bounded brief survived the first busy month."
+/>
+
+Watch the b column for the drift into governance especially. A champion's job is shipping, not policy. The moment the role turns into a committee, a strategy deck or an "AI taskforce", the model has failed at the thing it was for. There are other people and other forums for governance, and they matter, but they are not the champion. Champions ship. When you notice a champion spending more time in meetings about building than building, you have lost one.
+
+There is a coaching dimension to keeping the compounding side alive. Champions who never get their work reviewed plateau, quietly, and start reinventing patterns the team already solved. A light cadence, a regular slot where champions show each other what they built and where it broke, is what keeps the curve bending up rather than flattening. It is the same reason [coaching and feedback systems](/intelligence/coaching-and-feedback-systems) compound in the rest of the People function: skill without a feedback loop stalls.
+
+## What "done" actually means
+
+Six months into a healthy champion model, you have something that looks unimpressive on a slide and changes almost everything about how the team spends its week. Eight or twelve workflows running, each saving a few hours. Together they have shifted what the People function does with its time, from routine processing toward the judgement work that needed people in the first place.
+
+The deeper change is the team's relationship with the technology. AI is no longer a thing they read about. It is a thing they make. New joiners learn the craft from the champions, not from an enablement deck. The capability lives in the people, not the policy document. This is the "Scale" step of how we [read, craft and scale](/method) an engagement: the systems are built, and now the practice that maintains and extends them is owned inside the function.
+
+That is the real test, and it comes after the visible work is done. Two months after any outside help leaves, the champions worth keeping are still building, into corners nobody scoped. They are training the next champion already. That is what capability means: a practice the team owns long after the invoice is paid, and long after anyone is watching. If you want the wider shape this sits inside, the [operating leadership pillar](/intelligence/pillar/operating-leadership) covers how build capability, and the champions who hold it, fit into running the function. The next question most leaders ask is how to grow the model past four into a [proper AI-native People team](/intelligence/designing-the-ai-native-people-team), which is a different problem with a different answer.
 
 <KeyTakeaways>
-- Pick three to four champions. Fewer is fragile, more is unmanageable.
-- Protect their time on the calendar, not just on paper.
-- Pair them with a coaching cadence. Champions without coaching plateau.
+- Pick three or four champions, never one. A lone champion is a single point of failure the day they get pulled away.
+- Select for the operator with the itch, not the volunteer with the free calendar. You can teach tools, not tacit knowledge of the work.
+- Protect a fifth of their week in writing and on the calendar, and defend it when the business gets busy.
+- Give them one bounded workflow and a budget on a company card, not a mandate the size of a strategy deck and a procurement queue.
+- The test is what they ship after you stop watching. Still building two months on means the capability stuck.
 </KeyTakeaways>

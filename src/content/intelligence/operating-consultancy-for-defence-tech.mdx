@@ -2,65 +2,165 @@ export const frontmatter = {
   title: "Operating consultancy for defence tech",
   slug: "operating-consultancy-for-defence-tech",
   category: "sector-lenses",
-  description: "Defence tech runs on dual mandates: warfighter outcomes and commercial scale. The operating system has to hold both.",
-  keywords: ["defence tech", "defense consulting", "operating consultancy"],
-  readTime: "9 min",
+  description: "Defence tech runs two clocks at once: warfighter outcomes and venture growth. Operating consultancy for defence tech builds the system that holds both.",
+  keywords: ["operating consultancy for defence tech", "defence tech operating model", "defence tech startup operations", "ITAR compliance operations", "defence procurement timeline", "dual-use defence startup"],
+  readTime: "10 min",
   publishedAt: "2026-04-27",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
+export const faqs = [
+  {
+    question: "How is running a defence tech startup different from running a normal SaaS startup?",
+    answer:
+      "You are serving two customers who never agree on what 'done' means. A programme office measures success in mission assurance, auditability, and survival under the worst conditions. A venture board measures it in ARR, logo count, and time to the next raise. A SaaS startup tunes the whole company around one buying motion. Defence tech cannot, so the operating system has to run two cadences at once without either starving the other.",
+  },
+  {
+    question: "Why do defence tech contracts take so long, and how do you plan for it?",
+    answer:
+      "A formal acquisition cycle runs in years: requirements definition, a competitive down-select, testing, a production decision, then fielding. Even fast-track pathways run on a different clock than an investor update. Plan for it by treating the procurement timeline as a fixed constant and standing up a commercial or dual-use revenue line that keeps the lights on while the primary contract works through the system.",
+  },
+  {
+    question: "Do you need someone with military or government experience on a defence tech team?",
+    answer:
+      "Yes, and the reason is translation, not the network. Engineering teams write in capability language, programme offices evaluate in requirements language, investors think in market language. Someone who has sat inside the customer organisation, a former programme manager or contracting officer, can phrase a capability against an actual requirement and catch the compliance gap before it becomes a stop-work order. It is usually the highest-value hire in the operating team.",
+  },
+  {
+    question: "Is ITAR or CMMC compliance a barrier to scaling a defence tech company?",
+    answer:
+      "It is the lane you are permitted to drive in, not a barrier. Nobody let you into the market without it. The move is to build the audit trail, classification handling, and export-control review into the default workflow once, properly, so they become boring and repeatable. Competitors who treat compliance as an afterthought re-litigate it on every deal. You pay the cost once and it compounds in your favour.",
+  },
+];
+
 <TLDR>
-- Defence tech has a dual mandate: warfighter outcomes and commercial scale.
-- Mission and market do not optimise for the same thing. The operating system has to hold both.
-- Procurement timelines and venture timelines are misaligned by design. Operators have to bridge them.
-- The grain in defence tech is rigorous, classified, and slow on one side, fast and commercial on the other. Both are real.
+- Operating consultancy for defence tech exists to hold a dual mandate: warfighter outcomes on one side, commercial venture growth on the other.
+- Mission and market do not optimise for the same thing, so the system runs two cadences that share a roadmap but not a calendar.
+- Compliance is not friction to be minimised. It is the lane the venture is permitted to drive in, and built well it becomes a moat.
+- The procurement clock runs in years while the venture clock runs in quarters. The survivors plan for the gap instead of wishing it away.
+- The highest-value hire is a translator who has sat inside the customer organisation, because translation is most of the work.
 </TLDR>
 
-The operating challenge in defence tech is the dual mandate. Mission and market do not optimise for the same thing.
+Operating consultancy for defence tech exists to hold a dual mandate: build for a warfighter who needs the thing to work in conditions nobody can fully simulate, and build a company that needs revenue, runway, and a cap table that survives to the next round. Mission and market do not optimise for the same thing, and the operating system has to hold both without either one silently starving the other.
 
-Most operating advice imported from consumer tech or enterprise SaaS assumes one customer, one buying motion, one cadence you can tune the whole company around. Defence tech doesn't get that luxury. You are building for a warfighter who needs the thing to work in conditions nobody can fully simulate, and you are building a company that needs revenue, headcount runway, and a cap table that survives to the next round. Those two things pull in different directions more often than founders admit before they've lived it.
+Most operating advice imported from consumer tech or enterprise SaaS assumes one customer, one buying motion, one cadence you tune the whole company around. Defence tech does not get that luxury. Get the shape wrong and the cost is not abstract.
 
-## Two customers, two definitions of "done"
+<FieldNote label="What broke">
+I have watched founders try to run one sprint calendar across both mandates and burn out their best engineers doing it. The programme side wanted a six-month integration cycle with a formal test range booked eight weeks out. The product side wanted a shipped feature by Friday because a demo was riding on it. Forced into the same fortnightly sprint, the team was permanently behind on both, because the sprint was designed for neither.
+
+The engineers who left were the ones who could hold both worlds in their head. When they went, the translation went with them, and every proposal after that became a guessing game.
+</FieldNote>
+
+That is the failure the rest of this piece is written to prevent. None of it resolves into one tidy process, and that is the point.
+
+## Two customers who never agree on "done"
 
 A programme office measures success in mission assurance: does the capability perform under the worst conditions, is it auditable, does it survive an after-action review. A venture board measures success in ARR, logo count, and time to the next raise. Both are legitimate. Neither will wait for the other.
 
-I've watched founders try to run one cadence across both and burn out their best engineers doing it. The programme side wants a six-month integration cycle with a formal test range booked eight weeks out. The product side wants a shipped feature by Friday because a demo is riding on it. Force those into the same sprint calendar and you get a team that's permanently behind on both fronts, because the sprint was designed for neither.
+The instinct is to force one cadence across the company so everyone is on the same calendar. It reads as tidy on a whiteboard and it fails in practice, because the two customers are not solving for the same variable. The fix is structural, not heroic: stand up two cadences, not one. A programme cadence tracks the customer's world of test windows, accreditation gates, and contract milestones. A product cadence tracks the team's world, the weekly build-measure-learn loop that keeps the commercial product improving in the gaps the programme cadence leaves open. The two share a roadmap but not a calendar.
 
-The fix isn't heroics. It's structural: **stand up two cadences, not one.** A programme cadence tracks the customer's world: test windows, security accreditation gates, the milestones written into the contract. A product cadence tracks the team's world: the weekly build-measure-learn loop that keeps the commercial product improving in the gaps the programme cadence leaves open. The two cadences share a roadmap but not a calendar. When people ask why the same company seems to move glacially on one workstream and fast on another, that's usually the answer: two clocks running on purpose.
+This is why the same company can look glacial on one workstream and fast on another. That is two clocks running on purpose, not a team that has lost the plot.
+
+| Dimension | Programme cadence | Product cadence |
+| --- | --- | --- |
+| Whose world it tracks | The customer: test ranges, accreditation, contract milestones | The team: weekly build, measure, learn |
+| Clock | Months to years | Days to weeks |
+| Definition of done | Mission assurance, auditability, survives an after-action review | Shipped, measured, improved |
+| Primary risk | A missed accreditation gate stops the programme | A stalled product loop loses commercial ground |
+| What it produces | A fielded, accredited capability | A commercial or dual-use revenue line |
+
+Both columns share the same roadmap. They do not share a stand-up, a review, or a burndown chart, and trying to merge them is what breaks teams.
+
+<Takeaway>Two cadences, one roadmap. The programme clock and the product clock run at different speeds by design.</Takeaway>
 
 ## Compliance is the lane you drive in
 
-Founders coming from commercial SaaS treat ITAR, CMMC, or a security clearance requirement as friction to be minimised. Wrong framing. Compliance in defence tech is the lane the venture is permitted to drive in. Nobody let you into the market without it. Trying to build outside the lane doesn't get you to market faster, it gets you disqualified before the contract's even scored.
+Founders coming from commercial SaaS treat ITAR, CMMC, or a clearance requirement as friction to be minimised. That framing is wrong and it is expensive. Compliance in defence tech is the lane the venture is permitted to drive in. Nobody let you into the market without it. Building outside the lane does not get you to market faster. It gets you disqualified before the contract is even scored.
 
-This changes what "good operations" looks like. A commercial ops leader optimises for removing steps. A defence tech ops leader optimises for making the required steps repeatable and boring, so they stop being the bottleneck. The audit trail, the classification handling, the export control review: build these into the default workflow once, properly, and they become a competitive moat rather than a tax. Competitors who treat compliance as an afterthought get stuck re-litigating it on every deal. You've already paid that cost once and it's compounding in your favour.
+That changes what good operations means. A commercial ops leader optimises for removing steps. A defence tech ops leader optimises for making the required steps repeatable and boring, so they stop being the bottleneck. Build the audit trail, the classification handling, and the export-control review into the default workflow once, properly, and they become a moat rather than a tax.
 
-A carpenter doesn't argue with wood. They read it first. The grain here runs classified, slow, and procedural on the mission side. Fighting that grain wastes motion. Reading it, and building the operating system to run with it, is the actual job.
+<ComparePanel
+  a={{ heading: "The defence-tech ops instinct", items: [
+    "Makes the required steps repeatable and boring so they stop being the bottleneck",
+    "Treats the audit trail as infrastructure built once, properly",
+    "Reads compliance as the lane the venture drives in",
+    "Pays the classification cost once and lets it compound",
+    "Names an owner for accreditation drift",
+  ]}}
+  b={{ heading: "The commercial-SaaS instinct", items: [
+    "Optimises for removing steps wherever a step can be cut",
+    "Treats the audit trail as something to bolt on before the deal closes",
+    "Reads compliance as friction to be minimised",
+    "Re-litigates the classification cost on every deal",
+    "Assumes accreditation is a one-time checkbox",
+  ]}}
+  caption="The affirmative column is the one that survives the second contract. The costs are the same either way. Only one of them compounds in your favour."
+/>
+
+A carpenter does not argue with the wood. They read it first. The grain here runs classified, slow, and procedural on the mission side. Fighting that grain wastes motion. Reading it, and building the operating system to run with it, is the actual job. If that framing is new, [the grain metaphor for reading your organisation](/intelligence/the-grain-metaphor-reading-your-organisation) is the longer version.
 
 ## The procurement clock does not run on venture time
 
-This is the mismatch nobody warns founders about early enough. A Series A term sheet assumes a growth curve measured in quarters. A defence procurement cycle, especially anything routed through a formal acquisition process, is measured in years: requirements definition, a competitive down-select, testing, a production decision, then actual fielding. Even fast-track pathways designed to compress this still run on a different clock than an investor update.
+This is the mismatch nobody warns founders about early enough. A Series A term sheet assumes a growth curve measured in quarters. A defence procurement cycle, especially anything routed through a formal acquisition process, is measured in years. Even the fast-track pathways designed to compress it still run on a different clock than an investor update.
 
-Founders who don't plan for this burn cash waiting for a contract that was always going to land eighteen months later than the pitch deck implied. The ones who survive treat the procurement clock as a known constant, not a variable to be wished away, and they build a commercial or dual-use revenue line that doesn't depend on it to keep the lights on while the primary contract works its way through the system. Call it reading the timeline correctly instead of forecasting off hope.
+Founders who do not plan for this burn cash waiting for a contract that was always going to land eighteen months later than the pitch deck implied. The ones who survive treat the procurement clock as a known constant, not a variable to be wished away, and they stand up a commercial or dual-use revenue line that keeps the lights on while the primary contract grinds through the system.
 
-Operators are the ones who make this bridge work in practice, which is why the hire matters more here than almost anywhere else in the operating stack.
+<ProcessFlow
+  stages={[
+    { label: "Requirements definition", body: "The customer decides what capability they need and how it will be scored. Nothing you build changes the timeline of this stage.", meta: "Months" },
+    { label: "Competitive down-select", body: "The field narrows. Your proposal is evaluated in requirements language, not capability language. Translation wins or loses here.", meta: "Months" },
+    { label: "Test and evaluation", body: "The capability meets the real conditions. Test ranges are booked far out. This is where the programme cadence earns its keep.", meta: "Quarters" },
+    { label: "Production decision", body: "A formal decision to field or not. The commercial revenue line is what kept you solvent long enough to reach it.", meta: "Quarter" },
+    { label: "Fielding", body: "The capability reaches the warfighter. Only now does the primary contract behave like the revenue the pitch deck assumed.", meta: "Years in" },
+  ]}
+/>
+
+Reading that timeline correctly is not pessimism. It is the difference between a runway plan that survives contact with reality and one built on hope. The same discipline of forecasting off what is actually there, not what you wish were there, is what separates [strategy from operating reality](/intelligence/strategy-vs-operating-reality).
+
+There is a second-order trap inside this. The demo worked. The rollout didn't. A capability that dazzles at a test event still has to survive integration, accreditation, and sustainment, and each of those is its own stall point. The same forces that make [AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production) apply here with the volume turned up, because in defence the consequences of a workflow that quietly degrades are not a paused programme, they are a fielded system nobody is maintaining.
 
 ## Hire the translator, not just the operator
 
-The single highest-leverage hire in a defence tech operating team is someone who has actually sat inside the customer organisation: a former programme manager, a former contracting officer, someone who has been on the other side of the requirements document. Not for their network, though that helps. For the translation.
+The single highest-value hire in a defence tech operating team is someone who has actually sat inside the customer organisation. A former programme manager. A former contracting officer. Someone who has been on the other side of the requirements document. Not for the network, though that helps. For the translation.
 
-Translation is most of the work. Engineering teams write in capability language. Programme offices evaluate in requirements language. Investors think in market language. A translator who has lived in the customer's world can take a technical capability and phrase it as a line item against an actual requirement, catch the compliance gap before it becomes a stop-work order, and tell the product team which "nice to have" is actually a "will not be scored" in disguise.
+Translation is most of the work. Engineering teams write in capability language. Programme offices evaluate in requirements language. Investors think in market language. A translator who has lived in the customer's world can take a technical capability and phrase it as a line item against an actual requirement, catch the compliance gap before it becomes a stop-work order, and tell the product team which "nice to have" is really a "will not be scored" in disguise.
 
-Without that person, every proposal, every demo, every review becomes a guessing game about what the customer actually meant. With that person, the guessing stops, because someone in the room has already been the customer.
+Without that person, every proposal, every demo, every review becomes a guessing game about what the customer actually meant. With that person, the guessing stops, because someone in the room has already been the customer. This is a specific case of a general rule: hire for the shape of the work, not the shine of the CV. The longer argument is in [hiring for the grain](/intelligence/hiring-for-the-grain).
 
-## Building the operating system that holds both
+Before you make the hire, run the candidate and the role through a filter, because the wrong version of this person is expensive and slow to unwind.
 
-None of this resolves into a single tidy process. That's the point. An operating consultancy for defence tech isn't selling founders a way to make the dual mandate disappear. It's building the scaffolding that lets both mandates run at once without either one silently starving the other: two cadences that share a roadmap, a compliance function treated as infrastructure rather than overhead, a realistic model of procurement time sitting next to the commercial growth model, and at least one person in the building who has genuinely been on the customer's side of the table.
+<DecisionFilter
+  title="Run the translator hire through this before you sign the offer"
+  criteria={[
+    { test: "Have they sat on the customer's side of a requirements document, not just sold to it?", fail: "A vendor account manager who pitched to programme offices but never evaluated a proposal" },
+    { test: "Can they turn a capability into a scored line item in front of you, today?", fail: "They can name-drop programmes but cannot phrase your product against a requirement" },
+    { test: "Do they know where the compliance gaps hide before the stop-work order lands?", fail: "They treat ITAR and CMMC as legal's problem, not the operating team's" },
+    { test: "Will they own translation as a job, not perform it as a favour between other duties?", fail: "The role is bolted onto a BD title and translation is nobody's actual deliverable" },
+  ]}
+  verdict="If the answer to any of these is 'we'll figure it out later', you have hired a network, not a translator. The guessing game continues, just with a more expensive person running it."
+/>
 
-Get that scaffolding right and the dual mandate becomes the actual shape of the business rather than a contradiction to manage around.
+## What operating consultancy for defence tech actually builds
+
+None of this collapses into a single tidy process, and pretending otherwise is the mistake. Operating consultancy for defence tech is not selling founders a way to make the dual mandate disappear. It is building the scaffolding that lets both mandates run at once: two cadences that share a roadmap, a compliance function treated as infrastructure rather than overhead, a realistic model of procurement time sitting next to the commercial growth model, and at least one person in the building who has genuinely been on the customer's side of the table.
+
+Built well, the results are not soft. On one defence tech engagement, the operating system we stood up moved real numbers.
+
+<StatBand
+  stats={[
+    { value: "83", label: "hours/week reclaimed", note: "defence tech engagement" },
+    { value: "70%", label: "routine queries handled by systems the team owns" },
+    { value: "0", label: "critical issues, two months on" },
+  ]}
+/>
+
+Those numbers came from the same discipline every sector version of this work rests on: read the organisation at workflow level, redesign the workflows, ship the systems that hold the new shape, and train the people who own it after we leave. The sector changes the constraints, not the method. The tooling is deliberately unglamorous, self-hostable workflow automation on n8n at roughly £20 per builder seat per month, SOC 2 and ISO 27001 in the stack, so the classification and audit story holds up under scrutiny rather than being a slide.
+
+Get that scaffolding right and the dual mandate stops being a contradiction you manage around. It becomes the actual shape of the business. The fastest way to find out whether your operating system can hold both is to put one real process through it end to end, which is exactly what the [Grain Audit](/grain-audit) is for. This piece sits inside a wider set of [sector operating lenses](/intelligence/pillar/sector-operating-lenses); the constraints differ by sector, the operating discipline does not.
 
 <KeyTakeaways>
-- Stand up two cadences, not one: a programme cadence for the customer and a product cadence for the team.
-- Hire operators who have lived inside the customer organisation. Translation is most of the work.
-- Compliance is not a brake. It is the lane the venture is permitted to drive in.
+- Stand up two cadences, not one: a programme cadence for the customer and a product cadence for the team, sharing a roadmap but not a calendar.
+- Treat compliance as the lane you drive in. Build the audit trail and export-control review once, properly, and it becomes a moat.
+- Model the procurement clock in years and fund a commercial or dual-use revenue line to survive the gap.
+- Hire the person who has been the customer. Translation between capability, requirements, and market language is most of the operating work.
 </KeyTakeaways>

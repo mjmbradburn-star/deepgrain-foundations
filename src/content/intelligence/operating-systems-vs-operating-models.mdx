@@ -2,66 +2,163 @@ export const frontmatter = {
   title: "Operating systems vs operating models",
   slug: "operating-systems-vs-operating-models",
   category: "foundations",
-  description: "An operating model is a slide. An operating system is what runs when nobody is looking. The distinction is the entire point.",
-  keywords: ["operating system", "operating model", "organisational design"],
-  readTime: "6 min",
+  description: "Operating system vs operating model: one is a slide you present, one is what runs when nobody is looking. The difference, and why you read the system first.",
+  keywords: ["operating system vs operating model", "operating model", "operating system", "AI operating model", "organisational design", "how to read an operating system"],
+  readTime: "10 min",
   publishedAt: "2026-02-02",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
+export const faqs = [
+  {
+    question: "What is the difference between an operating model and an operating system?",
+    answer:
+      "An operating model describes intent: the deck of boxes, arrows and decision rights that says how work is meant to flow. An operating system describes execution: what actually runs when nobody is looking, the habits and workarounds people use to get the job done under a real deadline. Every company has both. The model is drafted in an afternoon. The system accretes over years, one shortcut at a time, and it is where nearly all the value is made or lost.",
+  },
+  {
+    question: "Why do consulting projects change the operating model but not how the company actually runs?",
+    answer:
+      "Because a firm interviews leadership, redraws the model, and never reads the system underneath it. You get clean swimlanes and a RACI chart nobody opens after kickoff, the invoice gets paid, and six months on the business runs exactly as before. The model changed. The floor did not. Watch what actually changes once the consultants leave. If the answer is a new deck, nothing did.",
+  },
+  {
+    question: "How do I read my company's operating system?",
+    answer:
+      "Ignore the org chart for an afternoon and follow one real piece of work end to end: a new invoice, a new hire, a customer complaint. Note who genuinely touches it, where it stalls, and which workaround exists because the official route is too slow to survive a real deadline. None of that is on a slide. All of it surfaces the moment something breaks and two people quietly fix it before the Monday stand-up.",
+  },
+  {
+    question: "What is an AI operating model versus an AI operating system?",
+    answer:
+      "An AI operating model is the deck you present when the board asks what you are doing about AI: a Centre of Excellence, a pilot programme, a maturity curve. An AI operating system is what is quietly triaging enquiries overnight and drafting the first pass of a contract review. One is a strategy document. The other is a workflow with a cost, an owner and a failure mode. Most teams have built the first and describe it as the second.",
+  },
+];
+
 <TLDR>
-- An operating model is a slide. It describes intent.
-- An operating system is what runs when nobody is looking. It describes execution.
-- Every company has both. The gap between them is where most consultancies make their money and where most of the value is lost.
-- The same distinction applies to AI: an AI operating model is a deck about how AI fits, an AI operating system is what actually runs.
-- Most teams have one and call it the other. Naming the difference is the first useful piece of work.
+- An operating model describes intent. An operating system describes what actually runs when nobody is looking. That is the whole distinction.
+- Every company has both, and the gap between them is where most consultancies make their money and where most of the value is lost.
+- Leaders reach for the model because it can be drafted in an afternoon. The system cannot, because it was never drafted; it accretes one workaround at a time.
+- AI has reproduced the same gap: an AI operating model is a deck, an AI operating system is what quietly runs a workflow overnight.
+- Read the system before you redesign the model. A model built on an unread system just stacks a second fiction on the first.
 </TLDR>
 
-An operating *model* describes intent. An operating *system* describes what actually runs.
+Ask a leadership team to describe how the company works and most reach for the same object: a deck. Boxes, arrows, swimlanes, a RACI chart. That deck is the operating model, and the quiet assumption behind reaching for it is that the model is how the company runs. It is not. An operating model describes intent. An operating system describes what actually runs when nobody is looking. The difference between an operating system and an operating model is not academic. It is the gap where most of the value in any organisation is made or lost, and naming which one you are holding is the first useful piece of work you can do.
 
-Most companies can produce the model in under ten minutes. Someone opens a deck, points at a set of boxes and arrows, and says "this is how we work." Fewer companies can describe the system, because the system isn't written down anywhere. It lives in habits: who actually replies to whom, which shortcut everyone takes because the official process takes three days and the deadline is tomorrow, which meeting exists purely to rubber-stamp a decision made somewhere else last week.
+## The operating model is a slide. The operating system is what runs when nobody is looking.
 
-## The gap between the two
+Most companies can produce the model in under ten minutes. Someone opens the deck, points at the boxes, and says "this is how we work." Far fewer can describe the system, because the system is not written down anywhere. It lives in habits: who actually replies to whom, which shortcut everyone takes because the official process takes three days and the deadline is tomorrow, which meeting exists only to rubber-stamp a decision made somewhere else last week.
 
-Every company has both. The gap between them is where consultancies make their money, and where most of the value is lost.
+The two are not rivals. You need both. A model gives a business a shared language for what it is trying to be, and that matters. The failure is not having a model. The failure is mistaking it for the system, then redesigning the model and believing you have changed the work.
 
-Take promotions. The model says: quarterly calibration, structured criteria, panel review, decisions made on merit. The system says: the decision gets made in a five-minute conversation between a manager and their manager's manager, weeks before calibration, and the calibration meeting exists to formalise what's already settled. Nobody lied. The calibration meeting was real. It just wasn't where the decision got made.
+<ComparePanel
+  a={{ heading: "The operating model", items: [
+    "Describes intent: how work is meant to flow",
+    "Drafted in an afternoon with a whiteboard",
+    "Legible enough to put in front of a board on a Tuesday",
+    "Owned by whoever presents it",
+    "Changes the moment someone redraws the slide",
+  ]}}
+  b={{ heading: "The operating system", items: [
+    "Describes execution: how work flows under pressure",
+    "Accretes over years, one workaround at a time",
+    "Invisible right up until the day it breaks",
+    "Owned by whoever quietly fixes it before stand-up",
+    "Changes only when the actual habit changes",
+  ]}}
+  caption="Both are real. Only one is running the business."
+/>
 
-Or take onboarding. The model is a 90-day plan sitting in a shared drive, reviewed once a year by whoever owns L&D. The system is a new starter finding the person at the next desk, asking what actually matters, and learning the job from two Slack threads and a Notion page nobody's updated since the last reorg. The plan is real. Nothing in the actual onboarding touches it.
+## Where the two split
 
-This is the pattern worth noticing: a model is legible enough to put in front of a board on a Tuesday afternoon. The system stays invisible right up until it breaks, and that's the moment everyone finds out what was actually running the business.
+The gap is easiest to see on the processes everyone claims to have nailed. Take three that every company runs, and put the model next to the system.
+
+| Process | What the model says | What the system actually does |
+| --- | --- | --- |
+| Promotions | Quarterly calibration, structured criteria, a panel deciding on merit | The call is made in a five-minute chat between a manager and their manager's manager, weeks before calibration. The meeting formalises it. |
+| Onboarding | A 90-day plan in a shared drive, reviewed once a year by L&D | A new starter learns the job from the person at the next desk, two Slack threads, and a Notion page nobody has updated since the last reorg |
+| Inbound enquiries | Triaged and routed through an owned service process | Whoever is fastest grabs it. The rota is a fiction everyone has agreed to stop questioning. |
+
+Nobody lied on any of these. The calibration meeting was real. The 90-day plan exists. The rota is written down. It is just that in each case the decision, the learning and the work happened somewhere the slide never looked. A model is legible enough to present on a Tuesday afternoon. The system stays invisible until it breaks, and that is the moment everyone finds out what was actually running the business.
+
+<Takeaway>A model is what people intended. A system is what they do under pressure, and pressure is where the truth lives.</Takeaway>
 
 ## Why leaders reach for the model first
 
-The model is easier to build and easier to defend. You can draft an operating model in an afternoon with a decent facilitator and a whiteboard. You cannot draft an operating system in an afternoon, because it isn't drafted. It accretes, one workaround at a time, out of decisions made under time pressure by people who never wrote down what they did or why.
+The model is easier to build and easier to defend. You can draft an operating model in an afternoon with a decent facilitator and a whiteboard. You cannot draft an operating system in an afternoon, because it was never drafted. It accretes, one decision under time pressure at a time, made by people who never wrote down what they did or why.
 
-That asymmetry explains most consulting failures. A firm comes in, interviews leadership, and produces a well-structured operating model: clean swimlanes, clear decision rights, a RACI chart nobody will open again after the kickoff. The work gets signed off, the invoice gets paid, and six months later the business runs exactly as it did before, because nobody touched the system underneath. The model changed. The floor didn't.
+That asymmetry explains most consulting failures. A firm comes in, interviews leadership, and produces a well-structured operating model: clean swimlanes, clear decision rights, a RACI chart nobody opens again after kickoff. The work gets signed off, the invoice gets paid, and six months later the business runs exactly as it did before, because nobody touched the system underneath. The model changed. The floor did not. This is what most change programmes get wrong, and it is worth understanding [why most change programmes fail](/intelligence/why-most-change-programmes-fail) before you commission another one.
 
-<Takeaway>Watch what actually changes after the consultants leave. If the answer is a new deck, nothing has.</Takeaway>
+The tell is simple. Watch what actually changes after the consultants leave. If the answer is a new deck and a shared vocabulary, nothing has. The real question a business should ask is not "is our model good" but "is our model the thing we actually run", and those are rarely the same question. That is the [difference between strategy and operating reality](/intelligence/strategy-vs-operating-reality) in one line.
 
-## The same failure, wearing an AI badge
+## The same gap, wearing an AI badge
 
-The AI conversation has reproduced this exact gap, just faster and with better production values. An AI operating model is a deck: "AI-first," a Centre of Excellence, a pilot programme, a maturity curve pointing up and to the right. It's the thing you present when the board asks what you're doing about AI.
+The AI conversation has reproduced this exact split, faster and with better production values. An AI operating model is a deck: "AI-first", a Centre of Excellence, a pilot programme, a maturity curve pointing up and to the right. It is the thing you present when the board asks what you are doing about AI.
 
-An [AI operating system](/intelligence/what-is-an-ai-operating-system) is the thing quietly triaging inbound enquiries overnight, drafting the first pass of a contract review, screening a candidate pipeline before a recruiter opens it. It doesn't get a deck. Half the time it doesn't get a name. It just runs, and the people closest to the work know it's there because their week looks different than it did a year ago, not because anyone announced it.
+An [AI operating system](/intelligence/what-is-an-ai-operating-system) is the thing quietly triaging inbound enquiries overnight, drafting the first pass of a contract review, screening a candidate pipeline before a recruiter opens it. It does not get a deck. Half the time it does not get a name. It just runs, and the people closest to the work know it is there because their week looks different than it did a year ago, not because anyone announced it.
 
-The tell is a single question: what changed operationally last quarter because of AI? If the honest answer is "we ran three pilots and wrote a strategy document," that's a model. If the answer is "here's the workflow, here's what it used to cost us in hours, here's what breaks it when it goes wrong," that's a system. Most leadership teams asked this question discover they built the first and have been describing it as the second.
+The test is a single question: what changed operationally last quarter because of AI? If the honest answer is "we ran three pilots and wrote a strategy document", that is a model. If the answer is "here is the workflow, here is what it used to cost us in hours, here is what breaks it when it goes wrong", that is a system. Most leadership teams asked this question discover they built the first and have been describing it as the second. The AI operating model earns budget. Only the AI operating system earns the reclaimed hours.
 
-## Reading the system before you touch it
+## What skipping the read actually costs
 
-You don't fix a business by rewriting its mission statement, and you don't fix an operating model by redesigning it before you've read the system it's meant to describe. The model tells you what people intended. The system tells you what they actually do under pressure, and pressure is where the truth lives.
+Here is the failure mode nobody costs in advance. You redesign the model before you have read the system, and you do not simply waste the effort. You make things worse, because now leadership believes something has changed. You end up with two operating models and zero operating systems, which is a harder place to work from than where you started, because the first fiction at least knew it was aspirational.
 
-Reading the system means ignoring the org chart for an afternoon and following the real path of one piece of work: a new invoice, a new hire, a customer complaint. Who genuinely touches it. Where it stalls. What workaround exists because the official route is too slow to survive contact with a real deadline. None of that shows up on a slide, and all of it shows up the moment something goes wrong and three people quietly fix it off the record before Monday's stand-up.
+Reading the system is not a diagnostic ritual. It is where the money is hiding.
 
-This is also why reading the system has to come before redesigning the model, not after. A model built without reading the system underneath it just adds a second fiction on top of the first. You end up with two operating models and zero operating systems, which is worse than where you started, because now leadership believes something has actually changed.
+<FieldNote label="From the field">
+On a transit engagement we followed a single workflow at click level, the way you read a system rather than a model. Somewhere in the middle of it sat a piece of software costing forty thousand pounds a year that two people used to shuttle data between two other tools by hand. Nobody had questioned it. It was on no slide. It was just the shortcut that had hardened into a habit, and then into a line item.
 
-## The useful move
+We retired the licence, kept one tool, and moved the work to two internal builders. The operating model never mentioned any of it. The system was the only place that cost was visible, and the only place the saving was.
+</FieldNote>
 
-Naming the gap is the first useful piece of work, and it costs nothing. Ask, of any process that matters: is this the model, or is this the system? If leadership can only answer for the model, that's the finding, not a criticism. The system is already there, doing the real work, whether or not anyone's written it down. The job is to go and read it before you decide what to build on top.
+That saving did not come from a better model. It came from reading the actual path of one piece of work and finding the workaround that had quietly become expensive. You cannot find that on a slide, because the slide describes the route the £40k was invented to avoid.
+
+## Read the system before you redesign the model
+
+You do not fix a business by rewriting its mission statement, and you do not fix an operating model by redesigning it before you have read the system it is meant to describe. The order matters more than the method. Read first, then craft, then scale the change so it holds. Reading the system means ignoring the org chart for an afternoon and following the real path of one piece of work.
+
+<ProcessFlow
+  stages={[
+    { label: "Pick one process", body: "Choose a single process that matters and that people complain about. Not the whole function. One flow, end to end.", meta: "Day 1" },
+    { label: "Follow the work, not the chart", body: "Trace one real item through it: a new invoice, a new hire, a complaint. Note every hand-off and every tool it touches.", meta: "Days 2-4" },
+    { label: "Find the workarounds", body: "Where does the official route get abandoned because it is too slow to survive a deadline? That shortcut is the system.", meta: "Days 5-7" },
+    { label: "Name the gap out loud", body: "Write down where the model and the system diverge. That divergence is the unit of work, not the model itself.", meta: "Week 2" },
+  ]}
+/>
+
+Done properly, this is what an audit is: not a benchmark against best practice, but a reading of what actually runs. If you want the structured version, [how to diagnose an organisation in 30 days](/intelligence/how-to-diagnose-an-organisation-in-30-days) walks the same read at company scale, and the [Grain Audit](/grain-audit) does it on one process end to end for a fixed £2,000, ending in a ranked plan you keep whether or not you work with anyone again.
+
+When you read the system and then rebuild it, rather than redraw the model over the top, the change shows up in numbers the deck could never produce. On a defence tech engagement the rebuilt system looked like this:
+
+<StatBand
+  stats={[
+    { value: "83", label: "hours/week reclaimed", note: "defence tech engagement" },
+    { value: "70%", label: "routine queries handled by systems the team owns" },
+    { value: "0", label: "critical issues, two months on" },
+  ]}
+/>
+
+None of those numbers exist in an operating model. They only exist once you have read the system, found where the work actually snags, and rebuilt the flow underneath. The model can describe the ambition. Only the system can bank the result.
+
+## Is this the model, or the system?
+
+Naming the gap is the first useful piece of work, and it costs nothing. Take any process that matters and run it through a short filter. The point is not to score your model. It is to find out, honestly, whether you are looking at intent or execution.
+
+<DecisionFilter
+  title="Run any process you care about through this"
+  criteria={[
+    { test: "Where was the decision actually made, and when?", fail: "The official meeting on the official date is the honest answer for no one" },
+    { test: "What workaround exists because the official route is too slow to survive a real deadline?", fail: "There is one, you just have not asked the person who uses it" },
+    { test: "Who fixes this off the record when it breaks on a Friday?", fail: "A name comes up that appears nowhere on the org chart" },
+    { test: "If you deleted the slide tomorrow, what would change on Monday?", fail: "Nothing, which tells you the slide was never running the work" },
+  ]}
+  verdict="If you can only answer for the model, that is the finding, not a criticism. The system is already there doing the real work. Go and read it before you decide what to build on top."
+/>
+
+The job of an operating leader is not to produce a better model. It is to close the distance between the model on the wall and the system on the floor, one process at a time, and to keep them close as the business changes. Everything else is a deck. That distance, held small on purpose, is the [quiet discipline of operating leadership](/intelligence/pillar/operating-leadership).
 
 <KeyTakeaways>
-- Models describe. Systems execute. Conflating them is the most common consulting failure.
-- The gap between the model and the system is the unit of work for an operating leader.
-- Read the system first. The model on the wall is rarely the system on the floor.
+- Models describe, systems execute. Conflating them is the most common and most expensive consulting failure there is.
+- The gap between the model and the system is the real unit of work for an operating leader, not the model itself.
+- Read the system before you redesign the model. A model built on an unread system just stacks a second fiction on the first.
+- The AI version is the same trap: a strategy deck earns budget, but only a running workflow earns the reclaimed hours.
+- Take one process that matters, follow the real work through it, and name where intent and execution diverge. That is the whole job, repeated.
 </KeyTakeaways>

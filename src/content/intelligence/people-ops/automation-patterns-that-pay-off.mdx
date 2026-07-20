@@ -5,122 +5,174 @@ export const frontmatter = {
   primaryCluster: "workflows-and-automation",
   clusters: ["agents-and-systems"],
   track: "people-ops",
-  description: "Six concrete workflow patterns we keep seeing work inside People functions. Built with n8n, an LLM, and a champion. Live in weeks, not quarters.",
-  keywords: ["n8n automation HR", "People Ops workflows", "AI automation patterns", "HR process automation", "AI operational efficiency", "AI business efficiency"],
-  readTime: "11 min",
+  description: "The payoff from People Ops automation patterns is not the clever model. It is the clean workflow. Six that pay back in weeks, and the ones that quietly die.",
+  keywords: [
+    "People Ops automation patterns",
+    "HR workflow automation",
+    "n8n automation for HR",
+    "AI agents for People teams",
+    "how to automate HR workflows",
+    "AI automation that pays off",
+  ],
+  readTime: "10 min",
   publishedAt: "2026-04-15",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
   featured: true,
 };
 
 export const faqs = [
   {
-    question: "How do businesses use AI agents to improve efficiency?",
+    question: "What automation patterns actually pay off in a People function?",
     answer:
-      "By giving an agent one well-bounded workflow, a clear goal, and the tools it needs to take steps. The efficiency gain comes from collapsing waiting time inside multi-step work: triage, drafting, summarisation, structured extraction, routing. Most companies need three or four agents, not a fleet.",
+      "Six recur and pay back reliably: inbound triage, interview scorecard summarisation, first-week onboarding sequencing, manager check-in cycles, policy and handbook Q&A, and performance cycle preparation. Each is a single well-bounded workflow with one human checkpoint, not a bespoke agent. Start with triage and onboarding. They are the easiest to scope and the fastest to show visible value.",
   },
   {
-    question: "What AI automation patterns actually pay off?",
+    question: "How do I automate HR workflows without hiring engineers?",
     answer:
-      "Six recur across People functions: inbound triage, interview scorecard summarisation, first-week onboarding sequencing, manager check-in cycles, policy and handbook Q&A, and performance cycle preparation. Start with triage and onboarding, they're the easiest to scope and the fastest to show visible value. Each is a single workflow with one human checkpoint, not a bespoke agent.",
+      "You do not need engineers. You need a champion, a workflow tool, and one clean process. The usual stack is n8n for the steps (around twenty pounds per builder seat a month, SOC 2 and ISO 27001, self-hostable), an LLM with enterprise terms for the judgement, your HRIS as source of truth, and Slack or email as the surface. A trained person on the team builds each pattern in days or weeks.",
   },
   {
-    question: "How does AI improve operational efficiency in businesses?",
+    question: "Do we need bespoke AI agents to get value from automation?",
     answer:
-      "It makes the boring repeatable work faster and makes the disagreement inside that work visible. Smoother weeks matter more than headline savings: fewer dropped onboardings, sharper interview debriefs, manager check-ins that actually happen. The pattern compounds across hires and cycles.",
+      "No, and reaching for one first is the common mistake. Most People teams need three or four small workflows, not a fleet of agents. The pay-off is a function of how cleanly the workflow was designed, not how clever the model was. Bespoke autonomy is seductive and rarely the right first move. Build the boring, well-bounded pattern, prove it, then decide if anything genuinely needs to run unattended.",
+  },
+  {
+    question: "How do businesses use AI to improve operational efficiency?",
+    answer:
+      "By collapsing the waiting time inside multi-step work: triage, drafting, summarisation, structured extraction, routing. The gain shows up as smoother weeks rather than headline savings. Fewer dropped onboardings, sharper interview debriefs, manager check-ins that actually happen. The pattern compounds across every hire and every cycle, which is where the real return lives.",
   },
 ];
 
 <TLDR>
-- A small number of automation patterns recur across People functions and pay back reliably.
-- Drafting, summarisation, structured extraction, and routing. That is most of the value.
-- Bespoke agents are seductive and rarely the right first move.
+- A small set of People Ops automation patterns recur across functions and pay back reliably, usually inside weeks.
+- Drafting, summarisation, structured extraction, and routing account for most of the value. Six patterns cover most of the surface.
+- Bespoke agents are seductive and rarely the right first move. Well-bounded workflows with one human checkpoint win.
 - Pay-off is a function of how cleanly the workflow was designed, not how clever the model was.
 </TLDR>
 
-Six patterns. That's most of what AI actually does inside a People function, once you strip away the roadmap decks and the agent hype. Here they are, in the order most teams should build them, with the tools that make them work.
+Most People leaders think the payoff from AI comes from how clever the automation is. The impressive agent. The platform that does everything. They are looking in the wrong place. The People Ops automation patterns that pay off are a small set of well-bounded workflows, each doing one boring job cleanly, built in weeks by someone already on the team. The pay-off is a function of how cleanly the workflow was designed, not how clever the model was. Six patterns cover most of what AI actually does inside a People function, once you strip away the roadmap decks and the agent hype. Here they are, in the order most teams should build them, and how to tell which one to touch first.
 
-The stack we recommend: a workflow tool (n8n if you want self-hosted, Make if you want managed, Zapier if you want zero learning curve), an LLM provider with enterprise terms, the company's HRIS as source of truth, and Slack or email as the surface where humans interact. That is enough.
+## The payoff is in the workflow, not the model
 
-<Takeaway>Six concrete People Ops automation patterns. Built with n8n, an LLM, and a champion. Live in weeks, not quarters.</Takeaway>
+The reason teams chase the clever build is that it demos well. A polished agent doing something impressive in a meeting is easy to sell upward. But the demo and the rollout are two different tests, and the gap between them is where most of this work dies. "The demo worked. The rollout didn't." is the most common Pattern I see, and it almost never fails on the model. It fails because the workflow around the model was never designed: the data was hand-prepared, the checkpoint was missing, nobody owned it on Monday.
 
-## Pattern 1 - Inbound triage
+The stack that makes these patterns work is deliberately unglamorous, and it is the same one the wider [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops) is built on. A workflow tool: n8n if you want self-hosted control, Make if you want managed, Zapier if you want zero learning curve. n8n runs about twenty pounds per builder seat a month, is SOC 2 and ISO 27001 compliant, and self-hosts if your security team needs it inside your own perimeter. Then an LLM provider with enterprise terms for the judgement steps, your HRIS as the single source of truth, and Slack or email as the surface where humans review and approve. That is enough to build every pattern below. There is no missing sixth tool.
 
-The painful version: 200 applications come in for a role. A recruiter spends a day skim-reading. The bottom 60 per cent are obvious passes. The top 10 per cent are obvious progresses. The middle 30 per cent are the actual work.
+When the workflow is designed well, the return is not abstract. On one defence-tech engagement the systems the team built and owned took the routine load off the function almost entirely.
 
-The augmented version: every application runs through a workflow that pulls the JD requirements, summarises the candidate against them, flags the obvious passes (with rationale), surfaces the obvious progresses (with rationale), and routes the genuinely ambiguous middle to a recruiter with a one-paragraph précis. The recruiter spends their day on the 30 per cent that needed a human. The other 70 per cent is dispatched in an hour with a logged rationale.
+<StatBand
+  stats={[
+    { value: "83", label: "hours/week reclaimed", note: "defence tech engagement" },
+    { value: "70%", label: "routine queries handled by systems the team owns" },
+    { value: "0", label: "critical issues, two months on" },
+  ]}
+/>
 
-Critical detail: the workflow surfaces and prepares, nothing more. The recruiter clicks. The audit log captures everything.
+None of that came from a clever model. It came from small workflows, cleanly bounded, each with a human in the loop, each owned by a named person. That is the whole thesis of this piece.
 
-## Pattern 2 - Interview scorecard summarisation
+## The six People Ops automation patterns that pay off
 
-The painful version: four interviewers run four panels. Four scorecards arrive in four formats. The hiring manager spends an hour synthesising before the debrief. By the debrief, half the nuance has been smoothed out.
+Every pattern below shares the same shape: one workflow, one clear goal, one human checkpoint, logged and retirable. The model surfaces and prepares. A person still decides.
 
-The augmented version: scorecards land in a structured form. The workflow assembles them, identifies points of disagreement, surfaces direct quotes that matter, and produces a synthesised brief with the contradictions made explicit. The hiring manager arrives at the debrief with the disagreements visible, not buried. The conversation is sharper.
+**1. Inbound triage.** Two hundred applications land for one role. A recruiter loses a day skim-reading, and most of it is wasted: the bottom 60 per cent are obvious passes, the top 10 per cent are obvious progresses, and the middle 30 per cent is the only part that needed a human at all. The workflow reads the requirements off the job description, summarises each candidate against them, flags the clear passes and progresses with a written rationale, and routes the ambiguous middle to a recruiter with a one-paragraph précis. The recruiter spends the day on the 30 per cent that mattered. The other 70 per cent clears in an hour, every decision logged and reviewable. The workflow surfaces and prepares. The recruiter still clicks.
 
-This is where AI earns its keep - making the disagreement legible before the room ever sits down.
+**2. Interview scorecard summarisation.** Four interviewers run four panels and file four scorecards in four formats. The hiring manager spends an hour synthesising before the debrief, and by the time the room sits down, half the nuance has been smoothed away. The workflow takes structured scorecards, assembles them, finds the points where interviewers actually disagreed, pulls the direct quotes that matter, and produces a brief with the contradictions made explicit rather than buried. The debrief starts from the disagreement instead of hunting for it. This is where AI earns its keep: making the disagreement legible before anyone opens their mouth.
 
-## Pattern 3 - First-week onboarding sequencing
+**3. First-week onboarding sequencing.** A new joiner's first week is run by a coordinator who is also running four other first weeks. Things drop. Slack invites get missed, the manager 1:1 is booked late, day three feels chaotic. The workflow watches the joiner's calendar against a defined first-week template, nudges when something is missing, drafts the welcome Slack post for the manager to review and send, and produces a day-five check-in note for the People Partner with what to ask about. The coordinator becomes a reviewer instead of a doer. Onboarding scores climb, the evening work stops, and the pattern compounds across every hire that follows.
 
-The painful version: a new joiner's first week is run by a coordinator who is also running four other first weeks. Things drop. Slack invites are missed. The 1:1 with the manager is scheduled late. Day three feels chaotic.
+**4. Manager check-in cycle.** Every manager is supposed to run a monthly retrospective with each report. Roughly 40 per cent actually do. The HRBP has no visibility into who has and who hasn't, and finds out only once something has already gone wrong. The workflow tracks who has had a check-in in the last thirty days, drafts a personalised reminder for the manager with last cycle's themes pulled in, and hands the HRBP a weekly one-page heatmap of the whole function. The manager spends thirty seconds turning a draft into a sent message. The HRBP can see the function instead of guessing at it. Visibility is its own intervention, which is why this is the pattern that most directly shifts the culture.
 
-The augmented version: the workflow watches the new joiner's calendar, checks against a defined first-week template, sends nudges when something is missing, drafts the welcome Slack post for the manager to review and send, and produces a day-five check-in note for the People Partner with what to ask about. The coordinator becomes a reviewer rather than a doer.
+**5. Policy and handbook Q&A.** The same fifteen questions arrive every week. Can I take parental leave from a fixed-term contract? Do I accrue holiday during sick leave? What is the return-to-office policy? Each takes five to fifteen minutes to answer properly, and across a team of 200 that is half a person's week gone. A Slack-integrated assistant grounded on the actual handbook, and only the handbook, answers the standard questions with citations and routes anything out of scope to a human. The People team gets its week back. The catch is real, and it is worth naming before you build it.
 
-Onboarding NPS climbs. The coordinator stops working evenings. The pattern compounds across hires.
+<FieldNote label="The gotcha">
+The pattern that looks easiest, a Slack assistant answering handbook questions, is the one that bites. We grounded one on a company's real policy documents, citations on every answer, tightly scoped. It worked beautifully for a fortnight. Then someone asked about parental leave from a fixed-term contract, and it answered confidently from a policy that had been superseded in a document nobody had bothered to update.
 
-## Pattern 4 - Manager check-in cycle
+The model was not wrong. The handbook was. AI does not create your documentation hygiene problem. It just answers from it out loud, at speed, to everyone at once. Fix the source before you point an assistant at it, and put a named owner on keeping it current, or the assistant becomes a very fast way to give confidently stale answers.
+</FieldNote>
 
-The painful version: every manager is supposed to do monthly 1:1 retrospectives with their reports. About 40 per cent actually do them. The HRBP has no visibility into who has and who hasn't, and finds out only when something has already gone wrong.
+**6. Performance cycle preparation.** Review week arrives and managers stare at a blank page, trying to remember the last six months for each report. What comes out is a review weighted heavily toward the last three weeks of work, because that is all anyone can recall. The workflow assembles a personalised pre-read for each manager: concrete project moments pulled from where work actually happens (Linear, GitHub, sales records, project tools), the report's own self-reflection, peer feedback where it was collected, and last cycle's commitments. The manager arrives at the page with a full year already laid out. The model never writes the review. It sets the table.
 
-The augmented version: the workflow tracks who has had a check-in in the last 30 days, drafts a personalised reminder for the manager (with last cycle's themes pulled in if the manager opted into memory), and gives the HRBP a weekly one-page heatmap. The manager spends 30 seconds turning the draft into a sent message. The HRBP can see the function rather than guessing at it.
+Held side by side, the six patterns read as a genuine matrix rather than six unrelated ideas. Each collapses a specific kind of waiting or drudgery, each keeps a human at the point of decision, and each is small enough for one person to build.
 
-This is the workflow that most directly changes the culture. Visibility is its own intervention.
+| Pattern | What it collapses | Human checkpoint | Typical build |
+| --- | --- | --- | --- |
+| Inbound triage | A recruiter's lost day of skim-reading | Recruiter approves the ambiguous middle | Days |
+| Scorecard summary | An hour of pre-debrief synthesis | Hiring manager runs the debrief | Days |
+| Onboarding sequencing | Dropped first-week tasks | Coordinator reviews and sends | 1 to 2 weeks |
+| Manager check-ins | Invisible, inconsistent 1:1s | Manager sends the drafted nudge | 1 to 2 weeks |
+| Handbook Q&A | Repeated policy questions | Out-of-scope routes to a human | 1 to 2 weeks |
+| Cycle preparation | The blank-page review | Manager writes the actual review | 2 weeks |
 
-## Pattern 5 - Policy and handbook Q&A
+## How to build one
 
-The painful version: the People team gets the same fifteen questions every week. *Can I take parental leave from a fixed-term contract?* *What's our policy on returning to office?* *Do I accrue holiday during sick leave?* Each one takes 5–15 minutes to answer properly. Across a team of 200, that is half a person's week.
+The build is the same every time, whichever pattern you pick. This is the shape a champion follows, and it is why these ship in weeks rather than quarters. If you want the deeper version of this, [the champion model](/intelligence/the-champion-model) is the whole method for keeping the capability in-house.
 
-The augmented version: a Slack-integrated assistant grounded on the actual handbook (and only the handbook) answers the standard questions with citations. Anything outside scope gets routed to a human. The answers improve as edge cases get added. The People team gets back to the work that needs them.
+<ProcessFlow
+  stages={[
+    { label: "Read the workflow", body: "Map one process at click level. Find where the work actually snags and how often it repeats.", meta: "Day 1" },
+    { label: "Bound it", body: "One goal, one process, one trigger. Nothing adjacent. If it needs to do two jobs, it is two workflows.", meta: "Day 1-2" },
+    { label: "Wire the tools", body: "HRIS as source of truth, n8n for the steps, an LLM for the judgement, Slack as the surface.", meta: "Week 1" },
+    { label: "Insert the checkpoint", body: "One human approval before anything leaves the building. The model prepares, the person decides.", meta: "Week 1" },
+    { label: "Log and review", body: "Every step audited, a named owner, a monthly look at drift. Cheap to switch off if it stops earning.", meta: "Ongoing" },
+  ]}
+/>
 
-The hard part is keeping the handbook actually current. Get that wrong and the assistant answers confidently from stale policy. AI surfaces the documentation hygiene problem you already had.
+The step people skip is the first one. They reach for the model before they have read the workflow, and then wonder why the automation is clever but useless. Read first. If you cannot see which of your workflows repeat at volume, that is exactly what [the automation audit playbook](/intelligence/automation-audit-playbook) is for, and you score the candidates through [a workflow assessment framework for People Ops](/intelligence/workflow-assessment-framework) before you build anything.
 
-## Pattern 6 - Performance cycle preparation
+## Is the workflow worth automating?
 
-The painful version: performance review week. Managers stare at a blank page trying to remember the last six months for each report. The result is a review weighted heavily toward the last three weeks of work.
+Not every process deserves a workflow. The fastest way to waste a quarter is to automate something that runs once a year, or something so variable that every run is a special case. Before you build, run the candidate through this.
 
-The augmented version: the workflow assembles a personalised pre-read for each manager - concrete project moments pulled from where work actually happens (Linear, GitHub, sales records, project tools), the report's own self-reflection, peer feedback if collected, last cycle's commitments. The manager arrives at the blank page with a full year already assembled, project moments and all.
+<DecisionFilter
+  title="Run the candidate through this before you build"
+  criteria={[
+    { test: "Does the same shape of work repeat, at volume, most weeks?", fail: "It is a one-off, or it changes shape every single time" },
+    { test: "Is there a clean source of truth the workflow can read on its own?", fail: "The data lives in someone's head or a spreadsheet they rebuild by hand" },
+    { test: "Can a human check the output before anything irreversible happens?", fail: "The step commits money, offers, or exits with no review" },
+    { test: "Will a named person own it on Monday, not just IT keeping the lights on?", fail: "No business owner, only infrastructure quietly running" },
+    { test: "Can a champion build it in weeks, not a vendor in quarters?", fail: "It needs a bespoke agent and a six-month roadmap" },
+  ]}
+  verdict="Fail two of these and it is not your first automation. Park it, and pick one that passes clean."
+/>
 
-The model never writes the review. It prepares the table.
+That last criterion is the one most worth defending. The moment a workflow needs a bespoke agent running unattended, you have left the pattern and entered a different, harder build. That is not automatically wrong, but it is a decision with its own governance, and it belongs in [production agents for People Ops](/intelligence/production-agents-for-people-ops), not in your first fortnight.
 
-## What these patterns have in common
+## What pays off, and what quietly dies
 
-Every one of these patterns shares the same shape:
+The two columns below are the difference between a workflow that is still running in a year and one that gets switched off in six weeks. Every failed automation I have watched sits firmly in the right-hand column, and it almost always started as someone reaching for the impressive version.
 
-- One workflow, well-bounded
-- A clear human-in-the-loop step
-- Logged, reviewable, retirable
-- Built by a champion in days or weeks, not quarters
-- Visible value to the team that uses it within the first month
+<ComparePanel
+  a={{ heading: "Automations that pay off", items: [
+    "One workflow, one goal, one trigger",
+    "A clean source of truth it reads on its own",
+    "One human checkpoint before anything leaves the building",
+    "Built by a champion in days or weeks",
+    "Logged, reviewable, and cheap to switch off",
+  ]}}
+  b={{ heading: "Automations that quietly die", items: [
+    "An ambitious platform trying to do five jobs at once",
+    "A person preparing a clean export by hand each run",
+    "Full autonomy, no review, until the first bad call",
+    "A vendor build on a six-month roadmap",
+    "A black box nobody owns and nobody can audit",
+  ]}}
+  caption="The left column is boring on purpose. Boring is what survives contact with a real Monday."
+/>
 
-The temptation, always, is to build something more impressive. Don't. The compound effect of six well-built small workflows is greater than one ambitious half-finished platform, every time. We have watched both. The small ones win.
+The temptation, always, is to build something more impressive than the left column allows. Resist it. The compound effect of six well-built small workflows is greater than one ambitious half-finished platform, every time. I have watched both, on the same kind of team, and the small ones win. They win because they ship, because the team understands them, and because when one stops earning you can switch it off without a post-mortem.
 
-Pick the one that hurts most this quarter. Build it. Learn the craft. Then take the next one.
+There is a quieter reason too. A small, owned workflow teaches the team the craft. The person who builds the triage pattern can build the onboarding one next, and the check-in one after that. The ambitious platform teaches them dependency on the vendor who built it. "The builders left. The capability went with them." is the Pattern that follows every big bespoke build, and it is the most expensive one to unwind.
 
+## Start with the one that hurts most
 
+You do not need a strategy deck to begin. Pick the pattern that hurts most this quarter, the one costing your team the most hours or the most dropped balls, and build that one. Learn the craft on it. Then take the next.
 
-## What this connects to
-
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
-
-- [How to identify the efficiency gaps AI can fill](/intelligence/identifying-efficiency-gaps-ai-can-fill)
-- [The People Ops AI domain map](/intelligence/the-people-ops-ai-domain-map)
-- [Designing the AI-native People team](/intelligence/designing-the-ai-native-people-team)
-- [A workflow assessment framework for People Ops](/intelligence/workflow-assessment-framework)
-- [An AI enablement operating model for People leaders](/intelligence/ai-enablement-operating-model)
+If you want a running start on which process to touch first, the [Grain Audit](/grain-audit) takes one workflow end to end in two weeks and hands you a ranked automation plan plus a ninety-day plan you keep. But you can begin without it. Read one workflow, bound it, wire the boring stack, keep a human in the loop, and log everything. That is the whole method, and it pays back faster than any platform you were about to buy.
 
 <KeyTakeaways>
-- Start with the four boring patterns. They cover most of the surface.
-- Design the workflow before you choose the model. Workflow shape determines value.
-- Track time-to-value, not headline savings. Slow wins are still wins.
+- Start with the boring, well-bounded patterns. Six cover most of the surface, and triage and onboarding are the easiest first wins.
+- Design the workflow before you choose the model. Workflow shape determines value, not model cleverness.
+- Keep one human checkpoint in every pattern, and give each workflow a named owner for the Monday after launch.
+- Track time-to-value, not headline savings. Six small workflows that ship beat one ambitious platform that stalls.
 </KeyTakeaways>

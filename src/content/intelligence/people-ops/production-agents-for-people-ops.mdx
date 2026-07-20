@@ -5,145 +5,173 @@ export const frontmatter = {
   primaryCluster: "agents-and-systems",
   clusters: ["workflows-and-automation"],
   track: "people-ops",
-  description: "Most \"agents\" in People Ops are demos with ambition. The ones that survive contact with production share a pattern: data first, structured context, exception handling, observability, human escalation.",
-  keywords: ["AI agents HR", "production AI agents", "n8n HR automation", "AI agent People Ops"],
+  description: "Most People Ops agents are demos with ambition. Production agents for People Ops share a pattern: real data, a context stack, an off-switch, an owner.",
+  keywords: ["production agents for People Ops", "AI agents in HR", "why AI agents fail in production", "n8n HR automation", "AI agent context stack", "how to build an AI agent in People Ops"],
   readTime: "12 min",
   publishedAt: "2026-04-30",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
 export const faqs = [
   {
-    question: "What is the actual definition of an AI agent in a business context?",
-    answer: "A system that takes a goal, decides the next action, calls tools, keeps state, and leaves an audit trail. A Zendesk macro that fires back canned text isn't one. A Zapier zap that forwards an email isn't one either. The test: can it decide what to do next on its own, and can you see why afterwards? Miss either and it's automation wearing an agent costume, not a junior operator with superpowers.",
+    question: "What makes an AI agent a production agent and not just a demo?",
+    answer: "A production agent reaches real data through an API, carries the full context it needs, calls tools under written contracts, handles its own exceptions, escalates to a named human, and leaves a trace you can read. A demo skips all of that and works only on a clean test case. The difference is not intelligence. It is the boring infrastructure a demo never has to build.",
   },
   {
-    question: "Why do most agents fail in production?",
-    answer: "Lack of context, lack of state, lack of guardrails. Most teams spend 80% of their time choosing the model and 20% on what the agent actually needs to succeed. The ratio should be reversed. The model is a tuning decision. Context, state, tooling contracts, exception handling, observability, and human escalation are what separate an agent worth real money from one worth nothing.",
+    question: "Why do AI agents fail in production in People Ops?",
+    answer: "Because they are given a model and told to figure it out, with no context stack, no state, and no guardrails. So they guess. A guessing system is worse than no system, because people assume it is reliable until it burns them. Most teams spend 80 percent of the effort choosing the model and 20 percent on what the agent actually needs. Reverse that ratio.",
   },
   {
-    question: "Why does data matter more than apps for HR automation?",
-    answer: "Because features don't fix a discovery problem. HRIS, ATS, payroll, performance, and engagement systems don't share a language, so nobody has one clean view of an employee. Wire that up with n8n or similar and you get more capability than the tenth SaaS tool ever ships. Rule of thumb: if you can't pull the data through an API today, don't build an agent on top of it tomorrow.",
+    question: "Do you need engineers to build AI agents inside a People team?",
+    answer: "No. A workflow tool like n8n connects your existing systems and runs the AI steps inside auditable pipelines, at around £20 per builder seat per month, SOC 2 and ISO 27001 compliant, and self-hostable. Two trained internal builders on the People team can ship more real capability than the tenth specialist HR app ever will. The skill you need is workflow thinking, not software engineering.",
   },
   {
-    question: "Where should we start with agents in People Ops?",
-    answer: "Not with agents. Start with workflows you can document and automations that already run clean. Once the data feeding them is trustworthy, pick one bounded use case, a policy FAQ bot, an onboarding step-trigger, a comp research assistant, and give it a real escalation path from day one. Don't expand scope until it has handled real cases for a few weeks without you babysitting it.",
+    question: "Where should a People team start with AI agents?",
+    answer: "Not with agents. Start with one workflow you can document and data you can pull through an API cleanly. Then pick one bounded use case, a policy FAQ, an onboarding step-trigger, a comp research assistant, and give it an escalation path from day one. Let it handle real cases for a few weeks while you read every trace before you widen the scope at all.",
   },
 ];
 
 <TLDR>
-- A production agent has state, evals, and an owner. A prompt with ambition has none of those.
-- Most agents in People Ops are stuck in demo loops because nobody owns the production version.
-- Production demands the boring work: error handling, logging, fallback, review.
-- Two well-run production agents beat ten experimental ones every time.
+- A production agent for People Ops is a demo plus the boring infrastructure: reachable data, a context stack, tool contracts, exception handling, an off-switch, a trace, and one owner.
+- Most People Ops agents are stuck in demo loops because nobody built or owns the production version.
+- The context an agent needs is a stack, not a blob: task, process, and organisational context together are what stop it guessing.
+- The value sits in the integration layer, not the tenth app. Wire what you already have before you buy something new.
+- Two well-run production agents beat ten experimental ones, every time.
 </TLDR>
 
-Most "agents" in People Ops today are demos with ambition. They work on a clean test case and fall over the moment they meet a real employee, a real policy edge, a real Friday afternoon.
+A People team I worked with had a policy bot they were proud of. In the demo it was flawless: someone typed a question about parental leave, it pulled the right clause, cited the handbook, and everyone nodded. Three weeks after it went live, an employee on a fixed-term contract asked the same question mid-TUPE-transfer, and it answered with total confidence and total inaccuracy. The demo worked. The rollout didn't. Production agents for People Ops are not smarter demos. They are demos plus the infrastructure a demo skips.
 
-This is fixable. The agents that survive production share a pattern. The ones that fail share the opposite one. Get it right and the automation programme compounds. Get it wrong and it quietly gets retired.
+That infrastructure is the whole subject here: real data the agent can reach, a context stack so it stops guessing, explicit tool contracts, exception handling, an off-switch to a human, a trace you can read afterwards, and one named owner. Get that scaffolding right and the agent behaves like a junior operator who actually works there. Skip it and you have a confident guessing machine wired into people's lives. This is the same wall pilots hit everywhere, which is why [most AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production) rather than fail outright.
 
-<Takeaway>Most People Ops "agents" are demos with ambition. The ones that ship share a pattern: data first, structured context, exception handling, observability, human escalation.</Takeaway>
+<Takeaway>An agent that works in a demo and an agent that survives production are different objects. The second one is mostly infrastructure, and the infrastructure is the job.</Takeaway>
+
+## What a production agent actually is
+
+The word "agent" has been abused until it means almost anything. A vendor macro that fires canned text is sold as one. A Zapier zap that forwards an email is sold as one. Neither is. Here is a working definition worth holding to:
+
+> An AI agent is a system that takes a goal, decides its next action, calls tools, keeps state, and moves the work forward with an audit trail you can read. Everything short of that is automation wearing the word.
+
+That is more than a chatbot and more than a workflow with an LLM step bolted in. It is closer to a junior operator with superpowers. And like a junior, it needs a clear job, access to the right systems, rules about what it must not decide, memory, a way to recover when something breaks, and a human to escalate to. Miss any of those and what you have built is a roulette wheel with a nice interface.
+
+The distinction matters because it changes how you govern the thing. Automation you can trust on rails. An agent makes choices, so it needs the guardrails that come with choice. Before you call something an agent, run it through the test below. If it fails the first two rows, it is a workflow, and that is fine. Just do not trust it, or govern it, like something that decides for itself.
+
+<DecisionFilter
+  title="Is it an agent, or automation in a costume?"
+  criteria={[
+    { test: "Can it decide the next action itself, rather than run a branch a person hard-coded?", fail: "Every path was fixed in advance; it never actually chooses" },
+    { test: "Does it call tools and read the results back before deciding again?", fail: "It fires one prompt and returns whatever comes out" },
+    { test: "Does it keep state across steps, or start blank every time?", fail: "No memory of what happened five steps ago" },
+    { test: "Can you reconstruct, afterwards, why it did what it did?", fail: "No trace; you are trusting it on faith" },
+  ]}
+  verdict="Fail the first two and it is a workflow with an LLM step. Useful, sometimes. Just do not hand it decisions it cannot be held to."
+/>
 
 ## Start with the data, not the app
 
-A common reflex in People Ops: there is a problem, so buy a tool. The market is happy to oblige. There is now an AI tool for every workflow on the org chart.
+There is a reflex in People Ops: there is a problem, so buy a tool. The market is delighted to oblige. There is now a specialist AI product for every box on the org chart. The reflex is wrong, and it is wrong for a specific reason. Your problem is not a missing feature. It is that the data sits in silos that do not speak to each other.
 
-The reflex is wrong. The data sits in silos, not the features. The HRIS knows the employee. The ATS knows the candidate. Payroll knows the comp. Performance knows the rating. Engagement knows the sentiment. None of them know each other.
+The HRIS knows the employee. The ATS knows the candidate. Payroll knows the comp. Performance knows the rating. Engagement knows the sentiment. None of them know each other, so nobody in the building has one clean view of a single person.
 
-Buying a tenth tool adds a tenth silo. The real value sits in the integration and orchestration layer.
+| System | What it holds | Talks to the rest? |
+| --- | --- | --- |
+| HRIS | The employee record | No |
+| ATS | The candidate | No |
+| Payroll | The comp number | No |
+| Performance | The rating | No |
+| Engagement | The sentiment | No |
 
-This is why a workflow tool like n8n, or Make, or Zapier at the lower end, often produces more value than the latest specialised HR app. It connects what you already have. It lets a small AI step run inside a workflow that touches the systems where the truth actually lives. It is auditable, fixable, and visible.
+Buying a tenth product adds a tenth silo. The value you are missing lives in the integration and orchestration layer, not in another app. This is why a workflow tool such as n8n, at roughly £20 per builder seat per month, SOC 2 and ISO 27001 compliant and self-hostable if your security team needs that, often produces more real capability than the newest specialist HR app. It connects what you already own. It lets a small AI step run inside a pipeline that touches the systems where the truth actually lives, and it stays auditable, fixable, and visible when something breaks. Build the extraction steps model-first, never with regex fallbacks that quietly rot. And a plain rule of thumb: if you cannot pull the data through an API today, do not build an agent on top of it tomorrow.
 
-A useful test: when something breaks, can you see which step failed? With a connected workflow built in n8n, the answer is yes. With a black-box vendor product, often no. Visibility is what lets you fix things fast. Speed is what lets you scale.
+<FieldNote label="The gotcha">
+A transit operator I worked with was paying about £40,000 a year for a licence nobody on the team could remember choosing. It had been bought three years earlier to solve a workflow problem. The workflow had moved on. The licence had not. We replaced the whole thing with one tool and two internal builders, and the work got faster, not slower.
 
-## What an agent actually is
+The lesson is not that software is bad. It is that the tenth app almost never fixes what a connected workflow fixes. Seventeen tools. No strategy. Count your licences before you sign for the next one.
+</FieldNote>
 
-The word "agent" has been so abused it now means almost anything. A clean working definition:
+## The context stack that stops an agent guessing
 
-> An AI agent is a system that can take a goal, decide a next action, use tools, persist state, and move work forward with auditability.
+The single biggest reason agents fail in production is missing context. Most teams build one like this: here is a model, here are some tools, go figure it out. That fails because the agent does not know what matters, what happened five steps ago, which policy applies, or what "good" looks like in your business. So it guesses. And a guessing system in a People function is worse than no system, because people assume it is reliable until the day it isn't.
 
-That is more than a chatbot. More than a workflow with an LLM step. It is closer to a junior operator with superpowers, and like a junior, it needs:
+The fix is to think in a stack, not a blob. Context is not a wall of text you paste into a prompt. It is three layers, and the agent needs all three at once.
 
-- A clear job.
-- Access to the right systems.
-- Rules about what it can and cannot do.
-- Memory.
-- A way to recover when something breaks.
-- A human escalation path.
+<LayerStack
+  layers={[
+    { name: "Task context", body: "What triggered this run, what was asked, what 'done' means, and the limits on time, budget, and permissions.", tag: "Every run" },
+    { name: "Process context", body: "The workflow this sits inside: the required steps, the approvals, the SLAs, the exception rules, and who owns it.", tag: "The workflow" },
+    { name: "Organisational context", body: "Your policies, risk tolerance, systems, and language: job levels, cost centres, the comp philosophy, the hiring bar.", tag: "The substrate" },
+  ]}
+  baseLabel="Give only the top layer and the agent acts like a goldfish with a keyboard"
+/>
 
-Miss any of those and what you have built is a roulette wheel with a UI.
+Give an agent task context alone and it behaves like a temp on their first hour. Give it the full stack and it starts behaving like someone who has worked there for a year. That is the difference between an answer you can publish and an answer you have to check.
 
-## The context stack
+Context also has to be the right shape. It must be structured, so the agent reads clean payloads with IDs, owners, and timestamps rather than messy email threads. It must be retrievable, so the agent can fetch what it needs instead of relying on what happened to fit in the prompt. It must be verifiable, so every claim it makes can be traced back to a source. And it must be relevant, filtered down to what this task needs rather than everything the business knows. This is why the [AI workspace you set up for the team](/intelligence/setting-up-your-ai-workspace) matters as much as the model: it is where that context lives so nobody has to invent it from scratch on every run.
 
-The single biggest reason agents fail in production is missing context. Most teams build an agent like this: "here is a model, here are some tools, go figure it out." That fails because the agent does not know what matters, what happened five steps ago, which policy applies, or what "good" looks like in your business. So it guesses. And in business, a guessing system is worse than no system, because humans assume it is reliable until it burns them.
+## Contracts, exceptions, and the off-switch
 
-The fix is to think in a stack, not a blob.
+An agent without explicit tooling contracts is a hazard. Every tool it can call needs a written contract: what it does, what inputs it expects, what it returns, what side effects it has, and when it is allowed to be called. Without contracts, the agent invents tool calls when it hits an edge. With them, it stays inside the rails you set.
 
-**Task context.** What triggered this. What the user asked. What "done" means. Constraints (time, budget, permissions).
+Exception handling is the next thing production demands and demos never show. What happens when the model returns nothing useful? When a tool call times out? When the policy is genuinely ambiguous? In a demo these never happen. In production they happen constantly. Agents that survive have explicit retry logic, real fallback paths, and a clear point at which they stop.
 
-**Process context.** Which workflow this sits inside. Required steps, approvals, SLAs. Exception rules. Ownership.
+That stopping point is the escalation path, and it is not optional. Every production agent has a moment where it should hand off to a named human rather than power through. The agent that knows when to stop is worth more than the agent that answers everything, because the second one will eventually answer a TUPE-transfer parental-leave question with total confidence and be wrong. Design the off-switch before the agent ever runs live, not after it embarrasses you.
 
-**Organisational context.** Policies (comp philosophy, hiring bar, expense rules). Risk tolerance. Your systems (HRIS, ATS, finance, CRM). Your language (job levels, team names, cost centres).
+## What ships versus what stalls
 
-If you only give task context, the agent acts like a goldfish with a keyboard. If you give the full stack, it starts behaving like someone who actually works there.
+Two agents can chase the same use case and end up worlds apart. The one that ships and the one that dies in a demo loop are not separated by cleverness. They are separated by whether anyone did the unglamorous work. Here is the split, laid out plainly.
 
-Context is not just "more text." It must be:
+<ComparePanel
+  a={{ heading: "Ships", items: [
+    "Reaches real data through an API, not a hand-made export",
+    "Carries the full context stack, so it checks instead of guessing",
+    "Every tool it calls has a written contract",
+    "Stops and escalates the moment a policy is ambiguous",
+    "One named owner, a readable trace, and an off-switch",
+  ]}}
+  b={{ heading: "Stalls", items: [
+    "Runs on a clean test case someone prepared by hand",
+    "Given a model and told to figure the rest out",
+    "Invents tool calls the first time it meets an edge",
+    "Powers through ambiguity with total confidence",
+    "Nobody owns it, so when it breaks it is a black box",
+  ]}}
+  caption="Same idea in both columns. The gap is the boring infrastructure, and the boring infrastructure is the job."
+/>
 
-- **Structured.** Clean payloads, not messy email threads. IDs, links, owners, timestamps.
-- **Retrievable.** The agent can fetch what it needs, not just what fits in the prompt.
-- **Verifiable.** Every claim it makes can be checked against the source.
-- **Relevant.** Filtered to what matters for this task.
+None of the left-hand column is exotic. It is what you would ask of a new hire: know where to find things, check before you assert, follow the process, put your hand up when you are not sure, and leave a record. We build agents like operators because operators are the standard they have to meet.
 
-## Tooling contracts and exception handling
+## Observability: if you cannot see it, you cannot trust it
 
-An agent without explicit tooling contracts is a hazard. Each tool the agent can call needs a contract: what it does, what inputs it expects, what outputs it returns, what side effects it has, when it can be called. Without contracts, the agent invents. With contracts, the agent stays inside the rails you set.
+If you cannot see what the agent did, you cannot trust it. If you cannot trust it, you cannot scale it. Observability for a People Ops agent has three parts, and most teams build the wrong two.
 
-Exception handling is the second pillar. What happens when the model returns nothing useful? When a tool call fails? When the policy is ambiguous? In production, these happen constantly. Agents that work in production have explicit retry logic, fallback paths, and a clear point at which they stop and escalate.
+**Trace.** Every action the agent took, in order, with the inputs and outputs at each step. This is the part teams skip, and it is the part that matters most the day something goes wrong, which it will. Without a trace, debugging a failure is guesswork. With one, it is a five-minute conversation.
 
-The escalation path is not optional. Every production agent has a moment when it should hand off to a human. The agent that knows when to stop is more valuable than the agent that powers through.
+**Metrics.** How often it succeeds, how often it escalates, how often it fails silently, and what it costs to run. A silent failure rate you are not watching is the one that ends the programme.
 
-## Observability and audit
+**Audit.** Decisions tied to identifiable inputs, retained for as long as your governance requires. In a People function this is not a nice-to-have. Agents touch pay, performance, and personal data, so the audit trail is what keeps you defensible. Wire it in from the start, because retrofitting it is far harder, and read [AI governance for People teams](/intelligence/ai-governance-for-people-teams) before you point an agent at anything sensitive.
 
-If you cannot see what the agent did, you cannot trust it. If you cannot trust it, you cannot scale it.
+## Your first production agent
 
-Observability for People Ops agents has three components:
+Start with the least glamorous thing on the list, and do it in order. This is the sequence that works, and each stage earns the right to the next.
 
-- **Trace.** Every action the agent took, in order, with the inputs and outputs at each step.
-- **Metrics.** How often it succeeds, how often it escalates, how often it fails silently, what it costs.
-- **Audit.** Decisions tied to identifiable inputs, retained for the period your governance demands.
+<ProcessFlow
+  stages={[
+    { label: "Stabilise the data", body: "Pick one workflow and get its data reachable and clean. If you cannot pull it through an API today, do not build on it tomorrow.", meta: "First" },
+    { label: "Bound the job", body: "One use case with edges: a policy FAQ, an onboarding step-trigger, a comp research assistant. Not the agent that does everything.", meta: "Then" },
+    { label: "Wire the escalation", body: "Give it an off-switch to a named human, designed before it ever runs a live case.", meta: "Before launch" },
+    { label: "Run it small", body: "Let it handle real cases for a few weeks while you read every trace. Fix what breaks, do not add scope.", meta: "Weeks 1-4" },
+    { label: "Earn the next one", body: "Widen scope only once it has worked without you babysitting it. Then repeat the pattern, never the bespoke build.", meta: "After" },
+  ]}
+/>
 
-The trace is the part most teams skip. It is also the part that matters most when something goes wrong, which it will. Without a trace, debugging an agent failure is guesswork. With one, it is a five-minute conversation.
+Each of those bounded agents has the same shape: clear scope, a real escalation path, an observable trace, honest exception handling. Each one earns the right to expand, and none of them tries to be the agent that runs the whole function. The through-line is the move from [prompts to systems](/intelligence/from-prompts-to-systems): a prompt is a one-off, a system is a thing the team owns and improves. If you want a structured way to pick the first workflow and get a ranked plan for it, the [Grain Audit](/grain-audit) takes one process end to end and hands you a 90-day plan you keep, whether or not you carry on working with us. That belongs to the [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops) more broadly: the agents are the visible bit, but the workspace is what makes them survive a quarter.
 
-## Where to start
-
-Not with agents. Start with workflows you can document and automations you can stabilise. Make sure the data the agent will rely on is clean and centralised. Set up the [AI workspace](/intelligence/setting-up-your-ai-workspace) so context is not invented from scratch every time.
-
-Then pick one well-bounded use case. A few that work in practice:
-
-- A policy FAQ agent that fields employee questions, retrieves the relevant policy, and escalates anything ambiguous.
-- An onboarding orchestrator that triggers the next step in a documented workflow when the previous one completes.
-- A comp benchmarking research agent that pulls market data, structures it, and hands a manager a comparison table for a hiring decision.
-
-Each of these has the same structure: bounded scope, clear escalation, observable trace, real exception handling. Each one earns the right to expand. None of them try to be the agent that does everything.
-
-The pattern across all of them is the same: move from [prompts to systems](/intelligence/from-prompts-to-systems), use the [domain map](/intelligence/the-people-ops-ai-domain-map) to point the work at the right target, and lean on the [operating model](/intelligence/ai-enablement-operating-model) to make it survive a quarter.
-
-Production agents are not magicians. They are operators. Build them like operators and they work like operators.
-
-
-
-## What this connects to
-
-Auto-recommended next reads in the People Ops cluster, ranked by shared concepts and headings:
-
-- [AI governance for People teams](/intelligence/ai-governance-for-people-teams)
-- [The HR Architect: a new role inside the People function](/intelligence/the-hr-architect-role)
-- [An AI enablement operating model for People leaders](/intelligence/ai-enablement-operating-model)
-- [Choosing AI models for HR work](/intelligence/choosing-ai-models-for-hr-work)
+Production agents are not magicians. They are operators. Build them like operators, hold them to an operator's standard, and they will work like operators. Build them like demos and they will keep working right up until the moment a real person needs them.
 
 <KeyTakeaways>
-- Promote an agent only when it has an owner, an eval set, and a fallback.
-- Log everything. Without logs, the agent is a black box you trust on faith.
-- Retire agents that stop earning their keep. Agent sprawl is real.
+- Do not promote an agent to production until it has an owner, a readable trace, an off-switch, and an eval set. Ambition is not one of those.
+- The value is in the integration layer, not the tenth app. Wire your existing systems with a workflow tool before you buy another product.
+- Give the agent the full context stack. Task context alone makes it guess, and a confident guess is worse than no answer in a People function.
+- Start with one bounded agent, read every trace for a month, and widen scope only once it works without you watching.
+- Two well-run production agents beat ten experimental ones. Retire the ones that stop earning their keep; agent sprawl is real.
 </KeyTakeaways>

@@ -2,11 +2,11 @@ export const frontmatter = {
   title: "The AI operating ladder: five tiers explained",
   slug: "ai-operating-ladder-five-tiers",
   category: "ai-operating-systems",
-  description: "From ad-hoc usage to autonomous operations: the five tiers of AI operating maturity, what each one looks like in practice, and what it takes to climb each rung.",
-  keywords: ["AI ladder", "AI maturity", "AIOI", "AI operating tiers", "AI operating system", "AI adoption"],
-  readTime: "11 min",
+  description: "Most teams think they are two rungs higher than they are. The AI operating ladder scores AI maturity function by function and names your exact next move.",
+  keywords: ["AI operating ladder", "AI maturity model", "AI operating maturity", "AI maturity tiers", "how to assess AI maturity", "AI adoption stages", "levels of AI autonomy"],
+  readTime: "12 min",
   publishedAt: "2026-03-16",
-  updatedAt: "2026-05-04",
+  updatedAt: "2026-07-19",
   author: "Matthew Bradburn",
 };
 
@@ -14,141 +14,166 @@ export const faqs = [
   {
     question: "What is the AI operating ladder?",
     answer:
-      "The AI operating ladder is a five-tier model of AI operating maturity used at Deepgrain: ad-hoc, assisted, augmented, autonomous, and self-operating. It came out of running the same 'where are we, really' conversation with enough leadership teams that a single maturity score stopped being useful. Naming the rung per function, rather than an aggregate number, is what the AI Operating Index scores against.",
+      "The AI operating ladder is a five-tier model of AI operating maturity: ad-hoc, assisted, augmented, autonomous, and self-operating. It came out of running the same 'where are we, really' conversation with enough leadership teams that a single company-wide maturity score stopped being useful. You score the rung per function, not per organisation, because the same company is usually at different rungs in support, finance, and legal at the same time.",
   },
   {
-    question: "Which tier is most companies on?",
+    question: "Which tier are most companies on?",
     answer:
-      "It varies sharply by function. Customer support and marketing tend to move fastest because the cost of a bad output is low and reversible. Finance and legal lag hardest because the stakes of an error are higher, so governance has to catch up before the tooling does. Scoring function by function, rather than the org as a whole, is what usually breaks the leadership-versus-operator standoff.",
+      "Between tier 1 and tier 2, while most believe they are at tier 3. It also varies sharply by function. Support and marketing move fastest because a bad output is cheap and reversible. Finance and legal lag hardest because an error costs more, so governance has to catch up before the tooling does. Scoring function by function, rather than the whole org at once, is what usually settles the leadership-versus-operator argument.",
   },
   {
-    question: "Do you have to climb the ladder in order?",
+    question: "Do you have to climb the AI maturity ladder in order?",
     answer:
-      "Mostly yes. You can occasionally pilot a tier-3 workflow on top of a tier-1 organisation, but it tends to die when the supporting infrastructure is not there. The ladder is a sequence because each rung depends on the operating habits the previous rung built.",
+      "Mostly yes. You can occasionally pilot a tier-3 workflow on top of a tier-1 organisation, but it tends to die when the supporting habits are not there. The ladder is a sequence because each rung depends on the operating habits the previous rung built. The data, governance, and ownership a tier-3 agent needs are exactly what tiers 1 and 2 are meant to install.",
   },
   {
     question: "Is tier 5 (self-operating) realistic?",
     answer:
-      "Only for workflows with three properties: low blast radius if the agent gets it wrong, high enough volume that removing the human is worth the risk, and a clean rule for escalating the edge cases. Most candidate workflows fail on the first property alone. That is the real reason tier 5 stays rare, not a lack of capable models.",
+      "Only for workflows with three properties: low blast radius if the agent gets it wrong, high enough volume that removing the human is worth the risk, and a clean rule for escalating the edge cases. Most candidate workflows fail on the first property alone. That is the real reason tier 5 stays rare, not a shortage of capable models.",
   },
 ];
 
 <TLDR>
-- The AI operating ladder is five tiers: ad-hoc, assisted, augmented, autonomous, and self-operating.
-- Each rung describes a different shape of AI operating system underneath, with different demands on data, tools, agents, governance, and cadence.
-- Most companies are between tier 1 and tier 2 but believe they are at tier 3. The gap is where AI budget gets wasted.
-- The ladder is a sequence. Skipping rungs almost always fails because each tier depends on the operating habits the previous one built.
-- Tier 5 is honest, not aspirational. Most useful work for the next several years lives at tiers 3 and 4.
+- The AI operating ladder has five tiers: ad-hoc, assisted, augmented, autonomous, and self-operating. You score them per function, not per company.
+- Each rung sits on a different shape of AI operating system, with different demands on data, tools, agents, governance, and cadence.
+- Most companies sit between tier 1 and tier 2 while believing they are at tier 3. That two-rung gap is where AI budget quietly disappears.
+- The ladder is a sequence. Skipping rungs almost always fails, because each tier depends on the operating habits the one below it built.
+- Tier 5 is in the model for honesty, not ambition. The useful work for the next few years lives at tiers 3 and 4.
 </TLDR>
 
-Most companies overestimate where they are on AI by two rungs. Leadership thinks the team is at tier 3. The operators on the ground know they are at tier 1. The gap between those two beliefs is where most AI budgets get spent without producing anything.
+Two people on the same leadership team gave me two different answers in the same meeting. The chief people officer said the function was at tier 3. The operations lead, four seats down, said tier 1. They were describing the same team. The AI operating ladder is the model I used to settle it: five tiers of operating maturity, from ad-hoc to self-operating, scored function by function rather than as one blurry company average. Naming the rung per function is what turns "are we behind?" into a decision about the next move.
 
-The ladder below is the model we use to settle that argument. Five tiers, in order, each describing a different shape of [AI operating system](/intelligence/what-is-an-ai-operating-system) underneath. The model itself stays constant across the rungs, but the data, tools, agents, governance, and cadence wrapped around it change at every one.
+That argument is not a knowledge gap. Both people were right about what they could see. The CPO saw the impressive demo and the slide that said "AI-enabled." The ops lead saw what actually happened on Monday morning, which was a handful of people quietly pasting things into ChatGPT. The ladder gives them a shared language, so the conversation stops being about who is more optimistic and starts being about which rung the evidence supports.
 
-## Tier 1: Ad-hoc
+## What the AI operating ladder is
 
-Individuals using tools.
+Five tiers, in order, each describing a different shape of [AI operating system](/intelligence/what-is-an-ai-operating-system) underneath. The model itself stays constant across the rungs. What changes at every one is the data it can reach, the tools it can call, the agents doing the work, the governance holding it, and the cadence reviewing it.
 
-A handful of people in the org pay for ChatGPT, Claude, or Copilot out of personal budget. They use it for drafting, summarising, and one-shot research. None of it is shared. None of it is logged. The model has no access to your data, your tools, or your workflows.
+<LayerStack
+  layers={[
+    { name: "Self-operating", body: "A few narrow workflows run without per-task review. Humans maintain the policy, not the volume.", tag: "Tier 5" },
+    { name: "Autonomous", body: "Agents own specific outcomes end to end on an SLA. Humans set policy and audit a sample.", tag: "Tier 4" },
+    { name: "Augmented", body: "Scoped agents own workflows that used to need a person, each with an owner and an off-switch.", tag: "Tier 3" },
+    { name: "Assisted", body: "A shared workspace per function. AI is part of how specific tasks get done, not a personal trick.", tag: "Tier 2" },
+    { name: "Ad-hoc", body: "Individuals using generic tools on personal expenses. Nothing shared, nothing logged.", tag: "Tier 1" },
+  ]}
+  baseLabel="You build from tier 1 up"
+/>
 
-What it looks like:
-- AI is a productivity hack, not an operating capability
-- Wins are anecdotal: "this saved me an hour"
-- Different people use different tools and there is no common workspace
-- Governance is "don't paste anything sensitive"
+> The AI operating ladder is a five-tier model of AI operating maturity: ad-hoc, assisted, augmented, autonomous, and self-operating. You score it one function at a time, because the same company is usually at different rungs in support, finance, and legal at once. Each rung sits on a different shape of AI operating system, and you climb by building the operating habits the next rung needs, not by buying the tool it looks like.
 
-What it takes to climb:
-- A shared workspace setup (custom instructions, projects, reference docs) that turns the generic tool into a function-specific colleague. See [setting up your AI workspace](/intelligence/setting-up-your-ai-workspace).
-- A first-pass governance note on what people may and may not paste in
-- A way to share what is working between people
+## The five tiers, rung by rung
 
-Most of tier 1 to tier 2 is operating habits, not technology spend.
+### Tier 1: Ad-hoc
 
-## Tier 2: Assisted
+A handful of people pay for ChatGPT, Claude, or Copilot on personal expenses. They draft, summarise, and run one-shot research. Nothing is shared, nothing is logged, and the model touches none of your data, tools, or workflows. AI is a private productivity hack. Wins are anecdotal: "this saved me an hour." Governance is one sentence, if it exists: don't paste anything sensitive.
 
-Tools embedded in workflows.
+The climb to tier 2 is almost entirely operating habits, not spend. You need a shared workspace per function (custom instructions, projects, reference documents) that turns a generic chatbot into a function-specific colleague, a first governance note on what people may and may not paste in, and a way to pass what works from one person to the next. Most of the tier 1 to tier 2 jump costs meeting time, not licences. See [setting up your AI workspace](/intelligence/setting-up-your-ai-workspace) for the mechanics.
 
-The team has a shared workspace per function. Custom instructions, project libraries, and reference documents live in one place. People know where to start and what to expect. AI is now part of how specific tasks get done, not a personal trick.
+### Tier 2: Assisted
 
-What it looks like:
-- A documented "how we use AI" inside each function
-- Reference documents and prompts versioned somewhere shared
-- A small list of trusted use cases (drafts, triage, summarisation, first-pass analysis)
-- Wins start to be repeatable and measurable
+Every function has one shared workspace. Custom instructions, prompt libraries, and reference documents live in one place, versioned, so people know where to start and what to expect. AI is now part of how specific tasks get done, not a personal trick. There is a documented "how we use AI" per function and a short list of trusted use cases: drafts, triage, summarisation, first-pass analysis. Wins become repeatable and measurable.
 
-What it takes to climb:
-- The first real tool integrations: the model can read calendars, search internal docs, draft into the systems you actually use
-- A first agent on a single, well-scoped workflow
-- A weekly forum to review what worked and what failed
+To climb, you need the first real tool integrations, so the model can read calendars, search internal documents, and draft into the systems you actually use. You need a first agent on a single, well-scoped workflow. And you need a weekly forum to review what worked and what broke. Tier 2 is where most companies should sit before climbing further. Reaching straight from tier 1 to tier 3 is the most common reason [AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production).
 
-Tier 2 is where most companies should sit before they try to climb further. Skipping ahead from tier 1 to tier 3 is the most common reason pilots stall.
+### Tier 3: Augmented
 
-## Tier 3: Augmented
+Three or four scoped agents, each owning a workflow that used to need a person. A drafting agent that produces first-pass output. A triage agent that routes and tags. An analysis agent that summarises and flags. Each one has a clear owner, a clear scope, and a clear off-switch. The org chart now holds capability that does not appear on it. Governance is real: an audit trail, an escalation path, and a written list of the decisions humans still own. Cadence is real: agents get reviewed on output quality, not just throughput.
 
-Agents extending teams.
+To climb, you need agents that chain across systems (read here, decide there, act elsewhere), a platform layer with stable interfaces (MCP, internal APIs, a vector store) so a new agent is days of work not months, and a leadership model that treats AI capability as part of the operating system rather than a side project. Tier 3 is where AI starts to compound. It is also where the operating debt of skipping earlier rungs comes due.
 
-The org has three or four scoped agents, each owning a workflow that previously required a person. Drafting agents that produce first-pass output. Triage agents that route and tag. Analysis agents that summarise and highlight. Each one has a clear owner, a clear scope, and a clear off-switch.
+### Tier 4: Autonomous
 
-What it looks like:
-- The org chart now includes capability that does not appear on it
-- Operators trust specific agents for specific tasks and know which ones to override
-- Governance is real: there is an audit trail, an escalation path, and a list of decisions humans still own
-- Cadence is real: agents get reviewed on output quality, not just throughput
+Now it is specific outcomes, not just specific tasks. An agent owns the customer-reply backlog: it drafts the first-pass reply, escalates the unclear ones, and reports on the rest. A human reviews the policy and the exceptions, not the volume. A small number of workflows run end to end on a target SLA. The system watches its own drift, the output rejection rate and the operator override rate, and alerts the owner when either climbs. The operating leader's job has changed from doing the work to designing what the work looks like.
 
-What it takes to climb:
-- Agents that can chain across systems (read here, decide there, act elsewhere)
-- A platform layer with stable interfaces (MCP, internal APIs, vector stores) so new agents are days of work, not months
-- A leadership model that treats AI capability as part of the operating system, not a side project
+Climbing here needs hard evaluation, because you cannot trust an agent with an outcome you cannot measure. It needs mature governance, where humans own the policy and the audit and the agent owns the throughput. And it needs a culture comfortable with the agent being measurably better than the average operator on the one workflow it owns. Tier 4 is real for narrow, well-bounded outcomes today. It is not real for whole functions. Anyone telling you otherwise is selling.
 
-Tier 3 is where AI starts compounding. Tier 3 is also where the operating debt of skipping earlier rungs comes due.
+### Tier 5: Self-operating
 
-<Takeaway label="Ladder takeaway">Most companies overestimate their tier by two. The AI OS underneath each rung looks completely different.</Takeaway>
+Some workflows do reach the top rung: price updates inside a defined envelope, log triage with a confident escalation rule, low-stakes routing decisions. The agent runs without per-task review, and what humans maintain is the policy. Tier 5 is in the model for honesty, not as a target. Reaching for it early is how organisations end up with autonomous-sounding demos sitting on a tier-1 reality.
 
-## Tier 4: Autonomous
+## The ladder is a sequence, not a menu
 
-Agents owning outcomes.
+You climb the AI operating ladder one rung at a time because each rung is built on the habits of the one below it. A tier-3 agent needs data it can reach on a schedule, a governance note that already exists, and a named owner. Those three things are exactly what tiers 1 and 2 install. Skip them and the agent has nothing to stand on. It is not that the model is not good enough. It is that the organisation has not yet grown the muscles that keep the model useful past the demo.
 
-Specific outcomes, not just specific tasks. An agent owns the customer-reply backlog: it drafts the first-pass reply, escalates the unclear ones, and reports on the rest. A human reviews the policy and the exceptions, not the volume.
+<ComparePanel
+  a={{ heading: "Climb rung by rung", items: [
+    "Each new agent lands on habits the last rung already built",
+    "Data and governance are in place before the agent needs them",
+    "The team can name who fixes a workflow the morning it drifts",
+    "Wins compound: tier 3 is cheap because tier 2 already exists",
+    "Ends with capability the team keeps",
+  ]}}
+  b={{ heading: "Skip to tier 3", items: [
+    "A tier-3 agent lands on a tier-1 org with no habits to hold it",
+    "Data is still a manual export a person prepares by hand",
+    "Nobody owns the workflow the morning it breaks",
+    "Every new agent is a fresh fight, months not days",
+    "Ends with a demo nobody can run",
+  ]}}
+  caption="The rungs are not a menu you pick from. They are load-bearing, bottom to top."
+/>
 
-What it looks like:
-- A small number of workflows are run end-to-end by agents on a target SLA
-- Humans set policy, audit a sample, and handle escalations
-- The system can detect its own drift (output rejection rate, operator override rate) and alert the owner
-- The role of the operating leader has shifted: from doing the work to designing what the work looks like
+<FieldNote label="What broke">
+I watched a team stand up a tier-3 drafting agent on an organisation that had never got past tier 1. No shared workspace, no governance note, no owner. The demo worked. The rollout didn't. Six weeks in, the one person who understood the prompts got pulled onto a re-org project, and the agent quietly went dark. Nobody could say exactly when.
 
-What it takes to climb:
-- Robust evaluation: you cannot trust an agent with an outcome you cannot measure
-- Mature governance: humans own the policy and the audit, the agent owns the throughput
-- A culture comfortable with the agent being measurably better than the average operator on the workflow it owns
+The agent was never the weak part. The three rungs of operating habit underneath it were missing, so there was nothing for it to stand on. That is the whole case for climbing in order.
+</FieldNote>
 
-Tier 4 is real for narrow, well-bounded outcomes today. It is not real for entire functions. Anyone telling you otherwise is selling.
+## What a working tier 4 looks like
 
-## Tier 5: Self-operating
+The honest version of tier 4 is narrow and measured, and it is worth showing what it produces when the rungs beneath it are real. In one defence-tech engagement, a small set of agents owned specific outcomes inside a function that had earned its way up rung by rung. The numbers below are what that looked like two months on.
 
-Rare, and not the point.
+<StatBand
+  stats={[
+    { value: "83", label: "hours/week reclaimed", note: "defence tech engagement" },
+    { value: "70%", label: "routine queries handled by systems the team owns" },
+    { value: "0", label: "critical issues, two months on" },
+  ]}
+/>
 
-Some specific workflows do reach this rung: price updates inside a defined envelope, log triage with a confident escalation rule, low-stakes routing decisions. The agent runs without per-task review and the policy is what humans maintain.
+Read those three together, because one without the others is a warning sign. Eighty-three hours reclaimed with a rising error rate is a workflow running ahead of its governance. Seventy per cent of routine queries handled by systems the team owns, rather than a vendor's black box, is what makes the capability stick when the consultant leaves. And zero critical issues two months on is the number that says the evaluation was real, not that the agent was never stressed. Tier 4 is not the volume. It is the volume plus the proof that the volume is safe.
 
-We include tier 5 in the model for honesty, not as a target. Most of the value for most companies for the next several years lives at tier 3 and tier 4, and trying to climb past them prematurely is how organisations end up with autonomous-sounding demos and tier-1 reality.
+That is also why tier 5 stays rare. It is not a lack of capable models. It is that most workflows fail the blast-radius test: get it wrong and the cost is high, or hard to reverse, or lands on a customer. A tier-4 workflow keeps a human on the policy and the exceptions precisely so it can run at volume without needing to be self-operating. Most useful work for most companies, for the next several years, lives right here at tiers 3 and 4.
 
-## How to use the ladder
+## Score one function, then take one rung
 
-Pick one function. Score it honestly:
-- 1 if AI is personal and ad-hoc
-- 2 if there is a shared workspace and a documented "how we use AI"
-- 3 if at least one scoped agent owns a workflow with real governance
-- 4 if at least one outcome runs end-to-end with humans on policy and audit only
-- 5 if a workflow runs without per-task human review (and is meant to)
+The ladder earns its keep as a diagnostic. Pick one function, not the whole company, and score it against the evidence you can actually point to rather than the roadmap you would like to be true.
 
-Whatever you score, the next move is the next rung, not three rungs up. Most operating debt in AI programmes is from teams trying to skip.
+<DecisionFilter
+  title="Before you claim a rung, run this on one function"
+  criteria={[
+    { test: "Can you point to a shared workspace every person in the function starts from?", fail: "Everyone keeps their own prompts in their own notes" },
+    { test: "Does at least one scoped agent own a workflow end to end, with an owner and an off-switch?", fail: "A person still runs it and pastes the output in by hand" },
+    { test: "Is there an audit trail and a written list of decisions humans still own?", fail: "Governance lives in a Slack thread nobody can find" },
+    { test: "Can you name who fixes the workflow the morning it starts to drift?", fail: "IT keeps the lights on, but nobody owns the decision it makes" },
+    { test: "Would the function notice within a day if the agent began making bad calls?", fail: "You would find out at the next quarterly review" },
+  ]}
+  verdict="Score the rung you can defend with evidence, not the one on the slide. Then the next move is the next rung, never three rungs up."
+/>
 
-For the broader landscape of named maturity models (Gartner, MIT, BCG) and how the ladder maps onto them, see [AI maturity frameworks for G&A leaders](/intelligence/ai-maturity-frameworks-for-ga-leaders).
+The rung a function lands on is rarely about ambition. It is about the cost of being wrong. That is why the same company runs at different tiers across its functions at the same time, and why a single company-wide score hides more than it tells you.
 
-For a structured version that works across all eight pillars (the five readiness pillars plus leadership, talent, and intervention readiness), see the [AI Operating Index](https://aioi.deepgrain.ai). It scores you, names the rung, and gives you a ranked plan back.
+| Function | Typical rung today | What decides how fast it climbs |
+| --- | --- | --- |
+| Customer support | Tier 2 to 3 | A bad reply is cheap and reversible, so it moves first |
+| Marketing | Tier 2 to 3 | Output is easy to check before it ships, so trust builds fast |
+| Finance | Tier 1 to 2 | An error costs real money, so governance gates the tooling |
+| Legal | Tier 1 | Evidence and liability mean the bar for autonomy is highest |
+| People and HR | Tier 1 to 2 | Sensitive data and trust slow the climb even where the tools fit |
+
+If you want the score done for you, the [Readiness Assessment](/readiness) runs sixteen questions in about ten minutes and scores the People function across four capability layers, then names the rung and the ranked next move. Whatever you score, the rule holds: the next move is the next rung. Most operating debt in AI programmes comes from teams trying to skip.
+
+## Where the ladder sits
+
+The AI operating ladder is a scoring instrument, not a strategy on its own. It tells you which rung a function is on and what the next one demands. What it does not do is name the substrate every rung is built from, which is the job of the [AI operating system pillar](/intelligence/pillar/ai-operating-system). The ladder measures maturity; the operating system is the thing that matures.
+
+It also sits alongside the named maturity models you may already have on a slide. For how the five tiers map onto the frameworks from Gartner, MIT, and BCG, and where they agree and part ways, see [AI maturity frameworks for G&A leaders](/intelligence/ai-maturity-frameworks-for-ga-leaders). Use whichever vocabulary your board already trusts. The point is not the labels. The point is scoring one function honestly, then building the one rung in front of you, until the capability is real enough to stand on its own after everyone who built it has moved on.
 
 <KeyTakeaways>
-- Score one function honestly. The next move is the next rung, not three rungs up.
-- Tier 3 is where most of the unlock lives: a scoped agent, a real workflow, a real governance check.
-- Climbing the ladder is mostly an operating-habits problem, not a model problem.
-- If you cannot describe what good looks like at tier 3, you are not ready to leave tier 2.
+- Score one function honestly against the five tiers before you spend a pound on the next tool.
+- The next move is the next rung. Most wasted AI budget comes from teams reaching three rungs up.
+- Tier 3 is where AI starts to compound: a scoped agent, a real workflow, a governance check that actually runs.
+- Tier 5 is a description of a few narrow workflows, not a destination. Most of the value for years sits at tiers 3 and 4.
+- If you cannot describe what good looks like at the rung above you, you are not ready to climb it.
 </KeyTakeaways>
