@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      assessment_results: {
+        Row: {
+          assessment: string
+          created_at: string
+          detail: Json | null
+          email: string | null
+          id: string
+          layer_scores: Json | null
+          name: string | null
+          organisation: string | null
+          score: number | null
+          session_id: string
+          source: string | null
+          stage: string | null
+        }
+        Insert: {
+          assessment: string
+          created_at?: string
+          detail?: Json | null
+          email?: string | null
+          id?: string
+          layer_scores?: Json | null
+          name?: string | null
+          organisation?: string | null
+          score?: number | null
+          session_id: string
+          source?: string | null
+          stage?: string | null
+        }
+        Update: {
+          assessment?: string
+          created_at?: string
+          detail?: Json | null
+          email?: string | null
+          id?: string
+          layer_scores?: Json | null
+          name?: string | null
+          organisation?: string | null
+          score?: number | null
+          session_id?: string
+          source?: string | null
+          stage?: string | null
+        }
+        Relationships: []
+      }
       brain_access_audit_log: {
         Row: {
           created_at: string
