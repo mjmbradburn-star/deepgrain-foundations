@@ -19,7 +19,7 @@ var search_intelligence_default = defineTool({
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: true },
   handler: async ({ query, limit }) => {
     const max = limit ?? 8;
-    const res = await fetch("https://deepgrain.ai/llms-full.txt", {
+    const res = await fetch("https://www.deepgrain.ai/llms-full.txt", {
       headers: { "user-agent": "deepgrain-mcp/0.1" }
     });
     if (!res.ok) {
@@ -68,7 +68,7 @@ var fetch_article_default = defineTool2({
   description: "Fetch a Deepgrain page by URL or an Intelligence article by slug. Returns the raw HTML so the caller can parse or cite it.",
   inputSchema: {
     urlOrSlug: z2.string().min(1).describe(
-      "A full https://deepgrain.ai URL, or an Intelligence article slug like 'ai-operating-ladder-five-tiers'."
+      "A full https://www.deepgrain.ai URL, or an Intelligence article slug like 'ai-operating-ladder-five-tiers'."
     )
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: true },
@@ -87,7 +87,7 @@ var fetch_article_default = defineTool2({
       target = parsed.toString();
     } else {
       const slug = urlOrSlug.replace(/^\/+/, "").replace(/\/+$/, "");
-      target = `https://deepgrain.ai/intelligence/${slug}`;
+      target = `https://www.deepgrain.ai/intelligence/${slug}`;
     }
     const res = await fetch(target, {
       headers: { "user-agent": "deepgrain-mcp/0.1" },
@@ -113,22 +113,22 @@ var PILLARS = [
   {
     slug: "what-is-an-ai-operating-system",
     title: "What is an AI operating system",
-    url: "https://deepgrain.ai/intelligence/what-is-an-ai-operating-system"
+    url: "https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system"
   },
   {
     slug: "five-pillars-of-ai-readiness",
     title: "The five pillars of AI readiness",
-    url: "https://deepgrain.ai/intelligence/five-pillars-of-ai-readiness"
+    url: "https://www.deepgrain.ai/intelligence/five-pillars-of-ai-readiness"
   },
   {
     slug: "ai-operating-ladder-five-tiers",
     title: "The AI operating ladder: five tiers",
-    url: "https://deepgrain.ai/intelligence/ai-operating-ladder-five-tiers"
+    url: "https://www.deepgrain.ai/intelligence/ai-operating-ladder-five-tiers"
   },
   {
     slug: "setting-up-your-ai-workspace",
     title: "Setting up your AI workspace",
-    url: "https://deepgrain.ai/intelligence/people-ops/setting-up-your-ai-workspace"
+    url: "https://www.deepgrain.ai/intelligence/people-ops/setting-up-your-ai-workspace"
   }
 ];
 var list_pillars_default = defineTool3({
