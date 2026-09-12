@@ -1,5 +1,93 @@
-import { sendLovableEmail } from 'npm:@lovable.dev/email-js'
 import { createClient } from 'npm:@supabase/supabase-js@2'
+
+const RESEND_API_URL = 'https://api.resend.com/emails'
+// Resend only accepts From addresses on a domain verified in the Resend
+// account. notify.deepgrain.ai is the verified sender subdomain; any other
+// domain in a queued payload's From header (e.g. root-domain branding) is
+// rewritten to it, preserving the display name and local part.
+const VERIFIED_FROM_DOMAIN = 'notify.deepgrain.ai'
+
+// Error carrying the HTTP status so the existing 429/403 handling applies.
+class ResendApiError extends Error {
+  status: number
+  retryAfterSeconds: number | null
+  constructor(status: number, message: string, retryAfterSeconds: number | null = null) {
+    super(message)
+    this.name = 'ResendApiError'
+    this.status = status
+    this.retryAfterSeconds = retryAfterSeconds
+  }
+}
+
+// Force the From address onto the verified sender domain, keeping the
+// display name and local part from the queued payload.
+function normalizeFromAddress(from: unknown): string {
+  if (typeof from === 'string' && from.trim()) {
+    const withName = from.match(/^\s*(.*?)\s*<([^<>@]+)@([^<>]+)>\s*$/)
+    if (withName) {
+      const [, name, local] = withName
+      return name ? `${name} <${local}@${VERIFIED_FROM_DOMAIN}>` : `${local}@${VERIFIED_FROM_DOMAIN}`
+    }
+    const bare = from.match(/^\s*([^@\s<>]+)@[^@\s<>]+\s*$/)
+    if (bare) {
+      return `${bare[1]}@${VERIFIED_FROM_DOMAIN}`
+    }
+  }
+  return `noreply@${VERIFIED_FROM_DOMAIN}`
+}
+
+// Send one queued email via Resend's REST API. Keeps the queue payload
+// contract: from/to/subject/html/text, List-Unsubscribe headers from
+// unsubscribe_token (RFC 8058 one-click), and Idempotency-Key when present.
+async function sendResendEmail(
+  payload: Record<string, unknown>,
+  opts: { apiKey: string; unsubscribeBaseUrl: string }
+): Promise<void> {
+  const emailHeaders: Record<string, string> = {}
+  if (typeof payload.unsubscribe_token === 'string' && payload.unsubscribe_token) {
+    const unsubscribeUrl = `${opts.unsubscribeBaseUrl}?token=${encodeURIComponent(payload.unsubscribe_token)}`
+    emailHeaders['List-Unsubscribe'] = `<${unsubscribeUrl}>`
+    emailHeaders['List-Unsubscribe-Post'] = 'List-Unsubscribe=One-Click'
+  }
+
+  const requestHeaders: Record<string, string> = {
+    Authorization: `Bearer ${opts.apiKey}`,
+    'Content-Type': 'application/json',
+  }
+  if (typeof payload.idempotency_key === 'string' && payload.idempotency_key) {
+    requestHeaders['Idempotency-Key'] = payload.idempotency_key
+  }
+
+  const res = await fetch(RESEND_API_URL, {
+    method: 'POST',
+    headers: requestHeaders,
+    body: JSON.stringify({
+      from: normalizeFromAddress(payload.from),
+      to: [payload.to],
+      subject: payload.subject,
+      html: payload.html,
+      text: payload.text,
+      ...(Object.keys(emailHeaders).length > 0 ? { headers: emailHeaders } : {}),
+    }),
+  })
+
+  if (!res.ok) {
+    let message = `Resend API error ${res.status}`
+    try {
+      const body = await res.json()
+      if (body?.message) message = `Resend API error ${res.status}: ${body.message}`
+    } catch {
+      // keep generic message
+    }
+    const retryAfterHeader = res.headers.get('retry-after')
+    const retryAfterSeconds = retryAfterHeader ? Number(retryAfterHeader) : null
+    throw new ResendApiError(
+      res.status,
+      message,
+      retryAfterSeconds !== null && Number.isFinite(retryAfterSeconds) ? retryAfterSeconds : null
+    )
+  }
+}
 
 const MAX_RETRIES = 5
 const DEFAULT_BATCH_SIZE = 10
@@ -79,7 +167,7 @@ async function moveToDlq(
 }
 
 Deno.serve(async (req) => {
-  const apiKey = Deno.env.get('LOVABLE_API_KEY')
+  const apiKey = Deno.env.get('RESEND_API_KEY')
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
 
@@ -249,26 +337,10 @@ Deno.serve(async (req) => {
       }
 
       try {
-        await sendLovableEmail(
-          {
-            run_id: payload.run_id,
-            to: payload.to,
-            from: payload.from,
-            sender_domain: payload.sender_domain,
-            subject: payload.subject,
-            html: payload.html,
-            text: payload.text,
-            purpose: payload.purpose,
-            label: payload.label,
-            idempotency_key: payload.idempotency_key,
-            unsubscribe_token: payload.unsubscribe_token,
-            message_id: payload.message_id,
-          },
-          // sendUrl is optional — when LOVABLE_SEND_URL is not set, the library
-          // falls back to the default Lovable API endpoint (https://api.lovable.dev).
-          // Set LOVABLE_SEND_URL as a Supabase secret to override (e.g. for local dev).
-          { apiKey, sendUrl: Deno.env.get('LOVABLE_SEND_URL') }
-        )
+        await sendResendEmail(payload, {
+          apiKey,
+          unsubscribeBaseUrl: `${supabaseUrl}/functions/v1/handle-email-unsubscribe`,
+        })
 
         // Log success
         await supabase.from('email_send_log').insert({
