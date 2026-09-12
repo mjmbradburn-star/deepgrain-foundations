@@ -48,6 +48,7 @@ const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
 const Readiness = lazy(() => import("./pages/Readiness"));
 const ExposureMap = lazy(() => import("./pages/ExposureMap"));
 const GrainAudit = lazy(() => import("./pages/GrainAudit"));
+const Waitlist = lazy(() => import("./pages/Waitlist"));
 
 const queryClient = new QueryClient();
 
@@ -99,6 +100,7 @@ const App = () => (
               <Route path="/readiness" element={<Readiness />} />
               <Route path="/exposure-map" element={<ExposureMap />} />
               <Route path="/grain-audit" element={<GrainAudit />} />
+              <Route path="/waitlist" element={<Waitlist />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

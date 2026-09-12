@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { HeroDeck } from "@/components/sections/deck/HeroDeck";
 import { TheShift } from "@/components/sections/deck/TheShift";
 import { WorkedExample } from "@/components/sections/deck/WorkedExample";
+import { CohortBand } from "@/components/sections/CohortBand";
 import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { HOME_FAQ_LD } from "@/data/homeFaq";
@@ -91,6 +92,7 @@ const Home = () => (
       ctaLocation="home_shift"
     />
     <WorkedExample />
+    <CohortBand />
     <Suspense fallback={<SectionFallback />}>
       <div className="cv-auto">
         {/* eyebrow suppressed: the hero pill and the FAQ default already use

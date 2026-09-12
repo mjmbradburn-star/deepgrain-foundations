@@ -33,6 +33,7 @@ const STATIC_PAGES = [
   { url: "/readiness", priority: "0.9", changefreq: "monthly" },
   { url: "/exposure-map", priority: "0.8", changefreq: "monthly" },
   { url: "/grain-audit", priority: "0.9", changefreq: "monthly" },
+  { url: "/waitlist", priority: "0.9", changefreq: "weekly" },
   { url: "/privacy", priority: "0.3", changefreq: "yearly" },
   { url: "/cookies", priority: "0.3", changefreq: "yearly" },
   { url: "/terms", priority: "0.3", changefreq: "yearly" },
