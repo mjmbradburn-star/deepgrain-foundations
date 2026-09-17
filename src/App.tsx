@@ -101,6 +101,10 @@ const App = () => (
               <Route path="/exposure-map" element={<ExposureMap />} />
               <Route path="/grain-audit" element={<GrainAudit />} />
               <Route path="/waitlist" element={<Waitlist />} />
+              {/* Course aliases: canonical is /waitlist, but /course and /cohort are common entry points */}
+              <Route path="/course" element={<Navigate to="/waitlist" replace />} />
+              <Route path="/cohort" element={<Navigate to="/waitlist" replace />} />
+              <Route path="/people-ops-course" element={<Navigate to="/waitlist" replace />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

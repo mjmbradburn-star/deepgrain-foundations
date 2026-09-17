@@ -255,6 +255,9 @@ const EXCLUDED_ROUTES = new Set([
   "/intelligence/people-ops", // 301 redirect → /intelligence
   "/login", // auth, noindex
   "/.lovable/oauth/consent", // OAuth gate, noindex
+  "/course", // redirect → /waitlist (course canonical)
+  "/cohort", // redirect → /waitlist
+  "/people-ops-course", // redirect → /waitlist
 ]);
 
 /**

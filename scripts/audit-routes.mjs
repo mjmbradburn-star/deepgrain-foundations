@@ -48,6 +48,9 @@ const NOINDEX_PATHS = new Set([
 // targets are indexed instead.
 const REDIRECT_ONLY = new Set([
   "/intelligence/people-ops",
+  "/course",
+  "/cohort",
+  "/people-ops-course",
 ]);
 
 // ---------- 1. Parse <Route path="..."> from App.tsx --------------------
