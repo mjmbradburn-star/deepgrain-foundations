@@ -423,6 +423,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      __probe_email_dispatch_auth: { Args: never; Returns: number }
       delete_email: {
         Args: { message_id: number; queue_name: string }
         Returns: boolean
