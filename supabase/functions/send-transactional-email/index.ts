@@ -83,7 +83,28 @@ Deno.serve(async (req) => {
     );
   }
   const token = authHeader.slice("Bearer ".length).trim();
-  if (!timingSafeEqual(token, supabaseServiceKey)) {
+
+  // Accept either the project's service_role key (edge-function callers) or
+  // the dedicated dispatch token held in Vault (database triggers). The
+  // dispatch token is verified in the database by a SECURITY DEFINER function
+  // that never returns the secret itself, so a rotated service_role key can
+  // no longer break trigger-driven sends.
+  let authorized = timingSafeEqual(token, supabaseServiceKey);
+  if (!authorized) {
+    const authClient = createClient(supabaseUrl, supabaseServiceKey);
+    const { data: matches, error: matchError } = await authClient.rpc(
+      "email_dispatch_token_matches",
+      { candidate: token },
+    );
+    if (matchError) {
+      console.error("Dispatch token verification failed", {
+        error: matchError.message,
+      });
+    }
+    authorized = matches === true;
+  }
+
+  if (!authorized) {
     return new Response(
       JSON.stringify({ error: "Forbidden" }),
       {
@@ -92,6 +113,7 @@ Deno.serve(async (req) => {
       },
     );
   }
+
 
 
   // Parse request body
