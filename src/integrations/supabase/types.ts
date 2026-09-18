@@ -423,7 +423,6 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      __probe_queue_auth: { Args: never; Returns: number }
       delete_email: {
         Args: { message_id: number; queue_name: string }
         Returns: boolean
@@ -459,6 +458,7 @@ export type Database = {
         Args: { message_id: number; queue_name: string; vt_seconds: number }
         Returns: boolean
       }
+      tick_email_queue: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
