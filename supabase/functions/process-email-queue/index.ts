@@ -172,12 +172,18 @@ Deno.serve(async (req) => {
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
 
   if (!apiKey || !supabaseUrl || !supabaseServiceKey) {
-    console.error('Missing required environment variables')
+    const missing = [
+      !apiKey ? 'RESEND_API_KEY' : null,
+      !supabaseUrl ? 'SUPABASE_URL' : null,
+      !supabaseServiceKey ? 'SUPABASE_SERVICE_ROLE_KEY' : null,
+    ].filter(Boolean)
+    console.error('Missing required environment variables', { missing })
     return new Response(
-      JSON.stringify({ error: 'Server configuration error' }),
+      JSON.stringify({ error: 'Server configuration error', missing }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     )
   }
+
 
   const authHeader = req.headers.get('Authorization')
   if (!authHeader?.startsWith('Bearer ')) {
