@@ -427,6 +427,10 @@ export type Database = {
         Args: { message_id: number; queue_name: string }
         Returns: boolean
       }
+      email_dispatch_token_matches: {
+        Args: { candidate: string }
+        Returns: boolean
+      }
       email_queue_dispatch: { Args: never; Returns: undefined }
       enqueue_email: {
         Args: { payload: Json; queue_name: string }
@@ -454,6 +458,7 @@ export type Database = {
         Args: { message_id: number; queue_name: string; vt_seconds: number }
         Returns: boolean
       }
+      tick_email_queue: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
