@@ -53,6 +53,11 @@ const COPY: Record<string, { eyebrow: string; opener: string }> = {
     opener:
       "Thank you for subscribing to the Intelligence. You'll receive new pieces as they're published — and the occasional quieter note in between.",
   },
+  "course-waitlist": {
+    eyebrow: "Deepgrain AI Cohort",
+    opener:
+      "You're on the waitlist for the Deepgrain AI Cohort, starting Monday 12 October. You'll hear first when places open, and you'll pay less than the public price.",
+  },
   unknown: {
     eyebrow: "From the workshop",
     opener:
@@ -85,11 +90,13 @@ const SubscriberWelcomeEmail = ({
 
             <Text style={text}>{copy.opener}</Text>
 
-            <Text style={text}>
-              We write about the discipline of building organisations that hold
-              their shape — operating systems, the craft of leadership, and the
-              long arc of work done with the grain.
-            </Text>
+            {source !== "course-waitlist" && (
+              <Text style={text}>
+                We write about the discipline of building organisations that hold
+                their shape — operating systems, the craft of leadership, and the
+                long arc of work done with the grain.
+              </Text>
+            )}
 
             {articleUrl && (
               <Text style={text}>
@@ -104,9 +111,7 @@ const SubscriberWelcomeEmail = ({
             <Hr style={hr} />
 
             <Text style={signoff}>
-              Quietly,
-              <br />
-              The Deepgrain team
+              Matt
             </Text>
 
             <Text style={footer}>
@@ -131,7 +136,10 @@ const SubscriberWelcomeEmail = ({
 
 export const template = {
   component: SubscriberWelcomeEmail,
-  subject: "You're on the list — welcome to Deepgrain",
+  subject: (data: Record<string, unknown>) =>
+    data?.source === "course-waitlist"
+      ? "You're on the Deepgrain AI Cohort waitlist"
+      : "You're on the list — welcome to Deepgrain",
   displayName: "Subscriber welcome",
   previewData: {
     source: "article",
