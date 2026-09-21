@@ -211,6 +211,7 @@ try {
         // every prerendered page look identically templated to Google. Drop
         // the static duplicate wherever a Helmet version is present.
         const managed = [
+          ["name", "robots"],
           ["name", "description"],
           ["property", "og:title"],
           ["property", "og:description"],
@@ -290,9 +291,10 @@ try {
       });
       let html = await page.content();
       html = html.replaceAll(previewUrl, SITE_ORIGIN);
-      // The template ships a default "index, follow" robots meta; the 404
-      // route adds "noindex,follow" via PageMeta. Drop the default so the
+      // The template ships a default robots meta; the 404 route adds its
+      // own "noindex,follow" via PageMeta. Drop the static default so the
       // static 404 carries a single, unambiguous robots directive.
+      html = html.replace('<meta name="robots" content="noindex, follow">', "");
       html = html.replace(
         '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">',
         "",
