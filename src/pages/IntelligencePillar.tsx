@@ -63,6 +63,8 @@ const IntelligencePillar = () => {
   return (
     <>
       <Helmet>
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+        <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1" />
         <title>{pillar.metaTitle ?? `${pillar.title} | Deepgrain Intelligence`}</title>
         <meta name="description" content={pillar.metaDescription ?? pillar.description} />
         <meta name="keywords" content={pillar.keywords.join(", ")} />

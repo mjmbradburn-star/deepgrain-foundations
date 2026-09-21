@@ -54,6 +54,8 @@ const IntelligenceAnswers = () => {
   return (
     <>
       <Helmet>
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+        <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1" />
         <title>Answers: AI operating system and AI OS | Deepgrain</title>
         <meta
           name="description"

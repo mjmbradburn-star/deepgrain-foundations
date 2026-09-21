@@ -33,6 +33,8 @@ const IntelligencePillars = () => {
   return (
     <>
       <Helmet>
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+        <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1" />
         <title>Pillar Deep-Dives | Deepgrain Intelligence</title>
         <meta
           name="description"

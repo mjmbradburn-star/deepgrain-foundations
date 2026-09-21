@@ -102,6 +102,8 @@ const AnswerDetail = () => {
   return (
     <>
       <Helmet>
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+        <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1" />
         <title>{entry.metaTitle ?? `${entry.question} | Deepgrain`}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={url} />

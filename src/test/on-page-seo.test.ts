@@ -30,6 +30,14 @@ describe("on-page SEO guardrails", () => {
     expect(ANSWERS.some((answer) => answer.slug === "ai-os-vs-ai-platform")).toBe(false);
   });
 
+  it("keeps the raw SPA shell noindex until a crawlable route overrides it", () => {
+    const shell = readFileSync("index.html", "utf8");
+    expect(shell).toContain('name="robots" content="noindex, follow"');
+    expect(shell).toContain('name="googlebot" content="noindex, follow"');
+    const pageMeta = readFileSync("src/components/seo/PageMeta.tsx", "utf8");
+    expect(pageMeta).toContain("index,follow,max-image-preview:large,max-snippet:-1");
+  });
+
   it("uses the canonical www origin in static discovery files", () => {
     for (const file of ["index.html", "public/humans.txt", "public/ai.txt"]) {
       const text = readFileSync(file, "utf8");

@@ -38,6 +38,8 @@ const IntelligenceGlossary = () => {
   return (
     <>
       <Helmet>
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+        <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1" />
         <title>Glossary | Deepgrain Intelligence</title>
         <meta
           name="description"

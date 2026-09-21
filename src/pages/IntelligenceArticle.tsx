@@ -86,6 +86,8 @@ const IntelligenceArticle = () => {
         }</title>
         <meta name="description" content={f.description} />
         <meta name="keywords" content={f.keywords?.join(", ")} />
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+        <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1" />
         <link rel="canonical" href={url} />
         <meta property="og:title" content={f.title} />
         <meta property="og:description" content={f.description} />

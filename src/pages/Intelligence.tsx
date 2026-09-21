@@ -62,6 +62,8 @@ const Intelligence = () => {
   return (
     <>
       <Helmet>
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+        <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1" />
         <title>Intelligence: reading the grain, in writing | Deepgrain</title>
         <meta
           name="description"
