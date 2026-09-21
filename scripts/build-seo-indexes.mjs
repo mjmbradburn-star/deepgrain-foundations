@@ -341,7 +341,7 @@ function buildRss(articles, { title, description, path, filterTrack }) {
     <atom:link href="${ORIGIN}${path}" rel="self" type="application/rss+xml" />
     <description>${xmlEscape(description)}</description>
     <language>en-GB</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <lastBuildDate>${new Date(Math.max(...articles.map((a) => new Date(a.updatedAt || a.publishedAt).getTime()))).toUTCString()}</lastBuildDate>
 ${items}
   </channel>
 </rss>

@@ -68,6 +68,7 @@ const IntelligenceAnswers = () => {
         <meta name="twitter:title" content="Deepgrain Intelligence: Answers" />
         <meta name="twitter:description" content="Direct answers to questions about AI operating systems, AI workspaces and AI readiness." />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://www.deepgrain.ai/og-intelligence.png" />
         <script type="application/ld+json">{JSON.stringify(qaPageLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqPageLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>

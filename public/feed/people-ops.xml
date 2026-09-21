@@ -6,7 +6,7 @@
     <atom:link href="https://www.deepgrain.ai/feed/people-ops.xml" rel="self" type="application/rss+xml" />
     <description>Working notes on running People functions with AI.</description>
     <language>en-GB</language>
-    <lastBuildDate>Mon, 21 Sep 2026 19:11:22 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 00:00:00 GMT</lastBuildDate>
     <item>
       <title>The People Ops diagnostic toolkit</title>
       <link>https://www.deepgrain.ai/intelligence/people-ops-diagnostic-toolkit</link>
@@ -96,7 +96,7 @@
       <link>https://www.deepgrain.ai/intelligence/setting-up-your-ai-workspace</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/setting-up-your-ai-workspace</guid>
       <pubDate>Sun, 19 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Your AI sounds generic because it works generically. Here is the AI workspace setup that turns Claude, ChatGPT or Copilot into a colleague that knows your team.</description>
+      <description>Set up an AI workspace with standing instructions, workstream projects, approved references and review rules. The same pattern works in every function.</description>
     </item>
     <item>
       <title>From prompts to systems</title>
@@ -145,7 +145,7 @@
       <link>https://www.deepgrain.ai/intelligence/workflow-assessment-framework</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/workflow-assessment-framework</guid>
       <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Most People teams pick AI workflows by instinct or by what is loudest. A workflow assessment framework scores value, frequency, fit and risk into a plan you can defend.</description>
+      <description>Score People Ops AI workflows by value, frequency, fit and risk. Use this workflow assessment framework to choose work worth automating and defend the sequence.</description>
     </item>
     <item>
       <title>Automation patterns that pay off</title>

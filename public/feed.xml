@@ -6,7 +6,7 @@
     <atom:link href="https://www.deepgrain.ai/feed.xml" rel="self" type="application/rss+xml" />
     <description>Long-form essays on operating systems, AI readiness, and the craft of operating leadership.</description>
     <language>en-GB</language>
-    <lastBuildDate>Mon, 21 Sep 2026 19:11:22 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 00:00:00 GMT</lastBuildDate>
     <item>
       <title>The quiet discipline of operating leadership</title>
       <link>https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</link>
@@ -26,7 +26,7 @@
       <link>https://www.deepgrain.ai/intelligence/hiring-for-the-grain</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/hiring-for-the-grain</guid>
       <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Hiring for the grain is not culture fit and not raw brilliance. It is coherence in how a team decides. Here is how to test for it before you make the offer.</description>
+      <description>Hiring for the grain means testing whether a candidate strengthens how your team decides under pressure. Use this interview method before making the offer.</description>
     </item>
     <item>
       <title>AI operating system for business</title>
@@ -201,7 +201,7 @@
       <link>https://www.deepgrain.ai/intelligence/setting-up-your-ai-workspace</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/setting-up-your-ai-workspace</guid>
       <pubDate>Sun, 19 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Your AI sounds generic because it works generically. Here is the AI workspace setup that turns Claude, ChatGPT or Copilot into a colleague that knows your team.</description>
+      <description>Set up an AI workspace with standing instructions, workstream projects, approved references and review rules. The same pattern works in every function.</description>
     </item>
     <item>
       <title>From prompts to systems</title>
@@ -250,7 +250,7 @@
       <link>https://www.deepgrain.ai/intelligence/workflow-assessment-framework</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/workflow-assessment-framework</guid>
       <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Most People teams pick AI workflows by instinct or by what is loudest. A workflow assessment framework scores value, frequency, fit and risk into a plan you can defend.</description>
+      <description>Score People Ops AI workflows by value, frequency, fit and risk. Use this workflow assessment framework to choose work worth automating and defend the sequence.</description>
     </item>
     <item>
       <title>Automation patterns that pay off</title>
@@ -278,7 +278,7 @@
       <link>https://www.deepgrain.ai/intelligence/scaling-without-breaking-the-grain</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/scaling-without-breaking-the-grain</guid>
       <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Scaling without breaking the grain is not about growing slowly. It is about matching structural repair to growth, and knowing which invisible rituals hold the place up.</description>
+      <description>Scale without breaking the grain: diagnose structural strain, protect the rituals that hold, and repair the operating system before growth compounds the damage.</description>
     </item>
     <item>
       <title>The art of the operating intervention</title>
@@ -299,7 +299,7 @@
       <link>https://www.deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/read-craft-scale-the-deepgrain-method</guid>
       <pubDate>Mon, 23 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Most change work skips straight to the build. Read, Craft, Scale is the discipline against that: diagnose first, craft small, scale at the pace people can absorb.</description>
+      <description>Read, Craft, Scale is Deepgrain’s method: diagnose the operating reality, build the smallest useful intervention, then scale only what survives real work.</description>
     </item>
     <item>
       <title>The AI operating ladder: five tiers explained</title>
@@ -313,7 +313,7 @@
       <link>https://www.deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure</guid>
       <pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Most AI programmes never switch from experiments to AI infrastructure, so nothing compounds. Here is when to make the switch, and what to build first.</description>
+      <description>Move from AI pilot to production when workflows repeat, controls are clear and shared infrastructure will stop teams rebuilding the same plumbing.</description>
     </item>
     <item>
       <title>Why AI pilots stall at production</title>
@@ -348,7 +348,7 @@
       <link>https://www.deepgrain.ai/intelligence/operating-systems-vs-operating-models</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/operating-systems-vs-operating-models</guid>
       <pubDate>Mon, 02 Feb 2026 00:00:00 GMT</pubDate>
-      <description>Operating system vs operating model: one is a slide you present, one is what runs when nobody is looking. The difference, and why you read the system first.</description>
+      <description>Operating system vs operating model: the practical difference, how to diagnose each, and why changing the deck rarely changes how work actually runs.</description>
     </item>
     <item>
       <title>The grain metaphor: reading your organisation</title>
