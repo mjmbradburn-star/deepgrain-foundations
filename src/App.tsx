@@ -49,6 +49,7 @@ const Readiness = lazy(() => import("./pages/Readiness"));
 const ExposureMap = lazy(() => import("./pages/ExposureMap"));
 const GrainAudit = lazy(() => import("./pages/GrainAudit"));
 const Waitlist = lazy(() => import("./pages/Waitlist"));
+const BusinessTeamAITraining = lazy(() => import("./pages/BusinessTeamAITraining"));
 
 const queryClient = new QueryClient();
 
@@ -101,6 +102,7 @@ const App = () => (
               <Route path="/exposure-map" element={<ExposureMap />} />
               <Route path="/grain-audit" element={<GrainAudit />} />
               <Route path="/waitlist" element={<Waitlist />} />
+              <Route path="/ai-training-for-business-teams" element={<BusinessTeamAITraining />} />
               {/* Course aliases: canonical is /waitlist, but /course and /cohort are common entry points */}
               <Route path="/course" element={<Navigate to="/waitlist" replace />} />
               <Route path="/cohort" element={<Navigate to="/waitlist" replace />} />

@@ -34,6 +34,7 @@ const STATIC_PAGES = [
   { url: "/exposure-map", priority: "0.8", changefreq: "monthly" },
   { url: "/grain-audit", priority: "0.9", changefreq: "monthly" },
   { url: "/waitlist", priority: "0.9", changefreq: "weekly" },
+  { url: "/ai-training-for-business-teams", priority: "0.9", changefreq: "monthly" },
   { url: "/privacy", priority: "0.3", changefreq: "yearly" },
   { url: "/cookies", priority: "0.3", changefreq: "yearly" },
   { url: "/terms", priority: "0.3", changefreq: "yearly" },

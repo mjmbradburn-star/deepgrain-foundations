@@ -107,7 +107,7 @@ const GrainAudit = () => {
             <p className="text-body text-lg leading-relaxed">
               A fixed-scope review of one process, end to end. We map where the hours and the
               judgement sit, rank the automations worth building, and hand you a 90-day plan you
-              keep.
+              keep. For a lighter start across a whole function, see our <Link to="/ai-training-for-business-teams" className="text-brass underline underline-offset-4">AI audit and training workshop</Link>.
             </p>
           </div>
           <div className="fade-in-up fade-in-up-3 mt-12 flex flex-wrap items-center gap-6">

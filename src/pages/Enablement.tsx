@@ -249,6 +249,9 @@ const Enablement = () => (
             Agents take the repeatable work. People learn to run it, extend it, own it. When we
             leave, the capability stays in the team, not in us.
           </p>
+          <p className="mt-4 max-w-2xl text-cream/70 text-base leading-relaxed">
+            Need a focused starting point? See our <Link to="/ai-training-for-business-teams" className="text-brass underline underline-offset-4">AI training for business teams</Link>.
+          </p>
 
           <dl className="mt-14 grid gap-10 sm:grid-cols-3 border-t border-cream/15 pt-10 max-w-2xl">
             <div>
