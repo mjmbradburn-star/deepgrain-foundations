@@ -107,9 +107,16 @@ const server = createServer((req, res) => {
     let file = join(DIST, p);
     if (!existsSync(file) && !extname(p)) file = join(DIST, p, "index.html");
     if (!existsSync(file) || statSync(file).isDirectory()) {
-      res.writeHead(404);
-      res.end("not found");
-      return;
+      // SPA fallback (mirrors `vite preview`): extensionless paths are app
+      // routes - serve the pristine shell so the router can render them.
+      // Prerendered route files are only written after the page is rendered.
+      if (!extname(p)) {
+        file = join(DIST, "shell.html");
+      } else {
+        res.writeHead(404);
+        res.end("not found");
+        return;
+      }
     }
     res.writeHead(200, {
       "content-type": MIME[extname(file).toLowerCase()] ?? "application/octet-stream",
@@ -172,7 +179,7 @@ try {
       });
 
       const url = previewUrl + route;
-      await page.goto(url, { waitUntil: "networkidle0", timeout: 30_000 });
+      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30_000 });
 
       // Wait for the SiteShell's [data-prerender-ready] marker. This proves
       // React + the route component + Helmet all flushed, not just that an
@@ -267,7 +274,7 @@ try {
         else req.continue();
       });
       await page.goto(previewUrl + "/__not-found-render__", {
-        waitUntil: "networkidle0",
+        waitUntil: "domcontentloaded",
         timeout: 30_000,
       });
       await page
