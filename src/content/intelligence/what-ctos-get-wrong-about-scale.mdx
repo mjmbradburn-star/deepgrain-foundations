@@ -6,7 +6,7 @@ export const frontmatter = {
   keywords: ["what CTOs get wrong about scale", "scaling engineering organisations", "CTO scaling mistakes", "engineering operating model", "re-platforming", "decision graph"],
   readTime: "11 min",
   publishedAt: "2026-06-15",
-  updatedAt: "2026-07-19",
+  updatedAt: "2026-09-21",
   author: "Matthew Bradburn",
 };
 
@@ -38,6 +38,10 @@ export const faqs = [
 </TLDR>
 
 Three re-platforms in four years, and the 2am pages never stopped. That is the pattern I keep meeting, and it points straight at what CTOs get wrong about scale: they treat it as a technology problem when it is almost always an operating problem wearing a technology disguise. The bottleneck is rarely the database. It is the decision graph above it: who is allowed to make which call under load, and how fast. Rebuild the database and you get a faster system running the same broken decisions. Redesign the decisions and the old system often holds for another two years.
+
+## The answer
+
+Because the thing that broke was rarely the platform. Re-platforming rebuilds the code and leaves the decision graph untouched: who is allowed to roll back at 11pm, who triages an incident, whether a postmortem finding becomes a resourced change or a priority-4 ticket. A faster system just gives the same broken decisions a faster way to express themselves. If the incident shape recurs after the rewrite, the technology was never the constraint.
 
 ## The re-platform trap
 

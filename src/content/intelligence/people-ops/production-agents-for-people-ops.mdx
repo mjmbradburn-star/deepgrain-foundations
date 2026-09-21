@@ -9,7 +9,7 @@ export const frontmatter = {
   keywords: ["production agents for People Ops", "AI agents in HR", "why AI agents fail in production", "n8n HR automation", "AI agent context stack", "how to build an AI agent in People Ops"],
   readTime: "12 min",
   publishedAt: "2026-04-30",
-  updatedAt: "2026-07-19",
+  updatedAt: "2026-09-21",
   author: "Matthew Bradburn",
 };
 
@@ -45,6 +45,10 @@ A People team I worked with had a policy bot they were proud of. In the demo it 
 That infrastructure is the whole subject here: real data the agent can reach, a context stack so it stops guessing, explicit tool contracts, exception handling, an off-switch to a human, a trace you can read afterwards, and one named owner. Get that scaffolding right and the agent behaves like a junior operator who actually works there. Skip it and you have a confident guessing machine wired into people's lives. This is the same wall pilots hit everywhere, which is why [most AI pilots stall at production](/intelligence/why-ai-pilots-stall-at-production) rather than fail outright.
 
 <Takeaway>An agent that works in a demo and an agent that survives production are different objects. The second one is mostly infrastructure, and the infrastructure is the job.</Takeaway>
+
+## The answer
+
+A production agent reaches real data through an API, carries the full context it needs, calls tools under written contracts, handles its own exceptions, escalates to a named human, and leaves a trace you can read. A demo skips all of that and works only on a clean test case. The difference is not intelligence. It is the boring infrastructure a demo never has to build.
 
 ## What a production agent actually is
 

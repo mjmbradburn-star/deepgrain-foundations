@@ -13,7 +13,7 @@ export const frontmatter = {
   ],
   readTime: "11 min",
   publishedAt: "2026-05-04",
-  updatedAt: "2026-07-19",
+  updatedAt: "2026-09-21",
   author: "Matthew Bradburn",
 };
 
@@ -44,6 +44,10 @@ export const faqs = [
 </TLDR>
 
 A financial data feed can run at 99.99% uptime and still lose you the client. Available is not correct, and correct is the only number that pays. In financial data the pipeline is the product: the feed that reconciles overnight, the corporate actions applied right, the prices that match the exchange. Everything the customer clicks is interface sitting on top of that. So the financial data operating model that works is simple to state and hard to run: treat the substrate as the product, resource data engineering like the product organisation it is, and put reliability where commercial decisions get made. Treat the UI as the product and the substrate rots underneath it.
+
+## The answer
+
+The pipeline. In financial data the feed that reconciles overnight is the product, and the dashboard is a window onto it. A beautiful interface sitting on a pipeline that silently drops a corporate action once a quarter loses you the client the day their compliance team finds the gap. Resource the substrate like the product it is, and treat the UI as interface on top.
 
 ## The dashboard is not the business
 

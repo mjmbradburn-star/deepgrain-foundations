@@ -99,7 +99,7 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
             {hero.webp && <source type="image/webp" srcSet={hero.webp} />}
             <img
               src={hero.src}
-              alt={`Cover image for "${f.title}"`}
+              alt={f.title}
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"

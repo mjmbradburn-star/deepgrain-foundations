@@ -118,7 +118,7 @@ const IntelligenceArticle = () => {
                 {heroImage.webp && <source srcSet={heroImage.webp} type="image/webp" />}
                 <img
                   src={heroImage.src}
-                  alt={`Hero image for "${f.title}"`}
+                  alt={f.title}
                   width={1600}
                   height={900}
                   fetchPriority="high"
