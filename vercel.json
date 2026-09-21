@@ -6,6 +6,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/answers/ai-os-vs-ai-platform",
+      "destination": "/intelligence/ai-os-vs-ai-platform",
+      "statusCode": 301
+    },
+    {
       "source": "/course",
       "destination": "/waitlist",
       "statusCode": 301

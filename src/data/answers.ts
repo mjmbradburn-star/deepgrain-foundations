@@ -58,13 +58,6 @@ export const ANSWERS: AnswerEntry[] = [
     link: "/intelligence/ai-operating-system-vs-operating-model#in-one-paragraph",
   },
   {
-    question: "How is an AI OS different from an AI platform?",
-    slug: "ai-os-vs-ai-platform",
-    answer:
-      "An AI platform is a product you buy. An AI operating system is the data, tools, governance, and cadence you build around it. A platform without your operating context is a feature. An AI OS uses platforms as components, not as substitutes.",
-    link: "/intelligence/ai-os-vs-ai-platform#in-one-paragraph",
-  },
-  {
     question: "How do you build an AI operating system?",
     slug: "how-to-build-an-ai-operating-system",
     answer:

@@ -70,10 +70,10 @@ export const COMPARES: CompareEntry[] = [
   },
   {
     slug: "ai-os-vs-ai-platform",
-    metaTitle: "AI OS vs AI platform: chassis and engine | Deepgrain",
-    title: "AI OS vs AI platform: stop confusing the chassis and the engine",
+    metaTitle: "AI platform vs AI operating system | Deepgrain",
+    title: "AI platform vs AI operating system",
     description:
-      "An AI platform is something you buy. An AI operating system is something you build around it. Here is the line, in a table.",
+      "AI platform vs AI operating system: compare ownership, data, governance and cadence, then see why a platform is only one component of the full system.",
     intro:
       "Vendors will sell you something called an AI platform and label it an AI OS. It is not. A platform without your data, your tools, your governance, and your cadence is a feature with marketing.",
     left: "AI platform",
@@ -87,7 +87,7 @@ export const COMPARES: CompareEntry[] = [
       { axis: "Replaceable?", left: "Swap the vendor", right: "Swap nothing without a migration" },
     ],
     summary:
-      "An AI platform is a component. An AI operating system is the full chassis: the data it reads, the tools it calls, the agents it runs, the governance that constrains it, and the cadence that maintains it. Treating a platform purchase as an AI OS is the most expensive way to discover the difference.",
+      "An AI platform is a product you buy. An AI operating system is the data, tools, governance and cadence you build around it. A platform is one component of the full chassis: the data it reads, the tools it calls, the agents it runs, the governance that constrains it, and the cadence that maintains it. Treating a platform purchase as an AI OS is the most expensive way to discover the difference.",
     faqs: [
       {
         question: "Is buying an AI platform enough?",
