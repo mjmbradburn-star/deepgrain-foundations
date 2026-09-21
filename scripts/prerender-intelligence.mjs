@@ -134,10 +134,24 @@ process.on("SIGINT", () => {
 });
 
 // --- 3. Launch puppeteer ---
-const browser = await puppeteer.launch({
-  headless: true,
-  args: ["--no-sandbox", "--disable-setuid-sandbox"],
-});
+// Hosted build containers (Vercel) lack the system libs Chrome needs, so
+// there we use the serverless chromium build instead of the bundled one.
+let browser;
+if (process.env.VERCEL) {
+  const chromium = (await import("@sparticuz/chromium")).default;
+  const puppeteerCore = (await import("puppeteer-core")).default;
+  browser = await puppeteerCore.launch({
+    args: chromium.args,
+    executablePath: await chromium.executablePath(),
+    headless: "shell",
+  });
+  console.log("[prerender] launched @sparticuz/chromium (Vercel build env)");
+} else {
+  browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
+}
 
 let ok = 0;
 let failed = 0;
