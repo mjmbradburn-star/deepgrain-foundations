@@ -45,7 +45,10 @@ const IntelligencePillars = () => {
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
         <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
+        <meta name="twitter:title" content="Pillar Deep-Dives | Deepgrain Intelligence" />
+        <meta name="twitter:description" content="Topic-cluster deep-dives across the Deepgrain library." />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://www.deepgrain.ai/og-intelligence.png" />
       </Helmet>
 
       <section className="bg-green text-cream pt-40 md:pt-48 pb-20 md:pb-28">

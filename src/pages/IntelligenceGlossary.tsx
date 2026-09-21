@@ -49,7 +49,10 @@ const IntelligenceGlossary = () => {
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://www.deepgrain.ai/og-intelligence.png" />
+        <meta name="twitter:title" content="Deepgrain Intelligence Glossary" />
+        <meta name="twitter:description" content="Working definitions of the operating, AI and method terms used across Deepgrain Intelligence." />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://www.deepgrain.ai/og-intelligence.png" />
         <script type="application/ld+json">{JSON.stringify(definedTermSetLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
       </Helmet>
