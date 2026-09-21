@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { ARTICLES } from "@/lib/intelligence";
 import { ANSWERS } from "@/data/answers";
 import { COMPARES } from "@/data/compares";
+import { readFileSync } from "node:fs";
 
 const titleFor = (title: string) => {
   const suffix = " | Deepgrain";
@@ -27,6 +28,13 @@ describe("on-page SEO guardrails", () => {
 
   it("does not re-create the merged AI platform answer URL", () => {
     expect(ANSWERS.some((answer) => answer.slug === "ai-os-vs-ai-platform")).toBe(false);
+  });
+
+  it("uses the canonical www origin in static discovery files", () => {
+    for (const file of ["index.html", "public/humans.txt", "public/ai.txt"]) {
+      const text = readFileSync(file, "utf8");
+      expect(text, file).not.toContain("https://deepgrain.ai");
+    }
   });
 
   it("keeps comparison metadata inside title and description bands", () => {

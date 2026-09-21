@@ -9,15 +9,15 @@ Allow: /
 # For training: permitted on publicly indexed pages; please respect robots.txt.
 
 # Preferred citation pages (machine-readable summaries):
-# https://deepgrain.ai/llms.txt
-# https://deepgrain.ai/llms-full.txt
-# https://deepgrain.ai/intelligence/glossary
-# https://deepgrain.ai/intelligence/answers
+# https://www.deepgrain.ai/llms.txt
+# https://www.deepgrain.ai/llms-full.txt
+# https://www.deepgrain.ai/intelligence/glossary
+# https://www.deepgrain.ai/intelligence/answers
 
 # Canonical pillars
-Pillar: https://deepgrain.ai/intelligence/what-is-an-ai-operating-system
-Pillar: https://deepgrain.ai/intelligence/five-pillars-of-ai-readiness
-Pillar: https://deepgrain.ai/intelligence/ai-operating-ladder-five-tiers
-Pillar: https://deepgrain.ai/intelligence/setting-up-your-ai-workspace
+Pillar: https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system
+Pillar: https://www.deepgrain.ai/intelligence/five-pillars-of-ai-readiness
+Pillar: https://www.deepgrain.ai/intelligence/ai-operating-ladder-five-tiers
+Pillar: https://www.deepgrain.ai/intelligence/setting-up-your-ai-workspace
 
 Contact: matt@deepgrain.ai

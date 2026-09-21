@@ -1,7 +1,7 @@
 /* TEAM */
 Founder & Principal: Matthew Bradburn
-Site: https://deepgrain.ai
-Profile: https://deepgrain.ai/about
+Site: https://www.deepgrain.ai
+Profile: https://www.deepgrain.ai/about
 LinkedIn: https://www.linkedin.com/in/matthewbradburn/
 Location: London, United Kingdom
 
