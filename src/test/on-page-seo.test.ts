@@ -27,7 +27,9 @@ describe("on-page SEO guardrails", () => {
   });
 
   it("does not re-create the merged AI platform answer URL", () => {
-    expect(ANSWERS.some((answer) => answer.slug === "ai-os-vs-ai-platform")).toBe(false);
+    for (const slug of ["ai-os-vs-ai-platform", "how-to-identify-efficiency-gaps-ai-can-fill", "how-does-ai-improve-business-efficiency"]) {
+      expect(ANSWERS.some((answer) => answer.slug === slug), slug).toBe(false);
+    }
   });
 
   it("keeps the raw SPA shell noindex until a crawlable route overrides it", () => {

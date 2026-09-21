@@ -101,22 +101,6 @@ export const ANSWERS: AnswerEntry[] = [
     link: "/intelligence/ai-os-vs-automation#in-one-paragraph",
   },
   {
-    question: "How do businesses identify efficiency gaps that AI can fill?",
-    slug: "how-to-identify-efficiency-gaps-ai-can-fill",
-    metaTitle: "How to identify efficiency gaps AI can fill | Deepgrain",
-    answer:
-      "By looking at four signals in the existing work: repetition, latency, judgment shape, and contestability. A workflow that runs often, waits on a human for hours when the human contribution is minutes, has judgment that is pattern-matching rather than novel, and has a clear owner who can sign off changes, is almost always an AI-shaped gap. A 30-minute audit beats a three-month strategy deck for finding the first one.",
-    link: "/intelligence/identifying-efficiency-gaps-ai-can-fill#four-signals-that-a-gap-is-ai-shaped",
-    linkLabel: "Read the full diagnosis",
-  },
-  {
-    question: "How does AI improve business efficiency?",
-    slug: "how-does-ai-improve-business-efficiency",
-    answer:
-      "Not by replacing roles, by collapsing the waiting time inside workflows. The biggest gains come from drafting, triage, summarisation, and structured extraction: work that used to sit in a queue waiting for a human is prepared in seconds, and the human becomes a reviewer rather than a doer. The throughput change is usually larger than the headcount change.",
-    link: "/intelligence/identifying-efficiency-gaps-ai-can-fill#what-an-efficiency-gap-actually-is",
-  },
-  {
     question: "How does agentic AI improve operational efficiency in businesses?",
     slug: "how-does-agentic-ai-improve-operational-efficiency",
     metaTitle: "How agentic AI improves operational efficiency | Deepgrain",

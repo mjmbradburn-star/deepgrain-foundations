@@ -6,6 +6,16 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/answers/how-to-identify-efficiency-gaps-ai-can-fill",
+      "destination": "/intelligence/identifying-efficiency-gaps-ai-can-fill",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/how-does-ai-improve-business-efficiency",
+      "destination": "/intelligence/identifying-efficiency-gaps-ai-can-fill",
+      "statusCode": 301
+    },
+    {
       "source": "/answers/ai-os-vs-ai-platform",
       "destination": "/intelligence/ai-os-vs-ai-platform",
       "statusCode": 301
