@@ -5,6 +5,14 @@ import { Parallax } from "@/components/ui/Parallax";
 import { GrainRings } from "@/components/sections/deck/GrainRings";
 import { track } from "@/lib/analytics";
 
+type CourseVariant = "bar" | "cta" | "card" | null;
+
+const getCourseVariant = (): CourseVariant => {
+  const value = new URLSearchParams(window.location.search).get("course-variant");
+  return value === "cta" || value === "card" ? value : "bar";
+};
+
+
 /** Trailing arrow nested in its own circular wrapper, with magnetic hover. */
 const ArrowCircle = ({ tone = "green" }: { tone?: "green" | "cream" }) => (
   <span
@@ -30,6 +38,7 @@ const ArrowCircle = ({ tone = "green" }: { tone?: "green" | "cream" }) => (
  * leads.
  */
 export const HeroDeck = () => {
+  const courseVariant = getCourseVariant();
   const auditHref = "/grain-audit";
   const onAudit = () =>
     track("cta_click", {
@@ -53,6 +62,14 @@ export const HeroDeck = () => {
       link_url: "/exposure-map",
     });
 
+  const onCourse = (location: string) =>
+    track("cta_click", {
+      cta_id: `cohort_home_${location}`,
+      cta_location: `hero_${location}`,
+      cta_label: "Join the October cohort",
+      link_url: "/waitlist",
+    });
+
   return (
     <section
       className="relative bg-bark text-cream overflow-hidden min-h-[620px] lg:min-h-[640px] lg:max-h-[880px] flex items-center"
@@ -60,13 +77,25 @@ export const HeroDeck = () => {
       data-no-rule
     >
       <BarkGrain />
+      {courseVariant === "bar" && (
+        <Link
+          to="/waitlist"
+          onClick={() => onCourse("bar")}
+          className="group absolute left-0 right-0 top-24 z-20 h-10 border-y border-cream/[0.12] bg-bark/35 backdrop-blur-sm transition-colors hover:bg-bark/55 md:top-28 lg:right-[48%]"
+        >
+          <span className="container-grain flex h-full items-center justify-between gap-5 font-sans text-[11px] tracking-[0.16em] text-cream/78 sm:text-xs sm:tracking-[0.18em] lg:ml-0 lg:px-20">
+            <span className="uppercase"><span className="text-brass">October cohort</span><span className="hidden sm:inline"> · Four weeks · 20 seats</span></span>
+            <span className="shrink-0 text-cream transition-colors group-hover:text-brass">Join the waitlist <span aria-hidden>→</span></span>
+          </span>
+        </Link>
+      )}
       {/* Directional wash: solid green under the copy, opening toward the art. */}
       <div className="absolute inset-0 bg-gradient-to-br from-green/90 via-green/70 to-bark/85 pointer-events-none z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-b from-green/30 via-transparent to-green/45 pointer-events-none z-[1]" />
       {/* Warm brass glow seated behind the artwork. */}
       <div className="hidden lg:block absolute right-[-6%] top-1/2 -translate-y-1/2 w-[46%] aspect-square rounded-full bg-brass/[0.14] blur-[120px] pointer-events-none z-[1]" />
 
-      <div className="relative z-10 container-grain w-full pt-24 pb-16 md:pt-28 md:pb-20 lg:py-0">
+      <div className="relative z-10 container-grain w-full pt-44 pb-16 md:pt-48 md:pb-20 lg:py-0">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-12">
           {/* LEFT: copy */}
           <div className="lg:col-span-7 xl:col-span-7">
@@ -88,6 +117,20 @@ export const HeroDeck = () => {
               </p>
             </div>
 
+            {courseVariant === "card" && (
+              <Link
+                to="/waitlist"
+                onClick={() => onCourse("card")}
+                className="group fade-in-up fade-in-up-3 mt-7 flex max-w-xl items-center justify-between gap-6 border-y border-cream/[0.16] py-3.5 text-cream transition-colors hover:border-brass/50"
+              >
+                <span>
+                  <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-brass">October cohort · 20 seats</span>
+                  <span className="mt-1 block font-display text-lg italic text-cream/85 sm:text-xl">Four weeks to ship three working automations.</span>
+                </span>
+                <span className="shrink-0 font-sans text-xs tracking-wider text-cream/75 transition-transform group-hover:translate-x-0.5">Waitlist →</span>
+              </Link>
+            )}
+
             <div className="fade-in-up fade-in-up-3 mt-8 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-4 sm:gap-6">
               <Link
                 to={auditHref}
@@ -105,6 +148,16 @@ export const HeroDeck = () => {
                 Score your People function
                 <span className="transition-transform group-hover:translate-x-0.5">→</span>
               </Link>
+              {courseVariant === "cta" && (
+                <Link
+                  to="/waitlist"
+                  onClick={() => onCourse("cta")}
+                  className="group inline-flex items-center gap-1.5 font-sans text-sm tracking-wider text-brass hover:text-cream underline-offset-4 hover:underline"
+                >
+                  Join the October cohort
+                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                </Link>
+              )}
               <Link
                 to="/exposure-map"
                 onClick={onExposure}
