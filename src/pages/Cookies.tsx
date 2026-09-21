@@ -3,6 +3,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const H2 = ({ children }: { children: React.ReactNode }) => (
   <h2 className="font-display text-walnut text-2xl md:text-3xl mt-12 mb-4" style={{ letterSpacing: "-0.01em" }}>
@@ -20,6 +21,10 @@ const Cookies = () => (
       title="Cookie Policy: the storage this site uses | Deepgrain"
       description="A short, honest account of the storage this site uses. No advertising or third-party trackers, just what keeps the site working."
       path="/cookies"
+      jsonLd={[
+        { "@context": "https://schema.org", "@type": "WebPage", name: "Cookie policy", url: "https://www.deepgrain.ai/cookies" },
+        buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "Cookie policy", url: "https://www.deepgrain.ai/cookies" }]),
+      ]}
     />
     <div className="container-grain max-w-3xl">
       <ScrollReveal>

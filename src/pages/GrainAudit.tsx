@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { BarkGrain } from "@/components/ui/BarkGrain";
 import { GrainFlow } from "@/components/ui/GrainFlow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -73,7 +74,7 @@ const GrainAudit = () => {
         title="The Grain Audit: a two-week process review | Deepgrain"
         description="A two-week fixed-scope review of one People Ops process: U-shaped map, ranked automation shortlist, 90-day plan, readout. £2,000, credited in full."
         path="/grain-audit"
-        jsonLd={AUDIT_LD}
+        jsonLd={[AUDIT_LD, buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "Grain Audit", url: "https://www.deepgrain.ai/grain-audit" }])]}
       />
 
       {/* ------------------------------------------------ hero ----------- */}

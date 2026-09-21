@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { BarkGrain } from "@/components/ui/BarkGrain";
 import { GrainFlow } from "@/components/ui/GrainFlow";
 import { GrowthRings } from "@/components/ui/GrowthRings";
@@ -482,7 +483,7 @@ const Readiness = () => {
         title="How AI-ready is your People function? | Deepgrain"
         description="Sixteen questions, about ten minutes, one honest number. Score your People function across four capability layers and see the two gaps that matter most."
         path="/readiness"
-        jsonLd={READINESS_LD}
+        jsonLd={[READINESS_LD, buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "Readiness assessment", url: "https://www.deepgrain.ai/readiness" }])]}
       />
       <section
         className="relative bg-bark text-cream overflow-hidden"

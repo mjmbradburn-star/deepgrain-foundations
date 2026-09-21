@@ -3,6 +3,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const H2 = ({ children }: { children: React.ReactNode }) => (
   <h2 className="font-display text-walnut text-2xl md:text-3xl mt-12 mb-4" style={{ letterSpacing: "-0.01em" }}>
@@ -20,6 +21,10 @@ const Privacy = () => (
       title="Privacy Policy: your data, handled plainly | Deepgrain"
       description="How Deepgrain collects, uses, and protects your personal data under UK and EU GDPR: what we store, why, who sees it, and how to reach us."
       path="/privacy"
+      jsonLd={[
+        { "@context": "https://schema.org", "@type": "WebPage", name: "Privacy policy", url: "https://www.deepgrain.ai/privacy" },
+        buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "Privacy policy", url: "https://www.deepgrain.ai/privacy" }]),
+      ]}
     />
     <div className="container-grain max-w-3xl">
       <ScrollReveal>

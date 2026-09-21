@@ -1,4 +1,5 @@
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { EmailCapture } from "@/components/forms/EmailCapture";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { BarkGrain } from "@/components/ui/BarkGrain";
@@ -124,7 +125,7 @@ const Waitlist = () => {
         title="Deepgrain AI Cohort for Commercial Functions"
         description="Four weeks live for operators across Finance, Sales, Marketing, Operations, Customer and People. Ship three working AI workflows and a 90-day plan."
         path="/waitlist"
-        jsonLd={[COURSE_LD, buildFAQLd(faqItems)]}
+        jsonLd={[COURSE_LD, buildFAQLd(faqItems), buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "AI cohort", url: "https://www.deepgrain.ai/waitlist" }])]}
       />
 
       {/* ------------------------------------------------ hero ----------- */}

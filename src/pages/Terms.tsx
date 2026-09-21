@@ -2,6 +2,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { BrassRule } from "@/components/ui/BrassRule";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 
 const H2 = ({ children }: { children: React.ReactNode }) => (
   <h2 className="font-display text-walnut text-2xl md:text-3xl mt-12 mb-4" style={{ letterSpacing: "-0.01em" }}>
@@ -19,6 +20,10 @@ const Terms = () => (
       title="Terms of Use for this website | Deepgrain"
       description="Terms governing use of the Deepgrain website: what the content is for, what we ask of visitors, and the limits of what we promise."
       path="/terms"
+      jsonLd={[
+        { "@context": "https://schema.org", "@type": "WebPage", name: "Terms of use", url: "https://www.deepgrain.ai/terms" },
+        buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "Terms of use", url: "https://www.deepgrain.ai/terms" }]),
+      ]}
     />
     <div className="container-grain max-w-3xl">
       <ScrollReveal>

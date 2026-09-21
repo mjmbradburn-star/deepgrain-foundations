@@ -13,6 +13,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { BarkGrain } from "@/components/ui/BarkGrain";
 import { GrainFlow } from "@/components/ui/GrainFlow";
 import { PillButton } from "@/components/ui/PillButton";
@@ -210,7 +211,7 @@ const ExposureMap = () => {
         title="The AI Exposure Map | Deepgrain"
         description="Every operating function scored for AI exposure at task level, not job level. See which work automates, which judgment compounds, and what each function needs."
         path="/exposure-map"
-        jsonLd={EXPOSURE_LD}
+        jsonLd={[EXPOSURE_LD, buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "AI Exposure Map", url: "https://www.deepgrain.ai/exposure-map" }])]}
       />
 
       {/* ------------------------------------------------ intro ---------- */}
