@@ -125,6 +125,13 @@ const IntelligencePillar = () => {
               {p}
             </p>
           ))}
+          {pillar.slug === "ai-operating-system" && (
+            <p>
+              <Link to="/intelligence/ai-os-vs-ai-platform" className="text-green underline decoration-brass/50 underline-offset-4 hover:text-brass">
+                Compare an AI platform with an AI operating system →
+              </Link>
+            </p>
+          )}
           <nav aria-label="On this pillar" className="pt-6 border-t border-walnut/15">
             <ol className="space-y-2">
               {sections.map((s, i) => (

@@ -57,7 +57,7 @@ export const PILLARS: Pillar[] = [
     lede: "The connective layer between AI models and the work a company actually does.",
     intro: [
       "Most companies have AI demos. Very few have an AI operating system. The model is the engine, the AI OS is the rest of the car: the wiring, the controls, the road rules, the people who drive it. Without that layer, capability stalls at the pilot stage and never compounds into output.",
-      "This pillar is the canonical Deepgrain guide. It pulls together every essay we have written on what an AI OS is, how it differs from platforms and operating models, the readiness conditions for building one, and the patterns we use when we install one inside a company.",
+      "This pillar is the canonical Deepgrain guide. It pulls together every essay we have written on what an AI OS is, how it differs from platforms and operating models, the readiness conditions for building one, and the patterns we use when we install one inside a company. Start with the AI platform vs AI operating system comparison when the buying decision is the source of confusion.",
     ],
     sections: [
       {

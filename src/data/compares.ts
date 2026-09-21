@@ -64,6 +64,7 @@ export const COMPARES: CompareEntry[] = [
     ],
     related: [
       { href: "/intelligence/what-is-an-ai-operating-system", label: "What is an AI operating system?" },
+      { href: "/intelligence/ai-os-vs-ai-platform", label: "AI platform vs AI operating system" },
       { href: "/intelligence/operating-systems-vs-operating-models", label: "Operating systems vs operating models" },
       { href: "/intelligence/five-pillars-of-ai-readiness", label: "The five pillars of AI readiness" },
     ],
@@ -128,6 +129,7 @@ export const COMPARES: CompareEntry[] = [
     ],
     related: [
       { href: "/intelligence/what-is-an-ai-operating-system", label: "What is an AI operating system?" },
+      { href: "/intelligence/ai-os-vs-ai-platform", label: "AI platform vs AI operating system" },
       { href: "/intelligence/automation-patterns-that-pay-off", label: "Automation patterns that pay off" },
     ],
   },
