@@ -22,11 +22,10 @@
  * Usage: runs automatically via `postbuild`. Skip locally with
  * `DEEPGRAIN_SKIP_PRERENDER=1 npm run build`.
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, statSync, createReadStream } from "node:fs";
+import { dirname, join, extname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { spawn } from "node:child_process";
-import { createServer } from "node:net";
+import { createServer } from "node:http";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -76,48 +75,63 @@ if (!routes.length) {
 }
 console.log(`[prerender] found ${routes.length} routes (all of sitemap).`);
 
-// --- 2. Find an open port and start `vite preview` ---
-const port = await new Promise((resolve, reject) => {
-  const srv = createServer();
-  srv.unref();
-  srv.on("error", reject);
-  srv.listen(0, () => {
-    const p = srv.address().port;
-    srv.close(() => resolve(p));
-  });
+// --- 2. Serve dist/ locally ---
+// Serve dist/ over a plain node static server. (`npx vite preview` is
+// unreliable inside hosted build containers; this has zero dependencies.)
+const MIME = {
+  ".html": "text/html; charset=utf-8",
+  ".js": "text/javascript",
+  ".mjs": "text/javascript",
+  ".css": "text/css",
+  ".json": "application/json",
+  ".xml": "application/xml",
+  ".txt": "text/plain",
+  ".webp": "image/webp",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".gif": "image/gif",
+  ".svg": "image/svg+xml",
+  ".ico": "image/x-icon",
+  ".woff": "font/woff",
+  ".woff2": "font/woff2",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm",
+  ".pdf": "application/pdf",
+};
+const server = createServer((req, res) => {
+  try {
+    const u = new URL(req.url, "http://localhost");
+    let p = decodeURIComponent(u.pathname);
+    if (p.endsWith("/")) p += "index.html";
+    let file = join(DIST, p);
+    if (!existsSync(file) && !extname(p)) file = join(DIST, p, "index.html");
+    if (!existsSync(file) || statSync(file).isDirectory()) {
+      res.writeHead(404);
+      res.end("not found");
+      return;
+    }
+    res.writeHead(200, {
+      "content-type": MIME[extname(file).toLowerCase()] ?? "application/octet-stream",
+    });
+    createReadStream(file).pipe(res);
+  } catch (e) {
+    res.writeHead(500);
+    res.end(String(e));
+  }
 });
-
-const preview = spawn(
-  "npx",
-  ["vite", "preview", "--port", String(port), "--strictPort"],
-  { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"] },
-);
-const previewUrl = `http://localhost:${port}`;
-let previewReady = false;
-preview.stdout.on("data", (d) => {
-  if (d.toString().includes("Local:")) previewReady = true;
-});
-preview.stderr.on("data", (d) => process.stderr.write(`[vite preview] ${d}`));
+await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+const port = server.address().port;
+const previewUrl = `http://127.0.0.1:${port}`;
 
 const cleanup = () => {
-  if (!preview.killed) preview.kill("SIGTERM");
+  try { server.close(); } catch {}
 };
 process.on("exit", cleanup);
 process.on("SIGINT", () => {
   cleanup();
   process.exit(130);
 });
-
-// Poll until preview is responsive.
-const deadline = Date.now() + 30_000;
-while (!previewReady && Date.now() < deadline) {
-  await new Promise((r) => setTimeout(r, 200));
-}
-if (!previewReady) {
-  console.error("[prerender] vite preview did not start in 30s.");
-  cleanup();
-  process.exit(1);
-}
 
 // --- 3. Launch puppeteer ---
 const browser = await puppeteer.launch({
