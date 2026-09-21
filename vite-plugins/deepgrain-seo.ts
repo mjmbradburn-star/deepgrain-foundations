@@ -109,7 +109,14 @@ function readArticles(root: string): Article[] {
   );
 }
 
-function buildSitemap(articles: Article[], pillarSlugs: string[]): string {
+function readCompareSlugs(root: string): string[] {
+  const file = path.join(root, "src/data/compares.ts");
+  if (!fs.existsSync(file)) return [];
+  const src = fs.readFileSync(file, "utf8");
+  return [...src.matchAll(/^\s*slug:\s*"([^"]+)"/gm)].map((mm) => mm[1]);
+}
+
+function buildSitemap(articles: Article[], pillarSlugs: string[], compareSlugs: string[]): string {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
     ...STATIC_PAGES.map(
@@ -123,6 +130,10 @@ function buildSitemap(articles: Article[], pillarSlugs: string[]): string {
     ...pillarSlugs.map(
       (s) =>
         `  <url>\n    <loc>${SITE}/intelligence/pillar/${s}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
+    ),
+    ...compareSlugs.map(
+      (s) =>
+        `  <url>\n    <loc>${SITE}/intelligence/${s}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`
     ),
     ...articles.map(
       (a) =>
@@ -266,7 +277,7 @@ const EXCLUDED_ROUTES = new Set([
  * else that isn't covered by STATIC_PAGES, the category list, or article
  * slugs is logged as a warning during build.
  */
-function auditRoutes(root: string, articles: Article[]): void {
+function auditRoutes(root: string, articles: Article[], compareSlugs: string[]): void {
   const appPath = path.join(root, "src/App.tsx");
   if (!fs.existsSync(appPath)) return;
   const src = fs.readFileSync(appPath, "utf8");
@@ -276,6 +287,7 @@ function auditRoutes(root: string, articles: Article[]): void {
     ...STATIC_PAGES.map((p) => p.url),
     ...CATEGORIES.map((c) => `/intelligence/category/${c.slug}`),
     ...articles.map((a) => `/intelligence/${a.frontmatter.slug}`),
+    ...compareSlugs.map((s) => `/intelligence/${s}`),
   ]);
 
   const missing = routes.filter(
@@ -293,7 +305,8 @@ export function deepgrainSeoPlugin(): Plugin {
   const generate = (root: string, outDir: string) => {
     const articles = readArticles(root);
     const pillarSlugs = readPillarSlugs(root);
-    auditRoutes(root, articles);
+    const compareSlugs = readCompareSlugs(root);
+    auditRoutes(root, articles, compareSlugs);
 
     // The canonical sitemap / llms files are produced by
     // scripts/build-seo-indexes.mjs in the prebuild hook and live in
@@ -309,7 +322,7 @@ export function deepgrainSeoPlugin(): Plugin {
     const readOr = (p: string, fallback: () => string) =>
       fs.existsSync(p) ? fs.readFileSync(p, "utf8") : fallback();
 
-    const sitemap = readOr(canonical.sitemap, () => buildSitemap(articles, pillarSlugs));
+    const sitemap = readOr(canonical.sitemap, () => buildSitemap(articles, pillarSlugs, compareSlugs));
     const llms = readOr(canonical.llms, () => buildLlmsTxt(articles));
     const llmsFull = readOr(canonical.llmsFull, () => buildLlmsFullTxt(articles));
 

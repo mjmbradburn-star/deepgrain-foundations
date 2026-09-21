@@ -36,9 +36,9 @@ export const BeforeAfterCard = ({ item }: { item: BeforeAfter }) => (
         >
           {item.eyebrow}
         </div>
-        <h3 className="font-display text-walnut text-3xl md:text-5xl leading-[1.05] max-w-3xl">
+        <h2 className="font-display text-walnut text-3xl md:text-5xl leading-[1.05] max-w-3xl">
           {item.headline}
-        </h3>
+        </h2>
         <div className="mt-6 h-px w-full bg-brass/30" />
       </ScrollReveal>
 

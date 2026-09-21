@@ -17,8 +17,8 @@ const P = ({ children }: { children: React.ReactNode }) => (
 const Privacy = () => (
   <section className="bg-linen text-walnut min-h-screen pt-40 pb-32">
     <PageMeta
-      title="Privacy Policy | Deepgrain"
-      description="How Deepgrain collects, uses, and protects your personal data under UK and EU GDPR."
+      title="Privacy Policy: your data, handled plainly | Deepgrain"
+      description="How Deepgrain collects, uses, and protects your personal data under UK and EU GDPR: what we store, why, who sees it, and how to reach us."
       path="/privacy"
     />
     <div className="container-grain max-w-3xl">

@@ -63,12 +63,12 @@ const IntelligencePillar = () => {
   return (
     <>
       <Helmet>
-        <title>{pillar.title} | Deepgrain Intelligence</title>
-        <meta name="description" content={pillar.description} />
+        <title>{pillar.metaTitle ?? `${pillar.title} | Deepgrain Intelligence`}</title>
+        <meta name="description" content={pillar.metaDescription ?? pillar.description} />
         <meta name="keywords" content={pillar.keywords.join(", ")} />
         <link rel="canonical" href={url} />
-        <meta property="og:title" content={`${pillar.title} | Deepgrain`} />
-        <meta property="og:description" content={pillar.description} />
+        <meta property="og:title" content={pillar.metaTitle ?? `${pillar.title} | Deepgrain Intelligence`} />
+        <meta property="og:description" content={pillar.metaDescription ?? pillar.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>

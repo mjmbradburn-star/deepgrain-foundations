@@ -31,7 +31,7 @@ export const Hero = () => (
         src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=40&fm=webp"
         srcSet="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=40&fm=webp 400w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=640&q=40&fm=webp 640w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=40&fm=webp 1200w, https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=45&fm=webp 1600w"
         sizes="100vw"
-        alt=""
+        alt="Sunlight through trees in a forest, the wood grain behind the Deepgrain name"
         width={1600}
         height={1067}
         loading="eager"

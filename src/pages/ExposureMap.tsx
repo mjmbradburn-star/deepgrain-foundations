@@ -208,7 +208,7 @@ const ExposureMap = () => {
     <>
       <PageMeta
         title="The AI Exposure Map | Deepgrain"
-        description="Every operating function scored for AI exposure at task level, not job level. From People and Finance to Legal, Revenue Ops and IT: see which work automates, which judgment compounds, and which capability layer each one needs."
+        description="Every operating function scored for AI exposure at task level, not job level. See which work automates, which judgment compounds, and what each function needs."
         path="/exposure-map"
         jsonLd={EXPOSURE_LD}
       />

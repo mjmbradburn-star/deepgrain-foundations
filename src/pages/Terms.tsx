@@ -16,8 +16,8 @@ const P = ({ children }: { children: React.ReactNode }) => (
 const Terms = () => (
   <section className="bg-linen text-walnut min-h-screen pt-40 pb-32">
     <PageMeta
-      title="Terms of Use | Deepgrain"
-      description="Terms governing use of the Deepgrain website."
+      title="Terms of Use for this website | Deepgrain"
+      description="Terms governing use of the Deepgrain website: what the content is for, what we ask of visitors, and the limits of what we promise."
       path="/terms"
     />
     <div className="container-grain max-w-3xl">

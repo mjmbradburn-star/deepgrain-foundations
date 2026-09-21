@@ -54,10 +54,10 @@ const IntelligenceAnswers = () => {
   return (
     <>
       <Helmet>
-        <title>Answers: AI operating system, AI OS, AI workspace | Deepgrain</title>
+        <title>Answers: AI operating system and AI OS | Deepgrain</title>
         <meta
           name="description"
-          content="Direct answers to the questions people actually search: what is an AI operating system, how is an AI OS different from an operating model, why AI pilots stall, and more. Sourced from Deepgrain Intelligence."
+          content="Direct answers to the questions people actually search: what an AI operating system is, how an AI OS differs from an operating model, why pilots stall."
         />
         <link rel="canonical" href={URL} />
         <meta property="og:title" content="Deepgrain Intelligence: Answers" />

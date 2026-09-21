@@ -6,6 +6,11 @@ import { CATEGORIES, getHeroImage } from "@/lib/intelligence";
 interface ArticleCardProps {
   article: Article;
   variant?: "linen" | "green" | "row";
+  /** Semantic rank of the card title. Default h3 (cards sit under an H2
+   *  section). Category and cluster grids pass h2 because there the cards
+   *  sit directly beneath the page H1. Styling is class-driven, so the tag
+   *  change is invisible. */
+  headingLevel?: "h2" | "h3";
 }
 
 /**
@@ -23,8 +28,9 @@ const trimDescription = (text: string, max = 130): string => {
 };
 
 export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
-  ({ article, variant = "linen" }, ref) => {
+  ({ article, variant = "linen", headingLevel = "h3" }, ref) => {
     const { frontmatter: f } = article;
+    const H = headingLevel;
     const cat = CATEGORIES.find((c) => c.slug === f.category);
     const hero = getHeroImage(f.slug);
     const description = trimDescription(f.description);
@@ -93,7 +99,7 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
             {hero.webp && <source type="image/webp" srcSet={hero.webp} />}
             <img
               src={hero.src}
-              alt=""
+              alt={`Cover image for "${f.title}"`}
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
@@ -116,14 +122,14 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, ArticleCardProps>(
             {f.readTime}
           </span>
         </div>
-        <h3
+        <H
           className={`font-display text-lg md:text-2xl leading-[1.15] line-clamp-2 [&]:min-h-[calc(2*1.15*1.125rem)] md:[&]:min-h-[calc(2*1.15*1.5rem)] ${
             isGreen ? "text-cream" : "text-walnut"
           }`}
           style={{ letterSpacing: "-0.005em" }}
         >
           {f.title}
-        </h3>
+        </H>
         <p
           className={`text-[12px] md:text-[13px] leading-[1.5] md:leading-[1.55] line-clamp-2 ${
             isGreen ? "text-cream/75" : "text-walnut/70"

@@ -693,9 +693,9 @@ const Readiness = () => {
                             </span>
                             /100
                           </p>
-                          <h4 className="font-display font-semibold text-cream text-2xl md:text-3xl mt-5">
+                          <h2 className="font-display font-semibold text-cream text-2xl md:text-3xl mt-5">
                             {GAPS[layer].title}
-                          </h4>
+                          </h2>
                           <p className="text-cream/75 mt-5 text-[17px] leading-relaxed">
                             {GAPS[layer].detail}
                           </p>

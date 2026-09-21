@@ -102,7 +102,7 @@ const AnswerDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{entry.question} | Deepgrain</title>
+        <title>{entry.metaTitle ?? `${entry.question} | Deepgrain`}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={url} />
         <meta property="og:title" content={entry.question} />

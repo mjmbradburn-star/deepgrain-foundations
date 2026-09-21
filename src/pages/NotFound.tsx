@@ -48,8 +48,8 @@ const NotFound = () => {
   return (
     <section className="bg-green text-cream min-h-screen flex items-center py-32">
       <PageMeta
-        title="Page not found | Deepgrain"
-        description="The page you're looking for isn't here. Search the Intelligence library or pick up one of our most-read pieces."
+        title="Page not found | Deepgrain Intelligence"
+        description="The page you're looking for isn't here. Search the Intelligence library, browse the most-read pieces, or head back to the Deepgrain homepage."
         path="/404"
         noindex
       />

@@ -18,22 +18,27 @@ export type CategorySlug =
 export interface Category {
   slug: CategorySlug;
   name: string;
+  /** Visible page H1 on the category hub. */
   description: string;
   track: Track;
+  /** Optional <title> override (visible name/H1 stay as-is). */
+  metaTitle?: string;
+  /** Meta/OG description (120-160 chars). Falls back to description. */
+  metaDescription?: string;
 }
 
 export const CATEGORIES: Category[] = [
   // Deepgrain
-  { slug: "foundations", name: "Foundations", description: "First principles of organisational consultancy and the grain.", track: "deepgrain" },
-  { slug: "ai-operating-systems", name: "AI & Operating Systems", description: "What an AI operating system is - and how to build one.", track: "deepgrain" },
-  { slug: "method-and-practice", name: "Method & Practice", description: "Read · Craft · Scale: how the work is done.", track: "deepgrain" },
-  { slug: "sector-lenses", name: "Sector Lenses", description: "Operating consultancy applied to specific industries.", track: "deepgrain" },
-  { slug: "leadership-and-craft", name: "Leadership & Craft", description: "The disciplines of operating leadership.", track: "deepgrain" },
+  { slug: "foundations", name: "Foundations", description: "First principles of organisational consultancy and the grain.", track: "deepgrain", metaDescription: "First principles of organisational consultancy and the grain: how to read a company before changing it, and why the grain decides what lasts." },
+  { slug: "ai-operating-systems", name: "AI & Operating Systems", description: "What an AI operating system is - and how to build one.", track: "deepgrain", metaDescription: "What an AI operating system is, and how to build one: the models, data, tools, governance, and operating cadence that turn capability into output." },
+  { slug: "method-and-practice", name: "Method & Practice", description: "Read · Craft · Scale: how the work is done.", track: "deepgrain", metaDescription: "Read · Craft · Scale: how the work is done. Diagnose first, craft small, and scale only at the pace people can actually absorb." },
+  { slug: "sector-lenses", name: "Sector Lenses", description: "Operating consultancy applied to specific industries.", track: "deepgrain", metaDescription: "Operating consultancy applied to specific industries: climate ventures, transit and mobility, financial data, and defence tech." },
+  { slug: "leadership-and-craft", name: "Leadership & Craft", description: "The disciplines of operating leadership.", track: "deepgrain", metaDescription: "The disciplines of operating leadership: diagnosis, intervention, values that stick, and the quiet craft of making scale hold." },
   // People Ops
-  { slug: "people-ops-foundations", name: "Foundations", description: "From AI dabbling to systematic People Ops capability.", track: "people-ops" },
-  { slug: "people-ops-systems", name: "Systems & Automation", description: "Connected systems, agents, and the mechanics of leverage.", track: "people-ops" },
-  { slug: "people-ops-builders", name: "Builders & Champions", description: "Growing internal capability instead of buying tools.", track: "people-ops" },
-  { slug: "people-ops-governance", name: "Governance & Trust", description: "Working with AI without trading away judgment.", track: "people-ops" },
+  { slug: "people-ops-foundations", name: "Foundations", description: "From AI dabbling to systematic People Ops capability.", track: "people-ops", metaDescription: "From AI dabbling to systematic People Ops capability: readiness, diagnosis, and the first workflows worth rebuilding with AI.", metaTitle: "People Ops AI Foundations | Deepgrain Intelligence" },
+  { slug: "people-ops-systems", name: "Systems & Automation", description: "Connected systems, agents, and the mechanics of leverage.", track: "people-ops", metaDescription: "Connected systems, agents, and the mechanics of leverage: the workflows, automation patterns, and infrastructure behind People Ops." },
+  { slug: "people-ops-builders", name: "Builders & Champions", description: "Growing internal capability instead of buying tools.", track: "people-ops", metaDescription: "Growing internal capability instead of buying tools: champions, builders, and the operating model that makes AI stick in People teams." },
+  { slug: "people-ops-governance", name: "Governance & Trust", description: "Working with AI without trading away judgment.", track: "people-ops", metaDescription: "Working with AI without trading away judgment: policy blueprints, governance posture, and measurement that keeps People AI safe." },
 ];
 
 import type { ClusterSlug } from "@/lib/clusters";

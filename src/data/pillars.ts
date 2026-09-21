@@ -21,8 +21,12 @@ export interface Pillar {
   slug: string;
   /** Head term, used as <h1>. */
   title: string;
-  /** SEO meta + hero subtitle. */
+  /** Visible hero subtitle (also meta description fallback). */
   description: string;
+  /** Optional <title> override (visible H1 stays as-is). */
+  metaTitle?: string;
+  /** Meta/OG description (120-160 chars). Falls back to description. */
+  metaDescription?: string;
   /** Page-level keywords for meta. */
   keywords: string[];
   /** One- or two-sentence framing under the H1. */
@@ -41,6 +45,7 @@ export const PILLARS: Pillar[] = [
     title: "The AI Operating System",
     description:
       "A complete deep-dive on what an AI operating system is, why it matters, and how to build one. Pillar guide with the full Deepgrain library on AI OS strategy, architecture, and adoption.",
+    metaDescription: "A complete deep-dive on what an AI operating system is, why it matters, and how to build one, with the full Deepgrain library on AI OS strategy.",
     keywords: [
       "AI operating system",
       "AI OS",
@@ -164,6 +169,7 @@ export const PILLARS: Pillar[] = [
   {
     slug: "operating-leadership",
     title: "Operating Leadership and the Craft of Scale",
+    metaTitle: "Operating Leadership and the Craft of Scale | Deepgrain",
     description:
       "A pillar deep-dive on operating leadership: reading the grain of an organisation, the disciplines of craft, and how to scale without breaking what works.",
     keywords: [

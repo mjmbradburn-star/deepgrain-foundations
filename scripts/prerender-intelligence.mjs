@@ -22,7 +22,7 @@
  * Usage: runs automatically via `postbuild`. Skip locally with
  * `DEEPGRAIN_SKIP_PRERENDER=1 npm run build`.
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawn } from "node:child_process";
@@ -43,6 +43,14 @@ if (!existsSync(DIST) || !existsSync(join(DIST, "index.html"))) {
   console.warn("[prerender] dist/ or dist/index.html missing, skipping.");
   process.exit(0);
 }
+
+// Preserve the pristine SPA shell before any route overwrites dist/index.html.
+// Vercel (or any static host with real 404s) serves shell.html for the few
+// app-only routes that are intentionally not prerendered (/login,
+// /unsubscribe, /brain/resend, /.lovable/oauth/consent), so those routes boot
+// the client app without masquerading as the homepage.
+copyFileSync(join(DIST, "index.html"), join(DIST, "shell.html"));
+console.log("[prerender] preserved SPA shell -> dist/shell.html");
 
 // Lazy import puppeteer so a missing devDep does not crash non-build flows.
 let puppeteer;
@@ -211,6 +219,53 @@ try {
       failed++;
       failures.push({ route, error: e.message });
       console.warn(`[prerender] FAILED ${route}: ${e.message}`);
+    } finally {
+      await page.close().catch(() => {});
+    }
+  }
+  // --- 4. Static 404 page ---
+  // Hosts that support it (Vercel) serve dist/404.html with a real 404
+  // status for unmatched paths. Render the app's NotFound route once, with
+  // the same shell cleanup as prerendered routes. Its PageMeta emits
+  // noindex,follow.
+  {
+    const page = await browser.newPage();
+    try {
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.setRequestInterception(true);
+      page.on("request", (req) => {
+        const t = req.resourceType();
+        if (t === "image" || t === "media" || t === "font") req.abort();
+        else req.continue();
+      });
+      await page.goto(previewUrl + "/__not-found-render__", {
+        waitUntil: "networkidle0",
+        timeout: 30_000,
+      });
+      await page
+        .waitForSelector("[data-prerender-ready='true']", { timeout: 15_000 })
+        .catch(() => null);
+      await page.evaluate(() => {
+        document
+          .querySelectorAll('script[type="module"][src*="@vite/client"]')
+          .forEach((n) => n.remove());
+        document
+          .querySelectorAll("[data-cookie-banner]")
+          .forEach((n) => n.remove());
+      });
+      let html = await page.content();
+      html = html.replaceAll(previewUrl, SITE_ORIGIN);
+      // The template ships a default "index, follow" robots meta; the 404
+      // route adds "noindex,follow" via PageMeta. Drop the default so the
+      // static 404 carries a single, unambiguous robots directive.
+      html = html.replace(
+        '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">',
+        "",
+      );
+      writeFileSync(join(DIST, "404.html"), html, "utf8");
+      console.log("[prerender] wrote dist/404.html");
+    } catch (e) {
+      console.warn(`[prerender] 404 render failed: ${e.message}`);
     } finally {
       await page.close().catch(() => {});
     }

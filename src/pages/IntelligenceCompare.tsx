@@ -53,7 +53,7 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
   return (
     <>
       <Helmet>
-        <title>{entry.title} | Deepgrain Intelligence</title>
+        <title>{entry.metaTitle ?? `${entry.title} | Deepgrain Intelligence`}</title>
         <meta name="description" content={entry.description} />
         <link rel="canonical" href={url} />
         <meta property="og:title" content={entry.title} />

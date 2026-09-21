@@ -1,0 +1,61 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build && npm run prerender",
+  "outputDirectory": "dist",
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/course",
+      "destination": "/waitlist",
+      "statusCode": 301
+    },
+    {
+      "source": "/cohort",
+      "destination": "/waitlist",
+      "statusCode": 301
+    },
+    {
+      "source": "/people-ops-course",
+      "destination": "/waitlist",
+      "statusCode": 301
+    },
+    {
+      "source": "/intelligence/people-ops",
+      "destination": "/intelligence",
+      "statusCode": 301
+    },
+    {
+      "source": "/intelligence/answers/:slug",
+      "destination": "/answers/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "statusCode": 301
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/login",
+      "destination": "/shell.html"
+    },
+    {
+      "source": "/unsubscribe",
+      "destination": "/shell.html"
+    },
+    {
+      "source": "/brain/resend",
+      "destination": "/shell.html"
+    },
+    {
+      "source": "/.lovable/oauth/consent",
+      "destination": "/shell.html"
+    },
+    {
+      "source": "/~oauth/initiate",
+      "destination": "https://oauth.lovable.app/initiate?project_id=lovp_1a27m7x6kr8xba31531sc34h50"
+    }
+  ]
+}

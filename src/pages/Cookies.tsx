@@ -17,8 +17,8 @@ const P = ({ children }: { children: React.ReactNode }) => (
 const Cookies = () => (
   <section className="bg-linen text-walnut min-h-screen pt-40 pb-32">
     <PageMeta
-      title="Cookie Policy | Deepgrain"
-      description="A short, honest account of the storage this site uses. No advertising or third-party trackers."
+      title="Cookie Policy: the storage this site uses | Deepgrain"
+      description="A short, honest account of the storage this site uses. No advertising or third-party trackers, just what keeps the site working."
       path="/cookies"
     />
     <div className="container-grain max-w-3xl">

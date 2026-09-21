@@ -122,7 +122,7 @@ const Waitlist = () => {
     <>
       <PageMeta
         title="The Deepgrain AI Cohort for People Teams | Waitlist"
-        description="Four weeks, live, for People and HR operators in scaling companies. Ship three working automations on your own processes and leave with a 90-day rollout plan. Waitlist price £495 (full £695). Starts Monday 12 October, 20 seats."
+        description="Four weeks, live, for People and HR operators in scaling companies. Ship three working automations on your own processes and leave with a 90-day plan."
         path="/waitlist"
         jsonLd={[COURSE_LD, buildFAQLd(faqItems)]}
       />

@@ -7,8 +7,11 @@
  */
 export interface CompareEntry {
   slug: string;
+  /** Visible H1. */
   title: string;
   description: string;
+  /** Optional <title> override (visible H1 stays as-is). */
+  metaTitle?: string;
   /** Short intro paragraph shown above the table. */
   intro: string;
   /** The two things being compared, used for the H1 and table headers. */
@@ -28,6 +31,7 @@ export interface CompareEntry {
 export const COMPARES: CompareEntry[] = [
   {
     slug: "ai-operating-system-vs-operating-model",
+    metaTitle: "AI operating system vs operating model | Deepgrain",
     title: "AI operating system vs operating model: what's the difference?",
     description:
       "An operating model is intent on a slide. An AI operating system is what runs when nobody's looking. Here is the practical difference, in a table.",
@@ -66,6 +70,7 @@ export const COMPARES: CompareEntry[] = [
   },
   {
     slug: "ai-os-vs-ai-platform",
+    metaTitle: "AI OS vs AI platform: chassis and engine | Deepgrain",
     title: "AI OS vs AI platform: stop confusing the chassis and the engine",
     description:
       "An AI platform is something you buy. An AI operating system is something you build around it. Here is the line, in a table.",
@@ -97,6 +102,7 @@ export const COMPARES: CompareEntry[] = [
   },
   {
     slug: "ai-os-vs-automation",
+    metaTitle: "AI OS vs automation, explained | Deepgrain",
     title: "AI OS vs automation: where one ends and the other begins",
     description:
       "Automation runs the same path every time. An AI operating system reasons about which path to take. Both matter. Conflating them produces brittle pilots.",

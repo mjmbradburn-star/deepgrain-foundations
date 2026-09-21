@@ -14,6 +14,8 @@ export interface AnswerEntry {
   /** Optional internal follow-up link. */
   link?: string;
   linkLabel?: string;
+  /** Optional <title> override; the visible H1 stays the full question. */
+  metaTitle?: string;
 }
 
 export const ANSWERS: AnswerEntry[] = [
@@ -28,6 +30,7 @@ export const ANSWERS: AnswerEntry[] = [
   {
     question: "What is an AI OS?",
     slug: "what-is-an-ai-os",
+    metaTitle: "What is an AI OS? The short answer | Deepgrain",
     answer:
       "AI OS is short for AI operating system. It is the runtime, the policies, and the human cadence that decide which model handles which task, with what data, under what guardrails. Without an AI OS, AI is a series of demos. With one, AI compounds.",
     link: "/intelligence/what-is-an-ai-operating-system#a-working-definition-you-can-quote",
@@ -49,6 +52,7 @@ export const ANSWERS: AnswerEntry[] = [
   {
     question: "How does an AI operating system differ from an operating model?",
     slug: "ai-os-vs-operating-model",
+    metaTitle: "AI OS vs operating model: the difference | Deepgrain",
     answer:
       "An operating model is a slide that describes how a company is organised. An AI operating system is what actually runs when a person, an agent, or a workflow needs to make a decision. One is description. The other is substrate. Most companies have one and call it the other.",
     link: "/intelligence/ai-operating-system-vs-operating-model#in-one-paragraph",
@@ -98,6 +102,7 @@ export const ANSWERS: AnswerEntry[] = [
   {
     question: "How is an AI operating system different from automation?",
     slug: "ai-os-vs-automation",
+    metaTitle: "AI OS vs automation: the difference | Deepgrain",
     answer:
       "Automation runs the same path every time. An AI operating system reasons about which path to take. Automation handles the rails. The AI OS handles the decisions. The two layers compound when you build them together, but conflating them produces brittle pilots that look smart in October and break by January.",
     link: "/intelligence/ai-os-vs-automation#in-one-paragraph",
@@ -105,6 +110,7 @@ export const ANSWERS: AnswerEntry[] = [
   {
     question: "How do businesses identify efficiency gaps that AI can fill?",
     slug: "how-to-identify-efficiency-gaps-ai-can-fill",
+    metaTitle: "How to identify efficiency gaps AI can fill | Deepgrain",
     answer:
       "By looking at four signals in the existing work: repetition, latency, judgment shape, and contestability. A workflow that runs often, waits on a human for hours when the human contribution is minutes, has judgment that is pattern-matching rather than novel, and has a clear owner who can sign off changes, is almost always an AI-shaped gap. A 30-minute audit beats a three-month strategy deck for finding the first one.",
     link: "/intelligence/identifying-efficiency-gaps-ai-can-fill#four-signals-that-a-gap-is-ai-shaped",
@@ -120,6 +126,7 @@ export const ANSWERS: AnswerEntry[] = [
   {
     question: "How does agentic AI improve operational efficiency in businesses?",
     slug: "how-does-agentic-ai-improve-operational-efficiency",
+    metaTitle: "How agentic AI improves operational efficiency | Deepgrain",
     answer:
       "Agents handle the multi-step work that automation alone cannot, because the path changes based on what the agent finds. They earn their keep on workflows where a human used to coordinate across three or four systems. Most companies do not need many agents. Three or four, well-bounded, with logged steps and a human checkpoint, covers the bulk of the value.",
     link: "/intelligence/identifying-efficiency-gaps-ai-can-fill#what-to-do-once-you-have-found-one",

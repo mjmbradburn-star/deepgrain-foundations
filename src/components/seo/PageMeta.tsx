@@ -37,7 +37,7 @@ export const PageMeta = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
-      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      {noindex && <meta name="robots" content="noindex,follow" />}
 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

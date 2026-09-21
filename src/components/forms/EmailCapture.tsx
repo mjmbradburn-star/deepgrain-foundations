@@ -87,7 +87,7 @@ export const EmailCapture = ({
   return (
     <div className={cn("w-full", className)}>
       {heading && (
-        <h3
+        <h2
           className={cn(
             "font-display text-2xl md:text-3xl lg:text-4xl leading-tight mb-4",
             isDark ? "text-cream" : "text-walnut",
@@ -95,7 +95,7 @@ export const EmailCapture = ({
           style={{ letterSpacing: "-0.01em" }}
         >
           {heading}
-        </h3>
+        </h2>
       )}
       {description && (
         <p

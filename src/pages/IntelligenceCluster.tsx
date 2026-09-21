@@ -59,10 +59,10 @@ const IntelligenceCluster = () => {
     <>
       <Helmet>
         <title>{cluster.name} | Deepgrain Intelligence</title>
-        <meta name="description" content={cluster.description} />
+        <meta name="description" content={cluster.metaDescription ?? cluster.description} />
         <link rel="canonical" href={url} />
         <meta property="og:title" content={`${cluster.name} | Deepgrain`} />
-        <meta property="og:description" content={cluster.description} />
+        <meta property="og:description" content={cluster.metaDescription ?? cluster.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
@@ -112,7 +112,7 @@ const IntelligenceCluster = () => {
           {articles.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
               {articles.map((a) => (
-                <ArticleCard key={a.frontmatter.slug} article={a} />
+                <ArticleCard key={a.frontmatter.slug} article={a} headingLevel="h2" />
               ))}
             </div>
           ) : (

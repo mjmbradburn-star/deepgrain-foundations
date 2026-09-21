@@ -70,8 +70,8 @@ const GrainAudit = () => {
   return (
     <>
       <PageMeta
-        title="The Grain Audit | Deepgrain"
-        description="A two-week fixed-scope review of one People Ops process. U-shaped process map, ranked automation shortlist, a one-page 90-day plan you keep, and a 30-minute readout. £2,000, credited in full against any programme. Three slots a month."
+        title="The Grain Audit: a two-week process review | Deepgrain"
+        description="A two-week fixed-scope review of one People Ops process: U-shaped map, ranked automation shortlist, 90-day plan, readout. £2,000, credited in full."
         path="/grain-audit"
         jsonLd={AUDIT_LD}
       />

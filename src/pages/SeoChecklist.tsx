@@ -178,8 +178,8 @@ const SeoChecklist = () => {
   return (
     <>
       <PageMeta
-        title="SEO Checklist - Deepgrain"
-        description="Internal checklist for verifying deepgrain.ai in Google Search Console."
+        title="SEO Checklist for Search Console | Deepgrain"
+        description="Internal checklist for verifying deepgrain.ai in Google Search Console: coverage states, sitemaps, canonicals, redirects, and indexation."
         path="/seo-checklist"
         noindex
       />

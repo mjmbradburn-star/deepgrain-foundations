@@ -16,7 +16,7 @@ const Contact = () => {
     <>
       <PageMeta
         title="Grab thirty minutes | Deepgrain"
-        description="Book thirty minutes with Matt Bradburn. No pitch. We work out live on the call whether a Grain Audit fits."
+        description="Book thirty minutes with Matt Bradburn. No pitch, no deck. We work out live on the call whether a Grain Audit fits, and what it would examine first."
         path="/contact"
         jsonLd={buildBreadcrumbLd([
           { name: "Home", url: "https://www.deepgrain.ai/" },

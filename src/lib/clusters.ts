@@ -28,7 +28,10 @@ export type ClusterSlug =
 export interface Cluster {
   slug: ClusterSlug;
   name: string;
+  /** Visible intro under the H1. */
   description: string;
+  /** Meta/OG description (120-160 chars). Falls back to description. */
+  metaDescription?: string;
   /** Short label for chips/eyebrows. */
   short: string;
   /** Slug of the pillar (see src/data/pillars.ts) this cluster sits closest to. */
@@ -41,6 +44,7 @@ export const CLUSTERS: Cluster[] = [
     name: "Readiness and diagnosis",
     short: "Readiness",
     description: "Mapping where a People function actually stands before building anything.",
+    metaDescription: "Mapping where a People function actually stands before building anything: readiness signals, diagnostic toolkits, and honest baselines.",
     parentPillar: "ai-workspace-for-people-ops",
   },
   {
@@ -48,6 +52,7 @@ export const CLUSTERS: Cluster[] = [
     name: "Enablement and change",
     short: "Enablement",
     description: "Operating models, champions, and the change rituals that make AI stick.",
+    metaDescription: "Operating models, champions, and the change rituals that make AI stick: enablement systems that outlast the launch-week energy.",
     parentPillar: "ai-workspace-for-people-ops",
   },
   {
@@ -55,6 +60,7 @@ export const CLUSTERS: Cluster[] = [
     name: "Org design and roles",
     short: "Org design",
     description: "New People roles, ratios, and structures when AI is infrastructure.",
+    metaDescription: "New People roles, ratios, and structures when AI is infrastructure: the HR Architect, the champion model, and team design.",
     parentPillar: "ai-workspace-for-people-ops",
   },
   {
@@ -62,6 +68,7 @@ export const CLUSTERS: Cluster[] = [
     name: "Governance and policy",
     short: "Governance",
     description: "Operating posture and policy artifacts that keep AI work safe and fast.",
+    metaDescription: "Operating posture and policy artifacts that keep AI work safe and fast: blueprints People teams can defend to legal and the board.",
     parentPillar: "ai-workspace-for-people-ops",
   },
   {
@@ -69,6 +76,7 @@ export const CLUSTERS: Cluster[] = [
     name: "Measurement and ROI",
     short: "ROI",
     description: "Quantifying AI value, building the board narrative, defending the spend.",
+    metaDescription: "Quantifying AI value, building the board narrative, and defending the spend: measurement frameworks for People Ops AI work.",
     parentPillar: "ai-workspace-for-people-ops",
   },
   {
@@ -76,6 +84,7 @@ export const CLUSTERS: Cluster[] = [
     name: "Workflows and automation",
     short: "Workflows",
     description: "Audit, prioritise, and rebuild People workflows with AI in the loop.",
+    metaDescription: "Audit, prioritise, and rebuild People workflows with AI in the loop: assessment frameworks and automation patterns that pay off.",
     parentPillar: "ai-workspace-for-people-ops",
   },
   {
@@ -83,6 +92,7 @@ export const CLUSTERS: Cluster[] = [
     name: "Agents and systems",
     short: "Agents",
     description: "Production agents and connected systems that run between sessions.",
+    metaDescription: "Production agents and connected systems that run between sessions: from prompts and demos to infrastructure People Ops can rely on.",
     parentPillar: "ai-workspace-for-people-ops",
   },
   {
@@ -90,6 +100,7 @@ export const CLUSTERS: Cluster[] = [
     name: "Workspace and tools",
     short: "Workspace",
     description: "Persistent workspaces, model selection, and the daily tooling layer.",
+    metaDescription: "Persistent workspaces, model selection, and the daily tooling layer: setting up an AI workspace People teams actually use.",
     parentPillar: "ai-workspace-for-people-ops",
   },
   {
@@ -97,6 +108,7 @@ export const CLUSTERS: Cluster[] = [
     name: "Prompting and craft",
     short: "Craft",
     description: "Prompting patterns, evaluation habits, and the craft underneath the systems.",
+    metaDescription: "Prompting patterns, evaluation habits, and the craft underneath the systems: how People operators get reliable output from models.",
     parentPillar: "ai-workspace-for-people-ops",
   },
 ];

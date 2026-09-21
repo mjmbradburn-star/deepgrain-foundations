@@ -47,11 +47,11 @@ const IntelligenceCategory = () => {
   return (
     <>
       <Helmet>
-        <title>{cat.name} | Deepgrain Intelligence</title>
-        <meta name="description" content={cat.description} />
+        <title>{cat.metaTitle ?? `${cat.name} | Deepgrain Intelligence`}</title>
+        <meta name="description" content={cat.metaDescription ?? cat.description} />
         <link rel="canonical" href={url} />
-        <meta property="og:title" content={`${cat.name} | Deepgrain Intelligence`} />
-        <meta property="og:description" content={cat.description} />
+        <meta property="og:title" content={cat.metaTitle ?? `${cat.name} | Deepgrain Intelligence`} />
+        <meta property="og:description" content={cat.metaDescription ?? cat.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
@@ -85,7 +85,7 @@ const IntelligenceCategory = () => {
         <div className="container-grain">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             {items.map((a) => (
-              <ArticleCard key={a.frontmatter.slug} article={a} />
+              <ArticleCard key={a.frontmatter.slug} article={a} headingLevel="h2" />
             ))}
           </div>
         </div>

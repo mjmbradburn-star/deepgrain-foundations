@@ -217,7 +217,7 @@ export const ComparePanel = ({ a, b, caption, wide = false, polarized = false }:
           md+; below md there is no override, so items simply flow in DOM
           order (A block, then B block) into the single mobile column. */}
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-8">
-        <h4
+        <h3
           className={cn(
             "font-display text-xl text-walnut pt-4 border-t-2 md:[grid-column:1]",
             rowAt(0),
@@ -225,7 +225,7 @@ export const ComparePanel = ({ a, b, caption, wide = false, polarized = false }:
           )}
         >
           {a.heading}
-        </h4>
+        </h3>
         {aRows.map((item, i) => (
           <div
             key={`a-${i}`}
@@ -242,14 +242,14 @@ export const ComparePanel = ({ a, b, caption, wide = false, polarized = false }:
             below md it stays a normal block, carrying the mobile-only
             divider (border-t + mt-8) between the stacked A and B blocks. */}
         <div className="mt-8 md:mt-0 border-t md:border-t-0 border-walnut/15 md:contents">
-          <h4
+          <h3
             className={cn(
               "font-display text-xl text-walnut pt-4 border-t-2 border-walnut/25 md:[grid-column:2] md:pl-8",
               rowAt(0),
             )}
           >
             {b.heading}
-          </h4>
+          </h3>
         </div>
         {bRows.map((item, i) => (
           <div
@@ -369,7 +369,7 @@ export interface DecisionFilterProps {
  */
 export const DecisionFilter = ({ title, criteria, verdict }: DecisionFilterProps) => (
   <aside className="not-prose my-10 border-l-2 border-brass pl-6">
-    {title && <h4 className="font-display text-xl text-walnut mb-4">{title}</h4>}
+    {title && <h3 className="font-display text-xl text-walnut mb-4">{title}</h3>}
     <div className="space-y-4">
       {criteria.map((c, i) => (
         <div key={i} className="flex gap-3">

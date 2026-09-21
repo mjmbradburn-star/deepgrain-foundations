@@ -49,14 +49,14 @@ export const AuditPrompt = ({
   return (
     <div className={cn("flex flex-col items-start gap-5", className)}>
       <div>
-        <h3
+        <h2
           className={cn(
             "font-display text-3xl md:text-4xl leading-[1.1]",
             isGreen ? "text-cream" : "text-walnut",
           )}
         >
           {headline}
-        </h3>
+        </h2>
         {sub && (
           <p
             className={cn(
