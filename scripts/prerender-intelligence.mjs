@@ -212,6 +212,7 @@ try {
         // the static duplicate wherever a Helmet version is present.
         const managed = [
           ["name", "robots"],
+          ["name", "googlebot"],
           ["name", "description"],
           ["property", "og:title"],
           ["property", "og:description"],
@@ -288,17 +289,14 @@ try {
         document
           .querySelectorAll("[data-cookie-banner]")
           .forEach((n) => n.remove());
+        for (const name of ["robots", "googlebot"]) {
+          const nodes = [...document.querySelectorAll(`meta[name="${name}"]`)];
+          const helmet = nodes.find((n) => n.hasAttribute("data-rh"));
+          if (helmet) nodes.forEach((n) => { if (n !== helmet) n.remove(); });
+        }
       });
       let html = await page.content();
       html = html.replaceAll(previewUrl, SITE_ORIGIN);
-      // The template ships a default robots meta; the 404 route adds its
-      // own "noindex,follow" via PageMeta. Drop the static default so the
-      // static 404 carries a single, unambiguous robots directive.
-      html = html.replace('<meta name="robots" content="noindex, follow">', "");
-      html = html.replace(
-        '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">',
-        "",
-      );
       writeFileSync(join(DIST, "404.html"), html, "utf8");
       console.log("[prerender] wrote dist/404.html");
     } catch (e) {

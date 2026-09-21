@@ -36,6 +36,8 @@ describe("on-page SEO guardrails", () => {
     expect(shell).toContain('name="googlebot" content="noindex, follow"');
     const pageMeta = readFileSync("src/components/seo/PageMeta.tsx", "utf8");
     expect(pageMeta).toContain("index,follow,max-image-preview:large,max-snippet:-1");
+    const prerender = readFileSync("scripts/prerender-intelligence.mjs", "utf8");
+    expect(prerender).toContain('["name", "googlebot"]');
   });
 
   it("uses the canonical www origin in static discovery files", () => {
