@@ -117,4 +117,11 @@ describe("on-page SEO guardrails", () => {
     expect(app).not.toContain('import("./pages/IntelligenceAnswers")');
   });
 
+
+  it("keeps AI crawler preferences on live canonical discovery pages", () => {
+    const ai = readFileSync("public/ai.txt", "utf8");
+    expect(ai).toContain("https://www.deepgrain.ai/ai-training-for-business-teams");
+    expect(ai).not.toContain("https://www.deepgrain.ai/intelligence/answers");
+  });
+
 });
