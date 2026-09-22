@@ -124,4 +124,11 @@ describe("on-page SEO guardrails", () => {
     expect(ai).not.toContain("https://www.deepgrain.ai/intelligence/answers");
   });
 
+
+  it("links every comparison page from the Intelligence hub", () => {
+    const hub = readFileSync("src/pages/Intelligence.tsx", "utf8");
+    expect(hub).toContain("COMPARES.map");
+    expect(hub).toContain("`/intelligence/${page.slug}`");
+  });
+
 });

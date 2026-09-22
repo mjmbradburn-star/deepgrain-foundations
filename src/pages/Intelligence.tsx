@@ -6,6 +6,7 @@ import {
   CATEGORIES,
   getArticlesByCategory,
 } from "@/lib/intelligence";
+import { COMPARES } from "@/data/compares";
 import { ArticleCard } from "@/components/intelligence/ArticleCard";
 import { IntelligenceCTA } from "@/components/intelligence/IntelligenceCTA";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
@@ -159,6 +160,25 @@ const Intelligence = () => {
               </div>
             ))}
           </nav>
+        </div>
+      </section>
+
+      <section className="bg-linen pt-16 md:pt-20" aria-labelledby="comparisons-heading">
+        <div className="container-grain">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-walnut/15 pb-6">
+            <div>
+              <p className="text-[11px] uppercase text-brass font-semibold" style={{ letterSpacing: "0.16em" }}>Compare</p>
+              <h2 id="comparisons-heading" className="font-display text-2xl md:text-3xl text-walnut mt-2">AI operating system comparisons</h2>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-3 gap-px bg-walnut/15 mt-8">
+            {COMPARES.map((page) => (
+              <Link key={page.slug} to={`/intelligence/${page.slug}`} className="bg-linen p-6 md:p-8 group">
+                <h3 className="font-display text-xl md:text-2xl text-walnut group-hover:text-brass transition-colors">{page.title}</h3>
+                <p className="mt-3 text-sm text-walnut/65 leading-relaxed">{page.description}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
