@@ -8,6 +8,7 @@ const sections = [
   { to: "/method", label: "Method" },
   { to: "/work", label: "Work" },
   { to: "/enablement", label: "Enablement" },
+  { to: "/ai-training-for-business-teams", label: "Training" },
   { to: "/waitlist", label: "Cohort" },
   { to: "/intelligence", label: "Intelligence" },
   { to: "/about", label: "About" },
@@ -110,6 +111,7 @@ export const Navigation = () => {
       return pathname.startsWith("/intelligence") || pathname.startsWith("/answers");
     if (to === "/method") return pathname.startsWith("/method");
     if (to === "/enablement") return pathname.startsWith("/enablement");
+    if (to === "/ai-training-for-business-teams") return pathname === to;
     return false;
   };
   const toolsActive = TOOL_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"));
@@ -135,8 +137,8 @@ export const Navigation = () => {
           </Link>
 
           {/* Desktop */}
-          <div className="hidden md:flex items-center gap-9">
-            <ul className="flex items-center gap-9">
+          <div className="hidden md:flex items-center gap-7">
+            <ul className="flex items-center gap-7">
               {sections.map((link) => {
                 const active = sectionActive(link.to);
                 return (

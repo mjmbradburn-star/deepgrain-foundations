@@ -49,6 +49,12 @@ export const CohortBand = () => (
             <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </Link>
           <p className="font-sans text-cream/60 text-sm">£495 waitlist price · 20 seats</p>
+          <Link
+            to="/ai-training-for-business-teams"
+            className="font-sans text-cream/65 text-sm underline underline-offset-4 decoration-brass hover:text-cream"
+          >
+            Need training for a whole business team? →
+          </Link>
         </div>
       </div>
     </div>
