@@ -78,6 +78,22 @@ const faqItems: FAQItem[] = [
   },
 ];
 
+const TRAINING_METHOD_LD = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How Deepgrain runs AI training for business teams",
+  description:
+    "A four-step company AI training method: audit the work, run a tailored session, leave reusable collateral, and land the change in 30 days.",
+  totalTime: "P30D",
+  step: steps.map((step, index) => ({
+    "@type": "HowToStep",
+    position: index + 1,
+    name: step.title,
+    text: step.body,
+    url: `https://www.deepgrain.ai/ai-training-for-business-teams#step-${index + 1}`,
+  })),
+};
+
 const SERVICE_LD = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -101,6 +117,7 @@ const BusinessTeamAITraining = () => (
       path="/ai-training-for-business-teams"
       jsonLd={[
         SERVICE_LD,
+        TRAINING_METHOD_LD,
         buildFAQLd(faqItems),
         buildBreadcrumbLd([
           { name: "Home", url: "https://www.deepgrain.ai/" },
@@ -152,7 +169,7 @@ const BusinessTeamAITraining = () => (
         </div>
         <div className="mt-16">
           {steps.map((step) => (
-            <article key={step.n} className="grid md:grid-cols-[5rem_minmax(0,1fr)] gap-4 md:gap-10 border-t border-walnut/15 py-9">
+            <article id={`step-${Number(step.n)}`} key={step.n} className="grid md:grid-cols-[5rem_minmax(0,1fr)] gap-4 md:gap-10 border-t border-walnut/15 py-9 scroll-mt-32">
               <span className="font-display text-3xl text-brass">{step.n}</span>
               <div className="max-w-3xl">
                 <h3 className="font-display font-semibold text-3xl">{step.title}</h3>

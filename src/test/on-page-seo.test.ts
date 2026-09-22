@@ -63,4 +63,13 @@ describe("on-page SEO guardrails", () => {
     expect(page).toContain("f.keywords?.map");
   });
 
+
+  it("keeps the business training method and HowTo schema in lockstep", () => {
+    const page = readFileSync("src/pages/BusinessTeamAITraining.tsx", "utf8");
+    expect(page).toContain('"@type": "HowTo"');
+    expect(page).toContain('"@type": "HowToStep"');
+    expect(page).toContain("step: steps.map");
+    expect(page).toContain("id={`step-${Number(step.n)}`}");
+  });
+
 });
