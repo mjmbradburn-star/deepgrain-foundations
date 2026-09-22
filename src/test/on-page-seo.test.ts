@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { ARTICLES } from "@/lib/intelligence";
 import { ANSWERS } from "@/data/answers";
 import { COMPARES } from "@/data/compares";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 const titleFor = (title: string) => {
   const suffix = " | Deepgrain";
@@ -108,6 +108,13 @@ describe("on-page SEO guardrails", () => {
     expect(entity).toContain('"AI training for business teams"');
     expect(entity).toContain('"ChatGPT and Claude training for companies"');
     expect(entity).toContain("operations, sales, customer, marketing, finance and People");
+  });
+
+
+  it("does not retain the retired Answers hub component", () => {
+    expect(existsSync("src/pages/IntelligenceAnswers.tsx")).toBe(false);
+    const app = readFileSync("src/App.tsx", "utf8");
+    expect(app).not.toContain('import("./pages/IntelligenceAnswers")');
   });
 
 });
