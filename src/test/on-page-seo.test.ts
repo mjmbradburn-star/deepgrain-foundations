@@ -56,4 +56,11 @@ describe("on-page SEO guardrails", () => {
       expect(page.description.length, page.slug).toBeLessThanOrEqual(160);
     }
   });
+
+  it("emits article:tag metadata from article keywords", () => {
+    const page = readFileSync("src/pages/IntelligenceArticle.tsx", "utf8");
+    expect(page).toContain('property="article:tag"');
+    expect(page).toContain("f.keywords?.map");
+  });
+
 });

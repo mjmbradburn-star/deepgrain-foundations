@@ -102,6 +102,9 @@ const IntelligenceArticle = () => {
         <meta property="article:modified_time" content={dateModified} />
         <meta property="article:author" content={f.author} />
         <meta property="article:section" content={cat?.name} />
+        {f.keywords?.map((keyword) => (
+          <meta key={keyword} property="article:tag" content={keyword} />
+        ))}
         <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
         {faqs && faqs.length > 0 && (
