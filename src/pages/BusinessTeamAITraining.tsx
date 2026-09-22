@@ -123,7 +123,7 @@ const BusinessTeamAITraining = () => (
         </p>
         <div className="mt-11 flex flex-wrap items-center gap-5">
           <PillButton
-            href="/contact?subject=I'd%20like%20to%20discuss%20AI%20training%20for%20our%20team%3A%20"
+            href="/contact?subject=I'd%20like%20to%20discuss%20AI%20training%20for%20our%20team%3A%20#write"
             variant="filled"
             cta="business_ai_training_hero"
             ctaLocation="business_ai_training_hero"
@@ -223,7 +223,7 @@ const BusinessTeamAITraining = () => (
         </p>
         <div className="mt-9 flex justify-center">
           <PillButton
-            href="/contact?subject=I'd%20like%20to%20discuss%20AI%20training%20for%20our%20team%3A%20"
+            href="/contact?subject=I'd%20like%20to%20discuss%20AI%20training%20for%20our%20team%3A%20#write"
             variant="filled"
             cta="business_ai_training_footer"
             ctaLocation="business_ai_training_footer"

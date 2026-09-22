@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Clock } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -10,7 +10,8 @@ import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 
 const Contact = () => {
-  const [showForm, setShowForm] = useState(false);
+  const [params] = useSearchParams();
+  const [showForm, setShowForm] = useState(() => params.has("subject"));
 
   return (
     <>
@@ -97,7 +98,7 @@ const Contact = () => {
               className="mt-8"
             />
 
-            <div className="mt-16 border-t border-cream/15 pt-10">
+            <div id="write" className="mt-16 border-t border-cream/15 pt-10 scroll-mt-32">
               {!showForm ? (
                 <button
                   type="button"
