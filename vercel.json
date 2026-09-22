@@ -6,6 +6,61 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/answers/what-is-an-ai-operating-system",
+      "destination": "/intelligence/what-is-an-ai-operating-system",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/what-is-an-ai-os",
+      "destination": "/intelligence/what-is-an-ai-operating-system",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/what-is-an-ai-based-operating-system",
+      "destination": "/intelligence/what-is-an-ai-operating-system",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/what-is-an-ai-powered-operating-system",
+      "destination": "/intelligence/what-is-an-ai-operating-system",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/ai-os-vs-operating-model",
+      "destination": "/intelligence/ai-operating-system-vs-operating-model",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/how-to-build-an-ai-operating-system",
+      "destination": "/intelligence/what-is-an-ai-operating-system",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/five-pillars-of-ai-readiness",
+      "destination": "/intelligence/five-pillars-of-ai-readiness",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/why-ai-pilots-stall-at-production",
+      "destination": "/intelligence/why-ai-pilots-stall-at-production",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/ai-operating-ladder",
+      "destination": "/intelligence/ai-operating-ladder-five-tiers",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/what-is-an-ai-workspace",
+      "destination": "/intelligence/setting-up-your-ai-workspace",
+      "statusCode": 301
+    },
+    {
+      "source": "/answers/ai-os-vs-automation",
+      "destination": "/intelligence/ai-os-vs-automation",
+      "statusCode": 301
+    },
+    {
       "source": "/answers/how-to-identify-efficiency-gaps-ai-can-fill",
       "destination": "/intelligence/identifying-efficiency-gaps-ai-can-fill",
       "statusCode": 301
