@@ -154,7 +154,6 @@ const STATIC_ROUTES = [
   { path: "/contact", priority: 0.6, changefreq: "monthly" },
   { path: "/intelligence", priority: 0.9, changefreq: "weekly" },
   { path: "/intelligence/glossary", priority: 0.6, changefreq: "monthly" },
-  { path: "/intelligence/answers", priority: 0.7, changefreq: "weekly" },
   { path: "/intelligence/pillars", priority: 0.8, changefreq: "monthly" },
   { path: "/brain", priority: 0.7, changefreq: "monthly" },
   { path: "/readiness", priority: 0.9, changefreq: "monthly" },

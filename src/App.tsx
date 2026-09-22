@@ -27,7 +27,6 @@ const Intelligence = lazy(() => import("./pages/Intelligence"));
 const IntelligenceArticle = lazy(() => import("./pages/IntelligenceArticle"));
 const IntelligenceCategory = lazy(() => import("./pages/IntelligenceCategory"));
 const IntelligenceGlossary = lazy(() => import("./pages/IntelligenceGlossary"));
-const IntelligenceAnswers = lazy(() => import("./pages/IntelligenceAnswers"));
 const IntelligenceCompare = lazy(() => import("./pages/IntelligenceCompare"));
 const IntelligencePillars = lazy(() => import("./pages/IntelligencePillars"));
 const IntelligencePillar = lazy(() => import("./pages/IntelligencePillar"));
@@ -74,7 +73,7 @@ const App = () => (
               <Route path="/intelligence/people-ops" element={<Navigate to="/intelligence" replace />} />
               <Route path="/intelligence/category/:name" element={<IntelligenceCategory />} />
               <Route path="/intelligence/glossary" element={<IntelligenceGlossary />} />
-              <Route path="/intelligence/answers" element={<IntelligenceAnswers />} />
+              <Route path="/intelligence/answers" element={<Navigate to="/intelligence" replace />} />
               <Route path="/intelligence/pillars" element={<IntelligencePillars />} />
               <Route path="/intelligence/pillar/:slug" element={<IntelligencePillar />} />
               <Route path="/intelligence/cluster/:slug" element={<IntelligenceCluster />} />

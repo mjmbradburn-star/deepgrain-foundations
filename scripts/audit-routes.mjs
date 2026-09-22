@@ -48,6 +48,7 @@ const NOINDEX_PATHS = new Set([
 // targets are indexed instead.
 const REDIRECT_ONLY = new Set([
   "/intelligence/people-ops",
+  "/intelligence/answers",
   "/course",
   "/cohort",
   "/people-ops-course",

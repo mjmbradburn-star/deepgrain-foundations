@@ -26,7 +26,6 @@ const STATIC_PAGES = [
   { url: "/about", priority: "0.7", changefreq: "monthly" },
   { url: "/contact", priority: "0.6", changefreq: "yearly" },
   { url: "/intelligence", priority: "0.9", changefreq: "weekly" },
-  { url: "/intelligence/answers", priority: "0.7", changefreq: "weekly" },
   { url: "/intelligence/pillars", priority: "0.8", changefreq: "monthly" },
   { url: "/intelligence/glossary", priority: "0.6", changefreq: "monthly" },
   { url: "/brain", priority: "0.9", changefreq: "monthly" },
@@ -270,6 +269,7 @@ const EXCLUDED_ROUTES = new Set([
   "/course", // redirect → /waitlist (course canonical)
   "/cohort", // redirect → /waitlist
   "/people-ops-course", // redirect → /waitlist
+  "/intelligence/answers", // redirect → /intelligence
 ]);
 
 /**

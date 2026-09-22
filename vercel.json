@@ -6,6 +6,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/intelligence/answers",
+      "destination": "/intelligence",
+      "statusCode": 301
+    },
+    {
       "source": "/answers/what-is-an-ai-operating-system",
       "destination": "/intelligence/what-is-an-ai-operating-system",
       "statusCode": 301
