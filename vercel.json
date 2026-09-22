@@ -125,6 +125,10 @@
       "destination": "/shell.html"
     },
     {
+      "source": "/seo-checklist",
+      "destination": "/shell.html"
+    },
+    {
       "source": "/.lovable/oauth/consent",
       "destination": "/shell.html"
     },
