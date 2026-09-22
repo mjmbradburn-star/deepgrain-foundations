@@ -94,11 +94,21 @@ const TRAINING_METHOD_LD = {
   })),
 };
 
+const TRAINING_KEYWORDS = [
+  "AI training for commercial teams",
+  "AI enablement for operations teams",
+  "Claude training for business teams",
+  "ChatGPT and Claude training for companies",
+  "AI audit and training workshop for companies",
+  "AI training for business teams",
+];
+
 const SERVICE_LD = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "AI training for business teams",
   serviceType: "AI audit and training workshop",
+  keywords: TRAINING_KEYWORDS.join(", "),
   description:
     "Practical ChatGPT and Claude training for commercial and operations teams, built around a work audit, tailored session, reusable collateral and 30-day landing plan.",
   provider: { "@id": "https://www.deepgrain.ai/#organization" },
@@ -115,6 +125,7 @@ const BusinessTeamAITraining = () => (
       title="AI Training for Business Teams | Deepgrain"
       description="Practical ChatGPT and Claude training for commercial and operations teams: work audit, tailored session, reusable tools and a 30-day landing plan."
       path="/ai-training-for-business-teams"
+      keywords={TRAINING_KEYWORDS}
       jsonLd={[
         SERVICE_LD,
         TRAINING_METHOD_LD,

@@ -88,4 +88,18 @@ describe("on-page SEO guardrails", () => {
     expect(page).toContain("id={`step-${Number(step.n)}`}");
   });
 
+
+  it("maps the target-five queries into the training page metadata", () => {
+    const page = readFileSync("src/pages/BusinessTeamAITraining.tsx", "utf8");
+    for (const query of [
+      "AI training for commercial teams",
+      "AI enablement for operations teams",
+      "Claude training for business teams",
+      "ChatGPT and Claude training for companies",
+      "AI audit and training workshop for companies",
+    ]) expect(page).toContain(query);
+    expect(page).toContain("keywords={TRAINING_KEYWORDS}");
+    expect(page).toContain('keywords: TRAINING_KEYWORDS.join');
+  });
+
 });

@@ -8,6 +8,8 @@ interface PageMetaProps {
   /** Absolute URL to a 1200×630 OG/Twitter image. Defaults to the site OG. */
   image?: string;
   type?: "website" | "article" | "profile";
+  /** Optional page-topic phrases. Used only when a page has an explicit keyword map. */
+  keywords?: string[];
   /** JSON-LD object(s) emitted as application/ld+json. Pass an array to emit
    *  multiple blocks (e.g. Article + BreadcrumbList on the same page). */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
@@ -28,6 +30,7 @@ export const PageMeta = ({
   path,
   image = DEFAULT_OG,
   type = "website",
+  keywords,
   jsonLd,
   noindex = false,
 }: PageMetaProps) => {
@@ -36,6 +39,9 @@ export const PageMeta = ({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      {keywords && keywords.length > 0 && (
+        <meta name="keywords" content={keywords.join(", ")} />
+      )}
       <link rel="canonical" href={url} />
       <meta name="robots" content={noindex ? "noindex,follow" : "index,follow,max-image-preview:large,max-snippet:-1"} />
       <meta name="googlebot" content={noindex ? "noindex,follow" : "index,follow,max-image-preview:large,max-snippet:-1"} />
