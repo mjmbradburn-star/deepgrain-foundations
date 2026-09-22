@@ -64,7 +64,7 @@ const getRelatedAnswers = (idx: number, entry: AnswerEntry, limit = 3): AnswerEn
 const AnswerDetail = () => {
   const { slug = "" } = useParams();
   const idx = ANSWERS.findIndex((a) => a.slug === slug);
-  if (idx === -1) return <Navigate to="/intelligence/answers" replace />;
+  if (idx === -1) return <Navigate to="/intelligence" replace />;
   const entry = ANSWERS[idx];
 
   const url = `https://www.deepgrain.ai/answers/${entry.slug}`;
@@ -74,7 +74,7 @@ const AnswerDetail = () => {
 
   const breadcrumbLd = buildBreadcrumbLd([
     { name: "Home", url: "https://www.deepgrain.ai/" },
-    { name: "Answers", url: "https://www.deepgrain.ai/intelligence/answers" },
+    { name: "Intelligence", url: "https://www.deepgrain.ai/intelligence" },
     { name: entry.question, url },
   ]);
 
@@ -119,11 +119,11 @@ const AnswerDetail = () => {
       <article className="bg-cream pt-40 md:pt-48 pb-20 md:pb-28">
         <div className="container-grain max-w-3xl">
           <Link
-            to="/intelligence/answers"
+            to="/intelligence"
             className="text-[11px] uppercase text-brass hover:text-walnut transition-colors"
             style={{ letterSpacing: "0.16em" }}
           >
-            ← All answers
+            ← All Intelligence
           </Link>
           <Eyebrow className="mt-8">Answer</Eyebrow>
           <h1

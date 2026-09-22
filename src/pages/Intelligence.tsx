@@ -108,7 +108,7 @@ const Intelligence = () => {
             <span className="text-cream/30">·</span>
             <Link to="/intelligence/glossary" className="text-brass hover:text-cream transition-colors">Glossary →</Link>
             <span className="text-cream/30">·</span>
-            <Link to="/intelligence/answers" className="text-brass hover:text-cream transition-colors">Answers →</Link>
+            <Link to="/answers/how-does-agentic-ai-improve-operational-efficiency" className="text-brass hover:text-cream transition-colors">Agentic efficiency answer →</Link>
           </div>
         </div>
       </section>
