@@ -218,6 +218,27 @@ const BusinessTeamAITraining = () => (
 
     <section className="bg-linen text-walnut" data-no-rule>
       <div className="container-grain py-20 md:py-28">
+        <div className="h-px w-10 bg-brass/40 mb-9" />
+        <p className="text-[11px] uppercase text-brass font-semibold" style={{ letterSpacing: "0.16em" }}>Evidence from the work</p>
+        <h2 className="font-display font-semibold max-w-4xl text-4xl md:text-6xl leading-tight mt-4">Training counts when a team ships.</h2>
+        <div className="mt-12 grid md:grid-cols-2 gap-px bg-walnut/15">
+          <article className="bg-linen p-7 md:p-10">
+            <p className="font-display text-5xl text-brass">5 tools</p>
+            <h3 className="font-display font-semibold text-2xl mt-5">Financial data and analytics</h3>
+            <p className="mt-3 text-body/80 leading-relaxed">Fifteen people across two timezones moved from prompt fluency to five production tools in seven weeks. Five squads, one owned solution each.</p>
+          </article>
+          <article className="bg-linen p-7 md:p-10">
+            <p className="font-display text-5xl text-brass">£40k retired</p>
+            <h3 className="font-display font-semibold text-2xl mt-5">Transit technology</h3>
+            <p className="mt-3 text-body/80 leading-relaxed">Forty people were enabled in the first wave, one production tool shipped, and two internal builders were left able to maintain and extend it.</p>
+          </article>
+        </div>
+        <p className="mt-8 text-sm text-walnut/65">Read the full anonymised before-and-after evidence in <Link to="/work" className="text-brass underline underline-offset-4">Deepgrain's client work</Link>.</p>
+      </div>
+    </section>
+
+    <section className="bg-linen text-walnut" data-no-rule>
+      <div className="container-grain py-20 md:py-28 border-t border-walnut/10">
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-12 lg:gap-24 items-start">
           <div>
             <div className="h-px w-10 bg-brass/40 mb-9" />

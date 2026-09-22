@@ -131,4 +131,12 @@ describe("on-page SEO guardrails", () => {
     expect(hub).toContain("`/intelligence/${page.slug}`");
   });
 
+
+  it("keeps outcome receipts on the business training page", () => {
+    const page = readFileSync("src/pages/BusinessTeamAITraining.tsx", "utf8");
+    expect(page).toContain("5 tools");
+    expect(page).toContain("£40k retired");
+    expect(page).toContain('to="/work"');
+  });
+
 });
