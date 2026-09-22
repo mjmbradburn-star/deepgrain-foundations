@@ -50,21 +50,9 @@ const Brain = () => (
           description:
             "The most thorough collection of working notes on running People functions with AI. Free with your email. One link, yours to keep.",
           inLanguage: "en",
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Deepgrain",
-            url: "https://www.deepgrain.ai",
-          },
-          author: {
-            "@type": "Person",
-            name: "Matthew Bradburn",
-            url: "https://www.deepgrain.ai/about",
-          },
-          publisher: {
-            "@type": "Organization",
-            name: "Deepgrain",
-            url: "https://www.deepgrain.ai",
-          },
+          isPartOf: { "@id": "https://www.deepgrain.ai/#website" },
+          author: { "@id": "https://www.deepgrain.ai/about#matthew-bradburn" },
+          publisher: { "@id": "https://www.deepgrain.ai/#organization" },
           potentialAction: {
             "@type": "SubscribeAction",
             target: "https://www.deepgrain.ai/brain#brain-capture-form",
@@ -82,11 +70,7 @@ const Brain = () => (
           priceCurrency: "GBP",
           availability: "https://schema.org/InStock",
           category: "Knowledge resource",
-          seller: {
-            "@type": "Organization",
-            name: "Deepgrain",
-            url: "https://www.deepgrain.ai",
-          },
+          seller: { "@id": "https://www.deepgrain.ai/#organization" },
         },
         {
           "@context": "https://schema.org",

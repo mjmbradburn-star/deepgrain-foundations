@@ -36,11 +36,7 @@ const IntelligenceCluster = () => {
     name: cluster.name,
     description: cluster.description,
     url,
-    isPartOf: {
-      "@type": "WebSite",
-      name: "Deepgrain",
-      url: "https://www.deepgrain.ai",
-    },
+    isPartOf: { "@id": "https://www.deepgrain.ai/#website" },
     mainEntity: {
       "@type": "ItemList",
       itemListElement: articles.map((a, i) => ({

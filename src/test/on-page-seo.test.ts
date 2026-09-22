@@ -159,6 +159,17 @@ describe("on-page SEO guardrails", () => {
   });
 
 
+  it("references the canonical site entities instead of redeclaring them in page schema", () => {
+    const brain = readFileSync("src/pages/Brain.tsx", "utf8");
+    const cluster = readFileSync("src/pages/IntelligenceCluster.tsx", "utf8");
+    expect(brain).toContain('{ "@id": "https://www.deepgrain.ai/#website" }');
+    expect(brain).toContain('{ "@id": "https://www.deepgrain.ai/#organization" }');
+    expect(brain).toContain('{ "@id": "https://www.deepgrain.ai/about#matthew-bradburn" }');
+    expect(cluster).toContain('{ "@id": "https://www.deepgrain.ai/#website" }');
+    expect(cluster).not.toContain('"@type": "WebSite"');
+  });
+
+
   it("falls back when an article has no generated OG image", () => {
     const page = readFileSync("src/pages/IntelligenceArticle.tsx", "utf8");
     expect(page).toContain("const ogImage = heroImage");
