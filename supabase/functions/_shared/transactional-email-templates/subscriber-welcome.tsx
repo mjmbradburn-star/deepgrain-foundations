@@ -92,9 +92,9 @@ const SubscriberWelcomeEmail = ({
 
             {source !== "course-waitlist" && (
               <Text style={text}>
-                We write about the discipline of building organisations that hold
-                their shape — operating systems, the craft of leadership, and the
-                long arc of work done with the grain.
+                We write about the discipline of building organisations that
+                hold their shape — operating systems, the craft of leadership,
+                and the long arc of work done with the grain.
               </Text>
             )}
 

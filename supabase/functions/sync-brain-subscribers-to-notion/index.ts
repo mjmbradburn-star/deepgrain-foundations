@@ -19,7 +19,9 @@ function normaliseDbId(raw: string): string {
   // Accept full URLs, dashed UUIDs, or 32-char hex; return dashed UUID.
   let id = raw.trim();
   // Pull last path segment if a URL was pasted
-  const urlMatch = id.match(/[0-9a-fA-F]{32}|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/);
+  const urlMatch = id.match(
+    /[0-9a-fA-F]{32}|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/,
+  );
   if (urlMatch) id = urlMatch[0];
   id = id.replace(/-/g, "").toLowerCase();
   if (id.length !== 32 || !/^[0-9a-f]{32}$/.test(id)) {
@@ -27,7 +29,9 @@ function normaliseDbId(raw: string): string {
       `NOTION_SUBSCRIBERS_DB_ID is not a valid Notion ID: "${raw}"`,
     );
   }
-  return `${id.slice(0, 8)}-${id.slice(8, 12)}-${id.slice(12, 16)}-${id.slice(16, 20)}-${id.slice(20)}`;
+  return `${id.slice(0, 8)}-${id.slice(8, 12)}-${id.slice(12, 16)}-${
+    id.slice(16, 20)
+  }-${id.slice(20)}`;
 }
 
 async function validateNotionDatabase(
@@ -35,7 +39,11 @@ async function validateNotionDatabase(
   apiKey: string,
 ): Promise<void> {
   // Try the v1 databases endpoint first (works for legacy + simple DBs).
-  const res = await notionFetch(`/databases/${dbId}`, { method: "GET" }, apiKey);
+  const res = await notionFetch(
+    `/databases/${dbId}`,
+    { method: "GET" },
+    apiKey,
+  );
   if (res.ok) {
     await res.text();
     return;
@@ -169,8 +177,7 @@ async function createNotionPage(
   apiKey: string,
   dbId: string,
 ): Promise<void> {
-  const displayName =
-    (sub.first_name && sub.first_name.trim()) || sub.email;
+  const displayName = (sub.first_name && sub.first_name.trim()) || sub.email;
 
   const properties: Record<string, unknown> = {
     Name: { title: [{ text: { content: displayName.slice(0, 200) } }] },
@@ -234,7 +241,10 @@ Deno.serve(async (req) => {
   if (!authHeader?.startsWith("Bearer ")) {
     return new Response(
       JSON.stringify({ error: "Unauthorized" }),
-      { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   }
   const token = authHeader.slice("Bearer ".length).trim();
@@ -242,7 +252,10 @@ Deno.serve(async (req) => {
   if (claims?.role !== "service_role") {
     return new Response(
       JSON.stringify({ error: "Forbidden" }),
-      { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      {
+        status: 403,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   }
 
@@ -253,13 +266,19 @@ Deno.serve(async (req) => {
   if (!supabaseUrl || !serviceKey) {
     return new Response(
       JSON.stringify({ error: "Supabase env not configured" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   }
   if (!notionKey) {
     return new Response(
       JSON.stringify({ error: "NOTION_API_KEY not configured" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   }
 
@@ -267,8 +286,8 @@ Deno.serve(async (req) => {
   // misconfigured secret fails fast (and never silently writes elsewhere).
   let notionDbId: string;
   try {
-    const rawDbId =
-      Deno.env.get("NOTION_SUBSCRIBERS_DB_ID") ?? FALLBACK_NOTION_DATABASE_ID;
+    const rawDbId = Deno.env.get("NOTION_SUBSCRIBERS_DB_ID") ??
+      FALLBACK_NOTION_DATABASE_ID;
     notionDbId = normaliseDbId(rawDbId);
     await validateNotionDatabase(notionDbId, notionKey);
   } catch (err) {
@@ -276,7 +295,10 @@ Deno.serve(async (req) => {
     console.error("notion db validation failed", msg);
     return new Response(
       JSON.stringify({ error: `Notion DB validation failed: ${msg}` }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   }
 
@@ -293,13 +315,15 @@ Deno.serve(async (req) => {
     console.error("notion_sync_state read failed", stateErr);
     return new Response(
       JSON.stringify({ error: "state read failed" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   }
 
   const cursor = stateRow?.last_synced_at ?? "1970-01-01T00:00:00Z";
-  const unsubCursor =
-    stateRow?.last_unsub_synced_at ?? "1970-01-01T00:00:00Z";
+  const unsubCursor = stateRow?.last_unsub_synced_at ?? "1970-01-01T00:00:00Z";
 
   // 2a. Fetch new subscribers
   const { data: subs, error: subsErr } = await supabase
@@ -314,7 +338,10 @@ Deno.serve(async (req) => {
     console.error("brain_subscribers read failed", subsErr);
     return new Response(
       JSON.stringify({ error: "subscribers read failed" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   }
 
@@ -331,7 +358,10 @@ Deno.serve(async (req) => {
     console.error("brain_subscribers unsubs read failed", unsubsErr);
     return new Response(
       JSON.stringify({ error: "unsubs read failed" }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
     );
   }
 
@@ -358,11 +388,13 @@ Deno.serve(async (req) => {
 
     // Propagate unsubscribes to Notion. We always look the page up by
     // Subscriber ID — if it doesn't exist (never synced), we skip it.
-    for (const u of (unsubs ?? []) as Array<{
-      id: string;
-      email: string;
-      unsubscribed_at: string;
-    }>) {
+    for (
+      const u of (unsubs ?? []) as Array<{
+        id: string;
+        email: string;
+        unsubscribed_at: string;
+      }>
+    ) {
       const pageId = await findNotionPageId(u.id, notionKey, notionDbId);
       if (!pageId) {
         unsubMissing++;

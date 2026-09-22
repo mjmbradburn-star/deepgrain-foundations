@@ -114,8 +114,6 @@ Deno.serve(async (req) => {
     );
   }
 
-
-
   // Parse request body
   let templateName: string;
   let recipientEmail: string;
