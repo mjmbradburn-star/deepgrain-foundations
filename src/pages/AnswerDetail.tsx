@@ -131,8 +131,23 @@ const AnswerDetail = () => {
           <p className="text-walnut/85 text-lg md:text-xl leading-relaxed">
             {entry.answer}
           </p>
+          {entry.sections?.map((section) => (
+            <section key={section.heading} className="mt-12">
+              <h2 className="font-display text-2xl md:text-3xl text-walnut leading-tight">
+                {section.heading}
+              </h2>
+              <div className="mt-5 space-y-4 text-walnut/80 text-base md:text-lg leading-relaxed">
+                {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              </div>
+              {section.bullets && (
+                <ul className="mt-6 space-y-3 list-disc pl-6 text-walnut/80 leading-relaxed">
+                  {section.bullets.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              )}
+            </section>
+          ))}
           {entry.link && (
-            <p className="mt-8">
+            <p className="mt-10">
               <Link
                 to={entry.link}
                 className="inline-flex items-center text-green hover:text-brass transition-colors text-base underline-offset-4 hover:underline"

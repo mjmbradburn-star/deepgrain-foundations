@@ -198,6 +198,19 @@ describe("on-page SEO guardrails", () => {
   });
 
 
+  it("keeps the retained agentic-efficiency answer substantial and standalone", () => {
+    const answer = ANSWERS.find((entry) => entry.slug === "how-does-agentic-ai-improve-operational-efficiency");
+    expect(answer?.sections?.length).toBeGreaterThanOrEqual(3);
+    const supportingWords = answer?.sections?.flatMap((section) => [
+      ...section.paragraphs,
+      ...(section.bullets ?? []),
+    ]).join(" ").split(/\s+/).length ?? 0;
+    expect(supportingWords).toBeGreaterThanOrEqual(300);
+    const page = readFileSync("src/pages/AnswerDetail.tsx", "utf8");
+    expect(page).toContain("entry.sections?.map");
+  });
+
+
   it("falls back when an article has no generated OG image", () => {
     const page = readFileSync("src/pages/IntelligenceArticle.tsx", "utf8");
     expect(page).toContain("const ogImage = heroImage");
