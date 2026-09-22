@@ -41,6 +41,7 @@ const NOINDEX_PATHS = new Set([
   "/unsubscribe",
   "/brain/resend",
   "/login",
+  "/seo-checklist",
   "/.lovable/oauth/consent",
   "*",
 ]);

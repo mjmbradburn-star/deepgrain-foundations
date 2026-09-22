@@ -161,7 +161,6 @@ const STATIC_ROUTES = [
   { path: "/grain-audit", priority: 0.9, changefreq: "monthly" },
   { path: "/waitlist", priority: 0.9, changefreq: "weekly" },
   { path: "/ai-training-for-business-teams", priority: 0.9, changefreq: "monthly" },
-  { path: "/seo-checklist", priority: 0.4, changefreq: "yearly" },
   { path: "/privacy", priority: 0.3, changefreq: "yearly" },
   { path: "/terms", priority: 0.3, changefreq: "yearly" },
   { path: "/cookies", priority: 0.3, changefreq: "yearly" },
