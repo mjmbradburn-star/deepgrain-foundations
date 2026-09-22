@@ -115,11 +115,11 @@ jobs:
           DEEPGRAIN_FATAL_VALIDATORS: "1"
         run: |
           bun run build > build-ci.log 2>&1 || {
-            tail -40 build-ci.log | sed 's/^/::error::/'
-            cat build-ci.log
+            grep -inE 'error|fail|exception|cannot|missing|prerender' build-ci.log | tail -25 | sed 's/^/::error::/'
+            echo '::error::--- last lines ---'
+            tail -15 build-ci.log | sed 's/^/::error::/'
             exit 1
           }
-          cat build-ci.log
 
       - name: Test
         run: bunx vitest run
