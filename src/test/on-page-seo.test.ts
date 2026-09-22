@@ -144,7 +144,18 @@ describe("on-page SEO guardrails", () => {
     const shell = readFileSync("index.html", "utf8");
     const home = readFileSync("src/pages/Home.tsx", "utf8");
     expect(shell).not.toContain('"@type": "VideoObject"');
+    expect(shell).not.toContain('"@graph"');
     expect(home).toContain('"@type": "VideoObject"');
+  });
+
+
+  it("owns site entities in SiteEntityLd rather than duplicating them in the shell", () => {
+    const shell = readFileSync("index.html", "utf8");
+    const entities = readFileSync("src/components/seo/SiteEntityLd.tsx", "utf8");
+    expect(shell).not.toContain('"@type": "Organization"');
+    expect(shell).not.toContain('"@type": "WebSite"');
+    expect(entities).toContain('"@type": "Organization"');
+    expect(entities).toContain('"@type": "WebSite"');
   });
 
 });
