@@ -179,14 +179,38 @@ try {
       });
 
       const url = previewUrl + route;
-      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30_000 });
+      // Retry loop: if the ready marker never appears we would snapshot the
+      // bare SPA shell (noindex fallbacks) and count it as rendered. Reload
+      // up to 3 times; if it still never readies, the validators fail the
+      // build loudly in fatal mode.
+      let readyOk = false;
+      for (let attempt = 1; attempt <= 3 && !readyOk; attempt++) {
+        if (attempt > 1) {
+          console.warn(
+            `[prerender] retry ${attempt}/3 for ${route} (ready marker missing)`,
+          );
+          await new Promise((r) => setTimeout(r, 1000 * attempt));
+        }
+        await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30_000 });
 
-      // Wait for the SiteShell's [data-prerender-ready] marker. This proves
-      // React + the route component + Helmet all flushed, not just that an
-      // <h1> exists somewhere in the shell.
-      await page
-        .waitForSelector("[data-prerender-ready='true']", { timeout: 15_000 })
-        .catch(() => null);
+        // Wait for the SiteShell's [data-prerender-ready] marker. This proves
+        // React + the route component + Helmet all flushed, not just that an
+        // <h1> exists somewhere in the shell.
+        readyOk = await page
+          .waitForSelector("[data-prerender-ready='true']", { timeout: 15_000 })
+          .then(() => true)
+          .catch(() => false);
+        if (readyOk) {
+          // The shell marker can beat Helmet's PageMeta flush under load:
+          // body rendered, head still carrying the static noindex fallbacks
+          // and no canonical. Every prerendered route emits a canonical, so
+          // gate on it too and let the retry loop catch the race.
+          readyOk = await page
+            .waitForSelector('link[rel="canonical"]', { timeout: 10_000 })
+            .then(() => true)
+            .catch(() => false);
+        }
+      }
       // Belt and braces: also confirm an <h1> rendered.
       await page
         .waitForSelector("h1", { timeout: 5_000 })
@@ -317,7 +341,9 @@ if (failures.length) {
 // In CI / fatal-validators mode, any failure must stop the build. Locally
 // we keep the soft-exit so a flaky puppeteer step doesn't block iteration.
 const fatal =
-  process.env.CI === "true" || process.env.DEEPGRAIN_FATAL_VALIDATORS === "1";
+  process.env.CI === "true" ||
+  process.env.CI === "1" || // Vercel build env sets CI=1
+  process.env.DEEPGRAIN_FATAL_VALIDATORS === "1";
 if (failed > 0 && fatal) {
   console.error(`[prerender] FATAL: ${failed} route(s) failed to prerender.`);
   process.exit(1);

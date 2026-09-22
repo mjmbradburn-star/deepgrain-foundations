@@ -52,7 +52,10 @@ export function deepgrainPrerenderPlugin(): Plugin {
       // In CI we want validators to be fatal so a broken build never
       // ships. Locally (Lovable preview, dev sandboxes) we keep them
       // non-fatal so a flaky puppeteer step doesn't block iteration.
-      const fatal = process.env.CI === "true" || process.env.DEEPGRAIN_FATAL_VALIDATORS === "1";
+      const fatal =
+        process.env.CI === "true" ||
+        process.env.CI === "1" || // Vercel build env sets CI=1
+        process.env.DEEPGRAIN_FATAL_VALIDATORS === "1";
       try {
         await run("audit-routes.mjs");
         await run("prerender-intelligence.mjs");
