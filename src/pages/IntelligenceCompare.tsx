@@ -27,8 +27,8 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
     "@type": "Article",
     headline: entry.title,
     description: entry.description,
-    author: { "@type": "Person", name: "Matthew Bradburn", url: `${SITE}/about` },
-    publisher: { "@type": "Organization", name: "Deepgrain", url: SITE },
+    author: { "@id": `${SITE}/about#matthew-bradburn` },
+    publisher: { "@id": `${SITE}/#organization` },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 

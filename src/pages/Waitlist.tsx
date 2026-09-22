@@ -12,11 +12,7 @@ const COURSE_LD = {
   name: "The Deepgrain AI Cohort for People Teams",
   description:
     "Four weeks, live, for People and HR operators in scaling companies. Map your function, learn to prompt like an operator, ship three working automations on your own processes, and leave with a one-page 90-day rollout plan. Successor to AI Powered People Ops, taught by Matt Bradburn.",
-  provider: {
-    "@type": "Organization",
-    name: "Deepgrain",
-    sameAs: "https://www.deepgrain.ai",
-  },
+  provider: { "@id": "https://www.deepgrain.ai/#organization" },
   offers: {
     "@type": "Offer",
     price: "495",

@@ -180,12 +180,7 @@ const serviceLd = {
   description:
     "Operating consultancy that reads an organisation's grain, builds agentic systems and rituals with it, and leaves a trained internal capability behind.",
   url: "https://www.deepgrain.ai/method",
-  provider: {
-    "@type": "Organization",
-    name: "Deepgrain",
-    url: "https://www.deepgrain.ai",
-    email: "matt@deepgrain.ai",
-  },
+  provider: { "@id": "https://www.deepgrain.ai/#organization" },
   areaServed: { "@type": "Place", name: "United Kingdom" },
   audience: {
     "@type": "Audience",

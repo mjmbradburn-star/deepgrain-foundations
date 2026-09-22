@@ -39,11 +39,7 @@ const About = () => (
           givenName: "Matthew",
           familyName: "Bradburn",
           jobTitle: "Founder & Principal",
-          worksFor: {
-            "@type": "Organization",
-            name: "Deepgrain",
-            url: "https://www.deepgrain.ai",
-          },
+          worksFor: { "@id": "https://www.deepgrain.ai/#organization" },
           url: "https://www.deepgrain.ai/about",
           email: "matt@deepgrain.ai",
           image: "https://www.deepgrain.ai/og-image.png",

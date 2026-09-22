@@ -90,11 +90,7 @@ const AnswerDetail = () => {
         "@type": "Answer",
         text: entry.answer,
         url,
-        author: {
-          "@type": "Person",
-          name: "Matthew Bradburn",
-          url: "https://www.deepgrain.ai/about",
-        },
+        author: { "@id": "https://www.deepgrain.ai/about#matthew-bradburn" },
       },
     },
   };

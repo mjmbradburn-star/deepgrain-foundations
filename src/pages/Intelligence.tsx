@@ -51,7 +51,7 @@ const Intelligence = () => {
       headline: a.frontmatter.title,
       url: `https://www.deepgrain.ai/intelligence/${a.frontmatter.slug}`,
       datePublished: a.frontmatter.publishedAt,
-      author: { "@type": "Person", name: a.frontmatter.author },
+      author: { "@id": "https://www.deepgrain.ai/about#matthew-bradburn" },
     })),
   };
 

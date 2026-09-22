@@ -45,23 +45,10 @@ const IntelligenceArticle = () => {
     headline: f.title,
     description: f.description,
     keywords: f.keywords?.join(", "),
-    author: {
-      "@type": "Person",
-      "@id": "https://www.deepgrain.ai/about#matthew-bradburn",
-      name: f.author,
-      url: "https://www.deepgrain.ai/about",
-    },
+    author: { "@id": "https://www.deepgrain.ai/about#matthew-bradburn" },
     datePublished: f.publishedAt,
     dateModified,
-    publisher: {
-      "@type": "Organization",
-      name: "Deepgrain",
-      url: "https://www.deepgrain.ai",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://www.deepgrain.ai/og-image.png",
-      },
-    },
+    publisher: { "@id": "https://www.deepgrain.ai/#organization" },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     image: ogImage,
   };

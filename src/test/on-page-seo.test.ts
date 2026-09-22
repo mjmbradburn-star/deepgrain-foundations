@@ -170,6 +170,23 @@ describe("on-page SEO guardrails", () => {
   });
 
 
+  it("reuses canonical author and publisher entities across content schema", () => {
+    const files = [
+      "src/pages/IntelligenceArticle.tsx",
+      "src/pages/Intelligence.tsx",
+      "src/pages/IntelligenceCompare.tsx",
+      "src/pages/AnswerDetail.tsx",
+      "src/pages/MethodPage.tsx",
+      "src/pages/Waitlist.tsx",
+    ].map((file) => readFileSync(file, "utf8")).join("\n");
+    expect(files).toContain("https://www.deepgrain.ai/#organization");
+    expect(files).toContain("https://www.deepgrain.ai/about#matthew-bradburn");
+    expect(files).not.toContain('author: { "@type": "Person"');
+    expect(files).not.toContain('publisher: { "@type": "Organization"');
+    expect(files).not.toContain('provider: {\n    "@type": "Organization"');
+  });
+
+
   it("falls back when an article has no generated OG image", () => {
     const page = readFileSync("src/pages/IntelligenceArticle.tsx", "utf8");
     expect(page).toContain("const ogImage = heroImage");
