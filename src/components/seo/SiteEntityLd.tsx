@@ -70,6 +70,8 @@ export const SiteEntityLd = () => {
       "Organisational consultancy",
       "AI operating systems",
       "AI enablement",
+      "AI training for business teams",
+      "ChatGPT and Claude training for companies",
       "Operating diagnostics",
     ],
     areaServed: [
@@ -80,7 +82,7 @@ export const SiteEntityLd = () => {
     audience: {
       "@type": "BusinessAudience",
       audienceType:
-        "Founder-led companies in AI-native, defence, financial data, transit and climate sectors",
+        "Founder-led companies and commercial teams across operations, sales, customer, marketing, finance and People",
     },
   };
 

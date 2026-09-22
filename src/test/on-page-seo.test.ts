@@ -102,4 +102,12 @@ describe("on-page SEO guardrails", () => {
     expect(page).toContain('keywords: TRAINING_KEYWORDS.join');
   });
 
+
+  it("includes the expanded training offer in the sitewide service entity", () => {
+    const entity = readFileSync("src/components/seo/SiteEntityLd.tsx", "utf8");
+    expect(entity).toContain('"AI training for business teams"');
+    expect(entity).toContain('"ChatGPT and Claude training for companies"');
+    expect(entity).toContain("operations, sales, customer, marketing, finance and People");
+  });
+
 });
