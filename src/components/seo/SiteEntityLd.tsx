@@ -36,11 +36,22 @@ export const SiteEntityLd = () => {
     "@type": "Person",
     "@id": "https://www.deepgrain.ai/about#matthew-bradburn",
     name: "Matthew Bradburn",
+    givenName: "Matthew",
+    familyName: "Bradburn",
     url: "https://www.deepgrain.ai/about",
-    jobTitle: "Operating consultant",
+    jobTitle: "Founder & Principal",
+    email: "matt@deepgrain.ai",
+    image: "https://www.deepgrain.ai/og-image.png",
     worksFor: { "@id": "https://www.deepgrain.ai/#organization" },
     description:
       "Operating consultant working with founders and operating leaders building AI-native, defence, financial data, transit, and climate companies.",
+    knowsAbout: [
+      "Organisational consultancy",
+      "AI operating systems",
+      "AI readiness",
+      "Operating leadership",
+      "People operations",
+    ],
     sameAs: [
       "https://www.linkedin.com/in/matthewbradburn",
     ],

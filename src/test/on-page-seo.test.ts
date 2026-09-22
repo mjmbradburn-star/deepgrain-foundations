@@ -187,6 +187,17 @@ describe("on-page SEO guardrails", () => {
   });
 
 
+  it("owns the full Person entity sitewide and references it from the About profile", () => {
+    const entities = readFileSync("src/components/seo/SiteEntityLd.tsx", "utf8");
+    const about = readFileSync("src/pages/About.tsx", "utf8");
+    expect(entities).toContain('givenName: "Matthew"');
+    expect(entities).toContain('knowsAbout: [');
+    expect(about).toContain('"@type": "ProfilePage"');
+    expect(about).toContain('mainEntity: { "@id": "https://www.deepgrain.ai/about#matthew-bradburn" }');
+    expect(about).not.toContain('"@type": "Person"');
+  });
+
+
   it("falls back when an article has no generated OG image", () => {
     const page = readFileSync("src/pages/IntelligenceArticle.tsx", "utf8");
     expect(page).toContain("const ogImage = heroImage");

@@ -33,26 +33,12 @@ const About = () => (
       jsonLd={[
         {
           "@context": "https://schema.org",
-          "@type": "Person",
-          "@id": "https://www.deepgrain.ai/about#matthew-bradburn",
-          name: "Matthew Bradburn",
-          givenName: "Matthew",
-          familyName: "Bradburn",
-          jobTitle: "Founder & Principal",
-          worksFor: { "@id": "https://www.deepgrain.ai/#organization" },
+          "@type": "ProfilePage",
+          "@id": "https://www.deepgrain.ai/about#profile",
+          name: "About Matthew Bradburn",
           url: "https://www.deepgrain.ai/about",
-          email: "matt@deepgrain.ai",
-          image: "https://www.deepgrain.ai/og-image.png",
-          knowsAbout: [
-            "Organisational consultancy",
-            "AI operating systems",
-            "AI readiness",
-            "Operating leadership",
-            "People operations",
-          ],
-          sameAs: [
-            "https://www.linkedin.com/in/matthewbradburn/",
-          ],
+          mainEntity: { "@id": "https://www.deepgrain.ai/about#matthew-bradburn" },
+          isPartOf: { "@id": "https://www.deepgrain.ai/#website" },
         },
         buildBreadcrumbLd([
           { name: "Home", url: "https://www.deepgrain.ai/" },
