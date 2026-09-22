@@ -113,7 +113,13 @@ jobs:
         env:
           CI: "true"
           DEEPGRAIN_FATAL_VALIDATORS: "1"
-        run: bun run build
+        run: |
+          bun run build > build-ci.log 2>&1 || {
+            tail -40 build-ci.log | sed 's/^/::error::/'
+            cat build-ci.log
+            exit 1
+          }
+          cat build-ci.log
 
       - name: Test
         run: bunx vitest run
