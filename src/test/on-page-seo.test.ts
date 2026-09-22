@@ -158,4 +158,11 @@ describe("on-page SEO guardrails", () => {
     expect(entities).toContain('"@type": "WebSite"');
   });
 
+
+  it("falls back when an article has no generated OG image", () => {
+    const page = readFileSync("src/pages/IntelligenceArticle.tsx", "utf8");
+    expect(page).toContain("const ogImage = heroImage");
+    expect(page).toContain('"https://www.deepgrain.ai/og-intelligence.png"');
+  });
+
 });

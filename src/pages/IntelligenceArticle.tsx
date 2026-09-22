@@ -34,7 +34,9 @@ const IntelligenceArticle = () => {
   const related = getRelatedArticles(slug, 3);
   const url = `https://www.deepgrain.ai/intelligence/${f.slug}`;
   const heroImage = getHeroImage(f.slug);
-  const ogImage = `https://www.deepgrain.ai/og/intelligence/${f.slug}.jpg`;
+  const ogImage = heroImage
+    ? `https://www.deepgrain.ai/og/intelligence/${f.slug}.jpg`
+    : "https://www.deepgrain.ai/og-intelligence.png";
   const dateModified = f.updatedAt || f.publishedAt;
 
   const articleLd = {
