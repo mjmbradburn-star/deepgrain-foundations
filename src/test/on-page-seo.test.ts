@@ -27,7 +27,23 @@ describe("on-page SEO guardrails", () => {
   });
 
   it("does not re-create the merged AI platform answer URL", () => {
-    for (const slug of ["ai-os-vs-ai-platform", "how-to-identify-efficiency-gaps-ai-can-fill", "how-does-ai-improve-business-efficiency"]) {
+    const retiredAnswers = [
+      "ai-os-vs-ai-platform",
+      "how-to-identify-efficiency-gaps-ai-can-fill",
+      "how-does-ai-improve-business-efficiency",
+      "what-is-an-ai-operating-system",
+      "what-is-an-ai-os",
+      "what-is-an-ai-based-operating-system",
+      "what-is-an-ai-powered-operating-system",
+      "ai-os-vs-operating-model",
+      "how-to-build-an-ai-operating-system",
+      "five-pillars-of-ai-readiness",
+      "why-ai-pilots-stall-at-production",
+      "ai-operating-ladder",
+      "what-is-an-ai-workspace",
+      "ai-os-vs-automation",
+    ];
+    for (const slug of retiredAnswers) {
       expect(ANSWERS.some((answer) => answer.slug === slug), slug).toBe(false);
     }
   });

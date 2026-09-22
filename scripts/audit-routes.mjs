@@ -50,6 +50,7 @@ const NOINDEX_PATHS = new Set([
 const REDIRECT_ONLY = new Set([
   "/intelligence/people-ops",
   "/intelligence/answers",
+  "/intelligence/answers/:slug",
   "/course",
   "/cohort",
   "/people-ops-course",
