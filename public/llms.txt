@@ -17,10 +17,10 @@ Articles within each category below are listed in foundational reading order (ol
 - [Method](https://www.deepgrain.ai/method): The Read, Craft, Scale method explained in full.
 - [Work](https://www.deepgrain.ai/work): Case studies across defence tech, financial data, transit, and climate.
 - [Enablement](https://www.deepgrain.ai/enablement): Coaching, champions, and the curriculum that builds lasting capability.
+- [AI training for business teams](https://www.deepgrain.ai/ai-training-for-business-teams): Practical ChatGPT and Claude training for commercial and operations teams, from work audit to 30-day landing plan.
 - [About](https://www.deepgrain.ai/about): Matthew Bradburn's background, philosophy, and references.
 - [Contact](https://www.deepgrain.ai/contact): How to start a conversation.
 - [Intelligence](https://www.deepgrain.ai/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
-- [Intelligence answers](https://www.deepgrain.ai/intelligence/answers): Direct answers to the questions People and operating leaders ask most.
 - [Intelligence pillars](https://www.deepgrain.ai/intelligence/pillars): Pillar hubs grouping related articles into deep topic clusters.
 - [Brain](https://www.deepgrain.ai/brain): The People Ops AI Brain, nine working notes on running People functions with AI. Free with email.
 

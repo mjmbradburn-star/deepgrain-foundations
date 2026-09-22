@@ -128,7 +128,7 @@ var PILLARS = [
   {
     slug: "setting-up-your-ai-workspace",
     title: "Setting up your AI workspace",
-    url: "https://www.deepgrain.ai/intelligence/people-ops/setting-up-your-ai-workspace"
+    url: "https://www.deepgrain.ai/intelligence/setting-up-your-ai-workspace"
   }
 ];
 var list_pillars_default = defineTool3({

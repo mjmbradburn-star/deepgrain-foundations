@@ -239,10 +239,10 @@ Articles within each category below are listed in foundational reading order (ol
 - [Method](${ORIGIN}/method): The Read, Craft, Scale method explained in full.
 - [Work](${ORIGIN}/work): Case studies across defence tech, financial data, transit, and climate.
 - [Enablement](${ORIGIN}/enablement): Coaching, champions, and the curriculum that builds lasting capability.
+- [AI training for business teams](${ORIGIN}/ai-training-for-business-teams): Practical ChatGPT and Claude training for commercial and operations teams, from work audit to 30-day landing plan.
 - [About](${ORIGIN}/about): Matthew Bradburn's background, philosophy, and references.
 - [Contact](${ORIGIN}/contact): How to start a conversation.
 - [Intelligence](${ORIGIN}/intelligence): Long-form essays on operating systems, AI readiness, and the craft of operating leadership.
-- [Intelligence answers](${ORIGIN}/intelligence/answers): Direct answers to the questions People and operating leaders ask most.
 - [Intelligence pillars](${ORIGIN}/intelligence/pillars): Pillar hubs grouping related articles into deep topic clusters.
 - [Brain](${ORIGIN}/brain): The People Ops AI Brain, nine working notes on running People functions with AI. Free with email.
 `;
