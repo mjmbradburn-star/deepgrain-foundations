@@ -139,4 +139,12 @@ describe("on-page SEO guardrails", () => {
     expect(page).toContain('to="/work"');
   });
 
+
+  it("emits the homepage VideoObject only through the route component", () => {
+    const shell = readFileSync("index.html", "utf8");
+    const home = readFileSync("src/pages/Home.tsx", "utf8");
+    expect(shell).not.toContain('"@type": "VideoObject"');
+    expect(home).toContain('"@type": "VideoObject"');
+  });
+
 });
