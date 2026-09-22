@@ -124,6 +124,7 @@ const BusinessTeamAITraining = () => (
     <PageMeta
       title="AI Training for Business Teams | Deepgrain"
       description="Practical ChatGPT and Claude training for commercial and operations teams: work audit, tailored session, reusable tools and a 30-day landing plan."
+      image="https://www.deepgrain.ai/og-enablement.png"
       path="/ai-training-for-business-teams"
       keywords={TRAINING_KEYWORDS}
       jsonLd={[

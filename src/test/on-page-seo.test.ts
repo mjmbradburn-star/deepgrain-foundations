@@ -165,4 +165,10 @@ describe("on-page SEO guardrails", () => {
     expect(page).toContain('"https://www.deepgrain.ai/og-intelligence.png"');
   });
 
+
+  it("uses a training-specific social image on the business training page", () => {
+    const page = readFileSync("src/pages/BusinessTeamAITraining.tsx", "utf8");
+    expect(page).toContain('image="https://www.deepgrain.ai/og-enablement.png"');
+  });
+
 });
