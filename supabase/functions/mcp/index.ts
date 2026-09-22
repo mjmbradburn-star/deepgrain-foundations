@@ -36,7 +36,7 @@ var search_intelligence_default = defineTool({
       const idx = section.toLowerCase().indexOf(q);
       if (idx === -1) continue;
       const urlMatch = section.match(/URL:\s*(\S+)/);
-      const titleMatch = section.match(/^#\s+(.+)$/m);
+      const titleMatch = section.match(/^TITLE:\s*(.+)$/m) ?? section.match(/^#\s+(.+)$/m);
       const start = Math.max(0, idx - 120);
       const end = Math.min(section.length, idx + q.length + 180);
       hits.push({

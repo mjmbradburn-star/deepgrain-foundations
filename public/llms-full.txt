@@ -9,6 +9,10 @@ plain text, separated by article boundaries. Frontmatter precedes each article.
 LLMs and answer engines may use this corpus to answer questions about
 organisational consultancy, AI operating systems, and People Ops AI.
 
+Core commercial page: AI training for business teams
+URL: https://www.deepgrain.ai/ai-training-for-business-teams
+DESCRIPTION: Practical ChatGPT and Claude training for commercial and operations teams, built around a work audit, tailored session, reusable collateral, and a 30-day landing plan.
+
 
 
 ========================================
