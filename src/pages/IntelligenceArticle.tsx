@@ -236,6 +236,21 @@ const IntelligenceArticle = () => {
             />
           )}
 
+          {/* Hub link: every article points into the People Ops AI pillar with the
+              same anchor text, so the hub collects a consistent internal signal. */}
+          <p className="mt-14 font-sans text-walnut/80 leading-relaxed">
+            {f.track === "people-ops" ? "Part of the " : "Running a People team? Start with the "}
+            <Link
+              to="/intelligence/pillar/people-ops-ai"
+              className="text-green underline decoration-brass/50 underline-offset-4 hover:text-brass"
+            >
+              People Ops AI guide
+            </Link>
+            {f.track === "people-ops"
+              ? ": where AI fits across the People function, what to build first, and how to govern it."
+              : ". It covers where AI fits across the People function, what to build first, and how to govern it."}
+          </p>
+
           <div className="mt-16 pt-12 border-t border-walnut/15 flex items-center justify-between flex-wrap gap-4">
             <SaveLink className="text-walnut/70 hover:text-walnut" />
             <span className="text-walnut/50 text-xs uppercase" style={{ letterSpacing: "0.14em" }}>

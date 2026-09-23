@@ -6,6 +6,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/intelligence/what-is-an-ai-operating-system-for-business",
+      "destination": "/intelligence/what-is-an-ai-operating-system",
+      "statusCode": 301
+    },
+    {
       "source": "/intelligence/pillar/ai-workspace-for-people-ops",
       "destination": "/intelligence/pillar/people-ops-ai",
       "statusCode": 301
