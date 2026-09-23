@@ -13,6 +13,7 @@ const links = [
   { to: "/ai-training-for-business-teams", label: "AI training for business teams" },
   { to: "/work", label: "Work" },
   { to: "/intelligence", label: "Intelligence" },
+  { to: "/intelligence/pillar/people-ops-ai", label: "People Ops AI guide" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
@@ -29,7 +30,7 @@ export const Footer = () => (
             Deepgrain
           </div>
           <p className="text-sm text-cream/60 max-w-xs leading-relaxed">
-            Organisational consultancy for companies that want to last.
+            AI enablement for People and operations teams, built to last.
           </p>
         </div>
         <nav aria-label="Footer">
@@ -49,7 +50,7 @@ export const Footer = () => (
                 href="https://aioi.deepgrain.ai"
                 className="text-sm text-cream/70 hover:text-cream transition-colors"
               >
-                AI Operating Index â
+                AI Operating Index ↗
               </a>
             </li>
           </ul>
@@ -138,7 +139,7 @@ export const Footer = () => (
       </ul>
     </div>
     <div className="container-grain mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row gap-2 justify-between text-xs text-cream/40">
-      <p>Â© 2026 Deepgrain Ltd</p>
+      <p>© 2026 Deepgrain Ltd</p>
       <nav aria-label="Legal" className="flex gap-4">
         <Link to="/privacy" className="hover:text-cream/70 transition-colors">Privacy</Link>
         <Link to="/cookies" className="hover:text-cream/70 transition-colors">Cookies</Link>

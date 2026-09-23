@@ -134,7 +134,7 @@ const CLUSTERS = (() => {
 
 const PILLARS = [
   "ai-operating-system",
-  "ai-workspace-for-people-ops",
+  "people-ops-ai",
   "operating-leadership",
   "sector-operating-lenses",
 ];
@@ -239,6 +239,7 @@ Articles within each category below are listed in foundational reading order (ol
 - [Method](${ORIGIN}/method): The Read, Craft, Scale method explained in full.
 - [Work](${ORIGIN}/work): Case studies across defence tech, financial data, transit, and climate.
 - [Enablement](${ORIGIN}/enablement): Coaching, champions, and the curriculum that builds lasting capability.
+- [People Ops AI guide](${ORIGIN}/intelligence/pillar/people-ops-ai): The complete guide to AI for People and HR teams: where it fits, the assistants and agents worth building, governance, and where to start.
 - [AI training for business teams](${ORIGIN}/ai-training-for-business-teams): Practical ChatGPT and Claude training for commercial and operations teams, from work audit to 30-day landing plan.
 - [About](${ORIGIN}/about): Matthew Bradburn's background, philosophy, and references.
 - [Contact](${ORIGIN}/contact): How to start a conversation.

@@ -38,7 +38,7 @@ const IntelligencePillars = () => {
         <title>Pillar Deep-Dives | Deepgrain Intelligence</title>
         <meta
           name="description"
-          content="Pillar deep-dives that group the Deepgrain library into clear topic clusters: AI operating systems, AI workspace for People Ops, leadership, sectors."
+          content="Pillar deep-dives that group the Deepgrain library into clear topic clusters: People Ops AI, AI operating systems, operating leadership and sector lenses."
         />
         <link rel="canonical" href={url} />
         <meta property="og:title" content="Pillar Deep-Dives | Deepgrain Intelligence" />

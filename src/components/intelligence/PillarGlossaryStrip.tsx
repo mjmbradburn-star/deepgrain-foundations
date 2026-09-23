@@ -16,7 +16,7 @@ const PILLAR_TERMS: Record<string, string[]> = {
     "five-pillars-of-ai-readiness",
     "ai-readiness",
   ],
-  "ai-workspace-for-people-ops": [
+  "people-ops-ai": [
     "ai-workspace",
     "champion-model",
     "ai-agent",

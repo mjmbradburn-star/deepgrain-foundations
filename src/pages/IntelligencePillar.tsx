@@ -16,8 +16,8 @@ import { track } from "@/lib/analytics";
 const READINESS_NUDGE: Record<string, string> = {
   "ai-operating-system":
     "Skip the reading. The Readiness Assessment covers these same pillars in about ten minutes.",
-  "ai-workspace-for-people-ops":
-    "Skip the reading. The Readiness Assessment scores your workspace and tooling maturity in about ten minutes.",
+  "people-ops-ai":
+    "Skip the reading. The Readiness Assessment scores your People function's AI readiness in about ten minutes.",
   "operating-leadership":
     "Skip the reading. The Readiness Assessment scores how your operating model actually runs, in about ten minutes.",
   "sector-operating-lenses":
@@ -60,6 +60,19 @@ const IntelligencePillar = () => {
     })),
   }));
 
+  const faqLd =
+    pillar.faqs && pillar.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: pillar.faqs.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: { "@type": "Answer", text: f.answer },
+          })),
+        }
+      : null;
+
   return (
     <>
       <Helmet>
@@ -79,6 +92,7 @@ const IntelligencePillar = () => {
             {JSON.stringify(ld)}
           </script>
         ))}
+        {faqLd && <script type="application/ld+json">{JSON.stringify(faqLd)}</script>}
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
@@ -201,6 +215,31 @@ const IntelligencePillar = () => {
           })}
         </div>
       </section>
+
+      {pillar.faqs && pillar.faqs.length > 0 && (
+        <section className="bg-cream/40 border-y border-walnut/10 py-20 md:py-24" aria-labelledby="pillar-faq">
+          <div className="container-grain max-w-3xl">
+            <h2
+              id="pillar-faq"
+              className="font-display text-3xl md:text-4xl text-walnut mb-8"
+              style={{ letterSpacing: "-0.01em" }}
+            >
+              Common questions
+            </h2>
+            <div className="divide-y divide-walnut/15 border-y border-walnut/15">
+              {pillar.faqs.map((f) => (
+                <details key={f.question} className="group py-5">
+                  <summary className="cursor-pointer list-none flex items-start justify-between gap-6 text-walnut text-lg md:text-xl font-medium">
+                    <h3 className="font-sans text-lg md:text-xl font-medium">{f.question}</h3>
+                    <span aria-hidden className="text-brass transition-transform group-open:rotate-45 text-2xl leading-none">+</span>
+                  </summary>
+                  <p className="text-walnut/85 text-base md:text-lg leading-relaxed mt-4">{f.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Brief glossary strip wired to the canonical glossary page */}
       <PillarGlossaryStrip pillarSlug={pillar.slug} />

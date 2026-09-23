@@ -66,7 +66,7 @@ export const brainCards: BrainCard[] = [
     layer: "Systems",
     title: "Building your first automation",
     blurb:
-      "End-to-end build: a New Hire Welcome automation with n8n + Claude. The five-component anatomy, testing, and deployment, all in one sitting.",
+      "End-to-end build: a New Hire Welcome automation with a workflow tool + Claude. The five-component anatomy, testing, and deployment, all in one sitting.",
   },
   {
     number: "08",

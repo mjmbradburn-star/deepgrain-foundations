@@ -9,7 +9,6 @@ export const frontmatter = {
   keywords: [
     "People Ops automation patterns",
     "HR workflow automation",
-    "n8n automation for HR",
     "AI agents for People teams",
     "how to automate HR workflows",
     "AI automation that pays off",
@@ -30,7 +29,7 @@ export const faqs = [
   {
     question: "How do I automate HR workflows without hiring engineers?",
     answer:
-      "You do not need engineers. You need a champion, a workflow tool, and one clean process. The usual stack is n8n for the steps (around twenty pounds per builder seat a month, SOC 2 and ISO 27001, self-hostable), an LLM with enterprise terms for the judgement, your HRIS as source of truth, and Slack or email as the surface. A trained person on the team builds each pattern in days or weeks.",
+      "You do not need engineers. You need a champion, a workflow tool, and one clean process. The usual stack is a workflow tool for the steps (around twenty pounds per builder seat a month, SOC 2 and ISO 27001, self-hostable), an LLM with enterprise terms for the judgement, your HRIS as source of truth, and Slack or email as the surface. A trained person on the team builds each pattern in days or weeks.",
   },
   {
     question: "Do we need bespoke AI agents to get value from automation?",
@@ -61,7 +60,7 @@ Six recur and pay back reliably: inbound triage, interview scorecard summarisati
 
 The reason teams chase the clever build is that it demos well. A polished agent doing something impressive in a meeting is easy to sell upward. But the demo and the rollout are two different tests, and the gap between them is where most of this work dies. "The demo worked. The rollout didn't." is the most common Pattern I see, and it almost never fails on the model. It fails because the workflow around the model was never designed: the data was hand-prepared, the checkpoint was missing, nobody owned it on Monday.
 
-The stack that makes these patterns work is deliberately unglamorous, and it is the same one the wider [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops) is built on. A workflow tool: n8n if you want self-hosted control, Make if you want managed, Zapier if you want zero learning curve. n8n runs about twenty pounds per builder seat a month, is SOC 2 and ISO 27001 compliant, and self-hosts if your security team needs it inside your own perimeter. Then an LLM provider with enterprise terms for the judgement steps, your HRIS as the single source of truth, and Slack or email as the surface where humans review and approve. That is enough to build every pattern below. There is no missing sixth tool.
+The stack that makes these patterns work is deliberately unglamorous, and it is the same one the wider [People Ops AI system](/intelligence/pillar/people-ops-ai) is built on. A workflow tool: self-hosted if you want control, managed if you want less upkeep, the simplest one on the market if you want zero learning curve. A good one runs about twenty pounds per builder seat a month, is SOC 2 and ISO 27001 compliant, and self-hosts if your security team needs it inside your own perimeter. Then an LLM provider with enterprise terms for the judgement steps, your HRIS as the single source of truth, and Slack or email as the surface where humans review and approve. That is enough to build every pattern below. There is no missing sixth tool.
 
 When the workflow is designed well, the return is not abstract. On one defence-tech engagement the systems the team built and owned took the routine load off the function almost entirely.
 
@@ -116,7 +115,7 @@ The build is the same every time, whichever pattern you pick. This is the shape 
   stages={[
     { label: "Read the workflow", body: "Map one process at click level. Find where the work actually snags and how often it repeats.", meta: "Day 1" },
     { label: "Bound it", body: "One goal, one process, one trigger. Nothing adjacent. If it needs to do two jobs, it is two workflows.", meta: "Day 1-2" },
-    { label: "Wire the tools", body: "HRIS as source of truth, n8n for the steps, an LLM for the judgement, Slack as the surface.", meta: "Week 1" },
+    { label: "Wire the tools", body: "HRIS as source of truth, a workflow tool for the steps, an LLM for the judgement, Slack as the surface.", meta: "Week 1" },
     { label: "Insert the checkpoint", body: "One human approval before anything leaves the building. The model prepares, the person decides.", meta: "Week 1" },
     { label: "Log and review", body: "Every step audited, a named owner, a monthly look at drift. Cheap to switch off if it stops earning.", meta: "Ongoing" },
   ]}

@@ -6,7 +6,7 @@ export const frontmatter = {
   clusters: ["workflows-and-automation"],
   track: "people-ops",
   description: "Most People Ops agents are demos with ambition. Production agents for People Ops share a pattern: real data, a context stack, an off-switch, an owner.",
-  keywords: ["production agents for People Ops", "AI agents in HR", "why AI agents fail in production", "n8n HR automation", "AI agent context stack", "how to build an AI agent in People Ops"],
+  keywords: ["production agents for People Ops", "AI agents in HR", "why AI agents fail in production", "AI agent context stack", "how to build an AI agent in People Ops"],
   readTime: "12 min",
   publishedAt: "2026-04-30",
   updatedAt: "2026-09-21",
@@ -24,7 +24,7 @@ export const faqs = [
   },
   {
     question: "Do you need engineers to build AI agents inside a People team?",
-    answer: "No. A workflow tool like n8n connects your existing systems and runs the AI steps inside auditable pipelines, at around £20 per builder seat per month, SOC 2 and ISO 27001 compliant, and self-hostable. Two trained internal builders on the People team can ship more real capability than the tenth specialist HR app ever will. The skill you need is workflow thinking, not software engineering.",
+    answer: "No. A workflow tool connects your existing systems and runs the AI steps inside auditable pipelines, at around £20 per builder seat per month, SOC 2 and ISO 27001 compliant, and self-hostable. Two trained internal builders on the People team can ship more real capability than the tenth specialist HR app ever will. The skill you need is workflow thinking, not software engineering.",
   },
   {
     question: "Where should a People team start with AI agents?",
@@ -85,7 +85,7 @@ The HRIS knows the employee. The ATS knows the candidate. Payroll knows the comp
 | Performance | The rating | No |
 | Engagement | The sentiment | No |
 
-Buying a tenth product adds a tenth silo. The value you are missing lives in the integration and orchestration layer, not in another app. This is why a workflow tool such as n8n, at roughly £20 per builder seat per month, SOC 2 and ISO 27001 compliant and self-hostable if your security team needs that, often produces more real capability than the newest specialist HR app. It connects what you already own. It lets a small AI step run inside a pipeline that touches the systems where the truth actually lives, and it stays auditable, fixable, and visible when something breaks. Build the extraction steps model-first, never with regex fallbacks that quietly rot. And a plain rule of thumb: if you cannot pull the data through an API today, do not build an agent on top of it tomorrow.
+Buying a tenth product adds a tenth silo. The value you are missing lives in the integration and orchestration layer, not in another app. This is why a workflow tool, at roughly £20 per builder seat per month, SOC 2 and ISO 27001 compliant and self-hostable if your security team needs that, often produces more real capability than the newest specialist HR app. It connects what you already own. It lets a small AI step run inside a pipeline that touches the systems where the truth actually lives, and it stays auditable, fixable, and visible when something breaks. Build the extraction steps model-first, never with regex fallbacks that quietly rot. And a plain rule of thumb: if you cannot pull the data through an API today, do not build an agent on top of it tomorrow.
 
 <FieldNote label="The gotcha">
 A transit operator I worked with was paying about £40,000 a year for a licence nobody on the team could remember choosing. It had been bought three years earlier to solve a workflow problem. The workflow had moved on. The licence had not. We replaced the whole thing with one tool and two internal builders, and the work got faster, not slower.
@@ -168,7 +168,7 @@ Start with the least glamorous thing on the list, and do it in order. This is th
   ]}
 />
 
-Each of those bounded agents has the same shape: clear scope, a real escalation path, an observable trace, honest exception handling. Each one earns the right to expand, and none of them tries to be the agent that runs the whole function. The through-line is the move from [prompts to systems](/intelligence/from-prompts-to-systems): a prompt is a one-off, a system is a thing the team owns and improves. If you want a structured way to pick the first workflow and get a ranked plan for it, the [Grain Audit](/grain-audit) takes one process end to end and hands you a 90-day plan you keep, whether or not you carry on working with us. That belongs to the [AI workspace for People Ops](/intelligence/pillar/ai-workspace-for-people-ops) more broadly: the agents are the visible bit, but the workspace is what makes them survive a quarter.
+Each of those bounded agents has the same shape: clear scope, a real escalation path, an observable trace, honest exception handling. Each one earns the right to expand, and none of them tries to be the agent that runs the whole function. The through-line is the move from [prompts to systems](/intelligence/from-prompts-to-systems): a prompt is a one-off, a system is a thing the team owns and improves. If you want a structured way to pick the first workflow and get a ranked plan for it, the [Grain Audit](/grain-audit) takes one process end to end and hands you a 90-day plan you keep, whether or not you carry on working with us. That belongs to the [People Ops AI system](/intelligence/pillar/people-ops-ai) more broadly: the agents are the visible bit, but the workspace is what makes them survive a quarter.
 
 Production agents are not magicians. They are operators. Build them like operators, hold them to an operator's standard, and they will work like operators. Build them like demos and they will keep working right up until the moment a real person needs them.
 

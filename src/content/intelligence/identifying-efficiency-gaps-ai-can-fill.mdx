@@ -123,7 +123,7 @@ Once a workflow is circled, one design question decides most of the cost and mos
     "The path does not branch on what it finds mid-flow",
     "You can draw the whole thing as a flowchart with no loops back",
     "Cheaper to build and far cheaper to audit later",
-    "n8n, a schedule and a webhook cover most of it",
+    "A workflow tool, a schedule and a webhook cover most of it",
   ]}}
   b={{ heading: "An agent earns it", items: [
     "The path branches based on what the model reads",
@@ -135,7 +135,7 @@ Once a workflow is circled, one design question decides most of the cost and mos
   caption="The tell is branching, not the number of systems involved. A five-system workflow with a fixed path is automation. A two-system workflow that decides its next move is an agent."
 />
 
-This distinction is where budgets get saved or wasted. A tool like [n8n](/intelligence/automation-patterns-that-pay-off) runs fixed-path automation for roughly £20 per builder seat per month, is SOC 2 and ISO 27001 compliant, and self-hosts if your data cannot leave the estate. Most of the queue-clearing wins on the audit sheet are exactly this: deterministic, auditable, boring, and done in a fortnight. Reserve the agent for the workflow where the path genuinely branches on what the model reads. And when you do build extraction into it, build it model-only. Regex fallbacks look like a safety net and behave like a trap: one run of a fragile pipeline can produce hundreds of plausible-looking wrong outputs before anyone notices. If the model cannot do the extraction, the answer is a better prompt or a human step, not a regex that fails silently.
+This distinction is where budgets get saved or wasted. A [workflow tool](/intelligence/automation-patterns-that-pay-off) runs fixed-path automation for roughly £20 per builder seat per month, is SOC 2 and ISO 27001 compliant, and self-hosts if your data cannot leave the estate. Most of the queue-clearing wins on the audit sheet are exactly this: deterministic, auditable, boring, and done in a fortnight. Reserve the agent for the workflow where the path genuinely branches on what the model reads. And when you do build extraction into it, build it model-only. Regex fallbacks look like a safety net and behave like a trap: one run of a fragile pipeline can produce hundreds of plausible-looking wrong outputs before anyone notices. If the model cannot do the extraction, the answer is a better prompt or a human step, not a regex that fails silently.
 
 ## What to do once you have a gap
 

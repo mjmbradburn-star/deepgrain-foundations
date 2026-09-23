@@ -35,6 +35,8 @@ export interface Pillar {
   intro: string[];
   /** Topic clusters. */
   sections: PillarSection[];
+  /** Optional FAQ block, rendered visibly and mirrored in FAQPage JSON-LD. */
+  faqs?: { question: string; answer: string }[];
   /** Optional cross-pillar references. */
   related?: { slug: string; label: string }[];
 }
@@ -92,27 +94,60 @@ export const PILLARS: Pillar[] = [
       },
     ],
     related: [
-      { slug: "ai-workspace-for-people-ops", label: "Pillar: AI Workspace for People Ops" },
+      { slug: "people-ops-ai", label: "Pillar: People Ops AI" },
       { slug: "operating-leadership", label: "Pillar: Operating Leadership" },
     ],
   },
   {
-    slug: "ai-workspace-for-people-ops",
-    title: "The AI Workspace for People Ops",
+    slug: "people-ops-ai",
+    title: "People Ops AI: the guide for People and HR teams",
+    metaTitle: "People Ops AI: a practical guide for HR teams | Deepgrain",
     description:
-      "The complete pillar guide to building an AI-native People Ops function: workspace setup, prompting patterns, model choice, automations, agents, and governance.",
+      "The complete Deepgrain guide to People Ops AI: where AI fits across the People function, the assistants and agents worth building, how to govern them, and where to start.",
+    metaDescription:
+      "People Ops AI in practice: where AI fits across the People function, the assistants and agents worth building, how to govern them, and where to start.",
     keywords: [
-      "AI workspace",
       "People Ops AI",
-      "HR AI",
-      "AI for HR",
-      "AI enablement",
-      "People Ops automation",
+      "AI for HR teams",
+      "AI for People teams",
+      "People Ops AI assistant",
+      "HR AI agents",
+      "AI in HR",
+      "AI enablement for People teams",
+      "AI workspace for People Ops",
     ],
-    lede: "From scattered prompts to a connected People Ops workspace that compounds.",
+    lede: "Where AI fits in the People function, what to build first, and how to keep it running after launch week.",
     intro: [
-      "An AI workspace for People Ops is more than a ChatGPT tab open on the side. It is the considered combination of prompts, models, connected systems, automations, agents, and the policy that holds them together. Done well, it turns People Ops from a service desk into operating infrastructure for the company.",
-      "This pillar gathers the full Deepgrain library on the topic: how to diagnose readiness, set up the workspace, choose models, write prompts that hold up under load, ship automations and agents, and govern it all with confidence.",
+      "People Ops AI is the use of AI models, assistants and agents to run People work: answering policy questions, coordinating onboarding, handling hiring admin, drafting documents from approved templates, and turning HR data into decisions. Done well, it moves the People team from a service desk to the system the rest of the company runs on.",
+      "Most People teams start in the wrong place. They buy an assistant, point it at a policy drive nobody has cleaned in years, and wonder why the answers are wrong. The order that works is the one this guide follows: read where the function actually stands, set up a shared workspace, pick one workflow, build it end to end with a person approving the calls that matter, then govern it and measure it.",
+      "Across the People estate there are five domains where AI fits differently: talent acquisition, onboarding and lifecycle, performance and development, operations and compliance, and strategy and insight. The People Ops AI domain map covers each one. Everything below is the full Deepgrain library on People Ops AI, in reading order.",
+    ],
+    faqs: [
+      {
+        question: "What is People Ops AI?",
+        answer:
+          "People Ops AI is the use of AI models, assistants and agents to run People work: answering policy questions, coordinating onboarding, handling hiring admin, drafting documents from approved templates, and turning HR data into decisions. It is a system, not a single tool. The model is the easy part. The data it reads, the actions it can take, the rules on what it never decides alone and the person who maintains it are what make it work.",
+      },
+      {
+        question: "What is a People Ops AI assistant?",
+        answer:
+          "An assistant that answers employee and manager questions from your own policies, handbook and HR data, and hands anything sensitive to a person. The useful ones read from a clean policy library, can raise a ticket or update a record rather than only reply, and log every answer so the People team can check them. Pay, performance ratings and disciplinary matters stay with a person.",
+      },
+      {
+        question: "Where should a People team start with AI?",
+        answer:
+          "With one workflow, not a platform. Pick a process that is frequent, rule-based and painful, such as onboarding coordination or policy questions, map how it actually runs today, and build the smallest honest version end to end. Once that runs on real data at real volume, the second workflow is cheaper because it reuses the same data access, tools and rules.",
+      },
+      {
+        question: "Do we need engineers to build People Ops AI?",
+        answer:
+          "No. You need a champion, a workflow tool, and one clean process. A People person who understands the work and is given time to build will get further than an engineer who does not know how onboarding actually runs. Engineering help matters later, for integrations your HRIS does not expose simply.",
+      },
+      {
+        question: "How do you keep People Ops AI safe?",
+        answer:
+          "Write down what AI never decides alone, keep sensitive data inside tools on the right enterprise terms, log what the AI does, and name one owner who reviews it on a set rhythm. Governance done early is what lets the rest run without a nervous manager checking every call.",
+      },
     ],
     sections: [
       {

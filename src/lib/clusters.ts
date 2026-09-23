@@ -45,7 +45,7 @@ export const CLUSTERS: Cluster[] = [
     short: "Readiness",
     description: "Mapping where a People function actually stands before building anything.",
     metaDescription: "Mapping where a People function actually stands before building anything: readiness signals, diagnostic toolkits, and honest baselines.",
-    parentPillar: "ai-workspace-for-people-ops",
+    parentPillar: "people-ops-ai",
   },
   {
     slug: "enablement-and-change",
@@ -53,7 +53,7 @@ export const CLUSTERS: Cluster[] = [
     short: "Enablement",
     description: "Operating models, champions, and the change rituals that make AI stick.",
     metaDescription: "Operating models, champions, and the change rituals that make AI stick: enablement systems that outlast the launch-week energy.",
-    parentPillar: "ai-workspace-for-people-ops",
+    parentPillar: "people-ops-ai",
   },
   {
     slug: "org-design-and-roles",
@@ -61,7 +61,7 @@ export const CLUSTERS: Cluster[] = [
     short: "Org design",
     description: "New People roles, ratios, and structures when AI is infrastructure.",
     metaDescription: "New People roles, ratios, and structures when AI is infrastructure: the HR Architect, the champion model, and team design.",
-    parentPillar: "ai-workspace-for-people-ops",
+    parentPillar: "people-ops-ai",
   },
   {
     slug: "governance-and-policy",
@@ -69,7 +69,7 @@ export const CLUSTERS: Cluster[] = [
     short: "Governance",
     description: "Operating posture and policy artifacts that keep AI work safe and fast.",
     metaDescription: "Operating posture and policy artifacts that keep AI work safe and fast: blueprints People teams can defend to legal and the board.",
-    parentPillar: "ai-workspace-for-people-ops",
+    parentPillar: "people-ops-ai",
   },
   {
     slug: "measurement-and-roi",
@@ -77,7 +77,7 @@ export const CLUSTERS: Cluster[] = [
     short: "ROI",
     description: "Quantifying AI value, building the board narrative, defending the spend.",
     metaDescription: "Quantifying AI value, building the board narrative, and defending the spend: measurement frameworks for People Ops AI work.",
-    parentPillar: "ai-workspace-for-people-ops",
+    parentPillar: "people-ops-ai",
   },
   {
     slug: "workflows-and-automation",
@@ -85,7 +85,7 @@ export const CLUSTERS: Cluster[] = [
     short: "Workflows",
     description: "Audit, prioritise, and rebuild People workflows with AI in the loop.",
     metaDescription: "Audit, prioritise, and rebuild People workflows with AI in the loop: assessment frameworks and automation patterns that pay off.",
-    parentPillar: "ai-workspace-for-people-ops",
+    parentPillar: "people-ops-ai",
   },
   {
     slug: "agents-and-systems",
@@ -93,7 +93,7 @@ export const CLUSTERS: Cluster[] = [
     short: "Agents",
     description: "Production agents and connected systems that run between sessions.",
     metaDescription: "Production agents and connected systems that run between sessions: from prompts and demos to infrastructure People Ops can rely on.",
-    parentPillar: "ai-workspace-for-people-ops",
+    parentPillar: "people-ops-ai",
   },
   {
     slug: "workspace-and-tools",
@@ -101,7 +101,7 @@ export const CLUSTERS: Cluster[] = [
     short: "Workspace",
     description: "Persistent workspaces, model selection, and the daily tooling layer.",
     metaDescription: "Persistent workspaces, model selection, and the daily tooling layer: setting up an AI workspace People teams actually use.",
-    parentPillar: "ai-workspace-for-people-ops",
+    parentPillar: "people-ops-ai",
   },
   {
     slug: "prompting-and-craft",
@@ -109,7 +109,7 @@ export const CLUSTERS: Cluster[] = [
     short: "Craft",
     description: "Prompting patterns, evaluation habits, and the craft underneath the systems.",
     metaDescription: "Prompting patterns, evaluation habits, and the craft underneath the systems: how People operators get reliable output from models.",
-    parentPillar: "ai-workspace-for-people-ops",
+    parentPillar: "people-ops-ai",
   },
 ];
 

@@ -6,6 +6,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/intelligence/pillar/ai-workspace-for-people-ops",
+      "destination": "/intelligence/pillar/people-ops-ai",
+      "statusCode": 301
+    },
+    {
       "source": "/intelligence/answers",
       "destination": "/intelligence",
       "statusCode": 301

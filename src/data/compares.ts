@@ -116,7 +116,7 @@ export const COMPARES: CompareEntry[] = [
       { axis: "Best for", left: "Rails, hand-offs, deterministic flows", right: "Triage, drafting, analysis, judgment" },
       { axis: "Failure mode", left: "Breaks loudly when inputs shift", right: "Drifts quietly without governance" },
       { axis: "Maintenance", left: "Update the rule", right: "Update the data, the prompt, and the cadence" },
-      { axis: "Right tool", left: "n8n, Zapier, workflow engines", right: "Models plus your AI OS pillars" },
+      { axis: "Right tool", left: "Workflow engines and automation tools", right: "Models plus your AI OS pillars" },
     ],
     summary:
       "Use automation for the rails. Use an AI operating system for the decisions. The two compound when you build them together: automation handles the deterministic plumbing while the AI OS handles the judgment, with governance and cadence sitting across both. Companies that conflate the two end up with brittle pilots and unhappy operators.",
