@@ -71,7 +71,7 @@ const GrainAudit = () => {
   return (
     <>
       <PageMeta
-        title="The Grain Audit: a two-week process review | Deepgrain"
+        title="Grain Audit: two-week People Ops process review | Deepgrain"
         description="A two-week fixed-scope review of one People Ops process: U-shaped map, ranked automation shortlist, 90-day plan, readout. £2,000, credited in full."
         path="/grain-audit"
         jsonLd={[AUDIT_LD, buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "Grain Audit", url: "https://www.deepgrain.ai/grain-audit" }])]}
@@ -112,7 +112,7 @@ const GrainAudit = () => {
           </div>
           <div className="fade-in-up fade-in-up-3 mt-12 flex flex-wrap items-center gap-6">
             <PillButton
-              href="/contact?subject=I'd%20like%20to%20book%20a%20Grain%20Audit%20for%3A%20"
+              href="/contact#write&subject=I'd%20like%20to%20book%20a%20Grain%20Audit%20for%3A%20"
               variant="filled"
               cta="grain_audit_hero"
               ctaLocation="grain_audit_hero"
@@ -337,7 +337,7 @@ const GrainAudit = () => {
             </p>
             <div className="mt-12 flex flex-wrap items-center gap-6">
               <PillButton
-                href="/contact?subject=I'd%20like%20to%20book%20a%20Grain%20Audit%20for%3A%20"
+                href="/contact#write&subject=I'd%20like%20to%20book%20a%20Grain%20Audit%20for%3A%20"
                 variant="filled"
                 cta="grain_audit_footer"
                 ctaLocation="grain_audit_footer"

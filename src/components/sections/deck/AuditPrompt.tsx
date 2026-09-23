@@ -1,3 +1,4 @@
+import { contactPrefillHref } from "@/lib/contactPrefill";
 import { Link } from "react-router-dom";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -35,7 +36,7 @@ export const AuditPrompt = ({
   className,
 }: AuditPromptProps) => {
   const isGreen = tone === "green";
-  const href = `/contact?subject=${encodeURIComponent(prefill)}`;
+  const href = contactPrefillHref(prefill);
 
   const onClick = () => {
     track("cta_click", {

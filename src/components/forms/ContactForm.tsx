@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { readContactPrefill } from "@/lib/contactPrefill";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { PillButton } from "@/components/ui/PillButton";
@@ -20,17 +21,12 @@ const inputClass =
   "w-full bg-transparent border-0 border-b border-cream/30 focus:border-cream/80 focus:outline-none py-3 text-cream placeholder:text-cream/40 font-sans text-base transition-colors";
 const labelClass = "block text-cream/70 text-[11px] uppercase tracking-[0.15em] mb-1";
 
-/** Hard cap on prefill length - generous, but stops anyone using ?subject= as
- *  a stuffing vector for arbitrary content into our enquiries table. */
-const PREFILL_MAX = 500;
-
 export const ContactForm = () => {
-  const [params] = useSearchParams();
-  // Read `?subject=` once on mount. We deliberately don't react to later changes
-  // - once the user is in the form, they own the textarea.
-  const initialMessage = useRef(
-    (params.get("subject") ?? "").slice(0, PREFILL_MAX),
-  ).current;
+  const { search, hash } = useLocation();
+  // Read the prefill (fragment, or legacy ?subject=) once on mount. We
+  // deliberately don't react to later changes - once the user is in the form,
+  // they own the textarea. Length is capped inside readContactPrefill.
+  const initialMessage = useRef(readContactPrefill(search, hash)).current;
 
   const [form, setForm] = useState<FormState>({
     name: "",

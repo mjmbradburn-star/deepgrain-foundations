@@ -1,3 +1,4 @@
+import { contactPrefillHref } from "@/lib/contactPrefill";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -42,8 +43,7 @@ const trailingCls = "group inline-flex items-center gap-1 text-sm text-brass fon
 const ctaCls = "group inline-flex items-center rounded-full border border-brass/40 bg-brass/5 hover:bg-brass/10 text-brass text-xs font-semibold uppercase tracking-[0.12em] pl-4 pr-1.5 py-1.5 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]";
 
 /** Build a /contact link with a polite, conversational prefill quoting the FAQ. */
-const askLink = (prompt: string) =>
-  `/contact?subject=${encodeURIComponent(prompt)}`;
+const askLink = (prompt: string) => contactPrefillHref(prompt);
 
 /** Footer row under each FAQ answer: optional related links + the contextual CTA. */
 const FaqFooter = ({

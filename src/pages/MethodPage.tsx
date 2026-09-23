@@ -1,3 +1,4 @@
+import { contactPrefillHref } from "@/lib/contactPrefill";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/ui/Reveal";
 import { Parallax } from "@/components/ui/Parallax";
@@ -23,8 +24,7 @@ const trailingCls = "inline-flex items-center gap-1 text-sm text-brass font-medi
 const ctaCls = "inline-flex items-center gap-1.5 rounded-full border border-brass/40 bg-brass/5 hover:bg-brass hover:text-cream text-brass text-xs font-semibold uppercase tracking-[0.12em] px-4 py-2 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]";
 
 /** Build a /contact link with a polite, conversational prefill quoting the FAQ. */
-const askLink = (prompt: string) =>
-  `/contact?subject=${encodeURIComponent(prompt)}`;
+const askLink = (prompt: string) => contactPrefillHref(prompt);
 
 /** Footer row under each FAQ answer: optional related link + the contextual CTA. */
 const FaqFooter = ({

@@ -25,7 +25,7 @@ export const SiteEntityLd = () => {
     },
     founder: { "@id": "https://www.deepgrain.ai/about#matthew-bradburn" },
     description:
-      "Organisational consultancy that reads the grain of how a company actually operates, then changes it without breaking what works.",
+      "AI enablement for People and operations teams. Deepgrain maps how a function actually works, then builds the AI workflows, agents and team capability to run it.",
     sameAs: [
       "https://www.linkedin.com/company/deepgrain",
     ],
@@ -46,9 +46,12 @@ export const SiteEntityLd = () => {
     description:
       "Operating consultant working with founders and operating leaders building AI-native, defence, financial data, transit, and climate companies.",
     knowsAbout: [
-      "Organisational consultancy",
-      "AI operating systems",
+      "AI enablement for People teams",
+      "People Ops AI",
+      "AI for HR teams",
       "AI readiness",
+      "AI operating systems",
+      "Organisational consultancy",
       "Operating leadership",
       "People operations",
     ],
@@ -78,9 +81,11 @@ export const SiteEntityLd = () => {
     parentOrganization: { "@id": "https://www.deepgrain.ai/#organization" },
     founder: { "@id": "https://www.deepgrain.ai/about#matthew-bradburn" },
     serviceType: [
-      "Organisational consultancy",
-      "AI operating systems",
+      "AI enablement for People teams",
+      "People Ops AI workflows and agents",
       "AI enablement",
+      "AI operating systems",
+      "Organisational consultancy",
       "AI training for business teams",
       "ChatGPT and Claude training for companies",
       "Operating diagnostics",

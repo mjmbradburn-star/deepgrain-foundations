@@ -16,7 +16,9 @@ export const ScrollToTop = () => {
       window.scrollTo(0, 0);
       return;
     }
-    const id = decodeURIComponent(hash.slice(1));
+    // Only the segment before "&" is an element id; the rest can carry state
+    // such as the contact-form prefill (#write&subject=...).
+    const id = decodeURIComponent(hash.slice(1).split("&")[0]);
     const start = performance.now();
     let frame = 0;
     const tick = () => {

@@ -62,8 +62,8 @@ const Home = () => (
   <>
     <FilmGrain />
     <PageMeta
-      title="Deepgrain | From the role to the click."
-      description="Organisational consultancy for the AI era. We audit how your function actually operates, then build the agentic systems and team capability to evolve it."
+      title="Deepgrain | AI enablement for People and ops teams"
+      description="AI enablement for People and operations teams. We map how your function actually works, then build the AI workflows, agents and team skills to run it."
       path="/"
       jsonLd={[
         {

@@ -222,7 +222,7 @@ const CATEGORY_LABELS = {
 function buildLlmsTxt(articles) {
   const head = `# Deepgrain
 
-> Organisational consultancy that reads the grain of how a company actually operates, then changes it without breaking what works. Read, Craft, Scale.
+> AI enablement for People and operations teams. Deepgrain maps how a function actually works, then builds the AI workflows, agents and team capability to run it. Read, Craft, Scale.
 
 Last updated: ${TODAY}
 Articles: ${articles.length}
