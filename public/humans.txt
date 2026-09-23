@@ -10,7 +10,7 @@ Name: Deepgrain
 Method: Read · Craft · Scale
 Focus: Operating consultancy and AI operating systems for AI-native, defence,
        financial-data, transit, and climate companies.
-Diagnostic: https://aioi.deepgrain.ai
+Diagnostic: https://www.deepgrain.ai/readiness
 
 /* COLOPHON */
 Built with: React, Vite, TailwindCSS, Lovable Cloud

@@ -93,20 +93,20 @@ const BrainWelcomeEmail = ({
 
             <Hr style={hr} />
 
-            {/* AIOI cross-sell — kept light */}
+            {/* Readiness Assessment cross-sell, kept light */}
             <Section style={secondaryCard}>
               <Text style={secondaryEyebrow}>While you&apos;re here</Text>
               <Heading as="h2" style={h2}>
                 See how your function actually scores.
               </Heading>
               <Text style={secondaryText}>
-                The AI Operating Index is a short diagnostic — twelve questions,
-                one honest score across the dimensions that separate AI-native
+                The Readiness Assessment scores your People function in about
+                ten minutes, across the dimensions that separate AI-native
                 People teams from the rest.
               </Text>
               <Section style={ctaSection}>
                 <Button href={aioiUrl} style={outlineButton}>
-                  Take the AIOI →
+                  Take the Readiness Assessment →
                 </Button>
               </Section>
             </Section>
@@ -149,7 +149,7 @@ export const template = {
   previewData: {
     firstName: "Sam",
     brainUrl: "https://deepgrain.ai/brain/open?t=preview",
-    aioiUrl: "https://aioi.deepgrain.ai",
+    aioiUrl: "https://www.deepgrain.ai/readiness",
   },
 } satisfies TemplateEntry;
 

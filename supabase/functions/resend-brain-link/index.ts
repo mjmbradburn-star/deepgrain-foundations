@@ -32,7 +32,7 @@ const SUPPORT_EMAIL = "matt@peopleleaders.io";
 const BRAIN_OPEN_BASE = `${
   Deno.env.get("SUPABASE_URL") ?? ""
 }/functions/v1/open-brain`;
-const AIOI_URL = "https://aioi.deepgrain.ai";
+const AIOI_URL = "https://www.deepgrain.ai/readiness";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",

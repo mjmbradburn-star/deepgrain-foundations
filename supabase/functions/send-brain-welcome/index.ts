@@ -41,7 +41,7 @@ const corsHeaders = {
 const BRAIN_OPEN_BASE = `${
   Deno.env.get("SUPABASE_URL") ?? ""
 }/functions/v1/open-brain`;
-const AIOI_URL = "https://aioi.deepgrain.ai";
+const AIOI_URL = "https://www.deepgrain.ai/readiness";
 
 function generateBrainAccessToken(): string {
   const bytes = new Uint8Array(32);

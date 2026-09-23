@@ -259,9 +259,9 @@ export const PILLARS: Pillar[] = [
   },
   {
     slug: "sector-operating-lenses",
-    title: "Sector Operating Lenses",
+    title: "AI enablement by sector",
     description:
-      "Operating consultancy applied to specific industries: AI-native companies, climate ventures, defence tech, financial data, and transit and mobility.",
+      "AI enablement applied to specific industries: AI-native companies, climate ventures, defence tech, financial data, and transit and mobility.",
     keywords: [
       "operating consultancy",
       "sector consulting",

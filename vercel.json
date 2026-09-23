@@ -6,6 +6,72 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/assess",
+      "has": [
+        {
+          "type": "host",
+          "value": "aioi.deepgrain.ai"
+        }
+      ],
+      "destination": "https://www.deepgrain.ai/readiness",
+      "statusCode": 301
+    },
+    {
+      "source": "/benchmarks",
+      "has": [
+        {
+          "type": "host",
+          "value": "aioi.deepgrain.ai"
+        }
+      ],
+      "destination": "https://www.deepgrain.ai/readiness",
+      "statusCode": 301
+    },
+    {
+      "source": "/pillars",
+      "has": [
+        {
+          "type": "host",
+          "value": "aioi.deepgrain.ai"
+        }
+      ],
+      "destination": "https://www.deepgrain.ai/intelligence/five-pillars-of-ai-readiness",
+      "statusCode": 301
+    },
+    {
+      "source": "/ladder",
+      "has": [
+        {
+          "type": "host",
+          "value": "aioi.deepgrain.ai"
+        }
+      ],
+      "destination": "https://www.deepgrain.ai/intelligence/ai-operating-ladder-five-tiers",
+      "statusCode": 301
+    },
+    {
+      "source": "/privacy",
+      "has": [
+        {
+          "type": "host",
+          "value": "aioi.deepgrain.ai"
+        }
+      ],
+      "destination": "https://www.deepgrain.ai/privacy",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "aioi.deepgrain.ai"
+        }
+      ],
+      "destination": "https://www.deepgrain.ai/readiness",
+      "statusCode": 301
+    },
+    {
       "source": "/intelligence/what-is-an-ai-operating-system-for-business",
       "destination": "/intelligence/what-is-an-ai-operating-system",
       "statusCode": 301

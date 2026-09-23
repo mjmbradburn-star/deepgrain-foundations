@@ -146,13 +146,6 @@ export const GLOSSARY: GlossaryEntry[] = [
     link: "/intelligence/strategy-vs-operating-reality",
   },
   {
-    term: "AI Operating Index (AIOI)",
-    slug: "ai-operating-index",
-    definition:
-      "Deepgrain's free 8-pillar diagnostic that scores an organisation's AI operating maturity across data, tools, agents, governance, cadence, leadership, talent, and intervention readiness.",
-    link: "https://aioi.deepgrain.ai",
-  },
-  {
     term: "Founder mode",
     slug: "founder-mode",
     definition:
