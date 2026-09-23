@@ -102,6 +102,38 @@ export const Footer = () => (
         </Suspense>
       </div>
     </div>
+    {/* Directory listings: badge-verified free directory backlinks.
+        Keep anchors dofollow (no nofollow) - verifiers check for them. */}
+    <div className="container-grain mt-16">
+      <span className="block font-sans uppercase text-cream/40 text-[11px] tracking-[0.18em] mb-3">
+        Listed on
+      </span>
+      <ul className="flex flex-wrap gap-x-6 gap-y-2 mb-6">
+        <li>
+          <a href="https://www.aitoolzdir.com" target="_blank" rel="noopener" className="text-[13px] text-cream/60 hover:text-cream transition-colors">AI Toolz Dir</a>
+        </li>
+        <li>
+          <a href="https://aitoolcenter.com/" title="AI Tool Center" target="_blank" rel="noopener" className="text-[13px] text-cream/60 hover:text-cream transition-colors">AI Tool Center</a>
+        </li>
+        <li>
+          <a href="https://dokeyai.com" target="_blank" rel="noopener" className="text-[13px] text-cream/60 hover:text-cream transition-colors">DokeyAI</a>
+        </li>
+        <li>
+          <a href="https://whatisaitools.com/" title="What Is Ai Tools" target="_blank" rel="noopener" className="text-[13px] text-cream/60 hover:text-cream transition-colors">What Is Ai Tools</a>
+        </li>
+        <li>
+          <a href="https://dang.ai" target="_blank" rel="noopener" className="text-[13px] text-cream/60 hover:text-cream transition-colors">Dang.ai</a>
+        </li>
+      </ul>
+      <ul className="flex flex-wrap items-center gap-x-6 gap-y-4">
+        <li>
+          <a href="https://newtool.site/item/deepgrain-deepgrainai" target="_blank" rel="noopener noreferrer"><img src="https://newtool.site/badges/newtool-dark.svg" alt="Featured on NewTool.site" style={{ height: "54px", width: "auto" }} /></a>
+        </li>
+        <li>
+          <a href="https://aiagentsdirectory.com/agent/deepgrain" target="_blank" rel="noopener" title="Discover Deepgrain on AI Agents Directory"><img src="https://aiagentsdirectory.com/featured-badge.svg?v=2024" alt="Deepgrain - Featured on AI Agents Directory" style={{ width: "200px", height: "50px" }} /></a>
+        </li>
+      </ul>
+    </div>
     <div className="container-grain mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row gap-2 justify-between text-xs text-cream/40">
       <p>© 2026 Deepgrain Ltd</p>
       <nav aria-label="Legal" className="flex gap-4">
