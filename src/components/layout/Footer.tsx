@@ -49,7 +49,7 @@ export const Footer = () => (
                 href="https://aioi.deepgrain.ai"
                 className="text-sm text-cream/70 hover:text-cream transition-colors"
               >
-                AI Operating Index ↗
+                AI Operating Index â
               </a>
             </li>
           </ul>
@@ -132,10 +132,13 @@ export const Footer = () => (
         <li>
           <a href="https://aiagentsdirectory.com/agent/deepgrain" target="_blank" rel="noopener" title="Discover Deepgrain on AI Agents Directory"><img src="https://aiagentsdirectory.com/featured-badge.svg?v=2024" alt="Deepgrain - Featured on AI Agents Directory" style={{ width: "200px", height: "50px" }} /></a>
         </li>
+        <li>
+          <a href="https://similarlabs.com" target="_blank" rel="noopener"><img src="https://similarlabs.com/similarlabs-embed-badge-light.svg" alt="Featured on SimilarLabs" style={{ height: "54px", width: "auto" }} /></a>
+        </li>
       </ul>
     </div>
     <div className="container-grain mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row gap-2 justify-between text-xs text-cream/40">
-      <p>© 2026 Deepgrain Ltd</p>
+      <p>Â© 2026 Deepgrain Ltd</p>
       <nav aria-label="Legal" className="flex gap-4">
         <Link to="/privacy" className="hover:text-cream/70 transition-colors">Privacy</Link>
         <Link to="/cookies" className="hover:text-cream/70 transition-colors">Cookies</Link>
