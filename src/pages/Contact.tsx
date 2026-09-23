@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Clock } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -8,10 +8,12 @@ import { AssessmentLadder } from "@/components/sections/AssessmentLadder";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
+import { hasContactPrefill } from "@/lib/contactPrefill";
 
 const Contact = () => {
-  const [params] = useSearchParams();
-  const [showForm, setShowForm] = useState(() => params.has("subject"));
+  const { search, hash } = useLocation();
+  // Prefill CTAs (#write&subject=..., or legacy ?subject=) open the form directly.
+  const [showForm, setShowForm] = useState(() => hasContactPrefill(search, hash));
 
   return (
     <>

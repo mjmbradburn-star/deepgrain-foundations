@@ -18,3 +18,8 @@ export const readContactPrefill = (search: string, hash: string): string => {
   const fromQuery = new URLSearchParams(search).get("subject");
   return (fromHash ?? fromQuery ?? "").slice(0, PREFILL_MAX);
 };
+
+/** True when the URL carries a prefill (fragment or legacy query), even an empty one. */
+export const hasContactPrefill = (search: string, hash: string): boolean =>
+  new URLSearchParams(hash.replace(/^#/, "")).has("subject") ||
+  new URLSearchParams(search).has("subject");
