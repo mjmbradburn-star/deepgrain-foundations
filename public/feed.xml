@@ -6,7 +6,7 @@
     <atom:link href="https://www.deepgrain.ai/feed.xml" rel="self" type="application/rss+xml" />
     <description>Long-form essays on operating systems, AI readiness, and the craft of operating leadership.</description>
     <language>en-GB</language>
-    <lastBuildDate>Mon, 21 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 GMT</lastBuildDate>
     <item>
       <title>The quiet discipline of operating leadership</title>
       <link>https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</link>
@@ -22,18 +22,11 @@
       <description>Every AI maturity framework collapses to the same five tiers. For G&amp;A leaders only one jump pays: pilot to integration. Here is how to score it, and move it.</description>
     </item>
     <item>
-      <title>Hiring for the grain: building teams that compound</title>
+      <title>Hiring for the grain: 3 interview questions for grain fit</title>
       <link>https://www.deepgrain.ai/intelligence/hiring-for-the-grain</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/hiring-for-the-grain</guid>
       <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Hiring for the grain means testing whether a candidate strengthens how your team decides under pressure. Use this interview method before making the offer.</description>
-    </item>
-    <item>
-      <title>AI operating system for business</title>
-      <link>https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business</link>
-      <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/what-is-an-ai-operating-system-for-business</guid>
-      <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Most businesses own AI tools but run no AI operating system for business. Here is what the system is, and how to install it before plumbing outruns adoption.</description>
+      <description>Culture fit hires copies. Grain fit hires people who make your team decide better under pressure. Three interview questions to ask before you make the offer.</description>
     </item>
     <item>
       <title>Building agentic operating systems: a roadmap</title>
@@ -54,7 +47,7 @@
       <link>https://www.deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/identifying-efficiency-gaps-ai-can-fill</guid>
       <pubDate>Wed, 10 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Most teams pick AI work by what is loudest, not by shape. The efficiency gaps AI can fill are repetitive, latency-bound, pattern-matching and owned.</description>
+      <description>Most teams pick AI work by what is loudest. The gaps AI fills are repetitive, latency-bound, pattern-matching and owned. How People and ops teams find them.</description>
     </item>
     <item>
       <title>Founder-mode vs operator-mode</title>
@@ -71,25 +64,25 @@
       <description>Operating excellence is not a personality you hire for. It is a craft you build. Here is the craft mindset: masters, apprentices, tools and standards.</description>
     </item>
     <item>
-      <title>Operating consultancy for AI-native companies</title>
+      <title>AI enablement for AI-native companies</title>
       <link>https://www.deepgrain.ai/intelligence/operating-consultancy-for-ai-native-companies</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/operating-consultancy-for-ai-native-companies</guid>
       <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
-      <description>AI-native companies run on agents from day one, so the operating model has to put non-human operators on the org chart. Here is how you build it in.</description>
+      <description>AI enablement for AI-native companies: put agents on the org chart from day one, with the owners, governance and team skills that keep them working.</description>
     </item>
     <item>
-      <title>Operating consultancy for climate ventures</title>
+      <title>AI enablement for climate ventures</title>
       <link>https://www.deepgrain.ai/intelligence/operating-consultancy-for-climate-ventures</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/operating-consultancy-for-climate-ventures</guid>
       <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
-      <description>Most climate ventures fail on the operating layer, not the science. Operating consultancy for climate ventures is holding two clocks at once: planet and fund.</description>
+      <description>AI enablement for climate ventures: fix the operating layer that sinks most climate companies, and run AI on two clocks at once, planet and fund.</description>
     </item>
     <item>
-      <title>Operating consultancy for transit and mobility</title>
+      <title>AI enablement for transit and mobility companies</title>
       <link>https://www.deepgrain.ai/intelligence/operating-consultancy-for-transit-and-mobility</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/operating-consultancy-for-transit-and-mobility</guid>
       <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
-      <description>Transit runs hardware, software and public trust on three clocks at once. Operating consultancy for transit and mobility holds all three without forcing a fit.</description>
+      <description>AI enablement for transit and mobility: hardware, software and public trust run on three clocks. How to add AI and team skills without forcing a fit.</description>
     </item>
     <item>
       <title>The People Ops diagnostic toolkit</title>
@@ -127,11 +120,11 @@
       <description>An AI roadmap case study: how a 280-person fintech People team went from scattered ChatGPT use to nine production workflows in 90 days, and what nearly broke.</description>
     </item>
     <item>
-      <title>Operating consultancy for financial data</title>
+      <title>AI enablement for financial data companies</title>
       <link>https://www.deepgrain.ai/intelligence/operating-consultancy-for-financial-data</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/operating-consultancy-for-financial-data</guid>
       <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
-      <description>In financial data the pipeline is the product. A financial data operating model puts engineering, governance and trust in that order, not the dashboard first.</description>
+      <description>AI enablement for financial data companies: the pipeline is the product, so engineering, governance and trust come before the dashboard.</description>
     </item>
     <item>
       <title>The HR Architect: a new role inside the People function</title>
@@ -169,11 +162,11 @@
       <description>Champions and licences are not a strategy. AI enablement is an operating model with three layers and a cadence. How People leaders build one that sticks.</description>
     </item>
     <item>
-      <title>Operating consultancy for defence tech</title>
+      <title>AI enablement for defence tech companies</title>
       <link>https://www.deepgrain.ai/intelligence/operating-consultancy-for-defence-tech</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/operating-consultancy-for-defence-tech</guid>
       <pubDate>Mon, 27 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Defence tech runs two clocks at once: warfighter outcomes and venture growth. Operating consultancy for defence tech builds the system that holds both.</description>
+      <description>AI enablement for defence tech: AI workflows and team capability that serve warfighter outcomes and venture growth, with audit trails that hold up.</description>
     </item>
     <item>
       <title>Choosing AI models for HR work</title>
@@ -320,14 +313,14 @@
       <link>https://www.deepgrain.ai/intelligence/why-ai-pilots-stall-at-production</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/why-ai-pilots-stall-at-production</guid>
       <pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Getting an AI pilot to production is not a model problem. It is a data, integration, governance and ownership problem. Here is why pilots stall, and the fix.</description>
+      <description>AI pilots stall on data, integration, governance and ownership, not the model. Why pilots die before production in People and ops teams, and the fix.</description>
     </item>
     <item>
       <title>The five pillars of AI readiness</title>
       <link>https://www.deepgrain.ai/intelligence/five-pillars-of-ai-readiness</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/five-pillars-of-ai-readiness</guid>
       <pubDate>Mon, 23 Feb 2026 00:00:00 GMT</pubDate>
-      <description>AI readiness is not a model problem. It is a data, tools, agents, governance and cadence problem in that order. Here is the diagnostic and what good looks like.</description>
+      <description>AI readiness is not a model problem. It is data, tools, agents, governance and cadence, in that order. The diagnostic People and ops teams can run this week.</description>
     </item>
     <item>
       <title>What is an AI operating system? (AI OS, explained)</title>
@@ -344,11 +337,11 @@
       <description>Strategy vs operating reality: a plan that assumes capability you don't have is a wish, not a strategy. Here is how to read the gap and fund closing it.</description>
     </item>
     <item>
-      <title>Operating systems vs operating models</title>
+      <title>Operating system vs operating model, with 3 real examples</title>
       <link>https://www.deepgrain.ai/intelligence/operating-systems-vs-operating-models</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/operating-systems-vs-operating-models</guid>
       <pubDate>Mon, 02 Feb 2026 00:00:00 GMT</pubDate>
-      <description>Operating system vs operating model: the practical difference, how to diagnose each, and why changing the deck rarely changes how work actually runs.</description>
+      <description>An operating model is the slide. An operating system is what runs under pressure. See the gap in promotions, onboarding and enquiries, and how to read it.</description>
     </item>
     <item>
       <title>The grain metaphor: reading your organisation</title>
@@ -356,6 +349,13 @@
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/the-grain-metaphor-reading-your-organisation</guid>
       <pubDate>Mon, 26 Jan 2026 00:00:00 GMT</pubDate>
       <description>Every organisation has a grain: how work really moves. Reading your organisation before you change it is why some change sticks and some spends a year sanding.</description>
+    </item>
+    <item>
+      <title>Why most change programmes fail</title>
+      <link>https://www.deepgrain.ai/intelligence/why-most-change-programmes-fail</link>
+      <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/why-most-change-programmes-fail</guid>
+      <pubDate>Mon, 19 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Why change programmes fail is rarely a strategy problem. It is that the grain, how work actually flows, was never read before the cut was designed.</description>
     </item>
   </channel>
 </rss>

@@ -118,7 +118,7 @@ const Waitlist = () => {
   return (
     <>
       <PageMeta
-        title="Deepgrain AI Cohort for Commercial Functions"
+        title="Deepgrain AI Cohort for People Teams"
         description="Four weeks live for operators across Finance, Sales, Marketing, Operations, Customer and People. Ship three working AI workflows and a 90-day plan."
         path="/waitlist"
         jsonLd={[COURSE_LD, buildFAQLd(faqItems), buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "AI cohort", url: "https://www.deepgrain.ai/waitlist" }])]}
