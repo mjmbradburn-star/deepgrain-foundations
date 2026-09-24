@@ -316,7 +316,7 @@ TRACK: deepgrain
 CATEGORY: ai-operating-systems
 PUBLISHED: 2026-06-18
 READ_TIME: 11 min
-DESCRIPTION: Most teams shop for an agent platform before they own one working agent. An agentic operating system is built the other way, one agent at a time.
+DESCRIPTION: Most People and ops teams shop for an agent platform before they own one working agent. An agentic operating system is built the other way, one agent at a time.
 ========================================
 
 TLDR:
@@ -4281,7 +4281,7 @@ TRACK: deepgrain
 CATEGORY: ai-operating-systems
 PUBLISHED: 2026-03-16
 READ_TIME: 12 min
-DESCRIPTION: Most teams think they are two rungs higher than they are. The AI operating ladder scores AI maturity function by function and names your exact next move.
+DESCRIPTION: Most People and ops teams think they are two rungs higher than they are. The AI operating ladder scores AI maturity by function and names your exact next move.
 ========================================
 
 TLDR:
@@ -4388,7 +4388,7 @@ TRACK: deepgrain
 CATEGORY: ai-operating-systems
 PUBLISHED: 2026-03-09
 READ_TIME: 11 min
-DESCRIPTION: Move from AI pilot to production when workflows repeat, controls are clear and shared infrastructure will stop teams rebuilding the same plumbing.
+DESCRIPTION: Move from AI pilot to production when workflows repeat, controls are clear and shared infrastructure stops People and ops teams rebuilding the same plumbing.
 ========================================
 
 TLDR:

@@ -6,7 +6,7 @@
     <atom:link href="https://www.deepgrain.ai/feed.xml" rel="self" type="application/rss+xml" />
     <description>Long-form essays on operating systems, AI readiness, and the craft of operating leadership.</description>
     <language>en-GB</language>
-    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 24 Sep 2026 00:00:00 GMT</lastBuildDate>
     <item>
       <title>The quiet discipline of operating leadership</title>
       <link>https://www.deepgrain.ai/intelligence/the-quiet-discipline-of-operating-leadership</link>
@@ -33,7 +33,7 @@
       <link>https://www.deepgrain.ai/intelligence/building-agentic-operating-systems</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/building-agentic-operating-systems</guid>
       <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Most teams shop for an agent platform before they own one working agent. An agentic operating system is built the other way, one agent at a time.</description>
+      <description>Most People and ops teams shop for an agent platform before they own one working agent. An agentic operating system is built the other way, one agent at a time.</description>
     </item>
     <item>
       <title>What CTOs get wrong about scale</title>
@@ -299,14 +299,14 @@
       <link>https://www.deepgrain.ai/intelligence/ai-operating-ladder-five-tiers</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/ai-operating-ladder-five-tiers</guid>
       <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Most teams think they are two rungs higher than they are. The AI operating ladder scores AI maturity function by function and names your exact next move.</description>
+      <description>Most People and ops teams think they are two rungs higher than they are. The AI operating ladder scores AI maturity by function and names your exact next move.</description>
     </item>
     <item>
       <title>From AI experiments to AI infrastructure</title>
       <link>https://www.deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure</link>
       <guid isPermaLink="true">https://www.deepgrain.ai/intelligence/from-ai-experiments-to-ai-infrastructure</guid>
       <pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Move from AI pilot to production when workflows repeat, controls are clear and shared infrastructure will stop teams rebuilding the same plumbing.</description>
+      <description>Move from AI pilot to production when workflows repeat, controls are clear and shared infrastructure stops People and ops teams rebuilding the same plumbing.</description>
     </item>
     <item>
       <title>Why AI pilots stall at production</title>
