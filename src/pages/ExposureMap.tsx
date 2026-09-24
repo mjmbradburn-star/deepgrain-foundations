@@ -137,6 +137,8 @@ const MapLeadForm = ({ viewedFunction }: { viewedFunction: string }) => {
       return;
     }
     setSubmitting(true);
+    // RLS-SAFE INSERT (anon-write table): never chain .select() or request the row back.
+    // Anon has no SELECT on this table, so a RETURNING read-back fails the whole insert with 42501.
     const { error } = await supabase.from("enquiries").insert({
       name: "Exposure Map request",
       email: parsed.data.email,

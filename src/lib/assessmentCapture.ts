@@ -52,6 +52,8 @@ type InsertableClient = {
 export async function recordAssessment(record: AssessmentRecord): Promise<void> {
   try {
     const client = supabase as unknown as InsertableClient;
+    // RLS-SAFE INSERT (anon-write table): never chain .select() or request the row back.
+    // Anon has no SELECT on this table, so a RETURNING read-back fails the whole insert with 42501.
     await client.from("assessment_results").insert({
       session_id: getAssessmentSessionId(),
       assessment: record.assessment,

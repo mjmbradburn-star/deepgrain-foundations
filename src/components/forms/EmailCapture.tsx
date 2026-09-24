@@ -49,6 +49,8 @@ export const EmailCapture = ({
     }
 
     setSubmitting(true);
+    // RLS-SAFE INSERT (anon-write table): never chain .select() or request the row back.
+    // Anon has no SELECT on this table, so a RETURNING read-back fails the whole insert with 42501.
     const { error } = await supabase.from("subscribers").insert({
       email: parsed.data.email,
       source,
