@@ -22,7 +22,7 @@ TRACK: deepgrain
 CATEGORY: leadership-and-craft
 PUBLISHED: 2026-06-29
 READ_TIME: 11 min
-DESCRIPTION: Operating leadership rarely looks like the loud version boards reward. The real discipline is cadence kept and decisions made without an audience.
+DESCRIPTION: Operating leadership rarely looks like the loud version boards reward. The real discipline for People and ops leaders is cadence kept and quiet decisions.
 ========================================
 
 TLDR:
@@ -108,7 +108,7 @@ TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-06-27
 READ_TIME: 12 min
-DESCRIPTION: Every AI maturity framework collapses to the same five tiers. For G&A leaders only one jump pays: pilot to integration. Here is how to score it, and move it.
+DESCRIPTION: Every AI maturity framework collapses to the same five tiers. For G&A and People leaders only one jump pays: pilot to integration. How to score it, and move it.
 ========================================
 
 TLDR:
@@ -629,7 +629,7 @@ TRACK: deepgrain
 CATEGORY: leadership-and-craft
 PUBLISHED: 2026-06-08
 READ_TIME: 10 min
-DESCRIPTION: Founder-mode vs operator-mode is not a personality test. They are postures you switch between, and reading which one the moment wants is the executive job.
+DESCRIPTION: Founder-mode vs operator-mode is not a personality test. They are postures People and ops leaders switch between, and reading the moment is the executive job.
 ========================================
 
 TLDR:
@@ -714,7 +714,7 @@ TRACK: deepgrain
 CATEGORY: leadership-and-craft
 PUBLISHED: 2026-06-01
 READ_TIME: 10 min
-DESCRIPTION: Operating excellence is not a personality you hire for. It is a craft you build. Here is the craft mindset: masters, apprentices, tools and standards.
+DESCRIPTION: Operating excellence is a craft, not a personality you hire for. The craft mindset for People and ops teams: masters, apprentices, tools and standards.
 ========================================
 
 TLDR:
@@ -2606,7 +2606,7 @@ TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-04-20
 READ_TIME: 10 min
-DESCRIPTION: Your dashboard is green and the org is not fine. The real signals of operating health are conversational, not on a chart. Here is how to read them early.
+DESCRIPTION: Your dashboard is green and the org is not fine. The real signals are conversational, not on a chart. How People and ops leaders read operating health early.
 ========================================
 
 TLDR:
@@ -3902,7 +3902,7 @@ TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-04-13
 READ_TIME: 10 min
-DESCRIPTION: Scale without breaking the grain: diagnose structural strain, protect the rituals that hold, and repair the operating system before growth compounds the damage.
+DESCRIPTION: Scaling without breaking the grain, for People and ops leaders: read the strain, protect the rituals that hold, repair the system before growth compounds it.
 ========================================
 
 TLDR:
@@ -3999,7 +3999,7 @@ TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-04-06
 READ_TIME: 11 min
-DESCRIPTION: Leaders reach for scale because scale feels serious. The best operating intervention is the smallest change that moves the system. Here is how to size it.
+DESCRIPTION: People and ops leaders reach for scale because scale feels serious. The best intervention is the smallest change that moves the system. How to size it.
 ========================================
 
 TLDR:
@@ -4097,7 +4097,7 @@ TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-03-30
 READ_TIME: 11 min
-DESCRIPTION: How to diagnose an organisation in 30 days: two-thirds listening, one-third synthesis, and zero recommendations until you have earned the right to make them.
+DESCRIPTION: How to diagnose an organisation in 30 days: two-thirds listening, one-third synthesis, nothing recommended until earned. The People and ops leader's first read.
 ========================================
 
 TLDR:
@@ -4197,7 +4197,7 @@ TRACK: deepgrain
 CATEGORY: method-and-practice
 PUBLISHED: 2026-03-23
 READ_TIME: 11 min
-DESCRIPTION: Read, Craft, Scale is Deepgrain’s method: diagnose the operating reality, build the smallest useful intervention, then scale only what survives real work.
+DESCRIPTION: Read, Craft, Scale is Deepgrain’s method for AI enablement in People teams: read the operating reality, craft the smallest useful change, scale what survives.
 ========================================
 
 TLDR:
@@ -4843,7 +4843,7 @@ TRACK: deepgrain
 CATEGORY: foundations
 PUBLISHED: 2026-02-09
 READ_TIME: 10 min
-DESCRIPTION: Strategy vs operating reality: a plan that assumes capability you don't have is a wish, not a strategy. Here is how to read the gap and fund closing it.
+DESCRIPTION: Strategy vs operating reality: a plan that assumes capability you don't have is a wish. How People and ops leaders read the gap and fund closing it.
 ========================================
 
 TLDR:
@@ -5034,7 +5034,7 @@ TRACK: deepgrain
 CATEGORY: foundations
 PUBLISHED: 2026-01-26
 READ_TIME: 11 min
-DESCRIPTION: Every organisation has a grain: how work really moves. Reading your organisation before you change it is why some change sticks and some spends a year sanding.
+DESCRIPTION: Every organisation has a grain: how work really moves. People and ops leaders who read it first are why some change sticks and some sands for a year.
 ========================================
 
 TLDR:
@@ -5124,7 +5124,7 @@ TRACK: deepgrain
 CATEGORY: foundations
 PUBLISHED: 2026-01-19
 READ_TIME: 10 min
-DESCRIPTION: Why change programmes fail is rarely a strategy problem. It is that the grain, how work actually flows, was never read before the cut was designed.
+DESCRIPTION: Why change programmes fail is rarely a strategy problem. It is that the grain, how work actually flows, was never read first. What People and ops leaders miss.
 ========================================
 
 TLDR:
@@ -5216,7 +5216,7 @@ TRACK: deepgrain
 CATEGORY: foundations
 PUBLISHED: 2026-01-12
 READ_TIME: 11 min
-DESCRIPTION: Most consulting sells answers. Organisational consultancy reads how your company actually operates, then changes it without breaking what holds it together.
+DESCRIPTION: Most consulting sells answers. Organisational consultancy reads how work runs and changes it without breaking what holds. What it means for People teams.
 ========================================
 
 TLDR:
