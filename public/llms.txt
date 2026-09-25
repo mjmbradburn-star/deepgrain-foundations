@@ -2,7 +2,7 @@
 
 > AI enablement for People and operations teams. Deepgrain maps how a function actually works, then builds the AI workflows, agents and team capability to run it. Read, Craft, Scale.
 
-Last updated: 2026-09-24
+Last updated: 2026-09-25
 Articles: 51
 Canonical: https://www.deepgrain.ai/llms.txt
 Sitemap: https://www.deepgrain.ai/sitemap.xml

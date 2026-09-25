@@ -53,7 +53,7 @@ const NotFound = () => {
         path="/404"
         noindex
       />
-      <div className="container-grain max-w-4xl">
+      <div className="container-grain max-w-4xl min-w-0">
         <div className="text-center">
           <Eyebrow className="text-brass mb-6">404</Eyebrow>
           <h1 className="font-display text-5xl md:text-7xl leading-tight text-cream">
