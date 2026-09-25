@@ -83,7 +83,7 @@ export const HeroDeck = () => {
           onClick={() => onCourse("bar")}
           className="group absolute left-0 right-0 top-24 z-20 h-10 border-y border-cream/[0.12] bg-bark/35 backdrop-blur-sm transition-colors hover:bg-bark/55 md:top-28 lg:right-[48%]"
         >
-          <span className="container-grain flex h-full items-center justify-between gap-5 font-sans text-[11px] tracking-[0.16em] text-cream/78 sm:text-xs sm:tracking-[0.18em] lg:ml-0 lg:px-20">
+          <span className="container-grain flex h-full items-center justify-between gap-5 font-sans text-[11px] tracking-[0.16em] text-cream/78 sm:text-xs sm:tracking-[0.18em] lg:ml-0 lg:px-10">
             <span className="uppercase truncate min-w-0"><span className="text-brass">October cohort</span><span className="hidden sm:inline"> · Four weeks · 20 seats</span></span>
             <span className="shrink-0 text-cream transition-colors group-hover:text-brass">Join the waitlist <span aria-hidden>→</span></span>
           </span>
