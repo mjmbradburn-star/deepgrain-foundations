@@ -29,7 +29,7 @@ const PAINS = [
   },
   {
     quote: "The pilot worked. The rollout didn't.",
-    body: "One keen person built something clever in a sandbox. It never touched a real process, it had no owner, and it died the week they went on leave. Built for demo, not production.",
+    body: "One keen person built something clever in a sandbox. It never touched a real process, it had no owner, and it died the week they went on leave.",
   },
   {
     quote: "Everyone is dabbling. Nobody is building.",
@@ -56,7 +56,7 @@ const WEEKS = [
   {
     numeral: "4.0 PROVE",
     title: "Prove it, then plan the rollout",
-    body: "Measure the hours returned, write your one-page 90-day rollout plan, and take both to your leadership. You leave with evidence, not intentions.",
+    body: "Measure the hours returned, write your one-page 90-day rollout plan, and take both to your leadership. You leave with evidence leadership can act on.",
   },
 ];
 
@@ -119,7 +119,7 @@ const Waitlist = () => {
     <>
       <PageMeta
         title="Deepgrain AI Cohort for People Teams"
-        description="Four weeks live for operators across Finance, Sales, Marketing, Operations, Customer and People. Ship three working AI workflows and a 90-day plan."
+        description="Four weeks, live, for People and HR operators. Map your function, ship three working automations on your own processes and leave with a 90-day plan."
         path="/waitlist"
         jsonLd={[COURSE_LD, buildFAQLd(faqItems), buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "AI cohort", url: "https://www.deepgrain.ai/waitlist" }])]}
       />

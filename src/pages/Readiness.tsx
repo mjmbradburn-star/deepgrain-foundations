@@ -223,7 +223,7 @@ const ResultLeadForm = ({ result }: { result: AssessmentResult }) => {
             </p>
             <p className="text-cream/75 mt-5 text-[17px] leading-relaxed">
               Matt reads every one of these personally. If your gaps raise a question worth a
-              conversation, you will hear from him, a human, not a sequence.
+              conversation, you will hear from him directly. He writes his own emails.
             </p>
           </div>
         ) : (
@@ -711,7 +711,7 @@ const Readiness = () => {
                       The first move is {GAPS[result.weakestLayers[0]].fix.replace("Fix: ", "")}
                       .{" "}
                       <span className="text-brass font-medium">
-                        That is a two-week teardown, not a transformation programme.
+                        That is a two-week teardown.
                       </span>
                     </p>
                   </div>
@@ -836,7 +836,7 @@ const Readiness = () => {
               {LAYERS.map((layer, i) => {
                 const hints = [
                   "Where the hours actually go.",
-                  "Confidence and craft, not just training.",
+                  "Confidence and craft.",
                   "The stack that earns its keep.",
                   "Habits that survive the rollout.",
                 ];

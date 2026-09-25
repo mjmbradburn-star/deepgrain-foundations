@@ -39,4 +39,6 @@ export const clients: Client[] = [
   { name: "Vertical Aerospace", domain: "vertical-aerospace.com", override: { kind: "image", src: verticalAerospaceLogo } },
   
   { name: "XYZ Reality", domain: "xyzreality.com", override: { kind: "image", src: xyzRealityLogo } },
+  { name: "Systemiq", domain: "systemiq.earth" },
+  { name: "Skylo", domain: "skylo.tech" },
 ];

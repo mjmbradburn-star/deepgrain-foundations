@@ -45,7 +45,7 @@ const beforeAfterGallery: BeforeAfter[] = [
   },
   {
     eyebrow: "Transit technology · PE backed · 260 people",
-    headline: "A doing problem, not a training problem.",
+    headline: "Nobody outside engineering was shipping.",
     beforeValue: "£40k",
     beforeCaption: "in licences and a champions programme producing no outputs outside engineering.",
     beforeChips: ["✕︎ Licences unused", "◌︎ No internal builders"],
@@ -123,8 +123,8 @@ const Work = () => (
             Read first. Then the numbers move.
           </h1>
           <p className="mt-8 max-w-2xl text-cream/80 text-lg leading-relaxed">
-            Not many. The ones who read the work at click level before they bought a tool.
-            Every engagement built to keep compounding long after we've gone.
+            A short list on purpose: clients who let us read the work at click level before any
+            tool got bought. Every engagement built to keep compounding after we leave.
           </p>
         </ScrollReveal>
       </div>

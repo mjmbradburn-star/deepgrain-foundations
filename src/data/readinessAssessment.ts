@@ -113,7 +113,7 @@ export const QUESTIONS: AssessmentQuestion[] = [
   {
     layer: 2,
     question:
-      "Does your People team have any workflow where AI runs a process, not just answers questions?",
+      "Does your People team have any workflow where AI runs the process end to end?",
     options: [
       { label: "Several, in production, with owners", points: 3 },
       { label: "One or two pilots", points: 2 },
@@ -213,12 +213,12 @@ export const STAGES: Stage[] = [
   {
     min: 0,
     name: "Pre-audit",
-    read: "Nobody has measured where the hours go. That is the actual constraint, not the tooling. Start with the map, not the software.",
+    read: "Nobody has measured where the hours go. Until someone does, every tool conversation is a guess. Start with the map.",
   },
   {
     min: 30,
     name: "Aware",
-    read: "Pockets of use, no system. The good news: the next twenty points are the cheapest you will ever buy, because they come from an audit and a handful of power users, not a platform.",
+    read: "Pockets of use, no system. The good news: the next twenty points are the cheapest you will ever buy, because an audit and a handful of power users will get you there.",
   },
   {
     min: 55,

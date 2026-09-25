@@ -301,7 +301,7 @@ const About = () => (
           <div className="space-y-10">
             <div>
               <h3 className="font-display text-walnut text-2xl md:text-3xl leading-snug">
-                The work starts with diagnosis, not software
+                Diagnosis comes before any software
               </h3>
               <p className="mt-3 text-body/85 leading-relaxed text-lg">
                 Deepgrain maps how work actually moves before recommending a
@@ -316,7 +316,7 @@ const About = () => (
             </div>
             <div>
               <h3 className="font-display text-walnut text-2xl md:text-3xl leading-snug">
-                Teams ship work, not exercises
+                Teams ship real work
               </h3>
               <p className="mt-3 text-body/85 leading-relaxed text-lg">
                 The training uses the client&apos;s own workflows and data
@@ -350,10 +350,10 @@ const About = () => (
             </div>
             <div>
               <h3 className="font-display text-walnut text-2xl md:text-3xl leading-snug">
-                The advice has been used inside Deepgrain first
+                Deepgrain runs on the same advice
               </h3>
               <p className="mt-3 text-body/85 leading-relaxed text-lg">
-                Deepgrain runs its own operating work through systems built
+                Deepgrain runs its own operating work through Instinct, built
                 for the same jobs it helps clients improve. The public
                 operating record shows 125+ workflows processed in a month,
                 50% handled end to end by agents, and one process cut from

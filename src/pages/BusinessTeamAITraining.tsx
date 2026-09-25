@@ -27,7 +27,7 @@ const steps = [
   {
     n: "04",
     title: "Land it in 30 days",
-    body: "The team agrees five actions for week one, turns its Click Audit into a build backlog and sets a 30-day definition of good. Training ends with owners and work in motion, not a recording nobody watches.",
+    body: "The team agrees five actions for week one, turns its Click Audit into a build backlog and sets a 30-day definition of good. Training ends with owners and work in motion.",
   },
 ];
 
@@ -64,7 +64,7 @@ const faqItems: FAQItem[] = [
   {
     question: "What does AI enablement for an operations team include?",
     answer:
-      "It starts with one real operational process. We map the handoffs, identify repeated effort, define where judgement stays human and use those findings in the live training. The team leaves with a ranked backlog and a first 30-day plan, not a generic prompt library.",
+      "It starts with one real operational process. We map the handoffs, identify repeated effort, define where judgement stays human and use those findings in the live training. The team leaves with a ranked backlog and a first 30-day plan built from its own work.",
   },
   {
     question: "Can the engagement combine an AI audit and training workshop?",
@@ -172,7 +172,7 @@ const BusinessTeamAITraining = () => (
       <div className="container-grain py-20 md:py-28">
         <div className="max-w-3xl">
           <div className="h-px w-10 bg-brass/40 mb-9" />
-          <h2 className="font-display font-semibold text-4xl md:text-6xl leading-tight">The workshop is the middle, not the whole intervention.</h2>
+          <h2 className="font-display font-semibold text-4xl md:text-6xl leading-tight">A workshop alone changes nothing.</h2>
           <p className="mt-6 text-body/80 text-lg leading-relaxed">
             Generic AI training starts with features and ends with inspiration. This starts by
             finding where the hours go. The live session then uses examples people recognise, and

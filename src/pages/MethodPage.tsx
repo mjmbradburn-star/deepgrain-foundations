@@ -397,7 +397,7 @@ const MethodPage = () => {
       <section id="read" className="bg-linen text-body section-pad scroll-mt-40">
         <div className="container-grain max-w-3xl">
           <Reveal>
-            <SectionEyebrow tone="linen" pill className="mb-6">01 Read</SectionEyebrow>
+            <SectionEyebrow tone="linen" pill className="mb-6">Read</SectionEyebrow>
             <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
               Before we touch a thing, we understand.
             </h2>
@@ -439,7 +439,7 @@ const MethodPage = () => {
         contentClassName="container-grain max-w-3xl"
       >
         <Reveal>
-          <SectionEyebrow pill className="mb-6">02 Craft</SectionEyebrow>
+          <SectionEyebrow pill className="mb-6">Craft</SectionEyebrow>
           <h2 className="font-display text-cream text-4xl md:text-6xl leading-tight">
             We build with the grain, not against it.
           </h2>
@@ -476,7 +476,7 @@ const MethodPage = () => {
       <section id="scale" className="bg-linen text-body section-pad scroll-mt-40">
         <div className="container-grain max-w-3xl">
           <Reveal>
-            <SectionEyebrow tone="linen" pill className="mb-6">03 Scale</SectionEyebrow>
+            <SectionEyebrow tone="linen" pill className="mb-6">Scale</SectionEyebrow>
             <h2 className="font-display text-walnut text-4xl md:text-6xl leading-tight">
               We leave something that compounds.
             </h2>

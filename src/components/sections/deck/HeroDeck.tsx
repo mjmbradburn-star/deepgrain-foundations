@@ -100,7 +100,7 @@ export const HeroDeck = () => {
           {/* LEFT: copy */}
           <div className="lg:col-span-7 xl:col-span-7">
             <div className="mb-7">
-              <SectionEyebrow pill>Built for the AI era</SectionEyebrow>
+              <SectionEyebrow pill>1,000+ managers trained across 100+ cohorts</SectionEyebrow>
             </div>
 
             <div className="max-w-2xl fade-in-up fade-in-up-1">
@@ -108,12 +108,12 @@ export const HeroDeck = () => {
                 className="font-display font-medium uppercase text-cream leading-[0.98] text-[2.25rem] sm:text-[46px] md:text-[58px] lg:text-[58px] xl:text-[66px]"
                 style={{ letterSpacing: "0.01em" }}
               >
-                We rebuild how
+                AI enablement for
                 <br />
-                your company runs.
+                People and ops teams.
               </h1>
               <p className="font-display italic text-cream/85 mt-5 max-w-xl text-lg md:text-xl lg:text-[22px] leading-snug">
-                Audit the operating model, redesign the workflows, then ship the systems and AI that make the new shape stick.
+                We map how your function actually runs, then build the AI workflows, agents and skills your team keeps.
               </p>
             </div>
 

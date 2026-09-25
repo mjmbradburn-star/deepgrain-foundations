@@ -60,9 +60,9 @@ export const AgentArchitecture = () => (
           I ran this from my own desk first.
         </h2>
         <p className="mt-8 text-cream/80 max-w-3xl text-lg leading-relaxed">
-          It takes every meeting and every email, pulls the actions out of the call, routes each
-          one, and drafts what comes next. Several iterations to get it honest. Now it runs the back
-          office of my practice.
+          One platform takes every meeting and every email, pulls the actions out of the call,
+          routes each one, and drafts what comes next. Months of iteration to get it honest. Now
+          Instinct runs the back office of my practice.
         </p>
         <p className="mt-4 text-cream/80 max-w-3xl text-lg leading-relaxed">
           This is the same click-level mapping we run in a Grain Audit.
@@ -76,7 +76,7 @@ export const AgentArchitecture = () => (
             <NodeChip title="Emails" icon="✉" />
           </div>
           <Arrow />
-          <NodeChip label="Orchestrator" title="Hermes" sub="Routes the work" icon="◉" />
+          <NodeChip label="Orchestrator" title="Instinct" sub="Routes the work" icon="◉" />
           <Arrow />
           <div className="space-y-3">
             <NodeChip label="Sub-agents" title="Classify" icon="⌗" />

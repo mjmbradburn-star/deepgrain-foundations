@@ -211,7 +211,7 @@ const ExposureMap = () => {
     <>
       <PageMeta
         title="The AI Exposure Map | Deepgrain"
-        description="Every operating function scored for AI exposure at task level, not job level. See which work automates, which judgment compounds, and what each function needs."
+        description="Every operating function scored for AI exposure task by task. See which work automates, which judgment compounds, and what each function needs."
         path="/exposure-map"
         jsonLd={[EXPOSURE_LD, buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "AI Exposure Map", url: "https://www.deepgrain.ai/exposure-map" }])]}
       />

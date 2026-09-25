@@ -76,7 +76,7 @@ const faqItems: FAQItem[] = [
         We name an exec sponsor, identify three or four champions inside the function, and pick one bounded, painful workflow to build first. No procurement marathon, no tooling debate. We use what you already have where we can, and stand up the missing pieces (an LLM provider, one workflow tool) on the right terms in week one.
         <FaqFooter
           related={[
-            { to: "/method#read", label: "01 Read · Before we touch a thing, we understand →" },
+            { to: "/method#read", label: "Read · Before we touch a thing, we understand →" },
             { to: "/readiness", label: "Score your function first, about ten minutes →" },
           ]}
           ask="I'd like to understand what onboarding would look like for our team. A bit about us: "
@@ -116,7 +116,7 @@ const faqItems: FAQItem[] = [
       <>
         Champions keep building. They extend the practice into corners we never touched, and train the next champion. We stay reachable for occasional questions, but the capability is genuinely held by the team, not parked with a vendor on a retainer.
         <FaqFooter
-          related={[{ to: "/method#scale", label: "03 Scale · We leave something that compounds →" }]}
+          related={[{ to: "/method#scale", label: "Scale · We leave something that compounds →" }]}
           ask="I'd like to understand what life looks like after the engagement ends. A bit about us: "
         />
       </>
@@ -331,7 +331,7 @@ const Enablement = () => (
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <h2 className="font-display text-walnut text-4xl md:text-5xl leading-tight">
-              You need three or four champions, not engineers.
+              Three or four champions beat an engineering hire.
             </h2>
             <div className="mt-10 space-y-6 text-body/85 leading-relaxed text-lg">
               <p>
