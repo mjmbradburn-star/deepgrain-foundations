@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 03 - The Read | Deepgrain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  body{ background:var(--bark); }
+  .scene{ min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden; }
+  .scene .inner{ width:100%; max-width:1100px; margin:0 auto; padding:12vh clamp(20px,5vw,60px); }
+  .stamp{ font:600 11px/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color:var(--brass); opacity:0; transform:translateY(14px); transition:all .9s var(--ease); }
+  .scene.on .stamp{ opacity:1; transform:none; }
+  .big{ font-family:var(--display); font-weight:500; line-height:1.02; font-size:clamp(46px,8vw,110px); opacity:0; transform:translateY(24px); transition:all 1.1s var(--ease) .1s; }
+  .scene.on .big{ opacity:1; transform:none; }
+  .big em{ font-style:italic; color:var(--brass); }
+  .body{ margin-top:28px; max-width:46ch; font-size:17px; line-height:1.7; opacity:0; transform:translateY(18px); transition:all 1s var(--ease) .25s; }
+  .scene.on .body{ opacity:1; transform:none; }
+
+  .s1{ background:var(--green); color:var(--cream); }
+  .s1 .body{ color:hsla(44,53%,90%,.75); }
+  .clock{ position:absolute; right:clamp(20px,6vw,80px); top:12vh; font-family:var(--display); font-size:clamp(90px,14vw,200px); font-weight:600; color:hsla(44,53%,90%,.06); line-height:1; user-select:none; }
+
+  .s2{ background:var(--bark); color:var(--cream); }
+  .tasks{ margin-top:48px; display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:10px; max-width:900px; }
+  .task{ border:1px solid hsla(44,53%,90%,.18); padding:16px 18px; font-size:14px; line-height:1.45; color:hsla(44,53%,90%,.6); border-radius:3px; opacity:0; transform:translateY(10px); transition:all .8s var(--ease); }
+  .scene.on .task{ opacity:1; transform:none; }
+  .task.auto{ border-color:hsla(35,42%,52%,.7); color:var(--cream); }
+  .task.auto b{ display:block; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--brass); margin-bottom:6px; }
+  .scene.on .task:nth-child(1){transition-delay:.30s}.scene.on .task:nth-child(2){transition-delay:.38s}
+  .scene.on .task:nth-child(3){transition-delay:.46s}.scene.on .task:nth-child(4){transition-delay:.54s}
+  .scene.on .task:nth-child(5){transition-delay:.62s}.scene.on .task:nth-child(6){transition-delay:.70s}
+  .scene.on .task:nth-child(7){transition-delay:.78s}.scene.on .task:nth-child(8){transition-delay:.86s}
+
+  .s3{ background:var(--linen); color:var(--walnut); }
+  .s3 .body{ color:hsla(90,12%,11%,.75); }
+  .hours{ display:flex; align-items:baseline; gap:28px; flex-wrap:wrap; margin-top:40px; }
+  .hours .n{ font-family:var(--display); font-weight:600; font-size:clamp(80px,12vw,170px); line-height:.9; color:var(--green); font-variant-numeric:tabular-nums; }
+  .hours .cap{ max-width:24ch; font-size:14px; line-height:1.55; color:hsla(90,12%,11%,.65); }
+
+  .s4{ background:var(--green); color:var(--cream); }
+  .s4 .body{ color:hsla(44,53%,90%,.75); }
+  .queue{ margin-top:44px; max-width:640px; }
+  .qrow{ display:flex; justify-content:space-between; align-items:baseline; gap:20px; padding:15px 0; border-bottom:1px solid hsla(44,53%,90%,.15); font-size:15px; opacity:0; transform:translateX(-12px); transition:all .8s var(--ease); }
+  .scene.on .qrow{ opacity:1; transform:none; }
+  .qrow .who{ color:hsla(44,53%,90%,.55); font-size:12px; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap; }
+  .scene.on .qrow:nth-child(1){transition-delay:.35s}.scene.on .qrow:nth-child(2){transition-delay:.45s}
+  .scene.on .qrow:nth-child(3){transition-delay:.55s}.scene.on .qrow:nth-child(4){transition-delay:.65s}
+  .scene.on .qrow:nth-child(5){transition-delay:.75s}
+
+  .s5{ background:var(--bark); color:var(--cream); text-align:left; }
+  .s5 .body{ color:hsla(44,53%,90%,.75); }
+  .btn{ display:inline-flex; align-items:center; gap:12px; margin-top:44px; background:var(--cream); color:var(--green); font:600 13px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; padding:20px 34px; border-radius:99px; text-decoration:none; transition:transform .4s var(--ease), background .4s var(--ease); opacity:0; }
+  .scene.on .btn{ opacity:1; transition:opacity 1s var(--ease) .5s, transform .4s var(--ease), background .4s var(--ease); }
+  .btn:hover{ transform:translateY(-2px); background:#fff; }
+  .fineprint{ margin-top:30px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:hsla(44,53%,90%,.4); }
+</style>
+</head>
+<body>
+
+<section class="scene s1">
+  <span class="clock">9:04</span>
+  <div class="inner">
+    <p class="stamp">Scene one - Monday</p>
+    <h1 class="big">Monday, 9:04am.<br><em>The queue is already waiting.</em></h1>
+    <p class="body">Forty-seven unread messages, and most of them are the same five questions. Holiday entitlement. The parental leave policy. Whether the new starter's laptop has shipped. Your People team will answer every one by hand, again, the way they did last Monday.</p>
+  </div>
+</section>
+
+<section class="scene s2">
+  <div class="inner">
+    <p class="stamp">Scene two - the exposure</p>
+    <h2 class="big" style="font-size:clamp(36px,5.4vw,72px)">Look closely and the week<br><em>splits in two.</em></h2>
+    <div class="tasks">
+      <div class="task auto"><b>Automates</b>Policy questions with one right answer, asked forty times a month</div>
+      <div class="task">The conversation with a manager whose team is quietly burning out</div>
+      <div class="task auto"><b>Automates</b>Onboarding checklists chased across four systems</div>
+      <div class="task">The salary band call that needs judgement and context</div>
+      <div class="task auto"><b>Automates</b>The weekly headcount report, rebuilt by hand every Friday</div>
+      <div class="task">The restructure plan you have been putting off for a quarter</div>
+      <div class="task auto"><b>Automates</b>Interview scheduling ping-pong across five calendars</div>
+      <div class="task">The hire that has to be right, because the last one was not</div>
+    </div>
+    <p class="body">Work that repeats versus work that needs you. Most AI programmes automate nothing on the left and distract everything on the right. We do the opposite.</p>
+  </div>
+</section>
+
+<section class="scene s3">
+  <div class="inner">
+    <p class="stamp">Scene three - the cost, honestly counted</p>
+    <h2 class="big" style="font-size:clamp(36px,5.4vw,72px)">The queue is not free.<br>It bills by the hour.</h2>
+    <div class="hours">
+      <span class="n">11</span>
+      <p class="cap">hours per person, per week, on questions that were answered last week and will be asked again next week. Counted at click level in a 60-person company we audited this year.</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene s4">
+  <div class="inner">
+    <p class="stamp">Scene four - Wednesday, twelve weeks later</p>
+    <h2 class="big" style="font-size:clamp(36px,5.4vw,72px)">Same desk. Same team.<br><em>Different morning.</em></h2>
+    <div class="queue">
+      <div class="qrow"><span>Policy questions answered overnight, with the source attached</span><span class="who">Agent</span></div>
+      <div class="qrow"><span>Onboarding pack assembled when the offer was signed</span><span class="who">Agent</span></div>
+      <div class="qrow"><span>Headcount report drafted, anomalies flagged for review</span><span class="who">Agent + champion</span></div>
+      <div class="qrow"><span>The conversation with the burning-out team</span><span class="who">You</span></div>
+      <div class="qrow"><span>The restructure plan, finally moving</span><span class="who">You</span></div>
+    </div>
+    <p class="body">The agents were built with your champions, in your tools, on your processes. When we leave, they keep building. That is the engagement.</p>
+  </div>
+</section>
+
+<section class="scene s5">
+  <div class="inner">
+    <p class="stamp">Scene five - your move</p>
+    <h2 class="big" style="font-size:clamp(36px,5.4vw,72px)">We can read one process<br>in two weeks.</h2>
+    <p class="body">The Grain Audit maps one People Ops process end to end, ranks the automations by return, and hands you a 90-day plan you keep either way. £2,000, credited in full against a programme. If we find fewer than five concrete opportunities, you do not pay.</p>
+    <a class="btn" href="https://www.deepgrain.ai/contact">Book a Grain Audit &#8594;</a>
+    <p class="fineprint">Concept 03 - The Read. A design mockup; the live site is deepgrain.ai.</p>
+  </div>
+</section>
+
+<a class="concept-tag" href="home.html">Concept 03 / 05</a>
+
+<script>
+(function(){
+  var scenes = document.querySelectorAll('.scene');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('on'); });
+  }, {threshold:.35});
+  scenes.forEach(function(s){ io.observe(s); });
+})();
+</script>
+</body>
+</html>
