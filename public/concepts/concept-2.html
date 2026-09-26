@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 02 - The Workshop | Deepgrain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  body{ background:var(--linen); }
+  .grain{ position:fixed; inset:0; pointer-events:none; z-index:50; opacity:.05; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  /* title page */
+  .titlepage{ min-height:96vh; display:flex; flex-direction:column; justify-content:center; text-align:center; padding:12vh 24px 8vh; position:relative; }
+  .imprint{ font:600 11px/1 var(--sans); letter-spacing:.3em; text-transform:uppercase; color:var(--brass); }
+  .rule{ width:64px; height:1px; background:var(--brass); margin:34px auto; }
+  h1{ font-family:var(--display); font-weight:500; font-size:clamp(44px,6.4vw,84px); line-height:1.05; max-width:16ch; margin:0 auto; }
+  h1 em{ font-style:italic; }
+  .subtitle{ margin:30px auto 0; max-width:44ch; font-size:17px; line-height:1.7; color:hsla(90,12%,11%,.78); }
+  .edition{ position:absolute; bottom:34px; left:0; right:0; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:hsla(90,12%,11%,.5); }
+
+  /* chapters with marginalia */
+  .chapter{ max-width:1160px; margin:0 auto; padding:14vh clamp(20px,4vw,48px) 4vh; display:grid; grid-template-columns:minmax(0,1fr); gap:8px 48px; }
+  @media(min-width:960px){ .chapter{ grid-template-columns:minmax(0,56ch) minmax(0,1fr); } .chapter.rev{ grid-template-columns:minmax(0,1fr) minmax(0,56ch); } .chapter.rev .body{ order:2; } .chapter.rev .margin{ order:1; text-align:right; } }
+  .chno{ font-family:var(--display); font-size:15px; color:var(--brass); letter-spacing:.08em; margin-bottom:18px; }
+  .chapter h2{ font-family:var(--display); font-weight:500; font-size:clamp(30px,3.6vw,46px); line-height:1.12; margin-bottom:26px; }
+  .chapter .body p{ font-size:17px; line-height:1.75; color:hsla(90,12%,11%,.86); margin-bottom:1.3em; }
+  .chapter .body p:first-of-type::first-letter{ font-family:var(--display); font-size:3.4em; float:left; line-height:.82; padding:6px 12px 0 0; color:var(--green); }
+  .margin{ font-size:13px; line-height:1.65; color:hsla(90,12%,11%,.62); }
+  .margin .note{ border-top:1px solid hsla(35,42%,52%,.45); padding-top:12px; margin-bottom:28px; max-width:26ch; }
+  .margin .note b{ display:block; font:600 10px/1 var(--sans); letter-spacing:.18em; text-transform:uppercase; color:var(--brass); margin-bottom:8px; }
+  @media(min-width:960px){ .margin{ padding-top:96px; } .chapter.rev .margin .note{ margin-left:auto; } }
+
+  /* specimen plates */
+  .plates{ max-width:1160px; margin:0 auto; padding:10vh clamp(20px,4vw,48px); }
+  .plates-head{ text-align:center; margin-bottom:9vh; }
+  .plates-head h2{ font-family:var(--display); font-weight:500; font-size:clamp(30px,3.6vw,46px); }
+  .plate-grid{ display:grid; gap:8vh; }
+  @media(min-width:900px){ .plate-grid{ grid-template-columns:1fr 1fr; gap:7vh 5vw; } }
+  .plate{ background:var(--cream); border:1px solid hsla(35,42%,52%,.4); padding:10px; }
+  .plate-inner{ border:1px solid hsla(35,42%,52%,.55); padding:clamp(28px,4vw,48px); min-height:300px; display:flex; flex-direction:column; justify-content:space-between; }
+  .plate .fig{ font-family:var(--display); font-weight:600; font-size:clamp(64px,7vw,110px); line-height:.95; color:var(--green); font-variant-numeric:tabular-nums; }
+  .plate .what{ margin-top:26px; font-size:15px; line-height:1.6; color:hsla(90,12%,11%,.8); }
+  .plate .cap{ margin-top:18px; padding-top:14px; border-top:1px solid hsla(35,42%,52%,.4); font-family:var(--display); font-style:italic; font-size:15px; color:var(--brass); }
+  .plate:nth-child(even){ transform:translateY(4vh); }
+  @media(max-width:899px){ .plate:nth-child(even){ transform:none; } }
+
+  /* colophon */
+  .colophon{ background:var(--green); color:var(--cream); text-align:center; padding:14vh 24px; }
+  .colophon .imprint{ color:var(--brass); }
+  .colophon h2{ font-family:var(--display); font-weight:500; font-size:clamp(34px,4.6vw,58px); line-height:1.08; max-width:20ch; margin:26px auto 22px; }
+  .colophon p{ max-width:50ch; margin:0 auto 40px; font-size:16px; line-height:1.7; color:hsla(44,53%,90%,.75); }
+  .btn{ display:inline-flex; align-items:center; gap:12px; background:var(--cream); color:var(--green); font:600 13px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; padding:20px 34px; border-radius:99px; text-decoration:none; transition:transform .4s var(--ease), background .4s var(--ease); }
+  .btn:hover{ transform:translateY(-2px); background:#fff; }
+  .fineprint{ margin-top:44px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:hsla(44,53%,90%,.45); }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<section class="titlepage">
+  <p class="imprint">Deepgrain</p>
+  <div class="rule"></div>
+  <h1>AI enablement, <em>practised as a craft.</em></h1>
+  <p class="subtitle">For People and ops teams in scaling companies. We read how the work actually runs, build the smallest useful systems with your own people, and leave the capability in the room when we go.</p>
+  <p class="edition">Whitstable, Kent - working across the UK, Europe and North America</p>
+</section>
+
+<section class="chapter">
+  <div class="body">
+    <p class="chno">Chapter I</p>
+    <h2>The licences were never the problem.</h2>
+    <p>Most companies we meet have already spent the money. Seats rolled out to the whole function, a launch email, a training video. Three months later the only thing that changed is the invoice. The work itself - the queue of onboarding tasks, the policy questions, the weekly reports - runs exactly as it did.</p>
+    <p>The instinct is to buy better tools. The fix is narrower and harder: read how the work actually moves, find the twenty percent of it that repeats, and build for that. A prompt library cannot do it. A champion inside the team, given air cover and a method, can.</p>
+  </div>
+  <aside class="margin">
+    <div class="note"><b>Marginalia</b>Seats rolled out to the whole function. A launch email. A training video. Three months later, the only thing that changed is the invoice.</div>
+    <div class="note"><b>The enemy</b>AI theatre: activity that looks like adoption from the boardroom and changes nothing at the desk.</div>
+  </aside>
+</section>
+
+<section class="chapter rev">
+  <div class="body">
+    <p class="chno">Chapter II</p>
+    <h2>Read the grain before you cut.</h2>
+    <p>A carpenter who cuts against the grain splits the wood. Consultancies that build against the grain split the company. So the first thirty days are spent inside the operating cadence: structured interviews, process observation, watching where energy flows and where it stalls. The org chart is rarely how decisions actually get made.</p>
+    <p>Only then do we build, and never alone. Three or four champions from inside the function work alongside us on their own processes, in their own tools. They learn the craft by shipping, which is the only way it transfers.</p>
+  </div>
+  <aside class="margin">
+    <div class="note"><b>Method</b>Read, then Craft, then Scale. In that order, always. The sequence is the product.</div>
+    <div class="note"><b>Champions</b>Senior coordinators, People Partners, ops leads. People you already pay, given a different mandate. No engineers required.</div>
+  </aside>
+</section>
+
+<section class="plates">
+  <div class="plates-head">
+    <p class="imprint">The record</p>
+    <div class="rule"></div>
+    <h2>Specimens from the workshop.</h2>
+  </div>
+  <div class="plate-grid">
+    <div class="plate"><div class="plate-inner"><span class="fig">83</span><p class="what">Hours a week reclaimed inside a defence technology company after Series B. Finance time cut sixty percent. People Ops queries down seventy.</p><p class="cap">Plate I - twelve weeks, zero critical issues since</p></div></div>
+    <div class="plate"><div class="plate-inner"><span class="fig">5</span><p class="what">Production tools shipped in seven weeks by fifteen people in five squads at a financial data firm. Prompt training had produced nothing; the build produced five.</p><p class="cap">Plate II - discovery to live in seven weeks</p></div></div>
+    <div class="plate"><div class="plate-inner"><span class="fig">£40k</span><p class="what">First-year licence cost retired at a transit technology company. Two internal builders now maintain and extend everything without external support.</p><p class="cap">Plate III - forty people enabled in wave one</p></div></div>
+    <div class="plate"><div class="plate-inner"><span class="fig">37</span><p class="what">Champions trained inside client teams, across engagements. The measure of the work: what your people still build months after the invoices stop.</p><p class="cap">Plate IV - the capability stays in the room</p></div></div>
+  </div>
+</section>
+
+<section class="colophon">
+  <p class="imprint">Colophon</p>
+  <h2>Every engagement starts with one process.</h2>
+  <p>The Grain Audit maps one People Ops process end to end and hands you a ranked plan in two weeks. £2,000, credited in full against a programme. Three slots a month. If it does not surface five concrete opportunities, you do not pay.</p>
+  <a class="btn" href="https://www.deepgrain.ai/contact">Book a Grain Audit &#8594;</a>
+  <p class="fineprint">Concept 02 - The Workshop. A design mockup; the live site is deepgrain.ai.</p>
+</section>
+
+<a class="concept-tag" href="home.html">Concept 02 / 05</a>
+</body>
+</html>
