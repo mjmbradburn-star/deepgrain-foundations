@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 05 - The Dossier | Deepgrain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  body{ background:var(--bark); }
+  .wrap{ max-width:1060px; margin:0 auto; padding:clamp(30px,5vw,70px) clamp(18px,4vw,48px) 90px; }
+  .kicker{ font:600 11px/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color:var(--brass); }
+  h1{ font-family:var(--display); font-weight:500; font-size:clamp(38px,5.4vw,64px); line-height:1.05; margin:16px 0 10px; color:var(--cream); }
+  h1 em{ font-style:italic; color:var(--brass); }
+  .lede{ max-width:50ch; font-size:16px; line-height:1.65; color:hsla(44,53%,90%,.7); margin-bottom:44px; }
+
+  .tabs{ display:flex; gap:4px; flex-wrap:wrap; position:relative; z-index:2; }
+  .tab{ background:hsla(44,53%,90%,.08); border:1px solid hsla(44,53%,90%,.16); border-bottom:0; border-radius:6px 6px 0 0; padding:13px 20px 15px; font:600 12px/1.2 var(--sans); letter-spacing:.06em; color:hsla(44,53%,90%,.55); cursor:pointer; transition:all .25s var(--ease); text-align:left; }
+  .tab small{ display:block; font-weight:500; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:hsla(44,53%,90%,.35); margin-top:4px; }
+  .tab:hover{ background:hsla(44,53%,90%,.14); color:var(--cream); }
+  .tab.on{ background:var(--cream); color:var(--walnut); border-color:var(--cream); }
+  .tab.on small{ color:var(--brass); }
+  .tab.blank{ border-style:dashed; }
+  .tab.blank.on{ background:var(--brass); color:var(--bark); border-color:var(--brass); }
+  .tab.blank.on small{ color:hsla(140,12%,12%,.6); }
+
+  .file{ background:var(--cream); border-radius:0 6px 6px 6px; padding:clamp(26px,4vw,52px); position:relative; display:none; box-shadow:0 30px 60px -30px rgba(0,0,0,.55); }
+  .file.on{ display:block; animation:open .5s var(--ease); }
+  @keyframes open{ from{ opacity:0; transform:translateY(10px);} to{ opacity:1; transform:none;} }
+  .file::before{ content:''; position:absolute; inset:10px; border:1px solid hsla(35,42%,52%,.35); border-radius:4px; pointer-events:none; }
+  .file-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; margin-bottom:26px; }
+  .file-head h2{ font-family:var(--display); font-weight:600; font-size:clamp(26px,3.4vw,40px); color:var(--green); line-height:1.1; }
+  .file-head .ref{ font:500 11px/1.6 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:hsla(90,12%,11%,.5); margin-top:8px; }
+  .stamp{ flex:none; border:3px double var(--brass); color:var(--brass); font:700 13px/1 var(--sans); letter-spacing:.3em; text-transform:uppercase; padding:12px 18px; transform:rotate(6deg); border-radius:4px; opacity:.85; }
+  .stamp.green{ border-color:var(--green); color:var(--green); transform:rotate(-5deg); }
+  .file-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(24px,4vw,48px); }
+  @media(max-width:820px){ .file-grid{ grid-template-columns:1fr; } }
+  .summary{ font-size:15.5px; line-height:1.7; color:hsla(90,12%,11%,.82); }
+  .summary em{ font-family:var(--display); font-style:italic; font-size:1.12em; color:var(--green); }
+  table.rec{ width:100%; border-collapse:collapse; font-size:13.5px; }
+  table.rec caption{ text-align:left; font:600 10px/1 var(--sans); letter-spacing:.22em; text-transform:uppercase; color:hsla(90,12%,11%,.5); padding-bottom:10px; }
+  table.rec td{ padding:11px 4px; border-bottom:1px solid hsla(90,12%,11%,.14); vertical-align:baseline; }
+  table.rec td:first-child{ color:hsla(90,12%,11%,.55); letter-spacing:.04em; }
+  table.rec td:last-child{ text-align:right; font-weight:600; color:var(--green); font-variant-numeric:tabular-nums; }
+  .verdict{ margin-top:26px; padding-top:20px; border-top:2px solid var(--green); font-family:var(--display); font-style:italic; font-size:19px; line-height:1.5; color:var(--walnut); }
+  .verdict b{ font-style:normal; font-family:var(--sans); font-weight:600; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--brass); display:block; margin-bottom:10px; }
+  .blank-body{ text-align:left; }
+  .blank-body p{ font-size:15.5px; line-height:1.7; color:hsla(90,12%,11%,.82); max-width:52ch; }
+  .btn{ display:inline-flex; align-items:center; gap:10px; margin-top:28px; background:var(--green); color:var(--cream); font:600 12px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; padding:18px 30px; border-radius:99px; text-decoration:none; transition:transform .3s var(--ease); }
+  .btn:hover{ transform:translateY(-2px); }
+  .fineprint{ margin-top:48px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:hsla(44,53%,90%,.4); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Case files - the work, on the record</p>
+  <h1>We keep receipts.<br><em>Three are open on the desk.</em></h1>
+  <p class="lede">Every engagement ends the same way: agents in production, champions trained, and a file of numbers the client can check. These are three, anonymised at their request. The fourth folder is empty.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-f="f1">Defence technology<small>Case 001</small></button>
+    <button class="tab" data-f="f2">Financial data<small>Case 002</small></button>
+    <button class="tab" data-f="f3">Transit operator<small>Case 003</small></button>
+    <button class="tab blank" data-f="f4">Your company<small>Case 004 - unopened</small></button>
+  </div>
+
+  <section class="file on" id="f1">
+    <div class="file-head">
+      <div><h2>Defence technology scale-up</h2><p class="ref">Ref DG-001 - People operations - engagement closed, agents in production</p></div>
+      <span class="stamp green">Shipped</span>
+    </div>
+    <div class="file-grid">
+      <div>
+        <p class="summary">A headcount growing faster than the People team hired to support it. The founders had bought AI licences twice and watched both pilots stall in a shared drive. We embedded for twelve weeks, built with two champions from inside the team, and left when the agents ran without us. <em>The second pilot never happened. The first one stuck.</em></p>
+        <p class="verdict"><b>Verdict</b>The team stopped firefighting the queue and started finishing the work that was always the job.</p>
+      </div>
+      <table class="rec">
+        <caption>Record of outcome</caption>
+        <tr><td>Hours returned, per week</td><td>83</td></tr>
+        <tr><td>Finance admin automated</td><td>60%</td></tr>
+        <tr><td>Repeat queries deflected</td><td>70%</td></tr>
+        <tr><td>Champions trained in-house</td><td>2</td></tr>
+        <tr><td>Time to production</td><td>12 wks</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="file" id="f2">
+    <div class="file-head">
+      <div><h2>Financial data firm</h2><p class="ref">Ref DG-002 - Operations - engagement closed, agents in production</p></div>
+      <span class="stamp green">Shipped</span>
+    </div>
+    <div class="file-grid">
+      <div>
+        <p class="summary">Fifteen people, five tools, and a reporting cycle held together by copy and paste. The operations lead described the week as typing the same numbers into different windows. Seven weeks later the pipeline ran itself and the team reviewed output instead of producing it. <em>Five tools, seven weeks, fifteen people back on real work.</em></p>
+        <p class="verdict"><b>Verdict</b>The pipeline runs; the team runs the exceptions. That is the correct division of labour.</p>
+      </div>
+      <table class="rec">
+        <caption>Record of outcome</caption>
+        <tr><td>Tools connected</td><td>5</td></tr>
+        <tr><td>Time to production</td><td>7 wks</td></tr>
+        <tr><td>Team covered</td><td>15</td></tr>
+        <tr><td>Manual reporting cycle</td><td>Retired</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="file" id="f3">
+    <div class="file-head">
+      <div><h2>Transit operator</h2><p class="ref">Ref DG-003 - Workforce operations - engagement closed, agents in production</p></div>
+      <span class="stamp green">Shipped</span>
+    </div>
+    <div class="file-grid">
+      <div>
+        <p class="summary">Forty people across depots, scheduling done on instinct and spreadsheets, and a consultancy quote of £40,000 for a transformation deck nobody would read. Two builders from inside the workforce trained as champions, built the agents themselves, and retired the consultancy line item entirely. <em>£40,000 of deck replaced by two builders who knew where the bodies were buried.</em></p>
+        <p class="verdict"><b>Verdict</b>The capability stayed in the building. That was the point from day one.</p>
+      </div>
+      <table class="rec">
+        <caption>Record of outcome</caption>
+        <tr><td>Consultancy spend retired</td><td>£40,000</td></tr>
+        <tr><td>People covered</td><td>40</td></tr>
+        <tr><td>Internal builders trained</td><td>2</td></tr>
+        <tr><td>External dependency after handover</td><td>None</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="file" id="f4">
+    <div class="file-head">
+      <div><h2>Case 004 - unopened</h2><p class="ref">Ref DG-004 - awaiting a company with a queue worth closing</p></div>
+      <span class="stamp">Pending</span>
+    </div>
+    <div class="blank-body">
+      <p>This folder stays empty until someone fills it. The Grain Audit is how it starts: two weeks inside one of your processes, counted click by click, ending in a ranked automation plan and a 90-day route to production. £2,000, credited in full against the programme. If we find fewer than five concrete opportunities, you do not pay.</p>
+      <p>Three audit slots open each month. The record above is what the folder looks like when we are done.</p>
+      <a class="btn" href="https://www.deepgrain.ai/contact">Open case 004 &#8594;</a>
+    </div>
+  </section>
+
+  <p class="fineprint">Concept 05 - The Dossier. A design mockup; the live site is deepgrain.ai.</p>
+</div>
+<a class="concept-tag" href="home.html">Concept 05 / 05</a>
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      tabs.forEach(function(x){ x.classList.remove('on'); });
+      document.querySelectorAll('.file').forEach(function(f){ f.classList.remove('on'); });
+      t.classList.add('on');
+      document.getElementById(t.dataset.f).classList.add('on');
+    });
+  });
+})();
+</script>
+</body>
+</html>

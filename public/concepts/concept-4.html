@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 04 - The Instrument | Deepgrain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  body{ background:var(--linen); color:var(--walnut); }
+  .wrap{ max-width:1180px; margin:0 auto; padding:clamp(28px,5vw,72px) clamp(20px,4vw,56px) 90px; }
+  .kicker{ font:600 11px/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color:var(--brass); }
+  h1{ font-family:var(--display); font-weight:500; font-size:clamp(38px,5.6vw,68px); line-height:1.04; margin:18px 0 12px; color:var(--green); }
+  h1 em{ font-style:italic; color:var(--brass); }
+  .lede{ max-width:52ch; font-size:16px; line-height:1.65; color:hsla(90,12%,11%,.72); }
+  .bench{ margin-top:56px; display:grid; grid-template-columns:minmax(300px,430px) 1fr; gap:clamp(28px,4vw,64px); align-items:start; }
+  @media(max-width:900px){ .bench{ grid-template-columns:1fr; } }
+  .panel{ background:var(--cream); border:1px solid hsla(35,42%,52%,.35); border-radius:6px; padding:28px 28px 20px; box-shadow:0 1px 0 hsla(90,12%,11%,.06), 0 18px 40px -28px hsla(90,12%,11%,.35); }
+  .panel h2{ font:600 11px/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:hsla(90,12%,11%,.55); margin-bottom:8px; }
+  .dial{ padding:18px 0 14px; border-bottom:1px solid hsla(90,12%,11%,.1); }
+  .dial:last-child{ border-bottom:0; }
+  .dial label{ display:flex; justify-content:space-between; align-items:baseline; font-size:14px; color:var(--walnut); }
+  .dial output{ font-family:var(--display); font-weight:600; font-size:22px; color:var(--green); font-variant-numeric:tabular-nums; }
+  .dial output small{ font-size:12px; color:hsla(90,12%,11%,.5); font-family:var(--sans); font-weight:500; margin-left:3px; }
+  input[type=range]{ width:100%; margin-top:12px; appearance:none; height:3px; background:linear-gradient(to right, var(--brass) var(--fill,50%), hsla(90,12%,11%,.18) var(--fill,50%)); border-radius:2px; outline:none; }
+  input[type=range]::-webkit-slider-thumb{ appearance:none; width:20px; height:20px; border-radius:50%; background:var(--cream); border:2px solid var(--brass); box-shadow:0 2px 6px hsla(90,12%,11%,.3); cursor:grab; }
+  input[type=range]::-moz-range-thumb{ width:18px; height:18px; border-radius:50%; background:var(--cream); border:2px solid var(--brass); cursor:grab; }
+  .readout{ position:sticky; top:32px; }
+  .gauge-card{ background:var(--green); border-radius:6px; padding:34px 30px 28px; color:var(--cream); text-align:center; }
+  .gauge-card .lbl{ font:600 10px/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color:hsla(44,53%,90%,.55); }
+  .bignum{ font-family:var(--display); font-weight:600; font-size:clamp(72px,9vw,120px); line-height:1; margin:6px 0 2px; font-variant-numeric:tabular-nums; }
+  .bignum small{ font-size:.32em; font-weight:500; color:var(--brass); margin-left:4px; }
+  .gauge-sub{ font-size:13px; color:hsla(44,53%,90%,.7); max-width:34ch; margin:0 auto; line-height:1.55; }
+  svg.gauge{ display:block; margin:0 auto 4px; }
+  .funnel{ margin-top:22px; background:var(--cream); border:1px solid hsla(35,42%,52%,.3); border-radius:6px; padding:24px 26px; }
+  .funnel h3{ font:600 10px/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:hsla(90,12%,11%,.55); margin-bottom:16px; }
+  .frow{ display:grid; grid-template-columns:150px 1fr 64px; gap:14px; align-items:center; padding:7px 0; font-size:13px; }
+  .frow .bar{ height:14px; background:var(--green); border-radius:2px; transition:width .6s var(--ease); min-width:3px; }
+  .frow .bar.brass{ background:var(--brass); }
+  .frow .val{ text-align:right; font-variant-numeric:tabular-nums; font-weight:600; color:var(--green); }
+  .verdict{ margin-top:22px; font-family:var(--display); font-style:italic; font-size:20px; line-height:1.45; color:var(--green); min-height:3.2em; }
+  .cta{ margin-top:18px; display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+  .btn{ display:inline-flex; align-items:center; gap:10px; background:var(--green); color:var(--cream); font:600 12px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; padding:18px 30px; border-radius:99px; text-decoration:none; transition:transform .3s var(--ease); }
+  .btn:hover{ transform:translateY(-2px); }
+  .cta .note{ font-size:12px; color:hsla(90,12%,11%,.55); max-width:30ch; line-height:1.5; }
+  .fineprint{ margin-top:54px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:hsla(90,12%,11%,.45); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">The Instrument - a working read, not a promise</p>
+  <h1>Point this at your own week.<br><em>See what the queue costs.</em></h1>
+  <p class="lede">Every number below comes from audits we ran at click level inside real companies. Set the five dials to your operation and the instrument estimates the hours your People team loses to work an agent should carry. It is a rough read. The Grain Audit is the exact one.</p>
+
+  <div class="bench">
+    <div class="panel">
+      <h2>Your operation</h2>
+      <div class="dial">
+        <label>People on your team <output id="o-head">85<small>people</small></output></label>
+        <input type="range" id="r-head" min="15" max="400" value="85">
+      </div>
+      <div class="dial">
+        <label>Repeat questions each week <output id="o-q">120<small>/week</small></output></label>
+        <input type="range" id="r-q" min="10" max="600" value="120">
+      </div>
+      <div class="dial">
+        <label>Minutes per answer, end to end <output id="o-min">11<small>min</small></output></label>
+        <input type="range" id="r-min" min="3" max="30" value="11">
+      </div>
+      <div class="dial">
+        <label>Manual reports rebuilt by hand <output id="o-rep">4<small>/week</small></output></label>
+        <input type="range" id="r-rep" min="0" max="20" value="4">
+      </div>
+      <div class="dial">
+        <label>Tools someone must copy between <output id="o-tools">5<small>tools</small></output></label>
+        <input type="range" id="r-tools" min="2" max="15" value="5">
+      </div>
+    </div>
+
+    <div class="readout">
+      <div class="gauge-card">
+        <svg class="gauge" width="220" height="120" viewBox="0 0 220 120">
+          <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="hsla(44,53%,90%,.15)" stroke-width="10" stroke-linecap="round"/>
+          <path id="arc" d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#c8a24e" stroke-width="10" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="200"/>
+        </svg>
+        <p class="lbl">Hours recoverable, per week</p>
+        <p class="bignum"><span id="hours">24</span><small>hrs</small></p>
+        <p class="gauge-sub">Time your team spends re-answering, re-keying and re-building what a well-built agent carries once and carries forever.</p>
+      </div>
+
+      <div class="funnel">
+        <h3>Where a programme puts it back</h3>
+        <div class="frow"><span>Answers deflected</span><div class="bar" id="b1" style="width:60%"></div><span class="val" id="v1">-</span></div>
+        <div class="frow"><span>Reports automated</span><div class="bar" id="b2" style="width:35%"></div><span class="val" id="v2">-</span></div>
+        <div class="frow"><span>Copy-work removed</span><div class="bar" id="b3" style="width:25%"></div><span class="val" id="v3">-</span></div>
+        <div class="frow"><span>Hours returned</span><div class="bar brass" id="b4" style="width:50%"></div><span class="val" id="v4">-</span></div>
+      </div>
+
+      <p class="verdict" id="verdict"></p>
+      <div class="cta">
+        <a class="btn" href="https://www.deepgrain.ai/contact">Get the exact read &#8594;</a>
+        <p class="note">The Grain Audit counts this properly, click by click, inside your tools. Two weeks, £2,000, credited against a programme.</p>
+      </div>
+    </div>
+  </div>
+  <p class="fineprint">Concept 04 - The Instrument. A design mockup; the live site is deepgrain.ai.</p>
+</div>
+<a class="concept-tag" href="home.html">Concept 04 / 05</a>
+<script>
+(function(){
+  var R = function(id){ return document.getElementById(id); };
+  var dials = ['head','q','min','rep','tools'];
+  function val(k){ return parseInt(R('r-'+k).value, 10); }
+  function money(n){ return Math.round(n); }
+  function calc(){
+    var head=val('head'), q=val('q'), min=val('min'), rep=val('rep'), tools=val('tools');
+    R('o-head').innerHTML = head+'<small>people</small>';
+    R('o-q').innerHTML = q+'<small>/week</small>';
+    R('o-min').innerHTML = min+'<small>min</small>';
+    R('o-rep').innerHTML = rep+'<small>/week</small>';
+    R('o-tools').innerHTML = tools+'<small>tools</small>';
+    var answerHrs = q*min/60*0.75;            // 75% deflectable, from audit medians
+    var reportHrs = rep*1.5*0.8;              // 90 min per manual report, 80% automatable
+    var copyHrs   = head*0.06*(tools-2)*0.5;  // swivel-chair drag scales with headcount x tools
+    var total = Math.max(1, Math.round(answerHrs+reportHrs+copyHrs));
+    R('hours').textContent = total;
+    var pct = Math.min(1, total/60);
+    R('arc').setAttribute('stroke-dashoffset', String(283*(1-pct)));
+    var rows = [
+      ['b1','v1', answerHrs, 60],
+      ['b2','v2', reportHrs, 60],
+      ['b3','v3', copyHrs, 60],
+      ['b4','v4', total, 60]
+    ];
+    rows.forEach(function(r){
+      R(r[0]).style.width = Math.max(3, Math.round(r[2]/r[3]*100))+'%';
+      R(r[1]).textContent = (r[2]<10? (Math.round(r[2]*10)/10) : Math.round(r[2]))+'h';
+    });
+    var v = R('verdict');
+    if(total < 8){ v.textContent = 'A light load. A single well-placed agent pays for itself inside a quarter.'; }
+    else if(total < 20){ v.textContent = 'A working week, every week, spent below the waterline. Two agents and a champion shift it.'; }
+    else if(total < 40){ v.textContent = 'This is a hire you are already paying for, in fragments, across the whole team.'; }
+    else { v.textContent = 'At this scale the queue runs the team. A 90-day programme returns the week to the work that needs judgement.'; }
+  }
+  dials.forEach(function(k){
+    var r = R('r-'+k);
+    var paint = function(){ var p=(r.value-r.min)/(r.max-r.min)*100; r.style.setProperty('--fill', p+'%'); };
+    r.addEventListener('input', function(){ paint(); calc(); });
+    paint();
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
