@@ -1,0 +1,26 @@
+/* Deepgrain concept mockups - brand tokens from tailwind.config / index.css */
+:root{
+  --green: hsl(153, 51%, 14%);
+  --walnut: hsl(90, 12%, 11%);
+  --brass: hsl(35, 42%, 52%);
+  --cream: hsl(44, 53%, 90%);
+  --linen: hsl(39, 32%, 90%);
+  --linen-dark: hsl(39, 21%, 81%);
+  --bark: hsl(140, 12%, 12%);
+  --bark-2: hsl(120, 10%, 18%);
+  --display: 'Cormorant Garamond', Georgia, serif;
+  --sans: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{ font-family:var(--sans); background:var(--linen); color:var(--walnut); -webkit-font-smoothing:antialiased; }
+.serif{ font-family:var(--display); }
+a{ color:inherit; }
+.concept-tag{
+  position:fixed; bottom:14px; right:14px; z-index:99;
+  font:600 10px/1 var(--sans); letter-spacing:.18em; text-transform:uppercase;
+  background:hsla(90,12%,11%,.85); color:var(--cream);
+  padding:8px 12px; border-radius:99px; text-decoration:none;
+}
+@media (prefers-reduced-motion: reduce){ *{ animation:none!important; transition:none!important; } }

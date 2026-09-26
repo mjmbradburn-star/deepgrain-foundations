@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 01 - The Ledger | Deepgrain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  body{ background:var(--linen); }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 clamp(20px,4vw,56px); }
+
+  /* hero */
+  .hero{ background:var(--bark); color:var(--cream); padding:clamp(48px,8vh,90px) 0 clamp(60px,10vh,110px); position:relative; overflow:hidden; }
+  .hero .grid{ display:grid; grid-template-columns:1fr; gap:40px; align-items:end; }
+  @media(min-width:900px){ .hero .grid{ grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); } }
+  .kicker{ font:600 11px/1 var(--sans); letter-spacing:.22em; text-transform:uppercase; color:var(--brass); }
+  h1{ font-family:var(--display); font-weight:500; font-size:clamp(40px,5.4vw,72px); line-height:1.04; margin:26px 0 22px; }
+  h1 em{ font-style:italic; color:var(--brass); }
+  .hero p.lead{ font-size:17px; line-height:1.65; color:hsla(44,53%,90%,.75); max-width:46ch; }
+  .bignum{ text-align:right; }
+  .bignum .n{ font-family:var(--display); font-weight:600; font-size:clamp(120px,17vw,260px); line-height:.9; color:var(--cream); font-variant-numeric:tabular-nums; display:inline-block; }
+  .bignum .cap{ margin-top:14px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:hsla(44,53%,90%,.55); }
+  .bignum .cap b{ color:var(--brass); font-weight:600; }
+
+  /* ledger */
+  .ledger{ padding:clamp(70px,12vh,140px) 0 0; }
+  .ledger-head{ display:flex; align-items:baseline; justify-content:space-between; border-bottom:2px solid var(--walnut); padding-bottom:14px; margin-bottom:0; }
+  .ledger-head h2{ font-family:var(--display); font-weight:500; font-size:clamp(26px,3vw,38px); }
+  .ledger-head span{ font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:hsla(90,12%,11%,.55); }
+  .row{ display:grid; grid-template-columns:64px 1fr auto; gap:18px; align-items:baseline; padding:26px 0; border-bottom:1px solid hsla(90,12%,11%,.25); }
+  .row .idx{ font-family:var(--display); font-size:22px; color:var(--brass); }
+  .row .what{ font-size:16px; line-height:1.55; max-width:56ch; }
+  .row .what b{ font-weight:600; }
+  .row .val{ font-family:var(--display); font-weight:600; font-size:clamp(26px,3vw,40px); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .row .val small{ display:block; font-family:var(--sans); font-weight:600; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:hsla(90,12%,11%,.5); text-align:right; margin-top:4px; }
+  @media(max-width:640px){ .row{ grid-template-columns:44px 1fr; } .row .val{ grid-column:2; } }
+
+  /* chart section */
+  .charts{ padding:clamp(70px,12vh,140px) 0; display:grid; gap:clamp(48px,8vh,90px); }
+  .chart-block .lbl{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:18px; }
+  .chart-block h3{ font-family:var(--display); font-weight:500; font-size:clamp(24px,2.6vw,34px); }
+  .chart-block .src{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:hsla(90,12%,11%,.5); }
+  .chart-block svg{ width:100%; height:auto; display:block; }
+  .note{ font-size:14px; line-height:1.6; color:hsla(90,12%,11%,.72); max-width:52ch; margin-top:16px; }
+
+  /* method */
+  .method{ background:var(--green); color:var(--cream); padding:clamp(70px,12vh,130px) 0; }
+  .method h2{ font-family:var(--display); font-weight:500; font-size:clamp(28px,3.4vw,44px); margin-bottom:56px; }
+  .method .cols{ display:grid; gap:36px; }
+  @media(min-width:820px){ .method .cols{ grid-template-columns:repeat(3,1fr); gap:28px; } }
+  .col{ border-top:2px solid var(--brass); padding-top:22px; }
+  .col .step{ font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--brass); margin-bottom:14px; }
+  .col h4{ font-family:var(--display); font-weight:500; font-size:26px; margin-bottom:12px; }
+  .col p{ font-size:15px; line-height:1.65; color:hsla(44,53%,90%,.75); }
+
+  /* cta */
+  .cta{ background:var(--bark); color:var(--cream); padding:clamp(80px,14vh,150px) 0; text-align:left; }
+  .cta h2{ font-family:var(--display); font-weight:500; font-size:clamp(34px,4.6vw,60px); line-height:1.06; max-width:18ch; }
+  .cta .terms{ margin:30px 0 40px; font-size:15px; color:hsla(44,53%,90%,.7); line-height:1.7; max-width:52ch; }
+  .btn{ display:inline-flex; align-items:center; gap:12px; background:var(--cream); color:var(--green); font:600 13px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; padding:20px 34px; border-radius:99px; text-decoration:none; transition:transform .4s var(--ease), background .4s var(--ease); }
+  .btn:hover{ transform:translateY(-2px); background:#fff; }
+  .btn .arrow{ width:26px; height:26px; border-radius:50%; background:hsla(153,51%,14%,.1); display:grid; place-items:center; }
+  .fineprint{ margin-top:26px; font-size:12px; color:hsla(44,53%,90%,.45); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap grid">
+    <div>
+      <p class="kicker">Deepgrain - AI enablement for People and ops teams</p>
+      <h1>The books on AI theatre<br><em>do not balance.</em></h1>
+      <p class="lead">Your company bought the licences. The work did not change. We map how your function actually runs, then build the AI workflows, agents and skills your team keeps. The proof is below, in pounds and hours.</p>
+    </div>
+    <div class="bignum">
+      <span class="n" id="heroNum" data-target="83">0</span>
+      <p class="cap">hours a week reclaimed<br><b>defence technology, series B</b></p>
+    </div>
+  </div>
+</header>
+
+<section class="ledger">
+  <div class="wrap">
+    <div class="ledger-head"><h2>Proof, entered in the ledger.</h2><span>Audited engagements, 2025-26</span></div>
+    <div class="row"><span class="idx">i</span><p class="what"><b>Finance and People Ops rebuilt in twelve weeks.</b> Manual processes could not keep pace with post-Series B growth. We mapped the work at click level, then built alongside the team.</p><span class="val">60%<small>finance time cut</small></span></div>
+    <div class="row"><span class="idx">ii</span><p class="what"><b>The same policy questions, answered every day, stopped arriving.</b> People Ops queries deflected by agents the client's own champions now extend.</p><span class="val">70%<small>queries eliminated</small></span></div>
+    <div class="row"><span class="idx">iii</span><p class="what"><b>Fifteen people, five squads, five production tools.</b> A financial data firm moved from prompt training with nothing shipped to live systems in seven weeks.</p><span class="val">5<small>tools in production</small></span></div>
+    <div class="row"><span class="idx">iv</span><p class="what"><b>A transit technology company retired a licence it no longer needed.</b> Engineering had adoption; the rest of the business had a champions programme with no outputs. Two internal builders now maintain everything.</p><span class="val">£40k<small>licence cost retired</small></span></div>
+    <div class="row"><span class="idx">v</span><p class="what"><b>Champions trained inside client teams across engagements.</b> People you already pay, given a different mandate. The capability stays when we leave.</p><span class="val">37<small>champions trained</small></span></div>
+    <div class="row"><span class="idx">vi</span><p class="what"><b>Managers trained across more than a hundred cohorts.</b> Two decades inside operating teams, from fast-growth technology to defence and transit.</p><span class="val">1,000+<small>managers, 100+ cohorts</small></span></div>
+  </div>
+</section>
+
+<section class="charts">
+  <div class="wrap charts">
+    <div class="chart-block">
+      <div class="lbl"><h3>Where AI programmes go to die.</h3><span class="src">The typical pattern</span></div>
+      <svg viewBox="0 0 1000 300" role="img" aria-label="Funnel: 100 licences bought, 40 pilots started, 4 systems still running after six months">
+        <g font-family="-apple-system, Helvetica Neue, Arial" font-size="13" fill="hsl(90,12%,11%)">
+          <rect x="40" y="30" width="720" height="56" fill="hsl(153,51%,14%)" rx="2"/>
+          <text x="60" y="64" fill="hsl(44,53%,90%)" font-size="15">Licences bought - seats for the whole function</text>
+          <text x="790" y="64" font-family="Cormorant Garamond, Georgia, serif" font-size="34" font-weight="600">100</text>
+          <rect x="140" y="116" width="620" height="56" fill="hsl(35,42%,52%)" rx="2"/>
+          <text x="160" y="150" fill="hsl(44,53%,90%)" font-size="15">Pilots started - one keen person, one sandbox</text>
+          <text x="790" y="150" font-family="Cormorant Garamond, Georgia, serif" font-size="34" font-weight="600">40</text>
+          <rect x="240" y="202" width="520" height="56" fill="hsl(140,12%,12%)" rx="2" opacity=".55"/>
+          <text x="260" y="236" fill="hsl(44,53%,90%)" font-size="15">Still running six months later, owned by the team</text>
+          <text x="790" y="236" font-family="Cormorant Garamond, Georgia, serif" font-size="34" font-weight="600">4</text>
+        </g>
+      </svg>
+      <p class="note">The drop is not a tooling problem. Nothing owned the work after the demo. Every Deepgrain engagement ends with named internal owners, which is why our funnel does not look like this.</p>
+    </div>
+    <div class="chart-block">
+      <div class="lbl"><h3>Confidence, before and after.</h3><span class="src">Defence tech, 12-week engagement</span></div>
+      <svg viewBox="0 0 1000 320" role="img" aria-label="Line chart: self-reported AI confidence rising from 2.6 to 4.0 out of 5 over twelve weeks">
+        <g stroke="hsla(90,12%,11%,.18)" stroke-width="1">
+          <line x1="60" y1="40" x2="960" y2="40"/><line x1="60" y1="100" x2="960" y2="100"/>
+          <line x1="60" y1="160" x2="960" y2="160"/><line x1="60" y1="220" x2="960" y2="220"/><line x1="60" y1="280" x2="960" y2="280"/>
+        </g>
+        <g font-family="-apple-system, Helvetica Neue, Arial" font-size="11" fill="hsla(90,12%,11%,.55)">
+          <text x="20" y="44">5.0</text><text x="20" y="104">4.0</text><text x="20" y="164">3.0</text><text x="20" y="224">2.0</text><text x="20" y="284">1.0</text>
+          <text x="60" y="306">week 0</text><text x="500" y="306">week 6</text><text x="900" y="306">week 12</text>
+        </g>
+        <path d="M 60 196 C 260 190, 420 150, 560 128 S 860 96, 960 88" fill="none" stroke="hsl(35,42%,52%)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="60" cy="196" r="6" fill="hsl(153,51%,14%)"/>
+        <circle cx="960" cy="88" r="6" fill="hsl(153,51%,14%)"/>
+        <text x="80" y="210" font-family="Cormorant Garamond, Georgia, serif" font-size="30" font-weight="600" fill="hsl(90,12%,11%)">2.6</text>
+        <text x="876" y="70" font-family="Cormorant Garamond, Georgia, serif" font-size="30" font-weight="600" fill="hsl(90,12%,11%)">4.0</text>
+      </svg>
+      <p class="note">Self-reported confidence per participant, surveyed at both ends. The score moves because people ship real systems on their own work. Training that ends in a folder of prompts does not move it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="method">
+  <div class="wrap">
+    <h2>Read. Craft. Scale. In that order, always.</h2>
+    <div class="cols">
+      <div class="col"><p class="step">Read</p><h4>Before we touch a thing, we understand.</h4><p>The org chart is rarely how decisions get made. We read the grain: where the hours go, where work stalls, where the fractures are forming before anyone has named them.</p></div>
+      <div class="col"><p class="step">Craft</p><h4>We build with the grain.</h4><p>Human judgement and machine precision in the room together. A small set of agentic systems, built with three or four of your champions, in your tools, on your real work.</p></div>
+      <div class="col"><p class="step">Scale</p><h4>We leave something that compounds.</h4><p>Your champions keep building after we leave, extending the work into corners we never touched. The capability stays in the function, not with a vendor.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Run the numbers on one process.</h2>
+    <p class="terms">The Grain Audit maps one People Ops process end to end, ranks the highest-return automations, and hands you a 90-day plan you keep either way. Two weeks. £2,000, credited in full against a programme. Three slots a month. If the readout does not surface five concrete opportunities, you do not pay.</p>
+    <a class="btn" href="https://www.deepgrain.ai/contact">Book a Grain Audit <span class="arrow">&#8594;</span></a>
+    <p class="fineprint">Concept 01 - The Ledger. A design mockup; the live site is deepgrain.ai.</p>
+  </div>
+</section>
+
+<a class="concept-tag" href="index.html">Concept 01 / 05</a>
+
+<script>
+(function(){
+  var el = document.getElementById('heroNum');
+  var target = +el.dataset.target, t0 = null, dur = 1600;
+  function tick(ts){
+    if(!t0) t0 = ts;
+    var p = Math.min(1, (ts - t0)/dur), e = 1 - Math.pow(1-p, 4);
+    el.textContent = Math.round(target * e);
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  new IntersectionObserver(function(entries, obs){
+    if(entries[0].isIntersecting){ requestAnimationFrame(tick); obs.disconnect(); }
+  }, {threshold:.4}).observe(el);
+})();
+</script>
+</body>
+</html>
