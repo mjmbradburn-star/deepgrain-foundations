@@ -23,4 +23,5 @@ a{ color:inherit; }
   background:hsla(90,12%,11%,.85); color:var(--cream);
   padding:8px 12px; border-radius:99px; text-decoration:none;
 }
+@media (max-width:640px){ .concept-tag{ left:14px; right:auto; } }
 @media (prefers-reduced-motion: reduce){ *{ animation:none!important; transition:none!important; } }
