@@ -7,6 +7,7 @@ import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
 import { BarkGrain } from "@/components/ui/BarkGrain";
 import { GrainFlow } from "@/components/ui/GrainFlow";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { cn } from "@/lib/utils";
 
 /** Single source for the offer. Change the cohort here, not in five places. */
@@ -493,6 +494,9 @@ const Waitlist = () => {
           </p>
         </div>
       </section>
+
+      {/* ---------------------------------------------- testimonials --- */}
+      <Testimonials />
 
       {/* ------------------------------------------------ pricing -------- */}
       <section className="relative bg-green text-cream overflow-hidden" data-no-rule>
