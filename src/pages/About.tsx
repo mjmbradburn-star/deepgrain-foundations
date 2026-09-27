@@ -74,7 +74,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What does the Deepgrain AI Cohort include?",
     answer:
-      "It is a four-week live programme with one session each week plus build time on the participant's own processes. Participants leave with three working automations, a ranked automation map and a one-page 90-day rollout plan; the 12 October cohort is capped at 20 seats.",
+      "It is a five-week live programme with one session each week plus build time on the participant's own processes. Participants leave with a working AI setup they own: skills files, a properly configured project workspace, a chained workflow and one piece of work running with guardrails, plus a one-page 90-day plan; the 12 October cohort is capped at 20 seats.",
   },
   {
     question: "Which clients can Deepgrain name publicly?",

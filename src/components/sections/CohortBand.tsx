@@ -28,8 +28,8 @@ export const CohortBand = () => (
             The Deepgrain AI Cohort for People Teams
           </h2>
           <p className="font-display italic text-cream/75 mt-4 max-w-xl text-lg md:text-xl leading-snug">
-            Four weeks, live. Ship three working automations on your own processes, and leave with
-            a 90-day rollout plan.
+            Five weeks, live. Skills, projects, workflows and agents, built on your own
+            processes, with a 90-day plan to keep them compounding.
           </p>
         </div>
         <div className="flex flex-col items-start lg:items-end gap-4">
@@ -48,7 +48,7 @@ export const CohortBand = () => (
             Join the waitlist
             <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </Link>
-          <p className="font-sans text-cream/60 text-sm">£495 waitlist price · 20 seats</p>
+          <p className="font-sans text-cream/60 text-sm">£495 founding price · 20 seats</p>
           <Link
             to="/ai-training-for-business-teams"
             className="font-sans text-cream/65 text-sm underline underline-offset-4 decoration-brass hover:text-cream"

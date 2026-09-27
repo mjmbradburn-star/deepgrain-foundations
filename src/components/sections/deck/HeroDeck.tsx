@@ -84,7 +84,7 @@ export const HeroDeck = () => {
           className="group absolute left-0 right-0 top-24 z-20 h-10 border-y border-cream/[0.12] bg-bark/35 backdrop-blur-sm transition-colors hover:bg-bark/55 md:top-28 lg:right-[48%]"
         >
           <span className="container-grain flex h-full items-center justify-between gap-5 font-sans text-[11px] tracking-[0.16em] text-cream/78 sm:text-xs sm:tracking-[0.18em] lg:ml-0 lg:px-10">
-            <span className="uppercase truncate min-w-0"><span className="text-brass">October cohort</span><span className="hidden sm:inline"> · Four weeks · 20 seats</span></span>
+            <span className="uppercase truncate min-w-0"><span className="text-brass">October cohort</span><span className="hidden sm:inline"> · Five weeks · 20 seats</span></span>
             <span className="shrink-0 text-cream transition-colors group-hover:text-brass">Join the waitlist <span aria-hidden>→</span></span>
           </span>
         </Link>
@@ -125,7 +125,7 @@ export const HeroDeck = () => {
               >
                 <span>
                   <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-brass">October cohort · 20 seats</span>
-                  <span className="mt-1 block font-display text-lg italic text-cream/85 sm:text-xl">Four weeks to ship three working automations.</span>
+                  <span className="mt-1 block font-display text-lg italic text-cream/85 sm:text-xl">Five weeks to a working AI setup your team owns.</span>
                 </span>
                 <span className="shrink-0 font-sans text-xs tracking-wider text-cream/75 transition-transform group-hover:translate-x-0.5">Waitlist →</span>
               </Link>
