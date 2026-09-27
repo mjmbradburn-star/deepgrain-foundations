@@ -48,23 +48,29 @@ const COURSE_LD = {
 const PAINS = [
   {
     quote: "We bought the licences. Nobody uses them.",
-    body: "Seats rolled out to the whole function, a launch email, a training video. Three months later the only thing that changed is the invoice. Capability without context does not survive a busy week.",
+    pattern: "Tool theatre",
+    body: "Capability without context does not survive a busy week.",
   },
   {
     quote: "The pilot worked. The rollout didn't.",
-    body: "One keen person built something clever in a sandbox. It never touched a real process, it had no owner, and it died the week they went on leave.",
+    pattern: "The pilot trap",
+    body: "Built for demo, never for production, with no owner.",
   },
   {
     quote: "Everyone is dabbling. Nobody is building.",
-    body: "Your team uses AI in private, unevenly, with no shared standard and no governance. The gap between your best prompter and everyone else widens every month, and nothing compounds.",
+    pattern: "Private dabbling",
+    body: "No shared standard, no governance, nothing compounds.",
   },
 ];
+
+const WEEK_ICONS = [Brain, FolderKanban, Workflow, Bot, BarChart3];
 
 const WEEKS = [
   {
     numeral: "1.0 THINK",
+    rail: "Change how you think",
     title: "Think with the machine",
-    body: "Stop briefing a colleague like a search box. The reframe that decides everything after it, the four habits that separate leverage from slop, and your first two skills files: one for your role, one for a job you repeat.",
+    body: "Stop briefing a colleague like a search box. The reframe that decides everything after it, plus your first two skills files.",
     leave: "Two skills files, written by you and used on real work.",
     detail: [
       "The colleague-not-search-box reframe, and why weak output is usually a thin brief",
@@ -75,8 +81,9 @@ const WEEKS = [
   },
   {
     numeral: "2.0 SET UP",
+    rail: "Change your setup",
     title: "Work with files",
-    body: "A one-off chat is a colleague with amnesia. Set up a project workspace that holds your instructions, your reference files and your skills, so the briefing stops evaporating between sessions.",
+    body: "A one-off chat is a colleague with amnesia. Set up a project workspace that holds your instructions, files and skills.",
     leave: "One project workspace set up properly, on your own work.",
     detail: [
       "Projects: standing instructions, reference files and skills in one persistent place",
@@ -87,8 +94,9 @@ const WEEKS = [
   },
   {
     numeral: "3.0 CHAIN",
+    rail: "Change what ships",
     title: "Chain the work",
-    body: "Map one weekly job click by click, tag every step as machine or judgement, then build the chain: the machine does the middle, you hold the edges and the gates. Run it by hand until it stops surprising you.",
+    body: "Map one weekly job, tag every step machine or judgement, then build the chain: machine in the middle, you on the edges.",
     leave: "A workflow that finishes a task, not a helpful draft.",
     detail: [
       "Map the job honestly before you build anything; the map is the design",
@@ -99,8 +107,9 @@ const WEEKS = [
   },
   {
     numeral: "4.0 SET RUNNING",
+    rail: "Change your week",
     title: "Take yourself out of the loop",
-    body: "In the loop, on the loop, out of the loop. Set a workflow you trust running on a schedule, then see what triggers and agents add for the people ready to go further. Everything you set running gets the five guardrails.",
+    body: "Set a workflow you trust running on a schedule, with the five guardrails on everything. Agents for the people ready to go further.",
     leave: "One piece of work running without you starting it, gated and logged.",
     detail: [
       "The trust ladder: you earn each rung, you never jump one",
@@ -111,8 +120,9 @@ const WEEKS = [
   },
   {
     numeral: "5.0 SHOW",
+    rail: "Make it visible",
     title: "Show your work",
-    body: "Old way, new way, time recovered, in three minutes. Write your one-page 90-day plan: keep doing, start doing, ask someone to build. The builders step forward.",
+    body: "Old way, new way, time recovered, in three minutes. Then your one-page 90-day plan.",
     leave: "A number leadership can act on, and a plan for the next quarter.",
     detail: [
       "The three-minute showcase: old way, new way, time recovered",
@@ -126,57 +136,56 @@ const WEEKS = [
 const LEAVE_WITH = [
   {
     icon: Brain,
-    title: "Skills files for your role and your recurring work",
-    body: "Your standards, written down once and applied every time. The unit everything else is built from.",
+    title: "Skills files",
+    body: "Your standards, written down once, applied every time.",
   },
   {
     icon: FolderKanban,
-    title: "A project workspace set up properly",
-    body: "Instructions, reference files and skills in one persistent place. No more re-briefing a blank chat.",
+    title: "A project workspace",
+    body: "Instructions, files and skills in one persistent place.",
   },
   {
     icon: Workflow,
-    title: "A chained workflow on a real job",
-    body: "Mapped, built and run by hand until it holds. Machine in the middle, your judgement at the edges.",
+    title: "A chained workflow",
+    body: "Machine in the middle, your judgement at the edges.",
   },
   {
     icon: Bot,
-    title: "One piece of work running with guardrails",
-    body: "Scheduled, gated, logged, with a stop condition and an off switch. Yours, not ours.",
+    title: "Work running with guardrails",
+    body: "Scheduled, gated, logged. Yours, not ours.",
   },
   {
     icon: BarChart3,
-    title: "A 90-day plan and your time-recovered number",
-    body: "Keep doing, start doing, ask someone to build. One page, ready for leadership.",
+    title: "A 90-day plan",
+    body: "One page, with your time-recovered number, ready for leadership.",
   },
 ];
 
-const CASE_RESULTS = [
+const CASE_STATS = [
   {
-    label: "Hours a week lost to rekeying, chasing and answering, before",
-    value: 83,
-    suffix: " hrs",
-    max: 100,
+    value: "83",
+    suffix: "hrs",
+    label: "lost every week to rekeying, chasing and answering, before",
   },
   {
-    label: "People Ops queries handled by systems the team owns, after",
-    value: 70,
+    value: "70",
     suffix: "%",
-    max: 100,
+    label: "of People Ops queries now handled by systems the team owns",
   },
   {
-    label: "Finance admin time handed back, after",
-    value: 60,
+    value: "60",
     suffix: "%",
-    max: 100,
+    label: "of Finance admin time handed back",
   },
 ];
+
+const MATT_FACTS = ["VP People at Peakon", "Built and sold People Collective", "4.3/5 across 13 course reviews"];
 
 const faqItems: FAQItem[] = [
   {
     question: "Who is the cohort for?",
     answer:
-      "People and HR operators in scaling companies: Heads of People, People Ops leads, HRBPs, and People team generalists who own processes and want to rebuild them with AI. No technical background needed. If you can describe a process, you can build on it.",
+      "People and HR operators in scaling companies: Heads of People, People Ops leads, HRBPs, and People team generalists who own processes and want to rebuild them with AI. No technical background needed.",
   },
   {
     question: "How much time does it take each week?",
@@ -231,8 +240,15 @@ const CheckoutButton = ({
   </a>
 );
 
+const H2_STYLE = { fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" } as const;
+
 const Waitlist = () => {
   const [openWeek, setOpenWeek] = useState<number>(0);
+
+  const jumpToWeek = (i: number) => {
+    setOpenWeek(i);
+    document.getElementById(`week-${i}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
 
   return (
     <>
@@ -263,9 +279,8 @@ const Waitlist = () => {
           </div>
           <div className="fade-in-up fade-in-up-2 mt-10 max-w-2xl">
             <p className="text-cream/85 text-lg md:text-xl leading-relaxed">
-              Five weeks, live, for People and HR operators in scaling companies. Successor to AI
-              Powered People Ops, rebuilt for this year's tools: skills files, project workspaces,
-              workflows and agents. Taught by Matt Bradburn, built on your own work.
+              Five weeks, live. Skills files, project workspaces, workflows and agents, built on
+              your own processes. Taught by Matt Bradburn.
             </p>
             <p
               className="mt-6 font-sans font-semibold uppercase text-brass"
@@ -293,25 +308,27 @@ const Waitlist = () => {
       <section className="bg-linen text-walnut" data-no-rule>
         <div className="container-grain py-20 md:py-28">
           <div className="h-px w-10 bg-brass/30 mb-10" />
-          <h2
-            className="font-display font-semibold max-w-3xl"
-            style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" }}
-          >
+          <h2 className="font-display font-semibold max-w-3xl" style={H2_STYLE}>
             Sound familiar?
           </h2>
           <div className="mt-14 grid gap-px md:grid-cols-3 bg-walnut/15">
             {PAINS.map((p) => (
               <div key={p.quote} className="bg-linen px-2 py-8 md:px-8 md:py-10">
-                <p className="font-display font-semibold text-walnut text-2xl md:text-[28px] leading-snug">
+                <p
+                  className="font-sans font-semibold uppercase text-brass"
+                  style={{ fontSize: "10px", letterSpacing: "0.22em" }}
+                >
+                  {p.pattern}
+                </p>
+                <p className="mt-4 font-display font-semibold text-walnut text-2xl md:text-[28px] leading-snug">
                   &ldquo;{p.quote}&rdquo;
                 </p>
-                <p className="text-body/80 text-[16px] leading-relaxed mt-4">{p.body}</p>
+                <p className="text-body/70 text-[15px] leading-relaxed mt-3">{p.body}</p>
               </div>
             ))}
           </div>
-          <p className="mt-10 max-w-2xl text-body/80 text-lg leading-relaxed">
-            None of these are tool problems. They are capability problems, and capability is
-            teachable. That is what the five weeks are for.
+          <p className="mt-10 max-w-2xl font-display italic text-walnut/70 text-xl leading-snug">
+            Capability problems, every one. Capability is teachable.
           </p>
         </div>
       </section>
@@ -320,24 +337,58 @@ const Waitlist = () => {
       <section id="weeks" className="bg-linen text-walnut scroll-mt-28" data-no-rule>
         <div className="container-grain pb-24 md:pb-36">
           <div className="h-px w-10 bg-brass/30 mb-10" />
-          <h2
-            className="font-display font-semibold max-w-3xl"
-            style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" }}
-          >
+          <h2 className="font-display font-semibold max-w-3xl" style={H2_STYLE}>
             Five weeks. One story.
           </h2>
           <p className="text-body/80 text-lg leading-relaxed max-w-2xl mt-6">
-            One live session a week, then build time on your own processes. Week one changes how
-            you think. Week two changes how your tools are set up. Week three changes the shape of
-            what comes out. Week four changes where AI sits in your working day. Week five makes
-            the change visible.
+            One live session a week. Everything else is build time on your own processes.
           </p>
+
+          {/* the story as a rail: five stops, each jumps to its week */}
+          <div className="mt-12 flex flex-col md:flex-row md:items-stretch border-y-2 border-walnut/70">
+            {WEEKS.map((w, i) => {
+              const Icon = WEEK_ICONS[i];
+              const active = openWeek === i;
+              return (
+                <button
+                  key={w.numeral}
+                  type="button"
+                  onClick={() => jumpToWeek(i)}
+                  aria-label={`Week ${i + 1}: ${w.title}`}
+                  className={cn(
+                    "group flex md:flex-1 items-center md:items-start gap-4 md:gap-0 md:flex-col px-2 py-5 md:px-6 md:py-8 text-left border-t md:border-t-0 md:border-l first:border-t-0 md:first:border-l-0 border-walnut/15 transition-colors",
+                    active ? "bg-walnut/[0.06]" : "hover:bg-walnut/[0.04]",
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-colors",
+                      active
+                        ? "border-green bg-green text-cream"
+                        : "border-walnut/30 text-walnut/70 group-hover:border-green group-hover:text-green",
+                    )}
+                  >
+                    <Icon size={20} strokeWidth={1.5} aria-hidden />
+                  </span>
+                  <span className="md:mt-5">
+                    <span className="block font-mono text-[11px] tracking-wider text-walnut/55">
+                      {w.numeral}
+                    </span>
+                    <span className="mt-1 block font-display font-semibold text-walnut text-lg leading-tight">
+                      {w.rail}
+                    </span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
 
           <div className="mt-14">
             {WEEKS.map((w, i) => {
               const open = openWeek === i;
+              const Icon = WEEK_ICONS[i];
               return (
-                <div key={w.numeral} className="border-t-4 border-walnut">
+                <div key={w.numeral} id={`week-${i}`} className="border-t-4 border-walnut scroll-mt-32">
                   <button
                     type="button"
                     onClick={() => setOpenWeek(open ? -1 : i)}
@@ -345,7 +396,8 @@ const Waitlist = () => {
                     className="w-full text-left py-10 md:py-12 flex items-start justify-between gap-6 group"
                   >
                     <div className="max-w-3xl">
-                      <h3 className="font-mono text-sm tracking-wider text-walnut/60 mb-4">
+                      <h3 className="font-mono text-sm tracking-wider text-walnut/60 mb-4 flex items-center gap-3">
+                        <Icon size={16} strokeWidth={1.5} className="text-brass" aria-hidden />
                         {w.numeral}
                       </h3>
                       <p className="font-display font-semibold text-walnut text-3xl md:text-4xl leading-tight group-hover:text-green transition-colors">
@@ -401,7 +453,7 @@ const Waitlist = () => {
                 <h3 className="font-display font-semibold text-cream text-2xl leading-tight">
                   {t.title}
                 </h3>
-                <p className="text-cream/75 text-[16px] leading-relaxed mt-3 max-w-md">{t.body}</p>
+                <p className="text-cream/70 text-[15px] leading-relaxed mt-2 max-w-md">{t.body}</p>
               </div>
             ))}
             <div className="bg-bark px-2 py-8 md:px-10 md:py-12 flex items-center">
@@ -417,40 +469,27 @@ const Waitlist = () => {
       <section className="bg-linen text-walnut" data-no-rule>
         <div className="container-grain py-20 md:py-28">
           <div className="h-px w-10 bg-brass/30 mb-10" />
-          <h2
-            className="font-display font-semibold max-w-3xl"
-            style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" }}
-          >
+          <h2 className="font-display font-semibold max-w-3xl" style={H2_STYLE}>
             What this looks like when it lands
           </h2>
           <p className="text-body/80 text-lg leading-relaxed max-w-2xl mt-6">
-            From a twelve-week Deepgrain engagement with a defence-tech firm's Finance and People
-            Ops teams. The same method the cohort teaches, run at company scale.
+            Twelve weeks with a defence-tech firm's Finance and People Ops teams. The method the
+            cohort teaches, run at company scale.
           </p>
-          <div className="mt-14 max-w-3xl space-y-10">
-            {CASE_RESULTS.map((r) => (
-              <div key={r.label}>
-                <div className="flex items-baseline justify-between gap-4 flex-wrap">
-                  <p className="text-body/85 text-[16px] leading-snug max-w-xl">{r.label}</p>
-                  <p className="font-display font-semibold text-green text-3xl md:text-4xl leading-none">
-                    {r.value}{r.suffix}
-                  </p>
-                </div>
-                <div className="mt-3 h-2 w-full bg-walnut/10 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-green rounded-full"
-                    style={{ width: `${(r.value / r.max) * 100}%` }}
-                    role="img"
-                    aria-label={`${r.label}: ${r.value}${r.suffix}`}
-                  />
-                </div>
+          <div className="mt-14 grid gap-px md:grid-cols-3 bg-walnut/15 max-w-5xl">
+            {CASE_STATS.map((s) => (
+              <div key={s.label} className="bg-linen px-2 py-10 md:px-10 md:py-14">
+                <p className="font-display font-semibold text-green leading-none" style={{ fontSize: "clamp(64px, 7vw, 104px)" }}>
+                  {s.value}
+                  <span className="text-brass" style={{ fontSize: "0.45em" }}>{s.suffix}</span>
+                </p>
+                <p className="mt-5 text-body/75 text-[15px] leading-relaxed max-w-xs">{s.label}</p>
               </div>
             ))}
           </div>
-          <p className="mt-10 max-w-2xl text-body/60 text-sm leading-relaxed">
+          <p className="mt-8 max-w-2xl text-body/60 text-sm leading-relaxed">
             Their processes, their numbers. Yours will be your own, which is the point of building
-            on real work. The five people trained in that engagement have since shipped another
-            five systems outside the original scope.
+            on real work.
           </p>
         </div>
       </section>
@@ -474,8 +513,7 @@ const Waitlist = () => {
                 {COURSE.foundingPrice}
               </p>
               <p className="mt-5 text-cream/80 text-[16px] leading-relaxed max-w-sm">
-                Starts {COURSE.start}, five weeks, live. {COURSE.seats} seats, because the build
-                work is reviewed by hand.
+                Starts {COURSE.start}. {COURSE.seats} seats; the build work is reviewed by hand.
               </p>
               <div className="mt-8">
                 <CheckoutButton href={COURSE.foundingCheckout} variant="filled">
@@ -491,8 +529,7 @@ const Waitlist = () => {
                 {COURSE.standardPrice}
               </p>
               <p className="mt-5 text-cream/70 text-[16px] leading-relaxed max-w-sm">
-                The same five weeks in the same room, at the standard price. For seats after the
-                founding cohort fills, and for later cohorts.
+                The same five weeks in the same room, at the standard price.
               </p>
               <div className="mt-8">
                 <CheckoutButton href={COURSE.standardCheckout} variant="outline">
@@ -516,22 +553,24 @@ const Waitlist = () => {
       <section className="bg-linen text-walnut" data-no-rule>
         <div className="container-grain py-20 md:py-28">
           <div className="h-px w-10 bg-brass/30 mb-10" />
-          <h2
-            className="font-display font-semibold max-w-3xl"
-            style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" }}
-          >
+          <h2 className="font-display font-semibold max-w-3xl" style={H2_STYLE}>
             Built and taught by Matt Bradburn
           </h2>
-          <div className="mt-8 max-w-2xl">
-            <p className="text-body/85 text-lg leading-relaxed">
-              Matt was VP People at Peakon, built and sold People Collective and the DBR community,
-              and now runs Deepgrain. The original course, AI Powered People Ops, was rated 4.3 out
-              of 5 across 13 reviews. This cohort is its successor, rebuilt for this year's tools.
-            </p>
-            <p className="mt-6 text-body/80 text-lg leading-relaxed">
-              The same operating work, run for:
-            </p>
+          <div className="mt-10 flex flex-wrap gap-px bg-walnut/15 max-w-4xl">
+            {MATT_FACTS.map((f) => (
+              <p
+                key={f}
+                className="bg-linen px-6 py-4 font-sans font-semibold uppercase text-walnut/80"
+                style={{ fontSize: "11px", letterSpacing: "0.18em" }}
+              >
+                {f}
+              </p>
+            ))}
           </div>
+          <p className="mt-8 max-w-2xl text-body/80 text-lg leading-relaxed">
+            The original course was AI Powered People Ops. This cohort is its successor, rebuilt
+            for this year's tools. The same operating work, run for:
+          </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-14 gap-y-6">
             {PROOF.map((name) => (
               <span
@@ -554,15 +593,11 @@ const Waitlist = () => {
         <BarkGrain />
         <div className="relative z-10 container-grain section-pad">
           <div className="max-w-2xl">
-            <h2
-              className="font-display font-semibold"
-              style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" }}
-            >
+            <h2 className="font-display font-semibold" style={H2_STYLE}>
               {COURSE.seats} seats. Five Mondays from 12 October.
             </h2>
             <p className="mt-6 text-cream/80 text-lg leading-relaxed">
-              Founding seats are {COURSE.foundingPrice} for the October cohort. When they fill,
-              standard seats are {COURSE.standardPrice}.
+              Founding {COURSE.foundingPrice}. Standard {COURSE.standardPrice}.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <CheckoutButton href={COURSE.foundingCheckout} variant="filled">
