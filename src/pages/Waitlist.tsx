@@ -556,7 +556,7 @@ const Waitlist = () => {
           <h2 className="font-display font-semibold max-w-3xl" style={H2_STYLE}>
             Built and taught by Matt Bradburn
           </h2>
-          <div className="mt-10 flex flex-wrap gap-px bg-walnut/15 max-w-4xl">
+          <div className="mt-10 inline-flex flex-wrap gap-px bg-walnut/15">
             {MATT_FACTS.map((f) => (
               <p
                 key={f}
