@@ -1,6 +1,9 @@
 import { lazy, type ComponentType } from "react";
 
-type ModuleWithDefault = { default: ComponentType<never> };
+// Mirrors React's own `lazy()` signature: props stay `any` so both function
+// and class components, and the MDX manifest loaders, satisfy the constraint.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ModuleWithDefault = { default: ComponentType<any> };
 
 const wait = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
@@ -27,7 +30,8 @@ export async function retryImport<T extends ModuleWithDefault>(
   throw lastError;
 }
 
-export function lazyWithRetry<T extends ComponentType<never>>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function lazyWithRetry<T extends ComponentType<any>>(
   factory: () => Promise<{ default: T }>,
 ) {
   return lazy(() => retryImport(factory));
