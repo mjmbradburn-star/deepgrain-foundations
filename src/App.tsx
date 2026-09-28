@@ -55,6 +55,12 @@ const queryClient = new QueryClient();
 
 const RouteFallback = () => <div aria-hidden className="min-h-screen" />;
 
+/** A caught failure must not trap the visit: moving to another route clears it. */
+const RouteErrorBoundary = ({ children }: { children: ReactNode }) => {
+  const location = useLocation();
+  return <ErrorBoundary key={location.pathname}>{children}</ErrorBoundary>;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -63,6 +69,7 @@ const App = () => (
         <ScrollToTop />
         <Analytics />
         <SiteShell>
+          <RouteErrorBoundary>
           <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -110,6 +117,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
+          </RouteErrorBoundary>
         </SiteShell>
       </BrowserRouter>
     </TooltipProvider>
