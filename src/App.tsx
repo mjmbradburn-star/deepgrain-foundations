@@ -1,4 +1,5 @@
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
+import { lazyWithRetry } from "@/lib/lazyWithRetry";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
@@ -19,36 +20,36 @@ const LegacyAnswerRedirect = () => {
 };
 
 // Route-level code splitting - only Home is in the initial bundle.
-const MethodPage = lazy(() => import("./pages/MethodPage"));
-const Work = lazy(() => import("./pages/Work"));
-const About = lazy(() => import("./pages/About"));
-const Contact = lazy(() => import("./pages/Contact"));
-const Intelligence = lazy(() => import("./pages/Intelligence"));
-const IntelligenceArticle = lazy(() => import("./pages/IntelligenceArticle"));
-const IntelligenceCategory = lazy(() => import("./pages/IntelligenceCategory"));
-const IntelligenceGlossary = lazy(() => import("./pages/IntelligenceGlossary"));
-const IntelligenceCompare = lazy(() => import("./pages/IntelligenceCompare"));
-const IntelligencePillars = lazy(() => import("./pages/IntelligencePillars"));
-const IntelligencePillar = lazy(() => import("./pages/IntelligencePillar"));
-const IntelligenceCluster = lazy(() => import("./pages/IntelligenceCluster"));
-const AnswerDetail = lazy(() => import("./pages/AnswerDetail"));
+const MethodPage = lazyWithRetry(() => import("./pages/MethodPage"));
+const Work = lazyWithRetry(() => import("./pages/Work"));
+const About = lazyWithRetry(() => import("./pages/About"));
+const Contact = lazyWithRetry(() => import("./pages/Contact"));
+const Intelligence = lazyWithRetry(() => import("./pages/Intelligence"));
+const IntelligenceArticle = lazyWithRetry(() => import("./pages/IntelligenceArticle"));
+const IntelligenceCategory = lazyWithRetry(() => import("./pages/IntelligenceCategory"));
+const IntelligenceGlossary = lazyWithRetry(() => import("./pages/IntelligenceGlossary"));
+const IntelligenceCompare = lazyWithRetry(() => import("./pages/IntelligenceCompare"));
+const IntelligencePillars = lazyWithRetry(() => import("./pages/IntelligencePillars"));
+const IntelligencePillar = lazyWithRetry(() => import("./pages/IntelligencePillar"));
+const IntelligenceCluster = lazyWithRetry(() => import("./pages/IntelligenceCluster"));
+const AnswerDetail = lazyWithRetry(() => import("./pages/AnswerDetail"));
 
-const NotFound = lazy(() => import("./pages/NotFound"));
-const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
-const Enablement = lazy(() => import("./pages/Enablement"));
-const Privacy = lazy(() => import("./pages/Privacy"));
-const CookiesPage = lazy(() => import("./pages/Cookies"));
-const Terms = lazy(() => import("./pages/Terms"));
-const SeoChecklist = lazy(() => import("./pages/SeoChecklist"));
-const Brain = lazy(() => import("./pages/Brain"));
-const BrainResend = lazy(() => import("./pages/BrainResend"));
-const Login = lazy(() => import("./pages/Login"));
-const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
-const Readiness = lazy(() => import("./pages/Readiness"));
-const ExposureMap = lazy(() => import("./pages/ExposureMap"));
-const GrainAudit = lazy(() => import("./pages/GrainAudit"));
-const Waitlist = lazy(() => import("./pages/Waitlist"));
-const BusinessTeamAITraining = lazy(() => import("./pages/BusinessTeamAITraining"));
+const NotFound = lazyWithRetry(() => import("./pages/NotFound"));
+const Unsubscribe = lazyWithRetry(() => import("./pages/Unsubscribe"));
+const Enablement = lazyWithRetry(() => import("./pages/Enablement"));
+const Privacy = lazyWithRetry(() => import("./pages/Privacy"));
+const CookiesPage = lazyWithRetry(() => import("./pages/Cookies"));
+const Terms = lazyWithRetry(() => import("./pages/Terms"));
+const SeoChecklist = lazyWithRetry(() => import("./pages/SeoChecklist"));
+const Brain = lazyWithRetry(() => import("./pages/Brain"));
+const BrainResend = lazyWithRetry(() => import("./pages/BrainResend"));
+const Login = lazyWithRetry(() => import("./pages/Login"));
+const OAuthConsent = lazyWithRetry(() => import("./pages/OAuthConsent"));
+const Readiness = lazyWithRetry(() => import("./pages/Readiness"));
+const ExposureMap = lazyWithRetry(() => import("./pages/ExposureMap"));
+const GrainAudit = lazyWithRetry(() => import("./pages/GrainAudit"));
+const Waitlist = lazyWithRetry(() => import("./pages/Waitlist"));
+const BusinessTeamAITraining = lazyWithRetry(() => import("./pages/BusinessTeamAITraining"));
 
 const queryClient = new QueryClient();
 

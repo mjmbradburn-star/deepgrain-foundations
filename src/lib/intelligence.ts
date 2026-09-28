@@ -1,4 +1,5 @@
-import { lazy, type ComponentType, type LazyExoticComponent } from "react";
+import { type ComponentType, type LazyExoticComponent } from "react";
+import { lazyWithRetry } from "@/lib/lazyWithRetry";
 
 export type Track = "deepgrain" | "people-ops";
 
@@ -128,7 +129,7 @@ export const ARTICLES: Article[] = FRONTMATTERS
     const faqs = FAQS[__path];
     return {
       frontmatter: { ...fm, track: inferTrack(fm) } as ArticleFrontmatter,
-      Component: lazy(loader),
+      Component: lazyWithRetry(loader),
       ...(faqs && faqs.length > 0 ? { faqs } : {}),
     };
   })

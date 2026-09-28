@@ -1,4 +1,5 @@
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
+import { lazyWithRetry } from "@/lib/lazyWithRetry";
 import { HeroDeck } from "@/components/sections/deck/HeroDeck";
 import { TheShift } from "@/components/sections/deck/TheShift";
 import { WorkedExample } from "@/components/sections/deck/WorkedExample";
@@ -8,34 +9,34 @@ import { PageMeta } from "@/components/seo/PageMeta";
 import { HOME_FAQ_LD } from "@/data/homeFaq";
 
 // Below-the-fold: lazy-loaded to keep the initial JS bundle small.
-const AgentArchitecture = lazy(() =>
+const AgentArchitecture = lazyWithRetry(() =>
   import("@/components/sections/deck/AgentArchitecture").then((m) => ({
     default: m.AgentArchitecture,
   })),
 );
-const TheBridge = lazy(() =>
+const TheBridge = lazyWithRetry(() =>
   import("@/components/sections/deck/TheBridge").then((m) => ({ default: m.TheBridge })),
 );
-const TheCounterweight = lazy(() =>
+const TheCounterweight = lazyWithRetry(() =>
   import("@/components/sections/deck/TheCounterweight").then((m) => ({
     default: m.TheCounterweight,
   })),
 );
-const LogoCarousel = lazy(() =>
+const LogoCarousel = lazyWithRetry(() =>
   import("@/components/sections/LogoCarousel").then((m) => ({ default: m.LogoCarousel })),
 );
-const SimpleAIPrimer = lazy(() =>
+const SimpleAIPrimer = lazyWithRetry(() =>
   import("@/components/sections/SimpleAIPrimer").then((m) => ({ default: m.SimpleAIPrimer })),
 );
-const IntelligenceTeaser = lazy(() =>
+const IntelligenceTeaser = lazyWithRetry(() =>
   import("@/components/sections/IntelligenceTeaser").then((m) => ({
     default: m.IntelligenceTeaser,
   })),
 );
-const HomeFAQ = lazy(() =>
+const HomeFAQ = lazyWithRetry(() =>
   import("@/components/sections/HomeFAQ").then((m) => ({ default: m.HomeFAQ })),
 );
-const ClosingInvitation = lazy(() =>
+const ClosingInvitation = lazyWithRetry(() =>
   import("@/components/sections/deck/ClosingInvitation").then((m) => ({
     default: m.ClosingInvitation,
   })),
