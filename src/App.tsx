@@ -1,7 +1,8 @@
-import { Suspense } from "react";
+import { Suspense, type ReactNode } from "react";
 import { lazyWithRecovery } from "@/lib/lazyRecovery";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useParams, useLocation } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteShell } from "@/components/layout/SiteShell";
@@ -55,6 +56,12 @@ const queryClient = new QueryClient();
 
 const RouteFallback = () => <div aria-hidden className="min-h-screen" />;
 
+/** A caught failure must not trap the visit: moving to another route clears it. */
+const RouteErrorBoundary = ({ children }: { children: ReactNode }) => {
+  const location = useLocation();
+  return <ErrorBoundary key={location.pathname}>{children}</ErrorBoundary>;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -63,6 +70,7 @@ const App = () => (
         <ScrollToTop />
         <Analytics />
         <SiteShell>
+          <RouteErrorBoundary>
           <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -110,6 +118,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
+          </RouteErrorBoundary>
         </SiteShell>
       </BrowserRouter>
     </TooltipProvider>

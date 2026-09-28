@@ -6,6 +6,10 @@ type ModuleWithDefault = { default: ComponentType<any> };
 const RELOAD_STAMP = "deepgrain:chunk-reload-at";
 const RELOAD_COOLDOWN_MS = 10_000;
 
+/** Set once this document has asked for a reload, so sibling chunks that fail
+ *  in the same window are held open instead of unmounting the tree. */
+let reloadTriggered = false;
+
 /**
  * Chunk-load failures are worded differently per engine and bundler: Chrome
  * says "Failed to fetch dynamically imported module", Safari says "Importing a
@@ -22,12 +26,14 @@ export function isChunkLoadError(error: unknown): boolean {
 /**
  * A failed ES module import is memoised as errored in the browser module map,
  * so re-importing the same URL rejects without issuing a new request: retrying
- * is useless, only a fresh document re-resolves it. Reload once inside the
- * cooldown window, then let the error reach the boundary so a genuinely broken
- * chunk stays visible instead of reloading forever.
+ * is useless, only a fresh document re-resolves it. Reload once per burst, hold
+ * any sibling failure open while that reload runs, and only hand a genuine
+ * second failure to the boundary so it never reloads forever.
  */
 export function recoverFromChunkFailure(error: unknown): Promise<never> {
   if (!isChunkLoadError(error)) throw error;
+  if (reloadTriggered) return new Promise<never>(() => {});
+
   const now = Date.now();
   let last = 0;
   try {
@@ -37,10 +43,12 @@ export function recoverFromChunkFailure(error: unknown): Promise<never> {
   }
   if (!Number.isFinite(last)) last = 0;
   if (now - last < RELOAD_COOLDOWN_MS) throw error;
+
+  reloadTriggered = true;
   try {
     sessionStorage.setItem(RELOAD_STAMP, String(now));
   } catch {
-    /* best effort: the guard only prevents a reload loop */
+    /* best effort: the stamp only prevents a reload loop across documents */
   }
   window.location.reload();
   return new Promise<never>(() => {});
