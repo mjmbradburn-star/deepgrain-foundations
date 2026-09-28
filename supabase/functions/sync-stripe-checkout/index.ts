@@ -41,16 +41,17 @@ Deno.serve(async (req) => {
   }
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
   const stripeKey = Deno.env.get("STRIPE_CHECKOUT_READ_KEY");
+  const dispatchToken = Deno.env.get("STRIPE_MONITOR_DISPATCH_TOKEN");
   const supabaseUrl = Deno.env.get("SUPABASE_URL");
-  if (!serviceKey || !supabaseUrl || !stripeKey) {
+  if (!serviceKey || !supabaseUrl || !stripeKey || !dispatchToken) {
     return Response.json(
       { error: "Required server configuration is missing" },
       { status: 503 },
     );
   }
-  // Supabase gateway also verifies JWT. This direct check keeps accidental
-  // public deployment from turning the function into an unrestricted endpoint.
-  if (req.headers.get("Authorization") !== `Bearer ${serviceKey}`) {
+  // Dedicated dispatch token, separate from the database service-role key.
+  // This check remains mandatory even if the hosting gateway does not verify JWTs.
+  if (req.headers.get("Authorization") !== `Bearer ${dispatchToken}`) {
     return Response.json({ error: "Forbidden" }, { status: 403 });
   }
   const db = createClient(supabaseUrl, serviceKey);
