@@ -1,8 +1,6 @@
-import { Suspense, type ReactNode } from "react";
-import { lazyWithRecovery } from "@/lib/lazyRecovery";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes, useParams, useLocation } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteShell } from "@/components/layout/SiteShell";
@@ -21,46 +19,40 @@ const LegacyAnswerRedirect = () => {
 };
 
 // Route-level code splitting - only Home is in the initial bundle.
-const MethodPage = lazyWithRecovery(() => import("./pages/MethodPage"));
-const Work = lazyWithRecovery(() => import("./pages/Work"));
-const About = lazyWithRecovery(() => import("./pages/About"));
-const Contact = lazyWithRecovery(() => import("./pages/Contact"));
-const Intelligence = lazyWithRecovery(() => import("./pages/Intelligence"));
-const IntelligenceArticle = lazyWithRecovery(() => import("./pages/IntelligenceArticle"));
-const IntelligenceCategory = lazyWithRecovery(() => import("./pages/IntelligenceCategory"));
-const IntelligenceGlossary = lazyWithRecovery(() => import("./pages/IntelligenceGlossary"));
-const IntelligenceCompare = lazyWithRecovery(() => import("./pages/IntelligenceCompare"));
-const IntelligencePillars = lazyWithRecovery(() => import("./pages/IntelligencePillars"));
-const IntelligencePillar = lazyWithRecovery(() => import("./pages/IntelligencePillar"));
-const IntelligenceCluster = lazyWithRecovery(() => import("./pages/IntelligenceCluster"));
-const AnswerDetail = lazyWithRecovery(() => import("./pages/AnswerDetail"));
+const MethodPage = lazy(() => import("./pages/MethodPage"));
+const Work = lazy(() => import("./pages/Work"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Intelligence = lazy(() => import("./pages/Intelligence"));
+const IntelligenceArticle = lazy(() => import("./pages/IntelligenceArticle"));
+const IntelligenceCategory = lazy(() => import("./pages/IntelligenceCategory"));
+const IntelligenceGlossary = lazy(() => import("./pages/IntelligenceGlossary"));
+const IntelligenceCompare = lazy(() => import("./pages/IntelligenceCompare"));
+const IntelligencePillars = lazy(() => import("./pages/IntelligencePillars"));
+const IntelligencePillar = lazy(() => import("./pages/IntelligencePillar"));
+const IntelligenceCluster = lazy(() => import("./pages/IntelligenceCluster"));
+const AnswerDetail = lazy(() => import("./pages/AnswerDetail"));
 
-const NotFound = lazyWithRecovery(() => import("./pages/NotFound"));
-const Unsubscribe = lazyWithRecovery(() => import("./pages/Unsubscribe"));
-const Enablement = lazyWithRecovery(() => import("./pages/Enablement"));
-const Privacy = lazyWithRecovery(() => import("./pages/Privacy"));
-const CookiesPage = lazyWithRecovery(() => import("./pages/Cookies"));
-const Terms = lazyWithRecovery(() => import("./pages/Terms"));
-const SeoChecklist = lazyWithRecovery(() => import("./pages/SeoChecklist"));
-const Brain = lazyWithRecovery(() => import("./pages/Brain"));
-const BrainResend = lazyWithRecovery(() => import("./pages/BrainResend"));
-const Login = lazyWithRecovery(() => import("./pages/Login"));
-const OAuthConsent = lazyWithRecovery(() => import("./pages/OAuthConsent"));
-const Readiness = lazyWithRecovery(() => import("./pages/Readiness"));
-const ExposureMap = lazyWithRecovery(() => import("./pages/ExposureMap"));
-const GrainAudit = lazyWithRecovery(() => import("./pages/GrainAudit"));
-const Waitlist = lazyWithRecovery(() => import("./pages/Waitlist"));
-const BusinessTeamAITraining = lazyWithRecovery(() => import("./pages/BusinessTeamAITraining"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
+const Enablement = lazy(() => import("./pages/Enablement"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const CookiesPage = lazy(() => import("./pages/Cookies"));
+const Terms = lazy(() => import("./pages/Terms"));
+const SeoChecklist = lazy(() => import("./pages/SeoChecklist"));
+const Brain = lazy(() => import("./pages/Brain"));
+const BrainResend = lazy(() => import("./pages/BrainResend"));
+const Login = lazy(() => import("./pages/Login"));
+const OAuthConsent = lazy(() => import("./pages/OAuthConsent"));
+const Readiness = lazy(() => import("./pages/Readiness"));
+const ExposureMap = lazy(() => import("./pages/ExposureMap"));
+const GrainAudit = lazy(() => import("./pages/GrainAudit"));
+const Waitlist = lazy(() => import("./pages/Waitlist"));
+const BusinessTeamAITraining = lazy(() => import("./pages/BusinessTeamAITraining"));
 
 const queryClient = new QueryClient();
 
 const RouteFallback = () => <div aria-hidden className="min-h-screen" />;
-
-/** A caught failure must not trap the visit: moving to another route clears it. */
-const RouteErrorBoundary = ({ children }: { children: ReactNode }) => {
-  const location = useLocation();
-  return <ErrorBoundary key={location.pathname}>{children}</ErrorBoundary>;
-};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -70,7 +62,6 @@ const App = () => (
         <ScrollToTop />
         <Analytics />
         <SiteShell>
-          <RouteErrorBoundary>
           <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -118,7 +109,6 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
-          </RouteErrorBoundary>
         </SiteShell>
       </BrowserRouter>
     </TooltipProvider>

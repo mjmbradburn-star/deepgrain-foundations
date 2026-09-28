@@ -1,5 +1,4 @@
-import { type ComponentType, type LazyExoticComponent } from "react";
-import { lazyWithRecovery } from "@/lib/lazyRecovery";
+import { lazy, type ComponentType, type LazyExoticComponent } from "react";
 
 export type Track = "deepgrain" | "people-ops";
 
@@ -129,7 +128,7 @@ export const ARTICLES: Article[] = FRONTMATTERS
     const faqs = FAQS[__path];
     return {
       frontmatter: { ...fm, track: inferTrack(fm) } as ArticleFrontmatter,
-      Component: lazyWithRecovery(loader),
+      Component: lazy(loader),
       ...(faqs && faqs.length > 0 ? { faqs } : {}),
     };
   })

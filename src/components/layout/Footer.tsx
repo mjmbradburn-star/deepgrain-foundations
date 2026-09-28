@@ -1,10 +1,9 @@
-import { Suspense } from "react";
-import { lazyWithRecovery } from "@/lib/lazyRecovery";
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { BarkSection } from "@/components/ui/BarkSection";
 
 // Lazy: pulls in supabase + zod, ~250KB. Footer is below the fold on every page.
-const EmailCapture = lazyWithRecovery(() =>
+const EmailCapture = lazy(() =>
   import("@/components/forms/EmailCapture").then((m) => ({ default: m.EmailCapture }))
 );
 
