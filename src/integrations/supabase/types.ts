@@ -370,6 +370,75 @@ export type Database = {
         }
         Relationships: []
       }
+      stripe_checkout_sessions: {
+        Row: {
+          amount_total: number | null
+          consent_promotions: string | null
+          consented_email: string | null
+          created_at: string
+          currency: string | null
+          expires_at: string
+          id: string
+          last_seen_at: string
+          payment_link_id: string
+          payment_status: string
+          recovered_from: string | null
+          status: string
+        }
+        Insert: {
+          amount_total?: number | null
+          consent_promotions?: string | null
+          consented_email?: string | null
+          created_at: string
+          currency?: string | null
+          expires_at: string
+          id: string
+          last_seen_at?: string
+          payment_link_id: string
+          payment_status: string
+          recovered_from?: string | null
+          status: string
+        }
+        Update: {
+          amount_total?: number | null
+          consent_promotions?: string | null
+          consented_email?: string | null
+          created_at?: string
+          currency?: string | null
+          expires_at?: string
+          id?: string
+          last_seen_at?: string
+          payment_link_id?: string
+          payment_status?: string
+          recovered_from?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      stripe_checkout_sync_state: {
+        Row: {
+          last_error: string | null
+          last_error_at: string | null
+          last_success_at: string | null
+          sessions_seen: number
+          singleton: boolean
+        }
+        Insert: {
+          last_error?: string | null
+          last_error_at?: string | null
+          last_success_at?: string | null
+          sessions_seen?: number
+          singleton?: boolean
+        }
+        Update: {
+          last_error?: string | null
+          last_error_at?: string | null
+          last_success_at?: string | null
+          sessions_seen?: number
+          singleton?: boolean
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           article_slug: string | null
@@ -420,7 +489,18 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      stripe_checkout_daily_summary: {
+        Row: {
+          checkout_day: string | null
+          completed_sessions: number | null
+          expired_sessions: number | null
+          identifiable_expired: number | null
+          open_sessions: number | null
+          paid_sessions: number | null
+          payment_link_id: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       delete_email: {
@@ -459,6 +539,7 @@ export type Database = {
         Returns: boolean
       }
       tick_email_queue: { Args: never; Returns: undefined }
+      tick_stripe_checkout_monitor: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
