@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 
 /** Single source for the offer. Change the cohort here, not in five places. */
 const COURSE = {
-  start: "Monday 12 October",
   weeks: "Five",
   seats: "Twenty",
   foundingPrice: "£495",
@@ -206,12 +205,12 @@ const faqItems: FAQItem[] = [
   {
     question: "What is the difference between founding and standard seats?",
     answer:
-      "The same five weeks in the same room. Founding seats are £495 for the cohort starting Monday 12 October. Standard seats are £695.",
+      "The same five-week programme in either time zone. Founding seats are £495; standard seats are £695. Choose UK/EMEA (from Thursday 15 October) or Americas (from Monday 12 October).",
   },
   {
     question: "When does it start, and how many seats are there?",
     answer:
-      "Monday 12 October, live, five weeks. Twenty seats, because the build work is reviewed by hand.",
+      "UK/EMEA starts Thursday 15 October at 2pm UK. Americas starts Monday 12 October at 9am Pacific. Each cohort meets live for 75 minutes a week over five weeks. Twenty seats, because the build work is reviewed by hand.",
   },
 ];
 
@@ -255,7 +254,7 @@ const Waitlist = () => {
     <>
       <PageMeta
         title="Deepgrain AI Cohort for People Teams"
-        description="Five weeks, live, for People and HR operators. Build skills, projects, workflows and agents on your own processes. Founding cohort 12 October, from £495."
+        description="Five weeks, live, for People and HR operators. Build skills, projects, workflows and agents on your own processes. UK/EMEA from 15 October; Americas from 12 October. From £495."
         path="/waitlist"
         jsonLd={[COURSE_LD, buildFAQLd(faqItems), buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "AI cohort", url: "https://www.deepgrain.ai/waitlist" }])]}
       />
@@ -278,6 +277,21 @@ const Waitlist = () => {
               Everyone told your People team to use AI. Nobody showed them how.
             </h1>
           </div>
+          <div aria-label="Live cohort schedule" className="mt-8 max-w-4xl border border-brass/45 bg-bark/35 p-5 md:p-6">
+            <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">Live cohort schedule</p>
+            <div className="mt-4 grid gap-4 md:grid-cols-2 md:gap-6">
+              <div className="border-t border-cream/20 pt-3">
+                <h2 className="font-display text-xl font-semibold">UK / EMEA</h2>
+                <p className="mt-1 text-sm text-cream/90">Thursdays, 2pm UK · starts 15 October</p>
+              </div>
+              <div className="border-t border-cream/20 pt-3">
+                <h2 className="font-display text-xl font-semibold">Americas</h2>
+                <p className="mt-1 text-sm text-cream/90">Mondays, 9am Pacific · starts 12 October</p>
+                <p className="mt-1 text-xs text-cream/70">5pm UK except 26 October, 4pm UK (clock change)</p>
+              </div>
+            </div>
+            <p className="mt-4 border-t border-cream/20 pt-3 text-sm font-semibold text-brass">Five weeks · 75 minutes live each week</p>
+          </div>
           <div className="fade-in-up fade-in-up-2 mt-10 max-w-2xl">
             <p className="text-cream/85 text-lg md:text-xl leading-relaxed">
               Five weeks, live. Skills files, project workspaces, workflows and agents, built on
@@ -287,7 +301,7 @@ const Waitlist = () => {
               className="mt-6 font-sans font-semibold uppercase text-brass"
               style={{ fontSize: "11px", letterSpacing: "0.22em" }}
             >
-              Founding cohort starts {COURSE.start} · {COURSE.seats} seats · {COURSE.foundingPrice} founding (standard {COURSE.standardPrice})
+              Two cohort times · {COURSE.seats} seats · {COURSE.foundingPrice} founding (standard {COURSE.standardPrice})
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <CheckoutButton href={COURSE.foundingCheckout} variant="filled">
@@ -517,7 +531,7 @@ const Waitlist = () => {
                 {COURSE.foundingPrice}
               </p>
               <p className="mt-5 text-cream/80 text-[16px] leading-relaxed max-w-sm">
-                Starts {COURSE.start}. {COURSE.seats} seats; the build work is reviewed by hand.
+                Choose UK/EMEA or Americas. {COURSE.seats} seats; the build work is reviewed by hand.
               </p>
               <div className="mt-8">
                 <CheckoutButton href={COURSE.foundingCheckout} variant="filled">
@@ -598,7 +612,7 @@ const Waitlist = () => {
         <div className="relative z-10 container-grain section-pad">
           <div className="max-w-2xl">
             <h2 className="font-display font-semibold" style={H2_STYLE}>
-              {COURSE.seats} seats. Five Mondays from 12 October.
+              {COURSE.seats} seats. Two cohort times.
             </h2>
             <p className="mt-6 text-cream/80 text-lg leading-relaxed">
               Founding {COURSE.foundingPrice}. Standard {COURSE.standardPrice}.
