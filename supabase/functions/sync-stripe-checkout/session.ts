@@ -2,6 +2,7 @@
 export const LINKS = {
   plink_1UIbEZQQIEQm1i6qWCLPgt32: "founding",
   plink_1UIbFBQQIEQm1i6qipC7fg1N: "standard",
+  plink_1UKyd2QQIEQm1i6qTDJqmtjb: "Ardoq £1,500",
 } as const;
 
 export type CheckoutSession = {
@@ -21,7 +22,8 @@ export type CheckoutSession = {
 
 export function toRow(s: CheckoutSession, seenAt: string) {
   if (
-    !s.payment_link || !(s.payment_link in LINKS) ||
+    !s.payment_link ||
+    !(s.payment_link in LINKS) ||
     !s.id.startsWith("cs_") ||
     !["open", "complete", "expired"].includes(s.status ?? "")
   ) {
@@ -41,9 +43,7 @@ export function toRow(s: CheckoutSession, seenAt: string) {
     amount_total: s.amount_total,
     currency: s.currency,
     consent_promotions: consent,
-    consented_email: consent === "opt_in"
-      ? (s.customer_details?.email ?? s.customer_email ?? null)
-      : null,
+    consented_email: consent === "opt_in" ? (s.customer_details?.email ?? s.customer_email ?? null) : null,
     recovered_from: s.recovered_from ?? null,
     last_seen_at: seenAt,
   };
