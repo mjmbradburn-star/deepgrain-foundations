@@ -4,6 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 import { trackFormSubmit } from "@/lib/analytics";
+import { identifyPerson } from "@/lib/posthog";
 
 /**
  * BrainCaptureForm - lead-capture form rendered in two places on /brain
@@ -79,6 +80,8 @@ export const BrainCaptureForm = ({
         setSubmitting(false);
         return;
       }
+
+      identifyPerson(trimmedEmail, { lead_form: "brain_capture" });
 
       trackFormSubmit("brain_capture", {
         has_first_name: Boolean(firstName.trim()),
