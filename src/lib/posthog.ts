@@ -41,6 +41,7 @@ const PLAN_BY_LINK: Record<string, string> = {
 type PostHogLike = {
   init: (key: string, config: Record<string, unknown>) => void;
   capture: (event: string, props?: Record<string, unknown>) => void;
+  identify: (id: string, props?: Record<string, unknown>) => void;
 };
 
 declare global {
@@ -50,6 +51,7 @@ declare global {
 }
 
 const queue: Array<[string, Record<string, unknown>]> = [];
+let pendingIdentify: [string, Record<string, unknown>] | null = null;
 let ready = false;
 let started = false;
 
@@ -72,6 +74,22 @@ export function captureEvent(event: string, params: Params = {}) {
   } else {
     if (queue.length < 50) queue.push([event, props]);
   }
+}
+
+/**
+ * Link this browser to a person, but only after they typed their email into one
+ * of our own forms and submitted it. Never called on page load, never guessed.
+ * The email becomes the PostHog distinct id, so person profiles carry the email,
+ * first-touch UTM and geo, and the full click and replay history from before the
+ * form was filled is merged in.
+ */
+export function identifyPerson(email: string, props: Params = {}) {
+  if (!isProductionHost()) return;
+  const id = email.trim().toLowerCase();
+  if (!id) return;
+  const p = { ...clean(props), email: id };
+  if (ready && window.posthog) window.posthog.identify(id, p);
+  else pendingIdentify = [id, p];
 }
 
 const stripeLinkId = (href: string): string | null => {
@@ -126,7 +144,7 @@ function loadScript() {
       api_host: API_HOST,
       ui_host: UI_HOST,
       defaults: "2025-05-24", // SPA pageviews on history change
-      person_profiles: "identified_only", // anonymous visitors, no person profiles
+      person_profiles: "identified_only", // profiles only after identifyPerson() (email submitted on our forms)
       capture_pageleave: true,
       autocapture: true,
       session_recording: {
@@ -135,6 +153,10 @@ function loadScript() {
       },
     });
     ready = true;
+    if (pendingIdentify) {
+      window.posthog.identify(pendingIdentify[0], pendingIdentify[1]);
+      pendingIdentify = null;
+    }
     for (const [ev, props] of queue.splice(0)) window.posthog.capture(ev, props);
   };
   document.head.appendChild(s);
