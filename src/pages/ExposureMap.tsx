@@ -21,6 +21,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { TopoBackdrop } from "@/components/sections/deck/TopoBackdrop";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { track, trackFormSubmit } from "@/lib/analytics";
+import { identifyPerson } from "@/lib/posthog";
 import { recordAssessment } from "@/lib/assessmentCapture";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -161,6 +162,7 @@ const MapLeadForm = ({ viewedFunction }: { viewedFunction: string }) => {
       detail: { viewedFunction },
       source: "exposure_map_capture",
     });
+    identifyPerson(parsed.data.email, { lead_form: "exposure_map_lead" });
     trackFormSubmit("exposure_map_lead", { viewed_function: viewedFunction });
     setDone(true);
   };
