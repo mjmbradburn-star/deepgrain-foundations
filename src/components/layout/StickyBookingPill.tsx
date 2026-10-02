@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { track } from "@/lib/analytics";
 
 const STORAGE_KEY = "dg_pill_dismissed";
@@ -17,6 +17,10 @@ const STORAGE_KEY = "dg_pill_dismissed";
  * boolean, so React bails out of re-render on every frame where it is unchanged.
  */
 export const StickyBookingPill = () => {
+  const { pathname } = useLocation();
+  // On the cohort page the checkout buttons are the one action, and on phones
+  // the pill sits over the pricing cards. Hide it there below md.
+  const hideOnPhone = pathname.startsWith("/waitlist");
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(true); // start hidden until mounted
 
@@ -66,6 +70,7 @@ export const StickyBookingPill = () => {
   return (
     <div
       className={[
+        hideOnPhone ? "max-md:hidden" : "",
         "fixed z-40 right-4 md:right-6 bottom-4 md:bottom-6 left-4 md:left-auto",
         "flex justify-center md:justify-end",
         "transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none",
