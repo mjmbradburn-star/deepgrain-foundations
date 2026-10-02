@@ -15,6 +15,8 @@
  * dimensions.
  */
 
+import { captureEvent } from "@/lib/posthog";
+
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
@@ -25,6 +27,8 @@ declare global {
 type Params = Record<string, string | number | boolean | undefined | null>;
 
 export function track(event: string, params: Params = {}) {
+  // Mirror to PostHog (EU). Production hosts only, see src/lib/posthog.ts.
+  captureEvent(event, params);
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
   // Strip nullish so GA4 doesn't store empty strings.
   const clean: Record<string, string | number | boolean> = {};
