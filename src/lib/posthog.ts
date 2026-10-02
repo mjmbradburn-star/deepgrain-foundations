@@ -30,11 +30,8 @@ import { checkoutSessionId, isGenuineCheckoutReturn } from "@/lib/checkoutReturn
 type Params = Record<string, string | number | boolean | undefined | null>;
 
 const POSTHOG_KEY = "phc_AQZxWeBUJjJ6YLf8NDJZAL2WQ6sZfeUmoB4hJd2T5VZd";
-// First-party reverse proxy (Vercel rewrites in vercel.json) so ad blockers do not drop events.
-// /ingest/static + /ingest/array -> eu-assets.i.posthog.com, /ingest/* -> eu.i.posthog.com
-const PROXY_PATH = "/ingest";
-const API_HOST = `${typeof window !== "undefined" ? window.location.origin : "https://www.deepgrain.ai"}${PROXY_PATH}`;
-const ASSET_HOST = API_HOST;
+const API_HOST = "https://eu.i.posthog.com";
+const ASSET_HOST = "https://eu-assets.i.posthog.com";
 const UI_HOST = "https://eu.posthog.com";
 
 /** Stripe Payment Links used on /waitlist. Keep in step with COURSE in src/pages/Waitlist.tsx. */
