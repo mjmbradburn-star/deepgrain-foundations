@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Brain, FolderKanban, Workflow, Bot, BarChart3, ChevronDown, Check, Minus } from "lucide-react";
 import { PageMeta } from "@/components/seo/PageMeta";
+import { isGenuineCheckoutReturn } from "@/lib/checkoutReturn";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { EmailCapture } from "@/components/forms/EmailCapture";
 import { FAQ, buildFAQLd, type FAQItem } from "@/components/sections/FAQ";
@@ -352,10 +353,11 @@ const H2_STYLE = { fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" 
 const Waitlist = () => {
   const [openWeek, setOpenWeek] = useState<number>(0);
   // Stripe Payment Links redirect here with ?checkout=success after payment.
+  // Only shown for a genuine Stripe return (see lib/checkoutReturn.ts).
   // Client-only so the prerendered HTML stays identical for everyone.
   const [paid, setPaid] = useState(false);
   useEffect(() => {
-    setPaid(new URLSearchParams(window.location.search).get("checkout") === "success");
+    setPaid(isGenuineCheckoutReturn());
   }, []);
 
   useEffect(() => startCohortBehaviour(), []);
