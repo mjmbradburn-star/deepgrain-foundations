@@ -223,5 +223,11 @@
       "source": "/~oauth/initiate",
       "destination": "https://oauth.lovable.app/initiate?project_id=lovp_1a27m7x6kr8xba31531sc34h50"
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/api/beehiiv-sync",
+      "schedule": "17 7 * * *"
+    }
   ]
 }
