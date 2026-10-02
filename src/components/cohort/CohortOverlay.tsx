@@ -220,8 +220,10 @@ export const CohortOverlay = () => {
               You're on the list.
             </h2>
             <p className="mt-4 text-cream/80 leading-relaxed">
-              Thanks. I'll be in touch about the discount and the community room. If you'd rather book now, seats are
-              still open.
+              Use code DG20 at checkout for 20% off this cohort or a future one. Save it for when you're ready.
+            </p>
+            <p className="mt-6 border border-brass/50 px-5 py-4 text-center font-mono text-3xl tracking-[0.2em] text-brass" aria-label="Your discount code: DG20">
+              DG20
             </p>
             <button
               type="button"
@@ -237,8 +239,8 @@ export const CohortOverlay = () => {
               Not ready to book? Join the list.
             </h2>
             <p className="mt-4 text-cream/80 leading-relaxed">
-              Leave your email and you get a discount on this cohort or a future one. You also get a place in the
-              community room that runs alongside each five-week cohort.
+              Leave your email for 20% off this cohort or a future one. Every seat includes the community
+              that runs alongside the five-week cohort, with six months of access and the hub. Founding seats include community for life.
             </p>
             <form onSubmit={submit} className="mt-6" noValidate>
               <label htmlFor="cohort-overlay-email" className="sr-only">
