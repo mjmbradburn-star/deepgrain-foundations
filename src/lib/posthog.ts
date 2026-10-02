@@ -25,6 +25,8 @@
  * and the return. A buyer who opens Stripe from an email never touches the site.
  */
 
+import { checkoutSessionId, isGenuineCheckoutReturn } from "@/lib/checkoutReturn";
+
 type Params = Record<string, string | number | boolean | undefined | null>;
 
 const POSTHOG_KEY = "phc_AQZxWeBUJjJ6YLf8NDJZAL2WQ6sZfeUmoB4hJd2T5VZd";
@@ -122,15 +124,21 @@ function watchCheckoutClicks() {
 }
 
 function detectCheckoutReturn() {
-  const qs = new URLSearchParams(window.location.search);
-  if (qs.get("checkout") !== "success") return;
+  // Only a genuine return from Stripe counts as a purchase. A bare
+  // ?checkout=success visit (typed, shared, bookmarked) records nothing.
+  if (!isGenuineCheckoutReturn()) return;
+  const sessionId = checkoutSessionId();
+  const dedupeKey = sessionId ? `dg_checkout_completed_${sessionId}` : "dg_checkout_completed";
   try {
-    if (window.sessionStorage.getItem("dg_checkout_completed")) return;
-    window.sessionStorage.setItem("dg_checkout_completed", "1");
+    if (window.sessionStorage.getItem(dedupeKey)) return;
+    window.sessionStorage.setItem(dedupeKey, "1");
   } catch {
     /* storage blocked, fire anyway */
   }
-  captureEvent("checkout_completed", { page_path: window.location.pathname });
+  captureEvent("checkout_completed", {
+    page_path: window.location.pathname,
+    stripe_session_id: sessionId ?? undefined,
+  });
 }
 
 function loadScript() {
