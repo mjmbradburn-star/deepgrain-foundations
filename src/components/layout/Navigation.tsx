@@ -130,7 +130,7 @@ export const Navigation = () => {
         <div className="container-grain flex items-center justify-between h-24 md:h-28">
           <Link
             to="/"
-            className="font-display text-cream uppercase font-semibold text-2xl md:text-3xl"
+            className="font-display text-cream uppercase font-semibold text-2xl md:text-3xl shrink-0 md:mr-10 lg:mr-14"
             style={{ letterSpacing: "0.14em" }}
           >
             Deepgrain
