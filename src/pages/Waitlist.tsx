@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Brain, FolderKanban, Workflow, Bot, BarChart3, ChevronDown } from "lucide-react";
+import { Brain, FolderKanban, Workflow, Bot, BarChart3, ChevronDown, Check, Minus } from "lucide-react";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
 import { EmailCapture } from "@/components/forms/EmailCapture";
@@ -9,6 +9,8 @@ import { GrainFlow } from "@/components/ui/GrainFlow";
 import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { cn } from "@/lib/utils";
+import { CohortOverlay } from "@/components/cohort/CohortOverlay";
+import { startCohortBehaviour } from "@/lib/behaviour";
 
 /** Single source for the offer. Change the cohort here, not in five places. */
 const COURSE = {
@@ -240,6 +242,103 @@ const CheckoutButton = ({
   </a>
 );
 
+
+/**
+ * What each seat includes. Both seats are the same programme (see the FAQ); only the price differs.
+ * Keep these rows in step with the FAQ and the schedule block. Do not add perks here that are
+ * not in the offer. Four 1:1s are not part of any public seat.
+ */
+const SEAT_INCLUDED = [
+  "Five live sessions, 75 minutes each",
+  "UK/EMEA or Americas time, your pick",
+  "Every session recorded",
+  "Your build work reviewed by hand",
+  "A one-page 90-day plan",
+  "The materials, yours to keep",
+  "The community room for the five weeks",
+];
+const SEAT_NOT_INCLUDED = [
+  "Community access after week five",
+  "Us building your workflows for you",
+];
+
+const PlanCard = ({
+  plan,
+  name,
+  price,
+  note,
+  href,
+  cta,
+  featured,
+}: {
+  plan: string;
+  name: string;
+  price: string;
+  note: string;
+  href: string;
+  cta: string;
+  featured?: boolean;
+}) => (
+  <div
+    data-ph-plan={plan}
+    className={cn(
+      "relative flex flex-col px-6 py-10 md:px-9 md:py-12",
+      featured ? "bg-bark border border-brass/70" : "bg-green border border-cream/20",
+    )}
+  >
+    {featured && (
+      <span
+        className="absolute -top-3 left-6 md:left-9 bg-brass text-walnut font-sans font-semibold uppercase px-3 py-1"
+        style={{ fontSize: "10px", letterSpacing: "0.18em" }}
+      >
+        {COURSE.seats} seats
+      </span>
+    )}
+    <p
+      className={cn("font-sans uppercase", featured ? "text-brass" : "text-cream/60")}
+      style={{ fontSize: "11px", letterSpacing: "0.2em" }}
+    >
+      {name}
+    </p>
+    <p
+      className={cn("mt-4 font-display font-semibold leading-none", featured ? "text-brass" : "text-cream/90")}
+      style={{ fontSize: "clamp(56px, 7vw, 80px)" }}
+    >
+      {price}
+    </p>
+    <p className="mt-4 text-cream/75 text-[15px] leading-relaxed">{note}</p>
+    <div className="mt-7">
+      <CheckoutButton href={href} variant={featured ? "filled" : "outline"}>
+        {cta}
+      </CheckoutButton>
+    </div>
+    <div className="mt-9 border-t border-cream/15 pt-7">
+      <p className="font-sans font-semibold uppercase text-cream/60" style={{ fontSize: "10px", letterSpacing: "0.2em" }}>
+        Included
+      </p>
+      <ul className="mt-4 space-y-3">
+        {SEAT_INCLUDED.map((row) => (
+          <li key={row} className="flex items-start gap-3 text-[15px] leading-snug text-cream/90">
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-brass" aria-hidden="true" />
+            <span>{row}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-7 font-sans font-semibold uppercase text-cream/60" style={{ fontSize: "10px", letterSpacing: "0.2em" }}>
+        Not included
+      </p>
+      <ul className="mt-4 space-y-3">
+        {SEAT_NOT_INCLUDED.map((row) => (
+          <li key={row} className="flex items-start gap-3 text-[15px] leading-snug text-cream/55">
+            <Minus className="mt-0.5 h-4 w-4 shrink-0 text-cream/40" aria-hidden="true" />
+            <span>{row}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+);
+
 const H2_STYLE = { fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" } as const;
 
 const Waitlist = () => {
@@ -250,6 +349,8 @@ const Waitlist = () => {
   useEffect(() => {
     setPaid(new URLSearchParams(window.location.search).get("checkout") === "success");
   }, []);
+
+  useEffect(() => startCohortBehaviour(), []);
 
   const jumpToWeek = (i: number) => {
     setOpenWeek(i);
@@ -272,7 +373,7 @@ const Waitlist = () => {
       )}
 
       {/* ------------------------------------------------ hero ----------- */}
-      <section className="relative bg-green text-cream overflow-hidden" data-no-rule>
+      <section className="relative bg-green text-cream overflow-hidden" data-no-rule data-ph-section="hero">
         <div className="relative container-grain pt-24 pb-16 md:pt-36 md:pb-24">
           <div className="fade-in-up">
             <SectionEyebrow className="mb-10">
@@ -332,7 +433,7 @@ const Waitlist = () => {
       </section>
 
       {/* ------------------------------------------------ pain ----------- */}
-      <section className="bg-linen text-walnut" data-no-rule>
+      <section className="bg-linen text-walnut" data-no-rule data-ph-section="pain">
         <div className="container-grain py-20 md:py-28">
           <div className="h-px w-10 bg-brass/30 mb-10" />
           <h2 className="font-display font-semibold max-w-3xl" style={H2_STYLE}>
@@ -361,7 +462,7 @@ const Waitlist = () => {
       </section>
 
       {/* ------------------------------------------------ weeks ---------- */}
-      <section id="weeks" className="bg-linen text-walnut scroll-mt-28" data-no-rule>
+      <section id="weeks" className="bg-linen text-walnut scroll-mt-28" data-no-rule data-ph-section="weeks">
         <div className="container-grain pb-24 md:pb-36">
           <div className="h-px w-10 bg-brass/30 mb-10" />
           <h2 className="font-display font-semibold max-w-3xl" style={H2_STYLE}>
@@ -534,39 +635,24 @@ const Waitlist = () => {
           >
             Book your seat
           </p>
-          <div className="mt-12 grid gap-px md:grid-cols-2 bg-cream/15 max-w-4xl">
-            <div className="bg-green px-2 py-10 md:px-10 md:py-14">
-              <p className="font-sans uppercase text-brass/80" style={{ fontSize: "11px", letterSpacing: "0.2em" }}>
-                Founding cohort
-              </p>
-              <p className="mt-4 font-display font-semibold text-brass leading-none" style={{ fontSize: "clamp(56px, 7vw, 88px)" }}>
-                {COURSE.foundingPrice}
-              </p>
-              <p className="mt-5 text-cream/80 text-[16px] leading-relaxed max-w-sm">
-                Choose UK/EMEA or Americas. {COURSE.seats} seats; the build work is reviewed by hand.
-              </p>
-              <div className="mt-8">
-                <CheckoutButton href={COURSE.foundingCheckout} variant="filled">
-                  Book a founding seat →
-                </CheckoutButton>
-              </div>
-            </div>
-            <div className="bg-green px-2 py-10 md:px-10 md:py-14">
-              <p className="font-sans uppercase text-cream/60" style={{ fontSize: "11px", letterSpacing: "0.2em" }}>
-                Standard
-              </p>
-              <p className="mt-4 font-display font-semibold text-cream/85 leading-none" style={{ fontSize: "clamp(56px, 7vw, 88px)" }}>
-                {COURSE.standardPrice}
-              </p>
-              <p className="mt-5 text-cream/70 text-[16px] leading-relaxed max-w-sm">
-                The same five weeks in the same room, at the standard price.
-              </p>
-              <div className="mt-8">
-                <CheckoutButton href={COURSE.standardCheckout} variant="outline">
-                  Book a standard seat →
-                </CheckoutButton>
-              </div>
-            </div>
+          <div id="pricing" data-ph-section="pricing" className="mt-12 grid gap-8 md:grid-cols-2 max-w-5xl scroll-mt-28">
+            <PlanCard
+              plan="founding"
+              name="Founding cohort"
+              price={COURSE.foundingPrice}
+              note={`£200 less than standard, for the same five weeks. ${COURSE.seats} seats across both cohort times; the build work is reviewed by hand.`}
+              href={COURSE.foundingCheckout}
+              cta="Book a founding seat →"
+              featured
+            />
+            <PlanCard
+              plan="standard"
+              name="Standard"
+              price={COURSE.standardPrice}
+              note="The same five weeks in the same room, at the standard price."
+              href={COURSE.standardCheckout}
+              cta="Book a standard seat →"
+            />
           </div>
           <div id="join" className="mt-16 max-w-2xl scroll-mt-28">
             <EmailCapture
@@ -616,7 +702,7 @@ const Waitlist = () => {
       </section>
 
       {/* ------------------------------------------------ faq ------------ */}
-      <FAQ eyebrow="" heading="Questions, answered" items={faqItems} />
+      <div data-ph-section="faq"><FAQ eyebrow="" heading="Questions, answered" items={faqItems} /></div>
 
       {/* ------------------------------------------------ final ---------- */}
       <section className="relative bg-bark text-cream overflow-hidden" data-no-rule>
@@ -640,6 +726,7 @@ const Waitlist = () => {
           </div>
         </div>
       </section>
+      <CohortOverlay />
     </>
   );
 };
