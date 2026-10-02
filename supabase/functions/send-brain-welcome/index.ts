@@ -428,7 +428,7 @@ Deno.serve(async (req) => {
   // (idempotent UX) and skip resending the email.
   const { data: existing, error: lookupError } = await supabase
     .from("brain_subscribers")
-    .select("id, email_status, unsubscribed_at")
+    .select("id, email_status, unsubscribed_at, created_at")
     .eq("email", email)
     .maybeSingle();
 
@@ -446,6 +446,32 @@ Deno.serve(async (req) => {
   }
 
   if (existing) {
+    // Skip the resend if the subscriber row was created in the last few
+    // minutes: the original welcome is already queued. A slow first submit
+    // (cold start) can look like a failure client-side and get retried, and
+    // resending here would send a second welcome and revoke the first link.
+    const RECENT_WELCOME_WINDOW_MS = 5 * 60 * 1000;
+    const createdAtMs = existing.created_at
+      ? Date.parse(existing.created_at)
+      : NaN;
+    if (
+      Number.isFinite(createdAtMs) &&
+      Date.now() - createdAtMs < RECENT_WELCOME_WINDOW_MS
+    ) {
+      await logOutcome(supabase, "duplicate", {
+        ip,
+        email,
+        domain,
+        detail: {
+          prior_status: existing.email_status,
+          unsubscribed: Boolean(existing.unsubscribed_at),
+          resend_status: "skipped_recent_welcome",
+          resend_error: null,
+        },
+      });
+      return successResponse();
+    }
+
     // Duplicate signup → trigger the resend flow so the user actually gets
     // a fresh, working link (the original may be lost in spam, deleted, or
     // for an unsubscribed/suppressed address). resend-brain-link handles
