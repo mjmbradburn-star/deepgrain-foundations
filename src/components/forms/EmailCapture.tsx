@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { trackFormSubmit } from "@/lib/analytics";
+import { identifyPerson } from "@/lib/posthog";
 
 const schema = z.object({
   email: z.string().trim().email("Please enter a valid email").max(320),
@@ -74,6 +75,8 @@ export const EmailCapture = ({
     // Welcome email is dispatched server-side by a Postgres trigger on
     // `subscribers` INSERT - no client invocation needed (and not allowed,
     // to prevent abuse of the transactional email function).
+
+    identifyPerson(parsed.data.email, { lead_form: "email_capture" });
 
     trackFormSubmit("email_capture", {
       source,
