@@ -30,8 +30,9 @@ import { checkoutSessionId, isGenuineCheckoutReturn } from "@/lib/checkoutReturn
 type Params = Record<string, string | number | boolean | undefined | null>;
 
 const POSTHOG_KEY = "phc_AQZxWeBUJjJ6YLf8NDJZAL2WQ6sZfeUmoB4hJd2T5VZd";
-const API_HOST = "https://eu.i.posthog.com";
-const ASSET_HOST = "https://eu-assets.i.posthog.com";
+// First-party managed reverse proxy (PostHog managed proxy, CNAME r.deepgrain.ai) so ad blockers do not drop events.
+const API_HOST = "https://r.deepgrain.ai";
+const ASSET_HOST = "https://r.deepgrain.ai";
 const UI_HOST = "https://eu.posthog.com";
 
 /** Stripe Payment Links used on /waitlist. Keep in step with COURSE in src/pages/Waitlist.tsx. */
