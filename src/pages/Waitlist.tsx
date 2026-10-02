@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Brain, FolderKanban, Workflow, Bot, BarChart3, ChevronDown } from "lucide-react";
 import { PageMeta } from "@/components/seo/PageMeta";
 import { buildBreadcrumbLd } from "@/lib/breadcrumbs";
@@ -244,6 +244,12 @@ const H2_STYLE = { fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" 
 
 const Waitlist = () => {
   const [openWeek, setOpenWeek] = useState<number>(0);
+  // Stripe Payment Links redirect here with ?checkout=success after payment.
+  // Client-only so the prerendered HTML stays identical for everyone.
+  const [paid, setPaid] = useState(false);
+  useEffect(() => {
+    setPaid(new URLSearchParams(window.location.search).get("checkout") === "success");
+  }, []);
 
   const jumpToWeek = (i: number) => {
     setOpenWeek(i);
@@ -258,6 +264,12 @@ const Waitlist = () => {
         path="/waitlist"
         jsonLd={[COURSE_LD, buildFAQLd(faqItems), buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "AI cohort", url: "https://www.deepgrain.ai/waitlist" }])]}
       />
+
+      {paid && (
+        <div role="status" className="bg-brass text-walnut text-center font-sans text-base px-6 py-4">
+          Thank you. Your payment went through and Stripe is emailing your receipt.
+        </div>
+      )}
 
       {/* ------------------------------------------------ hero ----------- */}
       <section className="relative bg-green text-cream overflow-hidden" data-no-rule>
