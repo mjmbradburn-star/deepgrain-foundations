@@ -90,6 +90,16 @@ const SubscriberWelcomeEmail = ({
 
             <Text style={text}>{copy.opener}</Text>
 
+            {source === "course-waitlist" && (
+              <Section style={codeBox}>
+                <Text style={codeLabel}>Your 20% code</Text>
+                <Text style={codeValue}>DG20</Text>
+                <Text style={codeNote}>
+                  Enter it at checkout for 20% off Founding or Standard, this cohort or a future one. Keep this email.
+                </Text>
+              </Section>
+            )}
+
             {source !== "course-waitlist" && (
               <Text style={text}>
                 We write about the discipline of building organisations that
@@ -210,6 +220,38 @@ const link = {
   color: COLOR_GREEN,
   textDecoration: "underline",
   textDecorationColor: COLOR_BRASS,
+};
+
+const codeBox = {
+  backgroundColor: COLOR_CREAM,
+  border: `1px solid ${COLOR_BRASS}`,
+  padding: "20px",
+  textAlign: "center" as const,
+  margin: "0 0 24px",
+};
+
+const codeLabel = {
+  fontSize: "11px",
+  letterSpacing: "0.18em",
+  textTransform: "uppercase" as const,
+  color: COLOR_BRASS,
+  fontWeight: 600,
+  margin: "0 0 8px",
+};
+
+const codeValue = {
+  fontFamily: 'Georgia, "Times New Roman", serif',
+  fontSize: "32px",
+  letterSpacing: "0.12em",
+  color: COLOR_GREEN,
+  margin: "0 0 8px",
+};
+
+const codeNote = {
+  fontSize: "14px",
+  lineHeight: "1.5",
+  color: COLOR_BODY,
+  margin: "0",
 };
 
 const hr = {
