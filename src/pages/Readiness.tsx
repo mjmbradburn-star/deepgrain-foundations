@@ -13,6 +13,7 @@ import { SectionEyebrow } from "@/components/sections/deck/SectionEyebrow";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { track, trackFormSubmit } from "@/lib/analytics";
+import { identifyPerson } from "@/lib/posthog";
 import { getAssessmentSessionId, recordAssessment } from "@/lib/assessmentCapture";
 import { cn } from "@/lib/utils";
 import {
@@ -195,6 +196,7 @@ const ResultLeadForm = ({ result }: { result: AssessmentResult }) => {
       });
       return;
     }
+    identifyPerson(parsed.data.email, { lead_form: "readiness_lead" });
     trackFormSubmit("readiness_lead", { score: result.score, stage: result.stage.name });
     // Record the lead against the same session as the anonymous completion,
     // so the email joins back to the score they actually saw.
