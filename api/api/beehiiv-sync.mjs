@@ -4,7 +4,7 @@ const uuid = (value) => { const h = createHash('sha256').update(value).digest('h
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   const expected = process.env.CRON_SECRET || '';
-  const supplied = String(req.headers.authorization || '').replace(/^Bearer /, '') || String(req.query.token || '');
+  const supplied = String(req.headers.authorization || '').replace(/^Bearer /, '');
   if (!expected || supplied.length !== expected.length || !timingSafeEqual(Buffer.from(supplied), Buffer.from(expected))) return res.status(401).json({error:'Unauthorized'});
   if (req.method !== 'GET') return res.status(405).end();
   const apiKey = process.env.BEEHIIV_API_KEY, phKey = process.env.POSTHOG_PROJECT_KEY;
@@ -23,9 +23,9 @@ export default async function handler(req, res) {
       for (const sub of body.data || []) {
         const email = String(sub.email || '').trim().toLowerCase(); if (!email) continue;
         subscribers++;
-        const props = {distinct_id:email, $process_person_profile:true, $set:{email,beehiiv_subscription_id:sub.id,beehiiv_status:sub.status}, source:'beehiiv_api',publication_id:publication,subscription_id:sub.id};
+        const props = {distinct_id:email, $process_person_profile:true, $set:{email,beehiiv_subscription_id:sub.id,beehiiv_status:sub.status}, $geoip_disable:true, source:'beehiiv_api',publication_id:publication,subscription_id:sub.id};
         if (Number(sub.created) >= cutoff) batch.push({event:'beehiiv_subscribed',uuid:uuid(`beehiiv:created:${sub.id}`),timestamp:new Date(Number(sub.created)*1000).toISOString(),properties:{...props,utm_source:sub.utm_source,utm_medium:sub.utm_medium,utm_campaign:sub.utm_campaign}});
-        if (sub.stats) batch.push({event:'beehiiv_engagement_snapshot',uuid:uuid(`beehiiv:stats:${sub.id}:${day}`),timestamp:`${day}T00:00:00.000Z`,properties:{...props,emails_received:sub.stats.emails_received,open_rate:sub.stats.open_rate,click_through_rate:sub.stats.click_through_rate,snapshot_date:day,measurement:'cumulative subscriber statistics, not individual opens or clicks'}});
+        if (sub.stats) batch.push({event:'beehiiv_engagement_snapshot',uuid:uuid(`beehiiv:stats:${sub.id}:${day}`),timestamp:`${day}T00:00:00.000Z`,properties:{...props,beehiiv_stats:sub.stats,emails_received:sub.stats.emails_received,open_rate:sub.stats.open_rate,click_through_rate:sub.stats.click_through_rate,snapshot_date:day,measurement:'cumulative subscriber statistics, not individual opens or clicks'}});
       }
       if (batch.length) {
         const capture = await fetch('https://eu.i.posthog.com/batch/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({api_key:phKey,batch}),signal:AbortSignal.timeout(15000)});
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       const pagination = body.pagination || body; cursor = pagination.next_cursor || ''; pages++;
       if (!cursor && pagination.total_pages && pages < pagination.total_pages) cursor = '';
       else if (!cursor) break;
-      if (pages >= 30 && cursor) throw new Error('Pagination safety limit reached');
+      if (pages >= 30) throw new Error('Pagination safety limit reached');
     } while (true);
     return res.status(200).json({ok:true,subscribers,events,pages,snapshot_date:day});
   } catch(e) { return res.status(502).json({error:e.message,pages,subscribers,events}); }
