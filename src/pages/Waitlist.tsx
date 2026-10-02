@@ -207,7 +207,7 @@ const faqItems: FAQItem[] = [
   {
     question: "What is the difference between founding and standard seats?",
     answer:
-      "The same five-week programme in either time zone. Founding seats are £495; standard seats are £695. Choose UK/EMEA (from Thursday 15 October) or Americas (from Monday 12 October).",
+      "Both seats include the five-week programme in either time zone. Founding (£495) also includes four 1:1s with Matt, guided feedback throughout and community for life, with the hub and chat space. Standard (£695) includes six months of community access and the hub, without the 1:1s or guided feedback. Choose UK/EMEA (from Thursday 15 October) or Americas (from Monday 12 October).",
   },
   {
     question: "When does it start, and how many seats are there?",
@@ -243,22 +243,30 @@ const CheckoutButton = ({
 );
 
 
-/**
- * What each seat includes. Both seats are the same programme (see the FAQ); only the price differs.
- * Keep these rows in step with the FAQ and the schedule block. Do not add perks here that are
- * not in the offer. Four 1:1s are not part of any public seat.
- */
-const SEAT_INCLUDED = [
+/** Public seat inclusions confirmed by Matt on 2 October 2026. */
+const PROGRAMME_INCLUDED = [
   "Five live sessions, 75 minutes each",
   "UK/EMEA or Americas time, your pick",
   "Every session recorded",
   "Your build work reviewed by hand",
   "A one-page 90-day plan",
   "The materials, yours to keep",
-  "The community room for the five weeks",
 ];
-const SEAT_NOT_INCLUDED = [
-  "Community access after week five",
+const FOUNDING_INCLUDED = [
+  ...PROGRAMME_INCLUDED,
+  "Four 1:1 sessions with Matt",
+  "Guided feedback throughout",
+  "Community for life, with the hub and chat space",
+];
+const STANDARD_INCLUDED = [
+  ...PROGRAMME_INCLUDED,
+  "Six months of community access, including the hub",
+];
+const FOUNDING_NOT_INCLUDED = ["Us building your workflows for you"];
+const STANDARD_NOT_INCLUDED = [
+  "1:1 sessions with Matt",
+  "Guided feedback throughout",
+  "Lifetime community access",
   "Us building your workflows for you",
 ];
 
@@ -317,7 +325,7 @@ const PlanCard = ({
         Included
       </p>
       <ul className="mt-4 space-y-3">
-        {SEAT_INCLUDED.map((row) => (
+        {(featured ? FOUNDING_INCLUDED : STANDARD_INCLUDED).map((row) => (
           <li key={row} className="flex items-start gap-3 text-[15px] leading-snug text-cream/90">
             <Check className="mt-0.5 h-4 w-4 shrink-0 text-brass" aria-hidden="true" />
             <span>{row}</span>
@@ -328,7 +336,7 @@ const PlanCard = ({
         Not included
       </p>
       <ul className="mt-4 space-y-3">
-        {SEAT_NOT_INCLUDED.map((row) => (
+        {(featured ? FOUNDING_NOT_INCLUDED : STANDARD_NOT_INCLUDED).map((row) => (
           <li key={row} className="flex items-start gap-3 text-[15px] leading-snug text-cream/55">
             <Minus className="mt-0.5 h-4 w-4 shrink-0 text-cream/40" aria-hidden="true" />
             <span>{row}</span>
@@ -640,7 +648,7 @@ const Waitlist = () => {
               plan="founding"
               name="Founding cohort"
               price={COURSE.foundingPrice}
-              note={`£200 less than standard, for the same five weeks. ${COURSE.seats} seats across both cohort times; the build work is reviewed by hand.`}
+              note={`${COURSE.seats} seats across both cohort times. Five weeks together, plus personal support and a community for life.`}
               href={COURSE.foundingCheckout}
               cta="Book a founding seat →"
               featured
@@ -649,7 +657,7 @@ const Waitlist = () => {
               plan="standard"
               name="Standard"
               price={COURSE.standardPrice}
-              note="The same five weeks in the same room, at the standard price."
+              note="The full five-week programme, plus six months in the community and access to the hub."
               href={COURSE.standardCheckout}
               cta="Book a standard seat →"
             />
