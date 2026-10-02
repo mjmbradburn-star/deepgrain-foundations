@@ -367,7 +367,7 @@ const Waitlist = () => {
       />
 
       {paid && (
-        <div role="status" className="bg-brass text-walnut text-center font-sans text-base px-6 py-4">
+        <div role="status" className="bg-brass text-walnut text-center font-sans text-base px-6 py-4 pt-28 md:pt-32">
           Thank you. Your payment went through and Stripe is emailing your receipt.
         </div>
       )}
