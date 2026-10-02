@@ -130,15 +130,15 @@ export const Navigation = () => {
         <div className="container-grain flex items-center justify-between h-24 md:h-28">
           <Link
             to="/"
-            className="font-display text-cream uppercase font-semibold text-2xl md:text-3xl shrink-0 md:mr-10 lg:mr-14"
+            className="font-display text-cream uppercase font-semibold text-2xl md:text-3xl shrink-0 md:mr-6 lg:mr-8"
             style={{ letterSpacing: "0.14em" }}
           >
             Deepgrain
           </Link>
 
           {/* Desktop */}
-          <div className="hidden md:flex items-center gap-7">
-            <ul className="flex items-center gap-7">
+          <div className="hidden md:flex items-center gap-5">
+            <ul className="flex items-center gap-5">
               {sections.map((link) => {
                 const active = sectionActive(link.to);
                 return (
@@ -224,7 +224,7 @@ export const Navigation = () => {
 
             <Link
               to="/grain-audit"
-              className="group inline-flex items-center gap-1 rounded-full bg-cream text-green pl-5 pr-2.5 py-2 font-sans uppercase text-[11px] tracking-[0.12em] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/90 active:scale-[0.98] shadow-[0_1px_0_hsl(var(--cream)/0.6)_inset]"
+              className="group inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-cream text-green pl-5 pr-2.5 py-2 font-sans uppercase text-[11px] tracking-[0.12em] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cream/90 active:scale-[0.98] shadow-[0_1px_0_hsl(var(--cream)/0.6)_inset]"
             >
               Book a Grain Audit
               <span className="ml-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-green/10 text-green transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5">
