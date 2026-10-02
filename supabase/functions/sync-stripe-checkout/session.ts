@@ -43,7 +43,9 @@ export function toRow(s: CheckoutSession, seenAt: string) {
     amount_total: s.amount_total,
     currency: s.currency,
     consent_promotions: consent,
-    consented_email: consent === "opt_in" ? (s.customer_details?.email ?? s.customer_email ?? null) : null,
+    consented_email: consent === "opt_in"
+      ? (s.customer_details?.email ?? s.customer_email ?? null)
+      : null,
     recovered_from: s.recovered_from ?? null,
     last_seen_at: seenAt,
   };
