@@ -167,6 +167,14 @@ const failures = [];
 try {
   // Sequential to keep memory predictable in the build sandbox.
   for (const route of routes) {
+    // Vite already copied these authored documents from public/ to dist/.
+    // Keep their HTML intact rather than treating the file as an SPA directory.
+    if (["/ai-maturity.html", "/ai-ladder-diagnostic.html"].includes(route) &&
+        existsSync(join(DIST, route.slice(1)))) {
+      console.log(`[prerender] preserved static document ${route}`);
+      ok++;
+      continue;
+    }
     const page = await browser.newPage();
     try {
       await page.setViewport({ width: 1280, height: 900 });
