@@ -176,7 +176,16 @@ const sitemapPaths = new Set(
 );
 
 const inAppNotSitemap = [...expanded].filter((p) => !sitemapPaths.has(p)).sort();
-const inSitemapNotApp = [...sitemapPaths].filter((p) => !expanded.has(p)).sort();
+// These documents are served directly from public/, outside the SPA router.
+// A sitemap entry counts only while its named HTML file actually exists.
+const staticHtmlPaths = new Set(
+  ["/ai-maturity.html", "/ai-ladder-diagnostic.html"].filter((p) =>
+    existsSync(join(ROOT, "public", p.slice(1))),
+  ),
+);
+const inSitemapNotApp = [...sitemapPaths]
+  .filter((p) => !expanded.has(p) && !staticHtmlPaths.has(p))
+  .sort();
 
 // ---------- 5. Report --------------------------------------------------
 
