@@ -158,6 +158,7 @@ const STATIC_ROUTES = [
   { path: "/brain", priority: 0.7, changefreq: "monthly" },
   { path: "/readiness", priority: 0.9, changefreq: "monthly" },
   { path: "/exposure-map", priority: 0.8, changefreq: "monthly" },
+  { path: "/ai-maturity.html", priority: 0.8, changefreq: "monthly" },
   { path: "/grain-audit", priority: 0.9, changefreq: "monthly" },
   { path: "/waitlist", priority: 0.9, changefreq: "weekly" },
   { path: "/ai-training-for-business-teams", priority: 0.9, changefreq: "monthly" },
