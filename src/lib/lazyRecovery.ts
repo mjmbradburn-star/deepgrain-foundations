@@ -25,6 +25,7 @@ const markerStore = (): Storage | null => {
 };
 
 export const clearChunkReloadMarker = (): void => {
+  reloading = false;
   try {
     window.sessionStorage.removeItem(MARKER);
   } catch {
