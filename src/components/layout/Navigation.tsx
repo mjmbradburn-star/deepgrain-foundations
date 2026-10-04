@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,19 @@ const tools = [
     label: "The People Ops AI Brain",
     blurb: "The four-layer operating model, in full",
   },
+  { to: "/ai-maturity.html", label: "AI Maturity Ladder", blurb: "Find your starting rung", external: true },
+  { to: "/ai-ladder-diagnostic.html", label: "AI Ladder Diagnostic", blurb: "A 90-minute working session for one People team", external: true },
 ];
+
+type Tool = (typeof tools)[number];
+
+/** Router link for SPA routes, plain anchor for static pages in /public. */
+const ToolLink = ({ tool, className, children }: { tool: Tool; className?: string; children: ReactNode }) =>
+  "external" in tool && tool.external ? (
+    <a href={tool.to} className={className}>{children}</a>
+  ) : (
+    <Link to={tool.to} className={className}>{children}</Link>
+  );
 
 const TOOL_PATHS = tools.map((t) => t.to);
 
@@ -204,9 +216,7 @@ export const Navigation = () => {
                 >
                   <div className="w-[320px] rounded-[16px] bg-bark ring-1 ring-cream/15 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] p-2">
                     {tools.map((t) => (
-                      <Link
-                        key={t.to}
-                        to={t.to}
+                      <ToolLink key={t.to} tool={t}
                         className="block rounded-[10px] px-3.5 py-3 transition-colors duration-200 hover:bg-cream/[0.06]"
                       >
                         <span className="block font-sans uppercase text-[11px] tracking-[0.12em] text-cream">
@@ -215,7 +225,7 @@ export const Navigation = () => {
                         <span className="block font-display italic text-[13px] leading-snug text-cream/55 mt-0.5">
                           {t.blurb}
                         </span>
-                      </Link>
+                      </ToolLink>
                     ))}
                   </div>
                 </div>
@@ -277,12 +287,12 @@ export const Navigation = () => {
               Tools
             </span>
             {tools.map((t) => (
-              <Link key={t.to} to={t.to} className="flex flex-col">
+              <ToolLink key={t.to} tool={t} className="flex flex-col">
                 <span className="font-display text-cream text-2xl leading-tight">{t.label}</span>
                 <span className="font-display italic text-cream/55 text-[15px] mt-0.5">
                   {t.blurb}
                 </span>
-              </Link>
+              </ToolLink>
             ))}
           </div>
 
