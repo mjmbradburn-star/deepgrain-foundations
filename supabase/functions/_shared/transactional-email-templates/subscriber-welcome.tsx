@@ -58,6 +58,11 @@ const COPY: Record<string, { eyebrow: string; opener: string }> = {
     opener:
       "You're on the waitlist for the Deepgrain AI Cohort, starting Monday 12 October. You'll hear first when places open, and you'll pay less than the public price.",
   },
+  "cohort-overlay": {
+    eyebrow: "Deepgrain AI Cohort",
+    opener:
+      "You're on the list for the Deepgrain AI Cohort, starting Monday 12 October. You'll hear first when places open, and you'll pay less than the public price.",
+  },
   unknown: {
     eyebrow: "From the workshop",
     opener:
