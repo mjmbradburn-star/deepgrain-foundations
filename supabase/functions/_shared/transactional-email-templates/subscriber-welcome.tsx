@@ -75,6 +75,7 @@ const SubscriberWelcomeEmail = ({
   articleSlug,
 }: SubscriberWelcomeProps) => {
   const copy = COPY[source] ?? COPY.unknown;
+  const isCohort = source === "course-waitlist" || source === "cohort-overlay";
   const articleUrl = articleSlug
     ? `${SITE_URL}/intelligence/${articleSlug}`
     : null;
