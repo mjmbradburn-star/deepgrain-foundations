@@ -58,6 +58,11 @@ const COPY: Record<string, { eyebrow: string; opener: string }> = {
     opener:
       "You're on the waitlist for the Deepgrain AI Cohort, starting Monday 12 October. You'll hear first when places open, and you'll pay less than the public price.",
   },
+  "cohort-overlay": {
+    eyebrow: "Deepgrain AI Cohort",
+    opener:
+      "You're on the list for the Deepgrain AI Cohort, starting Monday 12 October. You'll hear first when places open, and you'll pay less than the public price.",
+  },
   unknown: {
     eyebrow: "From the workshop",
     opener:
@@ -70,6 +75,7 @@ const SubscriberWelcomeEmail = ({
   articleSlug,
 }: SubscriberWelcomeProps) => {
   const copy = COPY[source] ?? COPY.unknown;
+  const isCohort = source === "course-waitlist" || source === "cohort-overlay";
   const articleUrl = articleSlug
     ? `${SITE_URL}/intelligence/${articleSlug}`
     : null;
@@ -90,7 +96,7 @@ const SubscriberWelcomeEmail = ({
 
             <Text style={text}>{copy.opener}</Text>
 
-            {source === "course-waitlist" && (
+            {isCohort && (
               <Section style={codeBox}>
                 <Text style={codeLabel}>Your 20% code</Text>
                 <Text style={codeValue}>DG20</Text>
@@ -101,7 +107,7 @@ const SubscriberWelcomeEmail = ({
               </Section>
             )}
 
-            {source !== "course-waitlist" && (
+            {!isCohort && (
               <Text style={text}>
                 We write about the discipline of building organisations that
                 hold their shape — operating systems, the craft of leadership,
@@ -148,7 +154,7 @@ const SubscriberWelcomeEmail = ({
 export const template = {
   component: SubscriberWelcomeEmail,
   subject: (data: Record<string, unknown>) =>
-    data?.source === "course-waitlist"
+    data?.source === "course-waitlist" || data?.source === "cohort-overlay"
       ? "You're on the Deepgrain AI Cohort waitlist"
       : "You're on the list — welcome to Deepgrain",
   displayName: "Subscriber welcome",
