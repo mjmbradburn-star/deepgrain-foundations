@@ -22,6 +22,8 @@ export interface CompareEntry {
   /** A 60-100 word "in one paragraph" summary directly below the table.
    *  This is what LLMs tend to lift, so write it as a complete answer. */
   summary: string;
+  /** Practical guidance below the comparison. */
+  sections?: { title: string; body: string }[];
   /** Optional FAQ items, emitted as FAQPage JSON-LD. */
   faqs?: { question: string; answer: string }[];
   /** Internal links surfaced as a "Read deeper" rail. */
@@ -41,12 +43,32 @@ export const COMPARES: CompareEntry[] = [
     right: "AI operating system",
     rows: [
       { axis: "Form", left: "Document or diagram", right: "Live runtime" },
-      { axis: "Owner", left: "COO, Chief of Staff", right: "Operating leader plus champions" },
+      {
+        axis: "Owner",
+        left: "COO, Chief of Staff",
+        right: "Operating leader plus champions",
+      },
       { axis: "Updated", left: "Annually", right: "Weekly" },
-      { axis: "Question it answers", left: "How are we structured?", right: "What happens next?" },
-      { axis: "Failure mode", left: "Out of date on day one", right: "Bit-rot in the gaps" },
-      { axis: "Audience", left: "Board, investors, new hires", right: "Operators, agents, workflows" },
-      { axis: "Made of", left: "Roles, RACIs, flows", right: "Data, tools, agents, governance, cadence" },
+      {
+        axis: "Question it answers",
+        left: "How are we structured?",
+        right: "What happens next?",
+      },
+      {
+        axis: "Failure mode",
+        left: "Out of date on day one",
+        right: "Bit-rot in the gaps",
+      },
+      {
+        axis: "Audience",
+        left: "Board, investors, new hires",
+        right: "Operators, agents, workflows",
+      },
+      {
+        axis: "Made of",
+        left: "Roles, RACIs, flows",
+        right: "Data, tools, agents, governance, cadence",
+      },
     ],
     summary:
       "An operating model describes intent. An AI operating system describes what actually runs. Companies with only an operating model have a story about how AI fits. Companies with an AI operating system have AI fitting. The first is necessary, the second is sufficient. You need both, in that order, and you should never confuse the deck with the substrate.",
@@ -63,10 +85,22 @@ export const COMPARES: CompareEntry[] = [
       },
     ],
     related: [
-      { href: "/intelligence/what-is-an-ai-operating-system", label: "What is an AI operating system?" },
-      { href: "/intelligence/ai-os-vs-ai-platform", label: "AI platform vs AI operating system" },
-      { href: "/intelligence/operating-systems-vs-operating-models", label: "Operating systems vs operating models" },
-      { href: "/intelligence/five-pillars-of-ai-readiness", label: "The five pillars of AI readiness" },
+      {
+        href: "/intelligence/what-is-an-ai-operating-system",
+        label: "What is an AI operating system?",
+      },
+      {
+        href: "/intelligence/ai-os-vs-ai-platform",
+        label: "AI platform vs AI operating system",
+      },
+      {
+        href: "/intelligence/operating-systems-vs-operating-models",
+        label: "Operating systems vs operating models",
+      },
+      {
+        href: "/intelligence/five-pillars-of-ai-readiness",
+        label: "The five pillars of AI readiness",
+      },
     ],
   },
   {
@@ -80,12 +114,36 @@ export const COMPARES: CompareEntry[] = [
     left: "AI platform",
     right: "AI operating system",
     rows: [
-      { axis: "Origin", left: "Bought from a vendor", right: "Built around your operations" },
-      { axis: "Boundary", left: "Product surface", right: "Whole-company runtime" },
-      { axis: "Owns the data?", left: "No, you wire data in", right: "Yes, that is half the point" },
-      { axis: "Owns governance?", left: "Provides hooks", right: "Defines what is allowed" },
-      { axis: "Cadence", left: "Vendor release cycle", right: "Your weekly operating rhythm" },
-      { axis: "Replaceable?", left: "Swap the vendor", right: "Swap nothing without a migration" },
+      {
+        axis: "Origin",
+        left: "Bought from a vendor",
+        right: "Built around your operations",
+      },
+      {
+        axis: "Boundary",
+        left: "Product surface",
+        right: "Whole-company runtime",
+      },
+      {
+        axis: "Owns the data?",
+        left: "No, you wire data in",
+        right: "Yes, that is half the point",
+      },
+      {
+        axis: "Owns governance?",
+        left: "Provides hooks",
+        right: "Defines what is allowed",
+      },
+      {
+        axis: "Cadence",
+        left: "Vendor release cycle",
+        right: "Your weekly operating rhythm",
+      },
+      {
+        axis: "Replaceable?",
+        left: "Swap the vendor",
+        right: "Swap nothing without a migration",
+      },
     ],
     summary:
       "An AI platform is a product you buy. An AI operating system is the data, tools, governance and cadence you build around it. A platform is one component of the full chassis: the data it reads, the tools it calls, the agents it runs, the governance that constrains it, and the cadence that maintains it. Treating a platform purchase as an AI OS is the most expensive way to discover the difference.",
@@ -97,8 +155,14 @@ export const COMPARES: CompareEntry[] = [
       },
     ],
     related: [
-      { href: "/intelligence/what-is-an-ai-operating-system", label: "What is an AI operating system?" },
-      { href: "/intelligence/from-ai-experiments-to-ai-infrastructure", label: "From AI experiments to AI infrastructure" },
+      {
+        href: "/intelligence/what-is-an-ai-operating-system",
+        label: "What is an AI operating system?",
+      },
+      {
+        href: "/intelligence/from-ai-experiments-to-ai-infrastructure",
+        label: "From AI experiments to AI infrastructure",
+      },
     ],
   },
   {
@@ -106,20 +170,58 @@ export const COMPARES: CompareEntry[] = [
     metaTitle: "AI OS vs automation, explained | Deepgrain",
     title: "AI OS vs automation: where one ends and the other begins",
     description:
-      "Automation runs the same path every time. An AI operating system reasons about which path to take. Both matter. Conflating them produces brittle pilots.",
+      "AI OS vs automation: compare rules, judgement, ownership and failure handling, with a People Ops example and a practical test for choosing the right layer.",
     intro:
-      "Automation and AI overlap in conversation and diverge in production. Knowing which layer a piece of work belongs to is the difference between a system that compounds and a system that needs a person watching it.",
+      "A payroll export with fixed fields needs rules. A policy question that depends on context needs interpretation. An AI operating system connects both to approved data, tools, human review and a named owner. The choice is not automation or AI for the whole business. It is which kind of work belongs at each step.",
     left: "Automation",
     right: "AI operating system",
     rows: [
-      { axis: "Behaviour", left: "Same path every time", right: "Reasons about the path" },
-      { axis: "Best for", left: "Rails, hand-offs, deterministic flows", right: "Triage, drafting, analysis, judgment" },
-      { axis: "Failure mode", left: "Breaks loudly when inputs shift", right: "Drifts quietly without governance" },
-      { axis: "Maintenance", left: "Update the rule", right: "Update the data, the prompt, and the cadence" },
-      { axis: "Right tool", left: "Workflow engines and automation tools", right: "Models plus your AI OS pillars" },
+      {
+        axis: "Behaviour",
+        left: "Same path every time",
+        right: "Reasons about the path",
+      },
+      {
+        axis: "Best for",
+        left: "Rails, hand-offs, deterministic flows",
+        right: "Triage, drafting, analysis, judgment",
+      },
+      {
+        axis: "Failure mode",
+        left: "Breaks loudly when inputs shift",
+        right: "Drifts quietly without governance",
+      },
+      {
+        axis: "Maintenance",
+        left: "Update the rule",
+        right: "Update the data, the prompt, and the cadence",
+      },
+      {
+        axis: "Right tool",
+        left: "Workflow engines and automation tools",
+        right: "Models plus your AI OS pillars",
+      },
     ],
     summary:
       "Use automation for the rails. Use an AI operating system for the decisions. The two compound when you build them together: automation handles the deterministic plumbing while the AI OS handles the judgment, with governance and cadence sitting across both. Companies that conflate the two end up with brittle pilots and unhappy operators.",
+    sections: [
+      {
+        title: "A joiner workflow, split by the work",
+        body: "Consider onboarding a new employee. Creating a checklist from an approved start date, sending a reminder and checking whether required fields exist are rule-based steps. Automation can run them without a model. Interpreting a manager's free-text request or drafting a welcome note may need AI. Confirming eligibility, approving access and making a payroll change still need the right authority. The operating system supplies the shared record, permissions, review queue and audit trail around all of those steps. Adding a model to every step creates cost and uncertainty without necessarily improving the workflow.",
+      },
+      {
+        title: "A test before you choose the tool",
+        body: "Write down the input, the expected output and the exceptions. If the same approved input should always produce the same output, start with a rule. If the task requires reading unstructured material, drafting or weighing context, consider an AI-assisted step and define how its output will be checked. If several workflows need the same data, access rules and review process, design the shared operating layer before building them separately. Keep the first workflow small enough that an operator can explain what happens when any step fails.",
+      },
+      {
+        title: "What changes when inputs go wrong",
+        body: "Neither layer is safe merely because it runs automatically. Rules can send the wrong data quickly when a source changes. Models can produce plausible answers from stale or incomplete material. Validate inputs, log the result, set a stop condition and route uncertainty to a person. In a People function, employment, pay and access decisions deserve explicit approval boundaries. A failed extraction should stop for review rather than quietly substitute a guess. The right design makes failure visible before another system acts on it.",
+      },
+      {
+        title: "Measure the workflow, then maintain it",
+        body: "Record handling time, waiting time, rework and errors before changing the workflow. Run a bounded pilot and compare the same measures afterwards. Count reclaimed time only when it is genuinely available for other work. Give one person responsibility for source data, exception handling and regular checks. Automation and AI both need maintenance; the difference is that a model-based step also needs examples and output evaluation when its inputs, model or instructions change. An AI operating system is the way those responsibilities stay connected, not a guarantee that every task should become autonomous.",
+      },
+    ],
     faqs: [
       {
         question: "Should I use automation or AI?",
@@ -128,9 +230,18 @@ export const COMPARES: CompareEntry[] = [
       },
     ],
     related: [
-      { href: "/intelligence/what-is-an-ai-operating-system", label: "What is an AI operating system?" },
-      { href: "/intelligence/ai-os-vs-ai-platform", label: "AI platform vs AI operating system" },
-      { href: "/intelligence/automation-patterns-that-pay-off", label: "Automation patterns that pay off" },
+      {
+        href: "/intelligence/what-is-an-ai-operating-system",
+        label: "What is an AI operating system?",
+      },
+      {
+        href: "/intelligence/ai-os-vs-ai-platform",
+        label: "AI platform vs AI operating system",
+      },
+      {
+        href: "/intelligence/automation-patterns-that-pay-off",
+        label: "Automation patterns that pay off",
+      },
     ],
   },
 ];
