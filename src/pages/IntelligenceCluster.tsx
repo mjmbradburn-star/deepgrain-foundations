@@ -54,17 +54,33 @@ const IntelligenceCluster = () => {
   return (
     <>
       <Helmet>
-        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
-        <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1" />
+        <meta
+          name="robots"
+          content="index,follow,max-image-preview:large,max-snippet:-1"
+        />
+        <meta
+          name="googlebot"
+          content="index,follow,max-image-preview:large,max-snippet:-1"
+        />
         <title>{cluster.name} | Deepgrain Intelligence</title>
-        <meta name="description" content={cluster.metaDescription ?? cluster.description} />
+        <meta
+          name="description"
+          content={cluster.metaDescription ?? cluster.description}
+        />
         <link rel="canonical" href={url} />
         <meta property="og:title" content={`${cluster.name} | Deepgrain`} />
-        <meta property="og:description" content={cluster.metaDescription ?? cluster.description} />
+        <meta
+          property="og:description"
+          content={cluster.metaDescription ?? cluster.description}
+        />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
-        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(collectionLd)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbLd)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(collectionLd)}
+        </script>
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
@@ -88,7 +104,8 @@ const IntelligenceCluster = () => {
             {cluster.description}
           </p>
           <p className="mt-6 text-sm text-cream/60">
-            {articles.length} {articles.length === 1 ? "article" : "articles"} in this cluster.
+            {articles.length} {articles.length === 1 ? "article" : "articles"}{" "}
+            in this cluster.
           </p>
           {parentPillar && (
             <p className="mt-2 text-sm text-cream/60">
@@ -107,10 +124,36 @@ const IntelligenceCluster = () => {
 
       <section className="bg-linen py-20 md:py-28">
         <div className="container-grain">
+          {cluster.guide && (
+            <div className="max-w-3xl mb-12 space-y-8">
+              {cluster.guide.map((section) => (
+                <section key={section.heading}>
+                  <h2 className="font-display text-2xl text-walnut mb-3">
+                    {section.heading}
+                  </h2>
+                  <p className="text-walnut/80 text-lg leading-relaxed">
+                    {section.body}
+                  </p>
+                </section>
+              ))}
+              {cluster.slug === "workflows-and-automation" && (
+                <Link
+                  to="/intelligence/ai-os-vs-automation"
+                  className="text-green underline underline-offset-4"
+                >
+                  AI OS vs automation: choose the right layer
+                </Link>
+              )}
+            </div>
+          )}
           {articles.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
               {articles.map((a) => (
-                <ArticleCard key={a.frontmatter.slug} article={a} headingLevel="h2" />
+                <ArticleCard
+                  key={a.frontmatter.slug}
+                  article={a}
+                  headingLevel="h2"
+                />
               ))}
             </div>
           ) : (
@@ -132,7 +175,9 @@ const IntelligenceCluster = () => {
                   className="block rounded-lg border border-walnut/15 bg-cream px-4 py-3 text-walnut hover:border-brass hover:text-brass transition-colors"
                 >
                   <span className="font-display text-lg">{c.name}</span>
-                  <span className="block text-xs text-walnut/60 mt-1">{c.short}</span>
+                  <span className="block text-xs text-walnut/60 mt-1">
+                    {c.short}
+                  </span>
                 </Link>
               </li>
             ))}
