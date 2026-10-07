@@ -12,7 +12,7 @@ const SITE = "https://www.deepgrain.ai";
  * Shared template for /intelligence/<x>-vs-<y> pages.
  *
  * These pages target zero-competition long-tail comparisons that sit one
- * search step downstream of the AI OS pillar. Each is short on purpose , 
+ * search step downstream of the AI OS pillar. Each is short on purpose ,
  * a comparison table, a tight summary, an FAQ, and a "read deeper" rail
  * back into the article cluster. The point is to rank, not to lecture.
  */
@@ -38,35 +38,51 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
     { name: entry.left + " vs " + entry.right, url },
   ]);
 
-  const faqLd = entry.faqs && entry.faqs.length > 0
-    ? {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: entry.faqs.map((f) => ({
-          "@type": "Question",
-          name: f.question,
-          acceptedAnswer: { "@type": "Answer", text: f.answer },
-        })),
-      }
-    : null;
+  const faqLd =
+    entry.faqs && entry.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: entry.faqs.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: { "@type": "Answer", text: f.answer },
+          })),
+        }
+      : null;
 
   return (
     <>
       <Helmet>
-        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
-        <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1" />
-        <title>{entry.metaTitle ?? `${entry.title} | Deepgrain Intelligence`}</title>
+        <meta
+          name="robots"
+          content="index,follow,max-image-preview:large,max-snippet:-1"
+        />
+        <meta
+          name="googlebot"
+          content="index,follow,max-image-preview:large,max-snippet:-1"
+        />
+        <title>
+          {entry.metaTitle ?? `${entry.title} | Deepgrain Intelligence`}
+        </title>
         <meta name="description" content={entry.description} />
         <link rel="canonical" href={url} />
         <meta property="og:title" content={entry.title} />
         <meta property="og:description" content={entry.description} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content="https://www.deepgrain.ai/og-intelligence.png" />
+        <meta
+          property="og:image"
+          content="https://www.deepgrain.ai/og-intelligence.png"
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
-        <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
-        {faqLd && <script type="application/ld+json">{JSON.stringify(faqLd)}</script>}
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbLd)}
+        </script>
+        {faqLd && (
+          <script type="application/ld+json">{JSON.stringify(faqLd)}</script>
+        )}
       </Helmet>
 
       <header className="bg-green text-cream pt-40 md:pt-48 pb-16 md:pb-20">
@@ -95,17 +111,32 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
             <table className="w-full text-left text-[15px]">
               <thead className="bg-walnut/5">
                 <tr>
-                  <th className="px-4 py-3 font-display text-walnut/70 uppercase text-[11px] tracking-widest">Axis</th>
-                  <th className="px-4 py-3 font-display text-walnut">{entry.left}</th>
-                  <th className="px-4 py-3 font-display text-walnut">{entry.right}</th>
+                  <th className="px-4 py-3 font-display text-walnut/70 uppercase text-[11px] tracking-widest">
+                    Axis
+                  </th>
+                  <th className="px-4 py-3 font-display text-walnut">
+                    {entry.left}
+                  </th>
+                  <th className="px-4 py-3 font-display text-walnut">
+                    {entry.right}
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {entry.rows.map((r) => (
                   <tr key={r.axis} className="border-t border-walnut/10">
-                    <th scope="row" className="px-4 py-3 font-medium text-walnut/80 align-top w-[28%]">{r.axis}</th>
-                    <td className="px-4 py-3 text-walnut/85 align-top">{r.left}</td>
-                    <td className="px-4 py-3 text-walnut/85 align-top">{r.right}</td>
+                    <th
+                      scope="row"
+                      className="px-4 py-3 font-medium text-walnut/80 align-top w-[28%]"
+                    >
+                      {r.axis}
+                    </th>
+                    <td className="px-4 py-3 text-walnut/85 align-top">
+                      {r.left}
+                    </td>
+                    <td className="px-4 py-3 text-walnut/85 align-top">
+                      {r.right}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -119,7 +150,20 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
           >
             In one paragraph
           </h2>
-          <p className="font-sans text-[18px] leading-[1.7] text-walnut/85">{entry.summary}</p>
+          <p className="font-sans text-[18px] leading-[1.7] text-walnut/85">
+            {entry.summary}
+          </p>
+
+          {entry.sections?.map((section) => (
+            <section key={section.title} className="mt-12">
+              <h2 className="font-display text-2xl md:text-3xl text-walnut leading-snug mb-4">
+                {section.title}
+              </h2>
+              <p className="font-sans text-[18px] leading-[1.7] text-walnut/85">
+                {section.body}
+              </p>
+            </section>
+          ))}
 
           {entry.faqs && entry.faqs.length > 0 && (
             <>
@@ -133,8 +177,12 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
               <dl className="space-y-8">
                 {entry.faqs.map((f) => (
                   <div key={f.question}>
-                    <dt className="font-display text-lg md:text-xl text-walnut mb-2">{f.question}</dt>
-                    <dd className="font-sans text-[17px] leading-[1.65] text-walnut/85">{f.answer}</dd>
+                    <dt className="font-display text-lg md:text-xl text-walnut mb-2">
+                      {f.question}
+                    </dt>
+                    <dd className="font-sans text-[17px] leading-[1.65] text-walnut/85">
+                      {f.answer}
+                    </dd>
                   </div>
                 ))}
               </dl>
