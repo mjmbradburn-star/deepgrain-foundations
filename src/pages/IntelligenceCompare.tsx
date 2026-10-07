@@ -107,7 +107,7 @@ const IntelligenceCompare = ({ slug }: { slug: string }) => {
           </p>
 
           {/* Comparison table */}
-          <div className="overflow-x-auto rounded-md border border-walnut/15 bg-cream/40">
+          <div className="overflow-x-auto border border-walnut/15 bg-cream/40" style={{ borderRadius: 6 }}>
             <table className="w-full text-left text-[15px]">
               <thead className="bg-walnut/5">
                 <tr>
