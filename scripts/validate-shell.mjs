@@ -32,7 +32,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const DIST = join(ROOT, "dist");
 const SITEMAP = join(ROOT, "public", "sitemap.xml");
-const ORIGIN = "https://deepgrain.ai";
+import { ORIGIN } from "./lib/origin.mjs";
 
 if (process.env.DEEPGRAIN_SKIP_SHELL_CHECK === "1") {
   console.log("[shell-check] skipped via env flag.");
@@ -82,7 +82,9 @@ const STRUCTURED_TYPES = [
 function routeToFile(route) {
   // "/" -> dist/index.html, "/method" -> dist/method/index.html
   const clean = route.replace(/^\/+|\/+$/g, "");
-  return clean ? join(DIST, clean, "index.html") : join(DIST, "index.html");
+  return clean.endsWith(".html")
+    ? join(DIST, clean)
+    : clean ? join(DIST, clean, "index.html") : join(DIST, "index.html");
 }
 
 function fileToRoute(file) {
