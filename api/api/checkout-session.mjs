@@ -79,6 +79,13 @@ export default async function handler(req, res) {
   p.set('metadata[marketing_consent_claimed]', consent ? 'true' : 'false');
   if (consent) p.set('metadata[consent_text]', CONSENT_TEXT);
 
+  // Mirror Maven: the Payments tab "Incomplete" row carries the email via PaymentIntent metadata.
+  p.set('payment_intent_data[description]', plan === 'founding' ? 'Deepgrain Founding Course Seat' : 'Deepgrain Standard Course Seat');
+  p.set('payment_intent_data[metadata][email]', email);
+  p.set('payment_intent_data[metadata][plan]', plan);
+  p.set('payment_intent_data[metadata][source]', 'deepgrain_gate');
+  if (ref) p.set('payment_intent_data[metadata][client_reference_id]', ref);
+
   try {
     const r = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
