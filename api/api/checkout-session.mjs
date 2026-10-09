@@ -10,6 +10,7 @@ const PLANS = {
   founding: 'price_1UIbDVQQIEQm1i6ql5ZqslXD', // £495
   standard: 'price_1UIbE3QQIEQm1i6qxRS28PCI', // £695
 };
+const LEGACY_VERSION = '2020-08-27';
 const ORIGINS = new Set(['https://www.deepgrain.ai', 'https://deepgrain.ai']);
 const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/;
 const CONSENT_TEXT = 'Email me about this course, cohort dates and occasional updates from Deepgrain. Unsubscribe any time.';
@@ -86,18 +87,28 @@ export default async function handler(req, res) {
   p.set('payment_intent_data[metadata][source]', 'deepgrain_gate');
   if (ref) p.set('payment_intent_data[metadata][client_reference_id]', ref);
 
+  const idem = 'gate-' + createHash('sha256').update(`${email}|${plan}|${consent}|${ref}|${Math.floor(Date.now() / 300000)}`).digest('hex').slice(0, 40);
+  // Older API version: Checkout creates the PaymentIntent up front, so an opened-but-unpaid
+  // session shows in the dashboard Payments tab as "Incomplete" (like Maven). If Stripe rejects
+  // that version for any reason we retry on the account default so a sale is never blocked.
+  const call = (version, key2) => fetch('https://api.stripe.com/v1/checkout/sessions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${key}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Idempotency-Key': key2,
+      ...(version ? { 'Stripe-Version': version } : {}),
+    },
+    body: p,
+  });
   try {
-    const r = await fetch('https://api.stripe.com/v1/checkout/sessions', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${key}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        // Same email+plan+consent within 5 minutes reuses one session (double-click safe).
-        'Idempotency-Key': 'gate-' + createHash('sha256').update(`${email}|${plan}|${consent}|${ref}|${Math.floor(Date.now() / 300000)}`).digest('hex').slice(0, 40),
-      },
-      body: p,
-    });
-    const j = await r.json();
+    let r = await call(LEGACY_VERSION, idem);
+    let j = await r.json();
+    if (!r.ok || !j.url) {
+      console.error('stripe session failed on legacy version', r.status, j && j.error && j.error.code);
+      r = await call(null, idem + 'd');
+      j = await r.json();
+    }
     if (!r.ok || !j.url) {
       console.error('stripe session failed', r.status, j && j.error && j.error.code);
       return res.status(502).json({ error: 'Checkout unavailable' });
