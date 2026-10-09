@@ -1,3 +1,5 @@
+import "@/lib/checkoutGate"; // email step before Stripe checkout
+
 import { useEffect, useState } from "react";
 import { Brain, FolderKanban, Workflow, Bot, BarChart3, ChevronDown, Check, Minus } from "lucide-react";
 import { PageMeta } from "@/components/seo/PageMeta";
