@@ -17,6 +17,42 @@ export const PRODUCTS: Record<string, { label: string; kind: Kind }> = {
   plink_1UKyd2QQIEQm1i6qTDJqmtjb: { label: "Ardoq payment", kind: "other" },
 };
 
+// Sessions created by api/api/checkout-session.mjs have no payment_link. They carry
+// metadata.source = "deepgrain_gate" and metadata.plan, and are mapped onto the same
+// product rows so records, notifications and the Money Pipe keep working unchanged.
+export const GATE_PLANS: Record<string, string> = {
+  founding: "plink_1UIbEZQQIEQm1i6qWCLPgt32",
+  standard: "plink_1UIbFBQQIEQm1i6qipC7fg1N",
+};
+
+export function resolveLink(s: {
+  payment_link: string | null;
+  metadata?: Record<string, string> | null;
+}): string | null {
+  if (s.payment_link) return s.payment_link;
+  if (s.metadata?.source === "deepgrain_gate") {
+    return GATE_PLANS[s.metadata.plan ?? ""] ?? null;
+  }
+  return null;
+}
+
+// Consent for gate sessions is the on-page tick recorded in metadata.
+export function resolveConsent(s: {
+  payment_status?: string;
+  amount_total?: number | null;
+  consent?: { promotions?: string | null } | null;
+  metadata?: Record<string, string> | null;
+}): string | null {
+  // Only called for PAID sessions. The tick is a claim made through a public endpoint, so
+  // it is honoured only because the buyer went on to pay.
+  if (s.metadata?.source === "deepgrain_gate") {
+    // A 100% promo code (no_payment_required / £0) is not proof of the cardholder: no consent.
+    if (s.payment_status !== "paid" || !(s.amount_total && s.amount_total > 0)) return "opt_out";
+    return s.metadata.marketing_consent_claimed === "true" ? "opt_in" : "opt_out";
+  }
+  return s.consent?.promotions ?? null;
+}
+
 export const HANDLED_EVENTS = [
   "checkout.session.completed",
   "checkout.session.async_payment_succeeded",
@@ -25,6 +61,8 @@ export const HANDLED_EVENTS = [
 export type Session = {
   id: string;
   payment_link: string | null;
+  metadata?: Record<string, string> | null;
+  client_reference_id?: string | null;
   status: string | null;
   payment_status: string;
   created: number;
@@ -98,16 +136,28 @@ export async function handleEvent(raw: string, deps: Deps): Promise<Outcome> {
       body: { error: "Stripe returned a different session" },
     };
   }
-  if (s.status !== "complete" || s.payment_status !== "paid") {
+  // no_payment_required = 100% promo code. Still a real enrolment, so track it.
+  if (s.status !== "complete" || !["paid", "no_payment_required"].includes(s.payment_status)) {
     return { status: 200, body: { ignored: "session not paid yet" } };
   }
-  const product = s.payment_link ? PRODUCTS[s.payment_link] : undefined;
+  const link = resolveLink(s);
+  const product = link ? PRODUCTS[link] : undefined;
   if (!product) {
-    return { status: 200, body: { ignored: "payment link not tracked" } };
+    // A completed paid session we cannot map must never vanish silently: tell the owner.
+    const err = await deps.sendEmail("purchase-notification", null, `untracked-${s.id}`, {
+      productLabel: "UNTRACKED paid session (check Stripe)",
+      amount: money(s.amount_total, s.currency),
+      buyerName: s.customer_details?.name?.trim() || "(no name given)",
+      buyerEmail: s.customer_details?.email ?? s.customer_email ?? "(no email given)",
+      sessionId: s.id,
+      paidAt: deps.now().toISOString(),
+    });
+    if (err) return { status: 502, body: { error: `Untracked notify failed: ${err}` } };
+    return { status: 200, body: { ignored: "payment link not tracked", owner_alerted: true } };
   }
 
   const seenAt = deps.now().toISOString();
-  const consent = s.consent?.promotions ?? null;
+  const consent = resolveConsent(s);
   const buyerEmail = (s.customer_details?.email ?? s.customer_email ?? "")
     .trim().toLowerCase();
   const buyerName = s.customer_details?.name?.trim() ?? "";
@@ -116,7 +166,7 @@ export async function handleEvent(raw: string, deps: Deps): Promise<Outcome> {
   // 1. Durable record first, in the existing checkout store.
   const storeError = await deps.upsertSession({
     id: s.id,
-    payment_link_id: s.payment_link,
+    payment_link_id: link,
     status: s.status,
     payment_status: s.payment_status,
     created_at: createdIso,
@@ -125,12 +175,12 @@ export async function handleEvent(raw: string, deps: Deps): Promise<Outcome> {
     currency: s.currency,
     consent_promotions: consent,
     consented_email: consent === "opt_in" ? buyerEmail || null : null,
-    recovered_from: null,
+    known_email: buyerEmail || null,
+    client_reference_id: s.client_reference_id ?? null,
+    source: s.metadata?.source === "deepgrain_gate" ? "deepgrain_gate" : "payment_link",
     last_seen_at: seenAt,
   });
-  if (storeError) {
-    return { status: 502, body: { error: `Store failed: ${storeError}` } };
-  }
+  // A store failure must not hide a real sale from the owner: notify first, then fail.
 
   // 2. Owner notification (fixed recipient set by the template).
   const notifyError = await deps.sendEmail(
@@ -177,6 +227,9 @@ export async function handleEvent(raw: string, deps: Deps): Promise<Outcome> {
       }
       buyerSent = true;
     }
+  }
+  if (storeError) {
+    return { status: 502, body: { error: `Store failed: ${storeError}`, notified: true } };
   }
   return {
     status: 200,
