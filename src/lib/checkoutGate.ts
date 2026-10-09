@@ -9,13 +9,16 @@
  * first. "Continue without email" goes straight to the plain link. Submitting
  * opens the link with ?prefilled_email=<email>&client_reference_id=<PostHog id>
  * and identifies the person in PostHog. No database write, no welcome email.
- * ?email= on the page URL (campaign links) skips the prompt.
+ * The consent box is unticked by default; the answer is stored on the PostHog
+ * person (marketing_consent) so only ticked emails are treated as contactable.
+ * ?email= on the page URL (campaign links) skips the prompt and records no consent.
  * Imported for side effects from src/pages/Waitlist.tsx.
  */
 import { identifyPerson } from "@/lib/posthog";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const KEY = "dg_checkout_email";
+const CONSENT_TEXT = "Email me about this course, cohort dates and occasional updates from Deepgrain. Unsubscribe any time.";
 let installed = false;
 
 const isStripeHref = (href: string | null | undefined) => {
@@ -76,12 +79,17 @@ function openModal(href: string) {
       <p style="font-size:14px;margin:0 0 16px;opacity:.75">Your email goes to Stripe so it is filled in for you at checkout.</p>
       <input type="email" name="email" required autocomplete="email" placeholder="you@company.com"
         style="width:100%;box-sizing:border-box;padding:12px;font-size:16px;border:1px solid #2b211833;border-radius:8px;margin-bottom:12px" />
+      <label style="display:flex;gap:8px;align-items:flex-start;font-size:13px;margin:0 0 14px;cursor:pointer">
+        <input type="checkbox" name="consent" style="margin-top:3px" />
+        <span>${CONSENT_TEXT}</span>
+      </label>
       <button type="submit" style="width:100%;padding:12px;font-size:15px;border:0;border-radius:999px;background:#2b2118;color:#f5efe3;cursor:pointer">Continue to checkout</button>
       <button type="button" data-skip style="width:100%;margin-top:8px;padding:8px;font-size:13px;border:0;background:none;text-decoration:underline;cursor:pointer;color:#2b2118">Continue without email</button>
     </form>`;
   const close = () => overlay.remove();
   const form = overlay.querySelector("form") as HTMLFormElement;
-  const input = overlay.querySelector("input") as HTMLInputElement;
+  const input = overlay.querySelector("input[type=email]") as HTMLInputElement;
+  const consentBox = overlay.querySelector("input[name=consent]") as HTMLInputElement;
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const email = input.value.trim().toLowerCase();
@@ -97,7 +105,12 @@ function openModal(href: string) {
     } catch {
       /* storage blocked */
     }
-    identifyPerson(email, { lead_form: "checkout_start" });
+    identifyPerson(email, {
+      lead_form: "checkout_start",
+      marketing_consent: consentBox.checked,
+      marketing_consent_text: consentBox.checked ? CONSENT_TEXT : "",
+      marketing_consent_at: consentBox.checked ? new Date().toISOString() : "",
+    });
     close();
     go(url);
   });
