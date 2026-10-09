@@ -10,14 +10,25 @@
  * opens the link with ?prefilled_email=<email>&client_reference_id=<PostHog id>
  * and identifies the person in PostHog. No database write, no welcome email.
  * The consent box is unticked by default; the answer is stored on the PostHog
- * person (marketing_consent) so only ticked emails are treated as contactable.
- * ?email= on the page URL (campaign links) skips the prompt and records no consent.
+ * person as marketing_consent_claimed only; real consent is set server-side after payment.
+ * Course links (founding/standard) go through /api/api/checkout-session, which creates a
+ * Checkout Session with the email attached; any failure falls back to the plain Payment
+ * Link with ?prefilled_email. The modal always opens; a stored or ?email= address is only a
+ * prefill the buyer must confirm.
  * Imported for side effects from src/pages/Waitlist.tsx.
  */
 import { identifyPerson } from "@/lib/posthog";
 
+/** Flip to false to bring back a "Continue without email" link. */
+const REQUIRE_EMAIL = true;
+const SESSION_ENDPOINT = "/api/api/checkout-session";
+const PLAN_BY_LINK: Record<string, string> = {
+  "9B66oJfwYdv2bwV1TXbAs00": "founding",
+  "9B65kFgB29eM30p8ilbAs01": "standard",
+};
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const KEY = "dg_checkout_email";
+const CONSENT_KEY = "dg_checkout_consent";
 const CONSENT_TEXT = "Email me about this course, cohort dates and occasional updates from Deepgrain. Unsubscribe any time.";
 let installed = false;
 
@@ -49,21 +60,82 @@ const build = (href: string, email: string | null): string => {
   return u.toString();
 };
 
-const go = (url: string) => {
-  window.open(url, "_blank", "noopener,noreferrer");
-};
-
-const rememberedEmail = (): string | null => {
+const planFor = (href: string): string | null => {
   try {
-    const q = new URLSearchParams(window.location.search).get("email")?.trim().toLowerCase();
-    if (q && EMAIL_RE.test(q)) {
-      window.localStorage.setItem(KEY, q);
-      return q;
-    }
-    const s = window.localStorage.getItem(KEY);
-    return s && EMAIL_RE.test(s) ? s : null;
+    const id = new URL(href, window.location.origin).pathname.replace(/^\//, "");
+    return PLAN_BY_LINK[id] ?? null;
   } catch {
     return null;
+  }
+};
+
+/**
+ * Open checkout in a new tab. The tab is opened synchronously (so popup blockers allow it),
+ * then pointed at a server-made Checkout Session, or at the plain link on any failure.
+ */
+const launch = async (href: string, email: string | null, consent: boolean, ref: string) => {
+  const fallback = build(href, email);
+  const tab = window.open("about:blank", "_blank");
+  if (!tab) {
+    window.location.href = fallback;
+    return;
+  }
+  try {
+    tab.opener = null;
+  } catch {
+    /* ignore */
+  }
+  const plan = planFor(href);
+  let target = fallback;
+  if (plan && email) {
+    try {
+      const ctl = new AbortController();
+      const timer = window.setTimeout(() => ctl.abort(), 8000);
+      const r = await fetch(SESSION_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan, email, consent, ref }),
+        signal: ctl.signal,
+      });
+      window.clearTimeout(timer);
+      const j = r.ok ? await r.json() : null;
+      if (j && typeof j.url === "string" && j.url.startsWith("https://checkout.stripe.com/")) target = j.url;
+      else track("checkout_session_fallback", { reason: r.ok ? "bad_response" : `http_${r.status}`, plan });
+    } catch (err) {
+      track("checkout_session_fallback", { reason: (err as Error)?.name === "AbortError" ? "timeout" : "network", plan });
+    }
+  }
+  tab.location.href = target;
+};
+
+/**
+ * Suggestion only (never used silently): Stripe locks the email field when we pass it, so
+ * a stale or mistyped address must be confirmed by the buyer in the modal every time.
+ */
+const suggestedEmail = (): string => {
+  try {
+    // URLSearchParams turns "+" into a space; put it back for plus-addressed emails.
+    const q = new URLSearchParams(window.location.search).get("email")?.trim().replace(/ /g, "+").toLowerCase();
+    if (q && EMAIL_RE.test(q)) return q;
+    const s = window.localStorage.getItem(KEY);
+    return s && EMAIL_RE.test(s) ? s : "";
+  } catch {
+    return "";
+  }
+};
+const suggestedConsent = (): boolean => {
+  try {
+    // Pre-tick only when the suggested email is the one the buyer already ticked for.
+    return window.localStorage.getItem(CONSENT_KEY) === "1" && window.localStorage.getItem(KEY) === suggestedEmail();
+  } catch {
+    return false;
+  }
+};
+const track = (event: string, props: Record<string, unknown>) => {
+  try {
+    (window as unknown as { posthog?: { capture?: (e: string, p?: unknown) => void } }).posthog?.capture?.(event, props);
+  } catch {
+    /* ignore */
   }
 };
 
@@ -76,20 +148,20 @@ function openModal(href: string) {
   overlay.innerHTML = `
     <form style="background:#f5efe3;color:#2b2118;max-width:420px;width:100%;padding:28px;border-radius:12px;font-family:inherit">
       <p style="font-size:20px;margin:0 0 8px;font-weight:600">Where should we send your receipt?</p>
-      <p style="font-size:14px;margin:0 0 16px;opacity:.75">Your email goes to Stripe so it is filled in for you at checkout.</p>
-      <input type="email" name="email" required autocomplete="email" placeholder="you@company.com"
+      <p style="font-size:14px;margin:0 0 16px;opacity:.75">Check your email is right: it is filled in at checkout and locked there. We also keep it (with Stripe, PostHog and Deepgrain) so we can see abandoned checkouts.</p>
+      <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" value="${suggestedEmail().replace(/[<>"&]/g, "")}"
         style="width:100%;box-sizing:border-box;padding:12px;font-size:16px;border:1px solid #2b211833;border-radius:8px;margin-bottom:12px" />
-      <label style="display:flex;gap:8px;align-items:flex-start;font-size:13px;margin:0 0 14px;cursor:pointer">
-        <input type="checkbox" name="consent" style="margin-top:3px" />
+      ${planFor(href) ? `<label style="display:flex;gap:8px;align-items:flex-start;font-size:13px;margin:0 0 14px;cursor:pointer">
+        <input type="checkbox" name="consent" style="margin-top:3px"${suggestedConsent() ? " checked" : ""} />
         <span>${CONSENT_TEXT}</span>
-      </label>
+      </label>` : ""}
       <button type="submit" style="width:100%;padding:12px;font-size:15px;border:0;border-radius:999px;background:#2b2118;color:#f5efe3;cursor:pointer">Continue to checkout</button>
-      <button type="button" data-skip style="width:100%;margin-top:8px;padding:8px;font-size:13px;border:0;background:none;text-decoration:underline;cursor:pointer;color:#2b2118">Continue without email</button>
+      ${REQUIRE_EMAIL ? "" : '<button type="button" data-skip style="width:100%;margin-top:8px;padding:8px;font-size:13px;border:0;background:none;text-decoration:underline;cursor:pointer;color:#2b2118">Continue without email</button>'}
     </form>`;
   const close = () => overlay.remove();
   const form = overlay.querySelector("form") as HTMLFormElement;
   const input = overlay.querySelector("input[type=email]") as HTMLInputElement;
-  const consentBox = overlay.querySelector("input[name=consent]") as HTMLInputElement;
+  const consentBox = overlay.querySelector("input[name=consent]") as HTMLInputElement | null;
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const email = input.value.trim().toLowerCase();
@@ -99,24 +171,27 @@ function openModal(href: string) {
       return;
     }
     input.setCustomValidity("");
-    const url = build(href, email); // read PostHog anon id before identify
+    const consent = !!consentBox?.checked;
+    const ref = anonId(); // read the PostHog anonymous id before identify replaces it
     try {
       window.localStorage.setItem(KEY, email);
+      window.localStorage.setItem(CONSENT_KEY, consent ? "1" : "0");
     } catch {
       /* storage blocked */
     }
     identifyPerson(email, {
       lead_form: "checkout_start",
-      marketing_consent: consentBox.checked,
-      marketing_consent_text: consentBox.checked ? CONSENT_TEXT : "",
-      marketing_consent_at: consentBox.checked ? new Date().toISOString() : "",
+      // CLAIMED only: anyone can type any email here. Real consent is written server-side
+      // after a paid checkout, never from this page.
+      marketing_consent_claimed: consent,
+      marketing_consent_claimed_at: consent ? new Date().toISOString() : "",
     });
     close();
-    go(url);
+    void launch(href, email, consent, ref);
   });
-  (overlay.querySelector("[data-skip]") as HTMLButtonElement).addEventListener("click", () => {
+  overlay.querySelector("[data-skip]")?.addEventListener("click", () => {
     close();
-    go(build(href, null));
+    void launch(href, null, false, anonId());
   });
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) close();
@@ -146,14 +221,7 @@ export function installCheckoutGate() {
       if (!anchor || !isStripeHref(href)) return;
       if (new URL(href as string, window.location.origin).searchParams.has("prefilled_email")) return;
       e.preventDefault();
-      const known = rememberedEmail();
-      if (known) {
-        const url = build(href as string, known);
-        identifyPerson(known, { lead_form: "checkout_start" });
-        go(url);
-      } else {
-        openModal(href as string);
-      }
+      openModal(href as string);
     },
     { capture: true },
   );
