@@ -12,12 +12,12 @@ type Page = { data: CheckoutSession[]; has_more: boolean };
 
 async function fetchPage(
   key: string,
-  link: string,
+  link: string, // a payment link id, or "gate" for API-created sessions
   after: string | undefined,
   createdGte: number,
 ): Promise<Page> {
   const url = new URL(API);
-  url.searchParams.set("payment_link", link);
+  if (link !== "gate") url.searchParams.set("payment_link", link);
   url.searchParams.set("created[gte]", String(createdGte));
   url.searchParams.set("limit", "100");
   if (after) url.searchParams.set("starting_after", after);
@@ -57,6 +57,7 @@ Deno.serve(async (req) => {
   const db = createClient(supabaseUrl, serviceKey);
   const seenAt = new Date().toISOString();
   let total = 0;
+  let skipped = 0;
   try {
     // Initial backfill covers all live-link history. Subsequent runs rescan
     // six days, or from the last success minus a two-day overlap if offline.
@@ -81,17 +82,21 @@ Deno.serve(async (req) => {
         ),
       )
       : LAUNCH_EPOCH;
-    for (const link of Object.keys(LINKS)) {
+    for (const link of [...Object.keys(LINKS), "gate"]) {
       let after: string | undefined;
       let completed = false;
       for (let pageNo = 0; pageNo < MAX_PAGES; pageNo++) {
         const page = await fetchPage(stripeKey, link, after, createdGte);
         if (page.data.length) {
-          const rows = page.data.map((session) => toRow(session, seenAt));
-          const { error } = await db.from("stripe_checkout_sessions").upsert(
-            rows,
-            { onConflict: "id" },
-          );
+          const candidates = page.data
+            .filter((session) => link !== "gate" || session.metadata?.source === "deepgrain_gate");
+          const rows = candidates
+            .map((session) => toRow(session, seenAt))
+            .filter((r) => r !== null);
+          skipped += candidates.length - rows.length;
+          const { error } = rows.length
+            ? await db.from("stripe_checkout_sessions").upsert(rows, { onConflict: "id" })
+            : { error: null };
           if (error) {
             throw new Error(
               `Checkout session storage failed: ${error.code ?? "unknown"}`,
@@ -113,8 +118,9 @@ Deno.serve(async (req) => {
     const { error } = await db.from("stripe_checkout_sync_state").upsert({
       singleton: true,
       last_success_at: seenAt,
-      last_error: null,
-      last_error_at: null,
+      // Systematic drops must not be silent: surface skipped sessions as a soft error.
+      last_error: skipped ? `Skipped ${skipped} unexpected checkout sessions` : null,
+      last_error_at: skipped ? seenAt : null,
       sessions_seen: total,
     }, { onConflict: "singleton" });
     if (error) {
