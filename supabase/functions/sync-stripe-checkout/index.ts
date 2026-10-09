@@ -89,13 +89,17 @@ Deno.serve(async (req) => {
         const page = await fetchPage(stripeKey, link, after, createdGte);
         if (page.data.length) {
           const candidates = page.data
-            .filter((session) => link !== "gate" || session.metadata?.source === "deepgrain_gate");
+            .filter((session) =>
+              link !== "gate" || session.metadata?.source === "deepgrain_gate"
+            );
           const rows = candidates
             .map((session) => toRow(session, seenAt))
             .filter((r) => r !== null);
           skipped += candidates.length - rows.length;
           const { error } = rows.length
-            ? await db.from("stripe_checkout_sessions").upsert(rows, { onConflict: "id" })
+            ? await db.from("stripe_checkout_sessions").upsert(rows, {
+              onConflict: "id",
+            })
             : { error: null };
           if (error) {
             throw new Error(
@@ -119,7 +123,9 @@ Deno.serve(async (req) => {
       singleton: true,
       last_success_at: seenAt,
       // Systematic drops must not be silent: surface skipped sessions as a soft error.
-      last_error: skipped ? `Skipped ${skipped} unexpected checkout sessions` : null,
+      last_error: skipped
+        ? `Skipped ${skipped} unexpected checkout sessions`
+        : null,
       last_error_at: skipped ? seenAt : null,
       sessions_seen: total,
     }, { onConflict: "singleton" });
