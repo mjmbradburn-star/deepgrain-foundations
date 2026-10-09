@@ -373,44 +373,56 @@ export type Database = {
       stripe_checkout_sessions: {
         Row: {
           amount_total: number | null
+          client_reference_id: string | null
+          consent_claimed: boolean | null
           consent_promotions: string | null
           consented_email: string | null
           created_at: string
           currency: string | null
           expires_at: string
           id: string
+          known_email: string | null
           last_seen_at: string
           payment_link_id: string
           payment_status: string
           recovered_from: string | null
+          source: string | null
           status: string
         }
         Insert: {
           amount_total?: number | null
+          client_reference_id?: string | null
+          consent_claimed?: boolean | null
           consent_promotions?: string | null
           consented_email?: string | null
           created_at: string
           currency?: string | null
           expires_at: string
           id: string
+          known_email?: string | null
           last_seen_at?: string
           payment_link_id: string
           payment_status: string
           recovered_from?: string | null
+          source?: string | null
           status: string
         }
         Update: {
           amount_total?: number | null
+          client_reference_id?: string | null
+          consent_claimed?: boolean | null
           consent_promotions?: string | null
           consented_email?: string | null
           created_at?: string
           currency?: string | null
           expires_at?: string
           id?: string
+          known_email?: string | null
           last_seen_at?: string
           payment_link_id?: string
           payment_status?: string
           recovered_from?: string | null
+          source?: string | null
           status?: string
         }
         Relationships: []
