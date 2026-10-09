@@ -47,8 +47,12 @@ export function resolveConsent(s: {
   // it is honoured only because the buyer went on to pay.
   if (s.metadata?.source === "deepgrain_gate") {
     // A 100% promo code (no_payment_required / £0) is not proof of the cardholder: no consent.
-    if (s.payment_status !== "paid" || !(s.amount_total && s.amount_total > 0)) return "opt_out";
-    return s.metadata.marketing_consent_claimed === "true" ? "opt_in" : "opt_out";
+    if (
+      s.payment_status !== "paid" || !(s.amount_total && s.amount_total > 0)
+    ) return "opt_out";
+    return s.metadata.marketing_consent_claimed === "true"
+      ? "opt_in"
+      : "opt_out";
   }
   return s.consent?.promotions ?? null;
 }
@@ -137,23 +141,40 @@ export async function handleEvent(raw: string, deps: Deps): Promise<Outcome> {
     };
   }
   // no_payment_required = 100% promo code. Still a real enrolment, so track it.
-  if (s.status !== "complete" || !["paid", "no_payment_required"].includes(s.payment_status)) {
+  if (
+    s.status !== "complete" ||
+    !["paid", "no_payment_required"].includes(s.payment_status)
+  ) {
     return { status: 200, body: { ignored: "session not paid yet" } };
   }
   const link = resolveLink(s);
   const product = link ? PRODUCTS[link] : undefined;
   if (!product) {
     // A completed paid session we cannot map must never vanish silently: tell the owner.
-    const err = await deps.sendEmail("purchase-notification", null, `untracked-${s.id}`, {
-      productLabel: "UNTRACKED paid session (check Stripe)",
-      amount: money(s.amount_total, s.currency),
-      buyerName: s.customer_details?.name?.trim() || "(no name given)",
-      buyerEmail: s.customer_details?.email ?? s.customer_email ?? "(no email given)",
-      sessionId: s.id,
-      paidAt: deps.now().toISOString(),
-    });
-    if (err) return { status: 502, body: { error: `Untracked notify failed: ${err}` } };
-    return { status: 200, body: { ignored: "payment link not tracked", owner_alerted: true } };
+    const err = await deps.sendEmail(
+      "purchase-notification",
+      null,
+      `untracked-${s.id}`,
+      {
+        productLabel: "UNTRACKED paid session (check Stripe)",
+        amount: money(s.amount_total, s.currency),
+        buyerName: s.customer_details?.name?.trim() || "(no name given)",
+        buyerEmail: s.customer_details?.email ?? s.customer_email ??
+          "(no email given)",
+        sessionId: s.id,
+        paidAt: deps.now().toISOString(),
+      },
+    );
+    if (err) {
+      return {
+        status: 502,
+        body: { error: `Untracked notify failed: ${err}` },
+      };
+    }
+    return {
+      status: 200,
+      body: { ignored: "payment link not tracked", owner_alerted: true },
+    };
   }
 
   const seenAt = deps.now().toISOString();
@@ -177,7 +198,9 @@ export async function handleEvent(raw: string, deps: Deps): Promise<Outcome> {
     consented_email: consent === "opt_in" ? buyerEmail || null : null,
     known_email: buyerEmail || null,
     client_reference_id: s.client_reference_id ?? null,
-    source: s.metadata?.source === "deepgrain_gate" ? "deepgrain_gate" : "payment_link",
+    source: s.metadata?.source === "deepgrain_gate"
+      ? "deepgrain_gate"
+      : "payment_link",
     last_seen_at: seenAt,
   });
   // A store failure must not hide a real sale from the owner: notify first, then fail.
@@ -229,7 +252,10 @@ export async function handleEvent(raw: string, deps: Deps): Promise<Outcome> {
     }
   }
   if (storeError) {
-    return { status: 502, body: { error: `Store failed: ${storeError}`, notified: true } };
+    return {
+      status: 502,
+      body: { error: `Store failed: ${storeError}`, notified: true },
+    };
   }
   return {
     status: 200,
