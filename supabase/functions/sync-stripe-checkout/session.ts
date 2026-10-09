@@ -36,7 +36,8 @@ export function toRow(s: CheckoutSession, seenAt: string) {
 function buildRow(s: CheckoutSession, seenAt: string) {
   // Sessions made by api/api/checkout-session.mjs have no payment_link; map by plan.
   const gate = s.metadata?.source === "deepgrain_gate";
-  const link = s.payment_link ?? (gate ? GATE_LINKS[s.metadata?.plan ?? ""] : null);
+  const link = s.payment_link ??
+    (gate ? GATE_LINKS[s.metadata?.plan ?? ""] : null);
   if (
     !link ||
     !(link in LINKS) ||
@@ -53,7 +54,8 @@ function buildRow(s: CheckoutSession, seenAt: string) {
   // The gate tick is only a CLAIM (public endpoint, spoofable). It counts as consent only
   // once the session is paid; unpaid gate sessions never get consented_email.
   // paid AND a real charge: a 100% promo code must not be able to consent any email.
-  const paid = s.status === "complete" && s.payment_status === "paid" && (s.amount_total ?? 0) > 0;
+  const paid = s.status === "complete" && s.payment_status === "paid" &&
+    (s.amount_total ?? 0) > 0;
   const claimed = gate && s.metadata?.marketing_consent_claimed === "true";
   const consent = gate
     ? (paid ? (claimed ? "opt_in" : "opt_out") : null)
