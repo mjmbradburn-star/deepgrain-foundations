@@ -210,12 +210,12 @@ const faqItems: FAQItem[] = [
   {
     question: "What is the difference between founding and standard seats?",
     answer:
-      "Both seats include the five-week programme in either time zone. Founding (£495) also includes four 1:1s with Matt, guided feedback throughout and community for life, with the hub and chat space. Standard (£695) includes six months of community access and the hub, without the 1:1s or guided feedback. Choose UK/EMEA (from Thursday 15 October) or Americas (from Monday 12 October).",
+      "Both seats include the five-week programme in either time zone. Founding (£495) also includes four 1:1s with Matt, guided feedback throughout and community for life, with the hub and chat space. Standard (£695) includes six months of community access and the hub, without the 1:1s or guided feedback. Choose UK/EMEA (from Thursday 22 October) or Americas (from Monday 19 October).",
   },
   {
     question: "When does it start, and how many seats are there?",
     answer:
-      "UK/EMEA starts Thursday 15 October at 2pm UK. Americas starts Monday 12 October at 9am Pacific. Each cohort meets live for 75 minutes a week over five weeks. Twenty seats, because the build work is reviewed by hand.",
+      "UK/EMEA starts Thursday 22 October at 2pm UK. Americas starts Monday 19 October at 9am Pacific. Each cohort meets live for 75 minutes a week over five weeks. Twenty seats, because the build work is reviewed by hand.",
   },
 ];
 
@@ -373,7 +373,7 @@ const Waitlist = () => {
     <>
       <PageMeta
         title="Deepgrain AI Cohort for People Teams"
-        description="Five weeks, live, for People and HR operators. Build skills, projects, workflows and agents on your own processes. UK/EMEA from 15 October; Americas from 12 October. From £495."
+        description="Five weeks, live, for People and HR operators. Build skills, projects, workflows and agents on your own processes. UK/EMEA from 22 October; Americas from 19 October. From £495."
         path="/waitlist"
         jsonLd={[COURSE_LD, buildFAQLd(faqItems), buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "AI cohort", url: "https://www.deepgrain.ai/waitlist" }])]}
       />
@@ -407,11 +407,11 @@ const Waitlist = () => {
             <div className="mt-4 grid gap-4 md:grid-cols-2 md:gap-6">
               <div className="border-t border-cream/20 pt-3">
                 <h2 className="font-display text-xl font-semibold">UK / EMEA</h2>
-                <p className="mt-1 text-sm text-cream/90">Thursdays, 2pm UK · starts 15 October</p>
+                <p className="mt-1 text-sm text-cream/90">Thursdays, 2pm UK · starts 22 October</p>
               </div>
               <div className="border-t border-cream/20 pt-3">
                 <h2 className="font-display text-xl font-semibold">Americas</h2>
-                <p className="mt-1 text-sm text-cream/90">Mondays, 9am Pacific · starts 12 October</p>
+                <p className="mt-1 text-sm text-cream/90">Mondays, 9am Pacific · starts 19 October</p>
                 <p className="mt-1 text-xs text-cream/70">5pm UK except 26 October, 4pm UK (clock change)</p>
               </div>
             </div>

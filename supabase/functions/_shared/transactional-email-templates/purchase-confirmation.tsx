@@ -47,7 +47,7 @@ const PurchaseConfirmationEmail = (
                 </Text>
                 <Text style={text}>
                   The cohort runs at two live times: Mondays at 9am Pacific,
-                  starting 12 October, or Thursdays at 2pm UK, starting 15
+                  starting 19 October, or Thursdays at 2pm UK, starting 22
                   October. Five weekly sessions of 75 minutes each.
                 </Text>
                 <Text style={text}>
