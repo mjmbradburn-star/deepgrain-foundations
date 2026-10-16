@@ -10,6 +10,15 @@ const PLANS = {
   founding: 'price_1UIbDVQQIEQm1i6ql5ZqslXD', // £495
   standard: 'price_1UIbE3QQIEQm1i6qxRS28PCI', // £695
 };
+// Americas buyers pay in USD (decided 16 Oct 2026). Inline price_data keeps this inside the
+// Checkout Sessions scope of STRIPE_CHECKOUT_KEY: no Product or Price is created by hand.
+const USD_PLANS = {
+  founding: { cents: 65000, name: 'Deepgrain Founding Course Seat (USD)' },
+  standard: { cents: 89500, name: 'Deepgrain Standard Course Seat (USD)' },
+};
+// First-session dates of the cohorts a buyer may pick (Americas Monday / UK Thursday of the block).
+// Keep in step with src/components/cohort/startingMonth.data.ts.
+const COHORTS = new Set(['2026-10-19', '2026-10-22', '2026-11-23', '2026-11-26', '2027-01-11', '2027-01-14']);
 const LEGACY_VERSION = '2020-08-27';
 const ORIGINS = new Set(['https://www.deepgrain.ai', 'https://deepgrain.ai']);
 const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/;
@@ -58,12 +67,22 @@ export default async function handler(req, res) {
   const price = PLANS[plan];
   if (!price) return res.status(400).json({ error: 'Unknown plan' });
   if (!EMAIL_RE.test(email) || email.length > 320) return res.status(400).json({ error: 'Invalid email' });
+  const region = body.region === 'us' ? 'us' : 'uk';
+  const cohort = String(body.cohort || '');
+  if (cohort && !COHORTS.has(cohort)) return res.status(400).json({ error: 'Unknown cohort' });
   const consent = body.consent === true;
   const ref = String(body.ref || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 100);
 
   const p = new URLSearchParams();
   p.set('mode', 'payment');
-  p.set('line_items[0][price]', price);
+  if (region === 'us') {
+    const usd = USD_PLANS[plan];
+    p.set('line_items[0][price_data][currency]', 'usd');
+    p.set('line_items[0][price_data][unit_amount]', String(usd.cents));
+    p.set('line_items[0][price_data][product_data][name]', usd.name);
+  } else {
+    p.set('line_items[0][price]', price);
+  }
   p.set('line_items[0][quantity]', '1');
   p.set('customer_email', email);
   p.set('customer_creation', 'always');
@@ -75,19 +94,23 @@ export default async function handler(req, res) {
   p.set('cancel_url', 'https://www.deepgrain.ai/waitlist');
   p.set('metadata[source]', 'deepgrain_gate');
   p.set('metadata[plan]', plan);
+  p.set('metadata[region]', region);
+  if (cohort) p.set('metadata[cohort_start]', cohort);
   // CLAIMED only: anyone can POST this endpoint, so an unpaid session's consent is never
   // trusted for contact. The webhook only honours it once the session is paid.
   p.set('metadata[marketing_consent_claimed]', consent ? 'true' : 'false');
   if (consent) p.set('metadata[consent_text]', CONSENT_TEXT);
 
   // Mirror Maven: the Payments tab "Incomplete" row carries the email via PaymentIntent metadata.
-  p.set('payment_intent_data[description]', plan === 'founding' ? 'Deepgrain Founding Course Seat' : 'Deepgrain Standard Course Seat');
+  p.set('payment_intent_data[description]', (plan === 'founding' ? 'Deepgrain Founding Course Seat' : 'Deepgrain Standard Course Seat') + (region === 'us' ? ' (USD)' : ''));
   p.set('payment_intent_data[metadata][email]', email);
   p.set('payment_intent_data[metadata][plan]', plan);
+  p.set('payment_intent_data[metadata][region]', region);
+  if (cohort) p.set('payment_intent_data[metadata][cohort_start]', cohort);
   p.set('payment_intent_data[metadata][source]', 'deepgrain_gate');
   if (ref) p.set('payment_intent_data[metadata][client_reference_id]', ref);
 
-  const idem = 'gate-' + createHash('sha256').update(`${email}|${plan}|${consent}|${ref}|${Math.floor(Date.now() / 300000)}`).digest('hex').slice(0, 40);
+  const idem = 'gate-' + createHash('sha256').update(`${email}|${plan}|${region}|${cohort}|${consent}|${ref}|${Math.floor(Date.now() / 300000)}`).digest('hex').slice(0, 40);
   // Older API version: Checkout creates the PaymentIntent up front, so an opened-but-unpaid
   // session shows in the dashboard Payments tab as "Incomplete" (like Maven). If Stripe rejects
   // that version for any reason we retry on the account default so a sale is never blocked.

@@ -54,6 +54,8 @@ const anonId = (): string => {
 
 const build = (href: string, email: string | null): string => {
   const u = new URL(href, window.location.origin);
+  u.searchParams.delete("dg_region");
+  u.searchParams.delete("dg_cohort");
   if (email) u.searchParams.set("prefilled_email", email);
   const ref = anonId();
   if (ref) u.searchParams.set("client_reference_id", ref);
@@ -75,6 +77,9 @@ const planFor = (href: string): string | null => {
  */
 const launch = async (href: string, email: string | null, consent: boolean, ref: string) => {
   const fallback = build(href, email);
+  const hu = new URL(href, window.location.origin);
+  const region = hu.searchParams.get("dg_region") === "us" ? "us" : "uk";
+  const cohort = /^\d{4}-\d{2}-\d{2}$/.test(hu.searchParams.get("dg_cohort") ?? "") ? (hu.searchParams.get("dg_cohort") as string) : "";
   const tab = window.open("about:blank", "_blank");
   if (!tab) {
     window.location.href = fallback;
@@ -94,7 +99,7 @@ const launch = async (href: string, email: string | null, consent: boolean, ref:
       const r = await fetch(SESSION_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan, email, consent, ref }),
+        body: JSON.stringify({ plan, email, consent, ref, region, cohort }),
         signal: ctl.signal,
       });
       window.clearTimeout(timer);
@@ -104,6 +109,16 @@ const launch = async (href: string, email: string | null, consent: boolean, ref:
     } catch (err) {
       track("checkout_session_fallback", { reason: (err as Error)?.name === "AbortError" ? "timeout" : "network", plan });
     }
+  }
+  if (region === "us" && target === fallback) {
+    // The plain Payment Link is GBP, so it must not stand in for a USD checkout. Ask for contact instead.
+    try {
+      tab.close();
+    } catch {
+      /* ignore */
+    }
+    window.location.href = "mailto:matt@deepgrain.ai?subject=Americas%20seat%20checkout";
+    return;
   }
   tab.location.href = target;
 };

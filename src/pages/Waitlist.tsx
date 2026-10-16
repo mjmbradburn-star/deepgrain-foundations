@@ -14,6 +14,10 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { cn } from "@/lib/utils";
 import { CohortOverlay } from "@/components/cohort/CohortOverlay";
 import { startCohortBehaviour } from "@/lib/behaviour";
+import { Link } from "react-router-dom";
+import { Linkedin } from "lucide-react";
+import matthewPortrait from "@/assets/matthew-bradburn.jpg";
+import { DatePicker, tagCheckout, useCohortChoice, fmtDate } from "@/components/cohort/DatePicker";
 
 /** Single source for the offer. Change the cohort here, not in five places. */
 const COURSE = {
@@ -54,17 +58,17 @@ const PAINS = [
   {
     quote: "We bought the licences. Nobody uses them.",
     pattern: "Tool theatre",
-    body: "Capability without context does not survive a busy week.",
+    body: "The licences were the easy part. Nobody built the habit, and the busy week won.",
   },
   {
     quote: "The pilot worked. The rollout didn't.",
     pattern: "The pilot trap",
-    body: "Built for demo, never for production, with no owner.",
+    body: "Built for the demo, not for a wet Tuesday in November. No owner, no chance.",
   },
   {
     quote: "Everyone is dabbling. Nobody is building.",
     pattern: "Private dabbling",
-    body: "No shared standard, no governance, nothing compounds.",
+    body: "Everyone has their own prompts and nobody shares the good ones. Nothing compounds.",
   },
 ];
 
@@ -75,10 +79,10 @@ const WEEKS = [
     numeral: "1.0 THINK",
     rail: "Change how you think",
     title: "Think with the machine",
-    body: "Stop briefing a colleague like a search box. The reframe that decides everything after it, plus your first two skills files.",
+    body: "Brief AI like a search box and you will get search-box answers. Week one fixes the brief. You write your first two skills files and use them on real work the same week.",
     leave: "Two skills files, written by you and used on real work.",
     detail: [
-      "The colleague-not-search-box reframe, and why weak output is usually a thin brief",
+      "Weak output is usually a thin brief. The colleague-not-search-box reframe fixes most of it.",
       "The four habits that decide what you get back: context, curiosity, critical thinking, commerciality",
       "What a skills file is, and why it beats clever prompting every week after this one",
       "Find the jobs in your week that drain you, and pick the first one worth handing over",
@@ -88,7 +92,7 @@ const WEEKS = [
     numeral: "2.0 SET UP",
     rail: "Change your setup",
     title: "Work with files",
-    body: "A one-off chat is a colleague with amnesia. Set up a project workspace that holds your instructions, files and skills.",
+    body: "A one-off chat is a colleague with amnesia. This week you build the workspace that becomes your team's brain: your instructions, reference files and skills in one place that remembers.",
     leave: "One project workspace set up properly, on your own work.",
     detail: [
       "Projects: standing instructions, reference files and skills in one persistent place",
@@ -101,13 +105,14 @@ const WEEKS = [
     numeral: "3.0 CHAIN",
     rail: "Change what ships",
     title: "Chain the work",
-    body: "Map one weekly job, tag every step machine or judgement, then build the chain: machine in the middle, you on the edges.",
-    leave: "A workflow that finishes a task, not a helpful draft.",
+    body: "Map one weekly job honestly, tag every step machine or judgement, then build the chain: machine in the middle, you on the edges. And before it runs, you write the check that tells you it worked.",
+    leave: "A workflow that finishes a task, with the check that proves it did.",
     detail: [
       "Map the job honestly before you build anything; the map is the design",
       "Human, machine, human: the pattern that keeps judgement where it belongs",
       "Which steps never get handed over, and why",
-      "Run it three times on real work, tightening the weakest step each time",
+      "Write the check before the chain runs: what good output looks like, with real examples from your own work",
+      "Run the chain against those examples, tighten the weakest step, and keep the examples. They matter again in week four",
     ],
   },
   {
@@ -115,11 +120,12 @@ const WEEKS = [
     rail: "Change your week",
     title: "Take yourself out of the loop",
     body: "Set a workflow you trust running on a schedule, with the five guardrails on everything. Agents for the people ready to go further.",
-    leave: "One piece of work running without you starting it, gated and logged.",
+    leave: "One piece of work running without you starting it, gated, logged and checked.",
     detail: [
       "The trust ladder: you earn each rung, you never jump one",
       "Schedules first; triggers, plugins and agents when the evidence says you are ready",
       "The five guardrails on everything: scope, gate, log, stop, off switch",
+      "The drift check: when a model or a policy changes, re-run your week three examples before the work goes stale",
       "The firm list of things you never hand over",
     ],
   },
@@ -157,7 +163,7 @@ const LEAVE_WITH = [
   {
     icon: Bot,
     title: "Work running with guardrails",
-    body: "Scheduled, gated, logged. Yours, not ours.",
+    body: "Scheduled, gated, logged, checked. Yours, not ours.",
   },
   {
     icon: BarChart3,
@@ -184,23 +190,32 @@ const CASE_STATS = [
   },
 ];
 
-const MATT_FACTS = ["VP People at Peakon", "Built and sold People Collective", "4.3/5 across 13 course reviews"];
 
 const faqItems: FAQItem[] = [
   {
     question: "Who is the cohort for?",
     answer:
-      "People and HR operators in scaling companies: Heads of People, People Ops leads, HRBPs, and People team generalists who own processes and want to rebuild them with AI. No technical background needed.",
+      "People and HR operators in scaling companies: Heads of People, People Ops leads, HRBPs and generalists who own processes and want to rebuild them with AI. No technical background needed. You do need a real process of your own to build on, because everything you make in the five weeks runs on your actual work.",
   },
   {
     question: "How much time does it take each week?",
     answer:
-      "One live session a week plus build time on your own processes, roughly three to four hours in total. The build time is the course: everything you make runs on real work, so the hours come back.",
+      "One live session a week, 75 minutes, plus build time on your own processes. Three to four hours in total. The build time is the course: everything you make runs on real work, so the hours come back.",
   },
   {
     question: "What tools do we use?",
     answer:
-      "The current generation of AI tools for operators: skills files, project workspaces, connectors and plugins, agents, and small tools you build yourself. If your company has approved tools, we build inside them.",
+      "The current generation of AI tools for operators: skills files, project workspaces, connectors and plugins, agents, and small tools you build yourself. The course is about none of them specifically. The skills transfer across Claude, ChatGPT, Copilot and Gemini. If your company has approved tools, we build inside them.",
+  },
+  {
+    question: "Which cohort time should I pick, and what do I pay?",
+    answer:
+      "The programme is the same in both. UK/EMEA meets Thursdays at 2pm UK. Americas meets Mondays at 9am Pacific, which is 12pm Eastern and 5pm UK. The twenty seats are shared across both times. UK, EMEA and everywhere outside the Americas pay in pounds. Americas seats pay in dollars.",
+  },
+  {
+    question: "What will I have at the end?",
+    answer:
+      "Skills files you wrote and used on real work. A project workspace that remembers. A chained workflow with the check that proves it works. A scheduled workflow with guardrails. A one-page 90-day plan with your own time-recovered number. All of it yours to keep.",
   },
   {
     question: "What if I miss a session?",
@@ -210,12 +225,17 @@ const faqItems: FAQItem[] = [
   {
     question: "What is the difference between founding and standard seats?",
     answer:
-      "Both seats include the five-week programme in either time zone. Founding (£495) also includes four 1:1s with Matt, guided feedback throughout and community for life, with the hub and chat space. Standard (£695) includes six months of community access and the hub, without the 1:1s or guided feedback. Choose UK/EMEA (from Thursday 22 October) or Americas (from Monday 19 October).",
+      "Both seats include the five-week programme in either time zone. Founding (£495, or $650 for Americas) also includes four 1:1s with Matt, guided feedback throughout and community for life, with the hub and chat space. Standard (£695, or $895) includes six months of community access and the hub, without the 1:1s or guided feedback. Choose UK/EMEA or Americas time. Later starts are on the booking card above.",
   },
   {
     question: "When does it start, and how many seats are there?",
     answer:
-      "UK/EMEA starts Thursday 22 October at 2pm UK. Americas starts Monday 19 October at 9am Pacific. Each cohort meets live for 75 minutes a week over five weeks. Twenty seats, because the build work is reviewed by hand.",
+      "The current cohort starts Thursday 22 October (UK/EMEA, 2pm UK) and Monday 19 October (Americas, 9am Pacific, 12pm Eastern). The next starts are Monday 23 November and Thursday 26 November, then Monday 11 January and Thursday 14 January. Each cohort meets live for 75 minutes a week over five weeks. Twenty seats, because the build work is reviewed by hand.",
+  },
+  {
+    question: "What if I have a question you have not answered?",
+    answer:
+      "Email Matt directly: matt@deepgrain.ai. He reads everything.",
   },
 ];
 
@@ -265,12 +285,12 @@ const STANDARD_INCLUDED = [
   ...PROGRAMME_INCLUDED,
   "Six months of community access, including the hub",
 ];
-const FOUNDING_NOT_INCLUDED = ["Us building your workflows for you"];
+const FOUNDING_NOT_INCLUDED = ["Us building your workflows for you. That bit is yours."];
 const STANDARD_NOT_INCLUDED = [
   "1:1 sessions with Matt",
   "Guided feedback throughout",
   "Lifetime community access",
-  "Us building your workflows for you",
+  "Us building your workflows for you. That bit is yours.",
 ];
 
 const PlanCard = ({
@@ -281,6 +301,7 @@ const PlanCard = ({
   href,
   cta,
   featured,
+  startLine,
 }: {
   plan: string;
   name: string;
@@ -289,6 +310,7 @@ const PlanCard = ({
   href: string;
   cta: string;
   featured?: boolean;
+  startLine?: string;
 }) => (
   <div
     data-ph-plan={plan}
@@ -317,6 +339,7 @@ const PlanCard = ({
     >
       {price}
     </p>
+    {startLine && <p className="mt-4 font-sans text-sm font-semibold text-cream">{startLine}</p>}
     <p className="mt-4 text-cream/75 text-[15px] leading-relaxed">{note}</p>
     <div className="mt-7">
       <CheckoutButton href={href} variant={featured ? "filled" : "outline"}>
@@ -353,6 +376,8 @@ const PlanCard = ({
 const H2_STYLE = { fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" } as const;
 
 const Waitlist = () => {
+  const choice = useCohortChoice();
+  const startLine = `Starts ${fmtDate(choice.active.start, { weekday: "long", day: "numeric", month: "long" })}`;
   const [openWeek, setOpenWeek] = useState<number>(0);
   // Stripe Payment Links redirect here with ?checkout=success after payment.
   // Only shown for a genuine Stripe return (see lib/checkoutReturn.ts).
@@ -399,7 +424,7 @@ const Waitlist = () => {
                 letterSpacing: "-0.01em",
               }}
             >
-              Everyone told your People team to use AI. Nobody showed them how.
+              Finally, a course that shows you how to actually use AI in People Ops.
             </h1>
           </div>
           <div aria-label="Live cohort schedule" className="mt-8 max-w-4xl border border-brass/45 bg-bark/35 p-5 md:p-6">
@@ -407,31 +432,34 @@ const Waitlist = () => {
             <div className="mt-4 grid gap-4 md:grid-cols-2 md:gap-6">
               <div className="border-t border-cream/20 pt-3">
                 <h2 className="font-display text-xl font-semibold">UK / EMEA</h2>
-                <p className="mt-1 text-sm text-cream/90">Thursdays, 2pm UK · starts 22 October</p>
+                <p className="mt-1 text-sm text-cream/90">Thursdays, 2pm UK · starts 22&nbsp;October</p>
               </div>
               <div className="border-t border-cream/20 pt-3">
                 <h2 className="font-display text-xl font-semibold">Americas</h2>
-                <p className="mt-1 text-sm text-cream/90">Mondays, 9am Pacific · starts 19 October</p>
+                <p className="mt-1 text-sm text-cream/90">Mondays, 9am PT / 12pm ET · starts 19&nbsp;October</p>
                 <p className="mt-1 text-xs text-cream/70">5pm UK except 26 October, 4pm UK (clock change)</p>
               </div>
             </div>
             <p className="mt-4 border-t border-cream/20 pt-3 text-sm font-semibold text-brass">Five weeks · 75 minutes live each week</p>
+            <p className="mt-1 text-sm text-cream/80">
+              Next starts: Americas 23 November, UK/EMEA 26 November. Then 11 and 14 January. <a href="#pricing" className="underline underline-offset-4 hover:text-cream">Pick your start ↓</a>
+            </p>
           </div>
           <div className="fade-in-up fade-in-up-2 mt-10 max-w-2xl">
             <p className="text-cream/85 text-lg md:text-xl leading-relaxed">
-              Five weeks, live. Skills files, project workspaces, workflows and agents, built on
-              your own processes. Taught by Matt Bradburn.
+              Five weeks, live. Not the models: the systems around them, built on
+              your real People work. Taught by Matt Bradburn.
             </p>
             <p
               className="mt-6 font-sans font-semibold uppercase text-brass"
               style={{ fontSize: "11px", letterSpacing: "0.22em" }}
             >
-              Two cohort times · {COURSE.seats} seats · {COURSE.foundingPrice} founding (standard {COURSE.standardPrice})
+              Two cohort times · {COURSE.seats} seats · {choice.foundingPrice(COURSE.foundingPrice)} founding (standard {choice.standardPrice(COURSE.standardPrice)})
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <CheckoutButton href={COURSE.foundingCheckout} variant="filled">
-                Book a founding seat · {COURSE.foundingPrice} →
-              </CheckoutButton>
+              <a href="#pricing" className="inline-flex items-center justify-center rounded-full font-sans font-medium tracking-wider text-sm px-10 py-4 transition-colors bg-cream text-green hover:bg-cream/90">
+                Pick your start · from {choice.foundingPrice(COURSE.foundingPrice)} ↓
+              </a>
               <a
                 href="#weeks"
                 className="inline-flex items-center justify-center rounded-full font-sans font-medium tracking-wider text-sm px-10 py-4 border border-cream/30 text-cream/80 hover:border-cream/60 hover:text-cream transition-colors"
@@ -443,6 +471,7 @@ const Waitlist = () => {
         </div>
         <GrainFlow className="absolute inset-x-0 -bottom-4 h-36" tone="walnut" opacity={0.12} />
       </section>
+
 
       {/* ------------------------------------------------ pain ----------- */}
       <section className="bg-linen text-walnut" data-no-rule data-ph-section="pain">
@@ -473,6 +502,9 @@ const Waitlist = () => {
         </div>
       </section>
 
+      {/* testimonials moved up, directly after the pain section */}
+      <Testimonials />
+
       {/* ------------------------------------------------ weeks ---------- */}
       <section id="weeks" className="bg-linen text-walnut scroll-mt-28" data-no-rule data-ph-section="weeks">
         <div className="container-grain pb-24 md:pb-36">
@@ -481,7 +513,7 @@ const Waitlist = () => {
             Five weeks. One story.
           </h2>
           <p className="text-body/80 text-lg leading-relaxed max-w-2xl mt-6">
-            One live session a week. Everything else is build time on your own processes.
+            One live session a week, 75 minutes. Everything else is build time on your own processes, because that is where the value is.
           </p>
 
           {/* the story as a rail: five stops, each jumps to its week */}
@@ -605,6 +637,47 @@ const Waitlist = () => {
         </div>
       </section>
 
+      {/* ------------------------------------------------ who for -------- */}
+      <section className="bg-linen text-walnut" data-no-rule data-ph-section="who-for">
+        <div className="container-grain pb-20 md:pb-28">
+          <div className="h-px w-10 bg-brass/30 mb-10" />
+          <h2 className="font-display font-semibold max-w-3xl" style={H2_STYLE}>
+            Who it's for. And who it isn't.
+          </h2>
+          <div className="mt-12 grid gap-12 md:grid-cols-2 max-w-5xl">
+            <div>
+              <p className="font-sans font-semibold uppercase text-brass" style={{ fontSize: "11px", letterSpacing: "0.22em" }}>
+                It's for you if
+              </p>
+              <p className="mt-4 text-body/85 text-[17px] leading-relaxed">
+                You're a Head of People, People Ops lead or HRBP in a scaling company, you own real
+                processes, and you want to rebuild them with AI. No technical background needed. You
+                do need three to four hours a week, and a process of your own to work on.
+              </p>
+            </div>
+            <div>
+              <p className="font-sans font-semibold uppercase text-brass" style={{ fontSize: "11px", letterSpacing: "0.22em" }}>
+                It isn't for you if
+              </p>
+              <ul className="mt-4 space-y-3">
+                <li className="flex items-start gap-3 text-body/85 text-[17px] leading-relaxed">
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brass" aria-hidden />
+                  You want a tour of the tools.
+                </li>
+                <li className="flex items-start gap-3 text-body/85 text-[17px] leading-relaxed">
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brass" aria-hidden />
+                  You want us to build it for you: we review your work by hand, we don't do it for you.
+                </li>
+                <li className="flex items-start gap-3 text-body/85 text-[17px] leading-relaxed">
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brass" aria-hidden />
+                  You can't find three to four hours a week for five weeks. Without the build time the course is just five Zoom calls.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ------------------------------------------------ proof ---------- */}
       <section className="bg-linen text-walnut" data-no-rule>
         <div className="container-grain py-20 md:py-28">
@@ -628,41 +701,79 @@ const Waitlist = () => {
             ))}
           </div>
           <p className="mt-8 max-w-2xl text-body/60 text-sm leading-relaxed">
-            Their processes, their numbers. Yours will be your own, which is the point of building
-            on real work.
+            Those are that firm's numbers, from the case study it approved, on the{" "}
+            <Link to="/work" className="underline underline-offset-4 hover:text-green">Work page</Link>. Yours will be different.
+            You build on your own processes, not theirs.
           </p>
         </div>
       </section>
 
-      {/* ---------------------------------------------- testimonials --- */}
-      <Testimonials />
+      {/* ------------------------------------------------ taught by ------ */}
+      <section className="bg-linen text-walnut" data-no-rule data-ph-section="taught-by">
+        <div className="container-grain py-14 md:py-20">
+          <div className="max-w-4xl flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+            <img
+              src={matthewPortrait}
+              alt="Matt Bradburn, founder of Deepgrain"
+              width={1920}
+              height={1280}
+              loading="lazy"
+              decoding="async"
+              className="h-28 w-28 sm:h-40 sm:w-40 shrink-0 rounded-2xl border border-walnut/15 object-cover object-[45%_20%]"
+            />
+            <div>
+              <p className="font-sans font-semibold uppercase text-brass" style={{ fontSize: "11px", letterSpacing: "0.22em" }}>
+                Taught by
+              </p>
+              <h2 className="mt-2 font-display font-semibold text-3xl md:text-4xl leading-tight">Matt Bradburn</h2>
+              <p className="mt-4 text-body/85 text-[17px] leading-relaxed">
+                Matt has spent more than 20 years inside operating teams. He was VP People at Peakon, built and sold People Collective, and has
+                trained 1,000+ managers across 100+ cohorts. The predecessor course, AI Powered People Ops, is rated 4.3 out of 5 across 13 public reviews.
+              </p>
+              <p className="mt-4 text-body/85 text-[17px] leading-relaxed">
+                This cohort replaces that course, rebuilt for this year's tools. The same operating work he runs for{" "}
+                {PROOF.join(", ").replace(/, ([^,]*)$/, " and $1")}.
+              </p>
+              <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1 font-sans text-[13px] uppercase tracking-[0.1em]">
+                <a href="https://www.linkedin.com/in/mattbradburn/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-walnut hover:text-brass transition-colors">
+                  <Linkedin size={16} aria-hidden /> LinkedIn
+                </a>
+                <Link to="/about" className="inline-flex min-h-11 items-center text-walnut hover:text-brass transition-colors">About Matt</Link>
+                <Link to="/work" className="inline-flex min-h-11 items-center text-walnut hover:text-brass transition-colors">Client work</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ------------------------------------------------ pricing -------- */}
       <section className="relative bg-green text-cream overflow-hidden" data-no-rule>
         <GrainFlow className="absolute inset-x-0 -top-6 h-40 z-[2]" opacity={0.14} />
         <div className="relative z-10 container-grain section-pad">
-          <p
-            className="font-sans font-semibold uppercase text-brass"
-            style={{ fontSize: "11px", letterSpacing: "0.22em" }}
-          >
-            Book your seat
+          <div id="pricing" data-ph-section="pricing" className="scroll-mt-28">
+            <DatePicker choice={choice} />
+          </div>
+          <p className="mt-6 max-w-5xl text-cream/85 text-[15px] leading-relaxed">
+            Both seats get the full five weeks. Founding adds four 1:1 sessions with Matt, guided feedback throughout and community for life. Standard includes six months of community access.
           </p>
-          <div id="pricing" data-ph-section="pricing" className="mt-12 grid gap-8 md:grid-cols-2 max-w-5xl scroll-mt-28">
+          <div className="mt-8 grid gap-8 md:grid-cols-2 max-w-5xl">
             <PlanCard
               plan="founding"
               name="Founding cohort"
-              price={COURSE.foundingPrice}
-              note={`${COURSE.seats} seats across both cohort times. Five weeks together, plus personal support and a community for life.`}
-              href={COURSE.foundingCheckout}
+              price={choice.foundingPrice(COURSE.foundingPrice)}
+              startLine={startLine}
+              note={`${COURSE.seats} seats across both cohort times. Five weeks together, four 1:1s with Matt, guided feedback on your builds, and the community for life.`}
+              href={tagCheckout(COURSE.foundingCheckout, choice.active)}
               cta="Book a founding seat →"
               featured
             />
             <PlanCard
               plan="standard"
               name="Standard"
-              price={COURSE.standardPrice}
-              note="The full five-week programme, plus six months in the community and access to the hub."
-              href={COURSE.standardCheckout}
+              price={choice.standardPrice(COURSE.standardPrice)}
+              startLine={startLine}
+              note="The full five-week programme, plus six months in the community and the hub."
+              href={tagCheckout(COURSE.standardCheckout, choice.active)}
               cta="Book a standard seat →"
             />
           </div>
@@ -671,47 +782,12 @@ const Waitlist = () => {
               source="course-waitlist"
               variant="dark"
               heading="Not ready to book?"
-              description="Join the waitlist. You hear first when the next cohort opens, and founding pricing reaches you before anyone else."
+              description="Fair enough. Join the waitlist and you hear first when the next cohort opens, at founding pricing before anyone else."
             />
           </div>
         </div>
       </section>
 
-      {/* ------------------------------------------------ about ---------- */}
-      <section className="bg-linen text-walnut" data-no-rule>
-        <div className="container-grain py-20 md:py-28">
-          <div className="h-px w-10 bg-brass/30 mb-10" />
-          <h2 className="font-display font-semibold max-w-3xl" style={H2_STYLE}>
-            Built and taught by Matt Bradburn
-          </h2>
-          <div className="mt-10 inline-flex flex-wrap gap-px bg-walnut/15">
-            {MATT_FACTS.map((f) => (
-              <p
-                key={f}
-                className="bg-linen px-6 py-4 font-sans font-semibold uppercase text-walnut/80"
-                style={{ fontSize: "11px", letterSpacing: "0.18em" }}
-              >
-                {f}
-              </p>
-            ))}
-          </div>
-          <p className="mt-8 max-w-2xl text-body/80 text-lg leading-relaxed">
-            The original course was AI Powered People Ops. This cohort is its successor, rebuilt
-            for this year's tools. The same operating work, run for:
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-14 gap-y-6">
-            {PROOF.map((name) => (
-              <span
-                key={name}
-                className="font-display font-semibold text-walnut/85"
-                style={{ fontSize: "clamp(28px, 3.5vw, 44px)" }}
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ------------------------------------------------ faq ------------ */}
       <div data-ph-section="faq"><FAQ eyebrow="" heading="Questions, answered" items={faqItems} /></div>
@@ -725,15 +801,12 @@ const Waitlist = () => {
               {COURSE.seats} seats. Two cohort times.
             </h2>
             <p className="mt-6 text-cream/80 text-lg leading-relaxed">
-              Founding {COURSE.foundingPrice}. Standard {COURSE.standardPrice}.
+              Founding {choice.foundingPrice(COURSE.foundingPrice)}, standard {choice.standardPrice(COURSE.standardPrice)}. Twenty seats because every build is reviewed by hand.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <CheckoutButton href={COURSE.foundingCheckout} variant="filled">
-                Book a founding seat · {COURSE.foundingPrice} →
-              </CheckoutButton>
-              <CheckoutButton href={COURSE.standardCheckout} variant="outline">
-                Standard · {COURSE.standardPrice} →
-              </CheckoutButton>
+              <a href="#pricing" className="inline-flex items-center justify-center rounded-full font-sans font-medium tracking-wider text-sm px-10 py-4 transition-colors bg-cream text-green hover:bg-cream/90">
+                Pick your start · from {choice.foundingPrice(COURSE.foundingPrice)} ↓
+              </a>
             </div>
           </div>
         </div>
