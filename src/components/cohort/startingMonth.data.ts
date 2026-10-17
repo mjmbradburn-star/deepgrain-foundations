@@ -31,3 +31,6 @@ export const COHORT_STARTS: CohortStart[] = [
 
 /** Americas checkout is in USD (decided 16 Oct 2026). UK/EMEA and everyone else pay GBP. */
 export const US_PRICES = { founding: "$650", standard: "$895" } as const;
+
+/** Founding pricing covers the October and November 2026 starts only (Matt, 17 Oct 2026). */
+export const foundingAvailable = (c: CohortStart): boolean => c.start >= "2026-10-01" && c.start <= "2026-11-30";

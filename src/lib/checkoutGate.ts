@@ -103,6 +103,18 @@ const launch = async (href: string, email: string | null, consent: boolean, ref:
         signal: ctl.signal,
       });
       window.clearTimeout(timer);
+      if (r.status === 400) {
+        // Deliberate rejection (for example founding is closed for this start). Falling back to
+        // the plain Payment Link would sell it anyway, so close the tab and return to pricing.
+        try {
+          tab.close();
+        } catch {
+          /* ignore */
+        }
+        track("checkout_session_rejected", { plan, status: 400 });
+        window.location.href = "/waitlist#pricing";
+        return;
+      }
       const j = r.ok ? await r.json() : null;
       if (j && typeof j.url === "string" && j.url.startsWith("https://checkout.stripe.com/")) target = j.url;
       else track("checkout_session_fallback", { reason: r.ok ? "bad_response" : `http_${r.status}`, plan });

@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { Linkedin } from "lucide-react";
 import matthewPortrait from "@/assets/matthew-bradburn.jpg";
 import { DatePicker, tagCheckout, useCohortChoice, fmtDate } from "@/components/cohort/DatePicker";
+import { foundingAvailable } from "@/components/cohort/startingMonth.data";
 
 /** Single source for the offer. Change the cohort here, not in five places. */
 const COURSE = {
@@ -378,6 +379,7 @@ const H2_STYLE = { fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.01em" 
 const Waitlist = () => {
   const choice = useCohortChoice();
   const startLine = `Starts ${fmtDate(choice.active.start, { weekday: "long", day: "numeric", month: "long" })}`;
+  const foundingOpen = foundingAvailable(choice.active);
   const [openWeek, setOpenWeek] = useState<number>(0);
   // Stripe Payment Links redirect here with ?checkout=success after payment.
   // Only shown for a genuine Stripe return (see lib/checkoutReturn.ts).
@@ -756,17 +758,22 @@ const Waitlist = () => {
           <p className="mt-6 max-w-5xl text-cream/85 text-[15px] leading-relaxed">
             Both seats get the full five weeks. Founding adds four 1:1 sessions with Matt, guided feedback throughout and community for life. Standard includes six months of community access.
           </p>
-          <div className="mt-8 grid gap-8 md:grid-cols-2 max-w-5xl">
-            <PlanCard
-              plan="founding"
-              name="Founding cohort"
-              price={choice.foundingPrice(COURSE.foundingPrice)}
-              startLine={startLine}
-              note={`${COURSE.seats} seats across both cohort times. Five weeks together, four 1:1s with Matt, guided feedback on your builds, and the community for life.`}
-              href={tagCheckout(COURSE.foundingCheckout, choice.active)}
-              cta="Book a founding seat →"
-              featured
-            />
+          <p className="mt-2 max-w-5xl text-cream/70 text-sm">
+            Founding pricing covers the October and November starts.
+          </p>
+          <div className={cn("mt-8 grid gap-8 max-w-5xl", foundingOpen ? "md:grid-cols-2" : "md:grid-cols-1")}>
+            {foundingOpen && (
+              <PlanCard
+                plan="founding"
+                name="Founding cohort"
+                price={choice.foundingPrice(COURSE.foundingPrice)}
+                startLine={startLine}
+                note={`${COURSE.seats} seats across both cohort times. Five weeks together, four 1:1s with Matt, guided feedback on your builds, and the community for life.`}
+                href={tagCheckout(COURSE.foundingCheckout, choice.active)}
+                cta="Book a founding seat →"
+                featured
+              />
+            )}
             <PlanCard
               plan="standard"
               name="Standard"
