@@ -240,6 +240,9 @@ export async function handleEvent(raw: string, deps: Deps): Promise<Outcome> {
           kind: product.kind,
           productLabel: product.label,
           firstName: firstName(buyerName),
+          cohortStart: typeof s.metadata?.cohort_start === "string"
+            ? s.metadata.cohort_start
+            : undefined,
         },
       );
       if (buyerError) {

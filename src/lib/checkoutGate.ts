@@ -256,6 +256,8 @@ function openModal(href: string, opts?: { email?: string; promo?: string; error?
   });
   overlay.querySelector("[data-skip]")?.addEventListener("click", () => {
     close();
+    // Skip drops the email, so a server-applied promo cannot ride along; REQUIRE_EMAIL keeps
+    // this path hidden. If it ever returns, promo buyers must go through the email step.
     void launch(href, null, false, anonId(), "");
   });
   overlay.addEventListener("click", (e) => {

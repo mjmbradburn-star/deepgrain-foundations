@@ -19,10 +19,25 @@ interface Props {
   kind?: "course" | "diagnostic" | string;
   productLabel?: string;
   firstName?: string;
+  cohortStart?: string;
 }
 
+// Session metadata carries the cohort's first session (YYYY-MM-DD). Monday starts are the
+// Americas time, Thursday starts the UK time; anything else or missing gets generic wording
+// so no buyer ever reads dates for the wrong cohort.
+const cohortSchedule = (cohortStart?: string): string | null => {
+  if (!cohortStart || !/^\d{4}-\d{2}-\d{2}$/.test(cohortStart)) return null;
+  const d = new Date(`${cohortStart}T12:00:00Z`);
+  if (isNaN(d.getTime())) return null;
+  const weekday = d.toLocaleDateString("en-GB", { weekday: "long", timeZone: "UTC" });
+  const date = d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+  if (weekday === "Monday") return `Mondays at 9am Pacific, starting ${date}`;
+  if (weekday === "Thursday") return `Thursdays at 2pm UK, starting ${date}`;
+  return null;
+};
+
 const PurchaseConfirmationEmail = (
-  { kind = "course", productLabel = "seat", firstName = "there" }: Props,
+  { kind = "course", productLabel = "seat", firstName = "there", cohortStart }: Props,
 ) => (
   <Html lang="en" dir="ltr">
     <Head />
@@ -46,9 +61,9 @@ const PurchaseConfirmationEmail = (
                   Your {productLabel} for the Deepgrain AI Cohort is confirmed.
                 </Text>
                 <Text style={text}>
-                  The cohort runs at two live times: Mondays at 9am Pacific,
-                  starting 23 November, or Thursdays at 2pm UK, starting 26
-                  November. Five weekly sessions of 75 minutes each.
+                  {cohortSchedule(cohortStart)
+                    ? `Your cohort meets ${cohortSchedule(cohortStart)}. Five weekly sessions of 75 minutes each.`
+                    : "The cohort meets at two live times: Mondays at 9am Pacific or Thursdays at 2pm UK, for five weekly sessions of 75 minutes each. Your cohort's dates are the ones shown when you checked out."}
                 </Text>
                 <Text style={text}>
                   I will email your joining details before your first session.
