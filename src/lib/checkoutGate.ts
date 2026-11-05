@@ -120,7 +120,7 @@ const launch = async (href: string, email: string | null, consent: boolean, ref:
         // Never fall back to the undiscounted link here: the buyer was promised a discount, and
         // typed entry on Stripe's own page is broken account-wide (5 Nov 2026).
         const j422 = await r.json().catch(() => null);
-        const kind = j422 && j422.error === "code_not_for_cohort" ? "code_not_for_cohort" : "invalid_code";
+        const kind = j422 && (j422.error === "code_not_for_cohort" || j422.error === "code_not_for_plan") ? j422.error : "invalid_code";
         try {
           tab.close();
         } catch {
@@ -208,7 +208,9 @@ function openModal(href: string, opts?: { email?: string; promo?: string; error?
       ${opts?.error ? `<p data-promo-error style="font-size:13px;margin:-4px 0 12px;color:#a33">${
         opts.error === "code_not_for_cohort"
           ? "That code is only valid for the November cohort. Pick a November start, or continue without a code."
-          : "That code didn't work. Check it and try again, or continue without it."
+          : opts.error === "code_not_for_plan"
+            ? "That code doesn't apply to this seat. Pick the other seat, or continue without it."
+            : "That code didn't work. Check it and try again, or continue without it."
       }</p>` : ""}
       ${planFor(href) ? `<label style="display:flex;gap:8px;align-items:flex-start;font-size:13px;margin:0 0 14px;cursor:pointer">
         <input type="checkbox" name="consent" style="margin-top:3px"${suggestedConsent() ? " checked" : ""} />
@@ -251,7 +253,7 @@ function openModal(href: string, opts?: { email?: string; promo?: string; error?
       .slice(0, 40);
     close();
     void launch(href, email, consent, ref, promo).then((err) => {
-      if (err === "invalid_code" || err === "code_not_for_cohort") openModal(href, { email, promo, error: err });
+      if (err === "invalid_code" || err === "code_not_for_cohort" || err === "code_not_for_plan") openModal(href, { email, promo, error: err });
     });
   });
   overlay.querySelector("[data-skip]")?.addEventListener("click", () => {

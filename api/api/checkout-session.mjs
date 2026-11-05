@@ -151,6 +151,19 @@ export default async function handler(req, res) {
     },
     body: p,
   });
+  // Some coupons are product-restricted (JESSIE20 covers the founding seat only, 5 Nov 2026:
+  // "does not apply to anything in this order" on the standard Price). Coupons cannot change a
+  // fixed Price's amount, so for a promo on the GBP standard seat we bake the discount into an
+  // ad-hoc price instead - same pattern as the USD route - and record it in metadata.
+  const bakeStandardGbp = () => {
+    p.delete('line_items[0][price]');
+    p.delete('discounts[0][promotion_code]');
+    const cents = Math.round((69500 * (100 - promo.percentOff)) / 100);
+    p.set('line_items[0][price_data][currency]', 'gbp');
+    p.set('line_items[0][price_data][unit_amount]', String(cents));
+    p.set('line_items[0][price_data][product_data][name]', `Deepgrain Standard Course Seat - ${promoRaw} ${promo.percentOff}% off`);
+    p.set('metadata[promo_applied]', promoRaw);
+  };
   try {
     let r = await call(LEGACY_VERSION, idem);
     let j = await r.json();
@@ -159,9 +172,18 @@ export default async function handler(req, res) {
       r = await call(null, idem + 'd');
       j = await r.json();
     }
+    if ((!r.ok || !j.url) && promo && region !== 'us' && plan === 'standard'
+        && j && j.error && /does not apply/.test(String(j.error.message || ''))) {
+      bakeStandardGbp();
+      r = await call(null, idem + 'b');
+      j = await r.json();
+    }
     if (!r.ok || !j.url) {
       console.error('stripe session failed', r.status, j && j.error && j.error.code);
-      if (promo) return res.status(422).json({ error: 'invalid_code' });
+      if (promo) {
+        const notForPlan = j && j.error && /does not apply/.test(String(j.error.message || ''));
+        return res.status(422).json({ error: notForPlan ? 'code_not_for_plan' : 'invalid_code' });
+      }
       return res.status(502).json({ error: 'Checkout unavailable' });
     }
     return res.status(200).json({ url: j.url, id: j.id, promo_applied: !!promo });
