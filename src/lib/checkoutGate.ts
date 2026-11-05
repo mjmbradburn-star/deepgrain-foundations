@@ -75,7 +75,7 @@ const planFor = (href: string): string | null => {
  * Open checkout in a new tab. The tab is opened synchronously (so popup blockers allow it),
  * then pointed at a server-made Checkout Session, or at the plain link on any failure.
  */
-const launch = async (href: string, email: string | null, consent: boolean, ref: string) => {
+const launch = async (href: string, email: string | null, consent: boolean, ref: string, promoCode: string): Promise<string | null> => {
   const fallback = build(href, email);
   const hu = new URL(href, window.location.origin);
   const region = hu.searchParams.get("dg_region") === "us" ? "us" : "uk";
@@ -99,7 +99,7 @@ const launch = async (href: string, email: string | null, consent: boolean, ref:
       const r = await fetch(SESSION_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan, email, consent, ref, region, cohort }),
+        body: JSON.stringify({ plan, email, consent, ref, region, cohort, promoCode }),
         signal: ctl.signal,
       });
       window.clearTimeout(timer);
@@ -113,7 +113,21 @@ const launch = async (href: string, email: string | null, consent: boolean, ref:
         }
         track("checkout_session_rejected", { plan, status: 400 });
         window.location.href = "/waitlist#pricing";
-        return;
+        return "rejected";
+      }
+      if (r.status === 422) {
+        // The supplied code was refused server-side (unknown, withdrawn, or not for this cohort).
+        // Never fall back to the undiscounted link here: the buyer was promised a discount, and
+        // typed entry on Stripe's own page is broken account-wide (5 Nov 2026).
+        const j422 = await r.json().catch(() => null);
+        const kind = j422 && j422.error === "code_not_for_cohort" ? "code_not_for_cohort" : "invalid_code";
+        try {
+          tab.close();
+        } catch {
+          /* ignore */
+        }
+        track("checkout_promo_rejected", { plan, kind });
+        return kind;
       }
       const j = r.ok ? await r.json() : null;
       if (j && typeof j.url === "string" && j.url.startsWith("https://checkout.stripe.com/")) target = j.url;
@@ -133,6 +147,7 @@ const launch = async (href: string, email: string | null, consent: boolean, ref:
     return;
   }
   tab.location.href = target;
+  return null;
 };
 
 /**
@@ -158,6 +173,15 @@ const suggestedConsent = (): boolean => {
     return false;
   }
 };
+/** Promo code the buyer arrived with (?promo=JESSIE20 from a newsletter link, for example). */
+const suggestedPromo = (): string => {
+  try {
+    const q = new URLSearchParams(window.location.search).get("promo") ?? "";
+    return q.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 40);
+  } catch {
+    return "";
+  }
+};
 const track = (event: string, props: Record<string, unknown>) => {
   try {
     (window as unknown as { posthog?: { capture?: (e: string, p?: unknown) => void } }).posthog?.capture?.(event, props);
@@ -166,7 +190,8 @@ const track = (event: string, props: Record<string, unknown>) => {
   }
 };
 
-function openModal(href: string) {
+function openModal(href: string, opts?: { email?: string; promo?: string; error?: string | null }) {
+  const promoPrefill = (opts?.promo ?? suggestedPromo()).replace(/[<>"&]/g, "");
   const overlay = document.createElement("div");
   overlay.setAttribute("role", "dialog");
   overlay.setAttribute("aria-modal", "true");
@@ -176,8 +201,15 @@ function openModal(href: string) {
     <form style="background:#f5efe3;color:#2b2118;max-width:420px;width:100%;padding:28px;border-radius:12px;font-family:inherit">
       <p style="font-size:20px;margin:0 0 8px;font-weight:600">Where should we send your receipt?</p>
       <p style="font-size:14px;margin:0 0 16px;opacity:.75">Check your email is right: it is filled in at checkout and locked there. We also keep it (with Stripe, PostHog and Deepgrain) so we can see abandoned checkouts.</p>
-      <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" value="${suggestedEmail().replace(/[<>"&]/g, "")}"
+      <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" value="${(opts?.email ?? suggestedEmail()).replace(/[<>"&]/g, "")}"
         style="width:100%;box-sizing:border-box;padding:12px;font-size:16px;border:1px solid #2b211833;border-radius:8px;margin-bottom:12px" />
+      ${planFor(href) ? `<input type="text" name="promo" inputmode="text" autocomplete="off" placeholder="Promo code (optional)" value="${promoPrefill}"
+        style="width:100%;box-sizing:border-box;padding:12px;font-size:16px;border:1px solid #2b211833;border-radius:8px;margin-bottom:12px;text-transform:uppercase" />` : ""}
+      ${opts?.error ? `<p data-promo-error style="font-size:13px;margin:-4px 0 12px;color:#a33">${
+        opts.error === "code_not_for_cohort"
+          ? "That code is only valid for the November cohort. Pick a November start, or continue without a code."
+          : "That code didn't work. Check it and try again, or continue without it."
+      }</p>` : ""}
       ${planFor(href) ? `<label style="display:flex;gap:8px;align-items:flex-start;font-size:13px;margin:0 0 14px;cursor:pointer">
         <input type="checkbox" name="consent" style="margin-top:3px"${suggestedConsent() ? " checked" : ""} />
         <span>${CONSENT_TEXT}</span>
@@ -213,12 +245,18 @@ function openModal(href: string) {
       marketing_consent_claimed: consent,
       marketing_consent_claimed_at: consent ? new Date().toISOString() : "",
     });
+    const promo = ((overlay.querySelector("input[name=promo]") as HTMLInputElement | null)?.value ?? "")
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, "")
+      .slice(0, 40);
     close();
-    void launch(href, email, consent, ref);
+    void launch(href, email, consent, ref, promo).then((err) => {
+      if (err === "invalid_code" || err === "code_not_for_cohort") openModal(href, { email, promo, error: err });
+    });
   });
   overlay.querySelector("[data-skip]")?.addEventListener("click", () => {
     close();
-    void launch(href, null, false, anonId());
+    void launch(href, null, false, anonId(), "");
   });
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) close();
