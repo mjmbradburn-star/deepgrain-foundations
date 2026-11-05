@@ -231,7 +231,7 @@ const faqItems: FAQItem[] = [
   {
     question: "When does it start, and how many seats are there?",
     answer:
-      "The current cohort starts Thursday 22 October (UK/EMEA, 2pm UK) and Monday 19 October (Americas, 9am Pacific, 12pm Eastern). The next starts are Monday 23 November and Thursday 26 November, then Monday 11 January and Thursday 14 January. Each cohort meets live for 75 minutes a week over five weeks. Twenty seats, because the build work is reviewed by hand.",
+      "The next cohorts start Thursday 26 November (UK/EMEA, 2pm UK) and Monday 23 November (Americas, 9am Pacific, 12pm Eastern), then Monday 11 January and Thursday 14 January. Each cohort meets live for 75 minutes a week over five weeks. Twenty seats, because the build work is reviewed by hand.",
   },
   {
     question: "What if I have a question you have not answered?",
@@ -400,7 +400,7 @@ const Waitlist = () => {
     <>
       <PageMeta
         title="Deepgrain AI Cohort for People Teams"
-        description="Five weeks, live, for People and HR operators. Build skills, projects, workflows and agents on your own processes. UK/EMEA from 22 October; Americas from 19 October. From £495."
+        description="Five weeks, live, for People and HR operators. Build skills, projects, workflows and agents on your own processes. UK/EMEA from 26 November; Americas from 23 November. From £495."
         path="/waitlist"
         jsonLd={[COURSE_LD, buildFAQLd(faqItems), buildBreadcrumbLd([{ name: "Home", url: "https://www.deepgrain.ai/" }, { name: "AI cohort", url: "https://www.deepgrain.ai/waitlist" }])]}
       />
@@ -434,17 +434,16 @@ const Waitlist = () => {
             <div className="mt-4 grid gap-4 md:grid-cols-2 md:gap-6">
               <div className="border-t border-cream/20 pt-3">
                 <h2 className="font-display text-xl font-semibold">UK / EMEA</h2>
-                <p className="mt-1 text-sm text-cream/90">Thursdays, 2pm UK · starts 22&nbsp;October</p>
+                <p className="mt-1 text-sm text-cream/90">Thursdays, 2pm UK · starts 26&nbsp;November</p>
               </div>
               <div className="border-t border-cream/20 pt-3">
                 <h2 className="font-display text-xl font-semibold">Americas</h2>
-                <p className="mt-1 text-sm text-cream/90">Mondays, 9am PT / 12pm ET · starts 19&nbsp;October</p>
-                <p className="mt-1 text-xs text-cream/70">5pm UK except 26 October, 4pm UK (clock change)</p>
+                <p className="mt-1 text-sm text-cream/90">Mondays, 9am PT / 12pm ET (5pm UK) · starts 23&nbsp;November</p>
               </div>
             </div>
             <p className="mt-4 border-t border-cream/20 pt-3 text-sm font-semibold text-brass">Five weeks · 75 minutes live each week</p>
             <p className="mt-1 text-sm text-cream/80">
-              Next starts: Americas 23 November, UK/EMEA 26 November. Then 11 and 14 January. <a href="#pricing" className="underline underline-offset-4 hover:text-cream">Pick your start ↓</a>
+              Later starts: Americas 11 January, UK/EMEA 14 January. <a href="#pricing" className="underline underline-offset-4 hover:text-cream">Pick your start ↓</a>
             </p>
           </div>
           <div className="fade-in-up fade-in-up-2 mt-10 max-w-2xl">
@@ -759,7 +758,7 @@ const Waitlist = () => {
             Both seats get the full five weeks. Founding adds four 1:1 sessions with Matt, guided feedback throughout and community for life. Standard includes six months of community access.
           </p>
           <p className="mt-2 max-w-5xl text-cream/70 text-sm">
-            Founding pricing covers the October and November starts.
+            Founding pricing covers the November starts.
           </p>
           <div className={cn("mt-8 grid gap-8 max-w-5xl", foundingOpen ? "md:grid-cols-2" : "md:grid-cols-1")}>
             {foundingOpen && (

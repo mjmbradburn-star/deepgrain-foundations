@@ -18,9 +18,9 @@ const USD_PLANS = {
 };
 // First-session dates of the cohorts a buyer may pick (Americas Monday / UK Thursday of the block).
 // Keep in step with src/components/cohort/startingMonth.data.ts.
-const COHORTS = new Set(['2026-10-19', '2026-10-22', '2026-11-23', '2026-11-26', '2027-01-11', '2027-01-14']);
-// Founding pricing covers the October/November 2026 starts only (Matt, 17 Oct 2026).
-const FOUNDING_COHORTS = new Set(['2026-10-19', '2026-10-22', '2026-11-23', '2026-11-26']);
+const COHORTS = new Set(['2026-11-23', '2026-11-26', '2027-01-11', '2027-01-14']);
+// Founding pricing covers the November 2026 starts only (Matt, 17 Oct 2026; October dropped 5 Nov 2026).
+const FOUNDING_COHORTS = new Set(['2026-11-23', '2026-11-26']);
 const LEGACY_VERSION = '2020-08-27';
 const ORIGINS = new Set(['https://www.deepgrain.ai', 'https://deepgrain.ai']);
 const EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/;

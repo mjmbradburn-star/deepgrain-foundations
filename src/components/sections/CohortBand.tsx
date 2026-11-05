@@ -19,7 +19,7 @@ export const CohortBand = () => (
             className="font-mono uppercase text-brass"
             style={{ fontSize: "11px", letterSpacing: "0.22em" }}
           >
-            Cohort one · starts Monday 19 October
+            Next cohort · starts Monday 23 November
           </p>
           <h2
             className="font-display font-semibold text-cream mt-5 max-w-2xl"
