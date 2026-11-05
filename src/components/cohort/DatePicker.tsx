@@ -138,7 +138,7 @@ export const DatePicker = ({ choice }: { choice: CohortChoice }) => {
       </div>
       <p className="mt-3 text-sm text-cream/90" aria-live="polite">
         <span className="font-semibold">Starts {fmtDate(active.start, { weekday: "long", day: "numeric", month: "long" })}.</span> {active.time}, five weekly sessions to{" "}
-        {fmtDate(addDays(active.start, 28), { day: "numeric", month: "long" })}.
+        {fmtDate(sessionDates(active)[4], { day: "numeric", month: "long" })}.
         {usd ? " Charged in US dollars." : " Charged in pounds."}
       </p>
       <p className="mt-2 text-sm text-cream/80">

@@ -26,8 +26,10 @@ const FOUNDING_COHORTS = new Set(['2026-11-23', '2026-11-26']);
 // codes buyers were given are applied server-side instead. Codes apply to the November 2026
 // cohort only (Matt, 5 Nov 2026); an empty cohort is the page default, which is November.
 const PROMO_CODES = new Map([
-  ['JESSIE20', { id: 'promo_1UNVMvQQIEQm1i6qfWPQScKB', percentOff: 20 }],
-  ['DG20', { id: 'promo_1UM5VTQQIEQm1i6qwor4qZmV', percentOff: 20 }],
+  // Newsletter code (Jessie, Nov 2026): next cohort only.
+  ['JESSIE20', { id: 'promo_1UNVMvQQIEQm1i6qfWPQScKB', percentOff: 20, novemberOnly: true }],
+  // Waitlist-overlay code: "20% off this cohort or a future one" (CohortOverlay.tsx).
+  ['DG20', { id: 'promo_1UM5VTQQIEQm1i6qwor4qZmV', percentOff: 20, novemberOnly: false }],
 ]);
 const LEGACY_VERSION = '2020-08-27';
 const ORIGINS = new Set(['https://www.deepgrain.ai', 'https://deepgrain.ai']);
@@ -88,7 +90,7 @@ export default async function handler(req, res) {
   if (promoRaw) {
     promo = PROMO_CODES.get(promoRaw) || null;
     if (!promo) return res.status(422).json({ error: 'invalid_code' });
-    if (cohort && !FOUNDING_COHORTS.has(cohort)) return res.status(422).json({ error: 'code_not_for_cohort' });
+    if (promo.novemberOnly && cohort && !FOUNDING_COHORTS.has(cohort)) return res.status(422).json({ error: 'code_not_for_cohort' });
   }
 
   const p = new URLSearchParams();
