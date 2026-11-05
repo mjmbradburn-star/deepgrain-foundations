@@ -101,8 +101,8 @@ const SubscriberWelcomeEmail = ({
                 <Text style={codeLabel}>Your 20% code</Text>
                 <Text style={codeValue}>DG20</Text>
                 <Text style={codeNote}>
-                  Enter it at checkout for 20% off Founding or Standard, this
-                  cohort or a future one. Keep this email.
+                  Enter it in the promo box when you book for 20% off Founding
+                  or Standard, this cohort or a future one. Keep this email.
                 </Text>
               </Section>
             )}
