@@ -95,7 +95,7 @@ export const HeroDeck = () => {
       {/* Warm brass glow seated behind the artwork. */}
       <div className="hidden lg:block absolute right-[-6%] top-1/2 -translate-y-1/2 w-[46%] aspect-square rounded-full bg-brass/[0.14] blur-[120px] pointer-events-none z-[1]" />
 
-      <div className="relative z-10 container-grain w-full pt-44 pb-16 md:pt-48 md:pb-20 lg:py-0">
+      <div className={`relative z-10 container-grain w-full pt-44 pb-16 md:pt-48 md:pb-20 ${courseVariant === "bar" ? "lg:pt-40 lg:pb-0" : "lg:py-0"}`}>
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-12">
           {/* LEFT: copy */}
           <div className="lg:col-span-7 xl:col-span-7">
