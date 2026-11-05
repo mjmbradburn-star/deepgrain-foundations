@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from "npm:@supabase/supabase-js@2";
+import { applyEmailTracking } from "../_shared/tracking.ts";
 
 const RESEND_API_URL = "https://api.resend.com/emails";
 // Resend only accepts From addresses on a domain verified in the Resend
@@ -75,7 +76,13 @@ async function sendResendEmail(
       from: normalizeFromAddress(payload.from),
       to: [payload.to],
       subject: payload.subject,
-      html: payload.html,
+      html: typeof payload.html === "string" && typeof payload.to === "string"
+        ? await applyEmailTracking(
+          payload.html,
+          payload.to,
+          String(payload.label || "transactional"),
+        )
+        : payload.html,
       text: payload.text,
       ...(Object.keys(emailHeaders).length > 0
         ? { headers: emailHeaders }
