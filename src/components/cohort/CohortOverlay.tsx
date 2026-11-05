@@ -220,7 +220,7 @@ export const CohortOverlay = () => {
               You're on the list.
             </h2>
             <p className="mt-4 text-cream/80 leading-relaxed">
-              Use code DG20 at checkout for 20% off this cohort or a future one. Save it for when you're ready.
+              Enter code DG20 in the promo box when you book for 20% off this cohort or a future one. Save it for when you're ready.
             </p>
             <p className="mt-6 border border-brass/50 px-5 py-4 text-center font-mono text-3xl tracking-[0.2em] text-brass" aria-label="Your discount code: DG20">
               DG20
