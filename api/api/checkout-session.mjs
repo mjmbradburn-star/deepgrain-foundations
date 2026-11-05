@@ -26,8 +26,8 @@ const FOUNDING_COHORTS = new Set(['2026-11-23', '2026-11-26']);
 // codes buyers were given are applied server-side instead. Codes apply to the November 2026
 // cohort only (Matt, 5 Nov 2026); an empty cohort is the page default, which is November.
 const PROMO_CODES = new Map([
-  ['JESSIE20', 'promo_1UNVMvQQIEQm1i6qfWPQScKB'],
-  ['DG20', 'promo_1UM5VTQQIEQm1i6qwor4qZmV'],
+  ['JESSIE20', { id: 'promo_1UNVMvQQIEQm1i6qfWPQScKB', percentOff: 20 }],
+  ['DG20', { id: 'promo_1UM5VTQQIEQm1i6qwor4qZmV', percentOff: 20 }],
 ]);
 const LEGACY_VERSION = '2020-08-27';
 const ORIGINS = new Set(['https://www.deepgrain.ai', 'https://deepgrain.ai']);
@@ -84,10 +84,10 @@ export default async function handler(req, res) {
   const consent = body.consent === true;
   const ref = String(body.ref || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 100);
   const promoRaw = String(body.promoCode || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 40);
-  let promoId = '';
+  let promo = null;
   if (promoRaw) {
-    promoId = PROMO_CODES.get(promoRaw) || '';
-    if (!promoId) return res.status(422).json({ error: 'invalid_code' });
+    promo = PROMO_CODES.get(promoRaw) || null;
+    if (!promo) return res.status(422).json({ error: 'invalid_code' });
     if (cohort && !FOUNDING_COHORTS.has(cohort)) return res.status(422).json({ error: 'code_not_for_cohort' });
   }
 
@@ -95,9 +95,13 @@ export default async function handler(req, res) {
   p.set('mode', 'payment');
   if (region === 'us') {
     const usd = USD_PLANS[plan];
+    // Stripe refuses coupons on ad-hoc price_data items in this account ("does not apply to
+    // anything in this order", 5 Nov 2026), so the USD discount is baked into the amount
+    // instead of a Stripe discount line. metadata[promo_applied] keeps the books honest.
+    const cents = promo ? Math.round((usd.cents * (100 - promo.percentOff)) / 100) : usd.cents;
     p.set('line_items[0][price_data][currency]', 'usd');
-    p.set('line_items[0][price_data][unit_amount]', String(usd.cents));
-    p.set('line_items[0][price_data][product_data][name]', usd.name);
+    p.set('line_items[0][price_data][unit_amount]', String(cents));
+    p.set('line_items[0][price_data][product_data][name]', usd.name + (promo ? ` - ${promoRaw} ${promo.percentOff}% off` : ''));
   } else {
     p.set('line_items[0][price]', price);
   }
@@ -107,8 +111,8 @@ export default async function handler(req, res) {
   if (ref) p.set('client_reference_id', ref);
   p.set('billing_address_collection', 'required');
   // Typed entry is rejected account-wide by Stripe (5 Nov 2026); hide the box when a code is already applied.
-  if (!promoId) p.set('allow_promotion_codes', 'true');
-  if (promoId) p.set('discounts[0][promotion_code]', promoId);
+  if (!promo) p.set('allow_promotion_codes', 'true');
+  if (promo && region !== 'us') p.set('discounts[0][promotion_code]', promo.id);
   p.set('adaptive_pricing[enabled]', 'false');
   p.set('success_url', 'https://www.deepgrain.ai/waitlist?checkout=success&session_id={CHECKOUT_SESSION_ID}');
   p.set('cancel_url', 'https://www.deepgrain.ai/waitlist');
@@ -116,6 +120,7 @@ export default async function handler(req, res) {
   p.set('metadata[plan]', plan);
   p.set('metadata[region]', region);
   if (cohort) p.set('metadata[cohort_start]', cohort);
+  if (promo && region === 'us') p.set('metadata[promo_applied]', promoRaw);
   // CLAIMED only: anyone can POST this endpoint, so an unpaid session's consent is never
   // trusted for contact. The webhook only honours it once the session is paid.
   p.set('metadata[marketing_consent_claimed]', consent ? 'true' : 'false');
@@ -130,7 +135,7 @@ export default async function handler(req, res) {
   p.set('payment_intent_data[metadata][source]', 'deepgrain_gate');
   if (ref) p.set('payment_intent_data[metadata][client_reference_id]', ref);
 
-  const idem = 'gate-' + createHash('sha256').update(`${email}|${plan}|${region}|${cohort}|${consent}|${ref}|${promoId}|${Math.floor(Date.now() / 300000)}`).digest('hex').slice(0, 40);
+  const idem = 'gate-' + createHash('sha256').update(`${email}|${plan}|${region}|${cohort}|${consent}|${ref}|${promo ? promo.id : ''}|${Math.floor(Date.now() / 300000)}`).digest('hex').slice(0, 40);
   // Older API version: Checkout creates the PaymentIntent up front, so an opened-but-unpaid
   // session shows in the dashboard Payments tab as "Incomplete" (like Maven). If Stripe rejects
   // that version for any reason we retry on the account default so a sale is never blocked.
@@ -154,10 +159,10 @@ export default async function handler(req, res) {
     }
     if (!r.ok || !j.url) {
       console.error('stripe session failed', r.status, j && j.error && j.error.code);
-      if (promoId) return res.status(422).json({ error: 'invalid_code' });
+      if (promo) return res.status(422).json({ error: 'invalid_code' });
       return res.status(502).json({ error: 'Checkout unavailable' });
     }
-    return res.status(200).json({ url: j.url, id: j.id, promo_applied: !!promoId });
+    return res.status(200).json({ url: j.url, id: j.id, promo_applied: !!promo });
   } catch (e) {
     console.error('stripe session error', e && e.message);
     return res.status(502).json({ error: 'Checkout unavailable' });
