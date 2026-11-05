@@ -107,7 +107,7 @@ export default async function handler(req, res) {
   if (ref) p.set('client_reference_id', ref);
   p.set('billing_address_collection', 'required');
   // Typed entry is rejected account-wide by Stripe (5 Nov 2026); hide the box when a code is already applied.
-  p.set('allow_promotion_codes', promoId ? 'false' : 'true');
+  if (!promoId) p.set('allow_promotion_codes', 'true');
   if (promoId) p.set('discounts[0][promotion_code]', promoId);
   p.set('adaptive_pricing[enabled]', 'false');
   p.set('success_url', 'https://www.deepgrain.ai/waitlist?checkout=success&session_id={CHECKOUT_SESSION_ID}');
